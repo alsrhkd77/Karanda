@@ -1,5 +1,7 @@
 import 'package:black_tools/settings/settings_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,13 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     super.initState();
   }
-  
-  Widget singleBox(String name){
+
+  Widget singleIconBox(
+      {required String name, required IconData icon, required var onTap}) {
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -24,22 +26,23 @@ class _HomePageState extends State<HomePage> {
           children: [
             Card(
               child: Container(
-                margin: EdgeInsets.all(12.0),
-                child: Icon(Icons.ac_unit, size: 55.0),
+                margin: EdgeInsets.all(18.0),
+                child: Icon(icon, size: 50.0),
               ),
             ),
             Text(name),
           ],
         ),
       ),
-      onTap: (){},
+      onTap: onTap,
     );
   }
 
-  List<Widget> buildMenu(){
+  List<Widget> buildMenu() {
     List<Widget> result = [];
-    for(int i=0;i<12;i++){
-      Widget widget = singleBox('app${i+1}');
+    for (int i = 0; i < 12; i++) {
+      Widget widget = singleIconBox(
+          icon: FontAwesomeIcons.amazon, name: 'app${i + 1}', onTap: () {});
       result.add(widget);
     }
     return result;
@@ -52,7 +55,13 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text('Flutter Demo Home Page'),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.settings))
+          IconButton(
+            onPressed: () {
+              Get.toNamed('/settings');
+            },
+            icon: Icon(FontAwesomeIcons.gear),
+            tooltip: '설정',
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -61,23 +70,29 @@ class _HomePageState extends State<HomePage> {
           children: [
             ListTile(
               title: Text('생활'),
-              trailing: ChangeNotifierProvider.value(
-                  value: SettingsNotifier(),
-                child: Switch(
-                  value: Provider.of<SettingsNotifier>(context).darkMode,
-                  onChanged: (value){
-                    Provider.of<SettingsNotifier>(context, listen: false).setDarkMode(value);
-                  },
-                ),
-              ),
             ),
             Divider(),
             Wrap(
               runSpacing: 20.0,
               spacing: 20.0,
-              children: buildMenu(),
+              children: [
+                singleIconBox(
+                  name: '말 성장치 계산기',
+                  icon: FontAwesomeIcons.horse,
+                  onTap: () {
+                    Get.toNamed('/horse');
+                  },
+                ),
+                singleIconBox(
+                  name: '선원 성장치 계산기',
+                  icon: FontAwesomeIcons.anchor,
+                  onTap: () {},
+                ),
+              ],
             ),
-            SizedBox(height: 12.0,),
+            SizedBox(
+              height: 12.0,
+            ),
             ListTile(
               title: Text('아토락시온'),
             ),
@@ -87,6 +102,19 @@ class _HomePageState extends State<HomePage> {
               spacing: 20.0,
               children: buildMenu(),
             ),
+            Divider(),
+            Card(
+              elevation: 4.0,
+              margin: EdgeInsets.all(24.0),
+              child: Container(
+                margin: EdgeInsets.all(24.0),
+                width: Size.infinite.width,
+                child: Text(
+                  'sadfasdf\nUse Font Awsome Icons',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -1,6 +1,9 @@
 import 'package:black_tools/home/home_page.dart';
+import 'package:black_tools/horse/horse_page.dart';
 import 'package:black_tools/settings/settings_notifier.dart';
+import 'package:black_tools/settings/settings_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,12 +19,17 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => SettingsNotifier(),
       child: Consumer(
-        builder: (context,SettingsNotifier _settings, _){
-          return MaterialApp(
+        builder: (context, SettingsNotifier _settings, _) {
+          return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Black tools Demo',
             theme: _settings.darkMode ? ThemeData.dark() : ThemeData.light(),
-            home: const HomePage(),
+            initialRoute: '/',
+            getPages: [
+              GetPage(name: '/', page: () => const HomePage()),
+              GetPage(name: '/settings', page: () => const SettingsPage()),
+              GetPage(name: '/horse', page: () => const HorsePage()),
+            ],
           );
         },
       ),
