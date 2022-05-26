@@ -37,6 +37,7 @@ dependencies:
 
   get: ^4.6.5
   provider: ^6.0.2
+  url_launcher: ^6.1.2
   font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
