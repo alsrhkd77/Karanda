@@ -1,3 +1,4 @@
+import 'package:black_tools/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -71,11 +72,14 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 12.0),
+        padding: EdgeInsets.all(12.0),
         child: Column(
           children: [
             ListTile(
-              title: Text('계산기'),
+              title: TitleText(
+                'Service',
+                bold: true,
+              ),
             ),
             Divider(),
             Wrap(
@@ -90,23 +94,23 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 singleIconBox(
-                  name: '선원 성장치 계산기',
+                  name: '이벤트 캘린더',
+                  icon: FontAwesomeIcons.calendarWeek,
+                  onTap: () {
+                    Get.toNamed('/event-calender');
+                  },
+                ),
+                singleIconBox(
+                  name: '광명석',
+                  icon: FontAwesomeIcons.anchor,
+                  onTap: () {},
+                ),
+                singleIconBox(
+                  name: '선원',
                   icon: FontAwesomeIcons.anchor,
                   onTap: () {},
                 ),
               ],
-            ),
-            SizedBox(
-              height: 12.0,
-            ),
-            ListTile(
-              title: Text('아토락시온'),
-            ),
-            Divider(),
-            Wrap(
-              runSpacing: 20.0,
-              spacing: 20.0,
-              children: buildMenu(),
             ),
             SizedBox(
               height: 12.0,
@@ -125,6 +129,11 @@ class _HomePageState extends State<HomePage> {
                   onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
                 ),
                 singleIconBox(
+                  name: '연구소',
+                  icon: FontAwesomeIcons.link,
+                  onTap: () => _launchURL('https://www.global-lab.playblackdesert.com/'),
+                ),
+                singleIconBox(
                   name: '인벤',
                   icon: FontAwesomeIcons.link,
                   onTap: () => _launchURL('https://black.inven.co.kr/'),
@@ -138,6 +147,11 @@ class _HomePageState extends State<HomePage> {
                   name: 'Garmoth',
                   icon: FontAwesomeIcons.link,
                   onTap: () => _launchURL('https://garmoth.com'),
+                ),
+                singleIconBox(
+                  name: '환상연화',
+                  icon: FontAwesomeIcons.link,
+                  onTap: () => _launchURL('http://검은사막.환상연화.홈페이지.한국'),
                 ),
               ],
             ),

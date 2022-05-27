@@ -1,3 +1,4 @@
+import 'package:black_tools/event_calender/event_calender_page.dart';
 import 'package:black_tools/home/home_page.dart';
 import 'package:black_tools/horse/horse_page.dart';
 import 'package:black_tools/settings/settings_notifier.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/', page: () => const HomePage()),
               GetPage(name: '/settings', page: () => const SettingsPage()),
               GetPage(name: '/horse', page: () => const HorsePage()),
+              GetPage(name: '/event-calender', page: () => const EventCalenderPage()),
             ],
           );
         },

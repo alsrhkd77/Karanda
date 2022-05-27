@@ -247,8 +247,7 @@ class _HorsePageState extends State<HorsePage> {
                             ListTile(
                               leading: Text('제동'),
                               title: TextFormField(
-                                keyboardType: TextInputType.numberWithOptions(
-                                    decimal: true),
+                                keyboardType: TextInputType.numberWithOptions(decimal: true),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'^(\d{0,3})?\.?\d{0,2}')),
@@ -285,7 +284,7 @@ class _HorsePageState extends State<HorsePage> {
                                     child: Text('결과', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                                  margin: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -323,6 +322,19 @@ class _HorsePageState extends State<HorsePage> {
                                     ],
                                   ),
                                 ),
+                                Container(
+                                  margin: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text('레벨: ${horse.level}'),
+                                      Text('성장치 합: ${horse.grownStat.toStringAsFixed(2)}'),
+                                      Text('평균 성장치: ${horse.average.toStringAsFixed(2)}'),
+                                    ],
+                                  ),
+                                ),
+                                
+
                                 DataTable(
                                   columns: const <DataColumn>[
                                     DataColumn(

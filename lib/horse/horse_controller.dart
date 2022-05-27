@@ -53,6 +53,8 @@ class HorseController extends GetxController {
     update();
   }
 
+  double get grownStat => _speed + _acceleration + _brake + _rotForce;
+
   //등급 계산
   String _evaluate(double value) {
     if (value >= 0.8) {
@@ -72,7 +74,6 @@ class HorseController extends GetxController {
   double get average {
     double defaultStat = _horseInfo.detail[_breed]!.values
         .reduce((value, element) => value + element);
-    double grownStat = _speed + _acceleration + _brake + _rotForce;
     int maxLevel = _level > 30 ? 30 : _level;
     return ((grownStat - defaultStat) / maxLevel) / 4;
   }
