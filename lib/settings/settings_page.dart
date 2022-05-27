@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:black_tools/settings/settings_notifier.dart';
 import 'package:black_tools/widgets/default_app_bar.dart';
 import 'package:black_tools/widgets/title_text.dart';
