@@ -3,6 +3,7 @@ import 'package:black_tools/home/home_page.dart';
 import 'package:black_tools/horse/horse_page.dart';
 import 'package:black_tools/settings/settings_notifier.dart';
 import 'package:black_tools/settings/settings_page.dart';
+import 'package:black_tools/sikarakia/sikarakia_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/settings', page: () => const SettingsPage()),
               GetPage(name: '/horse', page: () => const HorsePage()),
               GetPage(name: '/event-calender', page: () => const EventCalenderPage()),
+              GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
             ],
           );
         },

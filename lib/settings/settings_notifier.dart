@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class SettingsNotifier with ChangeNotifier {
-  bool _darkMode = false;
+  bool _darkMode = true;
   bool get darkMode => _darkMode;
 
   void setDarkMode(bool value){

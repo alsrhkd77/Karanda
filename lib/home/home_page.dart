@@ -30,22 +30,15 @@ class _HomePageState extends State<HomePage> {
                 child: Icon(icon, size: 50.0),
               ),
             ),
-            Text(name),
+            SizedBox(
+              width: 115,
+              child: Text(name, textAlign: TextAlign.center),
+            ),
           ],
         ),
       ),
       onTap: onTap,
     );
-  }
-
-  List<Widget> buildMenu() {
-    List<Widget> result = [];
-    for (int i = 0; i < 12; i++) {
-      Widget widget = singleIconBox(
-          icon: FontAwesomeIcons.amazon, name: 'app${i + 1}', onTap: () {});
-      result.add(widget);
-    }
-    return result;
   }
 
   void _launchURL(String url) async {
@@ -60,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Flutter Demo Home Page'),
+        title: Text('Home'),
         actions: [
           IconButton(
             onPressed: () {
@@ -75,13 +68,14 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(12.0),
         child: Column(
           children: [
-            ListTile(
+            const ListTile(
+              leading: Icon(FontAwesomeIcons.code),
               title: TitleText(
-                'Service',
+                'Services',
                 bold: true,
               ),
             ),
-            Divider(),
+            const Divider(),
             Wrap(
               runSpacing: 20.0,
               spacing: 20.0,
@@ -95,30 +89,38 @@ class _HomePageState extends State<HomePage> {
                 ),
                 singleIconBox(
                   name: '이벤트 캘린더',
-                  icon: FontAwesomeIcons.calendarWeek,
+                  icon: FontAwesomeIcons.calendarCheck,
                   onTap: () {
                     Get.toNamed('/event-calender');
                   },
                 ),
                 singleIconBox(
+                  name: '시카라키아\n아홉문장 계산기',
+                  icon: FontAwesomeIcons.calculator,
+                  onTap: () {
+                    Get.toNamed('/sikarakia');
+                  },
+                ),
+                singleIconBox(
                   name: '광명석',
-                  icon: FontAwesomeIcons.anchor,
+                  icon: FontAwesomeIcons.cookie,
                   onTap: () {},
                 ),
                 singleIconBox(
                   name: '선원',
-                  icon: FontAwesomeIcons.anchor,
+                  icon: FontAwesomeIcons.personSwimming,
                   onTap: () {},
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
-            ListTile(
-              title: Text('바로가기'),
+            const ListTile(
+              leading: Icon(FontAwesomeIcons.link),
+              title: TitleText('Links', bold: true),
             ),
-            Divider(),
+            const Divider(),
             Wrap(
               runSpacing: 20.0,
               spacing: 20.0,
@@ -131,7 +133,8 @@ class _HomePageState extends State<HomePage> {
                 singleIconBox(
                   name: '연구소',
                   icon: FontAwesomeIcons.link,
-                  onTap: () => _launchURL('https://www.global-lab.playblackdesert.com/'),
+                  onTap: () =>
+                      _launchURL('https://www.global-lab.playblackdesert.com/'),
                 ),
                 singleIconBox(
                   name: '인벤',
@@ -139,9 +142,10 @@ class _HomePageState extends State<HomePage> {
                   onTap: () => _launchURL('https://black.inven.co.kr/'),
                 ),
                 singleIconBox(
-                  name: '인벤 지도 시뮬레이터',
+                  name: '인벤\n지도시뮬레이터',
                   icon: FontAwesomeIcons.link,
-                  onTap: () => _launchURL('https://black.inven.co.kr/dataninfo/map/'),
+                  onTap: () =>
+                      _launchURL('https://black.inven.co.kr/dataninfo/map/'),
                 ),
                 singleIconBox(
                   name: 'Garmoth',

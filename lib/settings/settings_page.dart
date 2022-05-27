@@ -24,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
             margin: const EdgeInsets.all(12.0),
             width: Size.infinite.width,
             constraints: const BoxConstraints(
-              maxWidth: 1440,
+              maxWidth: 1080,
             ),
             child: Column(
               children: [

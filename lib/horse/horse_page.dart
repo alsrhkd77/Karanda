@@ -32,7 +32,7 @@ class _HorsePageState extends State<HorsePage> {
                     children: [
                       Container(
                         margin: EdgeInsets.all(12.0),
-                        constraints: BoxConstraints(maxWidth: 720),
+                        constraints: BoxConstraints(maxWidth: 700),
                         child: ExpansionTile(
                           title: const TitleText('종류'),
                           subtitle: Text(horse.breed),
@@ -149,7 +149,7 @@ class _HorsePageState extends State<HorsePage> {
                    */
                       Container(
                         margin: EdgeInsets.all(12.0),
-                        constraints: BoxConstraints(maxWidth: 720),
+                        constraints: BoxConstraints(maxWidth: 700),
                         child: ExpansionTile(
                           title: const TitleText('성장치'),
                           childrenPadding: EdgeInsets.all(30.0),
@@ -271,7 +271,7 @@ class _HorsePageState extends State<HorsePage> {
                       ),
                       Container(
                         margin: EdgeInsets.all(12.0),
-                        constraints: BoxConstraints(maxWidth: 720),
+                        constraints: BoxConstraints(maxWidth: 700),
                         child: Card(
                           elevation: 3.0,
                           child: Container(
