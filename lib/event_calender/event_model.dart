@@ -6,9 +6,10 @@ class EventModel{
   DateTime deadline;
   String url;
   String thumbnail;
+  String meta;
   Color color;
 
-  EventModel(this.title, this.count, this.deadline, this.url, this.thumbnail, this.color);
+  EventModel(this.title, this.count, this.deadline, this.url, this.thumbnail, this.meta, this.color);
 
   @override
   String toString() {

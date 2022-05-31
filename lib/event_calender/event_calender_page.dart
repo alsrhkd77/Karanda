@@ -1,13 +1,14 @@
 import 'package:black_tools/event_calender/custom_calendar.dart';
 import 'package:black_tools/event_calender/date_time_converter.dart';
 import 'package:black_tools/event_calender/event_calender_controller.dart';
-import 'package:black_tools/event_calender/event_data_source.dart';
+import 'package:black_tools/event_calender/event_model.dart';
 import 'package:black_tools/widgets/default_app_bar.dart';
 import 'package:black_tools/widgets/title_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EventCalenderPage extends StatefulWidget {
   const EventCalenderPage({Key? key}) : super(key: key);
@@ -28,25 +29,93 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
     super.initState();
   }
 
-  Widget buildCalendar() {
-    return SizedBox(
-      height: 800,
-      child: SfCalendar(
-        view: CalendarView.month,
-        allowAppointmentResize: true,
-        monthViewSettings: MonthViewSettings(
-          monthCellStyle: MonthCellStyle(
-            textStyle: context.theme.textTheme.titleLarge,
+  Widget buildEventCard() {
+    if (_eventCalenderController.allEvents.isEmpty) {
+      return SizedBox();
+    }
+    List<Widget> list = [];
+    for(EventModel eventModel in _eventCalenderController.allEvents){
+      Widget card = eventCard(eventModel);
+      list.add(card);
+    }
+    return Wrap(
+      spacing: 18.0,
+      runSpacing: 18.0,
+      children: list,
+    );
+  }
+
+  Widget eventCard(EventModel eventModel) {
+    return Card(
+      margin: const EdgeInsets.all(12.0),
+      clipBehavior: Clip.antiAlias,
+      child: Tooltip(
+        message: eventModel.url,
+        child: InkWell(
+          onTap: () => _launchURL(eventModel.url),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 15,
+                height: 150,
+                color: eventModel.color,
+              ),
+              SizedBox(
+                height: 150,
+                width: 150,
+                child: Image.network(
+                  eventModel.thumbnail,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                width: 310,
+                height: 150,
+                padding: EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      eventModel.title,
+                      style:
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                      overflow: TextOverflow.visible,
+                    ),
+                    Text(
+                      eventModel.meta.substring(0, 180),
+                      overflow: TextOverflow.fade,
+                      softWrap: true,
+                      style:
+                          const TextStyle(fontSize: 12.0, fontStyle: FontStyle.italic),
+                      maxLines: 3,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        eventModel.count == '상시' ? const SizedBox() :
+                        Text(
+                            '${_dateTimeConverter.convert(eventModel.deadline)}까지'),
+                        Text(eventModel.count),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          appointmentDisplayCount: _eventCalenderController.events.length,
-          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
-          numberOfWeeksInView: 1,
         ),
-        timeZone: 'Asia/Seoul',
-        minDate: DateTime.now(),
-        dataSource: EventDataSource(_eventCalenderController.events),
       ),
     );
+  }
+
+  void _launchURL(String url) async {
+    Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
+          margin: const EdgeInsets.all(24.0));
+    }
   }
 
   @override
@@ -55,9 +124,14 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
       appBar: DefaultAppBar(),
       body: FutureBuilder(
         future: _eventCalenderController.getData(),
-        builder: (context, snapshot){
-          if(!snapshot.hasData){
-            return CircularProgressIndicator();
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: SpinKitFadingCube(
+                size: 120.0,
+                color: Colors.blue,
+              ),
+            );
           }
           return SingleChildScrollView(
             child: Center(
@@ -74,20 +148,14 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       onPressed: () {},
                     ),
                   ),
-                  //Obx(buildCalendar),
                   CustomCalendar(
                     height: (48 * _eventCalenderController.events.length) + 130,
                   ),
-                  Image.network(
-                      'https://s1.pearlcdn.com/KR/Upload/thumbnail/2021/H59D2EKOUWEJBQFX20211123205251026.400x225.jpg'),
-                  Container(
-                    child: ElevatedButton(
-                      child: Text('Hello :)'),
-                      onPressed: () {
-                        _eventCalenderController.getData();
-                      },
-                    ),
+                  Divider(),
+                  ListTile(
+                    title: TitleText('이벤트 바로가기'),
                   ),
+                  Obx(buildEventCard),
                 ],
               ),
             ),
@@ -97,7 +165,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.refresh),
         tooltip: 'UI 새로고침',
-        onPressed: (){
+        onPressed: () {
           setState(() {
             _flag = !_flag;
           });
