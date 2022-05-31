@@ -9,7 +9,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       title: InkWell(
-        child: const Text('Flutter Demo'),
+        child: const Text('Black Tools'),
         hoverColor: Colors.white.withOpacity(0),
         onTap: () {
           Get.offAllNamed('/');

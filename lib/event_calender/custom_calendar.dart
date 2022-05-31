@@ -1,4 +1,6 @@
-import 'package:black_tools/event_calender/event_data_source.dart';
+import 'package:black_tools/common/custom_scroll_behavior.dart';
+import 'package:black_tools/event_calender/date_time_converter.dart';
+import 'package:black_tools/event_calender/event_calender_controller.dart';
 import 'package:black_tools/event_calender/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,46 +16,116 @@ class CustomCalendar extends StatefulWidget {
 }
 
 class _CustomCalendarState extends State<CustomCalendar> {
-  final PageController _pageController = PageController(initialPage: 0);
+  final DateTimeConverter _dateTimeConverter = DateTimeConverter();
 
-  Widget buildPage(){
-    return Container(
-      child: Column(
-        children: [
-          Row(
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget buildCalendarFrame() {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 90,
+      itemBuilder: (context, index) {
+        DateTime date = DateTime.now().add(Duration(days: index));
+        return Container(
+          width: MediaQuery.of(context).size.width / 7,
+          decoration: BoxDecoration(
+              border: Border.symmetric(
+                  vertical: BorderSide(color: context.theme.dividerColor))),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
+              (date.day == 1) || (index == 0)
+                  ? Container(
+                      child: Text(
+                        '${date.month}월',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(
+                      height: 29,
+                    ),
               Container(
-                width: Get.width / 7,
-                child: const Text('일요일', textAlign: TextAlign.center),
+                height: 35,
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  _dateTimeConverter.dayOfWeek(date),
+                  style: TextStyle(
+                    color: date.weekday == 6
+                        ? Colors.blue
+                        : (date.weekday == 7 ? Colors.red : null),
+                  ),
+                ),
               ),
-              Container(
-                width: Get.width / 7,
-                child: const Text('월요일', textAlign: TextAlign.center),
+              const Divider(),
+              Text(
+                _dateTimeConverter.simpleMonthDay(date),
+                style: TextStyle(
+                  color: date.weekday == 6
+                      ? Colors.blue
+                      : (date.weekday == 7 ? Colors.red : null),
+                ),
               ),
-              Container(
-                width: Get.width / 7,
-                child: const Text('화요일', textAlign: TextAlign.center),
-              ),
-              Container(
-                width: Get.width / 7,
-                child: const Text('수요일', textAlign: TextAlign.center),
-              ),
-              Container(
-                width: Get.width / 7,
-                child: const Text('목요일', textAlign: TextAlign.center),
-              ),
-              Container(
-                width: Get.width / 7,
-                child: const Text('금요일', textAlign: TextAlign.center),
-              ),
-              Container(
-                width: Get.width / 7,
-                child: const Text('토요일', textAlign: TextAlign.center),
-              ),
+              const Divider(),
             ],
           ),
-          Divider(),
+        );
+      },
+    );
+  }
+
+  Widget buildEvents() {
+    EventCalenderController _controller = Get.find<EventCalenderController>();
+    double _eventHeight = widget.height != null
+        ? (widget.height! - 120) / 7
+        : (Get.height - 120) / 7;
+    return SizedBox(
+      height: widget.height ?? Get.height,
+      width: 90 * (Get.width / 7),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 120.0,
+          ),
+          ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: _controller.events.length,
+              itemBuilder: (context, index) {
+                return eventBar(_controller.events[index], _eventHeight);
+              })
         ],
+      ),
+    );
+  }
+
+  Widget eventBar(EventModel eventModel, double height) {
+    int count = int.parse(eventModel.count.split(' ')[0]) + 1;
+    if(count > 90) count = 90;
+    return Container(
+      margin: EdgeInsets.fromLTRB(12.0, 4, ((Get.width / 7) * (90 - count)) + 12.0, 4),
+      child: Tooltip(
+        message: '${eventModel.title}\n${_dateTimeConverter.convert(eventModel.deadline)} 까지',
+        child: InkWell(
+          child: Container(
+            height: 40,
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: eventModel.color,
+              borderRadius: BorderRadius.circular(4.0),
+            ),
+            alignment: Alignment.centerLeft,
+            child: Text(eventModel.title),
+          ),
+        ),
       ),
     );
   }
@@ -61,23 +133,19 @@ class _CustomCalendarState extends State<CustomCalendar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: widget.height ?? Get.height,
       width: Get.width,
-      child: Column(
-        children: [
-          ListTile(
-            title: Text('month'),
+      child: ScrollConfiguration(
+        behavior: CustomScrollBehavior(),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Stack(
+            children: [
+              buildCalendarFrame(),
+              Obx(buildEvents),
+            ],
           ),
-          SizedBox(
-            height: widget.height != null ? widget.height! - 32 : Get.height - 32,
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              controller: _pageController,
-              children: [
-                buildPage(),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

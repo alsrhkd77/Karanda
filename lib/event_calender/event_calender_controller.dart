@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'dart:convert';
 import 'dart:math';
 import 'package:black_tools/event_calender/event_model.dart';
@@ -12,7 +11,7 @@ class EventCalenderController extends GetxController{
   List<EventModel> get events => _events.where((p0) => !p0.deadline.isAtSameMomentAs(DateTime(1996,11,12))).toList();
   List<EventModel> get allEvents => _events;
 
-  Future<void> getData() async {
+  Future<List<EventModel>> getData() async {
     List<EventModel> result = [];
     final response = await http.get(Uri.parse('https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/events.json'));
 
@@ -35,5 +34,6 @@ class EventCalenderController extends GetxController{
     _events.refresh();
     update();
     //print(_events.toString());
+    return result;
   }
 }

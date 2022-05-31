@@ -1,8 +1,11 @@
 import 'package:black_tools/event_calender/custom_calendar.dart';
+import 'package:black_tools/event_calender/date_time_converter.dart';
 import 'package:black_tools/event_calender/event_calender_controller.dart';
 import 'package:black_tools/event_calender/event_data_source.dart';
 import 'package:black_tools/widgets/default_app_bar.dart';
+import 'package:black_tools/widgets/title_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -14,7 +17,10 @@ class EventCalenderPage extends StatefulWidget {
 }
 
 class _EventCalenderPageState extends State<EventCalenderPage> {
-  EventCalenderController _eventCalenderController = EventCalenderController();
+  final EventCalenderController _eventCalenderController =
+      Get.put(EventCalenderController());
+  final DateTimeConverter _dateTimeConverter = DateTimeConverter();
+  bool _flag = false;
 
   @override
   void initState() {
@@ -47,27 +53,55 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              //Obx(buildCalendar),
-              CustomCalendar(
-                height: 540,
+      body: FutureBuilder(
+        future: _eventCalenderController.getData(),
+        builder: (context, snapshot){
+          if(!snapshot.hasData){
+            return CircularProgressIndicator();
+          }
+          return SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  ListTile(
+                    title: const TitleText(
+                      '이벤트 캘린더',
+                      bold: true,
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(FontAwesomeIcons.filter),
+                      tooltip: '필터',
+                      onPressed: () {},
+                    ),
+                  ),
+                  //Obx(buildCalendar),
+                  CustomCalendar(
+                    height: (48 * _eventCalenderController.events.length) + 130,
+                  ),
+                  Image.network(
+                      'https://s1.pearlcdn.com/KR/Upload/thumbnail/2021/H59D2EKOUWEJBQFX20211123205251026.400x225.jpg'),
+                  Container(
+                    child: ElevatedButton(
+                      child: Text('Hello :)'),
+                      onPressed: () {
+                        _eventCalenderController.getData();
+                      },
+                    ),
+                  ),
+                ],
               ),
-              Image.network(
-                  'https://s1.pearlcdn.com/KR/Upload/thumbnail/2021/H59D2EKOUWEJBQFX20211123205251026.400x225.jpg'),
-              Container(
-                child: ElevatedButton(
-                  child: Text('Hello :)'),
-                  onPressed: () {
-                    _eventCalenderController.getData();
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.refresh),
+        tooltip: 'UI 새로고침',
+        onPressed: (){
+          setState(() {
+            _flag = !_flag;
+          });
+        },
       ),
     );
   }
