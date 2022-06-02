@@ -34,7 +34,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
       return SizedBox();
     }
     List<Widget> list = [];
-    for(EventModel eventModel in _eventCalenderController.allEvents){
+    for (EventModel eventModel in _eventCalenderController.allEvents) {
       Widget card = eventCard(eventModel);
       list.add(card);
     }
@@ -79,24 +79,25 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                   children: [
                     Text(
                       eventModel.title,
-                      style:
-                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16.0),
                       overflow: TextOverflow.visible,
                     ),
                     Text(
                       eventModel.meta.substring(0, 180),
                       overflow: TextOverflow.fade,
                       softWrap: true,
-                      style:
-                          const TextStyle(fontSize: 12.0, fontStyle: FontStyle.italic),
+                      style: const TextStyle(
+                          fontSize: 12.0, fontStyle: FontStyle.italic),
                       maxLines: 3,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        eventModel.count == '상시' ? const SizedBox() :
-                        Text(
-                            '${_dateTimeConverter.convert(eventModel.deadline)}까지'),
+                        eventModel.count == '상시'
+                            ? const SizedBox()
+                            : Text(
+                                '${_dateTimeConverter.convert(eventModel.deadline)}까지'),
                         Text(eventModel.count),
                       ],
                     ),
@@ -148,9 +149,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       onPressed: () {},
                     ),
                   ),
-                  CustomCalendar(
-                    height: (48 * _eventCalenderController.events.length) + 130,
-                  ),
+                  CustomCalendar(height: (33 * _eventCalenderController.events.length) + 130,),
                   Divider(),
                   ListTile(
                     title: TitleText('이벤트 바로가기'),

@@ -9,7 +9,7 @@ class EventCalenderController extends GetxController {
   RxList<EventModel> _events = <EventModel>[].obs;
 
   List<EventModel> get events => _events
-      .where((p0) => !p0.deadline.isAtSameMomentAs(DateTime(1996, 11, 12)))
+      .where((p0) => !p0.deadline.isAtSameMomentAs(DateTime(2996, 11, 12)))
       .toList();
 
   List<EventModel> get allEvents => _events;
@@ -27,7 +27,7 @@ class EventCalenderController extends GetxController {
       String url = e['url'];
       String thumbnail = e['thumbnail'];
       String meta = e['meta'];
-      DateTime deadline = DateTime(1996, 11, 12);
+      DateTime deadline = DateTime(2996, 11, 12);
       if (!count.contains('상시')) {
         deadline = DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day);

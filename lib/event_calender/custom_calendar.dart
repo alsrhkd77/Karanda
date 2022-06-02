@@ -38,22 +38,21 @@ class _CustomCalendarState extends State<CustomCalendar> {
           width: MediaQuery.of(context).size.width / viewDays,
           decoration: BoxDecoration(
               border: Border.symmetric(
-                  vertical: BorderSide(color: context.theme.dividerColor))),
+            vertical: BorderSide(color: context.theme.dividerColor),
+          )),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               (date.day == 1) || (index == 0)
-                  ? Container(
-                      child: Text(
-                        '${date.month}월',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    )
+                  ? Text(
+                    '${date.month}월',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  )
                   : const SizedBox(
-                      height: 29,
+                      height: 28,
                     ),
               Container(
                 height: 35,
@@ -123,14 +122,17 @@ class _CustomCalendarState extends State<CustomCalendar> {
             '${eventModel.title}\n${_dateTimeConverter.convert(eventModel.deadline)} 까지',
         child: InkWell(
           child: Container(
-            height: 40,
-            padding: const EdgeInsets.all(8.0),
+            height: 25,
+            padding: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
               color: eventModel.color,
               borderRadius: BorderRadius.circular(4.0),
             ),
             alignment: Alignment.centerLeft,
-            child: Text(eventModel.title),
+            child: Text(
+              eventModel.title,
+              style: TextStyle(fontSize: 12.0),
+            ),
           ),
         ),
       ),
@@ -141,7 +143,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.height ?? Get.height,
-      width: Get.width,
+
       child: Stack(
         children: [
           ScrollConfiguration(
@@ -162,16 +164,6 @@ class _CustomCalendarState extends State<CustomCalendar> {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(FontAwesomeIcons.plus),
-                  onPressed: () {
-                    if (viewDays < 14) {
-                      setState(() {
-                        viewDays++;
-                      });
-                    }
-                  },
-                ),
-                IconButton(
                   onPressed: () {
                     if (viewDays > 4) {
                       setState(() {
@@ -180,6 +172,16 @@ class _CustomCalendarState extends State<CustomCalendar> {
                     }
                   },
                   icon: Icon(FontAwesomeIcons.minus),
+                ),
+                IconButton(
+                  icon: Icon(FontAwesomeIcons.plus),
+                  onPressed: () {
+                    if (viewDays < 14) {
+                      setState(() {
+                        viewDays++;
+                      });
+                    }
+                  },
                 ),
               ],
             ),
