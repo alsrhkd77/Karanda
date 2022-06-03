@@ -28,6 +28,10 @@ class _HorsePageState extends State<HorsePage> {
             child: Center(
               child: Column(
                 children: [
+                  Container(
+                    child: const TitleText('말 성장치 계산기', bold: true),
+                    margin: const EdgeInsets.all(12.0),
+                  ),
                   Wrap(
                     spacing: 20.0,
                     children: [
@@ -40,7 +44,7 @@ class _HorsePageState extends State<HorsePage> {
                           children: [
                             const Divider(),
                             const ListTile(
-                              title: const Text('꿈결 환상마'),
+                              title: Text('꿈결 환상마'),
                             ),
                             RadioListTile<String>(
                               title: const Text('꿈결 아두아나트'),
@@ -56,7 +60,7 @@ class _HorsePageState extends State<HorsePage> {
                             ),
                             const Divider(),
                             const ListTile(
-                              title: const Text('환상마'),
+                              title: Text('환상마'),
                             ),
                             RadioListTile<String>(
                               title: const Text('아두아나트'),
@@ -336,28 +340,16 @@ class _HorsePageState extends State<HorsePage> {
                                 Container(
                                   width: 400,
                                   height: 400,
-                                  margin: EdgeInsets.all(12.0),
+                                  margin: const EdgeInsets.all(12.0),
                                   child: RadarChart(
                                     RadarChartData(
                                       dataSets: [
                                         RadarDataSet(
                                           dataEntries: [
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                        horse.breed]!['속도']! +
-                                                    (1.3 * 30)),
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                        horse.breed]!['가속']! +
-                                                    (1.3 * 30)),
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                        horse.breed]!['회전']! +
-                                                    (1.3 * 30)),
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                        horse.breed]!['제동']! +
-                                                    (1.3 * 30)),
+                                            const RadarEntry(value: 100),
+                                            const RadarEntry(value: 100),
+                                            const RadarEntry(value: 100),
+                                            const RadarEntry(value: 100),
                                           ],
                                           borderColor: Colors.blueAccent,
                                           fillColor: Colors.blueAccent
@@ -367,32 +359,24 @@ class _HorsePageState extends State<HorsePage> {
                                         ),
                                         RadarDataSet(
                                           dataEntries: [
-                                            RadarEntry(value: horse.speed),
+                                            RadarEntry(value: horse.speedPercent),
                                             RadarEntry(
-                                                value: horse.acceleration),
-                                            RadarEntry(value: horse.rotForce),
-                                            RadarEntry(value: horse.brake),
+                                                value: horse.accelerationPercent),
+                                            RadarEntry(value: horse.rotForcePercent),
+                                            RadarEntry(value: horse.brakePercent),
                                           ],
                                           borderColor: Colors.green,
                                           fillColor:
                                               Colors.green.withOpacity(0.5),
                                           borderWidth: 2.0,
-                                          entryRadius: 5.0,
+                                          entryRadius: 2.0,
                                         ),
                                         RadarDataSet(
                                           dataEntries: [
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                    horse.breed]!['속도']!),
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                    horse.breed]!['가속']!),
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                    horse.breed]!['회전']!),
-                                            RadarEntry(
-                                                value: _horseInfo.detail[
-                                                    horse.breed]!['제동']!),
+                                            const RadarEntry(value: 0),
+                                            const RadarEntry(value: 0),
+                                            const RadarEntry(value: 0),
+                                            const RadarEntry(value: 0),
                                           ],
                                           borderColor: Colors.red,
                                           fillColor:
@@ -416,16 +400,19 @@ class _HorsePageState extends State<HorsePage> {
                                         }
                                       },
                                       titlePositionPercentageOffset: 0.1,
-                                      tickCount: 8,
+                                      tickCount: 10,
                                       ticksTextStyle:
-                                          const TextStyle(fontSize: 10.0),
-                                      tickBorderData: BorderSide(
-                                          color: Colors.black.withOpacity(0.2)),
+                                          const TextStyle(fontSize: 10.0, color: Colors.transparent),
+                                      tickBorderData: const BorderSide(
+                                          color: Colors.transparent),
                                       radarBorderData: BorderSide(
                                           color: Colors.black.withOpacity(0.5)),
+                                      gridBorderData: BorderSide(
+                                          color: Colors.black.withOpacity(0.2)),
                                       borderData: FlBorderData(show: false),
                                     ),
-                                    swapAnimationDuration: const Duration(milliseconds: 200),
+                                    swapAnimationDuration:
+                                        const Duration(milliseconds: 200),
                                     swapAnimationCurve: Curves.linear,
                                   ),
                                 ),

@@ -112,7 +112,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
 
   // single event bar Container
   Widget eventBar(EventModel eventModel, double height) {
-    int count = int.parse(eventModel.count.split(' ')[0]) + 1;
+    int count = int.parse(eventModel.count.split(' ')[0]);
     if (count > 90) count = 90;
     return Container(
       margin: EdgeInsets.fromLTRB(
@@ -165,7 +165,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
               children: [
                 IconButton(
                   onPressed: () {
-                    if (viewDays > 4) {
+                    if (viewDays > 3) {
                       setState(() {
                         viewDays--;
                       });

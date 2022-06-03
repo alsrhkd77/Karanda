@@ -1,3 +1,4 @@
+import 'package:black_tools/artifact/artifact_page.dart';
 import 'package:black_tools/event_calender/event_calender_page.dart';
 import 'package:black_tools/home/home_page.dart';
 import 'package:black_tools/horse/horse_page.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/horse', page: () => const HorsePage()),
               GetPage(name: '/event-calender', page: () => const EventCalenderPage()),
               GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
+              GetPage(name: '/artifact', page: () => const ArtifactPage()),
             ],
           );
         },

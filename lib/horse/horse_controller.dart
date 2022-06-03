@@ -91,12 +91,16 @@ class HorseController extends GetxController {
     return  (_speed - _horseInfo.detail[_breed]!['속도']!) / maxLevel;
   }
 
+  double get speedPercent => _speed / (_horseInfo.detail[_breed]!['속도']! + (1.3 * 30)) * 100;
+
   String get speedGrade => _evaluate(speedAvg);
 
   double get accelerationAvg{
     int maxLevel = _level > 30 ? 30 : _level;
     return  (_acceleration - _horseInfo.detail[_breed]!['가속']!) / maxLevel;
   }
+
+  double get accelerationPercent => _acceleration / (_horseInfo.detail[_breed]!['가속']! + (1.3 * 30)) * 100;
   
   String get accelerationGrade => _evaluate(accelerationAvg);
 
@@ -105,12 +109,16 @@ class HorseController extends GetxController {
     return  (_brake - _horseInfo.detail[_breed]!['제동']!) / maxLevel;
   }
 
+  double get brakePercent => _brake / (_horseInfo.detail[_breed]!['제동']! + (1.3 * 30)) * 100;
+
   String get brakeGrade => _evaluate(brakeAvg);
 
   double get rotForceAvg{
     int maxLevel = _level > 30 ? 30 : _level;
     return  (_rotForce - _horseInfo.detail[_breed]!['회전']!) / maxLevel;
   }
+
+  double get rotForcePercent => _rotForce / (_horseInfo.detail[_breed]!['회전']! + (1.3 * 30)) * 100;
 
   String get rotForceGrade => _evaluate(rotForceAvg);
 }

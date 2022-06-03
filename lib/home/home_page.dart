@@ -104,7 +104,9 @@ class _HomePageState extends State<HomePage> {
                 singleIconBox(
                   name: '광명석',
                   icon: FontAwesomeIcons.cookie,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed('/artifact');
+                  },
                 ),
                 singleIconBox(
                   name: '선원',

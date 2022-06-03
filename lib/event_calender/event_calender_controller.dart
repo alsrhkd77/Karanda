@@ -31,7 +31,7 @@ class EventCalenderController extends GetxController {
       if (!count.contains('상시')) {
         deadline = DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day);
-        deadline = deadline.add(Duration(days: int.parse(count.split(' ')[0])));
+        deadline = deadline.add(Duration(days: int.parse(count.split(' ')[0]) - 1));
       }
       result.add(
         EventModel(

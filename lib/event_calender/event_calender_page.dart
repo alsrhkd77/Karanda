@@ -25,7 +25,6 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
 
   @override
   void initState() {
-    _eventCalenderController.getData();
     super.initState();
   }
 
@@ -84,7 +83,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       overflow: TextOverflow.visible,
                     ),
                     Text(
-                      eventModel.meta.substring(0, 180),
+                      eventModel.meta.length > 180 ? eventModel.meta.substring(0, 180) : eventModel.meta,
                       overflow: TextOverflow.fade,
                       softWrap: true,
                       style: const TextStyle(
