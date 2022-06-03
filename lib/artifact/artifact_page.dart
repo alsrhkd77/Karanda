@@ -21,7 +21,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: 15,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return combinationCard();
         });
@@ -31,7 +31,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
     return Card(
       margin: EdgeInsets.all(12.0),
       shadowColor: Colors.green,
-      elevation: 12.0,
+      elevation: 8.0,
       clipBehavior: Clip.antiAlias,
       child: Container(
         padding: EdgeInsets.all(12.0),
@@ -63,7 +63,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
 
   Widget buildChip() {
     return Container(
-      margin: EdgeInsets.all(12.0),
+      margin: const EdgeInsets.all(12.0),
       child: Wrap(
         spacing: 8.0,
         runSpacing: 8.0,
@@ -73,9 +73,74 @@ class _ArtifactPageState extends State<ArtifactPage> {
             .map((e) => Chip(
                   label: Text(e),
                   onDeleted: () => _artifactController.removeKeyword(e),
+          backgroundColor: Colors.blue,
                 ))
             .toList(),
       ),
+    );
+  }
+
+  Widget buildSearchTextBar() {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Autocomplete<String>(
+          fieldViewBuilder: (context, controller, focusNode, onSubmit) {
+            _textEditingController = controller;
+            return TextFormField(
+              controller: controller,
+              focusNode: focusNode,
+              maxLength: 20,
+              onFieldSubmitted: (String value) {
+                if (value.trim().isNotEmpty) {
+                  _artifactController.addKeyword(value);
+                }
+                controller.clear();
+                focusNode.requestFocus();
+              },
+            );
+          },
+          optionsBuilder: (TextEditingValue textEditingValue) {
+            if (textEditingValue.text.trim().isEmpty) {
+              return const Iterable<String>.empty();
+            }
+            return _artifactController
+                .autoComplete(textEditingValue.text.trim());
+          },
+          optionsViewBuilder: (context, onSelected, options) {
+            return Align(
+              alignment: Alignment.topLeft,
+              child: Material(
+                shape: const RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(4.0)),
+                ),
+                child: Container(
+                  height: 52.0 * options.length,
+                  width: constraints.biggest.width,
+                  constraints: BoxConstraints(
+                    maxHeight: Get.height / 2
+                  ),
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: options.length,
+                    shrinkWrap: false,
+                    itemBuilder: (BuildContext context, int index) {
+                      final String option = options.elementAt(index);
+                      return InkWell(
+                        onTap: () => onSelected(option),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(option),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -113,68 +178,14 @@ class _ArtifactPageState extends State<ArtifactPage> {
                       child: Column(
                         children: [
                           ListTile(
-                            title: LayoutBuilder(
-                              builder: (context, constraints) {
-                                return Autocomplete<String>(
-                                  fieldViewBuilder: (context, controller,
-                                      focusNode, onSubmit) {
-                                    _textEditingController = controller;
-                                    return TextFormField(
-                                      controller: controller,
-                                      focusNode: focusNode,
-                                      maxLength: 20,
-                                    );
-                                  },
-                                  optionsBuilder:
-                                      (TextEditingValue textEditingValue) {
-                                    if (textEditingValue.text.isEmpty) {
-                                      return const Iterable<String>.empty();
-                                    }
-                                    return _artifactController
-                                        .autoComplete(textEditingValue.text);
-                                  },
-                                  optionsViewBuilder:
-                                      (context, onSelected, options) {
-                                    return Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Material(
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.vertical(
-                                              bottom: Radius.circular(4.0)),
-                                        ),
-                                        child: SizedBox(
-                                          height: 52.0 * options.length,
-                                          width: constraints.biggest.width,
-                                          child: ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            itemCount: options.length,
-                                            shrinkWrap: false,
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              final String option =
-                                                  options.elementAt(index);
-                                              return InkWell(
-                                                onTap: () => onSelected(option),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      16.0),
-                                                  child: Text(option),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
+                            title: buildSearchTextBar(),
                             trailing: ElevatedButton(
                               child: const Text('추가'),
                               onPressed: () {
-                                _artifactController
-                                    .addKeyword(_textEditingController.text);
+                                if(_textEditingController.text.trim().isNotEmpty){
+                                  _artifactController
+                                      .addKeyword(_textEditingController.text.trim());
+                                }
                                 _textEditingController.clear();
                               },
                             ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -22,14 +23,31 @@ class ArtifactController extends GetxController {
     update();
   }
 
-  void removeKeyword(String keyword){
+  void removeKeyword(String keyword) {
     _keywords.remove(keyword);
     update();
   }
 
   Future<bool> getData() async {
-    var lightStonesJson = await rootBundle.loadString('data/lightStones.json');
-    var combinationJson = await rootBundle.loadString('data/combination.json');
+    String combinationJson = '';
+    String lightStonesJson = '';
+
+    if (kIsWeb) {
+      // running on web
+      lightStonesJson = await rootBundle.loadString('data/lightStones.json');
+      combinationJson = await rootBundle.loadString('data/combination.json');
+    } else {
+      // running on desktop
+      lightStonesJson = await http
+          .get(Uri.parse(
+              'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/lightStones.json'))
+          .then((response) => response.body);
+      combinationJson = await http
+          .get(Uri.parse(
+              'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/combination.json'))
+          .then((response) => response.body);
+    }
+
     Map<String, dynamic> lightStonesData = jsonDecode(lightStonesJson);
     Map<String, dynamic> combinationData = jsonDecode(combinationJson);
     _lightStones.addAll(lightStonesData['light_stones']);
@@ -49,7 +67,52 @@ class ArtifactController extends GetxController {
 
   List _filteredCombinations() {
     Set result = {};
-
+    result.addAll(_findFromCombinationsName());
+    result.addAll(_findFromCombinationsEffect());
+    result.addAll(_findFromLightStones());
     return result.toList();
+  }
+
+  List _findFromCombinationsName(){
+    return _combinations.where((element) {
+      for(String value in keywords){
+        if(element['name'].contains(value)){
+          return true;
+        }
+      }
+      return false;
+    }).toList();
+  }
+
+  List _findFromCombinationsEffect(){
+    return _combinations.where((element) {
+      for(Map effect in element['effect']){
+        for(String value in keywords){
+          if(effect['name'].contains(value)){
+            return true;
+          }
+        }
+      }
+      return false;
+    }).toList();
+  }
+
+  List _findFromLightStones(){
+    List stones = _lightStones.where((element) {
+      for(String value in keywords){
+        if(element['name'].contains(value) || element['effect']['name'].contains(value)){
+          return true;
+        }
+      }
+      return false;
+    }).toList();
+    return _combinations.where((element){
+      for(String value in stones.map((e) => e['name'])){
+        if(element['formula'].contains(value)){
+          return true;
+        }
+      }
+      return false;
+    }).toList();
   }
 }
