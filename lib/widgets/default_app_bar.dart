@@ -9,7 +9,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       title: InkWell(
-        child: const Text('Black Tools'),
+        child: const Text('Karanda'),
         hoverColor: Colors.white.withOpacity(0),
         onTap: () {
           Get.offAllNamed('/');

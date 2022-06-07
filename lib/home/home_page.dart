@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home'),
+        title: Text('Karanda'),
         actions: [
           IconButton(
             onPressed: () {
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 singleIconBox(
-                  name: '광명석',
+                  name: '광명석 조합식',
                   icon: FontAwesomeIcons.cookie,
                   onTap: () {
                     Get.toNamed('/artifact');

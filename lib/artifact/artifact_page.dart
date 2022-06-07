@@ -16,7 +16,7 @@ class ArtifactPage extends StatefulWidget {
 class _ArtifactPageState extends State<ArtifactPage> {
   final ArtifactController _artifactController = ArtifactController();
   TextEditingController _textEditingController = TextEditingController();
-  int loadItemCount = 10;
+  final ScrollController _mainScrollController = ScrollController();
 
   Widget buildCardList() {
     return ListView.builder(
@@ -32,9 +32,18 @@ class _ArtifactPageState extends State<ArtifactPage> {
   }
 
   Widget combinationCard(Map data) {
+    var _colors = {
+      '불': Colors.red,
+      '바': Colors.blue,
+      '땅': Colors.orange,
+      '풀': Colors.green,
+      '오': context.textTheme.bodyMedium!.color,
+      '-': context.textTheme.bodyMedium!.color,
+    };
     return Card(
       margin: const EdgeInsets.all(12.0),
-      shadowColor: Colors.green,
+      shadowColor:
+          data['name'].toString().startsWith('[') ? Colors.red : Colors.green,
       elevation: 8.0,
       clipBehavior: Clip.antiAlias,
       child: Container(
@@ -81,16 +90,20 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 Expanded(
                   child: Column(
                     children: data['formula']
-                        .map<Widget>((e) =>
-                        Text(e, textAlign: TextAlign.center))
+                        .map<Widget>((e) => Text(
+                              e,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: _colors[e[0]]),
+                            ))
                         .toList(),
                   ),
                 ),
                 Expanded(
                   child: Column(
-                    children: _artifactController.getEffects(data['name'])
-                        .map<Widget>((e) =>
-                        Text(e, textAlign: TextAlign.center))
+                    children: _artifactController
+                        .getEffects(data['name'])
+                        .map<Widget>(
+                            (e) => Text(e, textAlign: TextAlign.center))
                         .toList(),
                   ),
                 ),
@@ -112,9 +125,13 @@ class _ArtifactPageState extends State<ArtifactPage> {
         alignment: WrapAlignment.center,
         children: _artifactController.keywords
             .map((e) => Chip(
-                  label: Text(e),
+                  label: Text(
+                    e,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   onDeleted: () => _artifactController.removeKeyword(e),
                   backgroundColor: Colors.blue,
+                  deleteIconColor: Colors.white,
                 ))
             .toList(),
       ),
@@ -138,6 +155,15 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 controller.clear();
                 focusNode.requestFocus();
               },
+              decoration: InputDecoration(
+                suffixIcon: const Icon(FontAwesomeIcons.searchengin),
+                hintText: 'ex) 천적, 몬스터 추가 공격력, 항해',
+                labelText: '검색',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(color: Colors.blue),
+                ),
+              ),
             );
           },
           optionsBuilder: (TextEditingValue textEditingValue) {
@@ -195,8 +221,8 @@ class _ArtifactPageState extends State<ArtifactPage> {
       child: ElevatedButton(
         child: Container(
           width: Size.infinite.width,
-            alignment: Alignment.center,
-            child: const Text('더 보기'),
+          alignment: Alignment.center,
+          child: const Text('더 보기'),
         ),
         onPressed: _artifactController.loadMoreItem,
       ),
@@ -206,7 +232,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(),
+      appBar: const DefaultAppBar(),
       body: FutureBuilder(
         future: _artifactController.getData(),
         builder: (context, snapshot) {
@@ -219,6 +245,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
             );
           } else {
             return SingleChildScrollView(
+              controller: _mainScrollController,
               child: Container(
                 margin: const EdgeInsets.all(12.0),
                 child: Column(
@@ -241,7 +268,6 @@ class _ArtifactPageState extends State<ArtifactPage> {
                             trailing: ElevatedButton(
                               child: const Text('추가'),
                               onPressed: () {
-                                _artifactController.getEffects('무운의 기도');
                                 if (_textEditingController.text
                                     .trim()
                                     .isNotEmpty) {
@@ -263,6 +289,15 @@ class _ArtifactPageState extends State<ArtifactPage> {
               ),
             );
           }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(FontAwesomeIcons.arrowUp),
+        onPressed: () {
+          _mainScrollController.animateTo(0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear,
+          );
         },
       ),
     );
