@@ -9,10 +9,20 @@ class ArtifactController extends GetxController {
   final List _lightStones = [];
   Set<String> options = {};
   final RxSet<String> _keywords = RxSet();
+  RxInt loadItemCount = 10.obs;
 
-  List get combinations => _filteredCombinations();
+  RxList get combinations => _filteredCombinations().obs;
 
   List<String> get keywords => _keywords.toList();
+
+  void loadMoreItem(){
+    if(loadItemCount + 10 >= combinations.length){
+      loadItemCount = combinations.length.obs;
+    }else{
+      loadItemCount += 10;
+    }
+    update();
+  }
 
   Iterable<String> autoComplete(String txt) {
     return options.where((element) => element.contains(txt));
@@ -20,11 +30,13 @@ class ArtifactController extends GetxController {
 
   void addKeyword(String keyword) {
     _keywords.add(keyword);
+    loadItemCount = 10.obs;
     update();
   }
 
   void removeKeyword(String keyword) {
     _keywords.remove(keyword);
+    loadItemCount = 10.obs;
     update();
   }
 
@@ -66,11 +78,22 @@ class ArtifactController extends GetxController {
   }
 
   List _filteredCombinations() {
-    Set result = {};
-    result.addAll(_findFromCombinationsName());
-    result.addAll(_findFromCombinationsEffect());
-    result.addAll(_findFromLightStones());
-    return result.toList();
+    if(_keywords.isEmpty){
+      return _combinations;
+    }
+    Set<String> result = {};
+    result.addAll(_findFromCombinationsName().map((e) => e['name']));
+    result.addAll(_findFromCombinationsEffect().map((e) => e['name']));
+    result.addAll(_findFromLightStones().map((e) => e['name']));
+
+    return _combinations.where((element) {
+      for(var name in result){
+        if(element['name'].contains(name)){
+          return true;
+        }
+      }
+      return false;
+    }).toList();
   }
 
   List _findFromCombinationsName(){
@@ -114,5 +137,36 @@ class ArtifactController extends GetxController {
       }
       return false;
     }).toList();
+  }
+
+  List<String> getEffects(String name){
+    List<String> result = [];
+    Map data = _combinations.firstWhere((element) => element['name'].contains(name));
+    Map<String, int> effectValue = {};
+    Map<String, String> effectUnit = {};
+    for(Map d in data['effect']){
+      effectValue[d['name']] = d['value'];
+      effectUnit[d['name']] = d['unit'];
+    }
+    for(String s in data['formula']){
+      if(s != '-'){
+        Map _stone = _lightStones.firstWhere((element) => element['name'].contains(s))['effect'];
+        if(effectValue.containsKey(_stone['name'])){
+          effectValue[_stone['name']] = (effectValue[_stone['name']]! + _stone['value']!).toInt();
+        }else{
+          effectValue[_stone['name']] = _stone['value'];
+          effectUnit[_stone['name']] = _stone['unit'];
+        }
+      }
+    }
+    for(String n in effectValue.keys){
+      if(effectValue[n]! > 0){
+        result.add('$n +${effectValue[n]}${effectUnit[n]}');
+      }else{
+        result.add('$n ${effectValue[n]}${effectUnit[n]}');
+      }
+    }
+
+    return result;
   }
 }

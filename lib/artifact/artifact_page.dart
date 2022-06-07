@@ -16,42 +16,83 @@ class ArtifactPage extends StatefulWidget {
 class _ArtifactPageState extends State<ArtifactPage> {
   final ArtifactController _artifactController = ArtifactController();
   TextEditingController _textEditingController = TextEditingController();
+  int loadItemCount = 10;
 
   Widget buildCardList() {
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: 15,
+        itemCount: _artifactController.loadItemCount.value >
+                _artifactController.combinations.length
+            ? _artifactController.combinations.length
+            : _artifactController.loadItemCount.value,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return combinationCard();
+          return combinationCard(_artifactController.combinations[index]);
         });
   }
 
-  Widget combinationCard() {
+  Widget combinationCard(Map data) {
     return Card(
-      margin: EdgeInsets.all(12.0),
+      margin: const EdgeInsets.all(12.0),
       shadowColor: Colors.green,
       elevation: 8.0,
       clipBehavior: Clip.antiAlias,
       child: Container(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            Text('효과이름'),
+            ListTile(
+              title: TitleText(
+                data['name'],
+                bold: true,
+              ),
+            ),
+            const Divider(),
+            Row(
+              children: const [
+                Expanded(
+                  child: Text('조합 효과',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center),
+                ),
+                Expanded(
+                  child: Text('광명석',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center),
+                ),
+                Expanded(
+                  child: Text('조합 + 광명석 효과',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center),
+                ),
+              ],
+            ),
+            const Divider(),
             Row(
               children: [
                 Expanded(
                   child: Column(
-                    children: [
-                      Text('지식 획득 시 높은 등급 지식 획득 확률 증가 +5%\n효과2\n효과3',
-                          textAlign: TextAlign.center)
-                    ],
+                    children: data['effect']
+                        .map<Widget>((e) =>
+                            Text(e['full_name'], textAlign: TextAlign.center))
+                        .toList(),
                   ),
                 ),
-                VerticalDivider(),
                 Expanded(
-                  child: Text('바람의 광명석 : 발돋움(기술)\n광명석2\n광명석3',
-                      textAlign: TextAlign.center),
+                  child: Column(
+                    children: data['formula']
+                        .map<Widget>((e) =>
+                        Text(e, textAlign: TextAlign.center))
+                        .toList(),
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    children: _artifactController.getEffects(data['name'])
+                        .map<Widget>((e) =>
+                        Text(e, textAlign: TextAlign.center))
+                        .toList(),
+                  ),
                 ),
               ],
             ),
@@ -73,7 +114,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
             .map((e) => Chip(
                   label: Text(e),
                   onDeleted: () => _artifactController.removeKeyword(e),
-          backgroundColor: Colors.blue,
+                  backgroundColor: Colors.blue,
                 ))
             .toList(),
       ),
@@ -117,9 +158,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 child: Container(
                   height: 52.0 * options.length,
                   width: constraints.biggest.width,
-                  constraints: BoxConstraints(
-                    maxHeight: Get.height / 2
-                  ),
+                  constraints: BoxConstraints(maxHeight: Get.height / 2),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: options.length,
@@ -141,6 +180,26 @@ class _ArtifactPageState extends State<ArtifactPage> {
           },
         );
       },
+    );
+  }
+
+  Widget buildLoadButton() {
+    if (_artifactController.combinations.length ==
+        _artifactController.loadItemCount.value) {
+      return const SizedBox(
+        height: 0.0,
+      );
+    }
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+      child: ElevatedButton(
+        child: Container(
+          width: Size.infinite.width,
+            alignment: Alignment.center,
+            child: const Text('더 보기'),
+        ),
+        onPressed: _artifactController.loadMoreItem,
+      ),
     );
   }
 
@@ -182,16 +241,20 @@ class _ArtifactPageState extends State<ArtifactPage> {
                             trailing: ElevatedButton(
                               child: const Text('추가'),
                               onPressed: () {
-                                if(_textEditingController.text.trim().isNotEmpty){
-                                  _artifactController
-                                      .addKeyword(_textEditingController.text.trim());
+                                _artifactController.getEffects('무운의 기도');
+                                if (_textEditingController.text
+                                    .trim()
+                                    .isNotEmpty) {
+                                  _artifactController.addKeyword(
+                                      _textEditingController.text.trim());
                                 }
                                 _textEditingController.clear();
                               },
                             ),
                           ),
                           Obx(buildChip),
-                          buildCardList(),
+                          Obx(buildCardList),
+                          Obx(buildLoadButton)
                         ],
                       ),
                     ),
