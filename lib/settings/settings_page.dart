@@ -1,6 +1,6 @@
-import 'package:black_tools/settings/settings_notifier.dart';
-import 'package:black_tools/widgets/default_app_bar.dart';
-import 'package:black_tools/widgets/title_text.dart';
+import '../settings/settings_notifier.dart';
+import '../widgets/default_app_bar.dart';
+import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

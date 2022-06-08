@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:black_tools/event_calender/event_model.dart';
+import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

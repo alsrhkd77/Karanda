@@ -1,9 +1,9 @@
-import 'package:black_tools/event_calender/custom_calendar.dart';
-import 'package:black_tools/event_calender/date_time_converter.dart';
-import 'package:black_tools/event_calender/event_calender_controller.dart';
-import 'package:black_tools/event_calender/event_model.dart';
-import 'package:black_tools/widgets/default_app_bar.dart';
-import 'package:black_tools/widgets/title_text.dart';
+import '../event_calender/custom_calendar.dart';
+import '../event_calender/date_time_converter.dart';
+import '../event_calender/event_calender_controller.dart';
+import '../event_calender/event_model.dart';
+import '../widgets/default_app_bar.dart';
+import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

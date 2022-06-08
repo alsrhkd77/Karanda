@@ -1,6 +1,6 @@
-import 'package:black_tools/artifact/artifact_controller.dart';
-import 'package:black_tools/widgets/default_app_bar.dart';
-import 'package:black_tools/widgets/title_text.dart';
+import '../artifact/artifact_controller.dart';
+import '../widgets/default_app_bar.dart';
+import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,6 +19,13 @@ class _ArtifactPageState extends State<ArtifactPage> {
   final ScrollController _mainScrollController = ScrollController();
 
   Widget buildCardList() {
+    if(_artifactController.combinations.isEmpty){
+      return Container(
+        height: 120.0,
+        alignment: Alignment.center,
+        child: const Text('검색 결과가 없습니다.'),
+      );
+    }
     return ListView.builder(
         shrinkWrap: true,
         itemCount: _artifactController.loadItemCount.value >

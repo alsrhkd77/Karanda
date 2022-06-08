@@ -1,7 +1,7 @@
-import 'package:black_tools/horse/horse_controller.dart';
-import 'package:black_tools/horse/horse_info.dart';
-import 'package:black_tools/widgets/default_app_bar.dart';
-import 'package:black_tools/widgets/title_text.dart';
+import '../horse/horse_controller.dart';
+import '../horse/horse_info.dart';
+import '../widgets/default_app_bar.dart';
+import '../widgets/title_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

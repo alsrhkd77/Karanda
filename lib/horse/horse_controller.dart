@@ -1,4 +1,4 @@
-import 'package:black_tools/horse/horse_info.dart';
+import '../horse/horse_info.dart';
 import 'package:get/get.dart';
 
 class HorseController extends GetxController {

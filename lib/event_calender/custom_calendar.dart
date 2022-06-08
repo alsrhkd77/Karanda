@@ -1,7 +1,7 @@
-import 'package:black_tools/common/custom_scroll_behavior.dart';
-import 'package:black_tools/event_calender/date_time_converter.dart';
-import 'package:black_tools/event_calender/event_calender_controller.dart';
-import 'package:black_tools/event_calender/event_model.dart';
+import '../common/custom_scroll_behavior.dart';
+import '../event_calender/date_time_converter.dart';
+import '../event_calender/event_calender_controller.dart';
+import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
