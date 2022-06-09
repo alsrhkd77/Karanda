@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hwansangyeonhwa.black_tools">
+    package="com.hwansangyeonhwa.karanda">
    <application
-        android:label="black_tools"
+        android:label="karanda"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

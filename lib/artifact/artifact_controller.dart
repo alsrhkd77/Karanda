@@ -12,6 +12,7 @@ class ArtifactController extends GetxController {
   RxInt loadItemCount = 10.obs;
 
   RxList get combinations => _filteredCombinations().obs;
+
   List<String> get keywords => _keywords.toList();
 
   void loadMoreItem() {
@@ -43,21 +44,15 @@ class ArtifactController extends GetxController {
     String combinationJson = '';
     String lightStonesJson = '';
 
-    if (kIsWeb) {
-      // running on web
-      lightStonesJson = await rootBundle.loadString('data/lightStones.json');
-      combinationJson = await rootBundle.loadString('data/combination.json');
-    } else {
-      // running on desktop
-      lightStonesJson = await http
-          .get(Uri.parse(
-              'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/lightStones.json'))
-          .then((response) => response.body);
-      combinationJson = await http
-          .get(Uri.parse(
-              'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/combination.json'))
-          .then((response) => response.body);
-    }
+    // running on desktop
+    lightStonesJson = await http
+        .get(Uri.parse(
+            'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/lightStones.json'))
+        .then((response) => response.body);
+    combinationJson = await http
+        .get(Uri.parse(
+            'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/combination.json'))
+        .then((response) => response.body);
 
     Map<String, dynamic> lightStonesData = jsonDecode(lightStonesJson);
     Map<String, dynamic> combinationData = jsonDecode(combinationJson);

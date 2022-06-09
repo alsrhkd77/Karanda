@@ -129,34 +129,34 @@ class _HomePageState extends State<HomePage> {
               children: [
                 singleIconBox(
                   name: '공식 홈페이지',
-                  icon: FontAwesomeIcons.link,
+                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
                   onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
                 ),
                 singleIconBox(
                   name: '연구소',
-                  icon: FontAwesomeIcons.link,
+                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
                   onTap: () =>
                       _launchURL('https://www.global-lab.playblackdesert.com/'),
                 ),
                 singleIconBox(
                   name: '인벤',
-                  icon: FontAwesomeIcons.link,
+                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
                   onTap: () => _launchURL('https://black.inven.co.kr/'),
                 ),
                 singleIconBox(
                   name: '인벤\n지도시뮬레이터',
-                  icon: FontAwesomeIcons.link,
+                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
                   onTap: () =>
                       _launchURL('https://black.inven.co.kr/dataninfo/map/'),
                 ),
                 singleIconBox(
                   name: 'Garmoth',
-                  icon: FontAwesomeIcons.link,
+                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
                   onTap: () => _launchURL('https://garmoth.com'),
                 ),
                 singleIconBox(
                   name: '환상연화',
-                  icon: FontAwesomeIcons.link,
+                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
                   onTap: () => _launchURL('http://검은사막.환상연화.홈페이지.한국'),
                 ),
               ],

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(black_tools LANGUAGES CXX)
+project(karanda LANGUAGES CXX)
 
-set(BINARY_NAME "black_tools")
+set(BINARY_NAME "Karanda")
 
 cmake_policy(SET CMP0063 NEW)
 
