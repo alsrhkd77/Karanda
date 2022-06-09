@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.hwansangyeonhwa" "\0"
-            VALUE "FileDescription", "black_tools" "\0"
+            VALUE "FileDescription", "karanda" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "black_tools" "\0"
+            VALUE "InternalName", "karanda" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.hwansangyeonhwa. All rights reserved." "\0"
-            VALUE "OriginalFilename", "black_tools.exe" "\0"
-            VALUE "ProductName", "black_tools" "\0"
+            VALUE "OriginalFilename", "karanda.exe" "\0"
+            VALUE "ProductName", "karanda" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

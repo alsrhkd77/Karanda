@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../settings/settings_notifier.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
@@ -14,6 +17,14 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  
+  void _launchURL(String url) async {
+    Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri))
+      throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
+          margin: const EdgeInsets.all(24.0));
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +61,22 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                     ),
                   ),
-                )
+                ),
+                kIsWeb ? ListTile(
+                  leading: const Icon(FontAwesomeIcons.laptopCode),
+                  title: const Text('Windows desktop app'),
+                  trailing: const Icon(
+                    FontAwesomeIcons.arrowUpRightFromSquare
+                  ),
+                  onTap: () => _launchURL('https://github.com/HwanSangYeonHwa/Karanda/releases'),
+                ) :
+                ListTile(
+                  leading: const Icon(FontAwesomeIcons.anglesUp),
+                  title: const Text('업데이트'),
+                  onTap: (){
+                    Get.toNamed('/desktop-app');
+                  },
+                ),
               ],
             ),
           ),

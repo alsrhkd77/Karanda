@@ -162,6 +162,9 @@ class _HorsePageState extends State<HorsePage> {
                             ListTile(
                               leading: const Text('레벨'),
                               title: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: ' * 30레벨 까지만 성장치가 상승합니다.'
+                                ),
                                 keyboardType:
                                     const TextInputType.numberWithOptions(),
                                 inputFormatters: [
@@ -179,7 +182,6 @@ class _HorsePageState extends State<HorsePage> {
                                   }
                                 },
                               ),
-                              trailing: const Text('* 30레벨 까지만 성장치가 상승합니다.'),
                             ),
                             ListTile(
                               leading: const Text('속도'),

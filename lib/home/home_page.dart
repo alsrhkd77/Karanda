@@ -53,14 +53,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Karanda'),
+        title: const Text('Karanda'),
         actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed('/settings');
-            },
-            icon: Icon(FontAwesomeIcons.gear),
-            tooltip: '설정',
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: IconButton(
+              onPressed: () {
+                Get.toNamed('/settings');
+              },
+              icon: Icon(FontAwesomeIcons.gear),
+              tooltip: '설정',
+            ),
           ),
         ],
       ),

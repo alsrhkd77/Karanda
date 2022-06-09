@@ -1,3 +1,5 @@
+import 'package:karanda/settings/app_update_page.dart';
+
 import '../artifact/artifact_page.dart';
 import '../event_calender/event_calender_page.dart';
 import '../home/home_page.dart';
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/event-calender', page: () => const EventCalenderPage()),
               GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
+              GetPage(name: '/desktop-app', page: () => const AppUpdatePage()),
             ],
           );
         },
