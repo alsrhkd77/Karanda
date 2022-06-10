@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'shutdown_scheduler/shutdown_scheduler_notifier.dart';
+import 'shutdown_scheduler/shutdown_scheduler_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -21,8 +24,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SettingsNotifier(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => SettingsNotifier()),
+          ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
+        ],
       child: Consumer(
         builder: (context, SettingsNotifier _settings, _) {
           return GetMaterialApp(
@@ -38,6 +44,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
               GetPage(name: '/desktop-app', page: () => const AppUpdatePage()),
+              GetPage(name: '/shutdown-scheduler', page: () => const ShutdownSchedulerPage()),
             ],
           );
         },

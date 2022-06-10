@@ -1,5 +1,5 @@
 import '../common/custom_scroll_behavior.dart';
-import '../event_calender/date_time_converter.dart';
+import '../common/date_time_converter.dart';
 import '../event_calender/event_calender_controller.dart';
 import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';

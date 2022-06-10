@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 singleIconBox(
                   name: '말 성장치 계산기',
-                  icon: FontAwesomeIcons.horse,
+                  icon: FontAwesomeIcons.chessKnight,
                   onTap: () {
                     Get.toNamed('/horse');
                   },
@@ -112,9 +112,11 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 singleIconBox(
-                  name: '선원',
-                  icon: FontAwesomeIcons.personSwimming,
-                  onTap: () {},
+                  name: '예약 종료',
+                  icon: FontAwesomeIcons.powerOff,
+                  onTap: () {
+                    Get.toNamed('/shutdown-scheduler');
+                  },
                 ),
               ],
             ),
@@ -172,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                 margin: EdgeInsets.all(24.0),
                 width: Size.infinite.width,
                 child: Text(
-                  'sadfasdf\nUse Font Awsome Icons',
+                  '해당 소프트웨어는 Dart / Flutter를 사용하여 제작되었습니다\nUse Font Awsome Icons',
                   textAlign: TextAlign.center,
                 ),
               ),

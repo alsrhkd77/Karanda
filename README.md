@@ -17,4 +17,4 @@
  - [x] 이벤트 캘린더 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/event-calender)
  - [x] 시카라키아 아홉문장 실타래 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/sikarakia)
  - [x] 광명석 조합식 탐색기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/artifact)
- - [ ] 윈도우 예약 종료
+ - [ ] 윈도우 환경에서 예약 종료

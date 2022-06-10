@@ -14,4 +14,8 @@ class DateTimeConverter {
   String convert(DateTime dateTime){
     return DateFormat('yyyy.MM.dd').format(dateTime);
   }
+
+  String getAmPm(DateTime dateTime){
+    return dateTime.hour < 12 ? '오전' : '오후';
+  }
 }
