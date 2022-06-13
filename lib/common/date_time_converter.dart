@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeConverter {
@@ -15,7 +16,17 @@ class DateTimeConverter {
     return DateFormat('yyyy.MM.dd').format(dateTime);
   }
 
-  String getAmPm(DateTime dateTime){
-    return dateTime.hour < 12 ? '오전' : '오후';
+  String getAmPm(TimeOfDay timeOfDay){
+    return timeOfDay.period == DayPeriod.am ? '오전' : '오후';
+  }
+
+  String getTime(TimeOfDay timeOfDay){
+    return '${timeOfDay.hourOfPeriod}시 ${timeOfDay.minute}분';
+  }
+  
+  String getTimeWithAmPm(TimeOfDay timeOfDay){
+    String amPm = getAmPm(timeOfDay);
+    String time = getTime(timeOfDay);
+    return '$amPm $time';
   }
 }

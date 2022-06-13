@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                 margin: EdgeInsets.all(24.0),
                 width: Size.infinite.width,
                 child: Text(
-                  '해당 소프트웨어는 Dart / Flutter를 사용하여 제작되었습니다\nUse Font Awsome Icons',
+                  '해당 소프트웨어는 Dart / Flutter를 사용하여 제작되었습니다\n해당 소프트웨어는 Font Awsome Icons를 사용하여 제작되었습니다',
                   textAlign: TextAlign.center,
                 ),
               ),

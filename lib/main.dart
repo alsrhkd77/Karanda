@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:karanda/settings/app_update_page.dart';
+import 'package:window_size/window_size.dart';
 
 import '../artifact/artifact_page.dart';
 import '../event_calender/event_calender_page.dart';
@@ -15,6 +18,10 @@ import 'shutdown_scheduler/shutdown_scheduler_notifier.dart';
 import 'shutdown_scheduler/shutdown_scheduler_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if(Platform.isWindows || Platform.isMacOS || Platform.isLinux){
+    setWindowMinSize(const Size(600, 500));
+  }
   runApp(MyApp());
 }
 
