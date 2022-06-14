@@ -53,7 +53,7 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
     final Dio dio = Dio();
     String savePath = '${Directory.current.path}/SetupKaranda.exe';
     await dio.download(
-        'https://github.com/HwanSangYeonHwa/Karanda/releases/download/latest/SetupKaranda.exe',
+        'https://github.com/HwanSangYeonHwa/Karanda/releases/latest/download/SetupKaranda.exe',
         savePath, onReceiveProgress: (received, total) {
       final progress = (received / total) * 100;
       setState(() {
