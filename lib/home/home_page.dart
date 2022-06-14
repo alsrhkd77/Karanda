@@ -26,8 +26,37 @@ class _HomePageState extends State<HomePage> {
           children: [
             Card(
               child: Container(
-                margin: EdgeInsets.all(18.0),
-                child: Icon(icon, size: 50.0),
+                margin: const EdgeInsets.all(18.0),
+                child: Icon(icon, size: 50.0, color: context.isDarkMode ? null : Colors.black54,),
+              ),
+            ),
+            SizedBox(
+              width: 115,
+              child: Text(name, textAlign: TextAlign.center),
+            ),
+          ],
+        ),
+      ),
+      onTap: onTap,
+    );
+  }
+
+  Widget singleImageBox(
+      {required String name, required String icon, required var onTap}) {
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Card(
+              child: Container(
+                margin: const EdgeInsets.all(18.0),
+                child: Image.asset(
+                  icon,
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(
@@ -43,9 +72,10 @@ class _HomePageState extends State<HomePage> {
 
   void _launchURL(String url) async {
     Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri))
+    if (!await launchUrl(uri)) {
       throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
           margin: const EdgeInsets.all(24.0));
+    }
   }
 
   @override
@@ -61,14 +91,14 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Get.toNamed('/settings');
               },
-              icon: Icon(FontAwesomeIcons.gear),
+              icon: const Icon(FontAwesomeIcons.gear),
               tooltip: '설정',
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
             const ListTile(
@@ -132,48 +162,53 @@ class _HomePageState extends State<HomePage> {
               runSpacing: 20.0,
               spacing: 20.0,
               children: [
-                singleIconBox(
+                singleImageBox(
                   name: '공식 홈페이지',
-                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
+                  icon: 'assets/icons/bdo.png',
                   onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
                 ),
-                singleIconBox(
+                singleImageBox(
                   name: '연구소',
-                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
+                  icon: 'assets/icons/bdo.png',
                   onTap: () =>
                       _launchURL('https://www.global-lab.playblackdesert.com/'),
                 ),
-                singleIconBox(
+                singleImageBox(
                   name: '인벤',
-                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
+                  icon: 'assets/icons/inven.png',
                   onTap: () => _launchURL('https://black.inven.co.kr/'),
                 ),
-                singleIconBox(
+                singleImageBox(
                   name: '인벤\n지도시뮬레이터',
-                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
+                  icon: 'assets/icons/inven.png',
                   onTap: () =>
                       _launchURL('https://black.inven.co.kr/dataninfo/map/'),
                 ),
-                singleIconBox(
+                singleImageBox(
                   name: 'Garmoth',
-                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
+                  icon: 'assets/icons/garmoth.png',
                   onTap: () => _launchURL('https://garmoth.com'),
                 ),
-                singleIconBox(
+                singleImageBox(
+                  name: 'OnTopReplica',
+                  icon: 'assets/icons/onTopReplica.png',
+                  onTap: () => _launchURL('https://github.com/LorenzCK/OnTopReplica'),
+                ),
+                singleImageBox(
                   name: '환상연화',
-                  icon: FontAwesomeIcons.arrowUpRightFromSquare,
+                  icon: 'assets/icons/lotus.png',
                   onTap: () => _launchURL('http://검은사막.환상연화.홈페이지.한국'),
                 ),
               ],
             ),
-            Divider(),
+            const Divider(),
             Card(
               elevation: 4.0,
-              margin: EdgeInsets.all(24.0),
+              margin: const EdgeInsets.all(24.0),
               child: Container(
-                margin: EdgeInsets.all(24.0),
+                margin: const EdgeInsets.all(24.0),
                 width: Size.infinite.width,
-                child: Text(
+                child: const Text(
                   '해당 소프트웨어는 Dart / Flutter를 사용하여 제작되었습니다\n해당 소프트웨어는 Font Awsome Icons를 사용하여 제작되었습니다',
                   textAlign: TextAlign.center,
                 ),

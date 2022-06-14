@@ -28,6 +28,22 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
     super.initState();
   }
 
+  PopupMenuItem buildPopUpMenuItem(String name, IconData icon) {
+    return PopupMenuItem(
+      value: name,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(icon),
+          const SizedBox(
+            width: 10.0,
+          ),
+          Text(name),
+        ],
+      ),
+    );
+  }
+
   Widget buildEventCard() {
     if (_eventCalenderController.allEvents.isEmpty) {
       return const SizedBox();
@@ -83,7 +99,9 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       overflow: TextOverflow.visible,
                     ),
                     Text(
-                      eventModel.meta.length > 180 ? eventModel.meta.substring(0, 180) : eventModel.meta,
+                      eventModel.meta.length > 180
+                          ? eventModel.meta.substring(0, 180)
+                          : eventModel.meta,
                       overflow: TextOverflow.fade,
                       softWrap: true,
                       style: const TextStyle(
@@ -143,13 +161,27 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       bold: true,
                     ),
                     leading: const Icon(FontAwesomeIcons.calendarCheck),
-                    trailing: IconButton(
+                    trailing: PopupMenuButton(
                       icon: const Icon(FontAwesomeIcons.filter),
-                      tooltip: '필터',
-                      onPressed: () {},
+                      tooltip: 'Filter',
+                      onSelected: (value) =>
+                          _eventCalenderController.setFilter(value),
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                        buildPopUpMenuItem(
+                            '오름차순', FontAwesomeIcons.arrowUpShortWide),
+                        buildPopUpMenuItem(
+                            '내림차순', FontAwesomeIcons.arrowDownWideShort),
+                        buildPopUpMenuItem('무작위', FontAwesomeIcons.shuffle),
+                        buildPopUpMenuItem(
+                            '7일 이내', FontAwesomeIcons.calendarWeek),
+                        buildPopUpMenuItem('30일 이내', FontAwesomeIcons.calendar),
+                        buildPopUpMenuItem('전체', FontAwesomeIcons.infinity),
+                      ],
                     ),
                   ),
-                  CustomCalendar(height: (33 * _eventCalenderController.events.length) + 130,),
+                  CustomCalendar(
+                    height: (33 * _eventCalenderController.events.length) + 130,
+                  ),
                   const Divider(),
                   const ListTile(
                     title: TitleText('이벤트 바로가기'),

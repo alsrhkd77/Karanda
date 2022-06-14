@@ -1,6 +1,6 @@
 # Karanda
 
-편의성 서비스 모음.
+편의성 서비스 모음
 
 ## 사용
 - Link: [https://github.com/HwanSangYeonHwa/Karanda](https://github.com/HwanSangYeonHwa/Karanda)
@@ -17,4 +17,5 @@
  - [x] 이벤트 캘린더 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/event-calender)
  - [x] 시카라키아 아홉문장 실타래 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/sikarakia)
  - [x] 광명석 조합식 탐색기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/artifact)
- - [ ] 윈도우 환경에서 예약 종료
+ - [x] 윈도우 환경에서 예약 종료(Windows desktop 환경에서만 사용가능) [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/shutdown-scheduler)
+ - [ ] 보스 시간표 + 알람

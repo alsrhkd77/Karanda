@@ -131,7 +131,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                   padding: EdgeInsets.all(12.0),
                   child: ListTile(
                     leading: Icon(FontAwesomeIcons.powerOff),
-                    title: TitleText('예약 종료'),
+                    title: TitleText('예약 종료', bold: true,),
                   ),
                 ),
 

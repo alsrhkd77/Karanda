@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -32,7 +31,6 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
     setState(() {
       _currentVersion = packageInfo.version;
     });
-    print(packageInfo.buildNumber);
   }
 
   Future<void> getLatestVersion() async {
@@ -55,7 +53,7 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
     final Dio dio = Dio();
     String savePath = '${Directory.current.path}/SetupKaranda.exe';
     await dio.download(
-        'https://github.com/HwanSangYeonHwa/Karanda/releases/download/unstable/SetupKaranda.exe',
+        'https://github.com/HwanSangYeonHwa/Karanda/releases/download/latest/SetupKaranda.exe',
         savePath, onReceiveProgress: (received, total) {
       final progress = (received / total) * 100;
       setState(() {

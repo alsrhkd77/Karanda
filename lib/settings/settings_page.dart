@@ -17,7 +17,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  
   void _launchURL(String url) async {
     Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
@@ -25,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
           margin: const EdgeInsets.all(24.0));
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,30 +53,35 @@ class _SettingsPageState extends State<SettingsPage> {
                       onChanged: (value) {
                         Provider.of<SettingsNotifier>(context, listen: false)
                             .setDarkMode(value);
-                        if(value){
-                          Get.snackbar('다크 모드', '다크 모드 활성화', margin: EdgeInsets.all(24.0));
-                        }else{
-                          Get.snackbar('다크 모드', '다크 모드 비활성화', margin: EdgeInsets.all(24.0));
+                        if (value) {
+                          Get.snackbar('다크 모드', '다크 모드 활성화',
+                              margin: const EdgeInsets.all(24.0),
+                              snackPosition: SnackPosition.BOTTOM);
+                        } else {
+                          Get.snackbar('다크 모드', '다크 모드 비활성화',
+                              margin: const EdgeInsets.all(24.0),
+                              snackPosition: SnackPosition.BOTTOM);
                         }
                       },
                     ),
                   ),
                 ),
-                kIsWeb ? ListTile(
-                  leading: const Icon(FontAwesomeIcons.laptopCode),
-                  title: const Text('Windows desktop app'),
-                  trailing: const Icon(
-                    FontAwesomeIcons.arrowUpRightFromSquare
-                  ),
-                  onTap: () => _launchURL('https://github.com/HwanSangYeonHwa/Karanda/releases'),
-                ) :
-                ListTile(
-                  leading: const Icon(FontAwesomeIcons.anglesUp),
-                  title: const Text('업데이트'),
-                  onTap: (){
-                    Get.toNamed('/desktop-app');
-                  },
-                ),
+                kIsWeb
+                    ? ListTile(
+                        leading: const Icon(FontAwesomeIcons.laptopCode),
+                        title: const Text('Windows desktop app'),
+                        trailing:
+                            const Icon(FontAwesomeIcons.arrowUpRightFromSquare),
+                        onTap: () => _launchURL(
+                            'https://github.com/HwanSangYeonHwa/Karanda/releases'),
+                      )
+                    : ListTile(
+                        leading: const Icon(FontAwesomeIcons.anglesUp),
+                        title: const Text('업데이트'),
+                        onTap: () {
+                          Get.toNamed('/desktop-app');
+                        },
+                      ),
               ],
             ),
           ),
