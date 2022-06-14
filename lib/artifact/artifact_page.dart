@@ -292,6 +292,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
                                       _textEditingController.text.trim());
                                 }
                                 _textEditingController.clear();
+                                FocusManager.instance.primaryFocus?.unfocus();
                               },
                             ),
                           ),
