@@ -19,7 +19,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
   final ScrollController _mainScrollController = ScrollController();
 
   Widget buildCardList() {
-    if(_artifactController.combinations.isEmpty){
+    if (_artifactController.combinations.isEmpty) {
       return Container(
         height: 120.0,
         alignment: Alignment.center,
@@ -236,6 +236,15 @@ class _ArtifactPageState extends State<ArtifactPage> {
     );
   }
 
+  Widget buildFilterButton(){
+    return OutlinedButton(
+      child: Text(_artifactController.orFilter.value
+          ? 'Or 연산'
+          : 'And 연산'),
+      onPressed: _artifactController.changeFilter,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -257,12 +266,13 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 margin: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    const ListTile(
-                      leading: Icon(FontAwesomeIcons.splotch),
-                      title: TitleText(
+                    ListTile(
+                      leading: const Icon(FontAwesomeIcons.splotch),
+                      title: const TitleText(
                         '광명석 조합식',
                         bold: true,
                       ),
+                      trailing: Obx(buildFilterButton),
                     ),
                     Container(
                       constraints: const BoxConstraints(
@@ -301,9 +311,10 @@ class _ArtifactPageState extends State<ArtifactPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(FontAwesomeIcons.arrowUp),
         onPressed: () {
-          _mainScrollController.animateTo(0,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.linear,
+          _mainScrollController.animateTo(
+            0,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.linear,
           );
         },
       ),

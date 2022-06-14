@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ArtifactController extends GetxController {
@@ -10,8 +8,9 @@ class ArtifactController extends GetxController {
   Set<String> options = {};
   final RxSet<String> _keywords = RxSet();
   RxInt loadItemCount = 10.obs;
+  RxBool orFilter = true.obs;
 
-  RxList get combinations => _filteredCombinations().obs;
+  RxList get combinations => orFilter.value ? _orFilteredCombinations().obs : _andFilteredCombinations().obs;
 
   List<String> get keywords => _keywords.toList();
 
@@ -73,20 +72,46 @@ class ArtifactController extends GetxController {
     return true;
   }
 
-  List _filteredCombinations() {
+  void changeFilter(){
+    orFilter.value = !orFilter.value;
+    update();
+  }
+
+  List _orFilteredCombinations() {
     if (keywords.isEmpty) {
       return _combinations;
     }
     Set result = {};
-    result.addAll(_findFromCombinationsName());
-    result.addAll(_findFromCombinationsEffect());
-    result.addAll(_findFromLightStones());
+    result.addAll(_findFromCombinationsName(_combinations, keywords));
+    result.addAll(_findFromCombinationsEffect(_combinations, keywords));
+    result.addAll(_findFromLightStones(_combinations, keywords));
     return result.toList();
   }
 
-  List _findFromCombinationsName() {
-    return _combinations.where((element) {
-      for (String value in keywords) {
+  List _andFilteredCombinations() {
+    if (keywords.isEmpty) {
+      return _combinations;
+    }
+    return _combinations.where((element){
+      for(String value in  keywords){
+        if(element['name'].contains(value)){
+          continue;
+        }
+        if(_findFromCombinationsEffect([element], [value]).isNotEmpty){
+          continue;
+        }
+        if(_findFromLightStones([element], [value]).isNotEmpty){
+          continue;
+        }
+        return false;
+      }
+      return true;
+    }).toList();
+  }
+
+  List _findFromCombinationsName(List list, List targetKeywords) {
+    return list.where((element) {
+      for (String value in targetKeywords) {
         if (element['name'].contains(value)) {
           return true;
         }
@@ -95,10 +120,10 @@ class ArtifactController extends GetxController {
     }).toList();
   }
 
-  List _findFromCombinationsEffect() {
-    return _combinations.where((element) {
+  List _findFromCombinationsEffect(List list, List targetKeywords) {
+    return list.where((element) {
       for (Map effect in element['effect']) {
-        for (String value in keywords) {
+        for (String value in targetKeywords) {
           if (effect['name'].contains(value)) {
             return true;
           }
@@ -108,9 +133,9 @@ class ArtifactController extends GetxController {
     }).toList();
   }
 
-  List _findFromLightStones() {
+  List _findFromLightStones(List list, List targetKeywords) {
     List stones = _lightStones.where((element) {
-      for (String value in keywords) {
+      for (String value in targetKeywords) {
         if (element['name'].contains(value) ||
             element['effect']['name'].contains(value)) {
           return true;
@@ -118,7 +143,7 @@ class ArtifactController extends GetxController {
       }
       return false;
     }).toList();
-    return _combinations.where((element) {
+    return list.where((element) {
       for (String value in stones.map((e) => e['name'])) {
         if (element['formula'].contains(value)) {
           return true;
