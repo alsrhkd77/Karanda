@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:karanda/settings/app_update_page.dart';
 import 'package:window_size/window_size.dart';
 
@@ -19,8 +20,10 @@ import 'shutdown_scheduler/shutdown_scheduler_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  if(Platform.isWindows || Platform.isMacOS || Platform.isLinux){
-    setWindowMinSize(const Size(600, 500));
+  if(!kIsWeb){
+    if(Platform.isWindows || Platform.isMacOS || Platform.isLinux){
+      setWindowMinSize(const Size(600, 500));
+    }
   }
   runApp(MyApp());
 }

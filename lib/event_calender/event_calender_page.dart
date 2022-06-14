@@ -30,7 +30,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
 
   Widget buildEventCard() {
     if (_eventCalenderController.allEvents.isEmpty) {
-      return SizedBox();
+      return const SizedBox();
     }
     List<Widget> list = [];
     for (EventModel eventModel in _eventCalenderController.allEvents) {
@@ -71,7 +71,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
               Container(
                 width: 310,
                 height: 150,
-                padding: EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(12.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +121,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(),
+      appBar: const DefaultAppBar(),
       body: FutureBuilder(
         future: _eventCalenderController.getData(),
         builder: (context, snapshot) {
@@ -142,6 +142,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       '이벤트 캘린더',
                       bold: true,
                     ),
+                    leading: const Icon(FontAwesomeIcons.calendarCheck),
                     trailing: IconButton(
                       icon: const Icon(FontAwesomeIcons.filter),
                       tooltip: '필터',
@@ -149,8 +150,8 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                     ),
                   ),
                   CustomCalendar(height: (33 * _eventCalenderController.events.length) + 130,),
-                  Divider(),
-                  ListTile(
+                  const Divider(),
+                  const ListTile(
                     title: TitleText('이벤트 바로가기'),
                   ),
                   Obx(buildEventCard),
@@ -161,7 +162,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
         tooltip: 'UI 새로고침',
         onPressed: () {
           setState(() {

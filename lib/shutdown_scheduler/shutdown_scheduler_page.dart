@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:karanda/common/date_time_converter.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
+import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
@@ -110,6 +112,12 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
 
   @override
   Widget build(BuildContext context) {
+    if(kIsWeb){
+      return const Scaffold(
+        appBar: DefaultAppBar(),
+        body: CannotUseInWeb(),
+      );
+    }
     return Consumer(
       builder:
           (context, ShutdownSchedulerNotifier _shutdownSchedulerNotifier, _) {

@@ -20,9 +20,10 @@ class _SettingsPageState extends State<SettingsPage> {
   
   void _launchURL(String url) async {
     Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri))
+    if (!await launchUrl(uri)) {
       throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
           margin: const EdgeInsets.all(24.0));
+    }
   }
   
   @override

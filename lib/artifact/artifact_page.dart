@@ -258,7 +258,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 child: Column(
                   children: [
                     const ListTile(
-                      leading: Icon(FontAwesomeIcons.cookie),
+                      leading: Icon(FontAwesomeIcons.splotch),
                       title: TitleText(
                         '광명석 조합식',
                         bold: true,

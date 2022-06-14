@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -46,10 +47,10 @@ class ShutdownSchedulerNotifier with ChangeNotifier {
   }
 
   void shutdown() {
-    running = false;
     _timer?.cancel();
-    print('shutdown');
+    running = false;
     notifyListeners();
+    Process.start('shutdown', ['-s', '-f', '-t', '10']);
   }
 
   @override

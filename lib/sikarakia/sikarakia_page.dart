@@ -36,47 +36,47 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
       _result[0][0] =
           (_board[1][1] + _board[1][2] + _board[2][1] + _board[2][2]) % 2;
       _result[0][1] = (_board[1][0] +
-          _board[1][1] +
-          _board[1][2] +
-          _board[2][0] +
-          _board[2][1] +
-          _board[2][2]) %
+              _board[1][1] +
+              _board[1][2] +
+              _board[2][0] +
+              _board[2][1] +
+              _board[2][2]) %
           2;
       _result[0][2] =
           (_board[1][0] + _board[1][1] + _board[2][0] + _board[2][1]) % 2;
       _result[1][0] = (_board[0][1] +
-          _board[0][2] +
-          _board[1][1] +
-          _board[1][2] +
-          _board[2][1] +
-          _board[2][2]) %
+              _board[0][2] +
+              _board[1][1] +
+              _board[1][2] +
+              _board[2][1] +
+              _board[2][2]) %
           2;
       _result[1][1] = (_board[0][0] +
-          _board[0][1] +
-          _board[0][2] +
-          _board[1][0] +
-          _board[1][1] +
-          _board[1][2] +
-          _board[2][0] +
-          _board[2][1] +
-          _board[2][2] +
-          1) %
+              _board[0][1] +
+              _board[0][2] +
+              _board[1][0] +
+              _board[1][1] +
+              _board[1][2] +
+              _board[2][0] +
+              _board[2][1] +
+              _board[2][2] +
+              1) %
           2;
       _result[1][2] = (_board[0][0] +
-          _board[0][1] +
-          _board[1][0] +
-          _board[1][1] +
-          _board[2][0] +
-          _board[2][1]) %
+              _board[0][1] +
+              _board[1][0] +
+              _board[1][1] +
+              _board[2][0] +
+              _board[2][1]) %
           2;
       _result[2][0] =
           (_board[0][1] + _board[0][2] + _board[1][1] + _board[1][2]) % 2;
       _result[2][1] = (_board[0][0] +
-          _board[0][1] +
-          _board[0][2] +
-          _board[1][0] +
-          _board[1][1] +
-          _board[1][2]) %
+              _board[0][1] +
+              _board[0][2] +
+              _board[1][0] +
+              _board[1][1] +
+              _board[1][2]) %
           2;
       _result[2][2] =
           (_board[0][0] + _board[0][1] + _board[1][0] + _board[1][1]) % 2;
@@ -87,14 +87,17 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar:const DefaultAppBar(),
+      appBar: const DefaultAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(
             0, size.height > size.width ? 50 : size.height / 10, 0, 0),
         child: Center(
           child: Column(
             children: [
-              const Text('아토락시온 시카라키아 공략', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+              const Text(
+                '아토락시온 시카라키아 공략',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               const Text('아홉문장(9가지 정의) 계산기'),
               SizedBox(
                 height: size.height / 10,
@@ -105,7 +108,7 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
                     : size.width / 8,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 direction:
-                size.height > size.width ? Axis.vertical : Axis.horizontal,
+                    size.height > size.width ? Axis.vertical : Axis.horizontal,
                 children: [
                   Column(
                     children: [
@@ -135,11 +138,12 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
                               ),
                               duration: const Duration(milliseconds: 150),
                               child: _result[index ~/ 3][index % 3] == 1
-                                  ? const Icon(Icons.keyboard_arrow_down_rounded)
+                                  ? const Icon(
+                                      Icons.keyboard_arrow_down_rounded)
                                   : const Icon(
-                                Icons.adjust_outlined,
-                                color: Colors.white10,
-                              ),
+                                      Icons.adjust_outlined,
+                                      color: Colors.white10,
+                                    ),
                             );
                           }),
                         ),
@@ -178,13 +182,15 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
                                 style: OutlinedButton.styleFrom(
                                   primary: Colors.white70,
                                   backgroundColor:
-                                  _board[index ~/ 3][index % 3] == 1
-                                      ? Colors.green
-                                      : Colors.red,
+                                      _board[index ~/ 3][index % 3] == 1
+                                          ? Colors.green
+                                          : Colors.red,
                                 ),
                                 child: _board[index ~/ 3][index % 3] == 1
-                                    ? const Icon(Icons.keyboard_arrow_up_rounded)
-                                    : const Icon(Icons.keyboard_arrow_down_rounded),
+                                    ? const Icon(
+                                        Icons.keyboard_arrow_up_rounded)
+                                    : const Icon(
+                                        Icons.keyboard_arrow_down_rounded),
                                 onPressed: () {
                                   if (_board[index ~/ 3][index % 3] == 1) {
                                     setState(() {
@@ -218,13 +224,14 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
               const SizedBox(
                 height: 50,
               ),
-              const Text('이 계산기는 인벤 \"깜깜한섬\"님의 엑셀 계산기를 참고하여 만들었습니다.'),
+              const Text('이 계산기는 인벤 "깜깜한섬"님의 엑셀 계산기를 참고하여 만들었습니다.'),
               TextButton(
                   onPressed: () {
-                    _launchURL('https://www.inven.co.kr/board/black/3584/48842');
+                    _launchURL(
+                        'https://www.inven.co.kr/board/black/3584/48842');
                   },
-                  child:
-                  const Text('https://www.inven.co.kr/board/black/3584/48842')),
+                  child: const Text(
+                      'https://www.inven.co.kr/board/black/3584/48842')),
               const SizedBox(
                 height: 20,
               ),
