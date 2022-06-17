@@ -172,6 +172,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                         buildPopUpMenuItem(
                             '내림차순', FontAwesomeIcons.arrowDownWideShort),
                         buildPopUpMenuItem('무작위', FontAwesomeIcons.shuffle),
+                        const PopupMenuDivider(),
                         buildPopUpMenuItem(
                             '7일 이내', FontAwesomeIcons.calendarWeek),
                         buildPopUpMenuItem('30일 이내', FontAwesomeIcons.calendar),

@@ -343,79 +343,104 @@ class _HorsePageState extends State<HorsePage> {
                                   width: 400,
                                   height: 400,
                                   margin: const EdgeInsets.all(12.0),
-                                  child: RadarChart(
-                                    RadarChartData(
-                                      dataSets: [
-                                        RadarDataSet(
-                                          dataEntries: [
-                                            const RadarEntry(value: 100),
-                                            const RadarEntry(value: 100),
-                                            const RadarEntry(value: 100),
-                                            const RadarEntry(value: 100),
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        left: 12.0,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: const [
+                                                Icon(Icons.square, color: Colors.green),
+                                                const Text('성장치'),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Icon(Icons.square, color: Colors.blueAccent),
+                                                const Text('최대 성장치'),
+                                              ],
+                                            ),
                                           ],
-                                          borderColor: Colors.blueAccent,
-                                          fillColor: Colors.blueAccent
-                                              .withOpacity(0.5),
-                                          borderWidth: 1.0,
-                                          entryRadius: 1.0,
                                         ),
-                                        RadarDataSet(
-                                          dataEntries: [
-                                            RadarEntry(value: horse.speedPercent),
-                                            RadarEntry(
-                                                value: horse.accelerationPercent),
-                                            RadarEntry(value: horse.rotForcePercent),
-                                            RadarEntry(value: horse.brakePercent),
+                                      ),
+                                      RadarChart(
+                                        RadarChartData(
+                                          dataSets: [
+                                            RadarDataSet(
+                                              dataEntries: [
+                                                const RadarEntry(value: 100),
+                                                const RadarEntry(value: 100),
+                                                const RadarEntry(value: 100),
+                                                const RadarEntry(value: 100),
+                                              ],
+                                              borderColor: Colors.blueAccent,
+                                              fillColor: Colors.blueAccent
+                                                  .withOpacity(0.5),
+                                              borderWidth: 1.0,
+                                              entryRadius: 1.0,
+                                            ),
+                                            RadarDataSet(
+                                              dataEntries: [
+                                                RadarEntry(value: horse.speedPercent),
+                                                RadarEntry(
+                                                    value: horse.accelerationPercent),
+                                                RadarEntry(value: horse.rotForcePercent),
+                                                RadarEntry(value: horse.brakePercent),
+                                              ],
+                                              borderColor: Colors.green,
+                                              fillColor:
+                                                  Colors.green.withOpacity(0.5),
+                                              borderWidth: 2.0,
+                                              entryRadius: 2.0,
+                                            ),
+                                            RadarDataSet(
+                                              dataEntries: [
+                                                const RadarEntry(value: 0),
+                                                const RadarEntry(value: 0),
+                                                const RadarEntry(value: 0),
+                                                const RadarEntry(value: 0),
+                                              ],
+                                              borderColor: Colors.red,
+                                              fillColor:
+                                                  Colors.red.withOpacity(0.5),
+                                              borderWidth: 1.0,
+                                              entryRadius: 1.0,
+                                            ),
                                           ],
-                                          borderColor: Colors.green,
-                                          fillColor:
-                                              Colors.green.withOpacity(0.5),
-                                          borderWidth: 2.0,
-                                          entryRadius: 2.0,
+                                          getTitle: (index) {
+                                            switch (index) {
+                                              case 0:
+                                                return '속도';
+                                              case 1:
+                                                return '가속';
+                                              case 2:
+                                                return '회전';
+                                              case 3:
+                                                return '제동';
+                                              default:
+                                                return '';
+                                            }
+                                          },
+                                          titlePositionPercentageOffset: 0.1,
+                                          tickCount: 10,
+                                          ticksTextStyle:
+                                              const TextStyle(fontSize: 10.0, color: Colors.transparent),
+                                          tickBorderData: const BorderSide(
+                                              color: Colors.transparent),
+                                          radarBorderData: BorderSide(
+                                              color: Colors.black.withOpacity(0.5)),
+                                          gridBorderData: BorderSide(
+                                              color: Colors.black.withOpacity(0.2)),
+                                          borderData: FlBorderData(show: false),
                                         ),
-                                        RadarDataSet(
-                                          dataEntries: [
-                                            const RadarEntry(value: 0),
-                                            const RadarEntry(value: 0),
-                                            const RadarEntry(value: 0),
-                                            const RadarEntry(value: 0),
-                                          ],
-                                          borderColor: Colors.red,
-                                          fillColor:
-                                              Colors.red.withOpacity(0.5),
-                                          borderWidth: 1.0,
-                                          entryRadius: 1.0,
-                                        ),
-                                      ],
-                                      getTitle: (index) {
-                                        switch (index) {
-                                          case 0:
-                                            return '속도';
-                                          case 1:
-                                            return '가속';
-                                          case 2:
-                                            return '회전';
-                                          case 3:
-                                            return '제동';
-                                          default:
-                                            return '';
-                                        }
-                                      },
-                                      titlePositionPercentageOffset: 0.1,
-                                      tickCount: 10,
-                                      ticksTextStyle:
-                                          const TextStyle(fontSize: 10.0, color: Colors.transparent),
-                                      tickBorderData: const BorderSide(
-                                          color: Colors.transparent),
-                                      radarBorderData: BorderSide(
-                                          color: Colors.black.withOpacity(0.5)),
-                                      gridBorderData: BorderSide(
-                                          color: Colors.black.withOpacity(0.2)),
-                                      borderData: FlBorderData(show: false),
-                                    ),
-                                    swapAnimationDuration:
-                                        const Duration(milliseconds: 200),
-                                    swapAnimationCurve: Curves.linear,
+                                        swapAnimationDuration:
+                                            const Duration(milliseconds: 200),
+                                        swapAnimationCurve: Curves.linear,
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 Container(

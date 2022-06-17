@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
             Card(
               child: Container(
                 margin: const EdgeInsets.all(18.0),
-                child: Icon(icon, size: 50.0, color: context.isDarkMode ? null : Colors.black54,),
+                child: Icon(icon, size: 45.0, color: context.isDarkMode ? null : Colors.black54,),
               ),
             ),
             SizedBox(
@@ -123,7 +123,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 singleIconBox(
                   name: '이벤트 캘린더',
-                  icon: FontAwesomeIcons.calendarCheck,
+                  //icon: FontAwesomeIcons.calendarCheck,
+                  icon: Icons.celebration_outlined,
                   onTap: () {
                     Get.toNamed('/event-calender');
                   },

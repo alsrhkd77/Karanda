@@ -314,7 +314,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
         onPressed: () {
           _mainScrollController.animateTo(
             0,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 200),
             curve: Curves.linear,
           );
         },

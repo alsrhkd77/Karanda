@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:karanda/settings/app_update_page.dart';
+import 'package:karanda/settings/experimental_function_page.dart';
 import 'package:window_size/window_size.dart';
 
 import '../artifact/artifact_page.dart';
@@ -49,11 +50,12 @@ class MyApp extends StatelessWidget {
             getPages: [
               GetPage(name: '/', page: () => const HomePage()),
               GetPage(name: '/settings', page: () => const SettingsPage()),
+              GetPage(name: '/desktop-app', page: () => const AppUpdatePage()),
+              GetPage(name: '/experimental-function', page: () => const ExperimentalFunctionPage()),
               GetPage(name: '/horse', page: () => const HorsePage()),
               GetPage(name: '/event-calender', page: () => const EventCalenderPage()),
               GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
-              GetPage(name: '/desktop-app', page: () => const AppUpdatePage()),
               GetPage(name: '/shutdown-scheduler', page: () => const ShutdownSchedulerPage()),
             ],
           );
