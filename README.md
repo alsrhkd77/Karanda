@@ -4,7 +4,7 @@
 
 ## 사용
 - Link: [https://github.com/HwanSangYeonHwa/Karanda](https://github.com/HwanSangYeonHwa/Karanda)
-- Web: [https://hwansangyeonhwa.github.io/Karanda/](https://hwansangyeonhwa.github.io/Karanda/)
+- Web: [https://hwansangyeonhwa.github.io/Karanda](https://hwansangyeonhwa.github.io/Karanda)
 - Windows Desktop App: [https://github.com/HwanSangYeonHwa/Karanda/releases](https://github.com/HwanSangYeonHwa/Karanda/releases)
 
 ## 개발 언어

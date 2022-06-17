@@ -247,77 +247,82 @@ class _ArtifactPageState extends State<ArtifactPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const DefaultAppBar(),
-      body: FutureBuilder(
-        future: _artifactController.getData(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: SpinKitFadingCube(
-                size: 120.0,
-                color: Colors.blue,
-              ),
-            );
-          } else {
-            return SingleChildScrollView(
-              controller: _mainScrollController,
-              child: Container(
-                margin: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(FontAwesomeIcons.splotch),
-                      title: const TitleText(
-                        '광명석 조합식',
-                        bold: true,
-                      ),
-                      trailing: Obx(buildFilterButton),
-                    ),
-                    Container(
-                      constraints: const BoxConstraints(
-                        maxWidth: 900,
-                      ),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            title: buildSearchTextBar(),
-                            trailing: ElevatedButton(
-                              child: const Text('추가'),
-                              onPressed: () {
-                                if (_textEditingController.text
-                                    .trim()
-                                    .isNotEmpty) {
-                                  _artifactController.addKeyword(
-                                      _textEditingController.text.trim());
-                                }
-                                _textEditingController.clear();
-                                FocusManager.instance.primaryFocus?.unfocus();
-                              },
-                            ),
-                          ),
-                          Obx(buildChip),
-                          Obx(buildCardList),
-                          Obx(buildLoadButton)
-                        ],
-                      ),
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: (){
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        appBar: const DefaultAppBar(),
+        body: FutureBuilder(
+          future: _artifactController.getData(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const Center(
+                child: SpinKitFadingCube(
+                  size: 120.0,
+                  color: Colors.blue,
                 ),
-              ),
+              );
+            } else {
+              return SingleChildScrollView(
+                controller: _mainScrollController,
+                child: Container(
+                  margin: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const Icon(FontAwesomeIcons.splotch),
+                        title: const TitleText(
+                          '광명석 조합식',
+                          bold: true,
+                        ),
+                        trailing: Obx(buildFilterButton),
+                      ),
+                      Container(
+                        constraints: const BoxConstraints(
+                          maxWidth: 900,
+                        ),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: buildSearchTextBar(),
+                              trailing: ElevatedButton(
+                                child: const Text('추가'),
+                                onPressed: () {
+                                  if (_textEditingController.text
+                                      .trim()
+                                      .isNotEmpty) {
+                                    _artifactController.addKeyword(
+                                        _textEditingController.text.trim());
+                                  }
+                                  _textEditingController.clear();
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                },
+                              ),
+                            ),
+                            Obx(buildChip),
+                            Obx(buildCardList),
+                            Obx(buildLoadButton)
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(FontAwesomeIcons.arrowUp),
+          onPressed: () {
+            _mainScrollController.animateTo(
+              0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear,
             );
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(FontAwesomeIcons.arrowUp),
-        onPressed: () {
-          _mainScrollController.animateTo(
-            0,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.linear,
-          );
-        },
+          },
+        ),
       ),
     );
   }
