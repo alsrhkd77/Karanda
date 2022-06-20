@@ -69,7 +69,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ListTile(
                   leading: const Icon(FontAwesomeIcons.flask),
                   title: const Text('실험적 서비스'),
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed('/experimental-function');
                   },
                 ),

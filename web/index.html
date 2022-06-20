@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+    <!--
+      If you are serving your web app in a path other than the root, change the
+      href value below to reflect the base path you are serving from.
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+      The path provided below has to start and end with a slash "/" in order for
+      it to work correctly.
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+      For more details:
+      * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <!--<base href="$FLUTTER_BASE_HREF">-->
+      This is a placeholder for base href that will be replaced by the value of
+      the `--base-href` argument provided to `flutter build`.
+    -->
+    <!--<base href="$FLUTTER_BASE_HREF">-->
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta content="Karanda project." name="description">
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta content="Karanda project." name="description">
 
-  <!-- iOS meta tags & icons -->
-  <meta content="yes" name="apple-mobile-web-app-capable">
-  <meta content="black" name="apple-mobile-web-app-status-bar-style">
-  <meta content="karanda" name="apple-mobile-web-app-title">
-  <link href="icons/Icon-192.png" rel="apple-touch-icon">
+    <!-- iOS meta tags & icons -->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="blue" name="apple-mobile-web-app-status-bar-style">
+    <meta content="karanda" name="apple-mobile-web-app-title">
+    <link href="icons/Icon-192.png" rel="apple-touch-icon">
 
-  <!-- Favicon -->
-  <link href="favicon.png" rel="icon" type="image/png"/>
+    <!-- Favicon -->
+    <link href="favicon.png" rel="icon" type="image/png"/>
 
-  <!-- Custom CSS -->
-  <link href="styles.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet" type="text/css">
 
-  <title>Karanda</title>
-  <link href="manifest.json" rel="manifest">
+    <title>Karanda</title>
+    <link href="manifest.json" rel="manifest">
 </head>
 <body>
-  <img class="center" src="img/flutter-logo.png" />
-  <script src="main.dart.js" type="application/javascript"></script>
+  <!-- Install button, hidden by default -->
+  <div class="hidden" id="installContainer">
+      <button id="butInstall" type="button">
+          Install
+      </button>
+  </div>
+  <script src="install.js" type="application/javascript"></script>
+
+  <img class="center" src="img/flutter-logo.png"/>
+
+  <!--<script src="main.dart.js" type="application/javascript"></script>-->
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <!--
+
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
@@ -106,6 +115,5 @@
       loadMainDartJs();
     }
   </script>
-  -->
 </body>
 </html>

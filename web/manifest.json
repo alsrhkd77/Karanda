@@ -1,11 +1,11 @@
 {
-    "name": "black_tools",
-    "short_name": "black_tools",
+    "name": "Karanda",
+    "short_name": "Karanda",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Black Tools project.",
+    "description": "Karanda project web app",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
