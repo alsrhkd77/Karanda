@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/settings/app_update_page.dart';
 import 'package:karanda/settings/experimental_function_page.dart';
+import 'package:karanda/ship_extansion/ship_extension_page.dart';
 import 'package:window_size/window_size.dart';
 
 import '../artifact/artifact_page.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
               GetPage(name: '/shutdown-scheduler', page: () => const ShutdownSchedulerPage()),
+              GetPage(name: '/ship-extension', page: () => const ShipExtensionPage()),
             ],
           );
         },

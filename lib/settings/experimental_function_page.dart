@@ -59,10 +59,10 @@ class _ExperimentalFunctionPageState extends State<ExperimentalFunctionPage> {
               spacing: 20.0,
               children: [
                 singleIconBox(
-                  name: '길드 관리',
-                  icon: Icons.manage_accounts,
+                  name: '선박 증축',
+                  icon: FontAwesomeIcons.ship,
                   onTap: () {
-                    Get.toNamed('/guild-manager');
+                    Get.toNamed('/ship-extension');
                   },
                 ),
               ],
