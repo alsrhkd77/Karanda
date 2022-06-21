@@ -192,6 +192,11 @@ class _HomePageState extends State<HomePage> {
                   onTap: () => _launchURL('https://garmoth.com'),
                 ),
                 singleImageBox(
+                  name: 'BDO Codex',
+                  icon: 'assets/icons/bdocodex.png',
+                  onTap: () => _launchURL('https://bdocodex.com/kr/'),
+                ),
+                singleImageBox(
                   name: 'OnTopReplica',
                   icon: 'assets/icons/onTopReplica.png',
                   onTap: () => _launchURL('https://github.com/LorenzCK/OnTopReplica'),
