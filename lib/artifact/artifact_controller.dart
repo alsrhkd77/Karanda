@@ -43,7 +43,6 @@ class ArtifactController extends GetxController {
     String combinationJson = '';
     String lightStonesJson = '';
 
-    // running on desktop
     lightStonesJson = await http
         .get(Uri.parse(
             'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/lightStones.json'))

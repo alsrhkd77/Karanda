@@ -77,7 +77,7 @@ flutter:
   assets:
     - assets/data/
     - assets/icons/
-    - assets/image/
+    - assets/image/shipExtension/
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

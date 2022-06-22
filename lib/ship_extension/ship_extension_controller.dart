@@ -7,8 +7,29 @@ import '../ship_extension/ship_extension_item_model.dart';
 import '../ship_extension/ship_extension_model.dart';
 
 class ShipExtensionController extends GetxController {
-  List<ShipExtensionModel> ships = [];
-  List<ShipExtensionItemModel> items = [];
+  RxString select = '에페리아 중범선 : 비상'.obs;
+  RxList<ShipExtensionModel> ships = RxList<ShipExtensionModel>();
+  RxList<ShipExtensionItemModel> items = RxList<ShipExtensionItemModel>();
+
+  List<ShipExtensionItemModel> get extensionItems {
+    List snapshot = items;
+    Map<String, ShipExtensionItemModel> _map = {
+      for (ShipExtensionItemModel m in snapshot) m.name: m
+    };
+    Map<String, int> _model =
+        ships.firstWhere((element) => element.name == select.value).getNeed();
+
+    for (String m in _model.keys) {
+      _map[m]!.need = _model[m]!;
+    }
+
+    return _map.values.toList();
+  }
+
+  void updateUserItem(String name, int count) {
+    items.firstWhere((element) => element.name == name).user = count;
+    items.refresh();
+  }
 
   Future<bool> getShipData() async {
     String shipExtensionJson = '';
@@ -24,10 +45,8 @@ class ShipExtensionController extends GetxController {
             'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/shipExtensionItem.json'))
         .then((response) => response.body);
 
-    Map<String, Map<String, dynamic>> shipExtension =
-        jsonDecode(shipExtensionJson);
-    Map<String, Map<String, dynamic>> shipExtensionItem =
-        jsonDecode(shipExtensionItemJson);
+    Map<String, dynamic> shipExtension = jsonDecode(shipExtensionJson);
+    Map<String, dynamic> shipExtensionItem = jsonDecode(shipExtensionItemJson);
 
     for (String i in shipExtensionItem.keys) {
       ShipExtensionItemModel _item =
@@ -41,8 +60,8 @@ class ShipExtensionController extends GetxController {
       _ships.add(_ship);
     }
 
-    items = _items;
-    ships = _ships;
+    items = _items.obs;
+    ships = _ships.obs;
     return true;
   }
 }

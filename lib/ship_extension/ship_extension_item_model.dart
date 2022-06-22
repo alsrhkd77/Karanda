@@ -7,6 +7,9 @@ class ShipExtensionItemModel{
   late int price;
   late String assetPath;
 
+  int user = 0;
+  int need = 0;
+
   ShipExtensionItemModel.fromJson(this.name, Map data){
     Map farming = data['주 획득처'];
     farmingRootName = farming['name'];
