@@ -11,6 +11,22 @@ class ShipExtensionController extends GetxController {
   RxList<ShipExtensionModel> ships = RxList<ShipExtensionModel>();
   RxList<ShipExtensionItemModel> items = RxList<ShipExtensionItemModel>();
 
+  double get percent {
+    double need = 0;
+    double user = 0;
+    for (ShipExtensionItemModel item in extensionItems) {
+      int _user = item.user > item.need ? item.need : item.user;
+      if (item.reward == 0) {
+        need += item.need;
+        user += _user;
+      } else {
+        need += item.need / item.reward;
+        user += _user == 0 ? 0 : _user / item.reward;
+      }
+    }
+    return user / need;
+  }
+
   List<ShipExtensionItemModel> get extensionItems {
     List snapshot = items;
     Map<String, ShipExtensionItemModel> _map = {
@@ -24,6 +40,11 @@ class ShipExtensionController extends GetxController {
     }
 
     return _map.values.toList();
+  }
+
+  void selectShipType(String value) {
+    select.value = value;
+    update();
   }
 
   void updateUserItem(String name, int count) {

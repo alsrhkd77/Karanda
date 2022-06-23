@@ -21,10 +21,29 @@ class ShipExtensionPage extends StatefulWidget {
 class _ShipExtensionPageState extends State<ShipExtensionPage> {
   final ShipExtensionController _extensionController =
       ShipExtensionController();
+  List<String> shipType = [
+    '에페리아 중범선 : 비상',
+    '에페리아 중범선 : 용맹',
+    '에페리아 중범선 : 점진',
+    '에페리아 중범선 : 균형',
+  ];
 
   @override
   void initState() {
     super.initState();
+  }
+
+  MaterialColor getColor(double percent){
+    if(percent < 0.25){
+      return Colors.red;
+    }else if(percent < 0.5){
+      return Colors.orange;
+    }else if(percent < 0.75){
+      return Colors.yellow;
+    }else if(percent < 1){
+      return Colors.green;
+    }
+    return Colors.blue;
   }
 
   Widget buildItemList() {
@@ -33,7 +52,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
       height: _extensionController.extensionItems.length * 99,
       width: 1110,
       child: ListView.separated(
-        separatorBuilder: (context, index) => Divider(),
+        separatorBuilder: (context, index) => const Divider(),
         itemCount: _extensionController.extensionItems.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -75,39 +94,39 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
         const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0);
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.all(12.0),
+      margin: const EdgeInsets.all(12.0),
       height: 60,
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
-            child: SizedBox(
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
+            child: const SizedBox(
               width: 40,
               height: 40,
             ),
           ),
-          VerticalDivider(),
+          const VerticalDivider(),
           Container(
             width: 135,
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '재료',
               textAlign: TextAlign.center,
               style: style,
             ),
           ),
-          VerticalDivider(),
+          const VerticalDivider(),
           Container(
             width: 470,
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '주요 획득처',
               textAlign: TextAlign.center,
               style: style,
             ),
           ),
-          VerticalDivider(),
-          Container(
+          const VerticalDivider(),
+          SizedBox(
             width: 60,
             child: Text(
               '보유',
@@ -115,40 +134,40 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
               style: style,
             ),
           ),
-          VerticalDivider(),
+          const VerticalDivider(),
           Container(
             width: 40,
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '필요',
               textAlign: TextAlign.center,
               style: style,
             ),
           ),
-          VerticalDivider(),
+          const VerticalDivider(),
           Container(
             width: 30,
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '남은 일수',
               textAlign: TextAlign.center,
               style: style,
             ),
           ),
-          VerticalDivider(),
+          const VerticalDivider(),
           Container(
             width: 30,
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '소요 일수',
               textAlign: TextAlign.center,
               style: style,
             ),
           ),
-          VerticalDivider(),
+          const VerticalDivider(),
           Container(
             width: 70,
-            margin: EdgeInsets.symmetric(horizontal: 6.0),
+            margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '까마귀\n주화',
               textAlign: TextAlign.center,
@@ -192,18 +211,52 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 25,
-                        animation: true,
-                        lineHeight: 18.0,
-                        animationDuration: 1500,
-                        percent: 0.1,
-                        center: Text("13.0%"),
-                        barRadius: const Radius.circular(15.0),
-                        progressColor: Colors.blue,
-                      ),
+                    Container(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.all(12.0),
+                      child: const TitleText('증축재료 수급 현황', bold: true,),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Obx(
+                            () => LinearPercentIndicator(
+                              width: MediaQuery.of(context).size.width - 250,
+                              animation: true,
+                              lineHeight: 18.0,
+                              animationDuration: 500,
+                              percent: _extensionController.percent,
+                              center: Text("${(_extensionController.percent * 100).toStringAsFixed(2)}%"),
+                              barRadius: const Radius.circular(15.0),
+                              progressColor: getColor(_extensionController.percent),
+                              animateFromLastPercent: true,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Obx(
+                            () => DropdownButton<String>(
+                              value: _extensionController.select.value,
+                              onChanged: (String? value) {
+                                if (value!.isEmpty) {
+                                  return;
+                                }
+                                _extensionController.selectShipType(value);
+                              },
+                              items: shipType
+                                  .map<DropdownMenuItem<String>>(
+                                      (e) => DropdownMenuItem(
+                                            value: e,
+                                            child: Text(e),
+                                          ))
+                                  .toList(),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height:
@@ -215,7 +268,8 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Card(
-                            margin: EdgeInsets.all(24.0),
+                            margin: const EdgeInsets.all(24.0),
+                            elevation: 8.0,
                             child: Column(
                               children: [
                                 buildTitleLine(),
