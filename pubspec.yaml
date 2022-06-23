@@ -45,6 +45,7 @@ dependencies:
   package_info_plus: ^1.4.2
   font_awesome_flutter: ^10.1.0
   percent_indicator: ^4.2.2
+  shared_preferences: ^2.0.15
   html: ^0.15.0
   window_size:
     git:

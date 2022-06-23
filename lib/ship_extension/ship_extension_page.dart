@@ -236,26 +236,38 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Obx(
-                            () => DropdownButton<String>(
-                              value: _extensionController.select.value,
-                              onChanged: (String? value) {
-                                if (value!.isEmpty) {
-                                  return;
-                                }
-                                _extensionController.selectShipType(value);
-                              },
-                              items: shipType
-                                  .map<DropdownMenuItem<String>>(
-                                      (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(e),
-                                          ))
-                                  .toList(),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                          child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue),
+                                borderRadius: BorderRadius.circular(15.0)
+                              ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Obx(
+                                    () => DropdownButton<String>(
+                                  value: _extensionController.select.value,
+                                  underline: Container(),
+                                  focusColor: Colors.white.withOpacity(0),
+                                  onChanged: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return;
+                                    }
+                                    _extensionController.selectShipType(value);
+                                  },
+                                  items: shipType
+                                      .map<DropdownMenuItem<String>>(
+                                          (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(e),
+                                      ))
+                                      .toList(),
+                                ),
+                              ),
                             ),
                           ),
                         ),
+
                       ],
                     ),
                     SizedBox(
