@@ -248,7 +248,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                                     () => DropdownButton<String>(
                                   value: _extensionController.select.value,
                                   underline: Container(),
-                                  focusColor: Colors.white.withOpacity(0),
+                                  focusColor: Colors.transparent,
                                   onChanged: (String? value) {
                                     if (value!.isEmpty) {
                                       return;

@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Karanda',
-            theme: _settings.darkMode ? ThemeData.dark() : ThemeData.light(),
+            theme: ThemeData(useMaterial3: true),
+            darkTheme: ThemeData.dark(),
+            themeMode: _settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
             getPages: [
               GetPage(name: '/', page: () => const HomePage()),

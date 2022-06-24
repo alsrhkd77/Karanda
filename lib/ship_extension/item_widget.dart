@@ -123,7 +123,7 @@ class _ItemWidgetState extends State<ItemWidget> {
             child: LinearProgressIndicator(
               color: getColor(percent),
               value: percent,
-              backgroundColor: Colors.black.withOpacity(0),
+              backgroundColor: Colors.transparent,
             ),
             bottom: -2,
             left: 0,

@@ -411,8 +411,8 @@ class _HorsePageState extends State<HorsePage> {
                                             const TextStyle(fontSize: 10.0, color: Colors.transparent),
                                         tickBorderData: const BorderSide(
                                             color: Colors.transparent),
-                                        radarBorderData: BorderSide(
-                                            color: Colors.black.withOpacity(0.5)),
+                                        radarBorderData: const BorderSide(
+                                            color: Colors.transparent),
                                         gridBorderData: BorderSide(
                                             color: Colors.black.withOpacity(0.2)),
                                         borderData: FlBorderData(show: false),

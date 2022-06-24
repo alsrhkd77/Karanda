@@ -180,6 +180,9 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
                               padding: const EdgeInsets.all(8.0),
                               child: OutlinedButton(
                                 style: OutlinedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
                                   primary: Colors.white70,
                                   backgroundColor:
                                       _board[index ~/ 3][index % 3] == 1

@@ -10,7 +10,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: InkWell(
         child: const Text('Karanda'),
-        hoverColor: Colors.white.withOpacity(0),
+        hoverColor: Colors.transparent,
         onTap: () {
           Get.offAllNamed('/');
         },
