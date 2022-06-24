@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/settings/app_update_page.dart';
 import 'package:karanda/settings/experimental_function_page.dart';
@@ -22,8 +23,8 @@ import 'shutdown_scheduler/shutdown_scheduler_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  if(!kIsWeb){
-    if(Platform.isWindows || Platform.isMacOS || Platform.isLinux){
+  if (!kIsWeb) {
+    if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
       setWindowMinSize(const Size(600, 500));
     }
   }
@@ -37,30 +38,47 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => SettingsNotifier()),
-          ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
-        ],
+      providers: [
+        ChangeNotifierProvider(create: (_) => SettingsNotifier()),
+        ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
+      ],
       child: Consumer(
         builder: (context, SettingsNotifier _settings, _) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Karanda',
-            theme: ThemeData(useMaterial3: true),
-            darkTheme: ThemeData.dark(),
+            theme: FlexColorScheme.light(
+                    useMaterial3: true,
+                    colors: FlexColor.schemes[FlexScheme.flutterDash]?.light,
+                    visualDensity: FlexColorScheme.comfortablePlatformDensity)
+                .toTheme,
+            darkTheme: FlexColorScheme.dark(
+                    useMaterial3: true,
+                    colors: FlexColor.schemes[FlexScheme.flutterDash]?.dark,
+                    visualDensity: FlexColorScheme.comfortablePlatformDensity,
+                    blendLevel: 20)
+                .toTheme,
             themeMode: _settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
             getPages: [
               GetPage(name: '/', page: () => const HomePage()),
               GetPage(name: '/settings', page: () => const SettingsPage()),
               GetPage(name: '/desktop-app', page: () => const AppUpdatePage()),
-              GetPage(name: '/experimental-function', page: () => const ExperimentalFunctionPage()),
+              GetPage(
+                  name: '/experimental-function',
+                  page: () => const ExperimentalFunctionPage()),
               GetPage(name: '/horse', page: () => const HorsePage()),
-              GetPage(name: '/event-calender', page: () => const EventCalenderPage()),
+              GetPage(
+                  name: '/event-calender',
+                  page: () => const EventCalenderPage()),
               GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
-              GetPage(name: '/shutdown-scheduler', page: () => const ShutdownSchedulerPage()),
-              GetPage(name: '/ship-extension', page: () => const ShipExtensionPage()),
+              GetPage(
+                  name: '/shutdown-scheduler',
+                  page: () => const ShutdownSchedulerPage()),
+              GetPage(
+                  name: '/ship-extension',
+                  page: () => const ShipExtensionPage()),
             ],
           );
         },
