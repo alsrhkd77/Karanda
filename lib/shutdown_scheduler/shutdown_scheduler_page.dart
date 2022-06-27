@@ -51,7 +51,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
             child: Text(
               intervalTime,
               style:
-              const TextStyle(fontWeight: FontWeight.bold, fontSize: 60.0),
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 60.0),
             ),
           ),
           Container(
@@ -112,7 +112,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(kIsWeb){
+    if (kIsWeb) {
       return const Scaffold(
         appBar: DefaultAppBar(),
         body: CannotUseInWeb(),
@@ -131,7 +131,10 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                   padding: EdgeInsets.all(12.0),
                   child: ListTile(
                     leading: Icon(FontAwesomeIcons.powerOff),
-                    title: TitleText('예약 종료', bold: true,),
+                    title: TitleText(
+                      '예약 종료',
+                      bold: true,
+                    ),
                   ),
                 ),
 
@@ -146,7 +149,8 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                     child: Stack(
                       children: [
                         _shutdownSchedulerNotifier.running
-                            ? buildTimer(_shutdownSchedulerNotifier.getTimeInterval())
+                            ? buildTimer(
+                                _shutdownSchedulerNotifier.getTimeInterval())
                             : buildTimePicker(),
                         Positioned(
                           child: _shutdownSchedulerNotifier.running
@@ -189,7 +193,10 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                             width: 720,
                             height: 40,
                             alignment: Alignment.center,
-                            child: const Text('취소'),
+                            child: const Text(
+                              '취소',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                           onPressed: _shutdownSchedulerNotifier.cancelSchedule,
                           style: ElevatedButton.styleFrom(

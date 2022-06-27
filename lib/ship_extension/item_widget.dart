@@ -92,7 +92,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 30,
+                  width: 35,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: Text(
                       widget.item.reward == 0
@@ -102,7 +102,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 30,
+                  width: 35,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: Text(
                       widget.item.reward == 0

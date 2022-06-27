@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsNotifier with ChangeNotifier {
-  bool _darkMode = true;
+  bool _darkMode = false;
   bool get darkMode => _darkMode;
 
   SettingsNotifier(){

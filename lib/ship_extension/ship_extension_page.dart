@@ -50,7 +50,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12.0),
       height: _extensionController.extensionItems.length * 99,
-      width: 1110,
+      width: 1120,
       child: ListView.separated(
         separatorBuilder: (context, index) => const Divider(),
         itemCount: _extensionController.extensionItems.length,
@@ -146,7 +146,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
           ),
           const VerticalDivider(),
           Container(
-            width: 30,
+            width: 35,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '남은 일수',
@@ -156,7 +156,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
           ),
           const VerticalDivider(),
           Container(
-            width: 30,
+            width: 35,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '소요 일수',
@@ -243,7 +243,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                                 borderRadius: BorderRadius.circular(15.0)
                               ),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Obx(
                                     () => DropdownButton<String>(
                                   value: _extensionController.select.value,

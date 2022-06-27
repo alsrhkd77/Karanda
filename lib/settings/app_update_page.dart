@@ -75,18 +75,24 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
     if (_loading) {
       return Container(
         margin: const EdgeInsets.all(12.0),
-        height: 55.0,
-        width: 55.0,
+        height: 65.0,
+        width: 65.0,
         child: const CircularProgressIndicator(),
       );
     } else if (_latestVersion.isEmpty || _currentVersion == _latestVersion) {
       return ElevatedButton(
-        child: const Text('Check update'),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10.0),
+          child: const Text('Check update'),
+        ),
         onPressed: getLatestVersion,
       );
     }
     return ElevatedButton(
-      child: const Text('Update'),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10.0),
+        child: const Text('Update'),
+      ),
       onPressed: downloadNewVersion,
     );
   }
@@ -100,15 +106,34 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Card(
-              margin: const EdgeInsets.all(22.0),
+              margin: const EdgeInsets.all(12.0),
               child: Container(
-                margin: const EdgeInsets.all(22.0),
+                width: 320,
+                margin: const EdgeInsets.all(48.0),
                 child: Column(
                   children: [
-                    const Text('Karanda', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),),
-                    const SizedBox(height: 8.0,),
-                    Text('현재 버전: $_currentVersion'),
-                    Text('최신 버전: $_latestVersion'),
+                    const Text(
+                      'Karanda',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 40.0),
+                    ),
+                    const SizedBox(
+                      height: 22.0,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(4.0),
+                        child: Text(
+                      '현재 버전: $_currentVersion',
+                      style: const TextStyle(fontSize: 18.0),
+                    ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(4.0),
+                      child: Text(
+                        '최신 버전: $_latestVersion',
+                        style: const TextStyle(fontSize: 18.0),
+                      ),
+                    ),
                   ],
                 ),
               ),

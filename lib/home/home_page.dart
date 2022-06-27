@@ -115,10 +115,30 @@ class _HomePageState extends State<HomePage> {
               spacing: 20.0,
               children: [
                 singleIconBox(
+                  name: '선박 증축',
+                  icon: FontAwesomeIcons.ship,
+                  onTap: () {
+                    Get.toNamed('/ship-extension');
+                  },
+                ),
+                singleIconBox(
                   name: '말 성장치 계산기',
                   icon: FontAwesomeIcons.chessKnight,
                   onTap: () {
                     Get.toNamed('/horse');
+                  },
+                ),
+                singleIconBox(
+                  name: '광명석 조합식',
+                  icon: FontAwesomeIcons.splotch,
+                  onTap: () {
+                    Get.toNamed('/artifact');
+                  },
+                ),singleIconBox(
+                  name: '시카라키아\n아홉문장 계산기',
+                  icon: FontAwesomeIcons.calculator,
+                  onTap: () {
+                    Get.toNamed('/sikarakia');
                   },
                 ),
                 singleIconBox(
@@ -127,20 +147,6 @@ class _HomePageState extends State<HomePage> {
                   icon: Icons.celebration_outlined,
                   onTap: () {
                     Get.toNamed('/event-calender');
-                  },
-                ),
-                singleIconBox(
-                  name: '시카라키아\n아홉문장 계산기',
-                  icon: FontAwesomeIcons.calculator,
-                  onTap: () {
-                    Get.toNamed('/sikarakia');
-                  },
-                ),
-                singleIconBox(
-                  name: '광명석 조합식',
-                  icon: FontAwesomeIcons.splotch,
-                  onTap: () {
-                    Get.toNamed('/artifact');
                   },
                 ),
                 singleIconBox(
@@ -201,11 +207,13 @@ class _HomePageState extends State<HomePage> {
                   icon: 'assets/icons/onTopReplica.png',
                   onTap: () => _launchURL('https://github.com/LorenzCK/OnTopReplica'),
                 ),
+                /*
                 singleImageBox(
                   name: '환상연화',
                   icon: 'assets/icons/lotus.png',
                   onTap: () => _launchURL('http://검은사막.환상연화.홈페이지.한국'),
                 ),
+                 */
               ],
             ),
             const Divider(),

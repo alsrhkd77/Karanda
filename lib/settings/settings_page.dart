@@ -66,6 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                 ),
+                /*
                 ListTile(
                   leading: const Icon(FontAwesomeIcons.flask),
                   title: const Text('실험적 서비스'),
@@ -73,6 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     Get.toNamed('/experimental-function');
                   },
                 ),
+                 */
                 kIsWeb
                     ? ListTile(
                         leading: const Icon(FontAwesomeIcons.laptopCode),

@@ -1,3 +1,5 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../horse/horse_controller.dart';
 import '../horse/horse_info.dart';
 import '../widgets/default_app_bar.dart';
@@ -32,9 +34,9 @@ class _HorsePageState extends State<HorsePage> {
               child: Center(
                 child: Column(
                   children: [
-                    Container(
-                      child: const TitleText('말 성장치 계산기', bold: true),
-                      margin: const EdgeInsets.all(12.0),
+                    const ListTile(
+                      leading: Icon(FontAwesomeIcons.chessKnight),
+                      title: TitleText('말 성장치 계산기', bold: true),
                     ),
                     Wrap(
                       spacing: 20.0,

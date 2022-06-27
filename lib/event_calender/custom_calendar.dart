@@ -131,7 +131,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
             alignment: Alignment.centerLeft,
             child: Text(
               eventModel.title,
-              style: TextStyle(fontSize: 12.0),
+              style: const TextStyle(fontSize: 12.0),
             ),
           ),
         ),
@@ -171,10 +171,10 @@ class _CustomCalendarState extends State<CustomCalendar> {
                       });
                     }
                   },
-                  icon: Icon(FontAwesomeIcons.minus),
+                  icon: const Icon(FontAwesomeIcons.minus),
                 ),
                 IconButton(
-                  icon: Icon(FontAwesomeIcons.plus),
+                  icon: const Icon(FontAwesomeIcons.plus),
                   onPressed: () {
                     if (viewDays < 14) {
                       setState(() {
