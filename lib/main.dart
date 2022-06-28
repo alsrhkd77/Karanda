@@ -4,6 +4,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/settings/app_update_page.dart';
 import 'package:karanda/settings/experimental_function_page.dart';
+import 'package:karanda/trade/overloadedShipPage.dart';
 import 'package:window_size/window_size.dart';
 
 import '../artifact/artifact_page.dart';
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
               GetPage(
                   name: '/ship-extension',
                   page: () => const ShipExtensionPage()),
+              GetPage(
+                  name: '/overloaded-ship',
+                  page: () => const OverloadedShipPage()),
             ],
           );
         },

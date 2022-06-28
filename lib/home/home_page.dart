@@ -122,6 +122,13 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 singleIconBox(
+                  name: '물물교환 계산기',
+                  icon: FontAwesomeIcons.arrowRightArrowLeft,
+                  onTap: () {
+                    Get.toNamed('/overloaded-ship');
+                  },
+                ),
+                singleIconBox(
                   name: '말 성장치 계산기',
                   icon: FontAwesomeIcons.chessKnight,
                   onTap: () {

@@ -63,6 +63,8 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
               initialValue: _extensionController.extensionItems[index].user > 0
                   ? _extensionController.extensionItems[index].user.toString()
                   : null,
+              keyboardType:
+              const TextInputType.numberWithOptions(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
               ],
