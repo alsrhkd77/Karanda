@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                   name: '물물교환 계산기',
                   icon: FontAwesomeIcons.arrowRightArrowLeft,
                   onTap: () {
-                    Get.toNamed('/overloaded-ship');
+                    Get.toNamed('/crow-coin');
                   },
                 ),
                 singleIconBox(
