@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
-import 'package:karanda/settings/app_update_page.dart';
-import 'package:karanda/settings/experimental_function_page.dart';
-import 'package:karanda/trade/crowCoinExchangePage.dart';
-import 'package:karanda/trade/overloadedShipPage.dart';
+import 'settings/app_update_page.dart';
+import 'settings/experimental_function_page.dart';
+import 'trade/crowCoinExchangePage.dart';
+import 'trade/materialCostCalculator.dart';
+import 'trade/overloadedShipPage.dart';
+import 'trade/tradeHomePage.dart';
 import 'package:window_size/window_size.dart';
 
 import '../artifact/artifact_page.dart';
@@ -87,6 +89,12 @@ class MyApp extends StatelessWidget {
               GetPage(
                   name: '/crow-coin',
                   page: () => const CrowCoinExchangePage()),
+              GetPage(
+                  name: '/material-cost-calculator',
+                  page: () => const MaterialCostCalculator()),
+              GetPage(
+                  name: '/trade-home',
+                  page: () => const TradeHomePage()),
             ],
           );
         },

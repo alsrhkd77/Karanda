@@ -1,3 +1,5 @@
+import 'package:google_fonts/google_fonts.dart';
+
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -84,7 +86,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Karanda'),
+        title: Text('Karanda', style: GoogleFonts.sourceCodePro(fontSize: 25.0),),
         actions: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -125,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                   name: '물물교환 계산기',
                   icon: FontAwesomeIcons.arrowRightArrowLeft,
                   onTap: () {
-                    Get.toNamed('/crow-coin');
+                    Get.toNamed('/trade-home');
                   },
                 ),
                 singleIconBox(

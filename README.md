@@ -19,7 +19,7 @@
  - [x] 광명석 조합식 탐색기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/artifact)
  - [x] 예약 종료(Windows desktop 환경에서만 사용가능) [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/shutdown-scheduler)
  - [x] 선박 증축 재료 수급 현황 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/ship-extension)
- - [ ] 물교 과적 계산기
- - [ ] 1단계 교환 비용 계산기
- - [ ] 주화 환율 계산기
+ - [x] 물교 과적 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#overloaded-ship)
+ - [x] 1단계 교환 비용 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#material-cost-calculator)
+ - [x] 주화 환율 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#crow-coin)
  - [ ] 보스 시간표 + 알람(중단)
