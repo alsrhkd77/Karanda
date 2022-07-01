@@ -21,16 +21,12 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
   final numFormat = NumberFormat('###,###,###,###');
   final List<int> goodsWeight = [800, 800, 900, 1000, 1000, 1];
   final List<int> simpleWeight = [for (int i = 0; i < 6; i++) 0];
-  final List<Map> _advancedWeight = [];
-  final List<int> advancedWeight = [for (int i = 0; i < 6; i++) 0];
+  final List<Map> advancedWeight = [];
   final List<int> tradeRatio = [for (int i = 0; i < 6; i++) 1];
   TextEditingController totalTextController = TextEditingController();
   TextEditingController sailorTextController = TextEditingController();
   TextEditingController equipTextController = TextEditingController();
   List<TextEditingController> simpleTextController = [
-    for (int i = 0; i < 6; i++) TextEditingController()
-  ];
-  List<TextEditingController> advancedTextController = [
     for (int i = 0; i < 6; i++) TextEditingController()
   ];
   int totalWeight = 20900;
@@ -142,13 +138,13 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
 
   Widget advancedTradeContents(int index) {
     int _weight = 0;
-    if (_advancedWeight[index]['grade'] == 1) {
-      _weight = (goodsWeight[_advancedWeight[index]['grade'] - 1] *
-          _advancedWeight[index]['count']) as int;
+    if (advancedWeight[index]['grade'] == 1) {
+      _weight = (goodsWeight[advancedWeight[index]['grade'] - 1] *
+          advancedWeight[index]['count']) as int;
     } else {
-      _weight = (goodsWeight[_advancedWeight[index]['grade'] - 1] *
-          _advancedWeight[index]['count'] *
-          _advancedWeight[index]['ratio']) as int;
+      _weight = (goodsWeight[advancedWeight[index]['grade'] - 1] *
+          advancedWeight[index]['count'] *
+          advancedWeight[index]['ratio']) as int;
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -162,9 +158,9 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: DropdownButton<String>(
-                  value: _advancedWeight[index]['grade'] == 1
+                  value: advancedWeight[index]['grade'] == 1
                       ? '재료 → 1단계'
-                      : '${_advancedWeight[index]['grade'] - 1} → ${_advancedWeight[index]['grade']}단계',
+                      : '${advancedWeight[index]['grade'] - 1} → ${advancedWeight[index]['grade']}단계',
                   underline: Container(),
                   focusColor: Colors.transparent,
                   onChanged: (String? value) {
@@ -172,7 +168,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                       return;
                     }
                     setState(() {
-                      _advancedWeight[index]['grade'] =
+                      advancedWeight[index]['grade'] =
                           int.parse(value.split(' ').last.split('').first);
                     });
                   },
@@ -192,7 +188,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
               ),
             ),
             const SizedBox(width: 12.0),
-            _advancedWeight[index]['grade'] != 1
+            advancedWeight[index]['grade'] != 1
                 ? DecoratedBox(
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.blue),
@@ -200,7 +196,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: DropdownButton<String>(
-                        value: '1 : ${_advancedWeight[index]['ratio']}',
+                        value: '1 : ${advancedWeight[index]['ratio']}',
                         underline: Container(),
                         focusColor: Colors.transparent,
                         onChanged: (String? value) {
@@ -208,7 +204,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                             return;
                           }
                           setState(() {
-                            _advancedWeight[index]['ratio'] =
+                            advancedWeight[index]['ratio'] =
                                 int.parse(value.split('').last);
                           });
                         },
@@ -231,7 +227,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: DropdownButton<String>(
-                  value: '${_advancedWeight[index]['count']}회',
+                  value: '${advancedWeight[index]['count']}회',
                   underline: Container(),
                   focusColor: Colors.transparent,
                   onChanged: (String? value) {
@@ -239,7 +235,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                       return;
                     }
                     setState(() {
-                      _advancedWeight[index]['count'] =
+                      advancedWeight[index]['count'] =
                           int.parse(value.split('').first);
                     });
                   },
@@ -272,7 +268,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
             SizedBox(
               width: 100,
               child: TextField(
-                controller: _advancedWeight[index]['text'],
+                controller: advancedWeight[index]['text'],
                 keyboardType: const TextInputType.numberWithOptions(),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,5})')),
@@ -287,11 +283,11 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                 onChanged: (value) {
                   if (value.isEmpty) {
                     setState(() {
-                      _advancedWeight[index]['weight'] = 0;
+                      advancedWeight[index]['weight'] = 0;
                     });
                   } else {
                     setState(() {
-                      _advancedWeight[index]['weight'] = int.parse(value);
+                      advancedWeight[index]['weight'] = int.parse(value);
                     });
                   }
                 },
@@ -299,7 +295,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
             ),
           ],
         ),
-        Text('${numFormat.format(_advancedWeight[index]['weight'])} LT')
+        Text('${numFormat.format(advancedWeight[index]['weight'])} LT')
       ],
     );
   }
@@ -312,14 +308,14 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: _advancedWeight.length,
+              itemCount: advancedWeight.length,
               itemBuilder: (context, index) {
                 return Card(
                   margin: const EdgeInsets.all(8.0),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 12.0, horizontal: 24.0),
-                    child: _advancedWeight[index]['type'] == TileType.weight
+                    child: advancedWeight[index]['type'] == TileType.weight
                         ? advancedWeightContents(index)
                         : advancedTradeContents(index),
                   ),
@@ -342,7 +338,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                     ),
                     onTap: () {
                       setState(() {
-                        _advancedWeight.add({
+                        advancedWeight.add({
                           'type': TileType.trade,
                           'ratio': 1,
                           'grade': 3,
@@ -365,7 +361,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                     ),
                     onTap: () {
                       setState(() {
-                        _advancedWeight.add({
+                        advancedWeight.add({
                           'type': TileType.weight,
                           'text': TextEditingController(),
                           'weight': 0,
@@ -386,12 +382,12 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
     double percent = 0;
     int _nowWeight = 0;
     if (advancedMode) {
-      for (Map m in _advancedWeight) {
+      for (Map m in advancedWeight) {
         if (m['type'] == TileType.trade) {
           if(m['grade'] == 1){
-            _nowWeight = (goodsWeight[m['grade'] - 1] * m['count']) as int;
+            _nowWeight += (goodsWeight[m['grade'] - 1] * m['count']) as int;
           }else{
-            _nowWeight = (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
+            _nowWeight += (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
           }
         }
       }
