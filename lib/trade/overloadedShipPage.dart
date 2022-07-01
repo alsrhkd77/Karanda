@@ -390,6 +390,9 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
             _nowWeight += (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
           }
         }
+        if(m['type'] == TileType.weight){
+          _nowWeight += m['weight'] as int;
+        }
       }
     } else {
       for (int i in simpleWeight) {
