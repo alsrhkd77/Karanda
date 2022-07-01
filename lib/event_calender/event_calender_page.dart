@@ -164,8 +164,10 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                     trailing: PopupMenuButton(
                       icon: const Icon(FontAwesomeIcons.filter),
                       tooltip: 'Filter',
-                      onSelected: (value) =>
-                          _eventCalenderController.setFilter(value),
+                      onSelected: (value) {
+                        _eventCalenderController.setFilter(value);
+                        setState((){});
+                      },
                       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                         buildPopUpMenuItem(
                             '오름차순', FontAwesomeIcons.arrowUpShortWide),
