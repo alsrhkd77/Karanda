@@ -43,7 +43,7 @@ class _MaterialCostCalculatorState extends State<MaterialCostCalculator> {
           children: [
             Container(
               margin: const EdgeInsets.all(4.0),
-              width: 120,
+              width: 100,
               child: TextField(
                 controller: items[index]['count'],
                 keyboardType: const TextInputType.numberWithOptions(),

@@ -1,10 +1,11 @@
+import 'package:get/get.dart';
+
 import '../common/custom_scroll_behavior.dart';
 import '../common/date_time_converter.dart';
 import '../event_calender/event_calender_controller.dart';
 import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 
 class CustomCalendar extends StatefulWidget {
   final List<EventModel>? data;
@@ -45,14 +46,14 @@ class _CustomCalendarState extends State<CustomCalendar> {
             children: [
               (date.day == 1) || (index == 0)
                   ? Text(
-                    '${date.month}월',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  )
+                      '${date.month}월',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    )
                   : const SizedBox(
-                      height: 28,
+                      height: 27,
                     ),
               Container(
                 height: 35,
@@ -88,10 +89,10 @@ class _CustomCalendarState extends State<CustomCalendar> {
     EventCalenderController _controller = Get.find<EventCalenderController>();
     double _eventHeight = widget.height != null
         ? (widget.height! - 120) / 7
-        : (Get.height - 120) / 7;
+        : (context.height - 120) / 7;
     return SizedBox(
-      height: widget.height ?? Get.height,
-      width: 90 * (Get.width / viewDays),
+      height: widget.height ?? context.height,
+      width: 90 * (context.width / viewDays),
       child: Column(
         children: [
           const SizedBox(
@@ -116,7 +117,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
     if (count > 90) count = 90;
     return Container(
       margin: EdgeInsets.fromLTRB(
-          12.0, 4, ((Get.width / viewDays) * (90 - count)) + 12.0, 4),
+          12.0, 4, ((context.width / viewDays) * (90 - count)) + 12.0, 4),
       child: Tooltip(
         message:
             '${eventModel.title}\n${_dateTimeConverter.convert(eventModel.deadline)} 까지',
@@ -142,8 +143,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.height ?? Get.height,
-
+      height: widget.height ?? context.height,
       child: Stack(
         children: [
           ScrollConfiguration(

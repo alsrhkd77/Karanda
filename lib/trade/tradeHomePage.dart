@@ -72,7 +72,7 @@ class _TradeHomePageState extends State<TradeHomePage> {
               children: const [
                 Icon(FontAwesomeIcons.coins),
                 SizedBox(height: 8.0,),
-                Text('까마귀 주화 환율 계산기'),
+                Text('까마귀 주화 효율 계산기'),
               ],
             ),
             onTap: (){

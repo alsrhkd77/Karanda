@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../event_calender/custom_calendar.dart';
 import '../common/date_time_converter.dart';
 import '../event_calender/event_calender_controller.dart';
@@ -102,10 +104,10 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       eventModel.meta.length > 180
                           ? eventModel.meta.substring(0, 180)
                           : eventModel.meta,
-                      overflow: TextOverflow.fade,
+                      overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       style: const TextStyle(
-                          fontSize: 12.0, fontStyle: FontStyle.italic),
+                          fontSize: 12.0),
                       maxLines: 3,
                     ),
                     Row(

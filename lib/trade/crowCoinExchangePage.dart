@@ -43,7 +43,7 @@ class _CrowCoinExchangePageState extends State<CrowCoinExchangePage> {
                 const ListTile(
                   leading: Icon(FontAwesomeIcons.coins),
                   title: TitleText(
-                    '까마귀 주화 환율 계산기',
+                    '까마귀 주화 효율 계산기',
                     bold: true,
                   ),
                 ),
@@ -71,7 +71,7 @@ class _CrowCoinExchangePageState extends State<CrowCoinExchangePage> {
                           children: [
                             const TitleText('재료 → 1단계'),
                             Container(
-                              width: 110.0,
+                              width: 100.0,
                               margin: const EdgeInsets.all(8.0),
                               child: TextField(
                                 keyboardType:
@@ -82,7 +82,7 @@ class _CrowCoinExchangePageState extends State<CrowCoinExchangePage> {
                                 ],
                                 decoration: InputDecoration(
                                   labelText: '필요 수량',
-                                  hintText: '1회 교환',
+                                  hintText: '1회',
                                   suffixText: '개',
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0),

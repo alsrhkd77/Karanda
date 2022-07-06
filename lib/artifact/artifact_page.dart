@@ -89,8 +89,10 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 Expanded(
                   child: Column(
                     children: data['effect']
-                        .map<Widget>((e) =>
-                            Text(e['full_name'], textAlign: TextAlign.center))
+                        .map<Widget>((e) => Text(
+                              e['full_name'],
+                              textAlign: TextAlign.center,
+                            ))
                         .toList(),
                   ),
                 ),
@@ -109,8 +111,10 @@ class _ArtifactPageState extends State<ArtifactPage> {
                   child: Column(
                     children: _artifactController
                         .getEffects(data['name'])
-                        .map<Widget>(
-                            (e) => Text(e, textAlign: TextAlign.center))
+                        .map<Widget>((e) => Text(
+                              e,
+                              textAlign: TextAlign.center,
+                            ))
                         .toList(),
                   ),
                 ),
@@ -236,11 +240,12 @@ class _ArtifactPageState extends State<ArtifactPage> {
     );
   }
 
-  Widget buildFilterButton(){
+  Widget buildFilterButton() {
     return OutlinedButton(
-      child: Text(_artifactController.orFilter.value
-          ? 'Or 연산'
-          : 'And 연산'),
+      child: Text(
+        _artifactController.orFilter.value ? 'Or 연산' : 'And 연산',
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
       onPressed: _artifactController.changeFilter,
     );
   }
@@ -248,7 +253,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(

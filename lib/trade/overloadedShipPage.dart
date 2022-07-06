@@ -39,7 +39,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
     getData();
   }
 
-  void initValue(){
+  void initValue() {
     totalTextController.text = totalWeight.toString();
     sailorTextController.text = sailorWeight.toString();
     equipTextController.text = equipWeight.toString();
@@ -56,9 +56,12 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
   Future<bool> getData() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    totalWeight = sharedPreferences.getInt('overloadedShipTotalWeight') ?? totalWeight;
-    sailorWeight = sharedPreferences.getInt('overloadedShipSailorWeight') ?? sailorWeight;
-    equipWeight = sharedPreferences.getInt('overloadedShipEquipWeight') ?? equipWeight;
+    totalWeight =
+        sharedPreferences.getInt('overloadedShipTotalWeight') ?? totalWeight;
+    sailorWeight =
+        sharedPreferences.getInt('overloadedShipSailorWeight') ?? sailorWeight;
+    equipWeight =
+        sharedPreferences.getInt('overloadedShipEquipWeight') ?? equipWeight;
     initValue();
     return true;
   }
@@ -384,13 +387,14 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
     if (advancedMode) {
       for (Map m in advancedWeight) {
         if (m['type'] == TileType.trade) {
-          if(m['grade'] == 1){
+          if (m['grade'] == 1) {
             _nowWeight += (goodsWeight[m['grade'] - 1] * m['count']) as int;
-          }else{
-            _nowWeight += (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
+          } else {
+            _nowWeight +=
+                (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
           }
         }
-        if(m['type'] == TileType.weight){
+        if (m['type'] == TileType.weight) {
           _nowWeight += m['weight'] as int;
         }
       }
@@ -421,7 +425,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
     return Scaffold(
       appBar: const DefaultAppBar(),
       body: GestureDetector(
-        onTap: (){
+        onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: SingleChildScrollView(
@@ -436,7 +440,10 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                     bold: true,
                   ),
                   trailing: OutlinedButton(
-                    child: Text(advancedMode ? '고급' : '일반'),
+                    child: Text(
+                      advancedMode ? '고급' : '일반',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     onPressed: () {
                       setState(() {
                         advancedMode = !advancedMode;
