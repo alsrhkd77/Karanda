@@ -28,6 +28,7 @@ class ShutdownSchedulerNotifier with ChangeNotifier {
     int minute = target.minute - now.minute;
     if (minute < 0) {
       minute += 60;
+      hour -= 1;
     }
     if(hour == 0){
       return '$minute분';
