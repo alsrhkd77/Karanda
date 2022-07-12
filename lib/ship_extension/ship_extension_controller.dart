@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../ship_extension/ship_extension_item_model.dart';
 import '../ship_extension/ship_extension_model.dart';
@@ -47,12 +48,15 @@ class ShipExtensionController extends GetxController {
     update();
   }
 
-  void updateUserItem(String name, int count) {
+  Future<void> updateUserItem(String name, int count) async {
     items.firstWhere((element) => element.name == name).user = count;
     items.refresh();
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setInt('ship_extension_user_$name', count);
   }
 
   Future<bool> getShipData() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String shipExtensionJson = '';
     String shipExtensionItemJson = '';
     List<ShipExtensionModel> _ships = [];
@@ -72,6 +76,10 @@ class ShipExtensionController extends GetxController {
     for (String i in shipExtensionItem.keys) {
       ShipExtensionItemModel _item =
           ShipExtensionItemModel.fromJson(i, shipExtensionItem[i]!);
+      int? _user = sharedPreferences.getInt('ship_extension_user_${_item.name}');
+      if(_user != null){
+        _item.user = _user;
+      }
       _items.add(_item);
     }
 
