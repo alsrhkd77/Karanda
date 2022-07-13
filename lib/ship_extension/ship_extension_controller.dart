@@ -43,9 +43,11 @@ class ShipExtensionController extends GetxController {
     return _map.values.toList();
   }
 
-  void selectShipType(String value) {
+  Future<void> selectShipType(String value) async {
     select.value = value;
     update();
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('ship_extension_selected', value);
   }
 
   Future<void> updateUserItem(String name, int count) async {
@@ -87,6 +89,11 @@ class ShipExtensionController extends GetxController {
       ShipExtensionModel _ship =
           ShipExtensionModel.fromJson(s, shipExtension[s]!);
       _ships.add(_ship);
+    }
+
+    String? _selected = sharedPreferences.getString('ship_extension_selected');
+    if(_selected != null){
+      select = _selected.obs;
     }
 
     items = _items.obs;
