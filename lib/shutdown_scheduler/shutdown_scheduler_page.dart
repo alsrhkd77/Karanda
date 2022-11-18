@@ -200,7 +200,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                           ),
                           onPressed: _shutdownSchedulerNotifier.cancelSchedule,
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
+                            backgroundColor: Colors.red,
                           ),
                         )
                       : ElevatedButton(

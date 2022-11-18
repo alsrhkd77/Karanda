@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-class SikarakiaPage extends StatefulWidget {
-  const SikarakiaPage({Key? key}) : super(key: key);
+class SycrakeaPage extends StatefulWidget {
+  const SycrakeaPage({Key? key}) : super(key: key);
 
   @override
-  _SikarakiaPageState createState() => _SikarakiaPageState();
+  _SycrakeaPageState createState() => _SycrakeaPageState();
 }
 
-class _SikarakiaPageState extends State<SikarakiaPage> {
+class _SycrakeaPageState extends State<SycrakeaPage> {
   final List<List<int>> _board = [
     [0, 0, 0],
     [0, 0, 0],
@@ -183,7 +183,7 @@ class _SikarakiaPageState extends State<SikarakiaPage> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
-                                  primary: Colors.white70,
+                                  foregroundColor: Colors.white70,
                                   backgroundColor:
                                       _board[index ~/ 3][index % 3] == 1
                                           ? Colors.green

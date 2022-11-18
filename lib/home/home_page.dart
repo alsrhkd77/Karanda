@@ -147,7 +147,14 @@ class _HomePageState extends State<HomePage> {
                   name: '시카라키아\n아홉문장 계산기',
                   icon: FontAwesomeIcons.calculator,
                   onTap: () {
-                    Get.toNamed('/sikarakia');
+                    Get.toNamed('/sycrakea');
+                  },
+                ),
+                singleIconBox(
+                  name: '요루나키아\n보름달 계산기',
+                  icon: FontAwesomeIcons.calculator,
+                  onTap: () {
+                    Get.toNamed('/yolunakea-moon');
                   },
                 ),
                 singleIconBox(

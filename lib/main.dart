@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
+import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'settings/app_update_page.dart';
 import 'settings/experimental_function_page.dart';
 import 'trade/crowCoinExchangePage.dart';
@@ -16,7 +17,7 @@ import '../home/home_page.dart';
 import '../horse/horse_page.dart';
 import '../settings/settings_notifier.dart';
 import '../settings/settings_page.dart';
-import '../sikarakia/sikarakia_page.dart';
+import 'atoraxxion/sycrakea_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +76,8 @@ class MyApp extends StatelessWidget {
               GetPage(
                   name: '/event-calender',
                   page: () => const EventCalenderPage()),
-              GetPage(name: '/sikarakia', page: () => const SikarakiaPage()),
+              GetPage(name: '/sycrakea', page: () => const SycrakeaPage()),
+              GetPage(name: '/yolunakea-moon', page: () => const YolunakeaMoonPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
               GetPage(
                   name: '/shutdown-scheduler',
