@@ -370,7 +370,7 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
                   '아토락시온 요루나키아 공략(Test)',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                const Text('보름달에 뜬 눈물 계산기'),
+                const Text('보름달에 뜬 밤 계산기'),
                 const SizedBox(
                   height: 24,
                 ),
