@@ -357,147 +357,152 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const DefaultAppBar(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 1440,
-            ),
-            child: Column(
-              children: [
-                const Text(
-                  '아토락시온 요루나키아 공략(Test)',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const Text('보름달에 뜬 밤 계산기'),
-                const SizedBox(
-                  height: 24,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Column(
-                      children: [
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                        orangeBox(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        rotatedOrangeBox(),
-                        rotatedOrangeBox(),
-                        rotatedOrangeBox(),
-                        rotatedOrangeBox(),
-                        rotatedOrangeBox(),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text('1번'),
-                    Text('2번'),
-                    Text('3번'),
-                    Text('4번'),
-                    Text('5번'),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12.0),
-                  child: const Text('현재 채워진 보름달'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    containerTextFormField(0),
-                    containerTextFormField(1),
-                    containerTextFormField(2),
-                    containerTextFormField(3),
-                    containerTextFormField(4),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12.0),
-                  child: const Text('목표 보름달'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    targetTextFormField(0),
-                    targetTextFormField(1),
-                    targetTextFormField(2),
-                    targetTextFormField(3),
-                    targetTextFormField(4),
-                  ],
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                buildStatus(),
-                result.length > 3
-                    ? ListView.separated(
-                        separatorBuilder: (context, index) => const Divider(),
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: result.length - 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              buildResult(
-                                  result[index][0], result[index + 1][0], 1),
-                              buildResult(
-                                  result[index][1], result[index + 1][1], 2),
-                              buildResult(
-                                  result[index][2], result[index + 1][2], 3),
-                              buildResult(
-                                  result[index][3], result[index + 1][3], 4),
-                              buildResult(0, 0, 5),
-                            ],
-                          );
-                        },
-                      )
-                    : const SizedBox(),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
+      body: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 1440,
+              ),
+              child: Column(
+                children: [
+                  const Text(
+                    '아토락시온 요루나키아 공략',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const Text('보름달에 뜬 밤 계산기'),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        children: [
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                          orangeBox(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          rotatedOrangeBox(),
+                          rotatedOrangeBox(),
+                          rotatedOrangeBox(),
+                          rotatedOrangeBox(),
+                          rotatedOrangeBox(),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      Text('1번'),
+                      Text('2번'),
+                      Text('3번'),
+                      Text('4번'),
+                      Text('5번'),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(12.0),
+                    child: const Text('현재 채워진 보름달'),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      containerTextFormField(0),
+                      containerTextFormField(1),
+                      containerTextFormField(2),
+                      containerTextFormField(3),
+                      containerTextFormField(4),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(12.0),
+                    child: const Text('목표 보름달'),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      targetTextFormField(0),
+                      targetTextFormField(1),
+                      targetTextFormField(2),
+                      targetTextFormField(3),
+                      targetTextFormField(4),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  buildStatus(),
+                  result.length > 3
+                      ? ListView.separated(
+                          separatorBuilder: (context, index) => const Divider(),
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: result.length - 1,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                buildResult(
+                                    result[index][0], result[index + 1][0], 1),
+                                buildResult(
+                                    result[index][1], result[index + 1][1], 2),
+                                buildResult(
+                                    result[index][2], result[index + 1][2], 3),
+                                buildResult(
+                                    result[index][3], result[index + 1][3], 4),
+                                buildResult(0, 0, 5),
+                              ],
+                            );
+                          },
+                        )
+                      : const SizedBox(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
