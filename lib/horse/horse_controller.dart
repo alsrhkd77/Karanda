@@ -57,13 +57,13 @@ class HorseController extends GetxController {
 
   //등급 계산
   String _evaluate(double value) {
-    if (value >= 0.8) {
+    if (value >= 0.83) {
       return '최상급';
     } else if (value >= 0.75) {
       return '상급';
     } else if (value >= 0.65) {
       return '중급';
-    } else if (value >= 0.55) {
+    } else if (value >= 0.6) {
       return '하급';
     } else {
       return '최하급';
