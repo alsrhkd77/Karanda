@@ -114,7 +114,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                 Container(
                   width: 70,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: const Text('1500 주화', textAlign: TextAlign.center),
+                  child: Text('${widget.item.price}주화', textAlign: TextAlign.center),
                 ),
               ],
             ),
