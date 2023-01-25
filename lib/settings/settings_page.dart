@@ -53,6 +53,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       onChanged: (value) {
                         Provider.of<SettingsNotifier>(context, listen: false)
                             .setDarkMode(value);
+                        /*
                         if (value) {
                           Get.snackbar('다크 모드', '다크 모드 활성화',
                               margin: const EdgeInsets.all(24.0),
@@ -62,6 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               margin: const EdgeInsets.all(24.0),
                               snackPosition: SnackPosition.BOTTOM);
                         }
+                         */
                       },
                     ),
                   ),

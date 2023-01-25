@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
+import 'package:karanda/settings/version_notifier.dart';
 import 'settings/app_update_page.dart';
 import 'settings/experimental_function_page.dart';
 import 'trade/crowCoinExchangePage.dart';
@@ -38,6 +40,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
+  GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   // This widget is the root of your application.
   @override
@@ -45,20 +48,24 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingsNotifier()),
+        ChangeNotifierProvider(create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
       ],
-      child: Consumer(
-        builder: (context, SettingsNotifier _settings, _) {
+      child: Consumer2(
+        builder: (context, SettingsNotifier _settings, VersionNotifier _versionNotifier, _) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
+            scaffoldMessengerKey: rootScaffoldMessengerKey,
             title: 'Karanda',
             theme: FlexColorScheme.light(
                     useMaterial3: true,
+                    fontFamily: GoogleFonts.gothicA1().fontFamily,
                     colors: FlexColor.schemes[FlexScheme.flutterDash]?.light,
                     visualDensity: FlexColorScheme.comfortablePlatformDensity)
                 .toTheme,
             darkTheme: FlexColorScheme.dark(
                     useMaterial3: true,
+                    fontFamily: GoogleFonts.gothicA1().fontFamily,
                     colors: FlexColor.schemes[FlexScheme.flutterDash]?.dark,
                     visualDensity: FlexColorScheme.comfortablePlatformDensity,
                     blendLevel: 20)

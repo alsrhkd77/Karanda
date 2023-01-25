@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
@@ -99,6 +101,12 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return const Scaffold(
+        appBar: DefaultAppBar(),
+        body: CannotUseInWeb(),
+      );
+    }
     return Scaffold(
       appBar: const DefaultAppBar(),
       body: Center(
