@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 class EventCalenderController extends GetxController {
   RxList<EventModel> _events = <EventModel>[].obs;
   int _limit = 999;
+  String _filter = 'ascending';
 
   List<EventModel> get events => _events
       .where((p0) => !p0.deadline.isAtSameMomentAs(DateTime(2996, 11, 12)))
@@ -52,7 +53,15 @@ class EventCalenderController extends GetxController {
       );
     }
     _events = result.obs;
-    _sort();
+    if (_filter == 'descending') {
+      _sort();
+      _events = _events.reversed.toList().obs;
+    } else if (_filter == 'random') {
+      _events.shuffle();
+    } else {
+      _sort();
+    }
+
     _events.refresh();
     return result;
   }
@@ -61,12 +70,11 @@ class EventCalenderController extends GetxController {
     if (value == null) {
       return;
     } else if (value == '오름차순') {
-      _sort();
+      _filter = 'ascending';
     } else if (value == '내림차순') {
-      _sort();
-      _events = _events.reversed.toList().obs;
+      _filter = 'descending';
     } else if (value == '무작위') {
-      _events.shuffle();
+      _filter = 'random';
     } else if (value == '7일 이내') {
       _limit = 7;
     } else if (value == '30일 이내') {
