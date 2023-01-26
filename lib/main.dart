@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
@@ -40,7 +39,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
 
   // This widget is the root of your application.
   @override
@@ -48,28 +48,28 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingsNotifier()),
-        ChangeNotifierProvider(create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
+        ChangeNotifierProvider(
+            create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
       ],
       child: Consumer2(
-        builder: (context, SettingsNotifier _settings, VersionNotifier _versionNotifier, _) {
+        builder: (context, SettingsNotifier _settings,
+            VersionNotifier _versionNotifier, _) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
             title: 'Karanda',
-            theme: FlexColorScheme.light(
-                    useMaterial3: true,
-                    fontFamily: GoogleFonts.gothicA1().fontFamily,
-                    colors: FlexColor.schemes[FlexScheme.flutterDash]?.light,
-                    visualDensity: FlexColorScheme.comfortablePlatformDensity)
-                .toTheme,
-            darkTheme: FlexColorScheme.dark(
-                    useMaterial3: true,
-                    fontFamily: GoogleFonts.gothicA1().fontFamily,
-                    colors: FlexColor.schemes[FlexScheme.flutterDash]?.dark,
-                    visualDensity: FlexColorScheme.comfortablePlatformDensity,
-                    blendLevel: 20)
-                .toTheme,
+            theme: ThemeData(
+              useMaterial3: true,
+              fontFamily: GoogleFonts.gothicA1().fontFamily,
+              colorSchemeSeed: Colors.blue,
+            ),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              fontFamily: GoogleFonts.gothicA1().fontFamily,
+              colorSchemeSeed: Colors.blueAccent,
+              brightness: Brightness.dark,
+            ),
             themeMode: _settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
             getPages: [
@@ -84,7 +84,9 @@ class MyApp extends StatelessWidget {
                   name: '/event-calender',
                   page: () => const EventCalenderPage()),
               GetPage(name: '/sycrakea', page: () => const SycrakeaPage()),
-              GetPage(name: '/yolunakea-moon', page: () => const YolunakeaMoonPage()),
+              GetPage(
+                  name: '/yolunakea-moon',
+                  page: () => const YolunakeaMoonPage()),
               GetPage(name: '/artifact', page: () => const ArtifactPage()),
               GetPage(
                   name: '/shutdown-scheduler',
@@ -96,14 +98,11 @@ class MyApp extends StatelessWidget {
                   name: '/overloaded-ship',
                   page: () => const OverloadedShipPage()),
               GetPage(
-                  name: '/crow-coin',
-                  page: () => const CrowCoinExchangePage()),
+                  name: '/crow-coin', page: () => const CrowCoinExchangePage()),
               GetPage(
                   name: '/material-cost-calculator',
                   page: () => const MaterialCostCalculator()),
-              GetPage(
-                  name: '/trade-home',
-                  page: () => const TradeHomePage()),
+              GetPage(name: '/trade-home', page: () => const TradeHomePage()),
             ],
           );
         },

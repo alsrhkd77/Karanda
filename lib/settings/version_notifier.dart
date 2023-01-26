@@ -7,8 +7,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
 
 class VersionNotifier with ChangeNotifier {
-  String _currentVersion = '';
-  String _latestVersion = '';
+  String currentVersion = '';
+  String latestVersion = '';
 
   VersionNotifier(GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey) {
     if (!kIsWeb) {
@@ -18,23 +18,23 @@ class VersionNotifier with ChangeNotifier {
 
   Future<void> checkVersion(
       GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey) async {
-    _currentVersion = await getCurrentVersion();
-    _latestVersion = await getLatestVersion();
+    currentVersion = await getCurrentVersion();
+    latestVersion = await getLatestVersion();
     notifyListeners();
-    if(_latestVersion.isNotEmpty && _currentVersion != _latestVersion){
+    if(latestVersion.isNotEmpty && currentVersion != latestVersion){
       rootScaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
-          content: Text('새로운 버전이 있습니다 ($_latestVersion)'),
+          content: Text('새로운 버전이 있습니다 ($latestVersion)'),
           duration: const Duration(seconds: 5),
           action: SnackBarAction(
             label: '업데이트',
             onPressed: (){
               Get.toNamed('/desktop-app');
             },
-            textColor: Theme.of(rootScaffoldMessengerKey.currentContext!).primaryColor,
+            textColor: Colors.blue,
           ),
           behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(16.0),
+          margin: const EdgeInsets.all(24.0),
           backgroundColor: Theme.of(rootScaffoldMessengerKey.currentContext!).snackBarTheme.backgroundColor,
         ),
       );
