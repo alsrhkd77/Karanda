@@ -152,48 +152,44 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
               ),
             );
           }
-          return SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  ListTile(
-                    title: const TitleText(
-                      '이벤트 캘린더',
-                      bold: true,
-                    ),
-                    leading: const Icon(FontAwesomeIcons.calendarCheck),
-                    trailing: PopupMenuButton(
-                      icon: const Icon(FontAwesomeIcons.filter),
-                      tooltip: 'Filter',
-                      onSelected: (value) {
-                        _eventCalenderController.setFilter(value);
-                        setState((){});
-                      },
-                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                        buildPopUpMenuItem(
-                            '오름차순', FontAwesomeIcons.arrowUpShortWide),
-                        buildPopUpMenuItem(
-                            '내림차순', FontAwesomeIcons.arrowDownWideShort),
-                        buildPopUpMenuItem('무작위', FontAwesomeIcons.shuffle),
-                        const PopupMenuDivider(),
-                        buildPopUpMenuItem(
-                            '7일 이내', FontAwesomeIcons.calendarWeek),
-                        buildPopUpMenuItem('30일 이내', FontAwesomeIcons.calendar),
-                        buildPopUpMenuItem('전체', FontAwesomeIcons.infinity),
-                      ],
-                    ),
-                  ),
-                  CustomCalendar(
-                    height: (33 * _eventCalenderController.events.length) + 130,
-                  ),
-                  const Divider(),
-                  const ListTile(
-                    title: TitleText('이벤트 바로가기'),
-                  ),
-                  Obx(buildEventCard),
-                ],
+          return ListView(
+            children: [
+              ListTile(
+                title: const TitleText(
+                  '이벤트 캘린더',
+                  bold: true,
+                ),
+                leading: const Icon(FontAwesomeIcons.calendarCheck),
+                trailing: PopupMenuButton(
+                  icon: const Icon(FontAwesomeIcons.filter),
+                  tooltip: 'Filter',
+                  onSelected: (value) {
+                    _eventCalenderController.setFilter(value);
+                    setState((){});
+                  },
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                    buildPopUpMenuItem(
+                        '오름차순', FontAwesomeIcons.arrowUpShortWide),
+                    buildPopUpMenuItem(
+                        '내림차순', FontAwesomeIcons.arrowDownWideShort),
+                    buildPopUpMenuItem('무작위', FontAwesomeIcons.shuffle),
+                    const PopupMenuDivider(),
+                    buildPopUpMenuItem(
+                        '7일 이내', FontAwesomeIcons.calendarWeek),
+                    buildPopUpMenuItem('30일 이내', FontAwesomeIcons.calendar),
+                    buildPopUpMenuItem('전체', FontAwesomeIcons.infinity),
+                  ],
+                ),
               ),
-            ),
+              CustomCalendar(
+                height: (33 * _eventCalenderController.events.length) + 130,
+              ),
+              const Divider(),
+              const ListTile(
+                title: TitleText('이벤트 바로가기'),
+              ),
+              Center(child: Obx(buildEventCard)),
+            ],
           );
         },
       ),
