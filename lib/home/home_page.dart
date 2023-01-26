@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  /* unused */
   Widget singleIconBox(
       {required String name, required IconData icon, required var onTap}) {
     return InkWell(
@@ -29,7 +30,11 @@ class _HomePageState extends State<HomePage> {
             Card(
               child: Container(
                 margin: const EdgeInsets.all(18.0),
-                child: Icon(icon, size: 45.0, color: context.isDarkMode ? null : Colors.black54,),
+                child: Icon(
+                  icon,
+                  size: 45.0,
+                  color: context.isDarkMode ? null : Colors.black54,
+                ),
               ),
             ),
             SizedBox(
@@ -43,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /* unused */
   Widget singleImageBox(
       {required String name, required String icon, required var onTap}) {
     return InkWell(
@@ -73,6 +79,42 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget singleIconTile(
+      {required String name, required IconData icon, var onTap}) {
+    return Container(
+      margin: const EdgeInsets.all(4.0),
+      constraints: const BoxConstraints(
+        maxWidth: 400,
+      ),
+      child: ListTile(
+        title: Text(name),
+        leading: Icon(icon),
+        onTap: onTap,
+      ),
+    );
+  }
+
+  Widget singleImageTile(
+      {required String name, required String icon, var onTap}) {
+    return Container(
+      margin: const EdgeInsets.all(4.0),
+      constraints: const BoxConstraints(
+        maxWidth: 400,
+      ),
+      child: ListTile(
+        title: Text(name),
+        leading: Image.asset(
+          icon,
+          height: 25,
+          width: 25,
+          fit: BoxFit.contain,
+          filterQuality: FilterQuality.high,
+        ),
+        onTap: onTap,
+      ),
+    );
+  }
+
   void _launchURL(String url) async {
     Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
@@ -86,7 +128,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Karanda', style: GoogleFonts.sourceCodePro(fontSize: 25.0),),
+        title: Text(
+          'Karanda',
+          style: GoogleFonts.sourceCodePro(fontSize: 25.0),
+        ),
         actions: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -113,51 +158,52 @@ class _HomePageState extends State<HomePage> {
             ),
             const Divider(),
             Wrap(
-              runSpacing: 20.0,
-              spacing: 20.0,
+              runSpacing: 2.0,
+              spacing: 2.0,
               children: [
-                singleIconBox(
+                singleIconTile(
                   name: '선박 증축',
                   icon: FontAwesomeIcons.ship,
                   onTap: () {
                     Get.toNamed('/ship-extension');
                   },
                 ),
-                singleIconBox(
+                singleIconTile(
                   name: '물물교환 계산기',
                   icon: FontAwesomeIcons.arrowRightArrowLeft,
                   onTap: () {
                     Get.toNamed('/trade-home');
                   },
                 ),
-                singleIconBox(
+                singleIconTile(
                   name: '말 성장치 계산기',
                   icon: FontAwesomeIcons.chessKnight,
                   onTap: () {
                     Get.toNamed('/horse');
                   },
                 ),
-                singleIconBox(
+                singleIconTile(
                   name: '광명석 조합식',
                   icon: FontAwesomeIcons.splotch,
                   onTap: () {
                     Get.toNamed('/artifact');
                   },
-                ),singleIconBox(
-                  name: '시카라키아\n아홉문장 계산기',
+                ),
+                singleIconTile(
+                  name: '시카라키아 아홉문장 계산기',
                   icon: FontAwesomeIcons.calculator,
                   onTap: () {
                     Get.toNamed('/sycrakea');
                   },
                 ),
-                singleIconBox(
-                  name: '요루나키아\n보름달 계산기',
+                singleIconTile(
+                  name: '요루나키아 보름달이 뜬 밤 계산기',
                   icon: FontAwesomeIcons.calculator,
                   onTap: () {
                     Get.toNamed('/yolunakea-moon');
                   },
                 ),
-                singleIconBox(
+                singleIconTile(
                   name: '이벤트 캘린더',
                   //icon: FontAwesomeIcons.calendarCheck,
                   icon: Icons.celebration_outlined,
@@ -165,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                     Get.toNamed('/event-calender');
                   },
                 ),
-                singleIconBox(
+                singleIconTile(
                   name: '예약 종료',
                   icon: FontAwesomeIcons.powerOff,
                   onTap: () {
@@ -183,45 +229,46 @@ class _HomePageState extends State<HomePage> {
             ),
             const Divider(),
             Wrap(
-              runSpacing: 20.0,
-              spacing: 20.0,
+              runSpacing: 2.0,
+              spacing: 2.0,
               children: [
-                singleImageBox(
-                  name: '공식 홈페이지',
+                singleImageTile(
+                  name: '검은사막 공식 홈페이지',
                   icon: 'assets/icons/bdo.png',
                   onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
                 ),
-                singleImageBox(
-                  name: '연구소',
+                singleImageTile(
+                  name: '검은사막 연구소(테스트 서버)',
                   icon: 'assets/icons/bdo.png',
                   onTap: () =>
                       _launchURL('https://www.global-lab.playblackdesert.com/'),
                 ),
-                singleImageBox(
-                  name: '인벤',
+                singleImageTile(
+                  name: '검은사막 인벤',
                   icon: 'assets/icons/inven.png',
                   onTap: () => _launchURL('https://black.inven.co.kr/'),
                 ),
-                singleImageBox(
-                  name: '인벤\n지도시뮬레이터',
+                singleImageTile(
+                  name: '검은사막 인벤 지도시뮬레이터',
                   icon: 'assets/icons/inven.png',
                   onTap: () =>
                       _launchURL('https://black.inven.co.kr/dataninfo/map/'),
                 ),
-                singleImageBox(
+                singleImageTile(
                   name: 'Garmoth',
                   icon: 'assets/icons/garmoth.png',
                   onTap: () => _launchURL('https://garmoth.com'),
                 ),
-                singleImageBox(
+                singleImageTile(
                   name: 'BDO Codex',
                   icon: 'assets/icons/bdocodex.png',
                   onTap: () => _launchURL('https://bdocodex.com/kr/'),
                 ),
-                singleImageBox(
+                singleImageTile(
                   name: 'OnTopReplica',
                   icon: 'assets/icons/onTopReplica.png',
-                  onTap: () => _launchURL('https://github.com/LorenzCK/OnTopReplica'),
+                  onTap: () =>
+                      _launchURL('https://github.com/LorenzCK/OnTopReplica'),
                 ),
                 /*
                 singleImageBox(
