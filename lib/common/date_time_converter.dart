@@ -16,12 +16,20 @@ class DateTimeConverter {
     return DateFormat('yyyy.MM.dd').format(dateTime);
   }
 
+  String convertFull(DateTime dateTime){
+    return DateFormat('yy.MM.dd HH:mm:ss').format(dateTime);
+  }
+
   String getAmPm(TimeOfDay timeOfDay){
     return timeOfDay.period == DayPeriod.am ? '오전' : '오후';
   }
 
   String getTime(TimeOfDay timeOfDay){
     return '${timeOfDay.hourOfPeriod}시 ${timeOfDay.minute}분';
+  }
+
+  DateTime getDateFromDateTime(DateTime dateTime){
+    return DateTime.parse(DateFormat('yyyy-MM-dd').format(dateTime));
   }
   
   String getTimeWithAmPm(TimeOfDay timeOfDay){

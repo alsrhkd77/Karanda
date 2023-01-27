@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:karanda/common/date_time_converter.dart';
+
 import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,8 +9,11 @@ import 'package:http/http.dart' as http;
 
 class EventCalenderController extends GetxController {
   RxList<EventModel> _events = <EventModel>[].obs;
+  RxString _lastUpdate = ' - '.obs;
   int _limit = 999;
   String _filter = 'ascending';
+
+  String get lastUpdate => _lastUpdate.value;
 
   List<EventModel> get events => _events
       .where((p0) => !p0.deadline.isAtSameMomentAs(DateTime(2996, 11, 12)))
@@ -26,7 +31,11 @@ class EventCalenderController extends GetxController {
     final response = await http.get(Uri.parse(
         'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/events.json'));
 
-    List data = jsonDecode(response.body)['events'];
+    Map body = jsonDecode(response.body);
+    List data = body['events'];
+    DateTimeConverter converter = DateTimeConverter();
+    DateTime lastUpdate = DateTime.parse(body['last_update']);
+    _lastUpdate = RxString(converter.convertFull(lastUpdate));
 
     for (Map e in data) {
       String title = e['title'];
@@ -36,10 +45,10 @@ class EventCalenderController extends GetxController {
       String meta = e['meta'];
       DateTime deadline = DateTime(2996, 11, 12);
       if (!count.contains('상시')) {
-        deadline = DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day);
-        deadline =
-            deadline.add(Duration(days: int.parse(count.split(' ')[0]) - 1));
+        deadline = DateTime.parse(e['deadline']);
+        Duration _count = deadline
+            .difference(converter.getDateFromDateTime(DateTime.now().toUtc().add(const Duration(hours: 9))));
+        count = '${_count.inDays + 1} 일 남음';
       }
       result.add(
         EventModel(

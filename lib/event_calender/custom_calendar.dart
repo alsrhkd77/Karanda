@@ -28,19 +28,21 @@ class _CustomCalendarState extends State<CustomCalendar> {
 
   // build calendar background frame
   Widget buildCalendarFrame() {
-    return ListView.builder(
+    return ListView.separated(
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
+      separatorBuilder: (context, index) => const Divider(),
       itemCount: 90,
       itemBuilder: (context, index) {
         DateTime date = DateTime.now().add(Duration(days: index));
         return Container(
           width: MediaQuery.of(context).size.width / viewDays,
           decoration: BoxDecoration(
-              border: Border.symmetric(
-            vertical: BorderSide(color: context.theme.dividerColor),
-          )),
+            border: Border.symmetric(
+              vertical: BorderSide(color: context.theme.dividerColor, width: 0.0),
+            ),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -53,7 +55,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                       ),
                     )
                   : const SizedBox(
-                      height: 27,
+                      height: 29,
                     ),
               Container(
                 height: 35,

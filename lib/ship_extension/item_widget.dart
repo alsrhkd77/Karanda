@@ -74,7 +74,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(farming),
-                      Text(detail, style: context.textTheme.caption,)
+                      Text(detail, style: context.textTheme.bodySmall,)
                     ],
                   ),
                 ),

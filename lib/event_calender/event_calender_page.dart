@@ -159,6 +159,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                   '이벤트 캘린더',
                   bold: true,
                 ),
+                subtitle: Obx(()=>Text('최근 갱신: ${_eventCalenderController.lastUpdate}')),
                 leading: const Icon(FontAwesomeIcons.calendarCheck),
                 trailing: PopupMenuButton(
                   icon: const Icon(FontAwesomeIcons.filter),

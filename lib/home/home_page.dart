@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
         maxWidth: 400,
       ),
       child: ListTile(
-        title: Text(name),
+        title: Text(name, style: const TextStyle(fontSize: 15.0),),
         leading: Icon(icon),
         onTap: onTap,
       ),
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
         maxWidth: 400,
       ),
       child: ListTile(
-        title: Text(name),
+        title: Text(name, style: const TextStyle(fontSize: 15.0),),
         leading: Image.asset(
           icon,
           height: 25,
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(
           'Karanda',
-          style: GoogleFonts.sourceCodePro(fontSize: 25.0),
+          style: GoogleFonts.sourceCodePro(fontSize: 26.0),
         ),
         actions: [
           Container(
@@ -169,17 +169,11 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               singleIconTile(
-                name: '물물교환 계산기',
-                icon: FontAwesomeIcons.arrowRightArrowLeft,
+                name: '이벤트 캘린더',
+                //icon: FontAwesomeIcons.calendarCheck,
+                icon: Icons.celebration_outlined,
                 onTap: () {
-                  Get.toNamed('/trade-home');
-                },
-              ),
-              singleIconTile(
-                name: '말 성장치 계산기',
-                icon: FontAwesomeIcons.chessKnight,
-                onTap: () {
-                  Get.toNamed('/horse');
+                  Get.toNamed('/event-calender');
                 },
               ),
               singleIconTile(
@@ -189,6 +183,14 @@ class _HomePageState extends State<HomePage> {
                   Get.toNamed('/artifact');
                 },
               ),
+              singleIconTile(
+                name: '말 성장치 계산기',
+                icon: FontAwesomeIcons.chessKnight,
+                onTap: () {
+                  Get.toNamed('/horse');
+                },
+              ),
+
               singleIconTile(
                 name: '시카라키아 아홉문장 계산기',
                 icon: FontAwesomeIcons.calculator,
@@ -204,11 +206,10 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               singleIconTile(
-                name: '이벤트 캘린더',
-                //icon: FontAwesomeIcons.calendarCheck,
-                icon: Icons.celebration_outlined,
+                name: '물물교환 계산기',
+                icon: FontAwesomeIcons.arrowRightArrowLeft,
                 onTap: () {
-                  Get.toNamed('/event-calender');
+                  Get.toNamed('/trade-home');
                 },
               ),
               singleIconTile(

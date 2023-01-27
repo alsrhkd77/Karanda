@@ -160,7 +160,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                                       '${_dateTimeConverter.getTimeWithAmPm(_shutdownSchedulerNotifier.target)}에 종료',
                                       style: TextStyle(
                                           color:
-                                              context.textTheme.caption!.color),
+                                              context.textTheme.bodySmall!.color),
                                     ),
                                     const Padding(
                                       padding:
