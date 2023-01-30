@@ -81,6 +81,7 @@ flutter:
     - assets/data/
     - assets/icons/
     - assets/image/shipExtension/
+    - assets/image/logo/
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

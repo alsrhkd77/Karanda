@@ -1,11 +1,11 @@
 {
-    "name": "Karanda",
+    "name": "Karanda | 카란다",
     "short_name": "Karanda",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Karanda project web app",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
+    "description": "[Karanda | 카란다] Black dessert online support tool",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
