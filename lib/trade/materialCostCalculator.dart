@@ -82,7 +82,7 @@ class _MaterialCostCalculatorState extends State<MaterialCostCalculator> {
               ),
             ),
             Container(
-              width: 65,
+              width: 75,
               margin: const EdgeInsets.all(4.0),
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -100,10 +100,10 @@ class _MaterialCostCalculatorState extends State<MaterialCostCalculator> {
                       }
                       setState(() {
                         items[index]['trade'] =
-                            int.parse(value.split('').first);
+                            int.parse(value.replaceAll('회', ''));
                       });
                     },
-                    items: ['0회', '1회', '2회', '3회', '4회', '5회', '6회']
+                    items: ['0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회', '10회']
                         .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
                               value: e,
                               child: Text(e),
@@ -198,7 +198,7 @@ class _MaterialCostCalculatorState extends State<MaterialCostCalculator> {
                               items.add({
                                 'count': TextEditingController(),
                                 'price': TextEditingController(),
-                                'trade': 6
+                                'trade': 10
                               });
                             });
                           },

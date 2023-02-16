@@ -59,7 +59,7 @@ class _ExperimentalFunctionPageState extends State<ExperimentalFunctionPage> {
               spacing: 20.0,
               children: [
                 singleIconBox(
-                  name: '선박 증축',
+                  name: '루트 탐색',
                   icon: FontAwesomeIcons.ship,
                   onTap: () {
                     Get.toNamed('/ship-extension');

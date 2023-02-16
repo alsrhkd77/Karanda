@@ -68,15 +68,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                 ),
-                /*
                 ListTile(
-                  leading: const Icon(FontAwesomeIcons.flask),
+                  leading: const Icon(FontAwesomeIcons.route),
                   title: const Text('실험적 서비스'),
                   onTap: () {
                     Get.toNamed('/experimental-function');
                   },
                 ),
-                 */
                 kIsWeb
                     ? ListTile(
                         leading: const Icon(FontAwesomeIcons.laptopCode),

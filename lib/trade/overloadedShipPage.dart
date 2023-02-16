@@ -239,10 +239,10 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                     }
                     setState(() {
                       advancedWeight[index]['count'] =
-                          int.parse(value.split('').first);
+                          int.parse(value.replaceAll('회', ''));
                     });
                   },
-                  items: ['0회', '1회', '2회', '3회', '4회', '5회', '6회']
+                  items: ['0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회', '10회']
                       .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
                             value: e,
                             child: Text(e),

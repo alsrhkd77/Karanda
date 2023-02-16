@@ -64,66 +64,63 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
     return Card(
       margin: const EdgeInsets.all(12.0),
       clipBehavior: Clip.antiAlias,
-      child: Tooltip(
-        message: eventModel.url,
-        child: InkWell(
-          onTap: () => _launchURL(eventModel.url),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 15,
-                height: 150,
-                color: eventModel.color,
+      child: InkWell(
+        onTap: () => _launchURL(eventModel.url),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 10,
+              height: 150,
+              color: eventModel.color,
+            ),
+            SizedBox(
+              height: 150,
+              width: 150,
+              child: Image.network(
+                eventModel.thumbnail,
+                fit: BoxFit.cover,
               ),
-              SizedBox(
-                height: 150,
-                width: 150,
-                child: Image.network(
-                  eventModel.thumbnail,
-                  fit: BoxFit.cover,
-                ),
+            ),
+            Container(
+              width: 310,
+              height: 150,
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    eventModel.title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16.0),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  Text(
+                    eventModel.meta.length > 180
+                        ? eventModel.meta.substring(0, 180)
+                        : eventModel.meta,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+                    style: const TextStyle(
+                        fontSize: 12.0),
+                    maxLines: 3,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      eventModel.count == '상시'
+                          ? const SizedBox()
+                          : Text(
+                              '${_dateTimeConverter.convert(eventModel.deadline)}까지'),
+                      Text(eventModel.count),
+                    ],
+                  ),
+                ],
               ),
-              Container(
-                width: 310,
-                height: 150,
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      eventModel.title,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16.0),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    Text(
-                      eventModel.meta.length > 180
-                          ? eventModel.meta.substring(0, 180)
-                          : eventModel.meta,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: true,
-                      style: const TextStyle(
-                          fontSize: 12.0),
-                      maxLines: 3,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        eventModel.count == '상시'
-                            ? const SizedBox()
-                            : Text(
-                                '${_dateTimeConverter.convert(eventModel.deadline)}까지'),
-                        Text(eventModel.count),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
