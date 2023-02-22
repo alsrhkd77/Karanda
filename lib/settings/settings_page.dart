@@ -68,6 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                 ),
+                /*
                 ListTile(
                   leading: const Icon(FontAwesomeIcons.route),
                   title: const Text('실험적 서비스'),
@@ -75,6 +76,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     Get.toNamed('/experimental-function');
                   },
                 ),
+                 */
                 kIsWeb
                     ? ListTile(
                         leading: const Icon(FontAwesomeIcons.laptopCode),
@@ -91,6 +93,11 @@ class _SettingsPageState extends State<SettingsPage> {
                           Get.toNamed('/desktop-app');
                         },
                       ),
+                const ListTile(
+                  leading: Icon(FontAwesomeIcons.globe),
+                  title: Text('서버'),
+                  trailing: Text('KR', style: TextStyle(fontWeight: FontWeight.bold),),
+                ),
               ],
             ),
           ),
