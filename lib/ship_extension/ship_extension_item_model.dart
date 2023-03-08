@@ -6,6 +6,7 @@ class ShipExtensionItemModel{
   late int reward;
   late int price;
   late String assetPath;
+  List<String> parts = [];
 
   int user = 0;
   int need = 0;

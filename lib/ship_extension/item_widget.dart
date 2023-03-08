@@ -14,25 +14,70 @@ class ItemWidget extends StatefulWidget {
 }
 
 class _ItemWidgetState extends State<ItemWidget> {
-
-  MaterialColor getColor(double percent){
-    if(percent < 0.25){
+  MaterialColor getColor(double percent) {
+    if (percent < 0.25) {
       return Colors.red;
-    }else if(percent < 0.5){
+    } else if (percent < 0.5) {
       return Colors.orange;
-    }else if(percent < 0.75){
+    } else if (percent < 0.75) {
       return Colors.yellow;
-    }else if(percent < 1){
+    } else if (percent < 1) {
       return Colors.green;
     }
     return Colors.blue;
+  }
+
+  List<Widget> buildPartsIcon() {
+    List<Widget> result = [];
+
+    for (String p in widget.item.parts) {
+      if (p == 'prow') {
+        result.add(const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 2.5),
+          child: Text(
+            '선수상',
+            style: TextStyle(fontSize: 11.0),
+          ),
+        ));
+      }
+      if (p == 'plating') {
+        result.add(const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 2.5),
+          child: Text(
+            '장갑',
+            style: TextStyle(fontSize: 11.0),
+          ),
+        ));
+      }
+      if (p == 'cannon') {
+        result.add(const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 2.5),
+          child: Text(
+            '함포',
+            style: TextStyle(fontSize: 11.0),
+          ),
+        ));
+      }
+      if (p == 'windSail') {
+        result.add(const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 2.5),
+          child: Text(
+            '돛',
+            style: TextStyle(fontSize: 11.0),
+          ),
+        ));
+      }
+    }
+    return result;
   }
 
   @override
   Widget build(BuildContext context) {
     String farming = widget.item.farmingRootName;
     String detail = widget.item.detail;
-    int dDay = widget.item.reward == 0 ? 0 : ((widget.item.need - widget.item.user) / widget.item.reward).ceil();
+    int dDay = widget.item.reward == 0
+        ? 0
+        : ((widget.item.need - widget.item.user) / widget.item.reward).ceil();
     double percent = widget.item.user / widget.item.need;
     if (percent > 1) percent = 1;
     if (dDay < 0) dDay = 0;
@@ -60,9 +105,9 @@ class _ItemWidgetState extends State<ItemWidget> {
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 135,
+                  width: 165,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: Text(widget.item.name,
+                  child: Text(widget.item.name.replaceFirst('(', '\n('),
                       overflow: TextOverflow.clip, textAlign: TextAlign.center),
                 ),
                 const VerticalDivider(),
@@ -74,7 +119,10 @@ class _ItemWidgetState extends State<ItemWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(farming),
-                      Text(detail, style: context.textTheme.bodySmall,)
+                      Text(
+                        detail,
+                        style: context.textTheme.bodySmall,
+                      )
                     ],
                   ),
                 ),
@@ -88,16 +136,13 @@ class _ItemWidgetState extends State<ItemWidget> {
                   width: 40,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child:
-                  Text('${widget.item.need}개', textAlign: TextAlign.center),
+                      Text('${widget.item.need}개', textAlign: TextAlign.center),
                 ),
                 const VerticalDivider(),
                 Container(
                   width: 35,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: Text(
-                      widget.item.reward == 0
-                          ? '-'
-                          : '$dDay일',
+                  child: Text(widget.item.reward == 0 ? '-' : '$dDay일',
                       textAlign: TextAlign.center),
                 ),
                 const VerticalDivider(),
@@ -114,7 +159,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                 Container(
                   width: 70,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: Text('${widget.item.price}주화', textAlign: TextAlign.center),
+                  child: Text('${widget.item.price}주화',
+                      textAlign: TextAlign.center),
                 ),
               ],
             ),
@@ -128,6 +174,15 @@ class _ItemWidgetState extends State<ItemWidget> {
             bottom: -2,
             left: 0,
             right: 0,
+          ),
+          Positioned(
+            child: SizedBox(
+              width: 80,
+              child: Row(
+                children: buildPartsIcon(),
+              ),
+            ),
+            left: -3,
           ),
         ],
       ),

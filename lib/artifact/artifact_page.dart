@@ -17,6 +17,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
   final ArtifactController _artifactController = ArtifactController();
   TextEditingController _textEditingController = TextEditingController();
   final ScrollController _mainScrollController = ScrollController();
+  FocusNode _searchBarFocus = FocusNode();
 
   Widget buildCardList() {
     if (_artifactController.combinations.isEmpty) {
@@ -136,13 +137,9 @@ class _ArtifactPageState extends State<ArtifactPage> {
         alignment: WrapAlignment.center,
         children: _artifactController.keywords
             .map((e) => Chip(
-                  label: Text(
-                    e,
-                    style: const TextStyle(color: Colors.white),
-                  ),
+                  label: Text(e,),
                   onDeleted: () => _artifactController.removeKeyword(e),
-                  backgroundColor: Colors.blue,
-                  deleteIconColor: Colors.white,
+
                 ))
             .toList(),
       ),
@@ -155,16 +152,21 @@ class _ArtifactPageState extends State<ArtifactPage> {
         return Autocomplete<String>(
           fieldViewBuilder: (context, controller, focusNode, onSubmit) {
             _textEditingController = controller;
-            return TextFormField(
+            _searchBarFocus = focusNode;
+            return TextField(
               controller: controller,
-              focusNode: focusNode,
+              focusNode: _searchBarFocus,
               maxLength: 20,
-              onFieldSubmitted: (String value) {
-                if (value.trim().isNotEmpty) {
-                  _artifactController.addKeyword(value);
+              onSubmitted: (String value) {
+                if (_artifactController.autoComplete(value.trim()).isNotEmpty &&
+                    _artifactController.autoComplete(value.trim()).first ==
+                        value) {
+                  _artifactController.addKeyword(value.trim());
+                  _textEditingController.clear();
+                } else {
+                  onSubmit();
                 }
-                controller.clear();
-                focusNode.requestFocus();
+                FocusScope.of(context).requestFocus(_searchBarFocus);
               },
               decoration: InputDecoration(
                 suffixIcon: const Icon(FontAwesomeIcons.searchengin),
@@ -183,37 +185,6 @@ class _ArtifactPageState extends State<ArtifactPage> {
             }
             return _artifactController
                 .autoComplete(textEditingValue.text.trim());
-          },
-          optionsViewBuilder: (context, onSelected, options) {
-            return Align(
-              alignment: Alignment.topLeft,
-              child: Material(
-                shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(4.0)),
-                ),
-                child: Container(
-                  height: 52.0 * options.length,
-                  width: constraints.biggest.width,
-                  constraints: BoxConstraints(maxHeight: Get.height / 2),
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: options.length,
-                    shrinkWrap: false,
-                    itemBuilder: (BuildContext context, int index) {
-                      final String option = options.elementAt(index);
-                      return InkWell(
-                        onTap: () => onSelected(option),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(option),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            );
           },
         );
       },
@@ -243,7 +214,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
   Widget buildFilterButton() {
     return OutlinedButton(
       child: Text(
-        _artifactController.orFilter.value ? 'Or 연산' : 'And 연산',
+        _artifactController.orFilter.value ? 'Or 필터' : 'And 필터',
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       onPressed: _artifactController.changeFilter,
@@ -299,7 +270,8 @@ class _ArtifactPageState extends State<ArtifactPage> {
                                     _textEditingController.text.trim());
                               }
                               _textEditingController.clear();
-                              FocusManager.instance.primaryFocus?.unfocus();
+                              //FocusManager.instance.primaryFocus?.unfocus();
+                              FocusScope.of(context).requestFocus(_searchBarFocus);
                             },
                           ),
                         ),

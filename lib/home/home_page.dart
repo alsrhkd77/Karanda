@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           const SizedBox(
-            height: 12.0,
+            height: 20.0,
           ),
           const ListTile(
             leading: Icon(FontAwesomeIcons.link),
@@ -288,7 +288,7 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.all(24.0),
               width: Size.infinite.width,
               child: const Text(
-                '해당 소프트웨어는 Dart / Flutter를 사용하여 제작되었습니다\n해당 소프트웨어는 Font Awsome Icons를 사용하여 제작되었습니다',
+                'Built with Flutter',
                 textAlign: TextAlign.center,
               ),
             ),

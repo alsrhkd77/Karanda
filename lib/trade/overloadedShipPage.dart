@@ -416,7 +416,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
       lineHeight: 22.0,
       progressColor: selectColor(percent),
       center: Text(
-          '${numFormat.format(_weightSnapshot)} LT / ${numFormat.format(totalWeight)} LT (${(percent * 100).toStringAsFixed(2)}%)'),
+          '${numFormat.format(_weightSnapshot)} LT / ${numFormat.format(totalWeight)} LT (${(percent * 100).toStringAsFixed(2)}%)', style: const TextStyle(color: Colors.black),),
     );
   }
 

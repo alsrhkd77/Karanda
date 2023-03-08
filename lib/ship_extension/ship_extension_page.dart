@@ -33,14 +33,14 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
     super.initState();
   }
 
-  MaterialColor getColor(double percent){
-    if(percent < 0.25){
+  MaterialColor getColor(double percent) {
+    if (percent < 0.25) {
       return Colors.red;
-    }else if(percent < 0.5){
+    } else if (percent < 0.5) {
       return Colors.orange;
-    }else if(percent < 0.75){
+    } else if (percent < 0.75) {
       return Colors.yellow;
-    }else if(percent < 1){
+    } else if (percent < 1) {
       return Colors.green;
     }
     return Colors.blue;
@@ -49,44 +49,49 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
   Widget buildItemList() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12.0),
-      height: _extensionController.extensionItems.length * 99,
-      width: 1120,
-      child: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(),
-        itemCount: _extensionController.extensionItems.length,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return ItemWidget(
-            item: _extensionController.extensionItems[index],
-            textField: TextFormField(
-              initialValue: _extensionController.extensionItems[index].user > 0
-                  ? _extensionController.extensionItems[index].user.toString()
-                  : null,
-              keyboardType:
-              const TextInputType.numberWithOptions(),
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
-              ],
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(color: Colors.blue),
+      //height: _extensionController.extensionItems.length * 99,
+      width: 1150,
+      child: Column(
+        children: [
+          ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: _extensionController.extensionItems.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return ItemWidget(
+                item: _extensionController.extensionItems[index],
+                textField: TextFormField(
+                  initialValue:
+                      _extensionController.extensionItems[index].user > 0
+                          ? _extensionController.extensionItems[index].user
+                              .toString()
+                          : null,
+                  keyboardType: const TextInputType.numberWithOptions(),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
+                  ],
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(color: Colors.blue),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      _extensionController.updateUserItem(
+                          _extensionController.extensionItems[index].name, 0);
+                    } else {
+                      _extensionController.updateUserItem(
+                          _extensionController.extensionItems[index].name,
+                          int.parse(value));
+                    }
+                  },
                 ),
-              ),
-              onChanged: (value) {
-                if (value.isEmpty) {
-                  _extensionController.updateUserItem(
-                      _extensionController.extensionItems[index].name, 0);
-                } else {
-                  _extensionController.updateUserItem(
-                      _extensionController.extensionItems[index].name,
-                      int.parse(value));
-                }
-              },
-            ),
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -109,7 +114,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
           ),
           const VerticalDivider(),
           Container(
-            width: 135,
+            width: 165,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '재료',
@@ -171,7 +176,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
             width: 70,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
-              '까마귀\n주화',
+              '구매 가격',
               textAlign: TextAlign.center,
               style: style,
             ),
@@ -216,7 +221,10 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                     Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(12.0),
-                      child: const TitleText('증축재료 수급 현황', bold: true,),
+                      child: const TitleText(
+                        '증축재료 수급 현황',
+                        bold: true,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -230,9 +238,13 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                               lineHeight: 18.0,
                               animationDuration: 500,
                               percent: _extensionController.percent,
-                              center: Text("${(_extensionController.percent * 100).toStringAsFixed(2)}%"),
+                              center: Text(
+                                "${(_extensionController.percent * 100).toStringAsFixed(2)}%",
+                                style: const TextStyle(color: Colors.black),
+                              ),
                               barRadius: const Radius.circular(15.0),
-                              progressColor: getColor(_extensionController.percent),
+                              progressColor:
+                                  getColor(_extensionController.percent),
                               animateFromLastPercent: true,
                             ),
                           ),
@@ -240,14 +252,14 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                           child: DecoratedBox(
-                              decoration: BoxDecoration(
+                            decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blue),
-                                borderRadius: BorderRadius.circular(15.0)
-                              ),
+                                borderRadius: BorderRadius.circular(15.0)),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Obx(
-                                    () => DropdownButton<String>(
+                                () => DropdownButton<String>(
                                   value: _extensionController.select.value,
                                   underline: Container(),
                                   focusColor: Colors.transparent,
@@ -260,23 +272,18 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                                   items: shipType
                                       .map<DropdownMenuItem<String>>(
                                           (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ))
+                                                value: e,
+                                                child: Text(e),
+                                              ))
                                       .toList(),
                                 ),
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     SizedBox(
-                      height:
-                          ((_extensionController.extensionItems.length + 1) *
-                                  99) +
-                              33,
                       child: ScrollConfiguration(
                         behavior: CustomScrollBehavior(),
                         child: SingleChildScrollView(

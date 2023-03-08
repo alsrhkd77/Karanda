@@ -30,13 +30,28 @@ class ShipExtensionController extends GetxController {
 
   List<ShipExtensionItemModel> get extensionItems {
     List snapshot = items;
+    ShipExtensionModel ship = ships.firstWhere((element) => element.name == select.value);
     Map<String, ShipExtensionItemModel> _map = {
       for (ShipExtensionItemModel m in snapshot) m.name: m
     };
-    Map<String, int> _model =
-        ships.firstWhere((element) => element.name == select.value).getNeed();
+    Map<String, int> _model = ship.getNeed();
 
     for (String m in _model.keys) {
+      Set<String> parts = {};
+      if(ship.prowItem.containsKey(m)){
+        parts.add('prow');
+      }
+      if(ship.cannonItem.containsKey(m)){
+        parts.add('cannon');
+      }
+      if(ship.platingItem.containsKey(m)){
+        parts.add('plating');
+      }
+      if(ship.windSailItem.containsKey(m)){
+        parts.add('windSail');
+      }
+      _map[m]!.parts = parts.toList();
+      _map[m]!.parts.sort();
       _map[m]!.need = _model[m]!;
     }
 
