@@ -240,50 +240,48 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 ),
               );
             } else {
-              return SingleChildScrollView(
+              return ListView(
                 controller: _mainScrollController,
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(FontAwesomeIcons.splotch),
-                      title: const TitleText(
-                        '광명석 조합식',
-                        bold: true,
-                      ),
-                      trailing: Obx(buildFilterButton),
+                children: [
+                  ListTile(
+                    leading: const Icon(FontAwesomeIcons.splotch),
+                    title: const TitleText(
+                      '광명석 조합식',
+                      bold: true,
                     ),
-                    Container(
-                      constraints: const BoxConstraints(
-                        maxWidth: 1100,
-                      ),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            title: buildSearchTextBar(),
-                            trailing: ElevatedButton(
-                              child: const Text('추가'),
-                              onPressed: () {
-                                if (_textEditingController.text
-                                    .trim()
-                                    .isNotEmpty) {
-                                  _artifactController.addKeyword(
-                                      _textEditingController.text.trim());
-                                }
-                                _textEditingController.clear();
-                                //FocusManager.instance.primaryFocus?.unfocus();
-                                FocusScope.of(context).requestFocus(_searchBarFocus);
-                              },
-                            ),
+                    trailing: Obx(buildFilterButton),
+                  ),
+                  Container(
+                    constraints: const BoxConstraints(
+                      maxWidth: 900,
+                    ),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: buildSearchTextBar(),
+                          trailing: ElevatedButton(
+                            child: const Text('추가'),
+                            onPressed: () {
+                              if (_textEditingController.text
+                                  .trim()
+                                  .isNotEmpty) {
+                                _artifactController.addKeyword(
+                                    _textEditingController.text.trim());
+                              }
+                              _textEditingController.clear();
+                              //FocusManager.instance.primaryFocus?.unfocus();
+                              FocusScope.of(context).requestFocus(_searchBarFocus);
+                            },
                           ),
-                          Obx(buildChip),
-                          Obx(buildCardList),
-                          Obx(buildLoadButton)
-                        ],
-                      ),
+                        ),
+                        Obx(buildChip),
+                        Obx(buildCardList),
+                        Obx(buildLoadButton)
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               );
             }
           },
