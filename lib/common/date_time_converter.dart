@@ -25,7 +25,9 @@ class DateTimeConverter {
   }
 
   String getTime(TimeOfDay timeOfDay){
-    return '${timeOfDay.hourOfPeriod}시 ${timeOfDay.minute}분';
+    String hour = timeOfDay.hourOfPeriod.toString().padLeft(2, '0');
+    String minute = timeOfDay.minute.toString().padLeft(2, '0');
+    return '$hour시 $minute분';
   }
 
   DateTime getDateFromDateTime(DateTime dateTime){
