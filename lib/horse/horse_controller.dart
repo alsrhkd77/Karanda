@@ -6,9 +6,9 @@ class HorseController extends GetxController {
 
   String _breed = '꿈결 아두아나트';
   int _level = 0; //레벨
-  double _speed = 0.0;  //속도
+  double _speed = 0.0; //속도
   double _acceleration = 0.0; //가속
-  double _brake = 0.0;  //제동
+  double _brake = 0.0; //제동
   double _rotForce = 0.0; //회전
 
   String get breed => _breed;
@@ -19,6 +19,11 @@ class HorseController extends GetxController {
   }
 
   int get level => _level;
+
+  int get maxLevel {
+    int _maxLevel = _level > 30 ? 30 : _level;
+    return _maxLevel - 1;
+  }
 
   set level(int value) {
     _level = value;
@@ -53,72 +58,109 @@ class HorseController extends GetxController {
     update();
   }
 
-  double get grownStat => _speed + _acceleration + _brake + _rotForce;
+  double get grownStat {
+    double _stat = 0;
+    if (_speed > 0) {
+      _stat += _speed - _horseInfo.detail[_breed]!['속도']!;
+    }
+    if (_acceleration > 0) {
+      _stat += _acceleration - _horseInfo.detail[_breed]!['가속']!;
+    }
+    if (_brake > 0) {
+      _stat += _brake - _horseInfo.detail[_breed]!['제동']!;
+    }
+    if (_rotForce > 0) {
+      _stat += _rotForce - _horseInfo.detail[_breed]!['회전']!;
+    }
+    return _stat;
+  }
 
   //등급 계산
   String _evaluate(double value) {
-    if (value >= 0.83) {
+    if (value >= 0.85) {
       return '최상급';
-    } else if (value >= 0.75) {
+    } else if (value >= 0.80) {
       return '상급';
-    } else if (value >= 0.65) {
+    } else if (value >= 0.75) {
       return '중급';
-    } else if (value >= 0.6) {
+    } else if (value >= 0.70) {
       return '하급';
     } else {
       return '최하급';
     }
   }
-  
+
   //평균 성장치
   double get average {
-    double defaultStat = _horseInfo.detail[_breed]!.values
-        .reduce((value, element) => value + element);
-    int maxLevel = _level > 30 ? 30 : _level;
-    return ((grownStat - defaultStat) / maxLevel) / 4;
+    if(maxLevel <= 0){
+      return 0.0;
+    }
+    return doubleFloor((grownStat / maxLevel) / 4);
+  }
+  
+  double doubleFloor(double value){
+    double result = value * 100;
+    result = result.floor() / 100;
+    return result;
   }
 
   //등급
   String get grade {
-    if(_level <= 0){
+    if (_level <= 0) {
       return '??';
     }
     return _evaluate(average);
   }
 
-  double get speedAvg{
-    int maxLevel = _level > 30 ? 30 : _level;
-    return  (_speed - _horseInfo.detail[_breed]!['속도']!) / maxLevel;
+  double percent(double _value){
+    if(maxLevel <= 0){
+      return 0.1;
+    }
+    double _result = (_value / 1.3) * 100;
+    return _result;
   }
 
-  double get speedPercent => _speed / (_horseInfo.detail[_breed]!['속도']! + (1.3 * 30)) * 100;
+  double get speedAvg {
+    if(_speed <= _horseInfo.detail[_breed]!['속도']! || maxLevel <= 0){
+      return 0.0;
+    }
+    return doubleFloor((_speed - _horseInfo.detail[_breed]!['속도']!) / maxLevel);
+  }
 
   String get speedGrade => _evaluate(speedAvg);
 
-  double get accelerationAvg{
-    int maxLevel = _level > 30 ? 30 : _level;
-    return  (_acceleration - _horseInfo.detail[_breed]!['가속']!) / maxLevel;
+  double get speedPercent => percent(speedAvg);
+
+  double get accelerationAvg {
+    if(_acceleration <= _horseInfo.detail[_breed]!['가속']! || maxLevel <= 0){
+      return 0.0;
+    }
+    return doubleFloor((_acceleration - _horseInfo.detail[_breed]!['가속']!) / maxLevel);
   }
 
-  double get accelerationPercent => _acceleration / (_horseInfo.detail[_breed]!['가속']! + (1.3 * 30)) * 100;
-  
   String get accelerationGrade => _evaluate(accelerationAvg);
 
-  double get brakeAvg{
-    int maxLevel = _level > 30 ? 30 : _level;
-    return  (_brake - _horseInfo.detail[_breed]!['제동']!) / maxLevel;
-  }
+  double get accelerationPercent => percent(accelerationAvg);
 
-  double get brakePercent => _brake / (_horseInfo.detail[_breed]!['제동']! + (1.3 * 30)) * 100;
+  double get brakeAvg {
+    if(_brake <= _horseInfo.detail[_breed]!['제동']! || maxLevel <= 0){
+      return 0.0;
+    }
+    return doubleFloor((_brake - _horseInfo.detail[_breed]!['제동']!) / maxLevel);
+  }
 
   String get brakeGrade => _evaluate(brakeAvg);
 
-  double get rotForceAvg{
-    int maxLevel = _level > 30 ? 30 : _level;
-    return  (_rotForce - _horseInfo.detail[_breed]!['회전']!) / maxLevel;
+  double get brakePercent => percent(brakeAvg);
+
+  double get rotForceAvg {
+    if(_rotForce <= _horseInfo.detail[_breed]!['회전']! || maxLevel <= 0){
+      return 0.0;
+    }
+    return doubleFloor((_rotForce - _horseInfo.detail[_breed]!['회전']!) / maxLevel);
   }
 
-  double get rotForcePercent => _rotForce / (_horseInfo.detail[_breed]!['회전']! + (1.3 * 30)) * 100;
-
   String get rotForceGrade => _evaluate(rotForceAvg);
+
+  double get rotForcePercent => percent(rotForceAvg);
 }

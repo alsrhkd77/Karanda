@@ -25,7 +25,7 @@ class _HorsePageState extends State<HorsePage> {
       init: HorseController(),
       builder: (horse) {
         return GestureDetector(
-          onTap: (){
+          onTap: () {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: Scaffold(
@@ -168,10 +168,9 @@ class _HorsePageState extends State<HorsePage> {
                               leading: const Text('레벨'),
                               title: TextFormField(
                                 decoration: const InputDecoration(
-                                    hintText: ' * 30레벨 까지만 성장치가 상승합니다.'
-                                ),
+                                    hintText: ' * 30레벨 까지만 성장치가 상승합니다.'),
                                 keyboardType:
-                                const TextInputType.numberWithOptions(),
+                                    const TextInputType.numberWithOptions(),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'^(\d{0,3})')),
@@ -192,8 +191,8 @@ class _HorsePageState extends State<HorsePage> {
                               leading: const Text('속도'),
                               title: TextFormField(
                                 keyboardType:
-                                const TextInputType.numberWithOptions(
-                                    decimal: true),
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'^(\d{0,3})?\.?\d{0,2}')),
@@ -216,8 +215,8 @@ class _HorsePageState extends State<HorsePage> {
                               leading: const Text('가속'),
                               title: TextFormField(
                                 keyboardType:
-                                const TextInputType.numberWithOptions(
-                                    decimal: true),
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'^(\d{0,3})?\.?\d{0,2}')),
@@ -240,8 +239,8 @@ class _HorsePageState extends State<HorsePage> {
                               leading: const Text('회전'),
                               title: TextFormField(
                                 keyboardType:
-                                const TextInputType.numberWithOptions(
-                                    decimal: true),
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'^(\d{0,3})?\.?\d{0,2}')),
@@ -264,8 +263,8 @@ class _HorsePageState extends State<HorsePage> {
                               leading: const Text('제동'),
                               title: TextFormField(
                                 keyboardType:
-                                const TextInputType.numberWithOptions(
-                                    decimal: true),
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'^(\d{0,3})?\.?\d{0,2}')),
@@ -309,7 +308,7 @@ class _HorsePageState extends State<HorsePage> {
                                   margin: const EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Chip(
                                         label: const Text('최상급'),
@@ -366,15 +365,19 @@ class _HorsePageState extends State<HorsePage> {
                                         ),
                                         RadarDataSet(
                                           dataEntries: [
-                                            RadarEntry(value: horse.speedPercent),
                                             RadarEntry(
-                                                value: horse.accelerationPercent),
-                                            RadarEntry(value: horse.rotForcePercent),
-                                            RadarEntry(value: horse.brakePercent),
+                                                value: horse.speedPercent),
+                                            RadarEntry(
+                                                value:
+                                                    horse.accelerationPercent),
+                                            RadarEntry(
+                                                value: horse.rotForcePercent),
+                                            RadarEntry(
+                                                value: horse.brakePercent),
                                           ],
                                           borderColor: Colors.green,
                                           fillColor:
-                                          Colors.green.withOpacity(0.5),
+                                              Colors.green.withOpacity(0.5),
                                           borderWidth: 2.0,
                                           entryRadius: 2.0,
                                         ),
@@ -387,29 +390,29 @@ class _HorsePageState extends State<HorsePage> {
                                           ],
                                           borderColor: Colors.red,
                                           fillColor:
-                                          Colors.red.withOpacity(0.5),
+                                              Colors.red.withOpacity(0.5),
                                           borderWidth: 1.0,
                                           entryRadius: 1.0,
                                         ),
                                       ],
-                                      getTitle: (index) {
+                                      getTitle: (index, angle) {
                                         switch (index) {
                                           case 0:
-                                            return '속도';
+                                            return RadarChartTitle(text: '속도', angle: angle);
                                           case 1:
-                                            return '가속';
+                                            return RadarChartTitle(text: '가속', angle: angle);
                                           case 2:
-                                            return '회전';
+                                            return RadarChartTitle(text: '회전', angle: angle);
                                           case 3:
-                                            return '제동';
+                                            return RadarChartTitle(text: '제동', angle: angle);
                                           default:
-                                            return '';
+                                            return const RadarChartTitle(text: '');
                                         }
                                       },
                                       titlePositionPercentageOffset: 0.1,
-                                      tickCount: 10,
-                                      ticksTextStyle:
-                                      const TextStyle(fontSize: 10.0, color: Colors.transparent),
+                                      ticksTextStyle: const TextStyle(
+                                          fontSize: 10.0,
+                                          color: Colors.transparent),
                                       tickBorderData: const BorderSide(
                                           color: Colors.transparent),
                                       radarBorderData: const BorderSide(
@@ -419,7 +422,7 @@ class _HorsePageState extends State<HorsePage> {
                                       borderData: FlBorderData(show: false),
                                     ),
                                     swapAnimationDuration:
-                                    const Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                     swapAnimationCurve: Curves.linear,
                                   ),
                                 ),
@@ -427,7 +430,7 @@ class _HorsePageState extends State<HorsePage> {
                                   margin: const EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text('레벨: ${horse.level}'),
                                       Text(
@@ -527,6 +530,24 @@ class _HorsePageState extends State<HorsePage> {
                                     ),
                                   ],
                                 ),
+                                Container(
+                                  margin: const EdgeInsets.symmetric(vertical: 12.0),
+                                  padding: const EdgeInsets.all(12.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.blue.withOpacity(0.4)),
+                                    borderRadius: BorderRadius.circular(15.0)
+                                  ),
+                                  child: Wrap(
+                                    spacing: 16.0,
+                                    children: const [
+                                      Text('최상급: 0.85이상'),
+                                      Text('상급: 0.80이상'),
+                                      Text('중급: 0.75이상'),
+                                      Text('하급: 0.70이상'),
+                                      Text('최하급: 그 외'),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           ),
