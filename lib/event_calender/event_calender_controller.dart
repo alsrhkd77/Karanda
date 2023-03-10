@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:karanda/common/date_time_converter.dart';
+import 'package:karanda/common/date_time_extension.dart';
 
 import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +33,8 @@ class EventCalenderController extends GetxController {
 
     Map body = jsonDecode(response.body);
     List data = body['events'];
-    DateTimeConverter converter = DateTimeConverter();
     DateTime lastUpdate = DateTime.parse(body['last_update']);
-    _lastUpdate = RxString(converter.convertFull(lastUpdate));
+    _lastUpdate = RxString(lastUpdate.format('yy.MM.dd HH:mm:ss'));
 
     for (Map e in data) {
       String title = e['title'];
@@ -46,8 +45,9 @@ class EventCalenderController extends GetxController {
       DateTime deadline = DateTime(2996, 11, 12);
       if (!count.contains('상시')) {
         deadline = DateTime.parse(e['deadline']);
-        Duration _count = deadline
-            .difference(converter.getDateFromDateTime(DateTime.now().toUtc().add(const Duration(hours: 9))));
+        DateTime _utcTime = DateTime.now().toUtc().add(const Duration(hours: 9));
+        Duration _count = deadline.difference(deadline.copyWith(
+            year: _utcTime.year, month: _utcTime.month, day: _utcTime.day));
         count = '${_count.inDays + 1} 일 남음';
       }
       result.add(

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:karanda/common/date_time_extension.dart';
 
 import '../common/custom_scroll_behavior.dart';
-import '../common/date_time_converter.dart';
 import '../event_calender/event_calender_controller.dart';
 import '../event_calender/event_model.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,6 @@ class CustomCalendar extends StatefulWidget {
 }
 
 class _CustomCalendarState extends State<CustomCalendar> {
-  final DateTimeConverter _dateTimeConverter = DateTimeConverter();
   int viewDays = 7;
 
   @override
@@ -61,7 +60,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                 height: 35,
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  _dateTimeConverter.dayOfWeek(date),
+                  date.dayOfWeek(),
                   style: TextStyle(
                     color: date.weekday == 6
                         ? Colors.blue
@@ -71,7 +70,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
               ),
               const Divider(),
               Text(
-                _dateTimeConverter.simpleMonthDay(date),
+                date.format('MM / dd'),
                 style: TextStyle(
                   color: date.weekday == 6
                       ? Colors.blue
@@ -122,7 +121,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
           12.0, 4, ((context.width / viewDays) * (90 - count)) + 12.0, 4),
       child: Tooltip(
         message:
-            '${eventModel.title}\n${_dateTimeConverter.convert(eventModel.deadline)} 까지',
+            '${eventModel.title}\n${eventModel.deadline.format('yyyy.MM.dd')} 까지',
         child: InkWell(
           child: Container(
             height: 25,

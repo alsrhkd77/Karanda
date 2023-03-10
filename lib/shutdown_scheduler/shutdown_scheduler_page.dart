@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:karanda/common/date_time_converter.dart';
+import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
 import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -19,7 +19,6 @@ class ShutdownSchedulerPage extends StatefulWidget {
 
 class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
   TimeOfDay selected = TimeOfDay.now();
-  final DateTimeConverter _dateTimeConverter = DateTimeConverter();
 
   Future<void> selectTime() async {
     TimeOfDay? _selectedTime = await showTimePicker(
@@ -96,7 +95,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
           Container(
             alignment: Alignment.center,
             child: Text(
-              _dateTimeConverter.getTime(selected),
+              selected.timeToString(lang: 'KR'),
               style:
                   const TextStyle(fontWeight: FontWeight.bold, fontSize: 60.0),
             ),
@@ -157,10 +156,10 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                               ? Row(
                                   children: [
                                     Text(
-                                      '${_dateTimeConverter.getTimeWithAmPm(_shutdownSchedulerNotifier.target)}에 종료',
+                                      '${_shutdownSchedulerNotifier.target.timeWithPeriod(period: 'KR', time: 'KR')}에 종료',
                                       style: TextStyle(
-                                          color:
-                                              context.textTheme.bodySmall!.color),
+                                          color: context
+                                              .textTheme.bodySmall!.color),
                                     ),
                                     const Padding(
                                       padding:

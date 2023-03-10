@@ -1,5 +1,6 @@
+import 'package:karanda/common/date_time_extension.dart';
+
 import '../event_calender/custom_calendar.dart';
-import '../common/date_time_converter.dart';
 import '../event_calender/event_calender_controller.dart';
 import '../event_calender/event_model.dart';
 import '../widgets/default_app_bar.dart';
@@ -20,7 +21,6 @@ class EventCalenderPage extends StatefulWidget {
 class _EventCalenderPageState extends State<EventCalenderPage> {
   final EventCalenderController _eventCalenderController =
       Get.put(EventCalenderController());
-  final DateTimeConverter _dateTimeConverter = DateTimeConverter();
   bool _flag = false;
 
   @override
@@ -113,7 +113,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                       eventModel.count == '상시'
                           ? const SizedBox()
                           : Text(
-                              '${_dateTimeConverter.convert(eventModel.deadline)}까지'),
+                              '${eventModel.deadline.format('yyyy.MM.dd')}까지'),
                       Text(eventModel.count),
                     ],
                   ),

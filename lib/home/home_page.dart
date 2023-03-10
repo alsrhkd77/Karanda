@@ -157,158 +157,165 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            body: ListView(
-              cacheExtent: 5000,
-              padding: const EdgeInsets.all(12.0),
-              children: [
-                bdoClock(_bdoWorldTimeNotifier.bdoTime),
-                /* Services */
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.code),
-                  title: TitleText(
-                    'Services',
-                    bold: true,
-                  ),
+            body: Center(
+              child: Container(
+                constraints: const BoxConstraints(
+                  maxWidth: 1520,
                 ),
-                const Divider(),
-                Wrap(
-                  runSpacing: 2.0,
-                  spacing: 2.0,
+                child: ListView(
+                  cacheExtent: 5000,
+                  padding: const EdgeInsets.all(12.0),
                   children: [
-                    singleIconTile(
-                      name: '선박 증축',
-                      icon: FontAwesomeIcons.ship,
-                      onTap: () {
-                        Get.toNamed('/ship-extension');
-                      },
+                    bdoClock(_bdoWorldTimeNotifier.bdoTime),
+                    /* Services */
+                    const ListTile(
+                      leading: Icon(FontAwesomeIcons.code),
+                      title: TitleText(
+                        'Services',
+                        bold: true,
+                      ),
                     ),
-                    singleIconTile(
-                      name: '이벤트 캘린더',
-                      //icon: FontAwesomeIcons.calendarCheck,
-                      icon: Icons.celebration_outlined,
-                      onTap: () {
-                        Get.toNamed('/event-calender');
-                      },
+                    const Divider(),
+                    Wrap(
+                      runSpacing: 2.0,
+                      spacing: 2.0,
+                      children: [
+                        singleIconTile(
+                          name: '선박 증축',
+                          icon: FontAwesomeIcons.ship,
+                          onTap: () {
+                            Get.toNamed('/ship-extension');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '이벤트 캘린더',
+                          //icon: FontAwesomeIcons.calendarCheck,
+                          icon: Icons.celebration_outlined,
+                          onTap: () {
+                            Get.toNamed('/event-calender');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '광명석 조합식',
+                          icon: FontAwesomeIcons.splotch,
+                          onTap: () {
+                            Get.toNamed('/artifact');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '말 성장치 계산기',
+                          icon: FontAwesomeIcons.chessKnight,
+                          onTap: () {
+                            Get.toNamed('/horse');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '시카라키아 아홉문장 계산기',
+                          icon: FontAwesomeIcons.calculator,
+                          onTap: () {
+                            Get.toNamed('/sycrakea');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '요루나키아 보름달이 뜬 밤 계산기',
+                          icon: FontAwesomeIcons.calculator,
+                          onTap: () {
+                            Get.toNamed('/yolunakea-moon');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '물물교환 계산기',
+                          icon: FontAwesomeIcons.arrowRightArrowLeft,
+                          onTap: () {
+                            Get.toNamed('/trade-home');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '예약 종료',
+                          icon: FontAwesomeIcons.powerOff,
+                          onTap: () {
+                            Get.toNamed('/shutdown-scheduler');
+                          },
+                        ),
+                      ],
                     ),
-                    singleIconTile(
-                      name: '광명석 조합식',
-                      icon: FontAwesomeIcons.splotch,
-                      onTap: () {
-                        Get.toNamed('/artifact');
-                      },
+                    const SizedBox(
+                      height: 20.0,
                     ),
-                    singleIconTile(
-                      name: '말 성장치 계산기',
-                      icon: FontAwesomeIcons.chessKnight,
-                      onTap: () {
-                        Get.toNamed('/horse');
-                      },
+                    /* Links */
+                    const ListTile(
+                      leading: Icon(FontAwesomeIcons.link),
+                      title: TitleText('Links', bold: true),
                     ),
-                    singleIconTile(
-                      name: '시카라키아 아홉문장 계산기',
-                      icon: FontAwesomeIcons.calculator,
-                      onTap: () {
-                        Get.toNamed('/sycrakea');
-                      },
+                    const Divider(),
+                    Wrap(
+                      runSpacing: 2.0,
+                      spacing: 2.0,
+                      children: [
+                        singleImageTile(
+                          name: '검은사막 공식 홈페이지',
+                          icon: 'assets/icons/bdo.png',
+                          onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
+                        ),
+                        singleImageTile(
+                          name: '검은사막 연구소(테스트 서버)',
+                          icon: 'assets/icons/bdo.png',
+                          onTap: () =>
+                              _launchURL('https://www.global-lab.playblackdesert.com/'),
+                        ),
+                        singleImageTile(
+                          name: '검은사막 인벤',
+                          icon: 'assets/icons/inven.png',
+                          onTap: () => _launchURL('https://black.inven.co.kr/'),
+                        ),
+                        singleImageTile(
+                          name: '검은사막 인벤 지도시뮬레이터',
+                          icon: 'assets/icons/inven.png',
+                          onTap: () =>
+                              _launchURL('https://black.inven.co.kr/dataninfo/map/'),
+                        ),
+                        singleImageTile(
+                          name: 'Garmoth',
+                          icon: 'assets/icons/garmoth.png',
+                          onTap: () => _launchURL('https://garmoth.com'),
+                        ),
+                        singleImageTile(
+                          name: 'BDO Codex',
+                          icon: 'assets/icons/bdocodex.png',
+                          onTap: () => _launchURL('https://bdocodex.com/kr/'),
+                        ),
+                        singleImageTile(
+                          name: 'OnTopReplica',
+                          icon: 'assets/icons/onTopReplica.png',
+                          onTap: () =>
+                              _launchURL('https://github.com/LorenzCK/OnTopReplica'),
+                        ),
+                        /*
+                    singleImageBox(
+                      name: '환상연화',
+                      icon: 'assets/icons/lotus.png',
+                      onTap: () => _launchURL('http://검은사막.환상연화.홈페이지.한국'),
                     ),
-                    singleIconTile(
-                      name: '요루나키아 보름달이 뜬 밤 계산기',
-                      icon: FontAwesomeIcons.calculator,
-                      onTap: () {
-                        Get.toNamed('/yolunakea-moon');
-                      },
+                     */
+                      ],
                     ),
-                    singleIconTile(
-                      name: '물물교환 계산기',
-                      icon: FontAwesomeIcons.arrowRightArrowLeft,
-                      onTap: () {
-                        Get.toNamed('/trade-home');
-                      },
-                    ),
-                    singleIconTile(
-                      name: '예약 종료',
-                      icon: FontAwesomeIcons.powerOff,
-                      onTap: () {
-                        Get.toNamed('/shutdown-scheduler');
-                      },
-                    ),
+                    const Divider(),
+                    /* footer */
+                    Card(
+                      elevation: 4.0,
+                      margin: const EdgeInsets.all(24.0),
+                      child: Container(
+                        margin: const EdgeInsets.all(24.0),
+                        width: Size.infinite.width,
+                        child: const Text(
+                          'Built with Flutter',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
                   ],
                 ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                /* Links */
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.link),
-                  title: TitleText('Links', bold: true),
-                ),
-                const Divider(),
-                Wrap(
-                  runSpacing: 2.0,
-                  spacing: 2.0,
-                  children: [
-                    singleImageTile(
-                      name: '검은사막 공식 홈페이지',
-                      icon: 'assets/icons/bdo.png',
-                      onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
-                    ),
-                    singleImageTile(
-                      name: '검은사막 연구소(테스트 서버)',
-                      icon: 'assets/icons/bdo.png',
-                      onTap: () =>
-                          _launchURL('https://www.global-lab.playblackdesert.com/'),
-                    ),
-                    singleImageTile(
-                      name: '검은사막 인벤',
-                      icon: 'assets/icons/inven.png',
-                      onTap: () => _launchURL('https://black.inven.co.kr/'),
-                    ),
-                    singleImageTile(
-                      name: '검은사막 인벤 지도시뮬레이터',
-                      icon: 'assets/icons/inven.png',
-                      onTap: () =>
-                          _launchURL('https://black.inven.co.kr/dataninfo/map/'),
-                    ),
-                    singleImageTile(
-                      name: 'Garmoth',
-                      icon: 'assets/icons/garmoth.png',
-                      onTap: () => _launchURL('https://garmoth.com'),
-                    ),
-                    singleImageTile(
-                      name: 'BDO Codex',
-                      icon: 'assets/icons/bdocodex.png',
-                      onTap: () => _launchURL('https://bdocodex.com/kr/'),
-                    ),
-                    singleImageTile(
-                      name: 'OnTopReplica',
-                      icon: 'assets/icons/onTopReplica.png',
-                      onTap: () =>
-                          _launchURL('https://github.com/LorenzCK/OnTopReplica'),
-                    ),
-                    /*
-                singleImageBox(
-                  name: '환상연화',
-                  icon: 'assets/icons/lotus.png',
-                  onTap: () => _launchURL('http://검은사막.환상연화.홈페이지.한국'),
-                ),
-                 */
-                  ],
-                ),
-                const Divider(),
-                /* footer */
-                Card(
-                  elevation: 4.0,
-                  margin: const EdgeInsets.all(24.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(24.0),
-                    width: Size.infinite.width,
-                    child: const Text(
-                      'Built with Flutter',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
           );
         },
