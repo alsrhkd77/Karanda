@@ -21,18 +21,4 @@ extension DateTimeExtension on DateTime {
     _format = _format ?? 'yyyy.MM.dd HH:mm:ss';
     return DateFormat(_format).format(this);
   }
-
-  String monthDay() {
-    return DateFormat('MM / dd').format(this);
-  }
-
-  String yearMonthDay() {
-    return DateFormat('yyyy.MM.dd').format(this);
-  }
-
-  String yearMonthDayTime() {
-    return DateFormat('yy.MM.dd HH:mm:ss').format(this);
-  }
-
-
 }

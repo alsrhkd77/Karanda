@@ -1,5 +1,6 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
+import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/title_text.dart';
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   /* unused */
   Widget singleIconBox(
       {required String name, required IconData icon, required var onTap}) {
@@ -126,9 +126,32 @@ class _HomePageState extends State<HomePage> {
           margin: const EdgeInsets.all(24.0));
     }
   }
-  
-  Widget bdoClock(TimeOfDay time){
-    return Text('${time.hour} : ${time.minute}');
+
+  Widget bdoClock(TimeOfDay time) {
+    String _icon = 'assets/icons/sun.png';
+    if(time.hour >= 22 || time.hour < 7){
+      _icon = 'assets/icons/moon.png';
+    }
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(18.0, 4.0, 0, 0),
+      child: Row(
+        children: [
+          Image.asset(
+            _icon,
+            height: 22,
+            width: 22,
+            filterQuality: FilterQuality.low,
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 3.0, 0, 0),
+            child: Text(time.timeWithPeriod(), style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -136,10 +159,12 @@ class _HomePageState extends State<HomePage> {
     return ChangeNotifierProvider(
       create: (_) => BdoWorldTimeNotifier(),
       child: Consumer(
-        builder: (context, BdoWorldTimeNotifier _bdoWorldTimeNotifier, _){
+        builder: (context, BdoWorldTimeNotifier _bdoWorldTimeNotifier, _) {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
+              leading: bdoClock(_bdoWorldTimeNotifier.bdoTime),
+              leadingWidth: 150,
               title: Text(
                 'Karanda',
                 style: GoogleFonts.sourceCodePro(fontSize: 26.0),
@@ -166,7 +191,6 @@ class _HomePageState extends State<HomePage> {
                   cacheExtent: 5000,
                   padding: const EdgeInsets.all(12.0),
                   children: [
-                    bdoClock(_bdoWorldTimeNotifier.bdoTime),
                     /* Services */
                     const ListTile(
                       leading: Icon(FontAwesomeIcons.code),
@@ -255,13 +279,14 @@ class _HomePageState extends State<HomePage> {
                         singleImageTile(
                           name: '검은사막 공식 홈페이지',
                           icon: 'assets/icons/bdo.png',
-                          onTap: () => _launchURL('https://www.kr.playblackdesert.com'),
+                          onTap: () =>
+                              _launchURL('https://www.kr.playblackdesert.com'),
                         ),
                         singleImageTile(
                           name: '검은사막 연구소(테스트 서버)',
                           icon: 'assets/icons/bdo.png',
-                          onTap: () =>
-                              _launchURL('https://www.global-lab.playblackdesert.com/'),
+                          onTap: () => _launchURL(
+                              'https://www.global-lab.playblackdesert.com/'),
                         ),
                         singleImageTile(
                           name: '검은사막 인벤',
@@ -271,8 +296,8 @@ class _HomePageState extends State<HomePage> {
                         singleImageTile(
                           name: '검은사막 인벤 지도시뮬레이터',
                           icon: 'assets/icons/inven.png',
-                          onTap: () =>
-                              _launchURL('https://black.inven.co.kr/dataninfo/map/'),
+                          onTap: () => _launchURL(
+                              'https://black.inven.co.kr/dataninfo/map/'),
                         ),
                         singleImageTile(
                           name: 'Garmoth',
@@ -287,8 +312,8 @@ class _HomePageState extends State<HomePage> {
                         singleImageTile(
                           name: 'OnTopReplica',
                           icon: 'assets/icons/onTopReplica.png',
-                          onTap: () =>
-                              _launchURL('https://github.com/LorenzCK/OnTopReplica'),
+                          onTap: () => _launchURL(
+                              'https://github.com/LorenzCK/OnTopReplica'),
                         ),
                         /*
                     singleImageBox(

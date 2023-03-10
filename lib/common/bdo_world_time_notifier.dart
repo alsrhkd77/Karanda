@@ -93,6 +93,7 @@ class BdoWorldTimeNotifier with ChangeNotifier {
   late Timer _timer;
 
   BdoWorldTimeNotifier() {
+    updateBdoTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       realTime = DateTime.now();
       updateBdoTime();
