@@ -81,6 +81,28 @@ class _TradeHomePageState extends State<TradeHomePage> {
           ),
         ),
       ),
+      SizedBox(
+        width: 300,
+        height: 100,
+        child: Card(
+          margin: const EdgeInsets.all(8.0),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(13.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Icon(FontAwesomeIcons.solidHandshake),
+                SizedBox(height: 8.0,),
+                Text('교섭력 계산기'),
+              ],
+            ),
+            onTap: (){
+              Get.toNamed('parley-calculator');
+            },
+          ),
+        ),
+      ),
     ];
   }
 
@@ -95,7 +117,7 @@ class _TradeHomePageState extends State<TradeHomePage> {
           children: [
             const ListTile(
               leading: Icon(FontAwesomeIcons.arrowRightArrowLeft),
-              title: TitleText('물물교환 계산기'),
+              title: TitleText('물물교환 계산기', bold: true,),
             ),
             Wrap(
               children: buildButton(),

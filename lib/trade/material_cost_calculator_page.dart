@@ -6,14 +6,14 @@ import 'package:intl/intl.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 
-class MaterialCostCalculator extends StatefulWidget {
-  const MaterialCostCalculator({Key? key}) : super(key: key);
+class MaterialCostCalculatorPage extends StatefulWidget {
+  const MaterialCostCalculatorPage({Key? key}) : super(key: key);
 
   @override
-  State<MaterialCostCalculator> createState() => _MaterialCostCalculatorState();
+  State<MaterialCostCalculatorPage> createState() => _MaterialCostCalculatorPageState();
 }
 
-class _MaterialCostCalculatorState extends State<MaterialCostCalculator> {
+class _MaterialCostCalculatorPageState extends State<MaterialCostCalculatorPage> {
   final numFormat = NumberFormat('###,###,###,###');
   final List<Map> items = [];
 
@@ -157,7 +157,7 @@ class _MaterialCostCalculatorState extends State<MaterialCostCalculator> {
               children: [
                 const ListTile(
                   leading: Icon(Icons.calculate),
-                  title: TitleText('재료비 계산기'),
+                  title: TitleText('재료비 계산기', bold: true,),
                 ),
                 TitleText('합계: ${numFormat.format(_price)} 은화'),
                 const Divider(),
