@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                           name: '물물교환 계산기',
                           icon: FontAwesomeIcons.arrowRightArrowLeft,
                           onTap: () {
-                            Get.toNamed('/trade-home');
+                            Get.toNamed('/trade-calculator');
                           },
                         ),
                         singleIconTile(

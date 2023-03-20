@@ -6,7 +6,9 @@ import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const DefaultAppBar({Key? key}) : super(key: key);
+  final PreferredSizeWidget? bottom;
+
+  const DefaultAppBar({Key? key, this.bottom}) : super(key: key);
 
   Widget bdoClock(TimeOfDay time) {
     String _icon = 'assets/icons/sun.png';
@@ -29,8 +31,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 3.0, 0, 0),
             child: Text(time.timeWithPeriod(),
-                style:
-                    const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+                style: const TextStyle(
+                    fontSize: 14.0, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -58,6 +60,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Get.offAllNamed('/');
               },
             ),
+            bottom: bottom,
           );
         },
       ),
@@ -65,5 +68,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  Size get preferredSize {
+    return bottom == null
+        ? Size.fromHeight(AppBar().preferredSize.height)
+        : Size.fromHeight(AppBar().preferredSize.height + bottom!.preferredSize.height);
+  }
 }

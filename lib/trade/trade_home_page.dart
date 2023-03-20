@@ -12,8 +12,7 @@ class TradeHomePage extends StatefulWidget {
 }
 
 class _TradeHomePageState extends State<TradeHomePage> {
-
-  List<Widget> buildButton(){
+  List<Widget> buildButton() {
     return <Widget>[
       SizedBox(
         width: 300,
@@ -27,11 +26,13 @@ class _TradeHomePageState extends State<TradeHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
                 Icon(FontAwesomeIcons.weightHanging),
-                SizedBox(height: 8.0,),
+                SizedBox(
+                  height: 8.0,
+                ),
                 Text('선박 과적 계산기'),
               ],
             ),
-            onTap: (){
+            onTap: () {
               Get.toNamed('overloaded-ship');
             },
           ),
@@ -49,11 +50,13 @@ class _TradeHomePageState extends State<TradeHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
                 Icon(Icons.calculate),
-                SizedBox(height: 8.0,),
+                SizedBox(
+                  height: 8.0,
+                ),
                 Text('재료비 계산기'),
               ],
             ),
-            onTap: (){
+            onTap: () {
               Get.toNamed('material-cost-calculator');
             },
           ),
@@ -71,11 +74,13 @@ class _TradeHomePageState extends State<TradeHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
                 Icon(FontAwesomeIcons.coins),
-                SizedBox(height: 8.0,),
+                SizedBox(
+                  height: 8.0,
+                ),
                 Text('까마귀 주화 효율 계산기'),
               ],
             ),
-            onTap: (){
+            onTap: () {
               Get.toNamed('crow-coin');
             },
           ),
@@ -93,11 +98,13 @@ class _TradeHomePageState extends State<TradeHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
                 Icon(FontAwesomeIcons.solidHandshake),
-                SizedBox(height: 8.0,),
+                SizedBox(
+                  height: 8.0,
+                ),
                 Text('교섭력 계산기'),
               ],
             ),
-            onTap: (){
+            onTap: () {
               Get.toNamed('parley-calculator');
             },
           ),
@@ -117,7 +124,10 @@ class _TradeHomePageState extends State<TradeHomePage> {
           children: [
             const ListTile(
               leading: Icon(FontAwesomeIcons.arrowRightArrowLeft),
-              title: TitleText('물물교환 계산기', bold: true,),
+              title: TitleText(
+                '물물교환 계산기',
+                bold: true,
+              ),
             ),
             Wrap(
               children: buildButton(),

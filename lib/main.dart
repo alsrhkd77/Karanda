@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/parley_calculator_page.dart';
+import 'package:karanda/trade/trade_calculator_page.dart';
 import 'settings/app_update_page.dart';
 import 'settings/experimental_function_page.dart';
 import 'trade/crow_coin_exchange_page.dart';
@@ -95,6 +96,8 @@ class MyApp extends StatelessWidget {
               GetPage(
                   name: '/ship-extension',
                   page: () => const ShipExtensionPage()),
+              GetPage(name: '/trade-calculator', page: () => const TradeCalculatorPage()),
+              /* unused */
               GetPage(
                   name: '/overloaded-ship',
                   page: () => const OverloadedShipPage()),
