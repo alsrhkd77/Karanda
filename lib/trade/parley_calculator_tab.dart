@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class ParleyCalculatorTab extends StatefulWidget {
   const ParleyCalculatorTab({Key? key}) : super(key: key);
@@ -79,19 +83,13 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
       'txt controller': TextEditingController(),
     },
   ];
+  Map tradeLevelList = {
+    '교역 레벨': {'name': '교역 레벨', 'decrease': 0.0},
+  };
+  String tradeLevel = '교역 레벨';
   NumberFormat numberFormat = NumberFormat('###,###,###,###');
 
-  TextEditingController decreaseTextEditingController = TextEditingController();
-
   bool useValuePack = false;
-  double decrease = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-    getDecrease();
-    getValuePack();
-  }
 
   int get parley {
     int _total = 0;
@@ -101,34 +99,42 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
     return _total;
   }
 
-  Future<void> getDecrease() async {
+  Future<bool> loadTradeLevelData() async {
+    if (tradeLevelList.length > 1) {
+      return true;
+    }
+    String jsonString = await http
+        .get(Uri.parse(
+            'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/tradeLevel.json'))
+        .then((response) => response.body);
+    tradeLevelList.addAll(jsonDecode(jsonString));
+
+    getTradeLevel();
+    getValuePack();
+    return true;
+  }
+
+  Future<void> getTradeLevel() async {
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
-    double? _decrease = sharedPreferences.getDouble('parley decrease');
-    if (_decrease != null) {
-      decreaseTextEditingController.text = _decrease.toString();
+        await SharedPreferences.getInstance();
+    String? _tradeLevel = sharedPreferences.getString('trade level');
+    if (_tradeLevel!= null && _tradeLevel.isNotEmpty) {
       setState(() {
-        decrease = _decrease;
+        tradeLevel = _tradeLevel;
       });
     }
   }
 
-  Future<void> saveDecrease() async {
+  Future<void> saveTradeLevel() async {
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
-    String text = decreaseTextEditingController.text.trim();
-    if (text.isEmpty) {
-      text = '0.0';
-    }
-    sharedPreferences.setDouble('parley decrease', double.parse(text));
-    setState(() {
-      decrease = double.parse(text);
-    });
+        await SharedPreferences.getInstance();
+    sharedPreferences.setString('trade level', tradeLevel);
   }
 
   Future<void> getValuePack() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.containsKey('use value pack')){
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    if (sharedPreferences.containsKey('use value pack')) {
       setState(() {
         useValuePack = sharedPreferences.getBool('use value pack')!;
       });
@@ -136,12 +142,13 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
   }
 
   Future<void> saveValuePack() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     sharedPreferences.setBool('use value pack', useValuePack);
   }
 
   Widget buildParleyList() {
-    double _decrease = decrease;
+    double _decrease = tradeLevelList[tradeLevel]['decrease'];
     if (useValuePack) {
       _decrease += 10;
     }
@@ -155,8 +162,8 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
         return Card(
           margin: const EdgeInsets.all(8.0),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 20.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -169,8 +176,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
                       margin: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: TextField(
                         controller: parleyList[index]['txt controller'],
-                        keyboardType:
-                        const TextInputType.numberWithOptions(),
+                        keyboardType: const TextInputType.numberWithOptions(),
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(
                               RegExp(r'^(\d{0,3})')),
@@ -180,8 +186,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
                           suffixText: '회',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
-                            borderSide:
-                            const BorderSide(color: Colors.blue),
+                            borderSide: const BorderSide(color: Colors.blue),
                           ),
                         ),
                         onChanged: (value) {
@@ -191,8 +196,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
                             });
                           } else {
                             setState(() {
-                              parleyList[index]['count'] =
-                                  int.parse(value);
+                              parleyList[index]['count'] = int.parse(value);
                             });
                           }
                         },
@@ -202,8 +206,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
                         onPressed: () {
                           if (parleyList[index]['count'] < 1000) {
                             parleyList[index]['txt controller'].text =
-                                (parleyList[index]['count'] + 1)
-                                    .toString();
+                                (parleyList[index]['count'] + 1).toString();
                             setState(() {
                               parleyList[index]['count']++;
                             });
@@ -214,8 +217,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
                         onPressed: () {
                           if (parleyList[index]['count'] > 0) {
                             parleyList[index]['txt controller'].text =
-                                (parleyList[index]['count'] - 1)
-                                    .toString();
+                                (parleyList[index]['count'] - 1).toString();
                             setState(() {
                               parleyList[index]['count']--;
                             });
@@ -239,105 +241,121 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const ListTile(
-            leading: Icon(FontAwesomeIcons.solidHandshake),
-            title: TitleText(
-              '교섭력 계산기',
-              bold: true,
+    return FutureBuilder(
+      future: loadTradeLevelData(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: SpinKitFadingCube(
+              size: 120.0,
+              color: Colors.blue,
             ),
-          ),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 1400),
-            child: Column(
-              children: [
-                ListView(
-                  padding: const EdgeInsets.all(12.0),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
+          );
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const ListTile(
+                leading: Icon(FontAwesomeIcons.solidHandshake),
+                title: TitleText(
+                  '교섭력 계산기',
+                  bold: true,
+                ),
+              ),
+              Container(
+                constraints: const BoxConstraints(maxWidth: 1400),
+                child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    ListView(
+                      padding: const EdgeInsets.all(12.0),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       children: [
-                        Container(
-                          constraints: const BoxConstraints(
-                            maxWidth: 240,
-                          ),
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            controller: decreaseTextEditingController,
-                            keyboardType:
-                            const TextInputType.numberWithOptions(),
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'^(\d{0,3})?\.?\d{0,2}')),
-                            ],
-                            decoration: InputDecoration(
-                              labelText: '교섭력 감소량',
-                              suffixText: '%',
-                              border: OutlineInputBorder(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              constraints: const BoxConstraints(
+                                maxWidth: 180,
+                              ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: DropdownButton(
+                                focusColor: Colors.transparent,
+                                menuMaxHeight: 600,
                                 borderRadius: BorderRadius.circular(8.0),
-                                borderSide:
-                                const BorderSide(color: Colors.blue),
+                                value: tradeLevel,
+                                items: tradeLevelList.keys
+                                    .map<DropdownMenuItem<String>>((e) =>
+                                        DropdownMenuItem(
+                                            value: e, child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(e),
+                                            )))
+                                    .toList(),
+                                onChanged: (String? value){
+                                  if (value!.isEmpty){
+                                    return;
+                                  }
+                                  setState(() {
+                                    tradeLevel = value;
+                                  });
+                                  saveTradeLevel();
+                                },
+                                isExpanded: true,
                               ),
                             ),
-                            onChanged: (value) {
-                              saveDecrease();
-                            },
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: useValuePack,
-                              onChanged: (value) {
-                                if (value != null) {
-                                  setState(() {
-                                    useValuePack = value;
-                                  });
-                                  saveValuePack();
-                                }
-                              },
-                            ),
-                            const Text('밸류 패키지 사용 (10% 감소)'),
+                            Row(
+                              children: [
+                                Checkbox(
+                                  value: useValuePack,
+                                  onChanged: (value) {
+                                    if (value != null) {
+                                      setState(() {
+                                        useValuePack = value;
+                                      });
+                                      saveValuePack();
+                                    }
+                                  },
+                                ),
+                                const Text('밸류 패키지 (10% 감소)'),
+                              ],
+                            )
                           ],
-                        )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(24.0),
+                          alignment: Alignment.center,
+                          child: TitleText(
+                              '필요 교섭력 합계: ${numberFormat.format(parley)}'),
+                        ),
+                        const Divider(),
                       ],
                     ),
-                    Container(
-                      margin: const EdgeInsets.all(24.0),
-                      alignment: Alignment.center,
-                      child: TitleText(
-                          '필요 교섭력 합계: ${numberFormat.format(parley)}'),
+                    ScrollConfiguration(
+                      behavior: CustomScrollBehavior(),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          constraints: const BoxConstraints(
+                            minWidth: 1050,
+                            maxWidth: 1350,
+                          ),
+                          child: buildParleyList(),
+                        ),
+                      ),
                     ),
-                    const Divider(),
+                    const SizedBox(
+                      height: 18.0,
+                    )
                   ],
                 ),
-                ScrollConfiguration(
-                  behavior: CustomScrollBehavior(),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width - 20,
-                      constraints: const BoxConstraints(
-                        minWidth: 1050,
-                        maxWidth: 1350,
-                      ),
-                      child: buildParleyList(),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 18.0,
-                )
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
