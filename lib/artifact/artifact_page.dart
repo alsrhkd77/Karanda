@@ -1,3 +1,5 @@
+import 'package:flutter/scheduler.dart';
+
 import '../artifact/artifact_controller.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
@@ -137,9 +139,10 @@ class _ArtifactPageState extends State<ArtifactPage> {
         alignment: WrapAlignment.center,
         children: _artifactController.keywords
             .map((e) => Chip(
-                  label: Text(e,),
+                  label: Text(
+                    e,
+                  ),
                   onDeleted: () => _artifactController.removeKeyword(e),
-
                 ))
             .toList(),
       ),
@@ -175,6 +178,54 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(color: Colors.blue),
+                ),
+              ),
+            );
+          },
+          optionsViewBuilder: (BuildContext context,
+              AutocompleteOnSelected<String> onSelected,
+              Iterable<String> options) {
+            return Align(
+              alignment: Alignment.topLeft,
+              child: Material(
+                elevation: 4.0,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: 500,
+                    maxWidth: constraints.biggest.width,
+                  ),
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: options.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final String option = options.elementAt(index);
+                      return InkWell(
+                        onTap: () {
+                          onSelected(option);
+                        },
+                        child: Builder(builder: (BuildContext context) {
+                          final bool highlight =
+                              AutocompleteHighlightedOption.of(context) ==
+                                  index;
+                          if (highlight) {
+                            SchedulerBinding.instance
+                                .addPostFrameCallback((Duration timeStamp) {
+                              Scrollable.ensureVisible(context, alignment: 0.5);
+                            });
+                          }
+                          return Container(
+                            color:
+                                highlight ? Theme.of(context).focusColor : null,
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              RawAutocomplete.defaultStringForOption(option),
+                            ),
+                          );
+                        }),
+                      );
+                    },
+                  ),
                 ),
               ),
             );
@@ -272,7 +323,8 @@ class _ArtifactPageState extends State<ArtifactPage> {
                                 }
                                 _textEditingController.clear();
                                 //FocusManager.instance.primaryFocus?.unfocus();
-                                FocusScope.of(context).requestFocus(_searchBarFocus);
+                                FocusScope.of(context)
+                                    .requestFocus(_searchBarFocus);
                               },
                             ),
                           ),
