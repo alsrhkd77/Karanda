@@ -46,7 +46,7 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
   }
 
   Future<void> openFile(String path) async {
-    await Process.start(path, ["-t", "-l", "1000"]).then((value) => {});
+    await Process.start(path, ["-t", "-l", "1000", "/silent"]).then((value) => {});
   }
 
   Widget buildButton() {
