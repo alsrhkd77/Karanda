@@ -261,6 +261,15 @@ class _HomePageState extends State<HomePage> {
                             Get.toNamed('/shutdown-scheduler');
                           },
                         ),
+                        /*
+                        singleIconTile(
+                          name: '시카라키아 컬러 카운터',
+                          icon: FontAwesomeIcons.staffSnake,
+                          onTap: () {
+                            Get.toNamed('/');
+                          },
+                        ),
+                         */
                       ],
                     ),
                     const SizedBox(

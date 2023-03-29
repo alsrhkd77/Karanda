@@ -44,7 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(FontAwesomeIcons.circleHalfStroke),
+                  leading: const Icon(Icons.dark_mode_outlined),
                   title: const Text('다크 모드'),
                   trailing: ChangeNotifierProvider.value(
                     value: SettingsNotifier(),
@@ -87,14 +87,14 @@ class _SettingsPageState extends State<SettingsPage> {
                             'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                       )
                     : ListTile(
-                        leading: const Icon(FontAwesomeIcons.anglesUp),
+                        leading: const Icon(Icons.system_update_alt_rounded),
                         title: const Text('업데이트'),
                         onTap: () {
                           Get.toNamed('/desktop-app');
                         },
                       ),
                 const ListTile(
-                  leading: Icon(FontAwesomeIcons.globe),
+                  leading: Icon(Icons.public),
                   title: Text('서버'),
                   trailing: Text('KR', style: TextStyle(fontWeight: FontWeight.bold),),
                 ),
