@@ -50,6 +50,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
     await sharedPreferences.setInt('overloadedShipTotalWeight', totalWeight);
     await sharedPreferences.setInt('overloadedShipSailorWeight', sailorWeight);
     await sharedPreferences.setInt('overloadedShipEquipWeight', equipWeight);
+    await sharedPreferences.setBool('overloadedShipFormType', advancedMode);
   }
 
   Future<bool> getData() async {
@@ -61,6 +62,9 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
         sharedPreferences.getInt('overloadedShipSailorWeight') ?? sailorWeight;
     equipWeight =
         sharedPreferences.getInt('overloadedShipEquipWeight') ?? equipWeight;
+    setState(() {
+      advancedMode = sharedPreferences.getBool('overloadedShipFormType') ?? advancedMode;
+    });
     initValue();
     return true;
   }
@@ -434,16 +438,14 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                 '과적 계산기',
                 bold: true,
               ),
-              trailing: OutlinedButton(
-                child: Text(
-                  advancedMode ? '고급' : '일반',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
+              trailing: IconButton(
                 onPressed: () {
                   setState(() {
                     advancedMode = !advancedMode;
                   });
+                  saveData();
                 },
+                icon: Icon(Icons.dynamic_form_outlined, color: advancedMode ? Colors.blue : null,),
               ),
             ),
             Container(

@@ -263,6 +263,13 @@ class _ArtifactPageState extends State<ArtifactPage> {
   }
 
   Widget buildFilterButton() {
+    return IconButton(
+      onPressed: _artifactController.changeFilter,
+      icon: Icon(
+        _artifactController.orFilter.value ? Icons.join_full : Icons.join_inner,
+      ),
+      tooltip: _artifactController.orFilter.value ? 'OR' : 'AND',
+    );
     return OutlinedButton(
       child: Text(
         _artifactController.orFilter.value ? 'Or 필터' : 'And 필터',
