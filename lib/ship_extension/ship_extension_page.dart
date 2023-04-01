@@ -229,11 +229,14 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
+                        Container(
+                          width: MediaQuery.of(context).size.width - 250,
+                          constraints: const BoxConstraints(
+                            maxWidth: 1100,
+                          ),
                           padding: const EdgeInsets.all(12.0),
                           child: Obx(
                             () => LinearPercentIndicator(
-                              width: MediaQuery.of(context).size.width - 250,
                               animation: true,
                               lineHeight: 18.0,
                               animationDuration: 500,
