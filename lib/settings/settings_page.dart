@@ -5,7 +5,6 @@ import '../settings/settings_notifier.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -79,10 +78,10 @@ class _SettingsPageState extends State<SettingsPage> {
                  */
                 kIsWeb
                     ? ListTile(
-                        leading: const Icon(FontAwesomeIcons.laptopCode),
-                        title: const Text('Windows desktop app'),
+                        leading: const Icon(Icons.install_desktop),
+                        title: const Text('Install Windows desktop'),
                         trailing:
-                            const Icon(FontAwesomeIcons.arrowUpRightFromSquare),
+                            const Icon(Icons.open_in_new),
                         onTap: () => _launchURL(
                             'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                       )
@@ -97,6 +96,22 @@ class _SettingsPageState extends State<SettingsPage> {
                   leading: Icon(Icons.public),
                   title: Text('서버'),
                   trailing: Text('KR', style: TextStyle(fontWeight: FontWeight.bold),),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.reviews_outlined),
+                  title: const Text('건의하기 / 버그 제보'),
+                  trailing:
+                  const Icon(Icons.open_in_new),
+                  onTap: () => _launchURL(
+                      'https://forms.gle/Fyyc8DpcwPVMgsVy6'),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.description_outlined),
+                  title: const Text('패치 내역'),
+                  trailing:
+                  const Icon(Icons.open_in_new),
+                  onTap: () => _launchURL(
+                      'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                 ),
               ],
             ),
