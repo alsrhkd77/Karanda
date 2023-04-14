@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/parley_calculator_page.dart';
