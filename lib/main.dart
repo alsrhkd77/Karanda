@@ -63,12 +63,14 @@ class MyApp extends StatelessWidget {
             title: 'Karanda',
             theme: ThemeData(
               useMaterial3: true,
-              fontFamily: GoogleFonts.gothicA1().fontFamily,
+              //fontFamily: GoogleFonts.gothicA1().fontFamily,
+              fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blue,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
-              fontFamily: GoogleFonts.gothicA1().fontFamily,
+              //fontFamily: GoogleFonts.gothicA1().fontFamily,
+              fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
             ),
