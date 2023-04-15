@@ -3,8 +3,8 @@
 
 #define MyAppName "Karanda"
 #define MyAppVersion "1.0"
-#define MyAppPublisher "ÇÜ¹Â"
-#define MyAppURL "https://hwansangyeonhwa.github.io/Karanda/"
+#define MyAppPublisher "í–„ë®¤"
+#define MyAppURL "https://www.karanda.kr"
 #define MyAppExeName "Karanda.exe"
 
 [Setup]

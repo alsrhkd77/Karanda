@@ -5,8 +5,9 @@
 ## 사용
 
 - Link: [https://github.com/HwanSangYeonHwa/Karanda](https://github.com/HwanSangYeonHwa/Karanda)
-- Web: [https://hwansangyeonhwa.github.io/Karanda](https://hwansangyeonhwa.github.io/Karanda)
+- Web: [https://www.karanda.kr](https://www.karanda.kr)
 - Windows Desktop App: [https://github.com/HwanSangYeonHwa/Karanda/releases](https://github.com/HwanSangYeonHwa/Karanda/releases)
+- Wiki: [https://github.com/HwanSangYeonHwa/Karanda/wiki](https://github.com/HwanSangYeonHwa/Karanda/wiki)
 
 ## 개발 언어
 
@@ -16,16 +17,16 @@
 
 ## 기능
 
-- [x] 말 성장치 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/horse)
-- [x] 이벤트 캘린더 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/event-calender)
-- [x] 시카라키아 아홉문장 실타래 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/sycrakea)
-- [x] 광명석 조합식 탐색기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/artifact)
-- [x] 예약 종료(Windows desktop 환경에서만 사용가능) [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/shutdown-scheduler)
-- [x] 선박 증축 재료 수급 현황 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/ship-extension)
-- [x] 물교 과적 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/trade-calculator)
-- [x] 1단계 교환 비용 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/trade-calculator)
-- [x] 주화 환율 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/trade-calculator)
+- [x] 말 성장치 계산기 [바로가기](https://www.karanda.kr/#/horse)
+- [x] 이벤트 캘린더 [바로가기](https://www.karanda.kr/#/event-calender)
+- [x] 시카라키아 아홉문장 실타래 계산기 [바로가기](https://www.karanda.kr/#/sycrakea)
+- [x] 광명석 조합식 탐색기 [바로가기](https://www.karanda.kr/#/artifact)
+- [x] 예약 종료(Windows desktop 환경에서만 사용가능) [바로가기](https://www.karanda.kr/#/shutdown-scheduler)
+- [x] 선박 증축 재료 수급 현황 [바로가기](https://www.karanda.kr/#/ship-extension)
+- [x] 물교 과적 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
+- [x] 1단계 교환 비용 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
+- [x] 주화 환율 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
 - [ ] 보스 시간표 + 알람(중단)
-- [x] 요루나키아 보름달이 뜬 밤 실타래 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/yolunakea-moon)
+- [x] 요루나키아 보름달이 뜬 밤 실타래 계산기 [바로가기](https://www.karanda.kr/#/yolunakea-moon)
 - [x] 검은사막 월드 시계
-- [x] 교섭력 계산기 [바로가기](https://hwansangyeonhwa.github.io/Karanda/#/trade-calculator)
+- [x] 교섭력 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
