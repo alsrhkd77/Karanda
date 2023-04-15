@@ -1,4 +1,3 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
@@ -147,7 +146,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 3.0, 0, 0),
-            child: Text(time.timeWithPeriod(), style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+            child: Text(time.timeWithPeriod(), style: const TextStyle(fontFamily:'NanumSquareRound', fontSize: 14.0, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -165,9 +164,9 @@ class _HomePageState extends State<HomePage> {
               centerTitle: true,
               leading: bdoClock(_bdoWorldTimeNotifier.bdoTime),
               leadingWidth: 150,
-              title: Text(
+              title: const Text(
                 'Karanda',
-                style: GoogleFonts.sourceCodePro(fontSize: 26.0),
+                style: TextStyle(fontFamily: 'NanumSquareRound', fontWeight: FontWeight.w700, fontSize: 26.0),
               ),
               actions: [
                 Container(

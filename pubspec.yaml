@@ -107,6 +107,17 @@ flutter:
         - asset: fonts/Maplestory Light.ttf
         - asset: fonts/Maplestory Bold.ttf
           weight: 700
+
+    - family: NanumSquareRound
+      fonts:
+        - asset: fonts/nanum-square-round/NanumSquareRoundOTFL.otf
+          weight: 100
+        - asset: fonts/nanum-square-round/NanumSquareRoundOTFR.otf
+          weight: 400
+        - asset: fonts/nanum-square-round/NanumSquareRoundOTFB.otf
+          weight: 600
+        - asset: fonts/nanum-square-round/NanumSquareRoundOTFEB.otf
+          weight: 900
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

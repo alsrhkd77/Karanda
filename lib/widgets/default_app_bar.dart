@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +30,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 3.0, 0, 0),
             child: Text(time.timeWithPeriod(),
-                style: const TextStyle(
-                    fontSize: 14.0, fontWeight: FontWeight.bold)),
+                style: const TextStyle(fontFamily:'NanumSquareRound', fontSize: 14.0, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -51,9 +49,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
               bdoClock(_bdoWorldTimeNotifier.bdoTime),
             ],
             title: InkWell(
-              child: Text(
+              child: const Text(
                 'Karanda',
-                style: GoogleFonts.sourceCodePro(fontSize: 26.0),
+                style: TextStyle(fontFamily: 'NanumSquareRound', fontWeight: FontWeight.w700, fontSize: 26.0),
               ),
               hoverColor: Colors.transparent,
               onTap: () {
