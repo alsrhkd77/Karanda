@@ -2,15 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
+import 'package:karanda/auth/auth_notifier.dart';
+import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
-import 'package:karanda/trade/parley_calculator_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'settings/app_update_page.dart';
 import 'settings/experimental_function_page.dart';
-import 'trade/crow_coin_exchange_page.dart';
-import 'trade/material_cost_calculator_page.dart';
-import 'trade/overloaded_ship_page.dart';
-import 'trade/trade_home_page.dart';
+
 import 'package:window_size/window_size.dart';
 
 import '../artifact/artifact_page.dart';
@@ -52,10 +50,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
+        ChangeNotifierProvider(create: (_) => AuthNotifier())
       ],
-      child: Consumer2(
+      child: Consumer3(
         builder: (context, SettingsNotifier _settings,
-            VersionNotifier _versionNotifier, _) {
+            VersionNotifier _versionNotifier, AuthNotifier _authNotifier, _) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
@@ -98,17 +97,7 @@ class MyApp extends StatelessWidget {
                   name: '/ship-extension',
                   page: () => const ShipExtensionPage()),
               GetPage(name: '/trade-calculator', page: () => const TradeCalculatorPage()),
-              /* unused */
-              GetPage(
-                  name: '/overloaded-ship',
-                  page: () => const OverloadedShipPage()),
-              GetPage(
-                  name: '/crow-coin', page: () => const CrowCoinExchangePage()),
-              GetPage(
-                  name: '/material-cost-calculator',
-                  page: () => const MaterialCostCalculatorPage()),
-              GetPage(name: '/trade-home', page: () => const TradeHomePage()),
-              GetPage(name: '/parley-calculator', page: () => const ParleyCalculatorPage()),
+              GetPage(name: '/auth/:auth', page: () => AuthPage()),
             ],
           );
         },

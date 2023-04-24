@@ -1,3 +1,4 @@
+import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
@@ -16,64 +17,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  /* unused */
-  Widget singleIconBox(
-      {required String name, required IconData icon, required var onTap}) {
-    return InkWell(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Card(
-              child: Container(
-                margin: const EdgeInsets.all(18.0),
-                child: Icon(
-                  icon,
-                  size: 45.0,
-                  color: context.isDarkMode ? null : Colors.black54,
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 115,
-              child: Text(name, textAlign: TextAlign.center),
-            ),
-          ],
-        ),
-      ),
-      onTap: onTap,
-    );
-  }
 
-  /* unused */
-  Widget singleImageBox(
-      {required String name, required String icon, required var onTap}) {
-    return InkWell(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Card(
-              child: Container(
-                margin: const EdgeInsets.all(18.0),
-                child: Image.asset(
-                  icon,
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.contain,
-                  filterQuality: FilterQuality.high,
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 115,
-              child: Text(name, textAlign: TextAlign.center),
-            ),
-          ],
-        ),
-      ),
-      onTap: onTap,
-    );
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<AuthNotifier>(context, listen: false).authorization();
   }
 
   Widget singleIconTile(

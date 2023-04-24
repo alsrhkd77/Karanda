@@ -245,6 +245,7 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
+            heightFactor: 2,
             child: SpinKitFadingCube(
               size: 120.0,
               color: Colors.blue,

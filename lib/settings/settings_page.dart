@@ -42,6 +42,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: TitleText('설정', bold: true),
                 ),
                 const Divider(),
+                !kIsWeb ?
+                ListTile(
+                  leading: const Icon(Icons.login),
+                  title: const Text('소셜 로그인'),
+                  onTap: () {
+                    Get.toNamed('/auth/authenticate');
+                  },
+                ) : SizedBox(),
                 ListTile(
                   leading: const Icon(Icons.dark_mode_outlined),
                   title: const Text('다크 모드'),
@@ -52,17 +60,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       onChanged: (value) {
                         Provider.of<SettingsNotifier>(context, listen: false)
                             .setDarkMode(value);
-                        /*
-                        if (value) {
-                          Get.snackbar('다크 모드', '다크 모드 활성화',
-                              margin: const EdgeInsets.all(24.0),
-                              snackPosition: SnackPosition.BOTTOM);
-                        } else {
-                          Get.snackbar('다크 모드', '다크 모드 비활성화',
-                              margin: const EdgeInsets.all(24.0),
-                              snackPosition: SnackPosition.BOTTOM);
-                        }
-                         */
                       },
                     ),
                   ),

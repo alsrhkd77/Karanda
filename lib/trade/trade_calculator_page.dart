@@ -41,13 +41,15 @@ class _TradeCalculatorPageState extends State<TradeCalculatorPage> {
         ),
         body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus,
-          child: const TabBarView(
-            children: [
-              OverloadedShipTab(),
-              MaterialCostCalculatorTab(),
-              CrowCoinExchangeTab(),
-              ParleyCalculatorTab(),
-            ],
+          child: Center(
+            child: TabBarView(
+              children: [
+                OverloadedShipTab(),
+                MaterialCostCalculatorTab(),
+                CrowCoinExchangeTab(),
+                ParleyCalculatorTab(),
+              ],
+            ),
           ),
         ),
       ),
