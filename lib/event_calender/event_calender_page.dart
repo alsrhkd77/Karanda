@@ -192,6 +192,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        mini: true,
         child: const Icon(Icons.refresh),
         tooltip: 'UI 새로고침',
         onPressed: () {
