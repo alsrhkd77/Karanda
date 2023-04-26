@@ -1,4 +1,5 @@
 import 'package:karanda/auth/auth_notifier.dart';
+import 'package:karanda/common/api.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
@@ -17,11 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     super.initState();
-    Provider.of<AuthNotifier>(context, listen: false).authorization();
+    //Provider.of<AuthNotifier>(context, listen: false).authorization();
   }
 
   Widget singleIconTile(
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget bdoClock(TimeOfDay time) {
     String _icon = 'assets/icons/sun.png';
-    if(time.hour >= 22 || time.hour < 7){
+    if (time.hour >= 22 || time.hour < 7) {
       _icon = 'assets/icons/moon.png';
     }
     return Padding(
@@ -85,8 +85,8 @@ class _HomePageState extends State<HomePage> {
         children: [
           Image.asset(
             _icon,
-            height: 22,
-            width: 22,
+            height: 24,
+            width: 24,
             filterQuality: FilterQuality.low,
           ),
           const SizedBox(
@@ -94,10 +94,46 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 3.0, 0, 0),
-            child: Text(time.timeWithPeriod(), style: const TextStyle(fontFamily:'NanumSquareRound', fontSize: 14.0, fontWeight: FontWeight.bold)),
+            child: Text(time.timeWithPeriod(),
+                style: const TextStyle(
+                    fontFamily: 'NanumSquareRound',
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold)),
           ),
         ],
       ),
+    );
+  }
+
+  Widget loginButton(){
+    ButtonStyle buttonStyle = OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        padding: const EdgeInsets.all(16.0)
+    );
+    if(Provider.of<AuthNotifier>(context).authenticated){
+      String _username = Provider.of<AuthNotifier>(context, listen: false).username;
+      String _avatar = Provider.of<AuthNotifier>(context, listen: false).avatar;
+      return OutlinedButton.icon(
+        style: buttonStyle,
+        onPressed: () {
+          Get.toNamed('/auth/info');
+        },
+        icon: CircleAvatar(
+          foregroundImage: Image.network('${Api.discordCDN}$_avatar').image,
+          radius: 12,
+        ),
+        label: Text(_username, style: const TextStyle(fontSize: 16),),
+      );
+    }
+    return OutlinedButton.icon(
+      style: buttonStyle,
+      onPressed: () {
+        Get.toNamed('/auth/authenticate');
+      },
+      icon: const Icon(Icons.account_circle_outlined, size: 24),
+      label: const Text('로그인', style: TextStyle(fontSize: 16),),
     );
   }
 
@@ -110,11 +146,12 @@ class _HomePageState extends State<HomePage> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              leading: bdoClock(_bdoWorldTimeNotifier.bdoTime),
-              leadingWidth: 150,
               title: const Text(
                 'Karanda',
-                style: TextStyle(fontFamily: 'NanumSquareRound', fontWeight: FontWeight.w700, fontSize: 26.0),
+                style: TextStyle(
+                    fontFamily: 'NanumSquareRound',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 26.0),
               ),
               actions: [
                 Container(
@@ -138,6 +175,17 @@ class _HomePageState extends State<HomePage> {
                   cacheExtent: 5000,
                   padding: const EdgeInsets.all(12.0),
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          bdoClock(_bdoWorldTimeNotifier.bdoTime),
+                          loginButton(),
+                        ],
+                      ),
+                    ),
                     /* Services */
                     const ListTile(
                       leading: Icon(FontAwesomeIcons.code),
@@ -206,6 +254,13 @@ class _HomePageState extends State<HomePage> {
                           icon: FontAwesomeIcons.powerOff,
                           onTap: () {
                             Get.toNamed('/shutdown-scheduler');
+                          },
+                        ),
+                        singleIconTile(
+                          name: '할 일',
+                          icon: FontAwesomeIcons.list,
+                          onTap: () {
+                            Get.toNamed('/checklist');
                           },
                         ),
                         /*

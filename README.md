@@ -30,3 +30,4 @@
 - [x] 요루나키아 보름달이 뜬 밤 실타래 계산기 [바로가기](https://www.karanda.kr/#/yolunakea-moon)
 - [x] 검은사막 월드 시계
 - [x] 교섭력 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
+- [x] Discord 로그인 [바로가기](https://www.karanda.kr/#/auth/authrization)

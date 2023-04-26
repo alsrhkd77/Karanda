@@ -34,4 +34,8 @@ class Api {
   }
 
   static String get authorization => '$_server/auth/discord/authorization';
+
+  static String get unregister => '$_server/auth/discord/unregister';
+
+  static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
 }

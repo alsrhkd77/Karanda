@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
+import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'settings/app_update_page.dart';
@@ -33,13 +35,17 @@ void main() {
       setWindowMinSize(const Size(600, 550));
     }
   }
-  runApp(MyApp());
+  initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
+
+  DialogTheme dialogTheme = DialogTheme(
+
+  );
 
   // This widget is the root of your application.
   @override
@@ -50,7 +56,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
-        ChangeNotifierProvider(create: (_) => AuthNotifier())
+        ChangeNotifierProvider(create: (_) => AuthNotifier(rootScaffoldMessengerKey)),
       ],
       child: Consumer3(
         builder: (context, SettingsNotifier _settings,
@@ -64,6 +70,7 @@ class MyApp extends StatelessWidget {
               //fontFamily: GoogleFonts.gothicA1().fontFamily,
               fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blue,
+              //dialogTheme: dialogTheme,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
@@ -71,6 +78,7 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
+              //dialogTheme: dialogTheme,
             ),
             themeMode: _settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
@@ -97,7 +105,8 @@ class MyApp extends StatelessWidget {
                   name: '/ship-extension',
                   page: () => const ShipExtensionPage()),
               GetPage(name: '/trade-calculator', page: () => const TradeCalculatorPage()),
-              GetPage(name: '/auth/:auth', page: () => AuthPage()),
+              GetPage(name: '/auth/:auth', page: () => const AuthPage()),
+              GetPage(name: '/checklist', page: () => const ChecklistPage()),
             ],
           );
         },

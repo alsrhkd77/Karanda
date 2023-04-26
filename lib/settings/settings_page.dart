@@ -1,4 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/auth/auth_notifier.dart';
+import 'package:karanda/common/api.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../settings/settings_notifier.dart';
@@ -24,6 +27,32 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
+  Widget socialLogin(){
+    if(Provider.of<AuthNotifier>(context).authenticated){
+      String _username = Provider.of<AuthNotifier>(context, listen: false).username;
+      String _avatar = Provider.of<AuthNotifier>(context, listen: false).avatar;
+      return ListTile(
+        leading: CircleAvatar(
+          foregroundImage: Image.network('${Api.discordCDN}$_avatar').image,
+          radius: 12,
+        ),
+        title: Text(_username),
+        trailing: const Icon(FontAwesomeIcons.discord),
+        iconColor: const Color.fromRGBO(88, 101, 242, 1),
+        onTap: (){
+          Get.toNamed('/auth/info');
+        },
+      );
+    }
+    return ListTile(
+      leading: const Icon(Icons.login),
+      title: const Text('소셜 로그인'),
+      onTap: () {
+        Get.toNamed('/auth/authenticate');
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,28 +71,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: TitleText('설정', bold: true),
                 ),
                 const Divider(),
-                !kIsWeb ?
-                ListTile(
-                  leading: const Icon(Icons.login),
-                  title: const Text('소셜 로그인'),
-                  onTap: () {
-                    Get.toNamed('/auth/authenticate');
-                  },
-                ) : SizedBox(),
-                ListTile(
-                  leading: const Icon(Icons.dark_mode_outlined),
-                  title: const Text('다크 모드'),
-                  trailing: ChangeNotifierProvider.value(
-                    value: SettingsNotifier(),
-                    child: Switch(
-                      value: Provider.of<SettingsNotifier>(context).darkMode,
-                      onChanged: (value) {
-                        Provider.of<SettingsNotifier>(context, listen: false)
-                            .setDarkMode(value);
-                      },
-                    ),
-                  ),
-                ),
+                socialLogin(),
                 /*
                 ListTile(
                   leading: const Icon(FontAwesomeIcons.route),
@@ -89,6 +97,17 @@ class _SettingsPageState extends State<SettingsPage> {
                           Get.toNamed('/desktop-app');
                         },
                       ),
+                ListTile(
+                  leading: const Icon(Icons.dark_mode_outlined),
+                  title: const Text('다크 모드'),
+                  trailing: Switch(
+                    value: Provider.of<SettingsNotifier>(context).darkMode,
+                    onChanged: (value) {
+                      Provider.of<SettingsNotifier>(context, listen: false)
+                          .setDarkMode(value);
+                    },
+                  ),
+                ),
                 const ListTile(
                   leading: Icon(Icons.public),
                   title: Text('서버'),

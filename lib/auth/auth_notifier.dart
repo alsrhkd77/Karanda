@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
@@ -9,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AuthNotifier with ChangeNotifier {
+  final GlobalKey<ScaffoldMessengerState> _rootScaffoldMessengerKey;
+
   bool _authenticated = false;
   late String _username;
   late String _avatar;
@@ -18,6 +21,10 @@ class AuthNotifier with ChangeNotifier {
   String get username => _username;
 
   String get avatar => _avatar;
+
+  AuthNotifier(this._rootScaffoldMessengerKey) {
+    authorization();
+  }
 
   void authenticate() {
     String _url;
@@ -43,9 +50,7 @@ class AuthNotifier with ChangeNotifier {
   Future<bool> _authorization() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    String? accessToken = sharedPreferences.getString('access-token');
-    final response =
-        await http.get('${Api.authorization}?access_token=$accessToken');
+    final response = await http.get(Api.authorization);
     if (response.statusCode == 200) {
       Map data = jsonDecode(response.bodyUTF);
       _authenticated = true;
@@ -63,33 +68,80 @@ class AuthNotifier with ChangeNotifier {
     HttpRequest request = await redirectServer.first;
     Map<String, String> data = request.uri.queryParameters;
     bool result = false;
-    if (data.containsKey('token') &&
-        data.containsKey('access_token') &&
-        data.containsKey('refresh_token')) {
+    if (data.containsKey('token')) {
       result = true;
       request.response.redirect(Uri.parse('https://discord.com'));
     } else {
+      //TODO: 실패시 보낼 페이지 필요
       request.response.redirect(Uri.parse('https://discord.com'));
     }
     await request.response.close();
     await redirectServer.close();
 
+    //TODO: 실패 시 처리 필요
     if (result) {
-      await saveToken(
-          data['token']!, data['access_token']!, data['refresh_token']!);
+      await saveToken(data['token']!);
       if (await _authorization()) {
-        Get.toNamed('/');
+        Get.offAllNamed('/');
       }
     }
   }
 
-  Future<void> saveToken(
-      String token, String accessToken, String refreshToken) async {
+  Future<void> logout() async {
+    await _logout();
+    _rootScaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: const Text('로그아웃 되었습니다'),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(24.0),
+        backgroundColor: Theme.of(_rootScaffoldMessengerKey.currentContext!)
+            .snackBarTheme
+            .backgroundColor,
+      ),
+    );
+  }
+
+  Future<void> _logout() async {
+    await deleteToken();
+    _authenticated = false;
+    _username = '';
+    _avatar = '';
+    notifyListeners();
+  }
+
+  Future<bool> unregister() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    final response = await http.delete(Api.unregister);
+    if (response.statusCode == 200) {
+      await _logout();
+      _rootScaffoldMessengerKey.currentState?.showSnackBar(
+        SnackBar(
+          content: const Text('회원탈퇴가 완료되었습니다'),
+          duration: const Duration(seconds: 3),
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(24.0),
+          backgroundColor: Theme.of(_rootScaffoldMessengerKey.currentContext!)
+              .snackBarTheme
+              .backgroundColor,
+        ),
+      );
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> deleteToken() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.remove('karanda-token');
+  }
+
+  Future<void> saveToken(String token) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     sharedPreferences.setString('karanda-token', token);
-    sharedPreferences.setString('access-token', accessToken);
-    sharedPreferences.setString('refresh-token', refreshToken);
   }
 
   Future<void> _launchUrl(String url, {bool newTab = true}) async {
