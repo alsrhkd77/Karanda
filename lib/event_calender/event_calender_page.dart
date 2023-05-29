@@ -21,7 +21,6 @@ class EventCalenderPage extends StatefulWidget {
 class _EventCalenderPageState extends State<EventCalenderPage> {
   final EventCalenderController _eventCalenderController =
       Get.put(EventCalenderController());
-  bool _flag = false;
 
   @override
   void initState() {
@@ -189,16 +188,6 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
               Center(child: Obx(buildEventCard)),
             ],
           );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        mini: true,
-        child: const Icon(Icons.refresh),
-        tooltip: 'UI 새로고침',
-        onPressed: () {
-          setState(() {
-            _flag = !_flag;
-          });
         },
       ),
     );

@@ -58,7 +58,7 @@ class EventCalenderController extends GetxController {
             url,
             thumbnail,
             meta,
-            Colors.primaries[Random().nextInt(Colors.primaries.length)]),
+            Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
       );
     }
     _events = result.obs;

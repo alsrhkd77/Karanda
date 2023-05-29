@@ -133,7 +133,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
             alignment: Alignment.centerLeft,
             child: Text(
               eventModel.title,
-              style: const TextStyle(fontSize: 12.0),
+              style: const TextStyle(fontSize: 12.0, color: Colors.black),
             ),
           ),
         ),
