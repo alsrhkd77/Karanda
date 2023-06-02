@@ -83,6 +83,18 @@ class _ChecklistPageState extends State<ChecklistPage> {
     Navigator.of(context).pop();
   }
 
+  Future<void> createFinishItem(int index, ChecklistItem item) async {
+    loadingIndicatorDialog();
+    await context.read<ChecklistNotifier>().setFinish(index, item, _selectedDay);
+    Navigator.of(context).pop();
+  }
+
+  Future<void> deleteFinishItem(int index, ChecklistItem item, int finishedItem) async {
+    loadingIndicatorDialog();
+    await context.read<ChecklistNotifier>().removeFinish(index, item, finishedItem);
+    Navigator.of(context).pop();
+  }
+
   Widget buildChecklist(String title, List<ChecklistItem> items) {
     if (items.isEmpty) {
       return Container();
@@ -99,37 +111,19 @@ class _ChecklistPageState extends State<ChecklistPage> {
           itemCount: items.length,
           itemBuilder: (context, index) {
             int? finished = items[index].isFinished(_selectedDay);
-            bool networking = false;
             return ListTile(
-              onTap: networking
-                  ? null
-                  : () async {
-                      setState(() {
-                        networking = true;
-                      });
+              onTap: () {
                       if (finished == null) {
-                        await context
-                            .read<ChecklistNotifier>()
-                            .setFinish(index, items[index], _selectedDay);
+                        createFinishItem(index, items[index]);
                       } else {
-                        await context
-                            .read<ChecklistNotifier>()
-                            .removeFinish(index, items[index], finished);
+                        deleteFinishItem(index, items[index], finished);
                       }
-                      setState(() {
-                        networking = false;
-                      });
                     },
-              leading: !networking
-                  ? Icon(
+              leading: Icon(
                       Icons.done,
                       color: finished != null
                           ? Colors.blue
                           : Colors.grey.withOpacity(0.3),
-                    )
-                  : Icon(
-                      Icons.more_horiz,
-                      color: Colors.grey.withOpacity(0.3),
                     ),
               title: Text(
                 items[index].title,

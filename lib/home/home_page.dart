@@ -1,3 +1,4 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
@@ -111,6 +112,12 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         padding: const EdgeInsets.all(16.0));
+    if(Provider.of<AuthNotifier>(context).waitResponse){
+      return const SpinKitThreeBounce(
+        size: 15.0,
+        color: Colors.blue,
+      );
+    }
     if (Provider.of<AuthNotifier>(context).authenticated) {
       String _username =
           Provider.of<AuthNotifier>(context, listen: false).username;

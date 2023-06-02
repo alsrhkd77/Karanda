@@ -13,10 +13,13 @@ class AuthNotifier with ChangeNotifier {
   final GlobalKey<ScaffoldMessengerState> _rootScaffoldMessengerKey;
 
   bool _authenticated = false;
+  bool _waitResponse = false;
   late String _username;
   late String _avatar;
 
   bool get authenticated => _authenticated;
+
+  bool get waitResponse => _waitResponse;
 
   String get username => _username;
 
@@ -40,10 +43,14 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> authorization() async {
+    _waitResponse = true;
+    notifyListeners();
     const storage = FlutterSecureStorage();
     if (!_authenticated && await storage.containsKey(key: 'karanda-token')) {
       await _authorization();
     }
+    _waitResponse = false;
+    notifyListeners();
   }
 
   Future<bool> _authorization() async {
