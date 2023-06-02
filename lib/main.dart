@@ -5,6 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
+import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
@@ -43,10 +44,6 @@ class MyApp extends StatelessWidget {
   GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
-  DialogTheme dialogTheme = DialogTheme(
-
-  );
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -57,10 +54,10 @@ class MyApp extends StatelessWidget {
             create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(create: (_) => AuthNotifier(rootScaffoldMessengerKey)),
+        ChangeNotifierProvider(create: (_) => ChecklistNotifier(rootScaffoldMessengerKey)),
       ],
-      child: Consumer3(
-        builder: (context, SettingsNotifier _settings,
-            VersionNotifier _versionNotifier, AuthNotifier _authNotifier, _) {
+      child: Consumer(
+        builder: (context, SettingsNotifier _settings, _) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
@@ -70,7 +67,6 @@ class MyApp extends StatelessWidget {
               //fontFamily: GoogleFonts.gothicA1().fontFamily,
               fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blue,
-              //dialogTheme: dialogTheme,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
@@ -78,7 +74,6 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
-              //dialogTheme: dialogTheme,
             ),
             themeMode: _settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
