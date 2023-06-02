@@ -99,24 +99,38 @@ class _ChecklistPageState extends State<ChecklistPage> {
           itemCount: items.length,
           itemBuilder: (context, index) {
             int? finished = items[index].isFinished(_selectedDay);
+            bool networking = false;
             return ListTile(
-              onTap: () {
-                if (finished == null) {
-                  context
-                      .read<ChecklistNotifier>()
-                      .setFinish(index, items[index], _selectedDay);
-                } else {
-                  context
-                      .read<ChecklistNotifier>()
-                      .removeFinish(index, items[index], finished);
-                }
-              },
-              leading: Icon(
-                Icons.done,
-                color: finished != null
-                    ? Colors.blue
-                    : Colors.grey.withOpacity(0.3),
-              ),
+              onTap: networking
+                  ? null
+                  : () async {
+                      setState(() {
+                        networking = true;
+                      });
+                      if (finished == null) {
+                        await context
+                            .read<ChecklistNotifier>()
+                            .setFinish(index, items[index], _selectedDay);
+                      } else {
+                        await context
+                            .read<ChecklistNotifier>()
+                            .removeFinish(index, items[index], finished);
+                      }
+                      setState(() {
+                        networking = false;
+                      });
+                    },
+              leading: !networking
+                  ? Icon(
+                      Icons.done,
+                      color: finished != null
+                          ? Colors.blue
+                          : Colors.grey.withOpacity(0.3),
+                    )
+                  : Icon(
+                      Icons.more_horiz,
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
               title: Text(
                 items[index].title,
                 style: finished == null
