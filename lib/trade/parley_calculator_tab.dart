@@ -36,6 +36,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
+            heightFactor: 5,
             child: SpinKitFadingCube(
               size: 120.0,
               color: Colors.blue,
