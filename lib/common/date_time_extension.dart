@@ -17,8 +17,12 @@ extension DateTimeExtension on DateTime {
     return _days[weekday - 1];
   }
 
-  String format(String? _format) {
-    _format = _format ?? 'yyyy.MM.dd HH:mm:ss';
-    return DateFormat(_format).format(this);
+  DateTime date(){
+    return DateTime(year, month, day);
+  }
+
+  String format(String? str) {
+    str = str ?? 'yyyy.MM.dd HH:mm:ss';
+    return DateFormat(str).format(this);
   }
 }
