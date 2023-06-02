@@ -67,8 +67,8 @@ class _ArtifactPageState extends State<ArtifactPage> {
               ),
             ),
             const Divider(),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Expanded(
                   child: Text('조합 효과',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -172,7 +172,22 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 FocusScope.of(context).requestFocus(_searchBarFocus);
               },
               decoration: InputDecoration(
-                suffixIcon: const Icon(FontAwesomeIcons.searchengin),
+                prefixIcon: const Icon(Icons.search),
+                suffix: ElevatedButton(
+                  child: const Text('추가'),
+                  onPressed: () {
+                    if (_textEditingController.text
+                        .trim()
+                        .isNotEmpty) {
+                      _artifactController.addKeyword(
+                          _textEditingController.text.trim());
+                    }
+                    _textEditingController.clear();
+                    //FocusManager.instance.primaryFocus?.unfocus();
+                    FocusScope.of(context)
+                        .requestFocus(_searchBarFocus);
+                  },
+                ),
                 hintText: 'ex) 천적, 몬스터 추가 공격력, 항해',
                 labelText: '검색',
                 border: OutlineInputBorder(
@@ -252,12 +267,12 @@ class _ArtifactPageState extends State<ArtifactPage> {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
       child: ElevatedButton(
+        onPressed: _artifactController.loadMoreItem,
         child: Container(
           width: Size.infinite.width,
           alignment: Alignment.center,
           child: const Text('더 보기'),
         ),
-        onPressed: _artifactController.loadMoreItem,
       ),
     );
   }
@@ -269,13 +284,6 @@ class _ArtifactPageState extends State<ArtifactPage> {
         _artifactController.orFilter.value ? Icons.join_full : Icons.join_inner,
       ),
       tooltip: _artifactController.orFilter.value ? 'OR' : 'AND',
-    );
-    return OutlinedButton(
-      child: Text(
-        _artifactController.orFilter.value ? 'Or 필터' : 'And 필터',
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      onPressed: _artifactController.changeFilter,
     );
   }
 
@@ -317,24 +325,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
                       ),
                       child: Column(
                         children: [
-                          ListTile(
-                            title: buildSearchTextBar(),
-                            trailing: ElevatedButton(
-                              child: const Text('추가'),
-                              onPressed: () {
-                                if (_textEditingController.text
-                                    .trim()
-                                    .isNotEmpty) {
-                                  _artifactController.addKeyword(
-                                      _textEditingController.text.trim());
-                                }
-                                _textEditingController.clear();
-                                //FocusManager.instance.primaryFocus?.unfocus();
-                                FocusScope.of(context)
-                                    .requestFocus(_searchBarFocus);
-                              },
-                            ),
-                          ),
+                          buildSearchTextBar(),
                           Obx(buildChip),
                           Obx(buildCardList),
                           Obx(buildLoadButton)
