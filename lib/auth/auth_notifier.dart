@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AuthNotifier with ChangeNotifier {
@@ -40,16 +40,13 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> authorization() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    if (!_authenticated && sharedPreferences.containsKey('karanda-token')) {
+    const storage = FlutterSecureStorage();
+    if (!_authenticated && await storage.containsKey(key: 'karanda-token')) {
       await _authorization();
     }
   }
 
   Future<bool> _authorization() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
     final response = await http.get(Api.authorization);
     if (response.statusCode == 200) {
       Map data = jsonDecode(response.bodyUTF);
@@ -58,6 +55,31 @@ class AuthNotifier with ChangeNotifier {
       _username = data['username'];
       notifyListeners();
       return true;
+    } else if(response.statusCode == 401){
+      return await tokenRefresh();
+    }
+    return false;
+  }
+
+  Future<bool> tokenRefresh() async {
+    const storage = FlutterSecureStorage();
+    String? socialToken =  await storage.read(key: 'social-token');
+    String? refreshToken = await storage.read(key: 'refresh-token');
+    if(socialToken != null && refreshToken != null){
+      Map<String, String> data = {
+        'social-token': socialToken,
+        'refresh-token': refreshToken
+      };
+      final response = await http.post(Api.tokenRefresh, headers: data);
+      if (response.statusCode == 200) {
+        Map data = jsonDecode(response.bodyUTF);
+        _authenticated = true;
+        _avatar = data['avatar'];
+        _username = data['username'];
+        saveToken(token: data['token'], socialToken: data['social-token'], refreshToken: data['refresh-token']);
+        notifyListeners();
+        return true;
+      }
     }
     return false;
   }
@@ -68,7 +90,7 @@ class AuthNotifier with ChangeNotifier {
     HttpRequest request = await redirectServer.first;
     Map<String, String> data = request.uri.queryParameters;
     bool result = false;
-    if (data.containsKey('token')) {
+    if (data.containsKey('token') && data.containsKey('social-token') && data.containsKey('refresh-token')) {
       result = true;
       request.response.redirect(Uri.parse('https://discord.com'));
     } else {
@@ -80,7 +102,7 @@ class AuthNotifier with ChangeNotifier {
 
     //TODO: 실패 시 처리 필요
     if (result) {
-      await saveToken(data['token']!);
+      await saveToken(token: data['token']!, socialToken: data['social-token']!, refreshToken: data['refresh-token']!);
       if (await _authorization()) {
         Get.offAllNamed('/');
       }
@@ -111,8 +133,6 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<bool> unregister() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
     final response = await http.delete(Api.unregister);
     if (response.statusCode == 200) {
       await _logout();
@@ -133,15 +153,17 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> deleteToken() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    sharedPreferences.remove('karanda-token');
+    const storage = FlutterSecureStorage();
+    await storage.delete(key: 'karanda-token');
+    await storage.delete(key: 'social-token');
+    await storage.delete(key: 'refresh-token');
   }
 
-  Future<void> saveToken(String token) async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    sharedPreferences.setString('karanda-token', token);
+  Future<void> saveToken({required String token, required String socialToken, required String refreshToken}) async {
+    final storage = FlutterSecureStorage();
+    await storage.write(key: 'karanda-token', value: token);
+    await storage.write(key: 'social-token', value: socialToken);
+    await storage.write(key: 'refresh-token', value: refreshToken);
   }
 
   Future<void> _launchUrl(String url, {bool newTab = true}) async {

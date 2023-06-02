@@ -3,7 +3,7 @@
 
 #define MyAppName "Karanda"
 #define MyAppVersion "1.0"
-#define MyAppPublisher "햄뮤"
+#define MyAppPublisher "Hammuu"
 #define MyAppURL "https://www.karanda.kr"
 #define MyAppExeName "Karanda.exe"
 

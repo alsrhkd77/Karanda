@@ -11,7 +11,8 @@ class Api {
 
   static String get _server {
     if (kReleaseMode) {
-      return 'https://karanda-server-6hf3d25tnq-an.a.run.app';
+      //return 'https://karanda-server-6hf3d25tnq-an.a.run.app';
+      return 'https://api.karanda.kr';
     } else {
       return 'http://localhost:8000';
     }
@@ -33,9 +34,28 @@ class Api {
     }
   }
 
+  static String get _checklist => '$_server/checklist';
+
   static String get authorization => '$_server/auth/discord/authorization';
 
   static String get unregister => '$_server/auth/discord/unregister';
 
+  static String get tokenRefresh => '$_server/auth/discord/refresh';
+
   static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
+
+  static String get getChecklistItems => '$_checklist/get/checklist-items';
+
+  static String get getChecklistFinishedItems => '$_checklist/get/finished-items';
+
+  static String get createChecklistItem => '$_checklist/create/checklist-item';
+
+  static String get createChecklistFinishedItem => '$_checklist/create/finished-item';
+
+  static String get deleteChecklistItem => '$_checklist/delete/checklist-item';
+
+  static String get deleteChecklistFinishedItem => '$_checklist/delete/finished-item';
+
+  static String get updateChecklistItem => '$_checklist/update/checklist-item';
+
 }

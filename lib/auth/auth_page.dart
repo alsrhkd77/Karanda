@@ -27,9 +27,11 @@ class _AuthPageState extends State<AuthPage> {
   Future<void> checkParam() async {
     if (!Provider.of<AuthNotifier>(context, listen: false).authenticated) {
       String? token = Get.parameters['token'];
-      if (token != null) {
-        await Provider.of<AuthNotifier>(context, listen: false)
-            .saveToken(token);
+      String? socialToken = Get.parameters['social-token'];
+      String? refreshToken = Get.parameters['refresh-token'];
+      if (token != null && socialToken != null && refreshToken != null) {
+        await Provider.of<AuthNotifier>(context, listen: false).saveToken(
+            token: token, socialToken: socialToken, refreshToken: refreshToken);
         _launchUrl(Api.host, newTab: false);
       }
     }
@@ -115,10 +117,11 @@ class _AuthPageState extends State<AuthPage> {
         });
       },
     );
-    if(check){
+    if (check) {
       _showDialog('회원 탈퇴');
-      bool status = await Provider.of<AuthNotifier>(context, listen: false).unregister();
-      if(status){
+      bool status =
+          await Provider.of<AuthNotifier>(context, listen: false).unregister();
+      if (status) {
         Navigator.of(context).pop();
         Get.offAllNamed('/');
       }
