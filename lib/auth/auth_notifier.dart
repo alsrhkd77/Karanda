@@ -47,7 +47,7 @@ class AuthNotifier with ChangeNotifier {
       _waitResponse = true;
       notifyListeners();
       const storage = FlutterSecureStorage();
-      if(await storage.containsKey(key: 'refresh-token')){
+      if(await storage.containsKey(key: 'token')){
         await _authorization();
       }
       _waitResponse = false;
@@ -116,7 +116,7 @@ class AuthNotifier with ChangeNotifier {
 
     //TODO: 실패 시 처리 필요
     if (result) {
-      await saveToken(token: data['token'], socialToken: data['social-token']!, refreshToken: data['refresh-token']!);
+      await saveToken(token: data['token']!, socialToken: data['social-token']!, refreshToken: data['refresh-token']!);
       if (await _authorization()) {
         Get.offAllNamed('/');
       }
@@ -124,11 +124,8 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> logout() async {
-    final response = await http.delete(Api.logout);
-    if (response.statusCode == 200) {
-      await _logout();
-      _showSnackBar(content: '로그아웃 되었습니다');
-    }
+    await _logout();
+    _showSnackBar(content: '로그아웃 되었습니다');
   }
 
   Future<void> _logout() async {
@@ -156,11 +153,9 @@ class AuthNotifier with ChangeNotifier {
     await storage.delete(key: 'refresh-token');
   }
 
-  Future<void> saveToken({String? token, required String socialToken, required String refreshToken}) async {
+  Future<void> saveToken({required String token, required String socialToken, required String refreshToken}) async {
     final storage = FlutterSecureStorage();
-    if (token != null){
-      await storage.write(key: 'karanda-token', value: token);
-    }
+    await storage.write(key: 'karanda-token', value: token);
     await storage.write(key: 'social-token', value: socialToken);
     await storage.write(key: 'refresh-token', value: refreshToken);
   }
