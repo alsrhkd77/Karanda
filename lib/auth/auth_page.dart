@@ -8,8 +8,6 @@ import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
-import 'package:url_launcher/url_launcher.dart';
-
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
 
@@ -26,21 +24,13 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> checkParam() async {
     if (!Provider.of<AuthNotifier>(context, listen: false).authenticated) {
-      String? token = Get.parameters['token'];
       String? socialToken = Get.parameters['social-token'];
       String? refreshToken = Get.parameters['refresh-token'];
-      if (token != null && socialToken != null && refreshToken != null) {
-        await Provider.of<AuthNotifier>(context, listen: false).saveToken(
-            token: token, socialToken: socialToken, refreshToken: refreshToken);
-        _launchUrl(Api.host, newTab: false);
+      if (socialToken != null && refreshToken != null) {
+        await Provider.of<AuthNotifier>(context, listen: false).saveToken(socialToken: socialToken, refreshToken: refreshToken);
+        await Provider.of<AuthNotifier>(context, listen: false).authorization();
+        Get.offAllNamed('/');
       }
-    }
-  }
-
-  Future<void> _launchUrl(String url, {bool newTab = true}) async {
-    final uri = Uri.parse(url);
-    if (!await launchUrl(uri, webOnlyWindowName: newTab ? '_blank' : '_self')) {
-      throw Exception('Could not launch $uri');
     }
   }
 

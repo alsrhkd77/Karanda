@@ -30,27 +30,29 @@ class AuthNotifier with ChangeNotifier {
   }
 
   void authenticate() {
-    String _url;
+    String url;
     if (kIsWeb) {
-      _url = Api.authenticateWeb;
-      _launchUrl(_url, newTab: false);
+      url = Api.authenticateWeb;
+      _launchUrl(url, newTab: false);
     } else {
       //windows app
-      _url = Api.authenticateWindows;
+      url = Api.authenticateWindows;
       listenRedirect();
-      _launchUrl(_url);
+      _launchUrl(url);
     }
   }
 
   Future<void> authorization() async {
-    _waitResponse = true;
-    notifyListeners();
-    const storage = FlutterSecureStorage();
-    if (!_authenticated && await storage.containsKey(key: 'karanda-token')) {
-      await _authorization();
+    if(!_waitResponse && !_authenticated){
+      _waitResponse = true;
+      notifyListeners();
+      const storage = FlutterSecureStorage();
+      if(await storage.containsKey(key: 'refresh-token')){
+        await _authorization();
+      }
+      _waitResponse = false;
+      notifyListeners();
     }
-    _waitResponse = false;
-    notifyListeners();
   }
 
   Future<bool> _authorization() async {
@@ -87,6 +89,7 @@ class AuthNotifier with ChangeNotifier {
         notifyListeners();
         return true;
       }
+      _showSnackBar(content: '유효하지 않은 인증입니다.');
     }
     return false;
   }
@@ -95,21 +98,25 @@ class AuthNotifier with ChangeNotifier {
   Future<void> listenRedirect() async {
     HttpServer redirectServer = await HttpServer.bind("localhost", 8082);
     HttpRequest request = await redirectServer.first;
-    Map<String, String> data = request.uri.queryParameters;
     bool result = false;
-    if (data.containsKey('token') && data.containsKey('social-token') && data.containsKey('refresh-token')) {
-      result = true;
-      request.response.redirect(Uri.parse('https://discord.com'));
-    } else {
-      //TODO: 실패시 보낼 페이지 필요
-      request.response.redirect(Uri.parse('https://discord.com'));
+    Map<String, String> data = request.uri.queryParameters;
+    try {
+      if (data.containsKey('token') && data.containsKey('social-token') && data.containsKey('refresh-token')) {
+        result = true;
+        request.response.redirect(Uri.parse('https://discord.com'));
+      } else {
+        //TODO: 실패시 보낼 페이지 필요
+        request.response.redirect(Uri.parse('https://discord.com'));
+      }
     }
-    await request.response.close();
-    await redirectServer.close();
+    finally{
+      await request.response.close();
+      await redirectServer.close();
+    }
 
     //TODO: 실패 시 처리 필요
     if (result) {
-      await saveToken(token: data['token']!, socialToken: data['social-token']!, refreshToken: data['refresh-token']!);
+      await saveToken(token: data['token'], socialToken: data['social-token']!, refreshToken: data['refresh-token']!);
       if (await _authorization()) {
         Get.offAllNamed('/');
       }
@@ -117,18 +124,11 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> logout() async {
-    await _logout();
-    _rootScaffoldMessengerKey.currentState?.showSnackBar(
-      SnackBar(
-        content: const Text('로그아웃 되었습니다'),
-        duration: const Duration(seconds: 3),
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(24.0),
-        backgroundColor: Theme.of(_rootScaffoldMessengerKey.currentContext!)
-            .snackBarTheme
-            .backgroundColor,
-      ),
-    );
+    final response = await http.delete(Api.logout);
+    if (response.statusCode == 200) {
+      await _logout();
+      _showSnackBar(content: '로그아웃 되었습니다');
+    }
   }
 
   Future<void> _logout() async {
@@ -143,17 +143,7 @@ class AuthNotifier with ChangeNotifier {
     final response = await http.delete(Api.unregister);
     if (response.statusCode == 200) {
       await _logout();
-      _rootScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(
-          content: const Text('회원탈퇴가 완료되었습니다'),
-          duration: const Duration(seconds: 3),
-          behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(24.0),
-          backgroundColor: Theme.of(_rootScaffoldMessengerKey.currentContext!)
-              .snackBarTheme
-              .backgroundColor,
-        ),
-      );
+      _showSnackBar(content: '회원탈퇴가 완료되었습니다');
       return true;
     }
     return false;
@@ -166,9 +156,11 @@ class AuthNotifier with ChangeNotifier {
     await storage.delete(key: 'refresh-token');
   }
 
-  Future<void> saveToken({required String token, required String socialToken, required String refreshToken}) async {
+  Future<void> saveToken({String? token, required String socialToken, required String refreshToken}) async {
     final storage = FlutterSecureStorage();
-    await storage.write(key: 'karanda-token', value: token);
+    if (token != null){
+      await storage.write(key: 'karanda-token', value: token);
+    }
     await storage.write(key: 'social-token', value: socialToken);
     await storage.write(key: 'refresh-token', value: refreshToken);
   }
@@ -178,5 +170,19 @@ class AuthNotifier with ChangeNotifier {
     if (!await launchUrl(uri, webOnlyWindowName: newTab ? '_blank' : '_self')) {
       throw Exception('Could not launch $uri');
     }
+  }
+
+  void _showSnackBar({required String content}){
+    _rootScaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(content),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(24.0),
+        backgroundColor: Theme.of(_rootScaffoldMessengerKey.currentContext!)
+            .snackBarTheme
+            .backgroundColor,
+      ),
+    );
   }
 }
