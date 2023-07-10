@@ -47,19 +47,83 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
     if (_eventCalenderController.allEvents.isEmpty) {
       return const SizedBox();
     }
-    List<Widget> list = [];
-    for (EventModel eventModel in _eventCalenderController.allEvents) {
-      Widget card = eventCard(eventModel);
-      list.add(card);
-    }
+    double maxWidth = MediaQuery.of(context).size.width;
     return Wrap(
-      spacing: 18.0,
-      runSpacing: 18.0,
-      children: list,
+      alignment: WrapAlignment.center,
+      spacing: 16.0,
+      runSpacing: 16.0,
+      children: _eventCalenderController.allEvents
+          .map((e) => eventCard(e, maxWidth))
+          .toList(),
     );
   }
 
-  Widget eventCard(EventModel eventModel) {
+  Widget eventCard(EventModel eventModel, double maxWidth) {
+    return Card(
+      margin: const EdgeInsets.all(12.0),
+      clipBehavior: Clip.antiAlias,
+      shadowColor: eventModel.color,
+      elevation: 8.0,
+      child: InkWell(
+        onTap: () => _launchURL(eventModel.url),
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: [
+            Image.network(
+              eventModel.thumbnail,
+              fit: BoxFit.cover,
+              colorBlendMode: BlendMode.lighten,
+            ),
+            Positioned(
+              bottom: 0,
+              left: -12,
+              child: Container(
+                width: 412,
+                constraints: BoxConstraints(
+                  maxWidth: maxWidth - 12,
+                ),
+                padding: const EdgeInsets.fromLTRB(20, 12, 8, 8),
+                color: Colors.black.withOpacity(0.4),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      eventModel.title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          color: Colors.white),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        eventModel.count == '상시'
+                            ? const SizedBox()
+                            : Text(
+                                '${eventModel.deadline.format('yyyy.MM.dd')}까지',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                        Text(
+                          eventModel.count,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget eventCardOld(EventModel eventModel) {
     return Card(
       margin: const EdgeInsets.all(12.0),
       clipBehavior: Clip.antiAlias,
@@ -102,8 +166,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                         : eventModel.meta,
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
-                    style: const TextStyle(
-                        fontSize: 12.0),
+                    style: const TextStyle(fontSize: 12.0),
                     maxLines: 3,
                   ),
                   Row(
@@ -155,14 +218,15 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                   '이벤트 캘린더',
                   bold: true,
                 ),
-                subtitle: Obx(()=>Text('최근 갱신: ${_eventCalenderController.lastUpdate}')),
+                subtitle: Obx(() =>
+                    Text('최근 갱신: ${_eventCalenderController.lastUpdate}')),
                 leading: const Icon(FontAwesomeIcons.calendarCheck),
                 trailing: PopupMenuButton(
                   icon: const Icon(FontAwesomeIcons.filter),
                   tooltip: 'Filter',
                   onSelected: (value) {
                     _eventCalenderController.setFilter(value);
-                    setState((){});
+                    setState(() {});
                   },
                   itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                     buildPopUpMenuItem(
@@ -171,8 +235,7 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
                         '내림차순', FontAwesomeIcons.arrowDownWideShort),
                     buildPopUpMenuItem('무작위', FontAwesomeIcons.shuffle),
                     const PopupMenuDivider(),
-                    buildPopUpMenuItem(
-                        '7일 이내', FontAwesomeIcons.calendarWeek),
+                    buildPopUpMenuItem('7일 이내', FontAwesomeIcons.calendarWeek),
                     buildPopUpMenuItem('30일 이내', FontAwesomeIcons.calendar),
                     buildPopUpMenuItem('전체', FontAwesomeIcons.infinity),
                   ],
