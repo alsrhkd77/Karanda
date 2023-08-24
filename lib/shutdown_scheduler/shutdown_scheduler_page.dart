@@ -158,7 +158,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                               ? Row(
                                   children: [
                                     Text(
-                                      '${_shutdownSchedulerNotifier.target.timeWithPeriod(period: 'KR', time: 'KR')}에 종료',
+                                      _shutdownSchedulerNotifier.target.timeWithPeriod(period: 'KR', time: 'KR'),
                                       style: TextStyle(
                                           color: context
                                               .textTheme.bodySmall!.color),
@@ -197,7 +197,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                             height: 40,
                             alignment: Alignment.center,
                             child: const Text(
-                              '취소',
+                              '예약 취소',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -207,7 +207,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                             width: 720,
                             height: 40,
                             alignment: Alignment.center,
-                            child: const Text('예약'),
+                            child: const Text('종료 예약'),
                           ),
                           onPressed: () => _shutdownSchedulerNotifier
                               .startSchedule(selected),
