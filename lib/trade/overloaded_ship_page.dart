@@ -332,8 +332,8 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                   child: InkWell(
                     child: Container(
                       margin: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           Icon(Icons.add_circle_rounded, color: Colors.blue),
                           Text('물물교환')
                         ],
@@ -355,8 +355,8 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
                   child: InkWell(
                     child: Container(
                       margin: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           Icon(Icons.add_circle_rounded, color: Colors.blue),
                           Text('직접입력')
                         ],

@@ -177,11 +177,11 @@ class _MaterialCostCalculatorPageState extends State<MaterialCostCalculatorPage>
                         margin: const EdgeInsets.all(8.0),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(13.0),
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Icon(
                                     Icons.add,
                                     color: Colors.blue,

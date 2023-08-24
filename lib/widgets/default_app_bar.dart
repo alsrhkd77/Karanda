@@ -49,14 +49,14 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
               bdoClock(_bdoWorldTimeNotifier.bdoTime),
             ],
             title: InkWell(
-              child: const Text(
-                'Karanda',
-                style: TextStyle(fontFamily: 'NanumSquareRound', fontWeight: FontWeight.w700, fontSize: 26.0),
-              ),
               hoverColor: Colors.transparent,
               onTap: () {
                 Get.offAllNamed('/');
               },
+              child: const Text(
+                'Karanda',
+                style: TextStyle(fontFamily: 'NanumSquareRound', fontWeight: FontWeight.w700, fontSize: 26.0),
+              ),
             ),
             bottom: bottom,
           );

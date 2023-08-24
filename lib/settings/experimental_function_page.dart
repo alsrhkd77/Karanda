@@ -17,6 +17,7 @@ class _ExperimentalFunctionPageState extends State<ExperimentalFunctionPage> {
   Widget singleIconBox(
       {required String name, required IconData icon, required var onTap}) {
     return InkWell(
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -34,7 +35,6 @@ class _ExperimentalFunctionPageState extends State<ExperimentalFunctionPage> {
           ],
         ),
       ),
-      onTap: onTap,
     );
   }
   

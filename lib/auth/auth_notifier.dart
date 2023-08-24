@@ -47,7 +47,7 @@ class AuthNotifier with ChangeNotifier {
       _waitResponse = true;
       notifyListeners();
       const storage = FlutterSecureStorage();
-      if(await storage.containsKey(key: 'token')){
+      if(await storage.containsKey(key: 'karanda-token')){
         await _authorization();
       }
       _waitResponse = false;
@@ -154,7 +154,7 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> saveToken({required String token, required String socialToken, required String refreshToken}) async {
-    final storage = FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     await storage.write(key: 'karanda-token', value: token);
     await storage.write(key: 'social-token', value: socialToken);
     await storage.write(key: 'refresh-token', value: refreshToken);

@@ -152,6 +152,8 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                                 _shutdownSchedulerNotifier.getTimeInterval())
                             : buildTimePicker(),
                         Positioned(
+                          right: 15.0,
+                          top: 15.0,
                           child: _shutdownSchedulerNotifier.running
                               ? Row(
                                   children: [
@@ -176,8 +178,6 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                                   icon: const Icon(FontAwesomeIcons.clock),
                                   onPressed: selectTime,
                                 ),
-                          right: 15.0,
-                          top: 15.0,
                         ),
                       ],
                     ),
@@ -188,6 +188,10 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                   margin: const EdgeInsets.all(12.0),
                   child: _shutdownSchedulerNotifier.running
                       ? ElevatedButton(
+                          onPressed: _shutdownSchedulerNotifier.cancelSchedule,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                          ),
                           child: Container(
                             width: 720,
                             height: 40,
@@ -196,10 +200,6 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                               '취소',
                               style: TextStyle(color: Colors.white),
                             ),
-                          ),
-                          onPressed: _shutdownSchedulerNotifier.cancelSchedule,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
                           ),
                         )
                       : ElevatedButton(

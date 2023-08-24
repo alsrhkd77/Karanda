@@ -21,10 +21,10 @@ class _TradeHomePageState extends State<TradeHomePage> {
           margin: const EdgeInsets.all(8.0),
           child: InkWell(
             borderRadius: BorderRadius.circular(13.0),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(FontAwesomeIcons.weightHanging),
                 SizedBox(
                   height: 8.0,
@@ -45,10 +45,10 @@ class _TradeHomePageState extends State<TradeHomePage> {
           margin: const EdgeInsets.all(8.0),
           child: InkWell(
             borderRadius: BorderRadius.circular(13.0),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(Icons.calculate),
                 SizedBox(
                   height: 8.0,
@@ -69,10 +69,10 @@ class _TradeHomePageState extends State<TradeHomePage> {
           margin: const EdgeInsets.all(8.0),
           child: InkWell(
             borderRadius: BorderRadius.circular(13.0),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(FontAwesomeIcons.coins),
                 SizedBox(
                   height: 8.0,
@@ -93,10 +93,10 @@ class _TradeHomePageState extends State<TradeHomePage> {
           margin: const EdgeInsets.all(8.0),
           child: InkWell(
             borderRadius: BorderRadius.circular(13.0),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(FontAwesomeIcons.solidHandshake),
                 SizedBox(
                   height: 8.0,

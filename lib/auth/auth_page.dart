@@ -42,7 +42,7 @@ class _AuthPageState extends State<AuthPage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         String targetText = 'UNREGISTER';
-        bool _check = false;
+        bool check0 = false;
         return StatefulBuilder(
             builder: (BuildContext context, StateSetter stateSetter) {
           return AlertDialog(
@@ -72,11 +72,11 @@ class _AuthPageState extends State<AuthPage> {
                       value = value.toLowerCase();
                       if (value == targetText.toLowerCase()) {
                         stateSetter(() {
-                          _check = true;
+                          check0 = true;
                         });
                       } else {
                         stateSetter(() {
-                          _check = false;
+                          check0 = false;
                         });
                       }
                     },
@@ -101,7 +101,7 @@ class _AuthPageState extends State<AuthPage> {
                   foregroundColor: Colors.white,
                 ),
                 onPressed:
-                    _check ? () => Navigator.of(context).pop(true) : null,
+                    check0 ? () => Navigator.of(context).pop(true) : null,
                 child: const Text('확인'),
               ),
             ],
@@ -151,15 +151,15 @@ class _AuthPageState extends State<AuthPage> {
     return Column(
       children: [
         Container(
-          child: Image.asset(
-            'assets/brand/karanda_mix.png',
-            filterQuality: FilterQuality.high,
-          ),
           constraints: const BoxConstraints(
             maxWidth: 400.0,
             maxHeight: 400.0,
           ),
           margin: const EdgeInsets.all(40.0),
+          child: Image.asset(
+            'assets/brand/karanda_mix.png',
+            filterQuality: FilterQuality.high,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 12.0),

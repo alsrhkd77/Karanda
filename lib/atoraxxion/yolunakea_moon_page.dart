@@ -280,12 +280,12 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: ElevatedButton(
+              onPressed: checkAndStart,
               child: Container(
                 width: Size.infinite.width,
                 alignment: Alignment.center,
                 child: const Text('연산 시작'),
               ),
-              onPressed: checkAndStart,
             ),
           ),
           const Text(
@@ -298,12 +298,12 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: ElevatedButton(
+        onPressed: checkAndStart,
         child: Container(
           width: Size.infinite.width,
           alignment: Alignment.center,
           child: const Text('연산 시작'),
         ),
-        onPressed: checkAndStart,
       ),
     );
   }
@@ -429,9 +429,9 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
                       ),
                     ],
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
+                    children: [
                       Text('1번'),
                       Text('2번'),
                       Text('3번'),

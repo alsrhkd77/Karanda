@@ -147,6 +147,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                 children: [
                                   TitleText('${index + 1}단계 → ${index + 2}단계'),
                                   Container(
+                                    margin: const EdgeInsets.all(12.0),
                                     child: DecoratedBox(
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
@@ -178,7 +179,6 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                         ),
                                       ),
                                     ),
-                                    margin: const EdgeInsets.all(12.0),
                                   ),
                                   Text(
                                       '${ratio.take(index + 1).reduce((value, element) => value * element)}개'),

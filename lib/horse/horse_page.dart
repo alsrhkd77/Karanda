@@ -537,9 +537,9 @@ class _HorsePageState extends State<HorsePage> {
                                     border: Border.all(color: Colors.blue.withOpacity(0.4)),
                                     borderRadius: BorderRadius.circular(15.0)
                                   ),
-                                  child: Wrap(
+                                  child: const Wrap(
                                     spacing: 16.0,
-                                    children: const [
+                                    children: [
                                       Text('최상급: 0.85이상'),
                                       Text('상급: 0.80이상'),
                                       Text('중급: 0.75이상'),

@@ -59,11 +59,11 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
       );
     }
     return ElevatedButton(
+      onPressed: downloadNewVersion,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10.0),
         child: const Text('Update'),
       ),
-      onPressed: downloadNewVersion,
     );
   }
 

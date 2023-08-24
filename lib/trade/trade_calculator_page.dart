@@ -41,7 +41,7 @@ class _TradeCalculatorPageState extends State<TradeCalculatorPage> {
         ),
         body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus,
-          child: Center(
+          child: const Center(
             child: TabBarView(
               children: [
                 OverloadedShipTab(),

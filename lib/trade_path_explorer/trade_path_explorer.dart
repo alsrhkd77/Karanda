@@ -12,9 +12,9 @@ class _TradePathExplorerState extends State<TradePathExplorer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(),
+      appBar: const DefaultAppBar(),
       body: ListView(
-        children: [
+        children: const [
           ListTile(title: Text('경로 탐색기'),),
         ],
       ),

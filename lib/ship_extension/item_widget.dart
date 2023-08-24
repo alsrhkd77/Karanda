@@ -166,23 +166,23 @@ class _ItemWidgetState extends State<ItemWidget> {
             ),
           ),
           Positioned(
+            bottom: -2,
+            left: 0,
+            right: 0,
             child: LinearProgressIndicator(
               color: getColor(percent),
               value: percent,
               backgroundColor: Colors.transparent,
             ),
-            bottom: -2,
-            left: 0,
-            right: 0,
           ),
           Positioned(
+            left: -3,
             child: SizedBox(
               width: 80,
               child: Row(
                 children: buildPartsIcon(),
               ),
             ),
-            left: -3,
           ),
         ],
       ),
