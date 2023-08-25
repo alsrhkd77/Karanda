@@ -72,11 +72,9 @@ class AuthNotifier with ChangeNotifier {
 
   Future<bool> tokenRefresh() async {
     const storage = FlutterSecureStorage();
-    String? socialToken =  await storage.read(key: 'social-token');
     String? refreshToken = await storage.read(key: 'refresh-token');
-    if(socialToken != null && refreshToken != null){
+    if(refreshToken != null){
       Map<String, String> data = {
-        'social-token': socialToken,
         'refresh-token': refreshToken
       };
       final response = await http.post(Api.tokenRefresh, headers: data);
@@ -85,7 +83,7 @@ class AuthNotifier with ChangeNotifier {
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
-        saveToken(token: data['token'], socialToken: data['social-token'], refreshToken: data['refresh-token']);
+        saveToken(token: data['token'], refreshToken: data['refresh-token']);
         notifyListeners();
         return true;
       }
@@ -101,7 +99,7 @@ class AuthNotifier with ChangeNotifier {
     bool result = false;
     Map<String, String> data = request.uri.queryParameters;
     try {
-      if (data.containsKey('token') && data.containsKey('social-token') && data.containsKey('refresh-token')) {
+      if (data.containsKey('token') && data.containsKey('refresh-token')) {
         result = true;
         request.response.redirect(Uri.parse('https://discord.com'));
       } else {
@@ -116,7 +114,7 @@ class AuthNotifier with ChangeNotifier {
 
     //TODO: 실패 시 처리 필요
     if (result) {
-      await saveToken(token: data['token']!, socialToken: data['social-token']!, refreshToken: data['refresh-token']!);
+      await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
       if (await _authorization()) {
         Get.offAllNamed('/');
       }
@@ -149,14 +147,13 @@ class AuthNotifier with ChangeNotifier {
   Future<void> deleteToken() async {
     const storage = FlutterSecureStorage();
     await storage.delete(key: 'karanda-token');
-    await storage.delete(key: 'social-token');
+    await storage.delete(key: 'social-token');  //TODO:2.5.0 이상 버전에서 삭제할 것
     await storage.delete(key: 'refresh-token');
   }
 
-  Future<void> saveToken({required String token, required String socialToken, required String refreshToken}) async {
+  Future<void> saveToken({required String token, required String refreshToken}) async {
     const storage = FlutterSecureStorage();
     await storage.write(key: 'karanda-token', value: token);
-    await storage.write(key: 'social-token', value: socialToken);
     await storage.write(key: 'refresh-token', value: refreshToken);
   }
 

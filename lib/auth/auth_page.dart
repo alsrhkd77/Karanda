@@ -25,11 +25,10 @@ class _AuthPageState extends State<AuthPage> {
   Future<void> checkParam() async {
     if (!Provider.of<AuthNotifier>(context, listen: false).authenticated) {
       String? token = Get.parameters['token'];
-      String? socialToken = Get.parameters['social-token'];
       String? refreshToken = Get.parameters['refresh-token'];
-      if (token != null && socialToken != null && refreshToken != null) {
+      if (token != null && refreshToken != null) {
         await Provider.of<AuthNotifier>(context, listen: false).saveToken(
-            token: token, socialToken: socialToken, refreshToken: refreshToken);
+            token: token, refreshToken: refreshToken);
         await Provider.of<AuthNotifier>(context, listen: false).authorization();
         Get.offAllNamed('/');
       }
