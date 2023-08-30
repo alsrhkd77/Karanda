@@ -7,6 +7,7 @@ import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/checklist/checklist_page.dart';
+import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'settings/app_update_page.dart';
@@ -102,6 +103,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/trade-calculator', page: () => const TradeCalculatorPage()),
               GetPage(name: '/auth/:auth', page: () => const AuthPage()),
               GetPage(name: '/checklist', page: () => const ChecklistPage()),
+              GetPage(name: '/color-counter', page: () => const ColorCounterPage()),
             ],
           );
         },

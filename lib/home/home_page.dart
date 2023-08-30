@@ -278,15 +278,13 @@ class _HomePageState extends State<HomePage> {
                         Get.toNamed('/checklist');
                       },
                     ),
-                    /*
-                        singleIconTile(
-                          name: '시카라키아 컬러 카운터',
-                          icon: FontAwesomeIcons.staffSnake,
-                          onTap: () {
-                            Get.toNamed('/');
-                          },
-                        ),
-                         */
+                    singleIconTile(
+                      name: '시카라키아 컬러 카운터',
+                      icon: FontAwesomeIcons.staffSnake,
+                      onTap: () {
+                        Get.toNamed('/color-counter');
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -362,10 +360,11 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         const Text('불편한 점이 있으신가요?'),
-                        ElevatedButton(
+                        FilledButton(
                           onPressed: () =>
                               _launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
                           child: const Text('문의하기'),
+
                         ),
                       ],
                     ),
