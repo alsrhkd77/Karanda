@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ChecklistNotifier(rootScaffoldMessengerKey)),
       ],
       child: Consumer(
-        builder: (context, SettingsNotifier _settings, _) {
+        builder: (context, SettingsNotifier settings, _) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
             ),
-            themeMode: _settings.darkMode ? ThemeMode.dark : ThemeMode.light,
+            themeMode: settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
             getPages: [
               GetPage(name: '/', page: () => const HomePage()),

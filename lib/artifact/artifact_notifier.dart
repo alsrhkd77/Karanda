@@ -1,26 +1,22 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
-class ArtifactController extends GetxController {
+class ArtifactNotifier with ChangeNotifier {
   final List _combinations = [];
   final List _lightStones = [];
   Set<String> options = {};
-  final RxSet<String> _keywords = RxSet();
-  RxInt loadItemCount = 10.obs;
-  RxBool orFilter = true.obs;
-
-  RxList get combinations => orFilter.value ? _orFilteredCombinations().obs : _andFilteredCombinations().obs;
+  final Set<String> _keywords = {};
+  bool orFilter = true;
+  int loadItemCount = 10;
 
   List<String> get keywords => _keywords.toList();
 
-  void loadMoreItem() {
-    if (loadItemCount + 10 >= combinations.length) {
-      loadItemCount.value = combinations.length;
-    } else {
-      loadItemCount += 10;
-    }
-    update();
+  List get combinations =>
+      orFilter ? _orFilteredCombinations() : _andFilteredCombinations();
+
+  ArtifactNotifier() {
+    _getData();
   }
 
   Iterable<String> autoComplete(String txt) {
@@ -29,17 +25,17 @@ class ArtifactController extends GetxController {
 
   void addKeyword(String keyword) {
     _keywords.add(keyword);
-    loadItemCount = 10.obs;
-    update();
+    loadItemCount = 10;
+    notifyListeners();
   }
 
   void removeKeyword(String keyword) {
     _keywords.remove(keyword);
-    loadItemCount = 10.obs;
-    update();
+    loadItemCount = 10;
+    notifyListeners();
   }
 
-  Future<bool> getData() async {
+  Future<void> _getData() async {
     String combinationJson = '';
     String lightStonesJson = '';
 
@@ -68,12 +64,21 @@ class ArtifactController extends GetxController {
         options.add(element['name']);
       }
     }
-    return true;
+    notifyListeners();
   }
 
-  void changeFilter(){
-    orFilter.value = !orFilter.value;
-    update();
+  void changeFilter() {
+    orFilter = !orFilter;
+    notifyListeners();
+  }
+
+  void loadMoreItem() {
+    if (loadItemCount + 10 >= combinations.length) {
+      loadItemCount = combinations.length;
+    } else {
+      loadItemCount += 10;
+    }
+    notifyListeners();
   }
 
   List _orFilteredCombinations() {
@@ -91,15 +96,15 @@ class ArtifactController extends GetxController {
     if (keywords.isEmpty) {
       return _combinations;
     }
-    return _combinations.where((element){
-      for(String value in  keywords){
-        if(element['name'].contains(value)){
+    return _combinations.where((element) {
+      for (String value in keywords) {
+        if (element['name'].contains(value)) {
           continue;
         }
-        if(_findFromCombinationsEffect([element], [value]).isNotEmpty){
+        if (_findFromCombinationsEffect([element], [value]).isNotEmpty) {
           continue;
         }
-        if(_findFromLightStones([element], [value]).isNotEmpty){
+        if (_findFromLightStones([element], [value]).isNotEmpty) {
           continue;
         }
         return false;
@@ -164,14 +169,14 @@ class ArtifactController extends GetxController {
     }
     for (String s in data['formula']) {
       if (s.trim() != '-' && s != '오색빛 광명석') {
-        Map _stone = _lightStones
+        Map stone = _lightStones
             .firstWhere((element) => element['name'].contains(s))['effect'];
-        if (effectValue.containsKey(_stone['name'])) {
-          effectValue[_stone['name']] =
-              (effectValue[_stone['name']]! + _stone['value']!);
+        if (effectValue.containsKey(stone['name'])) {
+          effectValue[stone['name']] =
+              (effectValue[stone['name']]! + stone['value']!);
         } else {
-          effectValue[_stone['name']] = _stone['value'];
-          effectUnit[_stone['name']] = _stone['unit'];
+          effectValue[stone['name']] = stone['value'];
+          effectUnit[stone['name']] = stone['unit'];
         }
       }
     }

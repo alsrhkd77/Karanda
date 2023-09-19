@@ -1,6 +1,8 @@
 import 'package:flutter/scheduler.dart';
+import 'package:karanda/artifact/artifact_notifier.dart';
+import 'package:karanda/common/global_properties.dart';
+import 'package:provider/provider.dart';
 
-import '../artifact/artifact_controller.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
@@ -16,33 +18,130 @@ class ArtifactPage extends StatefulWidget {
 }
 
 class _ArtifactPageState extends State<ArtifactPage> {
-  final ArtifactController _artifactController = ArtifactController();
-  TextEditingController _textEditingController = TextEditingController();
   final ScrollController _mainScrollController = ScrollController();
-  FocusNode _searchBarFocus = FocusNode();
 
-  Widget buildCardList() {
-    if (_artifactController.combinations.isEmpty) {
-      return Container(
-        height: 120.0,
-        alignment: Alignment.center,
-        child: const Text('검색 결과가 없습니다.'),
+  @override
+  Widget build(BuildContext context) {
+    final horizontalPadding = GlobalProperties.scrollViewHorizontalPadding(
+        MediaQuery.sizeOf(context).width);
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        appBar: const DefaultAppBar(),
+        body: ChangeNotifierProvider(
+          create: (_) => ArtifactNotifier(),
+          child: Consumer<ArtifactNotifier>(
+            builder: (_, notifier, __) {
+              if (notifier.options.isEmpty) {
+                return const Center(
+                  child: SpinKitFadingCube(
+                    size: 120.0,
+                    color: Colors.blue,
+                  ),
+                );
+              }
+              return CustomScrollView(
+                controller: _mainScrollController,
+                slivers: [
+                  const SliverToBoxAdapter(
+                    child: ListTile(
+                      leading: Icon(FontAwesomeIcons.splotch),
+                      title: TitleText(
+                        '광명석 조합식',
+                        bold: true,
+                      ),
+                      trailing: _FilterButton(),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: horizontalPadding,
+                        vertical: GlobalProperties.scrollViewVerticalPadding),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        _SearchBar(),
+                        _KeywordChips(),
+                        _CardList(),
+                        _LoadButton(),
+                      ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(FontAwesomeIcons.arrowUp),
+          onPressed: () {
+            _mainScrollController.animateTo(
+              0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear,
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _FilterButton extends StatelessWidget {
+  const _FilterButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final bool filter = context
+        .select<ArtifactNotifier, bool>((ArtifactNotifier a) => a.orFilter);
+    return IconButton(
+      onPressed: context.read<ArtifactNotifier>().changeFilter,
+      icon: Icon(
+        filter ? Icons.join_full : Icons.join_inner,
+      ),
+      tooltip: filter ? 'OR' : 'AND',
+    );
+  }
+}
+
+class _LoadButton extends StatelessWidget {
+  const _LoadButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final int index = context
+        .select<ArtifactNotifier, int>((ArtifactNotifier a) => a.loadItemCount);
+    final int length = context.select<ArtifactNotifier, int>(
+        (ArtifactNotifier a) => a.combinations.length);
+    if (index >= length) {
+      return const SizedBox(
+        height: 0.0,
       );
     }
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: _artifactController.loadItemCount.value >
-                _artifactController.combinations.length
-            ? _artifactController.combinations.length
-            : _artifactController.loadItemCount.value,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return combinationCard(_artifactController.combinations[index]);
-        });
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+      child: ElevatedButton(
+        onPressed: context.read<ArtifactNotifier>().loadMoreItem,
+        child: Container(
+          width: Size.infinite.width,
+          alignment: Alignment.center,
+          child: const Text('더 보기'),
+        ),
+      ),
+    );
   }
+}
 
-  Widget combinationCard(Map data) {
-    var _colors = {
+class _CombinationCard extends StatelessWidget {
+  final Map data;
+
+  const _CombinationCard({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    final Map colors = {
       '불': Colors.red,
       '바': Colors.blue,
       '땅': Colors.orange,
@@ -105,14 +204,15 @@ class _ArtifactPageState extends State<ArtifactPage> {
                         .map<Widget>((e) => Text(
                               e,
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: _colors[e[0]]),
+                              style: TextStyle(color: colors[e[0]]),
                             ))
                         .toList(),
                   ),
                 ),
                 Expanded(
                   child: Column(
-                    children: _artifactController
+                    children: context
+                        .read<ArtifactNotifier>()
                         .getEffects(data['name'])
                         .map<Widget>((e) => Text(
                               e,
@@ -128,8 +228,41 @@ class _ArtifactPageState extends State<ArtifactPage> {
       ),
     );
   }
+}
 
-  Widget buildChip() {
+class _CardList extends StatelessWidget {
+  const _CardList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ArtifactNotifier notifier = context.watch<ArtifactNotifier>();
+    int count = notifier.loadItemCount > notifier.combinations.length
+        ? notifier.combinations.length
+        : notifier.loadItemCount;
+    if (notifier.combinations.isEmpty) {
+      return Container(
+        height: 120.0,
+        alignment: Alignment.center,
+        child: const Text('검색 결과가 없습니다.'),
+      );
+    }
+    return Column(
+      children: notifier.combinations
+          .sublist(0, count)
+          .map((e) => _CombinationCard(data: e))
+          .toList(),
+    );
+  }
+}
+
+class _KeywordChips extends StatelessWidget {
+  const _KeywordChips({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<String> keywords =
+        context.select<ArtifactNotifier, List<String>>(
+            (ArtifactNotifier a) => a.keywords);
     return Container(
       margin: const EdgeInsets.all(12.0),
       child: Wrap(
@@ -137,55 +270,64 @@ class _ArtifactPageState extends State<ArtifactPage> {
         runSpacing: 8.0,
         crossAxisAlignment: WrapCrossAlignment.center,
         alignment: WrapAlignment.center,
-        children: _artifactController.keywords
+        children: keywords
             .map((e) => Chip(
-                  label: Text(
-                    e,
-                  ),
-                  onDeleted: () => _artifactController.removeKeyword(e),
+                  label: Text(e),
+                  onDeleted: () =>
+                      context.read<ArtifactNotifier>().removeKeyword(e),
                 ))
             .toList(),
       ),
     );
   }
+}
 
-  Widget buildSearchTextBar() {
+class _SearchBar extends StatefulWidget {
+  const _SearchBar({super.key});
+
+  @override
+  State<_SearchBar> createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<_SearchBar> {
+  TextEditingController textEditingController = TextEditingController();
+  FocusNode focusNode = FocusNode();
+
+  @override
+  Widget build(BuildContext context) {
+    final ArtifactNotifier notifier = context.read<ArtifactNotifier>();
+
     return LayoutBuilder(
       builder: (context, constraints) {
         return Autocomplete<String>(
           fieldViewBuilder: (context, controller, focusNode, onSubmit) {
-            _textEditingController = controller;
-            _searchBarFocus = focusNode;
+            textEditingController = controller;
+            focusNode = focusNode;
             return TextField(
               controller: controller,
-              focusNode: _searchBarFocus,
+              focusNode: focusNode,
               maxLength: 20,
               onSubmitted: (String value) {
-                if (_artifactController.autoComplete(value.trim()).isNotEmpty &&
-                    _artifactController.autoComplete(value.trim()).first ==
-                        value) {
-                  _artifactController.addKeyword(value.trim());
-                  _textEditingController.clear();
+                if (notifier.autoComplete(value.trim()).isNotEmpty &&
+                    notifier.autoComplete(value.trim()).first == value) {
+                  notifier.addKeyword(value.trim());
+                  textEditingController.clear();
                 } else {
                   onSubmit();
                 }
-                FocusScope.of(context).requestFocus(_searchBarFocus);
+                FocusScope.of(context).requestFocus(focusNode);
               },
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 suffix: ElevatedButton(
                   child: const Text('추가'),
                   onPressed: () {
-                    if (_textEditingController.text
-                        .trim()
-                        .isNotEmpty) {
-                      _artifactController.addKeyword(
-                          _textEditingController.text.trim());
+                    if (textEditingController.text.trim().isNotEmpty) {
+                      notifier.addKeyword(textEditingController.text.trim());
                     }
-                    _textEditingController.clear();
+                    textEditingController.clear();
                     //FocusManager.instance.primaryFocus?.unfocus();
-                    FocusScope.of(context)
-                        .requestFocus(_searchBarFocus);
+                    FocusScope.of(context).requestFocus(focusNode);
                   },
                 ),
                 hintText: 'ex) 천적, 몬스터 추가 공격력, 항해',
@@ -249,106 +391,10 @@ class _ArtifactPageState extends State<ArtifactPage> {
             if (textEditingValue.text.trim().isEmpty) {
               return const Iterable<String>.empty();
             }
-            return _artifactController
-                .autoComplete(textEditingValue.text.trim());
+            return notifier.autoComplete(textEditingValue.text.trim());
           },
         );
       },
-    );
-  }
-
-  Widget buildLoadButton() {
-    if (_artifactController.combinations.length ==
-        _artifactController.loadItemCount.value) {
-      return const SizedBox(
-        height: 0.0,
-      );
-    }
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-      child: ElevatedButton(
-        onPressed: _artifactController.loadMoreItem,
-        child: Container(
-          width: Size.infinite.width,
-          alignment: Alignment.center,
-          child: const Text('더 보기'),
-        ),
-      ),
-    );
-  }
-
-  Widget buildFilterButton() {
-    return IconButton(
-      onPressed: _artifactController.changeFilter,
-      icon: Icon(
-        _artifactController.orFilter.value ? Icons.join_full : Icons.join_inner,
-      ),
-      tooltip: _artifactController.orFilter.value ? 'OR' : 'AND',
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Scaffold(
-        appBar: const DefaultAppBar(),
-        body: FutureBuilder(
-          future: _artifactController.getData(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: SpinKitFadingCube(
-                  size: 120.0,
-                  color: Colors.blue,
-                ),
-              );
-            } else {
-              return SingleChildScrollView(
-                controller: _mainScrollController,
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(FontAwesomeIcons.splotch),
-                      title: const TitleText(
-                        '광명석 조합식',
-                        bold: true,
-                      ),
-                      trailing: Obx(buildFilterButton),
-                    ),
-                    Container(
-                      constraints: const BoxConstraints(
-                        maxWidth: 1200,
-                      ),
-                      child: Column(
-                        children: [
-                          buildSearchTextBar(),
-                          Obx(buildChip),
-                          Obx(buildCardList),
-                          Obx(buildLoadButton)
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(FontAwesomeIcons.arrowUp),
-          onPressed: () {
-            _mainScrollController.animateTo(
-              0,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.linear,
-            );
-          },
-        ),
-      ),
     );
   }
 }
