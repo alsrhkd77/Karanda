@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           height: 25,
           width: 25,
           fit: BoxFit.contain,
-          filterQuality: FilterQuality.high,
+          filterQuality: FilterQuality.low,
         ),
         onTap: onTap,
       ),
@@ -183,7 +183,8 @@ class _HomePageState extends State<HomePage> {
               maxWidth: 1520,
             ),
             child: ListView(
-              cacheExtent: 5000,
+              addAutomaticKeepAlives: false,
+              addRepaintBoundaries: false,
               padding: const EdgeInsets.all(12.0),
               children: [
                 Padding(
@@ -332,6 +333,11 @@ class _HomePageState extends State<HomePage> {
                       name: 'BDO Codex',
                       icon: 'assets/icons/bdocodex.png',
                       onTap: () => _launchURL('https://bdocodex.com/kr/'),
+                    ),
+                    singleImageTile(
+                      name: 'BDOLYTICS',
+                      icon: 'assets/icons/bdolytics.png',
+                      onTap: () => _launchURL('https://bdolytics.com/ko/KR'),
                     ),
                     singleImageTile(
                       name: 'OnTopReplica',
