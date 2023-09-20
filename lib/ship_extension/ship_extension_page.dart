@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
-import 'package:karanda/ship_extension/ship_extension_controller.dart';
+import 'package:karanda/ship_extension/ship_extension_item_model.dart';
+import 'package:karanda/ship_extension/ship_extension_notifier.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 import 'item_widget.dart';
 
@@ -19,19 +20,86 @@ class ShipExtensionPage extends StatefulWidget {
 }
 
 class _ShipExtensionPageState extends State<ShipExtensionPage> {
-  final ShipExtensionController _extensionController =
-      ShipExtensionController();
-  List<String> shipType = [
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        appBar: const DefaultAppBar(),
+        body: ChangeNotifierProvider(
+          create: (_) => ShipExtensionNotifier(),
+          child: Consumer<ShipExtensionNotifier>(
+            builder: (_, notifier, __) {
+              if (notifier.items.isEmpty) {
+                return const LoadingIndicator();
+              }
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: Icon(FontAwesomeIcons.ship),
+                        title: TitleText(
+                          '선박 증축',
+                          bold: true,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.all(12.0),
+                      child: const TitleText(
+                        '증축 재료 수급 현황',
+                        bold: true,
+                      ),
+                    ),
+                    _HeadLine(),
+                    SizedBox(
+                      child: ScrollConfiguration(
+                        behavior: CustomScrollBehavior(),
+                        child: const SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Card(
+                            margin: EdgeInsets.all(24.0),
+                            elevation: 8.0,
+                            child: Column(
+                              children: [
+                                _TitleLine(),
+                                _ItemList(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HeadLine extends StatelessWidget {
+  _HeadLine({super.key});
+
+  final List<String> shipType = [
     '에페리아 중범선 : 비상',
     '에페리아 중범선 : 용맹',
     '에페리아 중범선 : 점진',
     '에페리아 중범선 : 균형',
   ];
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   MaterialColor getColor(double percent) {
     if (percent < 0.25) {
@@ -46,59 +114,74 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
     return Colors.blue;
   }
 
-  Widget buildItemList() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12.0),
-      //height: _extensionController.extensionItems.length * 99,
-      width: 1150,
-      child: Column(
-        children: [
-          ListView.separated(
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: _extensionController.extensionItems.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return ItemWidget(
-                item: _extensionController.extensionItems[index],
-                textField: TextFormField(
-                  initialValue:
-                      _extensionController.extensionItems[index].user > 0
-                          ? _extensionController.extensionItems[index].user
-                              .toString()
-                          : null,
-                  keyboardType: const TextInputType.numberWithOptions(),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
-                  ],
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(color: Colors.blue),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    if (value.isEmpty) {
-                      _extensionController.updateUserItem(
-                          _extensionController.extensionItems[index].name, 0);
-                    } else {
-                      _extensionController.updateUserItem(
-                          _extensionController.extensionItems[index].name,
-                          int.parse(value));
-                    }
-                  },
-                ),
-              );
-            },
+  @override
+  Widget build(BuildContext context) {
+    final double percent = context.select<ShipExtensionNotifier, double>(
+        (ShipExtensionNotifier s) => s.percent);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width - 250,
+          constraints: const BoxConstraints(
+            maxWidth: 1100,
           ),
-        ],
-      ),
+          padding: const EdgeInsets.all(12.0),
+          child: LinearPercentIndicator(
+            animation: true,
+            lineHeight: 18.0,
+            animationDuration: 500,
+            percent: percent,
+            center: Text(
+              "${(percent * 100).toStringAsFixed(2)}%",
+              style: const TextStyle(color: Colors.black),
+            ),
+            barRadius: const Radius.circular(15.0),
+            progressColor: getColor(percent),
+            animateFromLastPercent: true,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue),
+                borderRadius: BorderRadius.circular(12.0)),
+            child: DropdownButton<String>(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              borderRadius: BorderRadius.circular(12.0),
+              value: context.select<ShipExtensionNotifier, String>(
+                      (ShipExtensionNotifier s) => s.select),
+              underline: Container(),
+              focusColor: Colors.transparent,
+              onChanged: (String? value) {
+                if (value!.isEmpty) {
+                  return;
+                }
+                context.read<ShipExtensionNotifier>().selectShipType(value);
+              },
+              items: shipType
+                  .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
+                value: e,
+                child: Text(e),
+              ))
+                  .toList(),
+            ),
+          ),
+        ),
+      ],
     );
   }
+}
 
-  Widget buildTitleLine() {
-    TextStyle style =
-        const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0);
+class _TitleLine extends StatelessWidget {
+  const _TitleLine({super.key});
+
+  final TextStyle style =
+      const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.all(12.0),
@@ -185,129 +268,58 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
       ),
     );
   }
+}
+
+class _ItemList extends StatelessWidget {
+  const _ItemList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const DefaultAppBar(),
-      body: GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        child: FutureBuilder(
-            future: _extensionController.getShipData(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Center(
-                  child: SpinKitFadingCube(
-                    size: 120.0,
-                    color: Colors.blue,
-                  ),
-                );
-              }
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: ListTile(
-                        leading: Icon(FontAwesomeIcons.ship),
-                        title: TitleText(
-                          '선박 증축',
-                          bold: true,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.all(12.0),
-                      child: const TitleText(
-                        '증축재료 수급 현황',
-                        bold: true,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width - 250,
-                          constraints: const BoxConstraints(
-                            maxWidth: 1100,
-                          ),
-                          padding: const EdgeInsets.all(12.0),
-                          child: Obx(
-                            () => LinearPercentIndicator(
-                              animation: true,
-                              lineHeight: 18.0,
-                              animationDuration: 500,
-                              percent: _extensionController.percent,
-                              center: Text(
-                                "${(_extensionController.percent * 100).toStringAsFixed(2)}%",
-                                style: const TextStyle(color: Colors.black),
-                              ),
-                              barRadius: const Radius.circular(15.0),
-                              progressColor:
-                                  getColor(_extensionController.percent),
-                              animateFromLastPercent: true,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blue),
-                                borderRadius: BorderRadius.circular(15.0)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Obx(
-                                () => DropdownButton<String>(
-                                  value: _extensionController.select.value,
-                                  underline: Container(),
-                                  focusColor: Colors.transparent,
-                                  onChanged: (String? value) {
-                                    if (value!.isEmpty) {
-                                      return;
-                                    }
-                                    _extensionController.selectShipType(value);
-                                  },
-                                  items: shipType
-                                      .map<DropdownMenuItem<String>>(
-                                          (e) => DropdownMenuItem(
-                                                value: e,
-                                                child: Text(e),
-                                              ))
-                                      .toList(),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      child: ScrollConfiguration(
-                        behavior: CustomScrollBehavior(),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Card(
-                            margin: const EdgeInsets.all(24.0),
-                            elevation: 8.0,
-                            child: Column(
-                              children: [
-                                buildTitleLine(),
-                                Obx(buildItemList),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+    final extensionItems =
+        context.select<ShipExtensionNotifier, List<ShipExtensionItemModel>>(
+            (ShipExtensionNotifier s) => s.extensionItems);
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12.0),
+      //height: _extensionController.extensionItems.length * 99,
+      width: 1150,
+      child: Column(
+        children: [
+          ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: extensionItems.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return ItemWidget(
+                item: extensionItems[index],
+                textField: TextFormField(
+                  initialValue: extensionItems[index].user > 0
+                      ? extensionItems[index].user.toString()
+                      : null,
+                  keyboardType: const TextInputType.numberWithOptions(),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
                   ],
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(color: Colors.blue),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    int insert = 0;
+                    if (value.isNotEmpty) {
+                      insert = int.parse(value);
+                    }
+                    context
+                        .read<ShipExtensionNotifier>()
+                        .updateUserItem(extensionItems[index].name, insert);
+                  },
                 ),
               );
-            }),
+            },
+          ),
+        ],
       ),
     );
   }

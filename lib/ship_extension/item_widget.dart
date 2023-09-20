@@ -27,50 +27,6 @@ class _ItemWidgetState extends State<ItemWidget> {
     return Colors.blue;
   }
 
-  List<Widget> buildPartsIcon() {
-    List<Widget> result = [];
-
-    for (String p in widget.item.parts) {
-      if (p == 'prow') {
-        result.add(const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.5),
-          child: Text(
-            '선수상',
-            style: TextStyle(fontSize: 11.0),
-          ),
-        ));
-      }
-      if (p == 'plating') {
-        result.add(const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.5),
-          child: Text(
-            '장갑',
-            style: TextStyle(fontSize: 11.0),
-          ),
-        ));
-      }
-      if (p == 'cannon') {
-        result.add(const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.5),
-          child: Text(
-            '함포',
-            style: TextStyle(fontSize: 11.0),
-          ),
-        ));
-      }
-      if (p == 'windSail') {
-        result.add(const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.5),
-          child: Text(
-            '돛',
-            style: TextStyle(fontSize: 11.0),
-          ),
-        ));
-      }
-    }
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     String farming = widget.item.farmingRootName;
@@ -179,8 +135,8 @@ class _ItemWidgetState extends State<ItemWidget> {
             left: -3,
             child: SizedBox(
               width: 80,
-              child: Row(
-                children: buildPartsIcon(),
+              child: _PartsIcon(
+                partsName: widget.item.parts,
               ),
             ),
           ),
@@ -189,3 +145,29 @@ class _ItemWidgetState extends State<ItemWidget> {
     );
   }
 }
+
+class _PartsIcon extends StatelessWidget {
+  final List<String> partsName;
+  final parts = {
+    'prow' : '선수상',
+    'plating' : '장갑',
+    'cannon' : '함포',
+    'windSail' : '돛',
+  };
+
+  _PartsIcon({super.key, required this.partsName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: partsName.map((e) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2.5),
+        child: Text(
+          parts[e]!,
+          style: const TextStyle(fontSize: 11.0),
+        ),
+      )).toList(),
+    );
+  }
+}
+

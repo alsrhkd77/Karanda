@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
 class GlobalProperties {
+  static double get _scrollViewPadding => 12.0;
 
-  static get scrollViewPadding => const EdgeInsets.all(12.0);
+  static EdgeInsetsGeometry get scrollViewPadding =>
+      EdgeInsets.all(_scrollViewPadding);
 
-  static get scrollViewVerticalPadding => 12.0;
+  static double get scrollViewVerticalPadding => _scrollViewPadding;
 
-  static double scrollViewHorizontalPadding(double width){
-    return width > 1212.0 ? (width-1200.0) / 2 : 12.0;
+  static double get widthConstrains => 1200.0;
+
+  static double scrollViewHorizontalPadding(double width) {
+    return width > widthConstrains + scrollViewVerticalPadding
+        ? (width - widthConstrains) / 2
+        : scrollViewVerticalPadding;
   }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/scheduler.dart';
 import 'package:karanda/artifact/artifact_notifier.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
@@ -35,12 +35,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
           child: Consumer<ArtifactNotifier>(
             builder: (_, notifier, __) {
               if (notifier.options.isEmpty) {
-                return const Center(
-                  child: SpinKitFadingCube(
-                    size: 120.0,
-                    color: Colors.blue,
-                  ),
-                );
+                return const LoadingIndicator();
               }
               return CustomScrollView(
                 controller: _mainScrollController,
@@ -61,10 +56,10 @@ class _ArtifactPageState extends State<ArtifactPage> {
                         vertical: GlobalProperties.scrollViewVerticalPadding),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
-                        _SearchBar(),
-                        _KeywordChips(),
-                        _CardList(),
-                        _LoadButton(),
+                        const _SearchBar(),
+                        const _KeywordChips(),
+                        const _CardList(),
+                        const _LoadButton(),
                       ],
                       ),
                     ),
