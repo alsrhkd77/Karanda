@@ -1,9 +1,8 @@
-import '../horse/horse_info.dart';
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
-class HorseController extends GetxController {
-  final HorseInfo _horseInfo = HorseInfo();
+import 'horse_info.dart';
 
+class HorseNotifier with ChangeNotifier {
   String _breed = '꿈결 아두아나트';
   int _level = 0; //레벨
   double _speed = 0.0; //속도
@@ -15,64 +14,64 @@ class HorseController extends GetxController {
 
   set breed(String value) {
     _breed = value;
-    update();
+    notifyListeners();
   }
 
   int get level => _level;
 
   int get maxLevel {
-    int _maxLevel = _level > 30 ? 30 : _level;
-    return _maxLevel - 1;
+    int max = _level > 30 ? 30 : _level;
+    return max - 1;
   }
 
   set level(int value) {
     _level = value;
-    update();
+    notifyListeners();
   }
 
   double get speed => _speed;
 
   set speed(double value) {
     _speed = value;
-    update();
+    notifyListeners();
   }
 
   double get acceleration => _acceleration;
 
   set acceleration(double value) {
     _acceleration = value;
-    update();
+    notifyListeners();
   }
 
   double get brake => _brake;
 
   set brake(double value) {
     _brake = value;
-    update();
+    notifyListeners();
   }
 
   double get rotForce => _rotForce;
 
   set rotForce(double value) {
     _rotForce = value;
-    update();
+    notifyListeners();
   }
 
   double get grownStat {
-    double _stat = 0;
+    double stat = 0;
     if (_speed > 0) {
-      _stat += _speed - _horseInfo.detail[_breed]!['속도']!;
+      stat += _speed - HorseInfo.detail[_breed]!['속도']!;
     }
     if (_acceleration > 0) {
-      _stat += _acceleration - _horseInfo.detail[_breed]!['가속']!;
+      stat += _acceleration - HorseInfo.detail[_breed]!['가속']!;
     }
     if (_brake > 0) {
-      _stat += _brake - _horseInfo.detail[_breed]!['제동']!;
+      stat += _brake - HorseInfo.detail[_breed]!['제동']!;
     }
     if (_rotForce > 0) {
-      _stat += _rotForce - _horseInfo.detail[_breed]!['회전']!;
+      stat += _rotForce - HorseInfo.detail[_breed]!['회전']!;
     }
-    return _stat;
+    return stat;
   }
 
   //등급 계산
@@ -97,7 +96,7 @@ class HorseController extends GetxController {
     }
     return doubleFloor((grownStat / maxLevel) / 4);
   }
-  
+
   double doubleFloor(double value){
     double result = value * 100;
     result = result.floor() / 100;
@@ -112,19 +111,19 @@ class HorseController extends GetxController {
     return _evaluate(average);
   }
 
-  double percent(double _value){
+  double percent(double value){
     if(maxLevel <= 0){
       return 0.1;
     }
-    double _result = (_value / 1.3) * 100;
-    return _result;
+    double result = (value / 1.3) * 100;
+    return result;
   }
 
   double get speedAvg {
-    if(_speed <= _horseInfo.detail[_breed]!['속도']! || maxLevel <= 0){
+    if(_speed <= HorseInfo.detail[_breed]!['속도']! || maxLevel <= 0){
       return 0.0;
     }
-    return doubleFloor((_speed - _horseInfo.detail[_breed]!['속도']!) / maxLevel);
+    return doubleFloor((_speed - HorseInfo.detail[_breed]!['속도']!) / maxLevel);
   }
 
   String get speedGrade => _evaluate(speedAvg);
@@ -132,10 +131,10 @@ class HorseController extends GetxController {
   double get speedPercent => percent(speedAvg);
 
   double get accelerationAvg {
-    if(_acceleration <= _horseInfo.detail[_breed]!['가속']! || maxLevel <= 0){
+    if(_acceleration <= HorseInfo.detail[_breed]!['가속']! || maxLevel <= 0){
       return 0.0;
     }
-    return doubleFloor((_acceleration - _horseInfo.detail[_breed]!['가속']!) / maxLevel);
+    return doubleFloor((_acceleration - HorseInfo.detail[_breed]!['가속']!) / maxLevel);
   }
 
   String get accelerationGrade => _evaluate(accelerationAvg);
@@ -143,10 +142,10 @@ class HorseController extends GetxController {
   double get accelerationPercent => percent(accelerationAvg);
 
   double get brakeAvg {
-    if(_brake <= _horseInfo.detail[_breed]!['제동']! || maxLevel <= 0){
+    if(_brake <= HorseInfo.detail[_breed]!['제동']! || maxLevel <= 0){
       return 0.0;
     }
-    return doubleFloor((_brake - _horseInfo.detail[_breed]!['제동']!) / maxLevel);
+    return doubleFloor((_brake - HorseInfo.detail[_breed]!['제동']!) / maxLevel);
   }
 
   String get brakeGrade => _evaluate(brakeAvg);
@@ -154,10 +153,10 @@ class HorseController extends GetxController {
   double get brakePercent => percent(brakeAvg);
 
   double get rotForceAvg {
-    if(_rotForce <= _horseInfo.detail[_breed]!['회전']! || maxLevel <= 0){
+    if(_rotForce <= HorseInfo.detail[_breed]!['회전']! || maxLevel <= 0){
       return 0.0;
     }
-    return doubleFloor((_rotForce - _horseInfo.detail[_breed]!['회전']!) / maxLevel);
+    return doubleFloor((_rotForce - HorseInfo.detail[_breed]!['회전']!) / maxLevel);
   }
 
   String get rotForceGrade => _evaluate(rotForceAvg);
