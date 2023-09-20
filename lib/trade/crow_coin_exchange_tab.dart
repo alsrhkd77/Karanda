@@ -74,7 +74,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                 margin: const EdgeInsets.all(8.0),
                                 child: TextField(
                                   keyboardType:
-                                  const TextInputType.numberWithOptions(),
+                                      const TextInputType.numberWithOptions(),
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                         RegExp(r'^(\d{0,4})')),
@@ -86,7 +86,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                       borderSide:
-                                      const BorderSide(color: Colors.blue),
+                                          const BorderSide(color: Colors.blue),
                                     ),
                                   ),
                                   onChanged: (value) {
@@ -107,7 +107,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                 margin: const EdgeInsets.all(8.0),
                                 child: TextField(
                                   keyboardType:
-                                  const TextInputType.numberWithOptions(),
+                                      const TextInputType.numberWithOptions(),
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                         RegExp(r'^(\d{0,8})')),
@@ -118,7 +118,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                       borderSide:
-                                      const BorderSide(color: Colors.blue),
+                                          const BorderSide(color: Colors.blue),
                                     ),
                                   ),
                                   onChanged: (value) {
@@ -143,7 +143,8 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TitleText('${index + 1}단계 → ${index + 2}단계'),
                                   Container(
@@ -151,32 +152,35 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                     child: DecoratedBox(
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
-                                        borderRadius: BorderRadius.circular(15.0),
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
                                       ),
-                                      child: Padding(
+                                      child: DropdownButton<String>(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 24.0),
-                                        child: DropdownButton<String>(
-                                          value: '1 : ${ratio[index]}',
-                                          underline: Container(),
-                                          focusColor: Colors.transparent,
-                                          onChanged: (String? value) {
-                                            if (value!.isEmpty) {
-                                              return;
-                                            }
-                                            setState(() {
-                                              ratio[index] =
-                                                  int.parse(value.split('').last);
-                                            });
-                                          },
-                                          items: ['1 : 1', '1 : 2', '1 : 3']
-                                              .map<DropdownMenuItem<String>>(
-                                                  (e) => DropdownMenuItem(
-                                                value: e,
-                                                child: Text(e),
-                                              ))
-                                              .toList(),
-                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                        value: '1 : ${ratio[index]}',
+                                        underline: Container(),
+                                        focusColor: Colors.transparent,
+                                        onChanged: (String? value) {
+                                          if (value!.isEmpty) {
+                                            return;
+                                          }
+                                          setState(() {
+                                            ratio[index] =
+                                                int.parse(value.split('').last);
+                                          });
+                                        },
+                                        items: ['1 : 1', '1 : 2', '1 : 3']
+                                            .map<DropdownMenuItem<String>>(
+                                                (e) => DropdownMenuItem(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      value: e,
+                                                      child: Text(e),
+                                                    ))
+                                            .toList(),
                                       ),
                                     ),
                                   ),
@@ -195,7 +199,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                 margin: const EdgeInsets.all(8.0),
                                 child: TextField(
                                   keyboardType:
-                                  const TextInputType.numberWithOptions(),
+                                      const TextInputType.numberWithOptions(),
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                         RegExp(r'^(\d{0,5})')),
@@ -207,7 +211,7 @@ class _CrowCoinExchangeTabState extends State<CrowCoinExchangeTab> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                       borderSide:
-                                      const BorderSide(color: Colors.blue),
+                                          const BorderSide(color: Colors.blue),
                                     ),
                                   ),
                                   onChanged: (value) {

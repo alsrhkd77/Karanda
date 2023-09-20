@@ -275,6 +275,7 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
                         items: tradeLevelList.keys
                             .map<DropdownMenuItem<String>>(
                                 (e) => DropdownMenuItem(
+                                    alignment: Alignment.center,
                                     value: e,
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),

@@ -151,7 +151,7 @@ class _HeadLine extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               borderRadius: BorderRadius.circular(12.0),
               value: context.select<ShipExtensionNotifier, String>(
-                      (ShipExtensionNotifier s) => s.select),
+                  (ShipExtensionNotifier s) => s.select),
               underline: Container(),
               focusColor: Colors.transparent,
               onChanged: (String? value) {
@@ -162,9 +162,10 @@ class _HeadLine extends StatelessWidget {
               },
               items: shipType
                   .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
-                value: e,
-                child: Text(e),
-              ))
+                        alignment: Alignment.center,
+                        value: e,
+                        child: Text(e),
+                      ))
                   .toList(),
             ),
           ),

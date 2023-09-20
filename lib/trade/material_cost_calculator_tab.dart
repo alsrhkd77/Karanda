@@ -9,7 +9,8 @@ class MaterialCostCalculatorTab extends StatefulWidget {
   const MaterialCostCalculatorTab({Key? key}) : super(key: key);
 
   @override
-  State<MaterialCostCalculatorTab> createState() => _MaterialCostCalculatorTabState();
+  State<MaterialCostCalculatorTab> createState() =>
+      _MaterialCostCalculatorTabState();
 }
 
 class _MaterialCostCalculatorTabState extends State<MaterialCostCalculatorTab> {
@@ -81,34 +82,46 @@ class _MaterialCostCalculatorTabState extends State<MaterialCostCalculatorTab> {
               ),
             ),
             Container(
-              width: 75,
+              width: 85,
               margin: const EdgeInsets.all(4.0),
               child: DecoratedBox(
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.blue),
                     borderRadius: BorderRadius.circular(12.0)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: DropdownButton<String>(
-                    value: '${items[index]['trade']}회',
-                    underline: Container(),
-                    focusColor: Colors.transparent,
-                    onChanged: (String? value) {
-                      if (value!.isEmpty) {
-                        return;
-                      }
-                      setState(() {
-                        items[index]['trade'] =
-                            int.parse(value.replaceAll('회', ''));
-                      });
-                    },
-                    items: ['0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회', '10회']
-                        .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(e),
-                    ))
-                        .toList(),
-                  ),
+                child: DropdownButton<String>(
+                  borderRadius: BorderRadius.circular(12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  value: '${items[index]['trade']}회',
+                  underline: Container(),
+                  focusColor: Colors.transparent,
+                  onChanged: (String? value) {
+                    if (value!.isEmpty) {
+                      return;
+                    }
+                    setState(() {
+                      items[index]['trade'] =
+                          int.parse(value.replaceAll('회', ''));
+                    });
+                  },
+                  items: [
+                    '0회',
+                    '1회',
+                    '2회',
+                    '3회',
+                    '4회',
+                    '5회',
+                    '6회',
+                    '7회',
+                    '8회',
+                    '9회',
+                    '10회'
+                  ]
+                      .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: e,
+                            child: Text(e),
+                          ))
+                      .toList(),
                 ),
               ),
             ),
@@ -150,7 +163,10 @@ class _MaterialCostCalculatorTabState extends State<MaterialCostCalculatorTab> {
           children: [
             const ListTile(
               leading: Icon(Icons.calculate),
-              title: TitleText('재료비 계산기', bold: true,),
+              title: TitleText(
+                '재료비 계산기',
+                bold: true,
+              ),
             ),
             Container(
               constraints: const BoxConstraints(

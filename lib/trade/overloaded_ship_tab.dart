@@ -46,7 +46,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
 
   Future<void> saveData() async {
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
+        await SharedPreferences.getInstance();
     await sharedPreferences.setInt('overloadedShipTotalWeight', totalWeight);
     await sharedPreferences.setInt('overloadedShipSailorWeight', sailorWeight);
     await sharedPreferences.setInt('overloadedShipEquipWeight', equipWeight);
@@ -55,7 +55,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
 
   Future<bool> getData() async {
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
+        await SharedPreferences.getInstance();
     totalWeight =
         sharedPreferences.getInt('overloadedShipTotalWeight') ?? totalWeight;
     sailorWeight =
@@ -63,7 +63,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
     equipWeight =
         sharedPreferences.getInt('overloadedShipEquipWeight') ?? equipWeight;
     setState(() {
-      advancedMode = sharedPreferences.getBool('overloadedShipFormType') ?? advancedMode;
+      advancedMode =
+          sharedPreferences.getBool('overloadedShipFormType') ?? advancedMode;
     });
     initValue();
     return true;
@@ -88,7 +89,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
               margin: const EdgeInsets.all(8.0),
               child: Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -105,7 +106,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                           child: TextField(
                             controller: simpleTextController[index],
                             keyboardType:
-                            const TextInputType.numberWithOptions(),
+                                const TextInputType.numberWithOptions(),
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                   RegExp(r'^(\d{0,5})')),
@@ -115,7 +116,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                                 borderSide:
-                                const BorderSide(color: Colors.blue),
+                                    const BorderSide(color: Colors.blue),
                               ),
                             ),
                             onChanged: (value) {
@@ -162,97 +163,103 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.blue),
                   borderRadius: BorderRadius.circular(12.0)),
-              child: Padding(
+              child: DropdownButton<String>(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: DropdownButton<String>(
-                  value: advancedWeight[index]['grade'] == 1
-                      ? '재료 → 1단계'
-                      : '${advancedWeight[index]['grade'] - 1} → ${advancedWeight[index]['grade']}단계',
-                  underline: Container(),
-                  focusColor: Colors.transparent,
-                  onChanged: (String? value) {
-                    if (value!.isEmpty) {
-                      return;
-                    }
-                    setState(() {
-                      advancedWeight[index]['grade'] =
-                          int.parse(value.split(' ').last.split('').first);
-                    });
-                  },
-                  items: [
-                    '재료 → 1단계',
-                    '1 → 2단계',
-                    '2 → 3단계',
-                    '3 → 4단계',
-                    '4 → 5단계'
-                  ]
-                      .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
-                    value: e,
-                    child: Text(e),
-                  ))
-                      .toList(),
-                ),
+                borderRadius: BorderRadius.circular(12.0),
+                value: advancedWeight[index]['grade'] == 1
+                    ? '재료 → 1단계'
+                    : '${advancedWeight[index]['grade'] - 1} → ${advancedWeight[index]['grade']}단계',
+                underline: Container(),
+                focusColor: Colors.transparent,
+                onChanged: (String? value) {
+                  if (value!.isEmpty) {
+                    return;
+                  }
+                  setState(() {
+                    advancedWeight[index]['grade'] =
+                        int.parse(value.split(' ').last.split('').first);
+                  });
+                },
+                items: ['재료 → 1단계', '1 → 2단계', '2 → 3단계', '3 → 4단계', '4 → 5단계']
+                    .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
+                          alignment: Alignment.center,
+                          value: e,
+                          child: Text(e),
+                        ))
+                    .toList(),
               ),
             ),
             const SizedBox(width: 12.0),
             advancedWeight[index]['grade'] != 1
                 ? DecoratedBox(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(12.0)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: DropdownButton<String>(
-                  value: '1 : ${advancedWeight[index]['ratio']}',
-                  underline: Container(),
-                  focusColor: Colors.transparent,
-                  onChanged: (String? value) {
-                    if (value!.isEmpty) {
-                      return;
-                    }
-                    setState(() {
-                      advancedWeight[index]['ratio'] =
-                          int.parse(value.split('').last);
-                    });
-                  },
-                  items: ['1 : 1', '1 : 2', '1 : 3']
-                      .map<DropdownMenuItem<String>>(
-                          (e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e),
-                      ))
-                      .toList(),
-                ),
-              ),
-            )
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.circular(12.0)),
+                    child: DropdownButton<String>(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      borderRadius: BorderRadius.circular(12.0),
+                      value: '1 : ${advancedWeight[index]['ratio']}',
+                      underline: Container(),
+                      focusColor: Colors.transparent,
+                      onChanged: (String? value) {
+                        if (value!.isEmpty) {
+                          return;
+                        }
+                        setState(() {
+                          advancedWeight[index]['ratio'] =
+                              int.parse(value.split('').last);
+                        });
+                      },
+                      items: ['1 : 1', '1 : 2', '1 : 3']
+                          .map<DropdownMenuItem<String>>(
+                              (e) => DropdownMenuItem(
+                                    alignment: Alignment.center,
+                                    value: e,
+                                    child: Text(e),
+                                  ))
+                          .toList(),
+                    ),
+                  )
                 : const SizedBox(),
             const SizedBox(width: 12.0),
             DecoratedBox(
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.blue),
                   borderRadius: BorderRadius.circular(12.0)),
-              child: Padding(
+              child: DropdownButton<String>(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: DropdownButton<String>(
-                  value: '${advancedWeight[index]['count']}회',
-                  underline: Container(),
-                  focusColor: Colors.transparent,
-                  onChanged: (String? value) {
-                    if (value!.isEmpty) {
-                      return;
-                    }
-                    setState(() {
-                      advancedWeight[index]['count'] =
-                          int.parse(value.replaceAll('회', ''));
-                    });
-                  },
-                  items: ['0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회', '10회']
-                      .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
-                    value: e,
-                    child: Text(e),
-                  ))
-                      .toList(),
-                ),
+                borderRadius: BorderRadius.circular(12.0),
+                value: '${advancedWeight[index]['count']}회',
+                underline: Container(),
+                focusColor: Colors.transparent,
+                onChanged: (String? value) {
+                  if (value!.isEmpty) {
+                    return;
+                  }
+                  setState(() {
+                    advancedWeight[index]['count'] =
+                        int.parse(value.replaceAll('회', ''));
+                  });
+                },
+                items: [
+                  '0회',
+                  '1회',
+                  '2회',
+                  '3회',
+                  '4회',
+                  '5회',
+                  '6회',
+                  '7회',
+                  '8회',
+                  '9회',
+                  '10회'
+                ]
+                    .map<DropdownMenuItem<String>>((e) => DropdownMenuItem(
+                          alignment: Alignment.center,
+                          value: e,
+                          child: Text(e),
+                        ))
+                    .toList(),
               ),
             ),
           ],
@@ -396,7 +403,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
             _nowWeight += (goodsWeight[m['grade'] - 1] * m['count']) as int;
           } else {
             _nowWeight +=
-            (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
+                (goodsWeight[m['grade'] - 1] * m['count'] * m['ratio']) as int;
           }
         }
         if (m['type'] == TileType.weight) {
@@ -421,7 +428,9 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
       lineHeight: 22.0,
       progressColor: selectColor(percent),
       center: Text(
-        '${numFormat.format(_weightSnapshot)} LT / ${numFormat.format(totalWeight)} LT (${(percent * 100).toStringAsFixed(2)}%)', style: const TextStyle(color: Colors.black),),
+        '${numFormat.format(_weightSnapshot)} LT / ${numFormat.format(totalWeight)} LT (${(percent * 100).toStringAsFixed(2)}%)',
+        style: const TextStyle(color: Colors.black),
+      ),
     );
   }
 
@@ -445,7 +454,10 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                   });
                   saveData();
                 },
-                icon: Icon(Icons.dynamic_form_outlined, color: advancedMode ? Colors.blue : null,),
+                icon: Icon(
+                  Icons.dynamic_form_outlined,
+                  color: advancedMode ? Colors.blue : null,
+                ),
               ),
             ),
             Container(
@@ -461,7 +473,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
                             controller: sailorTextController,
-                            keyboardType: const TextInputType.numberWithOptions(),
+                            keyboardType:
+                                const TextInputType.numberWithOptions(),
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                   RegExp(r'^(\d{0,5})')),
@@ -471,7 +484,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                               suffixText: 'LT',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
-                                borderSide: const BorderSide(color: Colors.blue),
+                                borderSide:
+                                    const BorderSide(color: Colors.blue),
                               ),
                             ),
                             onChanged: (value) {
@@ -490,7 +504,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
                             controller: equipTextController,
-                            keyboardType: const TextInputType.numberWithOptions(),
+                            keyboardType:
+                                const TextInputType.numberWithOptions(),
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                   RegExp(r'^(\d{0,5})')),
@@ -500,7 +515,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                               suffixText: 'LT',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
-                                borderSide: const BorderSide(color: Colors.blue),
+                                borderSide:
+                                    const BorderSide(color: Colors.blue),
                               ),
                             ),
                             onChanged: (value) {
@@ -519,7 +535,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
                             controller: totalTextController,
-                            keyboardType: const TextInputType.numberWithOptions(),
+                            keyboardType:
+                                const TextInputType.numberWithOptions(),
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                   RegExp(r'^(\d{0,5})')),
@@ -529,7 +546,8 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
                               suffixText: 'LT',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
-                                borderSide: const BorderSide(color: Colors.blue),
+                                borderSide:
+                                    const BorderSide(color: Colors.blue),
                               ),
                             ),
                             onChanged: (value) {
