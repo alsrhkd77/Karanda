@@ -103,16 +103,16 @@ class BdoWorldTimeNotifier with ChangeNotifier {
   void updateBdoTime() {
     DateTime result = DateTime.now();
     for (Map target in timeChart) {
-      TimeOfDay _start = target['start'];
-      TimeOfDay _end = target['end'];
-      if (realTime.inTime(_start, _end)) {
-        int _sec = ((realTime.hour - _start.hour) * 60 * 60) +
-            ((realTime.minute - _start.minute) * 60) +
+      TimeOfDay start = target['start'];
+      TimeOfDay end = target['end'];
+      if (realTime.inTime(start, end)) {
+        int sec = ((realTime.hour - start.hour) * 60 * 60) +
+            ((realTime.minute - start.minute) * 60) +
             realTime.second;
         result = DateTime.now()
             .copyWith(hour: target['ref'].hour, minute: target['ref'].minute);
-        _sec = (_sec * (target['sec'] / 60)).round();
-        result = result.add(Duration(seconds: _sec));
+        sec = (sec * (target['sec'] / 60)).round();
+        result = result.add(Duration(seconds: sec));
         break;
       }
     }

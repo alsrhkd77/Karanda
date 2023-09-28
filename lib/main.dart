@@ -42,7 +42,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
+  final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
   // This widget is the root of your application.
@@ -65,13 +65,11 @@ class MyApp extends StatelessWidget {
             title: 'Karanda',
             theme: ThemeData(
               useMaterial3: true,
-              //fontFamily: GoogleFonts.gothicA1().fontFamily,
               fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blue,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
-              //fontFamily: GoogleFonts.gothicA1().fontFamily,
               fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,

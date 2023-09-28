@@ -114,7 +114,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
 
   // single event bar Container
   Widget eventBar(EventModel eventModel, double height) {
-    int count = int.parse(eventModel.count.split(' ')[0]);
+    int count = int.parse(eventModel.count.split(' ').first);
     if (count > 90) count = 90;
     return Container(
       margin: EdgeInsets.fromLTRB(
