@@ -56,16 +56,20 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<bool> _authorization() async {
-    final response = await http.get(Api.authorization);
-    if (response.statusCode == 200) {
-      Map data = jsonDecode(response.bodyUTF);
-      _authenticated = true;
-      _avatar = data['avatar'];
-      _username = data['username'];
-      notifyListeners();
-      return true;
-    } else if(response.statusCode == 401){
-      return await tokenRefresh();
+    try {
+      final response = await http.get(Api.authorization);
+      if (response.statusCode == 200) {
+        Map data = jsonDecode(response.bodyUTF);
+        _authenticated = true;
+        _avatar = data['avatar'];
+        _username = data['username'];
+        notifyListeners();
+        return true;
+      } else if(response.statusCode == 401){
+        return await tokenRefresh();
+      }
+    } catch (e) {
+      _showSnackBar(content: e.toString());
     }
     return false;
   }
