@@ -51,40 +51,44 @@ class _EventCalenderPageState extends State<EventCalenderPage> {
               if (notifier.events.isEmpty) {
                 return const LoadingIndicator();
               }
-              return ListView(
-                children: [
-                  ListTile(
-                    title: const TitleText(
-                      '이벤트 캘린더',
-                      bold: true,
-                    ),
-                    subtitle: Text('최근 갱신: ${notifier.lastUpdate}'),
-                    leading: const Icon(FontAwesomeIcons.calendarCheck),
-                    trailing: PopupMenuButton(
-                      icon: const Icon(FontAwesomeIcons.filter),
-                      tooltip: 'Filter',
-                      onSelected: (value) => notifier.setFilter(value),
-                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                        popupMenuItem(
-                            '오름차순', FontAwesomeIcons.arrowUpShortWide),
-                        popupMenuItem(
-                            '내림차순', FontAwesomeIcons.arrowDownWideShort),
-                        popupMenuItem('무작위', FontAwesomeIcons.shuffle),
-                        const PopupMenuDivider(),
-                        popupMenuItem('7일 이내', FontAwesomeIcons.calendarWeek),
-                        popupMenuItem('30일 이내', FontAwesomeIcons.calendar),
-                        popupMenuItem('전체', FontAwesomeIcons.infinity),
-                      ],
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: ListTile(
+                      title: const TitleText(
+                        '이벤트 캘린더',
+                        bold: true,
+                      ),
+                      subtitle: Text('최근 갱신: ${notifier.lastUpdate}'),
+                      leading: const Icon(FontAwesomeIcons.calendarCheck),
+                      trailing: PopupMenuButton(
+                        icon: const Icon(FontAwesomeIcons.filter),
+                        tooltip: 'Filter',
+                        onSelected: (value) => notifier.setFilter(value),
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                          popupMenuItem(
+                              '오름차순', FontAwesomeIcons.arrowUpShortWide),
+                          popupMenuItem(
+                              '내림차순', FontAwesomeIcons.arrowDownWideShort),
+                          popupMenuItem('무작위', FontAwesomeIcons.shuffle),
+                        ],
+                      ),
                     ),
                   ),
-                  CustomCalendar(
-                    height: (33 * notifier.events.length) + 130,
+                  const SliverToBoxAdapter(
+                    child: CustomCalendar(),
                   ),
-                  const Divider(),
-                  const ListTile(
-                    title: TitleText('이벤트 바로가기'),
+                  const SliverToBoxAdapter(
+                    child: Divider(),
                   ),
-                  const _EventCardList(),
+                  const SliverToBoxAdapter(
+                    child: ListTile(
+                      title: TitleText('이벤트 바로가기'),
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: _EventCardList(),
+                  ),
                 ],
               );
             },

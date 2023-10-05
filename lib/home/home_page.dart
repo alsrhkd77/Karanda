@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       _icon = 'assets/icons/moon.png';
     }
     return Padding(
-      padding: const EdgeInsets.fromLTRB(18.0, 4.0, 0, 0),
+      padding: const EdgeInsets.fromLTRB(14.0, 4.0, 0, 0),
       child: Row(
         children: [
           Image.asset(
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
       onPressed: () {
         Get.toNamed('/auth/authenticate');
       },
-      icon: const Icon(Icons.account_circle_outlined, size: 24),
+      icon: const Icon(Icons.account_circle_outlined, size: 20),
       label: const Text(
         '로그인',
         style: TextStyle(fontSize: 16),

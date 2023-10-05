@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class EventCalenderNotifier with ChangeNotifier {
   List<EventModel> _events = [];
   String _lastUpdate = ' - ';
-  int _limit = 30;
+  int _limit = 999;
   String _filter = 'ascending';
 
   String get lastUpdate => _lastUpdate;
@@ -19,6 +19,11 @@ class EventCalenderNotifier with ChangeNotifier {
       .toList();
 
   List<EventModel> get allEvents => _filtering(_events);
+
+
+  EventCalenderNotifier(){
+    getData();
+  }
 
   Future<List<EventModel>> getData() async {
     List<EventModel> result = [];
@@ -52,8 +57,8 @@ class EventCalenderNotifier with ChangeNotifier {
             url,
             thumbnail,
             meta,
-            Colors
-                .primaries[Random().nextInt(Colors.primaries.length)].shade100),
+            //Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
+            Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
       );
     }
     _events = result;
