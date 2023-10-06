@@ -8,6 +8,7 @@ import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
+import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'settings/app_update_page.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(create: (_) => AuthNotifier(rootScaffoldMessengerKey)),
         ChangeNotifierProvider(create: (_) => ChecklistNotifier(rootScaffoldMessengerKey)),
+        ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier()),
       ],
       child: Consumer(
         builder: (context, SettingsNotifier settings, _) {
