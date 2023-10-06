@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get/get.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/http_response_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:go_router/go_router.dart';
 
 class AuthNotifier with ChangeNotifier {
   final GlobalKey<ScaffoldMessengerState> _rootScaffoldMessengerKey;
@@ -119,8 +120,8 @@ class AuthNotifier with ChangeNotifier {
     //TODO: 실패 시 처리 필요
     if (result) {
       await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
-      if (await _authorization()) {
-        Get.offAllNamed('/');
+      if(await _authorization()){
+        _rootScaffoldMessengerKey.currentContext!.go('/');
       }
     }
   }

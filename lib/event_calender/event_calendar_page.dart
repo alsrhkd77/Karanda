@@ -11,14 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class EventCalenderPage extends StatefulWidget {
-  const EventCalenderPage({Key? key}) : super(key: key);
+class EventCalendarPage extends StatefulWidget {
+  const EventCalendarPage({Key? key}) : super(key: key);
 
   @override
-  State<EventCalenderPage> createState() => _EventCalenderPageState();
+  State<EventCalendarPage> createState() => _EventCalendarPageState();
 }
 
-class _EventCalenderPageState extends State<EventCalenderPage> {
+class _EventCalendarPageState extends State<EventCalendarPage> {
   @override
   void initState() {
     super.initState();

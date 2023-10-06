@@ -16,7 +16,7 @@ class ChecklistItem {
   ChecklistItem({required this.title, required this.cycle});
 
   ChecklistItem.fromJson(String json) {
-    Map<String, Cycle> _match = {
+    Map<String, Cycle> match = {
       'once': Cycle.once,
       'daily': Cycle.daily,
       'weekly_mon': Cycle.weeklyMon,
@@ -26,11 +26,11 @@ class ChecklistItem {
     id = data['id'];
     title = data['title'];
     enabled = data['enabled'];
-    cycle = _match[data['cycle']]!;
+    cycle = match[data['cycle']]!;
   }
 
   ChecklistItem.fromData(Map data) {
-    Map<String, Cycle> _match = {
+    Map<String, Cycle> match = {
       'once': Cycle.once,
       'daily': Cycle.daily,
       'weekly_mon': Cycle.weeklyMon,
@@ -39,7 +39,7 @@ class ChecklistItem {
     id = data['id'];
     title = data['title'];
     enabled = data['enabled'];
-    cycle = _match[data['cycle']]!;
+    cycle = match[data['cycle']]!;
     for (Map m in data['finished_items']) {
       ChecklistFinishedItem item = ChecklistFinishedItem.fromData(m);
       finishedItem.add(item);
@@ -47,7 +47,7 @@ class ChecklistItem {
   }
 
   String toJson({bool withFinishedItem = false}) {
-    Map<Cycle, String> _match = {
+    Map<Cycle, String> match = {
       Cycle.once: 'once',
       Cycle.daily: 'daily',
       Cycle.weeklyMon: 'weekly_mon',
@@ -56,7 +56,7 @@ class ChecklistItem {
     Map data = {
       'title': title,
       'enabled': enabled,
-      'cycle': _match[cycle],
+      'cycle': match[cycle],
     };
     if (id != null){
       data['id'] = id;

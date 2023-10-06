@@ -1,8 +1,5 @@
 import '../widgets/default_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'package:url_launcher/url_launcher.dart';
 
 class SycrakeaPage extends StatefulWidget {
   const SycrakeaPage({Key? key}) : super(key: key);
@@ -22,14 +19,6 @@ class _SycrakeaPageState extends State<SycrakeaPage> {
     [0, 1, 0],
     [0, 0, 0],
   ];
-
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
-          margin: const EdgeInsets.all(24.0));
-    }
-  }
 
   void calculate() {
     setState(() {

@@ -15,4 +15,6 @@ class GlobalProperties {
         ? (width - widthConstrains) / 2
         : scrollViewVerticalPadding;
   }
+
+  static EdgeInsetsGeometry get snackBarMargin => const EdgeInsets.all(24.0);
 }

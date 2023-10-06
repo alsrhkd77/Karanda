@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class NeedLogin extends StatelessWidget {
   const NeedLogin({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class NeedLogin extends StatelessWidget {
           ),
           OutlinedButton.icon(
             onPressed: () {
-              Get.toNamed('/auth/authenticate');
+              context.go('/auth/authenticate');
             },
             icon: const Icon(Icons.login),
             label: Container(

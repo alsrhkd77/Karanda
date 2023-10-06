@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'dart:developer' as developer;
 
@@ -23,20 +23,20 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
 
   Future<void> checkAndStart() async {
     bool check = true;
-    int _container = 0;
-    int _target = 0;
+    int nowContainer = 0;
+    int nowTarget = 0;
     for (int i = 0; i < containerSize.length; i++) {
-      _container += container[i];
-      _target += target[i];
+      nowContainer += container[i];
+      nowTarget += target[i];
       if (container[i] > containerSize[i] || target[i] > containerSize[i]) {
         check = false;
         break;
       }
     }
-    if (_container == 0 || _target == 0) {
+    if (nowContainer == 0 || nowTarget == 0) {
       check = false;
     }
-    if (_container < _target || listEquals(container, target)) {
+    if (nowContainer < nowTarget || listEquals(container, target)) {
       check = false;
     }
     if (check) {
@@ -65,26 +65,26 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
           });
       calculate();
       await Future.delayed(const Duration(seconds: 1));
-      Navigator.of(context).pop();
+      context.pop();
     } else {
-      Get.dialog(
-        AlertDialog(
+      showDialog(context: context, builder: (BuildContext context){
+        return AlertDialog(
           title: const Text('진행 불가'),
           content: const Text('입력값을 확인해주세요'),
           actions: [
             OutlinedButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 child: const Text('확인'))
           ],
-        ),
-      );
+        );
+      });
     }
   }
 
   void calculate() {
-    List<List<int>> _unsolved = [];
+    List<List<int>> nowUnsolved = [];
     List<List<int>> unsolved = [];
     List<int> solved = [];
     Map<String, List<int>> node = {};
@@ -95,15 +95,15 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
     unsolved.add(container);
     // start
     while (true) {
-      _unsolved = List.from(unsolved);
-      if (_unsolved.isEmpty && solved.isEmpty) {
+      nowUnsolved = List.from(unsolved);
+      if (nowUnsolved.isEmpty && solved.isEmpty) {
         setState(() {
           count = -1;
         });
         developer.log('unsolved value list is empty!');
         return;
       }
-      for (List<int> select in _unsolved) {
+      for (List<int> select in nowUnsolved) {
         for (int i = 0; i < containerSize.length - 1; i++) {
           setState(() {
             count++;
@@ -116,7 +116,10 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
             temp.last = temp.last - temp[i];
           }
           String n = temp.join(",");
-          node.addIf(!node.containsKey(n), n, select);
+          if(!node.containsKey(n)){
+            node[n] = select;
+          }
+          //node.addIf(!node.containsKey(n), n, select);
           if (listEquals(temp.sublist(0, 4), target.sublist(0, 4))) {
             developer.log('solved!');
             solved = List.from(temp);

@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
 import 'package:karanda/widgets/cannot_use_in_web.dart';
@@ -21,14 +20,14 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
   TimeOfDay selected = TimeOfDay.now();
 
   Future<void> selectTime() async {
-    TimeOfDay? _selectedTime = await showTimePicker(
+    TimeOfDay? selectedTime = await showTimePicker(
       initialTime: selected,
       helpText: '예약 종료',
       context: context,
     );
-    if (_selectedTime != null) {
+    if (selectedTime != null) {
       setState(() {
-        selected = _selectedTime;
+        selected = selectedTime;
       });
     }
   }
@@ -36,7 +35,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
   Widget buildTimer(String intervalTime) {
     return Container(
       margin:
-          EdgeInsets.symmetric(horizontal: 20.0, vertical: context.height / 6),
+          EdgeInsets.symmetric(horizontal: 20.0, vertical: MediaQuery.of(context).size.height / 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -65,7 +64,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
   Widget buildTimePicker() {
     return Container(
       margin:
-          EdgeInsets.symmetric(horizontal: 20.0, vertical: context.height / 6),
+          EdgeInsets.symmetric(horizontal: 20.0, vertical: MediaQuery.of(context).size.height / 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -119,7 +118,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
     }
     return Consumer(
       builder:
-          (context, ShutdownSchedulerNotifier _shutdownSchedulerNotifier, _) {
+          (context, ShutdownSchedulerNotifier shutdownSchedulerNotifier, _) {
         return Scaffold(
             appBar: const DefaultAppBar(),
             body: Column(
@@ -147,21 +146,20 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                   child: Card(
                     child: Stack(
                       children: [
-                        _shutdownSchedulerNotifier.running
+                        shutdownSchedulerNotifier.running
                             ? buildTimer(
-                                _shutdownSchedulerNotifier.getTimeInterval())
+                                shutdownSchedulerNotifier.getTimeInterval())
                             : buildTimePicker(),
                         Positioned(
                           right: 15.0,
                           top: 15.0,
-                          child: _shutdownSchedulerNotifier.running
+                          child: shutdownSchedulerNotifier.running
                               ? Row(
                                   children: [
                                     Text(
-                                      _shutdownSchedulerNotifier.target.timeWithPeriod(period: 'KR', time: 'KR'),
+                                      shutdownSchedulerNotifier.target.timeWithPeriod(period: 'KR', time: 'KR'),
                                       style: TextStyle(
-                                          color: context
-                                              .textTheme.bodySmall!.color),
+                                          color: Theme.of(context).textTheme.bodySmall!.color),
                                     ),
                                     const Padding(
                                       padding:
@@ -186,9 +184,9 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                 //Build Button
                 Container(
                   margin: const EdgeInsets.all(12.0),
-                  child: _shutdownSchedulerNotifier.running
+                  child: shutdownSchedulerNotifier.running
                       ? ElevatedButton(
-                          onPressed: _shutdownSchedulerNotifier.cancelSchedule,
+                          onPressed: shutdownSchedulerNotifier.cancelSchedule,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
                           ),
@@ -209,7 +207,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                             alignment: Alignment.center,
                             child: const Text('종료 예약'),
                           ),
-                          onPressed: () => _shutdownSchedulerNotifier
+                          onPressed: () => shutdownSchedulerNotifier
                               .startSchedule(selected),
                         ),
                 ),

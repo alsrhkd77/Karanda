@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
 
@@ -40,7 +40,7 @@ class VersionNotifier with ChangeNotifier {
           action: SnackBarAction(
             label: '업데이트',
             onPressed: (){
-              Get.toNamed('/desktop-app');
+              rootScaffoldMessengerKey.currentContext!.go('/desktop-app');
             },
             textColor: Colors.blue,
           ),

@@ -66,10 +66,10 @@ Future<Uint8List> readBytes(String url, {Map<String, String>? headers}) async {
 
 Future<Map<String, String>?> _getToken(Map<String, String>? headers) async {
   const storage = FlutterSecureStorage();
-  String? _token = await storage.read(key: 'karanda-token');
-  if (_token != null) {
+  String? token = await storage.read(key: 'karanda-token');
+  if (token != null) {
     headers = headers ?? {};
-    headers.addAll({'authorization': _token});
+    headers.addAll({'authorization': token});
   }
   return headers;
 }

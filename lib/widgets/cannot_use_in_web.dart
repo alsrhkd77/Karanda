@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import '../common/launch_url.dart';
 
 class CannotUseInWeb extends StatelessWidget {
   const CannotUseInWeb({Key? key}) : super(key: key);
-
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
-          margin: const EdgeInsets.all(24.0));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +27,7 @@ class CannotUseInWeb extends StatelessWidget {
             ),
           ),
           OutlinedButton(
-            onPressed: () => _launchURL(
+            onPressed: () => launchURL(
                 'https://github.com/HwanSangYeonHwa/Karanda/releases'),
             child: Container(
               margin: const EdgeInsets.all(12.0),

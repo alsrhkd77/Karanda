@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -9,7 +9,9 @@ import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  final String? token;
+  final String? refreshToken;
+  const AuthPage({Key? key, required this.token, required this.refreshToken}) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -24,13 +26,13 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> checkParam() async {
     if (!Provider.of<AuthNotifier>(context, listen: false).authenticated) {
-      String? token = Get.parameters['token'];
-      String? refreshToken = Get.parameters['refresh-token'];
+      String? token = widget.token;
+      String? refreshToken = widget.refreshToken;
       if (token != null && refreshToken != null) {
         await Provider.of<AuthNotifier>(context, listen: false).saveToken(
             token: token, refreshToken: refreshToken);
         await Provider.of<AuthNotifier>(context, listen: false).authorization();
-        Get.offAllNamed('/');
+        context.go('/');
       }
     }
   }
@@ -113,8 +115,8 @@ class _AuthPageState extends State<AuthPage> {
       bool status =
           await Provider.of<AuthNotifier>(context, listen: false).unregister();
       if (status) {
-        Navigator.of(context).pop();
-        Get.offAllNamed('/');
+        context.pop();
+        context.go('/');
       }
     }
   }
@@ -122,8 +124,8 @@ class _AuthPageState extends State<AuthPage> {
   Future<void> logout() async {
     _showDialog('로그아웃');
     await Provider.of<AuthNotifier>(context, listen: false).logout();
-    Navigator.of(context).pop();
-    Get.offAllNamed('/');
+    context.pop();
+    context.go('/');
   }
 
   void _showDialog(String title) {

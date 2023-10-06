@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:karanda/ship_extension/ship_extension_item_model.dart';
 
 class ItemWidget extends StatefulWidget {
@@ -77,7 +76,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                       Text(farming),
                       Text(
                         detail,
-                        style: context.textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall,
                       )
                     ],
                   ),

@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+import '../common/launch_url.dart';
 import '../settings/settings_notifier.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -19,28 +19,21 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw Get.snackbar('Failed', '해당 링크를 열 수 없습니다. \n $uri ',
-          margin: const EdgeInsets.all(24.0));
-    }
-  }
 
   Widget socialLogin(){
     if(Provider.of<AuthNotifier>(context).authenticated){
-      String _username = Provider.of<AuthNotifier>(context, listen: false).username;
-      String _avatar = Provider.of<AuthNotifier>(context, listen: false).avatar;
+      String username = Provider.of<AuthNotifier>(context, listen: false).username;
+      String avatar = Provider.of<AuthNotifier>(context, listen: false).avatar;
       return ListTile(
         leading: CircleAvatar(
-          foregroundImage: Image.network('${Api.discordCDN}$_avatar').image,
+          foregroundImage: Image.network('${Api.discordCDN}$avatar').image,
           radius: 12,
         ),
-        title: Text(_username),
+        title: Text(username),
         trailing: const Icon(FontAwesomeIcons.discord),
         iconColor: const Color.fromRGBO(88, 101, 242, 1),
         onTap: (){
-          Get.toNamed('/auth/info');
+          context.go('/settings/auth/info');
         },
       );
     }
@@ -48,7 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
       leading: const Icon(Icons.login),
       title: const Text('소셜 로그인'),
       onTap: () {
-        Get.toNamed('/auth/authenticate');
+        context.go('/settings/auth/authenticate');
       },
     );
   }
@@ -87,14 +80,14 @@ class _SettingsPageState extends State<SettingsPage> {
                         title: const Text('Install Windows desktop'),
                         trailing:
                             const Icon(Icons.open_in_new),
-                        onTap: () => _launchURL(
+                        onTap: () => launchURL(
                             'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                       )
                     : ListTile(
                         leading: const Icon(Icons.system_update_alt_rounded),
                         title: const Text('업데이트'),
                         onTap: () {
-                          Get.toNamed('/desktop-app');
+                          context.go('/settings/desktop-app');
                         },
                       ),
                 ListTile(
@@ -118,7 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: const Text('건의하기 / 버그 제보'),
                   trailing:
                   const Icon(Icons.open_in_new),
-                  onTap: () => _launchURL(
+                  onTap: () => launchURL(
                       'https://forms.gle/Fyyc8DpcwPVMgsVy6'),
                 ),
                 ListTile(
@@ -126,7 +119,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: const Text('패치 내역'),
                   trailing:
                   const Icon(Icons.open_in_new),
-                  onTap: () => _launchURL(
+                  onTap: () => launchURL(
                       'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                 ),
               ],

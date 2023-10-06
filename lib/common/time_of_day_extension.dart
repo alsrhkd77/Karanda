@@ -17,12 +17,12 @@ extension TimeOfDayExtension on TimeOfDay {
   * ex) 00:00 or 00시00분
   */
   String timeToString({String lang = ''}) {
-    String _hour = hourOfPeriod.toString().padLeft(2, '0');
-    String _minute = minute.toString().padLeft(2, '0');
+    String strHour = hourOfPeriod.toString().padLeft(2, '0');
+    String strMinute = minute.toString().padLeft(2, '0');
     if (lang.toUpperCase() == 'KR') {
-      return '$_hour시$_minute분';
+      return '$strHour시$strMinute분';
     }
-    return '$_hour:$_minute';
+    return '$strHour:$strMinute';
   }
 
   /*
@@ -30,8 +30,8 @@ extension TimeOfDayExtension on TimeOfDay {
    * ex) PM 17:15 or 오전 10시13분
    */
   String timeWithPeriod({String period = '', String time = ''}) {
-    String _dayPeriod = dayPeriod(lang: period);
-    String _time = timeToString(lang: time);
-    return '$_dayPeriod $_time';
+    String strDayPeriod = dayPeriod(lang: period);
+    String strTime = timeToString(lang: time);
+    return '$strDayPeriod $strTime';
   }
 }

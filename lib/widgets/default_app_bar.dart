@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -20,7 +20,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: InkWell(
         hoverColor: Colors.transparent,
         onTap: () {
-          Get.offAllNamed('/');
+          context.go('/');
         },
         child: const Text(
           'Karanda',

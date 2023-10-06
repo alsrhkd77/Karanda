@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
 import 'package:karanda/common/date_time_extension.dart';
+import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../common/custom_scroll_behavior.dart';
 import '../event_calender/event_model.dart';
@@ -163,7 +162,7 @@ class _CalendarFrame extends StatelessWidget {
       ],
       border: TableBorder.symmetric(
           inside:
-          BorderSide(color: context.theme.dividerColor)),
+          BorderSide(color: Theme.of(context).dividerColor)),
       defaultColumnWidth: FixedColumnWidth(cellWidth),
     );
   }
@@ -177,16 +176,6 @@ class _EventBar extends StatelessWidget {
   final double cellWidth;
 
   const _EventBar({super.key, required this.event, required this.maxDays, required this.height, required this.cellWidth});
-
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw ScaffoldMessengerState().showSnackBar(SnackBar(
-        content: Text('해당 링크를 열 수 없습니다. \n $uri '),
-        margin: const EdgeInsets.all(24.0),
-      ));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +191,7 @@ class _EventBar extends StatelessWidget {
         shadowColor: event.color,
         elevation: 4.0,
         child: InkWell(
-          onTap: () => _launchURL(event.url),
+          onTap: () => launchURL(event.url),
           child: Container(
             padding: const EdgeInsets.all(6.0),
             alignment: Alignment.centerLeft,
