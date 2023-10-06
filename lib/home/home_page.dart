@@ -1,7 +1,6 @@
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
-import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 import 'package:provider/provider.dart';
 
