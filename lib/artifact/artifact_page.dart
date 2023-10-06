@@ -8,7 +8,6 @@ import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 
 class ArtifactPage extends StatefulWidget {
   const ArtifactPage({Key? key}) : super(key: key);
@@ -54,14 +53,26 @@ class _ArtifactPageState extends State<ArtifactPage> {
                     padding: EdgeInsets.symmetric(
                         horizontal: horizontalPadding,
                         vertical: GlobalProperties.scrollViewVerticalPadding),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate([
-                        const _SearchBar(),
-                        const _KeywordChips(),
-                        const _CardList(),
-                        const _LoadButton(),
-                      ],
+                    sliver: const SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          _SearchBar(),
+                          _KeywordChips(),
+                        ],
                       ),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: horizontalPadding),
+                    sliver: const _CardList(),
+                  ),
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: horizontalPadding,
+                        vertical: GlobalProperties.scrollViewVerticalPadding),
+                    sliver: const SliverToBoxAdapter(
+                      child: _LoadButton(),
                     ),
                   ),
                 ],
@@ -141,8 +152,8 @@ class _CombinationCard extends StatelessWidget {
       '바': Colors.blue,
       '땅': Colors.orange,
       '풀': Colors.green,
-      '오': context.textTheme.bodyMedium!.color,
-      '-': context.textTheme.bodyMedium!.color,
+      '오': Theme.of(context).textTheme.bodyMedium!.color,
+      '-': Theme.of(context).textTheme.bodyMedium!.color,
     };
     return Card(
       margin: const EdgeInsets.all(12.0),
@@ -235,18 +246,21 @@ class _CardList extends StatelessWidget {
         ? notifier.combinations.length
         : notifier.loadItemCount;
     if (notifier.combinations.isEmpty) {
-      return Container(
-        height: 120.0,
-        alignment: Alignment.center,
-        child: const Text('검색 결과가 없습니다.'),
+      return SliverToBoxAdapter(
+        child: Container(
+          height: 120.0,
+          alignment: Alignment.center,
+          child: const Text('검색 결과가 없습니다.'),
+        ),
       );
     }
-    return Column(
-      children: notifier.combinations
+    return SliverList(
+        delegate: SliverChildListDelegate(
+      notifier.combinations
           .sublist(0, count)
           .map((e) => _CombinationCard(data: e))
           .toList(),
-    );
+    ));
   }
 }
 
