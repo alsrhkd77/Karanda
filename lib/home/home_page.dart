@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 import 'package:provider/provider.dart';
 
@@ -58,11 +60,13 @@ class _HomePageState extends State<HomePage> {
       name: '예약 종료',
       icon: FontAwesomeIcons.powerOff,
       path: '/shutdown-scheduler',
+      onlyWindows: true,
     ),
     _Service(
       name: '숙제 체크리스트 (Beta)',
       icon: FontAwesomeIcons.listCheck,
       path: '/checklist',
+      needLogin: true,
     ),
     _Service(
       name: '시카라키아 컬러 카운터',
@@ -120,20 +124,39 @@ class _HomePageState extends State<HomePage> {
     //Provider.of<AuthNotifier>(context, listen: false).authorization();
   }
 
-  Widget singleIconTile(
-      {required String name, required IconData icon, required String path}) {
+  Widget singleIconTile(_Service service) {
+    bool enabled = true;
+    if(service.needLogin){
+      enabled = context.select<AuthNotifier, bool>((value) => value.authenticated);
+    }
+    if(service.onlyWindows){
+      enabled = !kIsWeb;
+    }
     return Container(
       margin: const EdgeInsets.all(4.0),
       constraints: const BoxConstraints(
         maxWidth: 400,
       ),
-      child: ListTile(
-        title: Text(
-          name,
-          style: const TextStyle(fontSize: 15.0),
+      child: InkWell(
+        onTap: enabled ? null : (){
+          String content = '사용할 수 없는 서비스 입니다';
+          if(service.needLogin){
+            content = '로그인이 필요한 서비스입니다';
+          }
+          if(service.onlyWindows){
+            content = 'Desktop에서 사용할 수 있습니다';
+          }
+          _showSnackBar(content: content);
+        },
+        child: ListTile(
+          enabled: enabled,
+          title: Text(
+            service.name,
+            style: const TextStyle(fontSize: 15.0),
+          ),
+          leading: Icon(service.icon),
+          onTap: () => context.go(service.path),
         ),
-        leading: Icon(icon),
-        onTap: () => context.go(path),
       ),
     );
   }
@@ -166,6 +189,25 @@ class _HomePageState extends State<HomePage> {
     return const Padding(
       padding: EdgeInsets.fromLTRB(14.0, 4.0, 0, 0),
       child: BdoClock(),
+    );
+  }
+
+  void _showSnackBar({required String content}){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.lock, color: Colors.redAccent,),
+            const SizedBox(width: 8.0,),
+            Text(content),
+          ],
+        ),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        margin: GlobalProperties.snackBarMargin,
+        showCloseIcon: true,
+        backgroundColor: Theme.of(context).snackBarTheme.backgroundColor,
+      ),
     );
   }
 
@@ -272,9 +314,7 @@ class _HomePageState extends State<HomePage> {
                 runSpacing: 2.0,
                 spacing: 2.0,
                 children: services
-                    .map((e) => singleIconTile(
-                        name: e.name, icon: e.icon, path: e.path))
-                    .toList(),
+                    .map((e) => singleIconTile(e)).toList(),
               ),
               const SizedBox(
                 height: 20.0,
@@ -338,12 +378,14 @@ class _Service {
   IconData icon;
   String path;
   bool needLogin;
+  bool onlyWindows;
 
   _Service(
       {required this.name,
       required this.icon,
       required this.path,
-      this.needLogin = false});
+      this.needLogin = false,
+      this.onlyWindows = false});
 }
 
 class _Link {
