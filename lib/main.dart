@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
+import 'package:karanda/auth/auth_error_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/checklist/checklist_notifier.dart';
@@ -74,6 +75,10 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'auth/authenticate',
           builder: (context, state) => AuthPage(token: state.uri.queryParameters['token'], refreshToken: state.uri.queryParameters['refresh-token'],),
+        ),
+        GoRoute(
+          path: 'auth/error',
+          builder: (context, state) => const AuthErrorPage(),
         ),
         GoRoute(
           path: 'desktop-app',

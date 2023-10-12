@@ -20,97 +20,97 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<_Service> services = [
     _Service(
-      '선박 증축',
-      FontAwesomeIcons.ship,
-      '/ship-extension',
+      name: '선박 증축',
+      icon: FontAwesomeIcons.ship,
+      path: '/ship-extension',
     ),
     _Service(
-      '이벤트 캘린더',
-      Icons.celebration_outlined,
-      '/event-calendar',
+      name: '이벤트 캘린더',
+      icon: Icons.celebration_outlined,
+      path: '/event-calendar',
     ),
     _Service(
-      '광명석 조합식',
-      FontAwesomeIcons.splotch,
-      '/artifact',
+      name: '광명석 조합식',
+      icon: FontAwesomeIcons.splotch,
+      path: '/artifact',
     ),
     _Service(
-      '말 성장치 계산기',
-      FontAwesomeIcons.chessKnight,
-      '/horse',
+      name: '말 성장치 계산기',
+      icon: FontAwesomeIcons.chessKnight,
+      path: '/horse',
     ),
     _Service(
-      '시카라키아 아홉문장 계산기',
-      FontAwesomeIcons.calculator,
-      '/sycrakea',
+      name: '시카라키아 아홉문장 계산기',
+      icon: FontAwesomeIcons.calculator,
+      path: '/sycrakea',
     ),
     _Service(
-      '요루나키아 보름달이 뜬 밤 계산기',
-      FontAwesomeIcons.calculator,
-      '/yolunakea-moon',
+      name: '요루나키아 보름달이 뜬 밤 계산기',
+      icon: FontAwesomeIcons.calculator,
+      path: '/yolunakea-moon',
     ),
     _Service(
-      '물물교환 계산기',
-      FontAwesomeIcons.arrowRightArrowLeft,
-      '/trade-calculator',
+      name: '물물교환 계산기',
+      icon: FontAwesomeIcons.arrowRightArrowLeft,
+      path: '/trade-calculator',
     ),
     _Service(
-      '예약 종료',
-      FontAwesomeIcons.powerOff,
-      '/shutdown-scheduler',
+      name: '예약 종료',
+      icon: FontAwesomeIcons.powerOff,
+      path: '/shutdown-scheduler',
     ),
     _Service(
-      '숙제 체크리스트 (Beta)',
-      FontAwesomeIcons.listCheck,
-      '/checklist',
+      name: '숙제 체크리스트 (Beta)',
+      icon: FontAwesomeIcons.listCheck,
+      path: '/checklist',
     ),
     _Service(
-      '시카라키아 컬러 카운터',
-      FontAwesomeIcons.staffSnake,
-      '/color-counter',
+      name: '시카라키아 컬러 카운터',
+      icon: FontAwesomeIcons.staffSnake,
+      path: '/color-counter',
     ),
   ];
 
   final List<_Link> links = [
     _Link(
-      '검은사막 공식 홈페이지',
-      'assets/icons/bdo.png',
-      'https://www.kr.playblackdesert.com',
+      name: '검은사막 공식 홈페이지',
+      icon: 'assets/icons/bdo.png',
+      url: 'https://www.kr.playblackdesert.com',
     ),
     _Link(
-      '검은사막 연구소(테스트 서버)',
-      'assets/icons/bdo.png',
-      'https://www.global-lab.playblackdesert.com',
+      name: '검은사막 연구소(테스트 서버)',
+      icon: 'assets/icons/bdo.png',
+      url: 'https://www.global-lab.playblackdesert.com',
     ),
     _Link(
-      '검은사막 인벤',
-      'assets/icons/inven.png',
-      'https://black.inven.co.kr',
+      name: '검은사막 인벤',
+      icon: 'assets/icons/inven.png',
+      url: 'https://black.inven.co.kr',
     ),
     _Link(
-      '검은사막 인벤 지도시뮬레이터',
-      'assets/icons/inven.png',
-      'https://black.inven.co.kr/dataninfo/map',
+      name: '검은사막 인벤 지도시뮬레이터',
+      icon: 'assets/icons/inven.png',
+      url: 'https://black.inven.co.kr/dataninfo/map',
     ),
     _Link(
-      'Garmoth',
-      'assets/icons/garmoth.png',
-      'https://garmoth.com',
+      name: 'Garmoth',
+      icon: 'assets/icons/garmoth.png',
+      url: 'https://garmoth.com',
     ),
     _Link(
-      'BDO Codex',
-      'assets/icons/bdocodex.png',
-      'https://bdocodex.com/kr',
+      name: 'BDO Codex',
+      icon: 'assets/icons/bdocodex.png',
+      url: 'https://bdocodex.com/kr',
     ),
     _Link(
-      'BDOLYTICS',
-      'assets/icons/bdolytics.png',
-      'https://bdolytics.com/ko/KR',
+      name: 'BDOLYTICS',
+      icon: 'assets/icons/bdolytics.png',
+      url: 'https://bdolytics.com/ko/KR',
     ),
     _Link(
-      'OnTopReplica',
-      'assets/icons/onTopReplica.png',
-      'https://github.com/LorenzCK/OnTopReplica',
+      name: 'OnTopReplica',
+      icon: 'assets/icons/onTopReplica.png',
+      url: 'https://github.com/LorenzCK/OnTopReplica',
     ),
   ];
 
@@ -314,6 +314,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              /*
               Container(
                 alignment: Alignment.center,
                 child: const Text(
@@ -323,6 +324,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(color: Colors.grey),
                 ),
               )
+               */
             ],
           ),
         ),
@@ -335,8 +337,13 @@ class _Service {
   String name;
   IconData icon;
   String path;
+  bool needLogin;
 
-  _Service(this.name, this.icon, this.path);
+  _Service(
+      {required this.name,
+      required this.icon,
+      required this.path,
+      this.needLogin = false});
 }
 
 class _Link {
@@ -344,5 +351,5 @@ class _Link {
   String icon;
   String url;
 
-  _Link(this.name, this.icon, this.url);
+  _Link({required this.name, required this.icon, required this.url});
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/http_response_extension.dart';
@@ -99,17 +100,16 @@ class AuthNotifier with ChangeNotifier {
 
   //run only windows app
   Future<void> listenRedirect() async {
+    bool result = false;
     HttpServer redirectServer = await HttpServer.bind("localhost", 8082);
     HttpRequest request = await redirectServer.first;
-    bool result = false;
     Map<String, String> data = request.uri.queryParameters;
     try {
       if (data.containsKey('token') && data.containsKey('refresh-token')) {
         result = true;
         request.response.redirect(Uri.parse('https://discord.com'));
       } else {
-        //TODO: 실패시 보낼 페이지 필요
-        request.response.redirect(Uri.parse('https://discord.com'));
+        request.response.redirect(Uri.parse('https://www.karanda.kr/auth/error'));
       }
     }
     finally{
@@ -117,12 +117,13 @@ class AuthNotifier with ChangeNotifier {
       await redirectServer.close();
     }
 
-    //TODO: 실패 시 처리 필요
     if (result) {
       await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
       if(await _authorization()){
-        _rootScaffoldMessengerKey.currentContext!.go('/');
+        ScaffoldMessengerState().context.go('/');
       }
+    } else{
+      ScaffoldMessengerState().context.go('/auth/error');
     }
   }
 
@@ -175,7 +176,7 @@ class AuthNotifier with ChangeNotifier {
         content: Text(content),
         duration: const Duration(seconds: 3),
         behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(24.0),
+        margin: GlobalProperties.snackBarMargin,
         backgroundColor: Theme.of(_rootScaffoldMessengerKey.currentContext!)
             .snackBarTheme
             .backgroundColor,
