@@ -27,7 +27,6 @@ class _ChecklistPageState extends State<ChecklistPage> {
   @override
   void initState() {
     super.initState();
-    context.read<ChecklistNotifier>().getAllChecklistItems();
   }
 
   Future<void> createChecklistItemDialog() async {

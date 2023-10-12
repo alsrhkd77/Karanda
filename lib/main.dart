@@ -46,90 +46,100 @@ void main() {
 final GoRouter _router = GoRouter(
   initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const HomePage(),
-      routes: [
-        GoRoute(
+    GoRoute(path: '/', builder: (context, state) => const HomePage(), routes: [
+      GoRoute(
           path: 'settings',
           builder: (context, state) => const SettingsPage(),
           routes: [
             GoRoute(
-            path: 'auth/info',
-            builder: (context, state) => const AuthPage(token: null, refreshToken: null,),
-          ),
+              path: 'auth/info',
+              builder: (context, state) => const AuthPage(
+                token: null,
+                refreshToken: null,
+              ),
+            ),
             GoRoute(
               path: 'auth/authenticate',
-              builder: (context, state) => AuthPage(token: state.uri.queryParameters['token'], refreshToken: state.uri.queryParameters['refresh-token'],),
+              builder: (context, state) => AuthPage(
+                token: state.uri.queryParameters['token'],
+                refreshToken: state.uri.queryParameters['refresh-token'],
+              ),
             ),
             GoRoute(
               path: 'desktop-app',
               builder: (context, state) => const AppUpdatePage(),
             ),
-          ]
+          ]),
+      GoRoute(
+        path: 'auth/info',
+        builder: (context, state) => const AuthPage(
+          token: null,
+          refreshToken: null,
         ),
-        GoRoute(
-          path: 'auth/info',
-          builder: (context, state) => const AuthPage(token: null, refreshToken: null,),
+      ),
+      GoRoute(
+        path: 'auth/authenticate',
+        builder: (context, state) => AuthPage(
+          token: state.uri.queryParameters['token'],
+          refreshToken: state.uri.queryParameters['refresh-token'],
         ),
-        GoRoute(
-          path: 'auth/authenticate',
-          builder: (context, state) => AuthPage(token: state.uri.queryParameters['token'], refreshToken: state.uri.queryParameters['refresh-token'],),
+      ),
+      GoRoute(
+        path: 'auth/error',
+        builder: (context, state) => const AuthErrorPage(),
+      ),
+      GoRoute(
+        path: 'desktop-app',
+        builder: (context, state) => const AppUpdatePage(),
+      ),
+      GoRoute(
+        path: 'horse',
+        builder: (context, state) => const HorsePage(),
+      ),
+      GoRoute(
+        path: 'event-calendar',
+        builder: (context, state) => const EventCalendarPage(),
+      ),
+      GoRoute(
+        path: 'sycrakea',
+        builder: (context, state) => const SycrakeaPage(),
+      ),
+      GoRoute(
+        path: 'yolunakea-moon',
+        builder: (context, state) => const YolunakeaMoonPage(),
+      ),
+      GoRoute(
+        path: 'shutdown-scheduler',
+        builder: (context, state) => const ShutdownSchedulerPage(),
+      ),
+      GoRoute(
+        path: 'artifact',
+        builder: (context, state) => const ArtifactPage(),
+      ),
+      GoRoute(
+        path: 'ship-extension',
+        builder: (context, state) => const ShipExtensionPage(),
+      ),
+      GoRoute(
+        path: 'trade-calculator',
+        builder: (context, state) => const TradeCalculatorPage(),
+      ),
+      GoRoute(
+        path: 'auth',
+        builder: (context, state) => const AuthPage(
+          token: null,
+          refreshToken: null,
         ),
-        GoRoute(
-          path: 'auth/error',
-          builder: (context, state) => const AuthErrorPage(),
-        ),
-        GoRoute(
-          path: 'desktop-app',
-          builder: (context, state) => const AppUpdatePage(),
-        ),
-        GoRoute(
-          path: 'horse',
-          builder: (context, state) => const HorsePage(),
-        ),
-        GoRoute(
-          path: 'event-calendar',
-          builder: (context, state) => const EventCalendarPage(),
-        ),
-        GoRoute(
-          path: 'sycrakea',
-          builder: (context, state) => const SycrakeaPage(),
-        ),
-        GoRoute(
-          path: 'yolunakea-moon',
-          builder: (context, state) => const YolunakeaMoonPage(),
-        ),
-        GoRoute(
-          path: 'shutdown-scheduler',
-          builder: (context, state) => const ShutdownSchedulerPage(),
-        ),
-        GoRoute(
-          path: 'artifact',
-          builder: (context, state) => const ArtifactPage(),
-        ),
-        GoRoute(
-          path: 'ship-extension',
-          builder: (context, state) => const ShipExtensionPage(),
-        ),
-        GoRoute(
-          path: 'trade-calculator',
-          builder: (context, state) => const TradeCalculatorPage(),
-        ),
-        GoRoute(
-          path: 'auth',
-          builder: (context, state) => const AuthPage(token: null, refreshToken: null,),
-        ),
-        GoRoute(
-          path: 'checklist',
-          builder: (context, state) => const ChecklistPage(),
-        ),
-        GoRoute(
-          path: 'color-counter',
-          builder: (context, state) => const ColorCounterPage(),
-        ),
-      ]
-    ),
+      ),
+      GoRoute(
+        path: 'checklist',
+        builder: (context, state) => const ChecklistPage(),
+      ),
+      GoRoute(
+        path: 'color-counter',
+        builder: (context, state) => const ColorCounterPage(),
+      ),
+    ]),
   ],
 );
 
@@ -149,8 +159,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
             create: (_) => AuthNotifier(rootScaffoldMessengerKey)),
-        ChangeNotifierProvider(
-            create: (_) => ChecklistNotifier(rootScaffoldMessengerKey)),
+        ChangeNotifierProxyProvider<AuthNotifier, ChecklistNotifier>(
+          create: (_) => ChecklistNotifier(rootScaffoldMessengerKey),
+          update: (_, authNotifier, checklistNotifier) {
+            if (authNotifier.authenticated) {
+              checklistNotifier!.getAllChecklistItems();
+            }
+            return checklistNotifier!;
+          },
+        ),
         ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier()),
       ],
       child: Consumer(
