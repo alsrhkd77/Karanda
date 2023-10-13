@@ -7,17 +7,17 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
 
 class VersionNotifier with ChangeNotifier {
+  final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey;
   String currentVersion = '';
   String latestVersion = '';
 
-  VersionNotifier(GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey) {
+  VersionNotifier(this.rootScaffoldMessengerKey) {
     if (!kIsWeb) {
-      checkVersion(rootScaffoldMessengerKey);
+      checkVersion();
     }
   }
 
-  Future<void> checkVersion(
-      GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey) async {
+  Future<void> checkVersion() async {
     currentVersion = await getCurrentVersion();
     latestVersion = await getLatestVersion();
     notifyListeners();

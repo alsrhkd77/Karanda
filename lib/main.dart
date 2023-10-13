@@ -161,7 +161,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SettingsNotifier()),
         ChangeNotifierProvider(
-            create: (_) => VersionNotifier(rootScaffoldMessengerKey)),
+            create: (_) => VersionNotifier(rootScaffoldMessengerKey),
+          lazy: false,
+        ),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
             create: (_) => AuthNotifier(rootScaffoldMessengerKey)),
