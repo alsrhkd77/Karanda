@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum FONT { mapleStory, notoSansKR, nanumSquareRound }
+enum FONT { maplestory, notoSansKR, nanumSquareRound }
 
 class SettingsNotifier with ChangeNotifier {
   bool _darkMode = true;
 
   bool get darkMode => _darkMode;
 
-  FONT _fontFamily = FONT.mapleStory;
+  FONT _fontFamily = FONT.maplestory;
 
   FONT get fontFamily => _fontFamily;
 

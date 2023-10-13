@@ -60,7 +60,7 @@ class _FontRadioTile extends StatelessWidget {
   _FontRadioTile({super.key, required this.font});
 
   final Map<FONT, String> fontList = {
-    FONT.mapleStory: '메이플스토리체',
+    FONT.maplestory: '메이플스토리체',
     FONT.notoSansKR: 'Noto Sans Korean',
     FONT.nanumSquareRound: '나눔스퀘어라운드',
   };
