@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/global_properties.dart';
 
 import '../common/launch_url.dart';
 import '../settings/settings_notifier.dart';
@@ -19,10 +20,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-
-  Widget socialLogin(){
-    if(Provider.of<AuthNotifier>(context).authenticated){
-      String username = Provider.of<AuthNotifier>(context, listen: false).username;
+  Widget socialLogin() {
+    if (Provider.of<AuthNotifier>(context).authenticated) {
+      String username =
+          Provider.of<AuthNotifier>(context, listen: false).username;
       String avatar = Provider.of<AuthNotifier>(context, listen: false).avatar;
       return ListTile(
         leading: CircleAvatar(
@@ -32,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text(username),
         trailing: const Icon(FontAwesomeIcons.discord),
         iconColor: const Color.fromRGBO(88, 101, 242, 1),
-        onTap: (){
+        onTap: () {
           context.go('/settings/auth/info');
         },
       );
@@ -55,8 +56,8 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Container(
             margin: const EdgeInsets.all(12.0),
             width: Size.infinite.width,
-            constraints: const BoxConstraints(
-              maxWidth: 1080,
+            constraints: BoxConstraints(
+              maxWidth: GlobalProperties.widthConstrains,
             ),
             child: Column(
               children: [
@@ -74,12 +75,18 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                  */
+                ListTile(
+                  leading: const Icon(Icons.palette_outlined),
+                  title: const Text('테마'),
+                  onTap: () {
+                    context.go('/settings/theme');
+                  },
+                ),
                 kIsWeb
                     ? ListTile(
                         leading: const Icon(Icons.install_desktop),
                         title: const Text('Install Windows desktop'),
-                        trailing:
-                            const Icon(Icons.open_in_new),
+                        trailing: const Icon(Icons.open_in_new),
                         onTap: () => launchURL(
                             'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                       )
@@ -90,6 +97,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           context.go('/settings/desktop-app');
                         },
                       ),
+                /*
                 ListTile(
                   leading: const Icon(Icons.dark_mode_outlined),
                   title: const Text('다크 모드'),
@@ -101,24 +109,25 @@ class _SettingsPageState extends State<SettingsPage> {
                     },
                   ),
                 ),
+                */
                 const ListTile(
                   leading: Icon(Icons.public),
                   title: Text('서버'),
-                  trailing: Text('KR', style: TextStyle(fontWeight: FontWeight.bold),),
+                  trailing: Text(
+                    'KR',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 ListTile(
                   leading: const Icon(Icons.reviews_outlined),
                   title: const Text('건의하기 / 버그 제보'),
-                  trailing:
-                  const Icon(Icons.open_in_new),
-                  onTap: () => launchURL(
-                      'https://forms.gle/Fyyc8DpcwPVMgsVy6'),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () => launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
                 ),
                 ListTile(
                   leading: const Icon(Icons.description_outlined),
                   title: const Text('패치 내역'),
-                  trailing:
-                  const Icon(Icons.open_in_new),
+                  trailing: const Icon(Icons.open_in_new),
                   onTap: () => launchURL(
                       'https://github.com/HwanSangYeonHwa/Karanda/releases'),
                 ),

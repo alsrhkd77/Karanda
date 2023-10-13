@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/auth/auth_error_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
@@ -11,6 +12,7 @@ import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
+import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'settings/app_update_page.dart';
@@ -68,6 +70,10 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: 'desktop-app',
               builder: (context, state) => const AppUpdatePage(),
+            ),
+            GoRoute(
+              path: 'theme',
+              builder: (context, state) => ThemeSettingPage(),
             ),
           ]),
       GoRoute(
@@ -178,12 +184,12 @@ class MyApp extends StatelessWidget {
             title: 'Karanda',
             theme: ThemeData(
               useMaterial3: true,
-              fontFamily: 'Maplestory',
+              fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
               colorSchemeSeed: Colors.blue,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
-              fontFamily: 'Maplestory',
+              fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
             ),
