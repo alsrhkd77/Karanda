@@ -118,18 +118,13 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    //Provider.of<AuthNotifier>(context, listen: false).authorization();
-  }
-
   Widget singleIconTile(_Service service) {
     bool enabled = true;
-    if(service.needLogin){
-      enabled = context.select<AuthNotifier, bool>((value) => value.authenticated);
+    if (service.needLogin) {
+      enabled =
+          context.select<AuthNotifier, bool>((value) => value.authenticated);
     }
-    if(service.onlyWindows){
+    if (service.onlyWindows) {
       enabled = !kIsWeb;
     }
     return Container(
@@ -138,16 +133,18 @@ class _HomePageState extends State<HomePage> {
         maxWidth: 400,
       ),
       child: InkWell(
-        onTap: enabled ? null : (){
-          String content = '사용할 수 없는 서비스 입니다';
-          if(service.needLogin){
-            content = '로그인이 필요한 서비스입니다';
-          }
-          if(service.onlyWindows){
-            content = 'Desktop에서 사용할 수 있습니다';
-          }
-          _showSnackBar(content: content);
-        },
+        onTap: enabled
+            ? null
+            : () {
+                String content = '사용할 수 없는 서비스 입니다';
+                if (service.needLogin) {
+                  content = '로그인이 필요한 서비스입니다';
+                }
+                if (service.onlyWindows) {
+                  content = 'Desktop에서 사용할 수 있습니다';
+                }
+                _showSnackBar(content: content);
+              },
         child: ListTile(
           enabled: enabled,
           title: Text(
@@ -192,13 +189,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _showSnackBar({required String content}){
+  void _showSnackBar({required String content}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
           children: [
-            const Icon(Icons.lock, color: Colors.redAccent,),
-            const SizedBox(width: 8.0,),
+            const Icon(
+              Icons.lock,
+              color: Colors.redAccent,
+            ),
+            const SizedBox(
+              width: 8.0,
+            ),
             Text(content),
           ],
         ),
@@ -313,8 +315,7 @@ class _HomePageState extends State<HomePage> {
               Wrap(
                 runSpacing: 2.0,
                 spacing: 2.0,
-                children: services
-                    .map((e) => singleIconTile(e)).toList(),
+                children: services.map((e) => singleIconTile(e)).toList(),
               ),
               const SizedBox(
                 height: 20.0,
