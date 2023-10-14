@@ -71,7 +71,7 @@ class AuthNotifier with ChangeNotifier {
         return await tokenRefresh();
       }
     } catch (e) {
-      deleteToken();
+      await deleteToken();
       _showSnackBar(content: '사용자 인증에 실패했습니다');
     }
     return false;
@@ -94,7 +94,7 @@ class AuthNotifier with ChangeNotifier {
         notifyListeners();
         return true;
       }
-      deleteToken();
+      await deleteToken();
       _showSnackBar(content: '유효하지 않은 인증입니다.');
     }
     return false;
@@ -125,7 +125,7 @@ class AuthNotifier with ChangeNotifier {
         ScaffoldMessengerState().context.go('/');
       }
     } else{
-      deleteToken();
+      await deleteToken();
       ScaffoldMessengerState().context.go('/auth/error');
     }
   }

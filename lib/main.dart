@@ -36,7 +36,7 @@ import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  usePathUrlStrategy();
+  //usePathUrlStrategy();
   if (!kIsWeb) {
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
       setWindowMinSize(const Size(600, 550));
