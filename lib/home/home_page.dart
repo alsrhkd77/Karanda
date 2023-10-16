@@ -73,6 +73,11 @@ class _HomePageState extends State<HomePage> {
       icon: FontAwesomeIcons.staffSnake,
       path: '/color-counter',
     ),
+    _Service(
+      name: '거래소 (실험)',
+      icon: FontAwesomeIcons.shop,
+      path: '/trade-market',
+    ),
   ];
 
   final List<_Link> links = [

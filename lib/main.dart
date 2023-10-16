@@ -15,6 +15,7 @@ import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
+import 'package:karanda/trade_market/trade_market_page.dart';
 import 'settings/app_update_page.dart';
 
 import 'package:window_size/window_size.dart';
@@ -144,6 +145,10 @@ final GoRouter _router = GoRouter(
       GoRoute(
         path: 'color-counter',
         builder: (context, state) => const ColorCounterPage(),
+      ),
+      GoRoute(
+        path: 'trade-market',
+        builder: (context, state) => const TradeMarketPage(),
       ),
     ]),
   ],
