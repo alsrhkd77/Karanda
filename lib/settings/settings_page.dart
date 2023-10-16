@@ -34,7 +34,7 @@ class _SettingsPageState extends State<SettingsPage> {
         trailing: const Icon(FontAwesomeIcons.discord),
         iconColor: const Color.fromRGBO(88, 101, 242, 1),
         onTap: () {
-          context.go('/settings/auth/info');
+          context.push('/settings/auth/info');
         },
       );
     }
@@ -42,7 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
       leading: const Icon(Icons.login),
       title: const Text('소셜 로그인'),
       onTap: () {
-        context.go('/settings/auth/authenticate');
+        context.push('/settings/auth/authenticate');
       },
     );
   }
@@ -79,7 +79,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   leading: const Icon(Icons.palette_outlined),
                   title: const Text('테마'),
                   onTap: () {
-                    context.go('/settings/theme');
+                    context.push('/settings/theme');
                   },
                 ),
                 kIsWeb
@@ -94,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         leading: const Icon(Icons.system_update_alt_rounded),
                         title: const Text('업데이트'),
                         onTap: () {
-                          context.go('/settings/desktop-app');
+                          context.push('/settings/desktop-app');
                         },
                       ),
                 /*

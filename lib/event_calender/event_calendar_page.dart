@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:karanda/common/date_time_extension.dart';
+import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
@@ -123,38 +126,28 @@ class _EventCard extends StatelessWidget {
   const _EventCard(
       {super.key, required this.eventModel, required this.maxWidth});
 
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw ScaffoldMessengerState().showSnackBar(SnackBar(
-        content: Text('해당 링크를 열 수 없습니다. \n $uri '),
-        margin: const EdgeInsets.all(24.0),
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(12.0),
       clipBehavior: Clip.antiAlias,
-      shadowColor: eventModel.color,
+      //shadowColor: eventModel.color,
       elevation: 4.0,
       child: InkWell(
-        //onTap: () => _launchURL(eventModel.url),
-        onTap: () => _launchURL(eventModel.url),
+        onTap: () => launchURL(eventModel.url),
         child: Stack(
           //clipBehavior: Clip.hardEdge,
           children: [
             Image.network(
               eventModel.thumbnail,
               fit: BoxFit.cover,
+              width: min(maxWidth, 380),
             ),
             Positioned(
               bottom: 0,
               left: -12,
               child: Container(
-                width: 412,
+                width: 392,
                 constraints: BoxConstraints(
                   maxWidth: maxWidth - 12,
                 ),

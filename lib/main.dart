@@ -73,7 +73,7 @@ final GoRouter _router = GoRouter(
             ),
             GoRoute(
               path: 'theme',
-              builder: (context, state) => ThemeSettingPage(),
+              builder: (context, state) => const ThemeSettingPage(),
             ),
           ]),
       GoRoute(
@@ -159,14 +159,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SettingsNotifier()),
+        ChangeNotifierProvider(create: (_) => SettingsNotifier(), lazy: false,),
         ChangeNotifierProvider(
             create: (_) => VersionNotifier(rootScaffoldMessengerKey),
           lazy: false,
         ),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
-            create: (_) => AuthNotifier(rootScaffoldMessengerKey)),
+            create: (_) => AuthNotifier(rootScaffoldMessengerKey), lazy: false,),
         ChangeNotifierProxyProvider<AuthNotifier, ChecklistNotifier>(
           create: (_) => ChecklistNotifier(rootScaffoldMessengerKey),
           update: (_, authNotifier, checklistNotifier) {
@@ -176,7 +176,7 @@ class MyApp extends StatelessWidget {
             return checklistNotifier!;
           },
         ),
-        ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier()),
+        ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier(), lazy: false,),
       ],
       child: Consumer(
         builder: (context, SettingsNotifier settings, _) {

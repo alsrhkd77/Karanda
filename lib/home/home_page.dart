@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
       return OutlinedButton.icon(
         style: buttonStyle,
         onPressed: () {
-          context.go('/auth/info');
+          context.push('/auth/info');
         },
         icon: CircleAvatar(
           foregroundImage: Image.network('${Api.discordCDN}$avatar').image,
@@ -247,7 +247,7 @@ class _HomePageState extends State<HomePage> {
     return OutlinedButton.icon(
       style: buttonStyle,
       onPressed: () {
-        context.go('/auth/authenticate');
+        context.push('/auth/authenticate');
       },
       icon: const Icon(Icons.account_circle_outlined, size: 20),
       label: const Text(
@@ -274,7 +274,7 @@ class _HomePageState extends State<HomePage> {
             margin: const EdgeInsets.symmetric(horizontal: 18.0),
             child: IconButton(
               onPressed: () {
-                context.go('/settings');
+                context.push('/settings');
               },
               icon: const Icon(FontAwesomeIcons.gear),
               tooltip: '설정',

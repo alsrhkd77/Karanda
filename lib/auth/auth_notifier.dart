@@ -122,11 +122,11 @@ class AuthNotifier with ChangeNotifier {
     if (result) {
       await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
       if(await _authorization()){
-        ScaffoldMessengerState().context.go('/');
+        _rootScaffoldMessengerKey.currentState?.context.go('/');
       }
     } else{
       await deleteToken();
-      ScaffoldMessengerState().context.go('/auth/error');
+      _rootScaffoldMessengerKey.currentState?.context.go('/auth/error');
     }
   }
 
