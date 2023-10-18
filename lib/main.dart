@@ -159,14 +159,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SettingsNotifier(), lazy: false,),
         ChangeNotifierProvider(
-            create: (_) => VersionNotifier(rootScaffoldMessengerKey),
+          create: (_) => SettingsNotifier(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => VersionNotifier(rootScaffoldMessengerKey),
           lazy: false,
         ),
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
-            create: (_) => AuthNotifier(rootScaffoldMessengerKey), lazy: false,),
+          create: (_) => AuthNotifier(rootScaffoldMessengerKey),
+          lazy: false,
+        ),
         ChangeNotifierProxyProvider<AuthNotifier, ChecklistNotifier>(
           create: (_) => ChecklistNotifier(rootScaffoldMessengerKey),
           update: (_, authNotifier, checklistNotifier) {
@@ -176,7 +181,10 @@ class MyApp extends StatelessWidget {
             return checklistNotifier!;
           },
         ),
-        ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier(), lazy: false,),
+        ChangeNotifierProvider(
+          create: (_) => BdoWorldTimeNotifier(),
+          lazy: false,
+        ),
       ],
       child: Consumer(
         builder: (context, SettingsNotifier settings, _) {

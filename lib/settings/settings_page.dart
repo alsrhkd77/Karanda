@@ -6,7 +6,6 @@ import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 
 import '../common/launch_url.dart';
-import '../settings/settings_notifier.dart';
 import '../widgets/default_app_bar.dart';
 import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
