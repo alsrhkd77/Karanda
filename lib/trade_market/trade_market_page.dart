@@ -16,7 +16,7 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
     return ChangeNotifierProvider(
       create: (_) => TradeMarketNotifier(),
       child: Consumer<TradeMarketNotifier>(
-        builder: (_, notifier, __){
+        builder: (_, notifier, __) {
           return Scaffold(
             appBar: DefaultAppBar(),
             body: Center(
@@ -24,8 +24,8 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.refresh),
-              onPressed: (){
-                notifier.getData();
+              onPressed: () {
+                notifier.testApi();
               },
             ),
           );

@@ -4,8 +4,17 @@ import 'package:convert/convert.dart' as converter;
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:karanda/trade_market/market_item_model.dart';
+import 'package:karanda/trade_market/trade_market_provider.dart';
 
 class TradeMarketNotifier with ChangeNotifier {
+  final provider = TradeMarketProvider();
+  List<MarketItemModel> categories = [];
+  List<MarketItemModel> items = [];
+
+  TradeMarketNotifier() {
+    getData();
+  }
+
   Future<void> getData() async {
     List data = await http
         .get(Uri.parse(
@@ -23,6 +32,12 @@ class TradeMarketNotifier with ChangeNotifier {
         parsedItems.add(item);
       }
     }
-    print(parsedItems.length);
+    categories = parsedCategories;
+    items = parsedItems;
+    notifyListeners();
+  }
+
+  void testApi() {
+    provider.getData();
   }
 }
