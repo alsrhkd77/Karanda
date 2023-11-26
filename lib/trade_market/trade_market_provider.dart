@@ -23,8 +23,9 @@ class TradeMarketProvider {
   String token = "1N4x4hfihUSoe9ETA8fn0dISRSyf2PQvDYtxEtv3F7Qg";
 
   Future<void> getData() async {
-    await marketSubList();
+    //await marketSubList();
     //await marketSearchList();
+    await marketPriceInfo();
     var response = await http.post(
       Uri.parse(
           'https://trade.kr.playblackdesert.com/Trademarket/GetWorldMarketHotList'),
@@ -214,7 +215,7 @@ class TradeMarketProvider {
   Future<void> marketPriceInfo() async {
     /* 응답 양식
     최근 90일 가격 변동 추이
-    첫번째 값이 90일 전
+    첫번째 값이 90일 전, 마지막 값이 오늘
      */
     var response = await http.post(
         Uri.parse(
@@ -230,11 +231,18 @@ class TradeMarketProvider {
         },
         body: jsonEncode({
           "keyType": "0",
-          "mainKey": "11853",
-          "subKey": "3",
+          "mainKey": "5017",
+          "subKey": "0",
+          //"mainKey": "16157",
+          //"subKey": "7",
         }));
     print(response.headers);
-    print(response.body);
+    //print(response.body);
+    Map data = jsonDecode(response.body);
+    if (data.containsKey('resultCode') && data['resultCode'] == 0) {
+      List prices = data['resultMsg'].toString().split('-');
+      print(prices);
+    }
     //var gzip = GZipCodec().decode(response.bodyBytes);
     //var data = utf8.decode(gzip);
     //var data = utf8.decode(response.bodyBytes);

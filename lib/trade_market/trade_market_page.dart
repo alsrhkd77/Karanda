@@ -11,6 +11,14 @@ class TradeMarketPage extends StatefulWidget {
 }
 
 class _TradeMarketPageState extends State<TradeMarketPage> {
+  Widget itemTile() {
+    return ListTile(
+      leading: Image.network(
+          "https://s1.pearlcdn.com/KR/TradeMarket/Common/img/BDO/item/736118.png"),
+      title: Text("아이템 이름"),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -20,7 +28,17 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
           return Scaffold(
             appBar: DefaultAppBar(),
             body: Center(
-              child: Container(),
+              child: Column(
+                children: [
+                  itemTile(),
+                  itemTile(),
+                  itemTile(),
+                  itemTile(),
+                  itemTile(),
+                  itemTile(),
+                  itemTile(),
+                ],
+              ),
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.refresh),
