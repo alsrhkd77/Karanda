@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
@@ -10,16 +11,16 @@ class BdoClock extends StatelessWidget {
   Widget build(BuildContext context) {
     final TimeOfDay time = context
         .select<BdoWorldTimeNotifier, TimeOfDay>((value) => value.bdoTime);
-    String icon = 'assets/icons/sun.png';
+    IconData icon = FontAwesomeIcons.solidSun;
     if (time.hour >= 22 || time.hour < 7) {
-      icon = 'assets/icons/moon.png';
+      icon = FontAwesomeIcons.solidMoon;
     }
     return Row(
       children: [
-        Image.asset(
+        Icon(
           icon,
-          height: 24,
-          width: 24,
+          size: 20,
+          color: Colors.yellow.shade400,
         ),
         const SizedBox(
           width: 6,

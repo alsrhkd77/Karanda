@@ -73,6 +73,11 @@ class _HomePageState extends State<HomePage> {
       icon: FontAwesomeIcons.staffSnake,
       path: '/color-counter',
     ),
+    _Service(
+      name: '마레타 현황 (임시)',
+      icon: FontAwesomeIcons.staffSnake,
+      path: '/maretta',
+    ),
   ];
 
   final List<_Link> links = [
@@ -184,7 +189,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget bdoClock() {
     return const Padding(
-      padding: EdgeInsets.fromLTRB(14.0, 4.0, 0, 0),
+      padding: EdgeInsets.fromLTRB(10.0, 4.0, 0, 0),
       child: BdoClock(),
     );
   }
