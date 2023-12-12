@@ -91,11 +91,11 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
   bool useValuePack = false;
 
   int get parley {
-    int _total = 0;
+    int total = 0;
     for (Map item in parleyList) {
-      _total += (item['decreased parley'] * item['count']) as int;
+      total += (item['decreased parley'] * item['count']) as int;
     }
-    return _total;
+    return total;
   }
 
   Future<bool> loadTradeLevelData() async {
@@ -116,10 +116,10 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
   Future<void> getTradeLevel() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    String? _tradeLevel = sharedPreferences.getString('trade level');
-    if (_tradeLevel != null && _tradeLevel.isNotEmpty) {
+    String? tradeLevel = sharedPreferences.getString('trade level');
+    if (tradeLevel != null && tradeLevel.isNotEmpty) {
       setState(() {
-        tradeLevel = _tradeLevel;
+        tradeLevel = tradeLevel;
       });
     }
   }
