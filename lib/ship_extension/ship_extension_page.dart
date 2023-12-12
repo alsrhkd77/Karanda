@@ -276,9 +276,8 @@ class _ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final extensionItems =
-        context.select<ShipExtensionNotifier, List<ShipExtensionItemModel>>(
-            (ShipExtensionNotifier s) => s.extensionItems);
+    //final extensionItems = context.select<ShipExtensionNotifier, List<ShipExtensionItemModel>>((ShipExtensionNotifier s) => s.extensionItems);
+    final extensionItems = context.watch<ShipExtensionNotifier>().extensionItems;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12.0),
       //height: _extensionController.extensionItems.length * 99,
