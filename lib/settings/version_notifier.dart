@@ -8,10 +8,11 @@ import 'package:http/http.dart' as http;
 
 class VersionNotifier with ChangeNotifier {
   final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey;
+  final GoRouter router;
   String currentVersion = '';
   String latestVersion = '';
 
-  VersionNotifier(this.rootScaffoldMessengerKey) {
+  VersionNotifier(this.rootScaffoldMessengerKey, this.router) {
     if (!kIsWeb) {
       checkVersion();
     }
@@ -32,7 +33,8 @@ class VersionNotifier with ChangeNotifier {
         ),
       );
     }
-    else if(currentVersion != latestVersion){
+    //else if(currentVersion != latestVersion){
+    else if(true){
       rootScaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
           content: Text('새로운 버전이 있습니다 ($latestVersion)'),
@@ -40,7 +42,7 @@ class VersionNotifier with ChangeNotifier {
           action: SnackBarAction(
             label: '업데이트',
             onPressed: (){
-              rootScaffoldMessengerKey.currentContext!.go('/desktop-app');
+              router.go('/desktop-app');
             },
             textColor: Colors.blue,
           ),
