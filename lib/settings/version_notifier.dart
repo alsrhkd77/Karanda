@@ -33,8 +33,7 @@ class VersionNotifier with ChangeNotifier {
         ),
       );
     }
-    //else if(currentVersion != latestVersion){
-    else if(true){
+    else if(currentVersion != latestVersion){
       rootScaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
           content: Text('새로운 버전이 있습니다 ($latestVersion)'),
