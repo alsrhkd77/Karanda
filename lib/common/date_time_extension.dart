@@ -34,8 +34,8 @@ extension DateTimeExtension on DateTime {
     return DateTime(year, month, day);
   }
 
-  String format(String? str) {
-    str = str ?? 'yyyy.MM.dd HH:mm:ss';
-    return DateFormat(str).format(this);
+  String format(String? format) {
+    format = format ?? 'yyyy.MM.dd HH:mm:ss';
+    return DateFormat(format).format(this);
   }
 }
