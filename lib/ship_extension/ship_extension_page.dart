@@ -62,13 +62,14 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                       ),
                     ),
                     _HeadLine(),
+                    const SizedBox(height: 24.0,),
                     SizedBox(
                       child: ScrollConfiguration(
                         behavior: CustomScrollBehavior(),
                         child: const SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Card(
-                            margin: EdgeInsets.all(24.0),
+                            margin: EdgeInsets.all(12.0),
                             elevation: 8.0,
                             child: Column(
                               children: [
@@ -80,6 +81,7 @@ class _ShipExtensionPageState extends State<ShipExtensionPage> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 24.0,),
                   ],
                 ),
               );
@@ -198,7 +200,7 @@ class _TitleLine extends StatelessWidget {
           ),
           const VerticalDivider(),
           Container(
-            width: 165,
+            width: 190,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '재료',
@@ -208,7 +210,7 @@ class _TitleLine extends StatelessWidget {
           ),
           const VerticalDivider(),
           Container(
-            width: 470,
+            width: 480,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '주요 획득처',
@@ -227,7 +229,7 @@ class _TitleLine extends StatelessWidget {
           ),
           const VerticalDivider(),
           Container(
-            width: 40,
+            width: 45,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '필요',
@@ -237,7 +239,7 @@ class _TitleLine extends StatelessWidget {
           ),
           const VerticalDivider(),
           Container(
-            width: 35,
+            width: 40,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '남은 일수',
@@ -247,7 +249,7 @@ class _TitleLine extends StatelessWidget {
           ),
           const VerticalDivider(),
           Container(
-            width: 35,
+            width: 40,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               '소요 일수',
@@ -281,45 +283,41 @@ class _ItemList extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12.0),
       //height: _extensionController.extensionItems.length * 99,
-      width: 1150,
-      child: Column(
-        children: [
-          ListView.separated(
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: extensionItems.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return ItemWidget(
-                item: extensionItems[index],
-                textField: TextFormField(
-                  initialValue: extensionItems[index].user > 0
-                      ? extensionItems[index].user.toString()
-                      : null,
-                  keyboardType: const TextInputType.numberWithOptions(),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
-                  ],
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(color: Colors.blue),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    int insert = 0;
-                    if (value.isNotEmpty) {
-                      insert = int.parse(value);
-                    }
-                    context
-                        .read<ShipExtensionNotifier>()
-                        .updateUserItem(extensionItems[index].name, insert);
-                  },
+      width: 1200,
+      child: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(),
+        itemCount: extensionItems.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return ItemWidget(
+            item: extensionItems[index],
+            textField: TextFormField(
+              initialValue: extensionItems[index].user > 0
+                  ? extensionItems[index].user.toString()
+                  : null,
+              keyboardType: const TextInputType.numberWithOptions(),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
+              ],
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(color: Colors.blue),
                 ),
-              );
-            },
-          ),
-        ],
+              ),
+              onChanged: (value) {
+                int insert = 0;
+                if (value.isNotEmpty) {
+                  insert = int.parse(value);
+                }
+                context
+                    .read<ShipExtensionNotifier>()
+                    .updateUserItem(extensionItems[index].name, insert);
+              },
+            ),
+          );
+        },
       ),
     );
   }

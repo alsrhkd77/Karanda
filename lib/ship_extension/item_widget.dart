@@ -60,14 +60,14 @@ class _ItemWidgetState extends State<ItemWidget> {
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 165,
+                  width: 190,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: Text(widget.item.name.replaceFirst('(', '\n('),
                       overflow: TextOverflow.clip, textAlign: TextAlign.center),
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 470,
+                  width: 480,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -88,21 +88,21 @@ class _ItemWidgetState extends State<ItemWidget> {
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 40,
+                  width: 45,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child:
                       Text('${widget.item.need}개', textAlign: TextAlign.center),
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 35,
+                  width: 40,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: Text(widget.item.reward == 0 ? '-' : '$dDay일',
                       textAlign: TextAlign.center),
                 ),
                 const VerticalDivider(),
                 Container(
-                  width: 35,
+                  width: 40,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: Text(
                       widget.item.reward == 0
