@@ -18,7 +18,7 @@ class OverloadedShipTab extends StatefulWidget {
 class _OverloadedShipTabState extends State<OverloadedShipTab> {
   bool advancedMode = false;
   final numFormat = NumberFormat('###,###,###,###');
-  final List<int> goodsWeight = [800, 800, 900, 1000, 1000, 1];
+  final List<int> goodsWeight = [100, 800, 900, 1000, 1000, 1];
   final List<int> simpleWeight = [for (int i = 0; i < 6; i++) 0];
   final List<Map> advancedWeight = [];
   final List<int> tradeRatio = [for (int i = 0; i < 6; i++) 1];
