@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/maretta/maretta_blacklist_dialog.dart';
@@ -65,6 +66,7 @@ class _MarettaPageState extends State<MarettaPage> {
                 '마레타 현황 (임시)',
                 bold: true,
               ),
+              leading: const Icon(FontAwesomeIcons.circleNodes),
               trailing: ElevatedButton(
                 onPressed: showBlacklist,
                 child: const Text('제외한 제보자'),

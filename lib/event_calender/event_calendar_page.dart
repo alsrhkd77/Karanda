@@ -61,8 +61,8 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                         '이벤트 캘린더',
                         bold: true,
                       ),
-                      subtitle: Text('최근 갱신: ${notifier.lastUpdate}'),
-                      leading: const Icon(FontAwesomeIcons.calendarCheck),
+                      //subtitle: Text('최근 갱신: ${notifier.lastUpdate}'),
+                      leading: const Icon(Icons.celebration_outlined),
                       trailing: PopupMenuButton(
                         icon: const Icon(FontAwesomeIcons.filter),
                         tooltip: 'Filter',

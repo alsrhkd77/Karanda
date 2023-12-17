@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     ),
     _Service(
       name: '말 성장치 계산기',
-      icon: FontAwesomeIcons.chessKnight,
+      icon: FontAwesomeIcons.stickerMule,
       path: '/horse',
     ),
     _Service(
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
     ),
     _Service(
       name: '마레타 현황 (임시)',
-      icon: FontAwesomeIcons.staffSnake,
+      icon: FontAwesomeIcons.circleNodes,
       path: '/maretta',
     ),
   ];

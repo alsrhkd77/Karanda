@@ -47,7 +47,7 @@ class _MarettaReportDialogState extends State<MarettaReportDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('제보하기'),
+      title: Text('제보하기'),
       scrollable: true,
       content: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

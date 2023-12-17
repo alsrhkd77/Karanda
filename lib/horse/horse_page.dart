@@ -31,7 +31,7 @@ class _HorsePageState extends State<HorsePage> {
           child: ListView(
             children: const [
               ListTile(
-                leading: Icon(FontAwesomeIcons.chessKnight),
+                leading: Icon(FontAwesomeIcons.stickerMule),
                 title: TitleText('말 성장치 계산기', bold: true),
               ),
               Center(
