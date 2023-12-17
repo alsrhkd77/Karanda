@@ -386,12 +386,13 @@ class _Service {
   bool needLogin;
   bool onlyWindows;
 
-  _Service(
-      {required this.name,
-      required this.icon,
-      required this.path,
-      this.needLogin = false,
-      this.onlyWindows = false});
+  _Service({
+    required this.name,
+    required this.icon,
+    required this.path,
+    this.needLogin = false,
+    this.onlyWindows = false,
+  });
 }
 
 class _Link {

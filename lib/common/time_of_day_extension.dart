@@ -27,7 +27,7 @@ extension TimeOfDayExtension on TimeOfDay {
 
   /*
    * return period and time
-   * ex) PM 17:15 or 오전 10시13분
+   * ex) PM 10:15 or 오전 10시13분
    */
   String timeWithPeriod({String period = '', String time = ''}) {
     String strDayPeriod = dayPeriod(lang: period);

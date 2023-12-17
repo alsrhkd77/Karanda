@@ -2,61 +2,55 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShutdownSchedulerNotifier with ChangeNotifier {
+  final String _key = 'shutdown-schedule';
   bool running = false;
-  TimeOfDay target = TimeOfDay.now();
-  TimeOfDay now = TimeOfDay.now();
-  Timer? _timer;
+  DateTime target = DateTime.now();
 
-  void startSchedule(TimeOfDay selected) {
-    if (running) return;
-    target = selected;
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) => checkTime());
+  ShutdownSchedulerNotifier() {
+    checkSchedule();
+  }
+
+  Future<void> checkSchedule() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(_key)) {
+      DateTime schedule = DateTime.parse(prefs.getString(_key)!);
+      if (schedule.isAfter(DateTime.now())) {
+        running = true;
+        notifyListeners();
+      }
+    }
+  }
+
+  Future<void> startSchedule(TimeOfDay selected) async {
+    final prefs = await SharedPreferences.getInstance();
+    target =
+        DateTime.now().copyWith(hour: selected.hour, minute: selected.minute);
+    if (target.difference(DateTime.now()).inMinutes < 1) {
+      target = target.add(const Duration(days: 1));
+    }
+    prefs.setString(_key, target.toString());
+    int sec = target.difference(DateTime.now()).inSeconds;
+    Process.start('shutdown', ['-s', '-f', '-t', '$sec']);
     running = true;
     notifyListeners();
   }
 
-  void cancelSchedule() {
-    running = false;
-    _timer?.cancel();
-    notifyListeners();
-  }
-
-  String getTimeInterval() {
-    int hour = target.hour - now.hour;
-    int minute = target.minute - now.minute;
-    if (minute < 0) {
-      minute += 60;
-      hour -= 1;
-    }
-    if(hour == 0){
-      return '$minute분';
-    }
-    else if (hour < 0) {
-      hour += 24;
-    }
-    return '$hour시간 $minute분';
-  }
-
-  void checkTime() {
-    now = TimeOfDay.now();
-    notifyListeners();
-    if (target == now) {
-      shutdown();
+  Future<void> cancelSchedule() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool result = await prefs.remove('shutdown-schedule');
+    if (result) {
+      Process.start('shutdown', ['-a']);
+      running = false;
+      notifyListeners();
     }
   }
 
-  void shutdown() {
-    _timer?.cancel();
+  void forceCancel() {
+    Process.start('shutdown', ['-a']);
     running = false;
     notifyListeners();
-    Process.start('shutdown', ['-s', '-f', '-t', '10']);
-  }
-
-  @override
-  dispose() {
-    _timer?.cancel();
-    super.dispose();
   }
 }
