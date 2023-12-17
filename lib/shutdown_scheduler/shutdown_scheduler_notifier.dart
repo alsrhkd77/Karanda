@@ -20,6 +20,8 @@ class ShutdownSchedulerNotifier with ChangeNotifier {
       if (schedule.isAfter(DateTime.now())) {
         running = true;
         notifyListeners();
+      } else {
+        prefs.remove(_key);
       }
     }
   }
