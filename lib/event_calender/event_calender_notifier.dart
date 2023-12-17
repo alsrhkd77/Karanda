@@ -88,10 +88,10 @@ class EventCalenderNotifier with ChangeNotifier {
 
   List<EventModel> _filtering(List<EventModel> e) {
     List<EventModel> list = e;
+    list.sort((a, b) => a.deadline.difference(b.deadline).inDays);
     if (_filter == 'random') {
       list.shuffle();
     }
-    list.sort((a, b) => a.deadline.difference(b.deadline).inDays);
     if (_filter == 'descending') {
       list = e.reversed.toList();
     }
