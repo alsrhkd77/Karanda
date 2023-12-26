@@ -22,7 +22,13 @@ class _MarettaDetailDialogState extends State<MarettaDetailDialog> {
     item = widget.item;
   }
 
-  String getStatus(){
+  String getStatus() {
+    if (item.report!.alive) {
+      return '생존 확인';
+    } else {
+      return '처치 확인';
+    }
+    /*
     switch (item.status){
       case (MarettaStatus.alive):
         return '생존 확인';
@@ -33,6 +39,7 @@ class _MarettaDetailDialogState extends State<MarettaDetailDialog> {
       default:
         return '확인 필요';
     }
+     */
   }
 
   @override
@@ -51,30 +58,37 @@ class _MarettaDetailDialogState extends State<MarettaDetailDialog> {
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text('제보 시간:  ${TimeOfDay.fromDateTime(item.report.first.reportAt).timeWithPeriod(period: 'KR', time: 'KR')}'),
+            child: Text(
+                '제보 시간:  ${TimeOfDay.fromDateTime(item.report!.reportAt).timeWithPeriod(period: 'KR', time: 'KR')}'),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text('제보자:  ${item.report.first.reporterName}'),
+            child: Text('제보자:  ${item.report!.reporterName}'),
           ),
         ],
       ),
       actions: [
-        ElevatedButton(
-          onPressed: () {
-            context.pop(true);
-          },
-          child: const Text('제보자 제외하기'),
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red, foregroundColor: Colors.white),
-        ),
+        /*
+        Provider.of<AuthNotifier>(context).authenticated &&
+                Provider.of<AuthNotifier>(context).discordId ==
+                    item.report?.reporterDiscordId
+            ? SizedBox()
+            : ElevatedButton(
+                onPressed: () {
+                  context.pop(true);
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red, foregroundColor: Colors.white),
+                child: const Text('제보자 제외하기'),
+              ),
+         */
         ElevatedButton(
             onPressed: () {
               context.pop(false);
             },
             child: const Text('닫기')),
       ],
-      actionsAlignment: MainAxisAlignment.spaceBetween,
+      actionsAlignment: MainAxisAlignment.end,
     );
   }
 }

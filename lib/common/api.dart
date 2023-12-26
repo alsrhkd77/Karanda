@@ -18,10 +18,6 @@ class Api {
     }
   }
 
-  static String get _websocketBase => _server.replaceAll("https", "http").replaceAll("http", "ws");
-
-  static String get websocket => _websocketBase;
-
   static String get authenticateWeb {
     if (kReleaseMode) {
       //return 'https://discord.com/api/oauth2/authorize?client_id=1097362924584046712&redirect_uri=http%3A%2F%2Fkaranda-server-6hf3d25tnq-an.a.run.app%2Fauth%2Fdiscord%2Fauthenticate%2Fweb&response_type=code&scope=identify%20email';
@@ -40,9 +36,13 @@ class Api {
     }
   }
 
+  static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
+
   static String get _checklist => '$_server/checklist';
 
   static String get _marettaStatusReport => '$_server/maretta';
+
+  static String get _blacklist => '$_server/blacklist';
 
   static String get authorization => '$_server/auth/discord/authorization';
 
@@ -51,8 +51,6 @@ class Api {
   static String get logout => '$_server/auth/discord/logout';
 
   static String get tokenRefresh => '$_server/auth/discord/refresh';
-
-  static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
 
   static String get getChecklistItems => '$_checklist/get/checklist-items';
 
@@ -72,6 +70,8 @@ class Api {
 
   static String get getMarettaStatusReport => '$_marettaStatusReport/get/reports';
 
-  static String get marettaReportDestination => '/maretta/report';
+  static String get getMarettaBlacklist => '$_blacklist/get/maretta';
+
+  static String get createMarettaBlacklist => '$_blacklist/create/maretta';
 
 }

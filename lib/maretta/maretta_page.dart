@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/maretta/maretta_blacklist_dialog.dart';
@@ -13,6 +14,7 @@ import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_report_dialog.dart';
 import 'package:karanda/maretta/maretta_report_model.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/need_login_snack_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
@@ -42,16 +44,24 @@ class _MarettaPageState extends State<MarettaPage> {
   }
 
   Future<void> report() async {
-    MarettaReportModel? item = await showDialog(
-        context: context, builder: (_) => const MarettaReportDialog());
-    if (item != null) {
-      await context.read<MarettaNotifier>().createReport(item);
+    if (context.read<AuthNotifier>().authenticated) {
+      MarettaReportModel? item = await showDialog(
+          context: context, builder: (_) => const MarettaReportDialog());
+      if (item != null) {
+        await context.read<MarettaNotifier>().createReport(item);
+      }
+    } else {
+      NeedLoginSnackBar(context);
     }
   }
 
   Future<void> showBlacklist() async {
-    await showDialog(
-        context: context, builder: (_) => const MarettaBlacklistDialog());
+    if (context.read<AuthNotifier>().authenticated) {
+      await showDialog(
+          context: context, builder: (_) => const MarettaBlacklistDialog());
+    } else {
+      NeedLoginSnackBar(context);
+    }
   }
 
   @override
@@ -67,10 +77,12 @@ class _MarettaPageState extends State<MarettaPage> {
                 bold: true,
               ),
               leading: const Icon(FontAwesomeIcons.circleNodes),
+              /*
               trailing: ElevatedButton(
                 onPressed: showBlacklist,
                 child: const Text('제외한 제보자'),
               ),
+               */
             ),
             Wrap(
               spacing: 12.0,
@@ -138,7 +150,13 @@ class _ChannelLine extends StatelessWidget {
       builder: (_) => MarettaDetailDialog(item: item),
     );
     if (dialog != null && dialog) {
-      print(dialog);
+      if (context.read<AuthNotifier>().authenticated) {
+        context
+            .read<MarettaNotifier>()
+            .createBlacklist(item.report!.reporterDiscordId!);
+      } else {
+        NeedLoginSnackBar(context);
+      }
     }
   }
 
@@ -168,9 +186,9 @@ class _ChannelLine extends StatelessWidget {
   String statusToString(BuildContext context) {
     switch (getStatus(context)) {
       case (MarettaStatus.alive):
-        return '생존 확인';
+        return '생존';
       case (MarettaStatus.dead):
-        return '처치 확인';
+        return '사망️';
       case (MarettaStatus.unknown):
         return '확인 필요';
       default:
@@ -181,15 +199,17 @@ class _ChannelLine extends StatelessWidget {
   Duration elapsed(BuildContext context) {
     return Provider.of<RealTimeNotifier>(context)
         .now
-        .difference(item.report.first.reportAt);
+        .difference(item.statusAt!);
   }
 
   String elapsedToString(BuildContext context) {
     Duration diff = elapsed(context);
-    if (diff.inMinutes < 1) {
+    if (diff.inMinutes >= 0 && diff.inMinutes <= 1) {
       return '방금';
+    } else if(diff.inMinutes > 1) {
+      return '+${diff.inMinutes}분';
     } else {
-      return '${diff.inMinutes}분 전';
+      return '${diff.inMinutes}분';
     }
   }
 

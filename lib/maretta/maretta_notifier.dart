@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/blacklist_model.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/maretta/maretta_channel_model.dart';
@@ -10,9 +11,11 @@ import 'package:karanda/maretta/maretta_report_model.dart';
 
 class MarettaNotifier with ChangeNotifier {
   List<MarettaChannelModel> list = [];
+  Map<String, BlacklistModel> blacklist = {};
 
   MarettaNotifier() {
     makeChannelList();
+    getBlacklist();
     getReports();
   }
 
@@ -35,6 +38,7 @@ class MarettaNotifier with ChangeNotifier {
           MarettaReportModel.fromData(jsonDecode(response.bodyUTF));
       _addReport(report);
     }
+    notifyListeners();
   }
 
   Future<void> getReports() async {
@@ -51,16 +55,44 @@ class MarettaNotifier with ChangeNotifier {
   }
 
   void _addReport(MarettaReportModel report) {
-    for (MarettaChannelModel channel in list) {
-      if (channel.channel == report.channel &&
-          !channel.details[report.channelNum - 1].checkContains(report)) {
-        channel.details[report.channelNum - 1].report.add(report);
-        channel.details[report.channelNum - 1].report.sort();
+    if (!blacklist.keys.contains(report.reporterDiscordId)) {
+      for (MarettaChannelModel channel in list) {
+        if (channel.channel == report.channel) {
+          if (channel.details[report.channelNum - 1].report == null ||
+              report.reportAt.isAfter(
+                  channel.details[report.channelNum - 1].report!.reportAt)) {
+            channel.details[report.channelNum - 1].report = report;
+          }
+        }
       }
     }
   }
 
   Future<void> getBlacklist() async {
-    final response = await http.get(Api.getMarettaStatusReport);
+    final response = await http.get(Api.getMarettaBlacklist);
+    if (response.statusCode == 200) {
+      Map<String, BlacklistModel> items = {};
+      for (Map data in jsonDecode(response.bodyUTF)) {
+        BlacklistModel item = BlacklistModel.fromData(data);
+        items[item.discordId] = item;
+        print(item.userName);
+      }
+      blacklist = items;
+      notifyListeners();
+    }
+  }
+
+  Future<void> createBlacklist(String reporterDiscordId) async {
+    Map item = {
+      'target_discord_id': reporterDiscordId,
+    };
+    final response = await http.post(Api.createMarettaBlacklist,
+        body: jsonEncode(item), json: true);
+    if (response.statusCode == 200) {
+      BlacklistModel blocked =
+          BlacklistModel.fromData(jsonDecode(response.bodyUTF));
+      blacklist[blocked.discordId] = blocked;
+      notifyListeners();
+    }
   }
 }

@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
             : () {
                 String content = '사용할 수 없는 서비스 입니다';
                 if (service.needLogin) {
-                  content = '로그인이 필요한 서비스입니다';
+                  content = '로그인이 필요한 서비스 입니다';
                 }
                 if (service.onlyWindows) {
                   content = 'Desktop에서 사용할 수 있습니다';

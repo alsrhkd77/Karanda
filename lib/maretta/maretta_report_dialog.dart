@@ -18,7 +18,7 @@ class _MarettaReportDialogState extends State<MarettaReportDialog> {
   AllChannel channel = Channel.kr.keys.first;
   int channelNumber = 1;
   TimeOfDay selectedTime = TimeOfDay.now();
-  bool alive = true;
+  bool alive = false;
 
   Future<void> pickTime(BuildContext context) async {
     TimeOfDay? selected = await showTimePicker(
@@ -36,6 +36,13 @@ class _MarettaReportDialogState extends State<MarettaReportDialog> {
     String reporter = context.read<AuthNotifier>().username;
     DateTime at = DateTime.now()
         .copyWith(hour: selectedTime.hour, minute: selectedTime.minute);
+    if(at.difference(DateTime.now()).inHours > 12){
+      at = at.subtract(Duration(days: 1));
+    }
+    if(at.difference(DateTime.now()).inHours < -12){
+      at = at.add(Duration(days: 1));
+    }
+    print(at.difference(DateTime.now()).inHours);
     context.pop(MarettaReportModel(
         reporterName: reporter,
         reportAt: at,
@@ -47,7 +54,7 @@ class _MarettaReportDialogState extends State<MarettaReportDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('제보하기'),
+      title: const Text('제보하기'),
       scrollable: true,
       content: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -66,13 +73,13 @@ class _MarettaReportDialogState extends State<MarettaReportDialog> {
                   items: const [
                     DropdownMenuItem(
                       alignment: Alignment.center,
-                      value: true,
-                      child: Text('생존 확인'),
+                      value: false,
+                      child: Text('처치 확인'),
                     ),
                     DropdownMenuItem(
                       alignment: Alignment.center,
-                      value: false,
-                      child: Text('처치 확인'),
+                      value: true,
+                      child: Text('생존 확인'),
                     ),
                   ],
                   onChanged: (bool? value) {

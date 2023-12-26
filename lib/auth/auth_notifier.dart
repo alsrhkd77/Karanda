@@ -18,6 +18,7 @@ class AuthNotifier with ChangeNotifier {
   bool _waitResponse = false;
   late String _username;
   late String _avatar;
+  late String _discordId;
 
   bool get authenticated => _authenticated;
 
@@ -26,6 +27,8 @@ class AuthNotifier with ChangeNotifier {
   String get username => _username;
 
   String get avatar => _avatar;
+
+  String get discordId => _discordId;
 
   AuthNotifier(this._rootScaffoldMessengerKey) {
     authorization();
@@ -59,19 +62,20 @@ class AuthNotifier with ChangeNotifier {
 
   Future<bool> _authorization() async {
     try {
-      final response = await http.get(Api.authorization);
+      final response = await http.get(Api.authorization).timeout(const Duration(seconds: 15));
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
+        _discordId = data['discord_id'];
         notifyListeners();
         return true;
       } else if(response.statusCode == 401){
         return await tokenRefresh();
       }
     } catch (e) {
-      await deleteToken();
+      await _logout();
       _showSnackBar(content: '사용자 인증에 실패했습니다');
     }
     return false;
@@ -90,11 +94,12 @@ class AuthNotifier with ChangeNotifier {
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
+        _discordId = data['discord_id'];
         saveToken(token: data['token'], refreshToken: data['refresh-token']);
         notifyListeners();
         return true;
       }
-      await deleteToken();
+      await _logout();
       _showSnackBar(content: '유효하지 않은 인증입니다.');
     }
     return false;
@@ -140,6 +145,7 @@ class AuthNotifier with ChangeNotifier {
     _authenticated = false;
     _username = '';
     _avatar = '';
+    _discordId = '';
     notifyListeners();
   }
 
@@ -156,7 +162,6 @@ class AuthNotifier with ChangeNotifier {
   Future<void> deleteToken() async {
     const storage = FlutterSecureStorage();
     await storage.delete(key: 'karanda-token');
-    await storage.delete(key: 'social-token');  //TODO:2.5.0 이상 버전에서 삭제할 것
     await storage.delete(key: 'refresh-token');
   }
 
