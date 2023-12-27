@@ -46,55 +46,52 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const DefaultAppBar(),
-        body: ChangeNotifierProvider(
-          create: (_) => EventCalenderNotifier(),
-          child: Consumer<EventCalenderNotifier>(
-            builder: (_, notifier, __) {
-              if (notifier.events.isEmpty) {
-                return const LoadingIndicator();
-              }
-              return CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: ListTile(
-                      title: const TitleText(
-                        '이벤트 캘린더',
-                        bold: true,
-                      ),
-                      //subtitle: Text('최근 갱신: ${notifier.lastUpdate}'),
-                      leading: const Icon(Icons.celebration_outlined),
-                      trailing: PopupMenuButton(
-                        icon: const Icon(FontAwesomeIcons.filter),
-                        tooltip: 'Filter',
-                        onSelected: (value) => notifier.setFilter(value),
-                        itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                          popupMenuItem(
-                              '오름차순', FontAwesomeIcons.arrowUpShortWide),
-                          popupMenuItem(
-                              '내림차순', FontAwesomeIcons.arrowDownWideShort),
-                          popupMenuItem('무작위', FontAwesomeIcons.shuffle),
-                        ],
-                      ),
+        body: Consumer<EventCalenderNotifier>(
+          builder: (_, notifier, __) {
+            if (notifier.events.isEmpty) {
+              return const LoadingIndicator();
+            }
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: ListTile(
+                    title: const TitleText(
+                      '이벤트 캘린더',
+                      bold: true,
+                    ),
+                    //subtitle: Text('최근 갱신: ${notifier.lastUpdate}'),
+                    leading: const Icon(Icons.celebration_outlined),
+                    trailing: PopupMenuButton(
+                      icon: const Icon(FontAwesomeIcons.filter),
+                      tooltip: 'Filter',
+                      onSelected: (value) => notifier.setFilter(value),
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                        popupMenuItem(
+                            '오름차순', FontAwesomeIcons.arrowUpShortWide),
+                        popupMenuItem(
+                            '내림차순', FontAwesomeIcons.arrowDownWideShort),
+                        popupMenuItem('무작위', FontAwesomeIcons.shuffle),
+                      ],
                     ),
                   ),
-                  const SliverToBoxAdapter(
-                    child: CustomCalendar(),
+                ),
+                const SliverToBoxAdapter(
+                  child: CustomCalendar(),
+                ),
+                const SliverToBoxAdapter(
+                  child: Divider(),
+                ),
+                const SliverToBoxAdapter(
+                  child: ListTile(
+                    title: TitleText('이벤트 바로가기'),
                   ),
-                  const SliverToBoxAdapter(
-                    child: Divider(),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: ListTile(
-                      title: TitleText('이벤트 바로가기'),
-                    ),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: _EventCardList(),
-                  ),
-                ],
-              );
-            },
-          ),
+                ),
+                const SliverToBoxAdapter(
+                  child: _EventCardList(),
+                ),
+              ],
+            );
+          },
         ));
   }
 }

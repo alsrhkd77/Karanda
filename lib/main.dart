@@ -13,6 +13,7 @@ import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/real_time_notifier.dart';
+import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
@@ -76,6 +77,10 @@ final GoRouter _router = GoRouter(
             ),
             GoRoute(
               path: 'theme',
+              builder: (context, state) => const ThemeSettingPage(),
+            ),
+            GoRoute(
+              path: 'support-karanda',
               builder: (context, state) => const ThemeSettingPage(),
             ),
           ]),
@@ -194,6 +199,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (_) => MarettaNotifier()),
         ChangeNotifierProvider(create: (_) => RealTimeNotifier()),
+        ChangeNotifierProvider(create: (_) => EventCalenderNotifier()),
       ],
       child: Consumer(
         builder: (context, SettingsNotifier settings, _) {

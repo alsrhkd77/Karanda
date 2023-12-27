@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:karanda/common/date_time_extension.dart';
 
@@ -33,6 +34,7 @@ class EventCalenderNotifier with ChangeNotifier {
     List data = body['events'];
     DateTime lastUpdate = DateTime.parse(body['last_update']);
     _lastUpdate = lastUpdate.format('yy.MM.dd HH:mm:ss');
+    DateTime utcTime = DateTime.now().toUtc().add(const Duration(hours: 9));
 
     for (Map e in data) {
       String title = e['title'];
@@ -43,12 +45,11 @@ class EventCalenderNotifier with ChangeNotifier {
       DateTime deadline = DateTime(2996, 11, 12);
       if (!count.contains('상시')) {
         deadline = DateTime.parse(e['deadline']);
-        DateTime utcTime = DateTime.now().toUtc().add(const Duration(hours: 9));
         Duration deadlineCount = deadline.difference(deadline.copyWith(
             year: utcTime.year, month: utcTime.month, day: utcTime.day));
         count = '${deadlineCount.inDays + 1} 일 남음';
       }
-      ColorScheme colorScheme = await ColorScheme.fromImageProvider(provider: NetworkImage(thumbnail));
+      //Color color = await ColorScheme.fromImageProvider(provider: NetworkImage(thumbnail)).then((value) => value.inversePrimary);
       result.add(
         EventModel(
             title.replaceAll('[이벤트]', '').trim(),
@@ -57,8 +58,8 @@ class EventCalenderNotifier with ChangeNotifier {
             url,
             thumbnail,
             meta,
-            //Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
-            colorScheme.inversePrimary),
+            Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
+            //color),
       );
     }
     _events = result;
