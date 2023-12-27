@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:karanda/common/date_time_extension.dart';
 
@@ -49,6 +48,7 @@ class EventCalenderNotifier with ChangeNotifier {
             year: utcTime.year, month: utcTime.month, day: utcTime.day));
         count = '${deadlineCount.inDays + 1} 일 남음';
       }
+      ColorScheme colorScheme = await ColorScheme.fromImageProvider(provider: NetworkImage(thumbnail));
       result.add(
         EventModel(
             title.replaceAll('[이벤트]', '').trim(),
@@ -58,7 +58,7 @@ class EventCalenderNotifier with ChangeNotifier {
             thumbnail,
             meta,
             //Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
-            Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
+            colorScheme.inversePrimary),
       );
     }
     _events = result;
