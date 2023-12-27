@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
@@ -133,17 +133,7 @@ class _AuthPageState extends State<AuthPage> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: const SizedBox(
-            width: 180.0,
-            height: 150.0,
-            child: SpinKitFadingCube(
-              size: 80,
-              color: Colors.blue,
-            ),
-          ),
-        );
+        return LoadingIndicatorDialog(title: title,);
       },
     );
   }

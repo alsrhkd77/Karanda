@@ -11,7 +11,7 @@ class LoadingIndicator extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
-        child: SpinKitFadingCube(
+        child: SpinKitPulsingGrid(
           size: size,
           color: Colors.blue,
         ),

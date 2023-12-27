@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:karanda/common/custom_scroll_behavior.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -244,13 +244,7 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
       future: loadTradeLevelData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
-            heightFactor: 5,
-            child: SpinKitFadingCube(
-              size: 120.0,
-              color: Colors.blue,
-            ),
-          );
+          return const LoadingIndicator();
         }
         return Column(
           children: [

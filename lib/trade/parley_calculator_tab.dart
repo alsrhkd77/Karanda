@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/trade/advanced_parley_calculator.dart';
 import 'package:karanda/trade/normal_parley_calculator.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,13 +35,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
       future: getFormType(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
-            heightFactor: 5,
-            child: SpinKitFadingCube(
-              size: 120.0,
-              color: Colors.blue,
-            ),
-          );
+          return const LoadingIndicator();
         }
         return SingleChildScrollView(
           padding: const EdgeInsets.all(8.0),
