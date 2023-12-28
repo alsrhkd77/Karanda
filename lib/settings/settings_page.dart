@@ -118,8 +118,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.reviews_outlined),
-                  title: const Text('건의하기 / 버그 제보'),
+                  leading: const Icon(Icons.loyalty_outlined),
+                  title: const Text('Karanda 후원하기'),
+                  onTap: () {
+                    context.push('/settings/support-karanda');
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.bug_report_outlined),
+                  title: const Text('건의 / 버그 제보'),
                   trailing: const Icon(Icons.open_in_new),
                   onTap: () => launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
                 ),

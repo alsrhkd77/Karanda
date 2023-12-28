@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 import 'package:provider/provider.dart';
 
@@ -287,93 +288,160 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 1520,
-          ),
-          child: ListView(
-            addAutomaticKeepAlives: false,
-            addRepaintBoundaries: false,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 1520,
+            ),
             padding: const EdgeInsets.all(12.0),
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    bdoClock(),
-                    loginButton(),
-                  ],
-                ),
-              ),
-              /* Services */
-              const ListTile(
-                leading: Icon(FontAwesomeIcons.code),
-                title: TitleText(
-                  'Services',
-                  bold: true,
-                ),
-              ),
-              const Divider(),
-              Wrap(
-                runSpacing: 2.0,
-                spacing: 2.0,
-                children: services.map((e) => singleIconTile(e)).toList(),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              /* Links */
-              const ListTile(
-                leading: Icon(FontAwesomeIcons.link),
-                title: TitleText('Links', bold: true),
-              ),
-              const Divider(),
-              Wrap(
-                runSpacing: 2.0,
-                spacing: 2.0,
-                children: links
-                    .map((e) =>
-                        singleImageTile(name: e.name, icon: e.icon, url: e.url))
-                    .toList(),
-              ),
-              const Divider(),
-              /* footer */
-              Card(
-                elevation: 4.0,
-                margin: const EdgeInsets.all(24.0),
-                child: Container(
-                  margin: const EdgeInsets.all(18.0),
-                  width: Size.infinite.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text('불편한 점이 있으신가요?'),
-                      FilledButton(
-                        onPressed: () =>
-                            launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
-                        child: const Text('문의하기'),
-                      ),
+                      bdoClock(),
+                      loginButton(),
                     ],
                   ),
                 ),
-              ),
-              /*
-              Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  '본 콘텐츠는 펄어비스의 공식 자료가 아니며,'
-                  ' 본 콘텐츠에는 펄어비스가 권리를 보유하고 있는 상표'
-                  ' 또는 저작물이 포함되어 있습니다.',
-                  style: TextStyle(color: Colors.grey),
+                /* Services */
+                const ListTile(
+                  leading: Icon(FontAwesomeIcons.code),
+                  title: TitleText(
+                    'Services',
+                    bold: true,
+                  ),
                 ),
-              )
-               */
-            ],
+                const Divider(),
+                Wrap(
+                  runSpacing: 2.0,
+                  spacing: 2.0,
+                  children: services.map((e) => singleIconTile(e)).toList(),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                /* Links */
+                const ListTile(
+                  leading: Icon(FontAwesomeIcons.link),
+                  title: TitleText('Links', bold: true),
+                ),
+                const Divider(),
+                Wrap(
+                  runSpacing: 2.0,
+                  spacing: 2.0,
+                  children: links
+                      .map((e) => singleImageTile(
+                          name: e.name, icon: e.icon, url: e.url))
+                      .toList(),
+                ),
+                const Divider(),
+                const _Footer(),
+                Container(
+                  alignment: Alignment.center,
+                  child: const Text(
+                    '본 콘텐츠는 펄어비스의 공식 자료가 아니며,'
+                    ' 본 콘텐츠에는 펄어비스가 권리를 보유하고 있는 상표'
+                    ' 또는 저작물이 포함되어 있습니다.',
+                    style: TextStyle(color: Colors.grey, fontSize: 10.5),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Footer extends StatelessWidget {
+  const _Footer({super.key});
+
+  final double iconSize = 32;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(
+        maxHeight: 220,
+      ),
+      padding: const EdgeInsets.all(12.0),
+      child: Flex(
+        direction: MediaQuery.of(context).size.width < 850
+            ? Axis.vertical
+            : Axis.horizontal,
+        children: [
+          Expanded(
+            child: Card(
+              margin: const EdgeInsets.all(12.0),
+              elevation: 4.0,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text('Karanda의 후원자가 되어주세요!'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () => launchURL('https://toss.me/hammuu'),
+                          icon: Image.asset(
+                            'assets/icons/toss.png',
+                            height: 32,
+                            width: 32,
+                          ),
+                          tooltip: 'Toss',
+                        ),
+                        const SizedBox(
+                          width: 15.0,
+                        ),
+                        IconButton(
+                          onPressed: () =>
+                              launchURL('https://www.buymeacoffee.com/hammuu'),
+                          icon: Image.asset(
+                            context.watch<SettingsNotifier>().darkMode
+                                ? 'assets/icons/bmc_reverse.png'
+                                : 'assets/icons/bmc.png',
+                            height: 32,
+                            width: 32,
+                          ),
+                          tooltip: 'Buy Me a Coffee',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Card(
+              margin: const EdgeInsets.all(12.0),
+              elevation: 4.0,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text('불편한 점이 있으신가요?'),
+                    FilledButton(
+                      onPressed: () =>
+                          launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
+                      child: const Text('문의하기'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

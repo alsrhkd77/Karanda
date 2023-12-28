@@ -82,6 +82,7 @@ flutter:
   assets:
     - assets/data/
     - assets/icons/
+    - assets/image/
     - assets/image/shipExtension/
     - assets/image/logo/
     - assets/brand/

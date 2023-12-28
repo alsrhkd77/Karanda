@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
-import 'package:karanda/ship_extension/ship_extension_item_model.dart';
 import 'package:karanda/ship_extension/ship_extension_notifier.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';

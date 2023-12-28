@@ -16,6 +16,7 @@ import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
+import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
@@ -81,7 +82,7 @@ final GoRouter _router = GoRouter(
             ),
             GoRoute(
               path: 'support-karanda',
-              builder: (context, state) => const ThemeSettingPage(),
+              builder: (context, state) => const SupportKarandaPage(),
             ),
           ]),
       GoRoute(
