@@ -99,6 +99,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                   maxWidth: 1440,
                   minWidth: 620,
                 ),
+                width: MediaQuery.of(context).size.width / 2,
                 height: MediaQuery.of(context).size.height / 2,
                 child: Card(
                   child: Stack(
@@ -142,7 +143,11 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
               //Build Button
               Container(
                 margin: const EdgeInsets.all(12.0),
-                width: 620,
+                constraints: const BoxConstraints(
+                  maxWidth: 1440,
+                  minWidth: 620,
+                ),
+                width: MediaQuery.of(context).size.width / 2,
                 child: _BuildButton(
                   running: shutdownSchedulerNotifier.running,
                   start: () =>
