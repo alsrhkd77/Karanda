@@ -1,7 +1,7 @@
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/maretta/maretta_report_model.dart';
 
-enum MarettaStatus { alive, unknown, dead, regeneration }
+enum MarettaStatus { alive, unknown, dead }
 
 class MarettaModel {
   late AllChannel channel;
@@ -14,19 +14,29 @@ class MarettaModel {
 
   DateTime? get statusAt => _getStatusAt();
 
-  DateTime? _getStatusAt(){
-    if(report == null){
+  DateTime? _getStatusAt() {
+    if (report == null) {
       return null;
     }
-    if(!report!.alive && DateTime.now().isAfter(report!.reportAt.add(const Duration(hours: 1)))){
+    if (!report!.alive &&
+        DateTime.now()
+            .isAfter(report!.reportAt.add(const Duration(hours: 1)))) {
       return report!.reportAt.add(const Duration(hours: 1));
     }
     return report!.reportAt;
   }
 
   MarettaStatus _getStatus() {
-    if (report != null && DateTime.now().isBefore(report!.reportAt.add(const Duration(hours: 2)))) {
-      if(!report!.alive && DateTime.now().isAfter(report!.reportAt.add(const Duration(hours: 1)))){
+    if (report != null &&
+        DateTime.now()
+            .isBefore(report!.reportAt.add(const Duration(hours: 2)))) {
+      if (report!.alive &&
+          DateTime.now()
+              .isAfter(report!.reportAt.add(const Duration(hours: 1)))) {
+        return MarettaStatus.unknown;
+      } else if (!report!.alive &&
+          DateTime.now()
+              .isAfter(report!.reportAt.add(const Duration(hours: 1)))) {
         return MarettaStatus.alive;
       }
       return report!.alive ? MarettaStatus.alive : MarettaStatus.dead;
