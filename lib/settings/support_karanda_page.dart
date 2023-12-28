@@ -11,11 +11,10 @@ class SupportKarandaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width / 2;
     return Scaffold(
       appBar: const DefaultAppBar(),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Container(
             constraints: BoxConstraints(
