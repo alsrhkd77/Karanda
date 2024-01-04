@@ -34,7 +34,6 @@ class _ItemWidgetState extends State<ItemWidget> {
         ? 0
         : ((widget.item.need - widget.item.user) / widget.item.reward).ceil();
     double percent = widget.item.user / widget.item.need;
-    if (percent > 1) percent = 1;
     if (dDay < 0) dDay = 0;
     if (widget.item.reward > 0) {
       farming = '$farming - ${widget.item.npc}';
@@ -114,8 +113,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                 Container(
                   width: 70,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: Text('${widget.item.price}주화',
-                      textAlign: TextAlign.center),
+                  //child: Text('${widget.item.price}주화', textAlign: TextAlign.center),
+                  child: Text('${(percent * 100).toStringAsFixed(2)}%', textAlign: TextAlign.center),
                 ),
               ],
             ),
@@ -126,7 +125,7 @@ class _ItemWidgetState extends State<ItemWidget> {
             right: 0,
             child: LinearProgressIndicator(
               color: getColor(percent),
-              value: percent,
+              value: percent > 1 ? 1 : percent,
               backgroundColor: Colors.transparent,
             ),
           ),

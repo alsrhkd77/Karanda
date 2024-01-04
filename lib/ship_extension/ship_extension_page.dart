@@ -261,7 +261,7 @@ class _TitleLine extends StatelessWidget {
             width: 70,
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
-              '구매 가격',
+              '달성률',
               textAlign: TextAlign.center,
               style: style,
             ),
