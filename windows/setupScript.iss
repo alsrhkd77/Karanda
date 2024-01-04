@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Karanda"
-#define MyAppVersion "1.0"
+#define MyAppVersion GetVersionNumbersString('E:\Github\karanda\build\windows\runner\Release\Karanda.exe')
 #define MyAppPublisher "Hammuu"
 #define MyAppURL "https://www.karanda.kr"
 #define MyAppExeName "Karanda.exe"
@@ -23,9 +23,9 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=E:\Github\karanda\build\windows\runner\Release
+OutputDir=..\build\windows\runner\Release
 OutputBaseFilename=SetupKaranda
-SetupIconFile=E:\Github\karanda\windows\runner\resources\app_icon.ico
+SetupIconFile=.\runner\resources\app_icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -37,8 +37,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "E:\Github\karanda\build\windows\runner\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "E:\Github\karanda\build\windows\runner\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\build\windows\runner\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\build\windows\runner\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
