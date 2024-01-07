@@ -71,12 +71,12 @@ class _MarettaPageState extends State<MarettaPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListTile(
-              title: const TitleText(
+            const ListTile(
+              title: TitleText(
                 '마레타 현황 (임시)',
                 bold: true,
               ),
-              leading: const Icon(FontAwesomeIcons.circleNodes),
+              leading: Icon(FontAwesomeIcons.circleNodes),
               /*
               trailing: ElevatedButton(
                 onPressed: showBlacklist,
