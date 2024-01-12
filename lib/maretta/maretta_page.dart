@@ -88,8 +88,25 @@ class _MarettaPageState extends State<MarettaPage> {
                 onPressed: () {
                   Navigator.of(context).push(PageRouteBuilder(
                       opaque: false,
-                      pageBuilder: (context, _, __) =>
-                          const MarettaMapViewer()));
+                      pageBuilder: (context, _, __) => const MarettaMapViewer(),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(0.0, 1.0);
+                        const end = Offset.zero;
+                        const curve = Curves.ease;
+
+                        final tween = Tween(begin: begin, end: end);
+                        final curvedAnimation = CurvedAnimation(
+                          parent: animation,
+                          curve: curve,
+                        );
+
+                        return SlideTransition(
+                          position: tween.animate(curvedAnimation),
+                          child: child,
+                        );
+                      }
+                  ),
+                  );
                 },
                 icon: const Icon(FontAwesomeIcons.mapLocationDot),
                 iconSize: 20,
