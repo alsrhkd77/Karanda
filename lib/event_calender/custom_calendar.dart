@@ -20,7 +20,7 @@ class CustomCalendar extends StatefulWidget {
 
 class _CustomCalendarState extends State<CustomCalendar> {
   bool openCalendar = false;
-  final int maxDays = 61;
+  final int maxDays = 31;
   final double eventBarHeight = 45;
   final double cellWidth = 70;
 
