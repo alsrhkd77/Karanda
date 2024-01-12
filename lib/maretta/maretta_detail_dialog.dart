@@ -61,10 +61,12 @@ class _MarettaDetailDialogState extends State<MarettaDetailDialog> {
             child: Text(
                 '제보 시간:  ${TimeOfDay.fromDateTime(item.report!.reportAt).timeWithPeriod(period: 'KR', time: 'KR')}'),
           ),
+          /*
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text('제보자:  ${item.report!.reporterName}'),
           ),
+           */
         ],
       ),
       actions: [
