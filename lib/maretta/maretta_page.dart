@@ -9,6 +9,7 @@ import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/maretta/maretta_blacklist_dialog.dart';
 import 'package:karanda/maretta/maretta_channel_model.dart';
 import 'package:karanda/maretta/maretta_detail_dialog.dart';
+import 'package:karanda/maretta/maretta_map_viewer.dart';
 import 'package:karanda/maretta/maretta_model.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_report_dialog.dart';
@@ -71,18 +72,28 @@ class _MarettaPageState extends State<MarettaPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ListTile(
-              title: TitleText(
+            ListTile(
+              title: const TitleText(
                 '마레타 현황 (임시)',
                 bold: true,
               ),
-              leading: Icon(FontAwesomeIcons.circleNodes),
+              leading: const Icon(FontAwesomeIcons.circleNodes),
               /*
               trailing: ElevatedButton(
                 onPressed: showBlacklist,
                 child: const Text('제외한 제보자'),
               ),
                */
+              trailing: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                      opaque: false,
+                      pageBuilder: (context, _, __) =>
+                          const MarettaMapViewer()));
+                },
+                icon: const Icon(FontAwesomeIcons.mapLocationDot),
+                iconSize: 20,
+              ),
             ),
             Wrap(
               spacing: 12.0,
@@ -206,7 +217,7 @@ class _ChannelLine extends StatelessWidget {
     Duration diff = elapsed(context);
     if (diff.inMinutes >= 0 && diff.inMinutes <= 1) {
       return '방금';
-    } else if(diff.inMinutes > 1) {
+    } else if (diff.inMinutes > 1) {
       return '+${diff.inMinutes}분';
     } else {
       return '${diff.inMinutes}분';
