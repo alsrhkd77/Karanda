@@ -18,6 +18,15 @@ class Api {
     }
   }
 
+  static String get _socketServer =>
+      _server.replaceAll('https', 'http').replaceAll('http', 'ws');
+
+  static String get storage => 'http://storage.karanda.kr';
+
+  static String get data => '$storage/bdo/Hammuu';
+
+  static String get itemImage => '$storage/bdo/item/image';
+
   static String get authenticateWeb {
     if (kReleaseMode) {
       //return 'https://discord.com/api/oauth2/authorize?client_id=1097362924584046712&redirect_uri=http%3A%2F%2Fkaranda-server-6hf3d25tnq-an.a.run.app%2Fauth%2Fdiscord%2Fauthenticate%2Fweb&response_type=code&scope=identify%20email';
@@ -50,16 +59,20 @@ class Api {
 
   static String get getChecklistItems => '$_checklist/get/checklist-items';
 
-  static String get getChecklistFinishedItems => '$_checklist/get/finished-items';
+  static String get getChecklistFinishedItems =>
+      '$_checklist/get/finished-items';
 
   static String get createChecklistItem => '$_checklist/create/checklist-item';
 
-  static String get createChecklistFinishedItem => '$_checklist/create/finished-item';
+  static String get createChecklistFinishedItem =>
+      '$_checklist/create/finished-item';
 
   static String get deleteChecklistItem => '$_checklist/delete/checklist-item';
 
-  static String get deleteChecklistFinishedItem => '$_checklist/delete/finished-item';
+  static String get deleteChecklistFinishedItem =>
+      '$_checklist/delete/finished-item';
 
   static String get updateChecklistItem => '$_checklist/update/checklist-item';
 
+  static String get marketWaitList => '$_socketServer/trade-market/wait-list';
 }

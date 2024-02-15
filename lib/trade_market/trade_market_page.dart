@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/common/api.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
+import 'package:karanda/trade_market/trade_market_wait_list_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -11,11 +14,29 @@ class TradeMarketPage extends StatefulWidget {
 }
 
 class _TradeMarketPageState extends State<TradeMarketPage> {
-  Widget itemTile() {
+  Widget itemTile(String itemCode, String name) {
     return ListTile(
-      leading: Image.network(
-          "https://s1.pearlcdn.com/KR/TradeMarket/Common/img/BDO/item/736118.png"),
-      title: Text("아이템 이름"),
+      leading: Image.network("${Api.itemImage}/$itemCode.png",
+          height: 44,
+          width: 44,
+          fit: BoxFit.scaleDown,
+          errorBuilder: (context, object, stackTrace) => Text("?"),
+          cacheHeight: 44,
+          cacheWidth: 44),
+      title: Text(name),
+      subtitle: Row(
+        children: [
+          Icon(
+            FontAwesomeIcons.coins,
+            size: 12,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Text('1,000,000,000,000'),
+          )
+        ],
+      ),
+      trailing: Text('100,000,000'),
     );
   }
 
@@ -27,24 +48,10 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
         builder: (_, notifier, __) {
           return Scaffold(
             appBar: DefaultAppBar(),
-            body: Center(
-              child: Column(
-                children: [
-                  itemTile(),
-                  itemTile(),
-                  itemTile(),
-                  itemTile(),
-                  itemTile(),
-                  itemTile(),
-                  itemTile(),
-                ],
-              ),
-            ),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.refresh),
-              onPressed: () {
-                notifier.testApi();
-              },
+            body: CustomScrollView(
+              slivers: [
+                TradeMarketWaitListWidget(),
+              ],
             ),
           );
         },
