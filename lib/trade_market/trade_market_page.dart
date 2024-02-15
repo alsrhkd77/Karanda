@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
-import 'package:karanda/trade_market/trade_market_wait_list_widget.dart';
+import 'package:karanda/trade_market/trade_market_search_bar_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 class TradeMarketPage extends StatefulWidget {
@@ -42,20 +43,32 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => TradeMarketNotifier(),
-      child: Consumer<TradeMarketNotifier>(
-        builder: (_, notifier, __) {
-          return Scaffold(
+    return Consumer<TradeMarketNotifier>(
+      builder: (_, notifier, __) {
+        return GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: Scaffold(
             appBar: DefaultAppBar(),
-            body: CustomScrollView(
-              slivers: [
-                TradeMarketWaitListWidget(),
-              ],
-            ),
-          );
-        },
-      ),
+            body: notifier.itemInfo.isEmpty
+                ? Center(
+                    child: LoadingIndicator(),
+                  )
+                : CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TradeMarketSearchBarWidget(),
+                        ),
+                      ),
+                      //TradeMarketWaitListWidget(),
+                    ],
+                  ),
+          ),
+        );
+      },
     );
   }
 }

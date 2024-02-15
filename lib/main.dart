@@ -15,6 +15,8 @@ import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
+import 'package:karanda/trade_market/trade_market_detail_page.dart';
+import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
 import 'settings/app_update_page.dart';
 
@@ -149,6 +151,15 @@ final GoRouter _router = GoRouter(
       GoRoute(
         path: 'trade-market',
         builder: (context, state) => const TradeMarketPage(),
+        routes: [
+          GoRoute(
+            path: 'detail',
+            builder: (context, state) => TradeMarketDetailPage(
+              code: state.extra as String?,
+              name: state.uri.queryParameters['name'],
+            ),
+          ),
+        ]
       ),
     ]),
   ],
@@ -182,6 +193,7 @@ class MyApp extends StatelessWidget {
           },
         ),
         ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier(), lazy: false,),
+        ChangeNotifierProvider(create: (_) => TradeMarketNotifier()),
       ],
       child: Consumer(
         builder: (context, SettingsNotifier settings, _) {
