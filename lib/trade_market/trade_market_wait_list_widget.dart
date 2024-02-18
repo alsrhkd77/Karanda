@@ -55,11 +55,13 @@ class _WaitItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MarketItemModel? itemInfo = context.read<TradeMarketNotifier>().itemInfo[item.itemCode.toString()];
-    String? name = itemInfo?.name;
+    MarketItemModel? itemInfo =
+        context.read<TradeMarketNotifier>().itemInfo[item.itemCode.toString()];
+    String? name = itemInfo?.nameWithEnhancementLevel(item.enhancementLevel);
+    if (name == null) return Container();
     return ListTile(
       leading: Image.network('${Api.itemImage}/${item.itemCode}.png'),
-      title: Text(name ?? '???'),
+      title: Text(name),
       subtitle: Text(format.format(item.price)),
       trailing: Text(item.targetTime.toString()),
     );

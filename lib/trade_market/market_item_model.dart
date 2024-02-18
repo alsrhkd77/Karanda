@@ -1,3 +1,5 @@
+
+
 class MarketItemModel {
   late String code;
   late String name;
@@ -16,4 +18,49 @@ class MarketItemModel {
     mainCategory = category.first;
     subCategory = category.last;
   }
+
+  String nameWithEnhancementLevel(int enhancementLevel){
+    if(enhancementLevel == 0){
+      return name;
+    }
+    String level = enhancementLevelToString(enhancementLevel);
+    level = convertEnhancementLevel(level);
+    return '$level$name';
+  }
+
+  String enhancementLevelToString(int enhancementLevel){
+    List<String> roman = ['I', 'II', 'III', 'IV', 'V'];
+    if(enhancementLevel == 0){
+      return '';
+    }
+    switch (maxEnhancement){
+      case 20:
+        if(enhancementLevel <= 15){
+          return '+$enhancementLevel ';
+        }
+        return roman[enhancementLevel - 16];
+      case 5:
+        return roman[enhancementLevel - 1];
+      default:
+        return '+$enhancementLevel ';
+    }
+  }
+
+  static String convertEnhancementLevel(String enhancementLevel){
+    switch(enhancementLevel){
+      case 'I':
+        return '장 : ';
+      case 'II':
+        return '광 : ';
+      case 'III':
+        return '고 : ';
+      case 'IV':
+        return '유 : ';
+      case 'V':
+        return '동 : ';
+      default:
+        return enhancementLevel;
+    }
+  }
+
 }

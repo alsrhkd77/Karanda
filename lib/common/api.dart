@@ -21,12 +21,6 @@ class Api {
   static String get _socketServer =>
       _server.replaceAll('https', 'http').replaceAll('http', 'ws');
 
-  static String get storage => 'http://storage.karanda.kr';
-
-  static String get data => '$storage/bdo/Hammuu';
-
-  static String get itemImage => '$storage/bdo/item/image';
-
   static String get authenticateWeb {
     if (kReleaseMode) {
       //return 'https://discord.com/api/oauth2/authorize?client_id=1097362924584046712&redirect_uri=http%3A%2F%2Fkaranda-server-6hf3d25tnq-an.a.run.app%2Fauth%2Fdiscord%2Fauthenticate%2Fweb&response_type=code&scope=identify%20email';
@@ -46,6 +40,14 @@ class Api {
   }
 
   static String get _checklist => '$_server/checklist';
+
+  static String get storage => 'http://storage.karanda.kr';
+
+  static String get _tradeMarket => '$_server/trade-market';
+
+  static String get data => '$storage/bdo/Hammuu';
+
+  static String get itemImage => '$storage/bdo/item/image';
 
   static String get authorization => '$_server/auth/discord/authorization';
 
@@ -75,4 +77,6 @@ class Api {
   static String get updateChecklistItem => '$_checklist/update/checklist-item';
 
   static String get marketWaitList => '$_socketServer/trade-market/wait-list';
+
+  static String get marketItemDetail => '$_tradeMarket/get/detail';
 }
