@@ -8,6 +8,8 @@ class MarketItemModel {
   late String mainCategory;
   late String subCategory;
 
+  String get category => '$mainCategory > $subCategory';
+
   MarketItemModel.fromStringData(String data, String splitPattern){
     List<String> parsedData = data.split(splitPattern);
     code = parsedData[0];

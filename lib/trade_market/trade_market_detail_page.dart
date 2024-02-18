@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:karanda/common/api.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/trade_market/market_item_model.dart';
 import 'package:karanda/trade_market/trade_market_data_model.dart';
+import 'package:karanda/trade_market/trade_market_detail_stream.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
-import 'package:karanda/trade_market/trade_market_provider.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -28,6 +28,7 @@ class TradeMarketDetailPage extends StatefulWidget {
 class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
   late String code;
   late String name;
+  TradeMarketDetailStream? dataStream;
   String selected = '';
 
   @override
@@ -40,7 +41,9 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
   @override
   Widget build(BuildContext context) {
     if (context.watch<TradeMarketNotifier>().itemInfo.isEmpty) {
-      return LoadingIndicator();
+      return const Center(
+        child: LoadingIndicator(),
+      );
     } else if (!context
         .watch<TradeMarketNotifier>()
         .itemNames
@@ -50,24 +53,25 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
     if (code.isEmpty) {
       code = context.read<TradeMarketNotifier>().itemNames[name] ?? '';
     }
+    dataStream ??= TradeMarketDetailStream(
+        item: context.watch<TradeMarketNotifier>().itemInfo[code]!);
     return Scaffold(
-      appBar: DefaultAppBar(),
-      body: FutureBuilder(
-        future: TradeMarketProvider.getDetail(
-            context.watch<TradeMarketNotifier>().itemInfo[code]!),
+      appBar: const DefaultAppBar(),
+      body: StreamBuilder(
+          stream: dataStream?.marketDetailData,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: LoadingIndicator(),
             );
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: TitleText('정보를 가져오는데 실패했습니다!'),
             );
           }
           double horizontalPadding =
-              GlobalProperties.scrollViewHorizontalPadding(
-                  MediaQuery.of(context).size.width);
+          GlobalProperties.scrollViewHorizontalPadding(
+              MediaQuery.of(context).size.width);
           return CustomScrollView(
             slivers: [
               SliverPadding(
@@ -90,6 +94,10 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                       name,
                       bold: true,
                     ),
+                    subtitle: Text(context
+                        .watch<TradeMarketNotifier>()
+                        .itemInfo[code]!
+                        .category),
                     trailing: DropdownMenu<String>(
                       initialSelection: '',
                       inputDecorationTheme: InputDecorationTheme(
@@ -101,10 +109,10 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                       dropdownMenuEntries: snapshot.data!.keys
                           .map<DropdownMenuEntry<String>>(
                               (e) => DropdownMenuEntry(
-                                    value: e,
-                                    label:
-                                        '${MarketItemModel.convertEnhancementLevel(e)}$name',
-                                  ))
+                            value: e,
+                            label:
+                            '${MarketItemModel.convertEnhancementLevel(e)}$name',
+                          ))
                           .toList(),
                       onSelected: (String? value) {
                         if (value != null &&
@@ -123,20 +131,20 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                     horizontal: horizontalPadding, vertical: 12.0),
                 sliver: _Head(
                   data: snapshot.data![selected]!.first,
+                  itemInfo: context.watch<TradeMarketNotifier>().itemInfo[code]!,
+                  enhancementLevel: selected,
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPadding),
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 sliver: SliverToBoxAdapter(
                   child: ListTile(
-                    title: TitleText('가격 변동'),
+                    title: TitleText('가격 추이'),
                   ),
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPadding),
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 sliver: _PriceChart(data: snapshot.data![selected]!.sublist(1)),
               ),
               SliverPadding(padding: GlobalProperties.scrollViewPadding),
@@ -146,64 +154,64 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    dataStream?.dispose();
+    super.dispose();
+  }
 }
 
 class _Head extends StatelessWidget {
   final TradeMarketDataModel data;
+  final String enhancementLevel;
+  final MarketItemModel itemInfo;
   final format = NumberFormat('###,###,###,###');
 
-  _Head({super.key, required this.data});
+  _Head({super.key, required this.data, required this.enhancementLevel, required this.itemInfo});
 
   @override
   Widget build(BuildContext context) {
     final textStyle = TextStyle(fontSize: 16.0);
     return SliverToBoxAdapter(
-      child: Card(
-        margin: EdgeInsets.all(24.0),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Wrap(
-            alignment: WrapAlignment.spaceEvenly,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            direction: Axis.horizontal,
-            children: [
-              Image.network(
-                '${Api.itemImage}/${data.code}.png',
-                height: 64,
-                width: 64,
-                fit: BoxFit.fill,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Wrap(
+          alignment: WrapAlignment.spaceEvenly,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          direction: Axis.horizontal,
+          children: [
+            BdoItemImageWidget(code: itemInfo.code, size: 74, enhancementLevel: enhancementLevel, grade: itemInfo.grade),
+            SizedBox(
+              width: 280,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListTile(
+                    title: Text('기준가'),
+                    trailing: Text(
+                      format.format(data.price),
+                      style: textStyle,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('판매 대기'),
+                    trailing: Text(
+                      format.format(data.currentStock),
+                      style: textStyle,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('누적 거래량'),
+                    trailing: Text(
+                      format.format(data.cumulativeVolume),
+                      style: textStyle,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 280,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListTile(
-                      title: Text('기준가'),
-                      trailing: Text(
-                        format.format(data.price),
-                        style: textStyle,
-                      ),
-                    ),
-                    ListTile(
-                      title: Text('판매 대기'),
-                      trailing: Text(
-                        format.format(data.currentStock),
-                        style: textStyle,
-                      ),
-                    ),
-                    ListTile(
-                      title: Text('누적 거래량'),
-                      trailing: Text(
-                        format.format(data.cumulativeVolume),
-                        style: textStyle,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
@@ -325,14 +333,14 @@ class _PriceChart extends StatelessWidget {
                               ? Colors.black.withOpacity(0.6)
                               : Colors.white.withOpacity(0.9),
                       maxContentWidth: 160,
-                      tooltipPadding:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      tooltipPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       getTooltipItems: (List<LineBarSpot> touchBarSpots) {
                         return touchBarSpots
                             .map((e) => getLineTooltipItem(
                                 e,
                                 Theme.of(context).brightness == Brightness.light
-                                    ? Colors.white.withOpacity(0.7)
+                                    ? Colors.white.withOpacity(0.75)
                                     : Colors.black.withOpacity(0.8)))
                             .toList();
                       }),
@@ -394,8 +402,10 @@ class _PriceChart extends StatelessWidget {
                   ),
                   //border: Border.all(color: const Color(0xff37434d)),
                 ),
-                minX: data.last.date.millisecondsSinceEpoch.toDouble() - const Duration(days: 1).inMilliseconds,
-                maxX: data.first.date.millisecondsSinceEpoch.toDouble() + const Duration(days: 1).inMilliseconds,
+                minX: data.last.date.millisecondsSinceEpoch.toDouble() -
+                    const Duration(days: 1).inMilliseconds,
+                maxX: data.first.date.millisecondsSinceEpoch.toDouble() +
+                    const Duration(days: 1).inMilliseconds,
                 minY: minPrice.toDouble() - (maxPrice / 20),
                 maxY: maxPrice.toDouble() + (maxPrice / 20),
                 extraLinesData: ExtraLinesData(horizontalLines: [

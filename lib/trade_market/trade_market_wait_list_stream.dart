@@ -35,7 +35,10 @@ class TradeMarketWaitListStream {
           _lastUpdate = DateTime.now();
         }
       },
-      onDone: () => print("websocket done!"),
+      onDone: () {
+        _timer?.cancel();
+        _timer = null;
+      },
       onError: (e) => print("websocket error!"),
     );
     _timer = Timer.periodic(

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/common/api.dart';
+import 'package:karanda/trade_market/bdo_item_image_widget.dart';
+import 'package:karanda/trade_market/market_item_model.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,6 @@ class TradeMarketSearchBarWidget extends StatefulWidget {
 class _TradeMarketSearchBarWidgetState
     extends State<TradeMarketSearchBarWidget> {
   TextEditingController textEditingController = TextEditingController();
-  _DebounceTimer? debounceTimer;
   Iterable<String> lastOptions = [];
   late final _Debounceable<Iterable<String>?, String> debouncedSearch;
 
@@ -101,8 +100,10 @@ class _TradeMarketSearchBarWidgetState
                       itemCount: options.length,
                       itemBuilder: (BuildContext context, int index) {
                         final String option = options.elementAt(index);
-                        String? itemCode =
-                            notifier.itemInfo[notifier.itemNames[option]]?.code;
+                        MarketItemModel? item = notifier.itemInfo[notifier.itemNames[option]];
+                        if(item == null){
+                          return Container();
+                        }
                         return InkWell(
                           onTap: () {
                             onSelected(option);
@@ -124,7 +125,12 @@ class _TradeMarketSearchBarWidgetState
                                   : null,
                               padding: const EdgeInsets.all(16.0),
                               child: ListTile(
-                                leading: Image.network('${Api.itemImage}/$itemCode.png'),
+                                leading: BdoItemImageWidget(
+                                  code: item.code,
+                                  enhancementLevel: '',
+                                  size: 50,
+                                  grade: item.grade,
+                                ),
                                 title: Text(option),
                               ),
                             );
@@ -137,28 +143,6 @@ class _TradeMarketSearchBarWidgetState
               );
             },
             optionsBuilder: (TextEditingValue textEditingValue) async {
-              /*
-              // Debounce
-              if (debounceTimer != null && !debounceTimer!.isCompleted) {
-                debounceTimer!.cancel();
-              }
-              debounceTimer = _DebounceTimer();
-              try {
-                await debounceTimer!.future;
-              } catch (error) {
-                if (error is _CancelException) {
-                  return const Iterable<String>.empty();
-                }
-                rethrow;
-              }
-
-              //Search
-              if (textEditingValue.text.trim().isEmpty) {
-                return const Iterable<String>.empty();
-              }
-              return notifier.itemNames.keys
-                  .where((element) => element.contains(textEditingValue.text));
-               */
               final Iterable<String>? options =
                   await debouncedSearch(textEditingValue.text);
               if (options == null) {
