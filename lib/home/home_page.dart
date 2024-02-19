@@ -79,6 +79,11 @@ class _HomePageState extends State<HomePage> {
       icon: FontAwesomeIcons.circleNodes,
       path: '/maretta',
     ),
+    _Service(
+      name: '거래소 (실험)',
+      icon: FontAwesomeIcons.scaleUnbalanced,
+      path: '/trade-market',
+    ),
   ];
 
   final List<_Link> links = [

@@ -17,4 +17,6 @@ class GlobalProperties {
   }
 
   static EdgeInsetsGeometry get snackBarMargin => const EdgeInsets.all(24.0);
+
+  static List<Color> bdoItemGradeColor = [Colors.grey, Colors.green, Colors.blue, Colors.orange, Colors.red];
 }

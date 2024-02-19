@@ -20,6 +20,9 @@ import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
+import 'package:karanda/trade_market/trade_market_detail_page.dart';
+import 'package:karanda/trade_market/trade_market_notifier.dart';
+import 'package:karanda/trade_market/trade_market_page.dart';
 import 'settings/app_update_page.dart';
 
 import 'package:window_size/window_size.dart';
@@ -79,10 +82,6 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: 'theme',
               builder: (context, state) => const ThemeSettingPage(),
-            ),
-            GoRoute(
-              path: 'support-karanda',
-              builder: (context, state) => const SupportKarandaPage(),
             ),
           ]),
       GoRoute(
@@ -158,6 +157,19 @@ final GoRouter _router = GoRouter(
         path: 'maretta',
         builder: (context, state) => const MarettaPage(),
       ),
+      GoRoute(
+        path: 'trade-market',
+        builder: (context, state) => const TradeMarketPage(),
+        routes: [
+          GoRoute(
+            path: 'detail',
+            builder: (context, state) => TradeMarketDetailPage(
+              code: state.extra as String?,
+              name: state.uri.queryParameters['name'],
+            ),
+          ),
+        ]
+      ),
     ]),
   ],
 );
@@ -194,6 +206,8 @@ class MyApp extends StatelessWidget {
             return checklistNotifier!;
           },
         ),
+        ChangeNotifierProvider(create: (_) => BdoWorldTimeNotifier(), lazy: false,),
+        ChangeNotifierProvider(create: (_) => TradeMarketNotifier()),
         ChangeNotifierProvider(
           create: (_) => BdoWorldTimeNotifier(),
           lazy: false,
