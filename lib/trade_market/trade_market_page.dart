@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_search_bar_widget.dart';
@@ -36,8 +37,9 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                     slivers: [
                       SliverToBoxAdapter(
                         child: ListTile(
+                          leading: Icon(FontAwesomeIcons.scaleUnbalanced),
                           title: TitleText(
-                            '통합 거래소 뷰어(Beta)',
+                            '통합 거래소 뷰어 (Alpha)',
                             bold: true,
                           ),
                         ),

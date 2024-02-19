@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
     ),
     _Service(
       name: '거래소 (실험)',
-      icon: FontAwesomeIcons.shop,
+      icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
     ),
   ];

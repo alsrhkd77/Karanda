@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
@@ -78,6 +79,7 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                 padding: GlobalProperties.scrollViewPadding,
                 sliver: const SliverToBoxAdapter(
                   child: ListTile(
+                    leading: Icon(FontAwesomeIcons.scaleUnbalanced),
                     title: TitleText(
                       '거래소 아이템 상세',
                       bold: true,
