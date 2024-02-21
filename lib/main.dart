@@ -22,7 +22,6 @@ import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
-import 'package:karanda/trade_market/trade_market_wait_list_page.dart';
 import 'settings/app_update_page.dart';
 
 import 'package:window_size/window_size.dart';

@@ -19,6 +19,7 @@ class ShutdownSchedulerNotifier with ChangeNotifier {
       DateTime schedule = DateTime.parse(prefs.getString(_key)!);
       if (schedule.isAfter(DateTime.now())) {
         running = true;
+        target = schedule;
         notifyListeners();
       } else {
         prefs.remove(_key);
@@ -42,7 +43,7 @@ class ShutdownSchedulerNotifier with ChangeNotifier {
 
   Future<void> cancelSchedule() async {
     final prefs = await SharedPreferences.getInstance();
-    bool result = await prefs.remove('shutdown-schedule');
+    bool result = await prefs.remove(_key);
     if (result) {
       Process.start('shutdown', ['-a']);
       running = false;
