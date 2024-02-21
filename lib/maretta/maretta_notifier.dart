@@ -15,7 +15,7 @@ class MarettaNotifier with ChangeNotifier {
 
   MarettaNotifier() {
     makeChannelList();
-    getBlacklist();
+    //getBlacklist();
     getReports();
   }
 
