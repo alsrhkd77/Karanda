@@ -4,8 +4,6 @@ import 'package:convert/convert.dart' as converter;
 import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
-import 'package:karanda/common/api.dart';
 import 'package:karanda/trade_market/market_item_model.dart';
 import 'package:karanda/trade_market/trade_market_provider.dart';
 

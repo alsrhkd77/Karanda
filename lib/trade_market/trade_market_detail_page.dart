@@ -257,11 +257,10 @@ class _PriceChart extends StatelessWidget {
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    String text = format.format(value.toInt());
     return SideTitleWidget(
       axisSide: meta.axisSide,
       //fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 0),
-      child: Text(meta.formattedValue, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
+      child: Text(meta.formattedValue, textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
     );
   }
 

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class TradeMarketWaitItem{
   late int itemCode;
   late int enhancementLevel;
