@@ -21,10 +21,10 @@ class _TradeMarketSearchBarWidgetState
   TextEditingController textEditingController = TextEditingController();
   Iterable<String> lastOptions = [];
   late final _Debounceable<Iterable<String>?, String> debouncedSearch;
-
-  //FocusNode focusNode = FocusNode();
+  //FocusNode focusNode = FocusNode();  // Use to request focus
 
   void goDetail(String code, String name) {
+    textEditingController.text = "";
     context.go('/trade-market/detail?name=$name', extra: code);
   }
 

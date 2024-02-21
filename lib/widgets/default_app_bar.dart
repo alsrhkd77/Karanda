@@ -25,9 +25,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: const Text(
           'Karanda',
           style: TextStyle(
-              fontFamily: 'NanumSquareRound',
-              fontWeight: FontWeight.w700,
-              fontSize: 26.0),
+            fontFamily: 'NanumSquareRound',
+            fontWeight: FontWeight.w700,
+            fontSize: 26.0,
+          ),
         ),
       ),
       bottom: bottom,

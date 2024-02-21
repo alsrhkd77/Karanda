@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:convert';
 import 'package:convert/convert.dart' as converter;
+import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -26,9 +27,8 @@ class TradeMarketNotifier with ChangeNotifier {
   }
 
   Future<void> getData() async {
-    List<String> data = await http
-        .get(Uri.parse(Api.data))
-        .then((value) => utf8.decode(converter.hex.decode(value.body)))
+    var data = await rootBundle.loadString('assets/Hammuu')
+        .then((value) => utf8.decode(converter.hex.decode(value)))
         .then((value) => value.split('\n'));
     String ver = data.first;
     String splitPattern = ver.characters.last;

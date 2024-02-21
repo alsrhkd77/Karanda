@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
@@ -13,6 +14,7 @@ import 'package:karanda/trade_market/trade_market_detail_stream.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
+import 'package:karanda/widgets/loading_page.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
@@ -41,118 +43,126 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    if(context.watch<AuthNotifier>().waitResponse){
+      return const LoadingPage();
+    } else if(!context.watch<AuthNotifier>().authenticated) {
+      return const LoadingPage();
+    }
     if (context.watch<TradeMarketNotifier>().itemInfo.isEmpty) {
-      return const Center(
-        child: LoadingIndicator(),
-      );
+      return const LoadingPage();
     } else if (!context
         .watch<TradeMarketNotifier>()
         .itemNames
         .containsKey(name)) {
-      return LoadingIndicator(); //error 없는 아이템
+      return const LoadingPage(); //error 없는 아이템
     }
     if (code.isEmpty) {
       code = context.read<TradeMarketNotifier>().itemNames[name] ?? '';
     }
     dataStream ??= TradeMarketDetailStream(
         item: context.watch<TradeMarketNotifier>().itemInfo[code]!);
-    return Scaffold(
-      appBar: const DefaultAppBar(),
-      body: StreamBuilder(
-          stream: dataStream?.marketDetailData,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: LoadingIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: TitleText('정보를 가져오는데 실패했습니다!'),
-            );
-          }
-          double horizontalPadding =
-          GlobalProperties.scrollViewHorizontalPadding(
-              MediaQuery.of(context).size.width);
-          return CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: GlobalProperties.scrollViewPadding,
-                sliver: const SliverToBoxAdapter(
-                  child: ListTile(
-                    leading: Icon(FontAwesomeIcons.scaleUnbalanced),
-                    title: TitleText(
-                      '거래소 아이템 상세',
-                      bold: true,
-                    ),
-                  ),
-                ),
-              ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPadding, vertical: 12.0),
-                sliver: SliverToBoxAdapter(
-                  child: ListTile(
-                    title: TitleText(
-                      name,
-                      bold: true,
-                    ),
-                    subtitle: Text(context
-                        .watch<TradeMarketNotifier>()
-                        .itemInfo[code]!
-                        .category),
-                    trailing: DropdownMenu<String>(
-                      initialSelection: '',
-                      inputDecorationTheme: InputDecorationTheme(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 4.0, horizontal: 12.0),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        appBar: const DefaultAppBar(),
+        body: StreamBuilder(
+            stream: dataStream?.marketDetailData,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const Center(
+                child: LoadingIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: TitleText('정보를 가져오는데 실패했습니다!'),
+              );
+            }
+            double horizontalPadding =
+            GlobalProperties.scrollViewHorizontalPadding(
+                MediaQuery.of(context).size.width);
+            return CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding: GlobalProperties.scrollViewPadding,
+                  sliver: const SliverToBoxAdapter(
+                    child: ListTile(
+                      leading: Icon(FontAwesomeIcons.scaleUnbalanced),
+                      title: TitleText(
+                        '거래소 아이템 상세',
+                        bold: true,
                       ),
-                      dropdownMenuEntries: snapshot.data!.keys
-                          .map<DropdownMenuEntry<String>>(
-                              (e) => DropdownMenuEntry(
-                            value: e,
-                            label:
-                            '${MarketItemModel.convertEnhancementLevel(e)}$name',
-                          ))
-                          .toList(),
-                      onSelected: (String? value) {
-                        if (value != null &&
-                            snapshot.data!.containsKey(value)) {
-                          setState(() {
-                            selected = value;
-                          });
-                        }
-                      },
                     ),
                   ),
                 ),
-              ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPadding, vertical: 12.0),
-                sliver: _Head(
-                  data: snapshot.data![selected]!.first,
-                  itemInfo: context.watch<TradeMarketNotifier>().itemInfo[code]!,
-                  enhancementLevel: selected,
-                ),
-              ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                sliver: SliverToBoxAdapter(
-                  child: ListTile(
-                    title: TitleText('가격 추이'),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: horizontalPadding, vertical: 12.0),
+                  sliver: SliverToBoxAdapter(
+                    child: ListTile(
+                      title: TitleText(
+                        name,
+                        bold: true,
+                      ),
+                      subtitle: Text(context
+                          .watch<TradeMarketNotifier>()
+                          .itemInfo[code]!
+                          .category),
+                      trailing: DropdownMenu<String>(
+                        initialSelection: '',
+                        inputDecorationTheme: InputDecorationTheme(
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 4.0, horizontal: 12.0),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                        ),
+                        dropdownMenuEntries: snapshot.data!.keys
+                            .map<DropdownMenuEntry<String>>(
+                                (e) => DropdownMenuEntry(
+                              value: e,
+                              label:
+                              '${MarketItemModel.convertEnhancementLevel(e)}$name',
+                            ))
+                            .toList(),
+                        onSelected: (String? value) {
+                          if (value != null &&
+                              snapshot.data!.containsKey(value)) {
+                            setState(() {
+                              selected = value;
+                            });
+                          }
+                        },
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                sliver: _PriceChart(data: snapshot.data![selected]!.sublist(1)),
-              ),
-              SliverPadding(padding: GlobalProperties.scrollViewPadding),
-            ],
-          );
-        },
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: horizontalPadding, vertical: 12.0),
+                  sliver: _Head(
+                    data: snapshot.data![selected]!.first,
+                    itemInfo: context.watch<TradeMarketNotifier>().itemInfo[code]!,
+                    enhancementLevel: selected,
+                  ),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  sliver: const SliverToBoxAdapter(
+                    child: ListTile(
+                      title: TitleText('가격 추이'),
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  sliver: _PriceChart(data: snapshot.data![selected]!.sublist(1)),
+                ),
+                SliverPadding(padding: GlobalProperties.scrollViewPadding),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -174,7 +184,7 @@ class _Head extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyle(fontSize: 16.0);
+    final textStyle = const TextStyle(fontSize: 16.0);
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -187,24 +197,25 @@ class _Head extends StatelessWidget {
             SizedBox(
               width: 280,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    title: Text('기준가'),
+                    title: const Text('기준가'),
                     trailing: Text(
                       format.format(data.price),
                       style: textStyle,
                     ),
                   ),
                   ListTile(
-                    title: Text('판매 대기'),
+                    title: const Text('판매 대기'),
                     trailing: Text(
                       format.format(data.currentStock),
                       style: textStyle,
                     ),
                   ),
                   ListTile(
-                    title: Text('누적 거래량'),
+                    title: const Text('누적 거래량'),
                     trailing: Text(
                       format.format(data.cumulativeVolume),
                       style: textStyle,
@@ -234,8 +245,8 @@ class _PriceChart extends StatelessWidget {
     String text = '';
     DateTime target = DateTime.fromMillisecondsSinceEpoch(value.toInt());
     if (target.day == 1) {
-      text = DateFormat.MMMM().format(target); // ex) December
-      //text = DateFormat.MMM().format(target); // ex) Dec
+      //text = DateFormat.MMMM().format(target); // ex) December
+      text = DateFormat.MMM().format(target); // ex) Dec
       //text = '${target.year} / ${target.month}';
     }
     return SideTitleWidget(
@@ -249,9 +260,8 @@ class _PriceChart extends StatelessWidget {
     String text = format.format(value.toInt());
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      fitInside:
-          SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 0),
-      child: Text(text, textAlign: TextAlign.center),
+      //fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 0),
+      child: Text(meta.formattedValue, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
     );
   }
 
@@ -306,7 +316,7 @@ class _PriceChart extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 2.7,
         child: Card(
-          margin: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+          margin: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 24, 24, 12),
             child: LineChart(
@@ -384,7 +394,7 @@ class _PriceChart extends StatelessWidget {
                       //interval: pow(10, digits).toDouble(),
                       interval: midPrice.toDouble(),
                       getTitlesWidget: leftTitleWidgets,
-                      reservedSize: 124,
+                      reservedSize: 54,
                     ),
                   ),
                   topTitles: const AxisTitles(

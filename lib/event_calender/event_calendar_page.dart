@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:karanda/common/date_time_extension.dart';
+import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
@@ -89,6 +90,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                 const SliverToBoxAdapter(
                   child: _EventCardList(),
                 ),
+                SliverPadding(padding: GlobalProperties.scrollViewPadding),
               ],
             );
           },

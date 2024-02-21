@@ -19,7 +19,7 @@ class Api {
   }
 
   static String get _socketServer =>
-      _server.replaceAll('https', 'http').replaceAll('http', 'ws');
+      _server.replaceAll('http', 'ws');
 
   static String get authenticateWeb {
     if (kReleaseMode) {
@@ -43,7 +43,7 @@ class Api {
 
   static String get _checklist => '$_server/checklist';
 
-  static String get storage => 'http://storage.karanda.kr';
+  static String get storage => 'https://storage.googleapis.com/storage.karanda.kr';
 
   static String get _tradeMarket => '$_server/trade-market';
 

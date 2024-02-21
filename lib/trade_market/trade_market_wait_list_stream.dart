@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/trade_market/trade_market_wait_item.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -20,7 +21,9 @@ class TradeMarketWaitListStream {
       _dataStreamController.stream;
 
   Future<void> connect() async {
-    _channel = WebSocketChannel.connect(Uri.parse(Api.marketWaitList));
+    const storage = FlutterSecureStorage();
+    String token = await storage.read(key: 'karanda-token') ?? '';
+    _channel = WebSocketChannel.connect(Uri.parse('${Api.marketWaitList}?token=$token'));
     await _channel?.ready;
     _channel?.stream.listen(
       (message) {
@@ -36,10 +39,14 @@ class TradeMarketWaitListStream {
         }
       },
       onDone: () {
-        _timer?.cancel();
-        _timer = null;
+        if(_channel?.closeCode == status.abnormalClosure){
+          connect();
+        }
       },
-      onError: (e) => print("websocket error!"),
+      onError: (e) {
+        print('error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
+        print(e);
+      },
     );
     _timer = Timer.periodic(
         const Duration(seconds: 30), (timer) => _requestUpdate());
@@ -56,10 +63,18 @@ class TradeMarketWaitListStream {
     }
   }
 
+  void disconnect(){
+    _timer?.cancel();
+    _timer = null;
+    _channel?.sink.close(status.normalClosure);
+    _channel = null;
+
+  }
+
   void dispose() {
     _timer?.cancel();
     _timer = null;
-    _channel?.sink.close(status.goingAway);
+    _channel?.sink.close(status.normalClosure);
     _channel = null;
     _dataStreamController.close();
   }

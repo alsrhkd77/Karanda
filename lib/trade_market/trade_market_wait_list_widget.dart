@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/trade_market/market_item_model.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
@@ -21,6 +22,18 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget> {
   final TradeMarketWaitListStream dataStream = TradeMarketWaitListStream();
 
   @override
+  void activate() {
+    super.activate();
+    //dataStream.connect();
+  }
+
+  @override
+  void deactivate() {
+    //dataStream.disconnect();
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: dataStream.waitItemList,
@@ -30,12 +43,14 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget> {
             child: LoadingIndicator(),
           );
         }
-        return SliverFixedExtentList(
-          delegate:
-              SliverChildBuilderDelegate((BuildContext context, int index) {
-            return _WaitItemTile(item: snapshot.requireData[index]);
-          }, childCount: snapshot.requireData.length),
-          itemExtent: 84.0,
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Center(
+                  child: _WaitItemTile(item: snapshot.requireData[index]));
+            },
+            childCount: snapshot.requireData.length,
+          ),
         );
       },
     );
@@ -60,7 +75,7 @@ class _WaitItemTile extends StatelessWidget {
         context.read<TradeMarketNotifier>().itemInfo[item.itemCode.toString()];
     if (itemInfo == null) return Container();
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         //onTap: (){},
@@ -74,10 +89,11 @@ class _WaitItemTile extends StatelessWidget {
               grade: itemInfo.grade,
               size: 48,
             ),
-            title: Text(itemInfo.nameWithEnhancementLevel(item.enhancementLevel)),
+            title:
+                Text(itemInfo.nameWithEnhancementLevel(item.enhancementLevel)),
             subtitle: Row(
               children: [
-                Icon(
+                const Icon(
                   FontAwesomeIcons.coins,
                   size: 12,
                 ),
@@ -87,7 +103,28 @@ class _WaitItemTile extends StatelessWidget {
                 ),
               ],
             ),
-            trailing: Text(item.targetTime.toString()),
+            trailing: Consumer<RealTimeNotifier>(
+              builder: (context, notifier, _) {
+                int seconds =
+                    item.targetTime.difference(notifier.now).inSeconds;
+                int minutes = (seconds / 60).floor();
+                String text = '';
+                if (seconds <= 0) {
+                  text = '등록됨';
+                } else if (minutes > 0) {
+                  text = '$minutes분 ${seconds % 60}초';
+                } else {
+                  text = '${seconds % 60}초';
+                }
+                return Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: seconds <= 0 ? Colors.green.shade400 : null,
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -16,13 +16,13 @@ import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
-import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
+import 'package:karanda/trade_market/trade_market_wait_list_page.dart';
 import 'settings/app_update_page.dart';
 
 import 'package:window_size/window_size.dart';

@@ -80,9 +80,10 @@ class _HomePageState extends State<HomePage> {
       path: '/maretta',
     ),
     _Service(
-      name: '거래소 (실험)',
+      name: '통합 거래소 뷰어 (Beta)',
       icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
+      needLogin: true,
     ),
   ];
 
@@ -278,7 +279,8 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(
               fontFamily: 'NanumSquareRound',
               fontWeight: FontWeight.w700,
-              fontSize: 26.0),
+              fontSize: 26.0,
+          ),
         ),
         actions: [
           Container(

@@ -10,7 +10,7 @@ class TradeMarketWaitItem{
     itemCode = data['item_num'];
     enhancementLevel = data['enhancement_level'];
     price = data['price'];
-    targetTime = DateTime.parse(data['target_time']);
+    targetTime = DateTime.parse(data['target_time']).toLocal();
   }
 
 }
