@@ -40,6 +40,8 @@ class TradeMarketWaitListStream {
       },
       onDone: () {
         if(_channel?.closeCode == status.abnormalClosure){
+          _timer?.cancel();
+          _timer = null;
           connect();
         }
       },
@@ -57,9 +59,6 @@ class TradeMarketWaitListStream {
         _lastUpdate!
             .isBefore(DateTime.now().subtract(const Duration(seconds: 90)))) {
       _channel?.sink.add('update');
-      _timer?.cancel();
-      _timer = Timer.periodic(
-          const Duration(seconds: 30), (timer) => _requestUpdate());
     }
   }
 
