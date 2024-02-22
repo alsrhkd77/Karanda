@@ -37,10 +37,10 @@ class _MarettaReportDialogState extends State<MarettaReportDialog> {
     DateTime at = DateTime.now()
         .copyWith(hour: selectedTime.hour, minute: selectedTime.minute);
     if(at.difference(DateTime.now()).inHours > 12){
-      at = at.subtract(Duration(days: 1));
+      at = at.subtract(const Duration(days: 1));
     }
     if(at.difference(DateTime.now()).inHours < -12){
-      at = at.add(Duration(days: 1));
+      at = at.add(const Duration(days: 1));
     }
     print(at.difference(DateTime.now()).inHours);
     context.pop(MarettaReportModel(

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/channel.dart';
+import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/maretta/maretta_blacklist_dialog.dart';
-import 'package:karanda/maretta/maretta_channel_model.dart';
 import 'package:karanda/maretta/maretta_detail_dialog.dart';
 import 'package:karanda/maretta/maretta_map_viewer.dart';
 import 'package:karanda/maretta/maretta_model.dart';
@@ -27,20 +27,20 @@ class MarettaPage extends StatefulWidget {
 }
 
 class _MarettaPageState extends State<MarettaPage> {
-  late Timer _timer;
+  late MarettaNotifier _provider;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _timer = Timer.periodic(const Duration(minutes: 3),
-          (timer) => context.read<MarettaNotifier>().getReports());
+      _provider = Provider.of<MarettaNotifier>(context, listen: false);
+      _provider.connect();
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _provider.disconnect();
     super.dispose();
   }
 
@@ -49,11 +49,37 @@ class _MarettaPageState extends State<MarettaPage> {
       MarettaReportModel? item = await showDialog(
           context: context, builder: (_) => const MarettaReportDialog());
       if (item != null) {
-        await context.read<MarettaNotifier>().createReport(item);
+        bool result = await context.read<MarettaNotifier>().createReport(item);
+        if (!result) {
+          showReportFailedSnackBar();
+        }
       }
     } else {
       NeedLoginSnackBar(context);
     }
+  }
+
+  void showReportFailedSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Row(
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: Colors.redAccent,
+            ),
+            SizedBox(
+              width: 8.0,
+            ),
+            Text('잠시 후 다시 시도해주세요.'),
+          ],
+        ),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        margin: GlobalProperties.snackBarMargin,
+        backgroundColor: Theme.of(context).snackBarTheme.backgroundColor,
+      ),
+    );
   }
 
   Future<void> showBlacklist() async {
@@ -86,26 +112,26 @@ class _MarettaPageState extends State<MarettaPage> {
                */
               trailing: IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                      opaque: false,
-                      pageBuilder: (context, _, __) => const MarettaMapViewer(),
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        const begin = Offset(0.0, 1.0);
-                        const end = Offset.zero;
-                        const curve = Curves.ease;
-
-                        final tween = Tween(begin: begin, end: end);
-                        final curvedAnimation = CurvedAnimation(
-                          parent: animation,
-                          curve: curve,
-                        );
-
-                        return SlideTransition(
-                          position: tween.animate(curvedAnimation),
-                          child: child,
-                        );
-                      }
-                  ),
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                        opaque: false,
+                        pageBuilder: (context, _, __) =>
+                            const MarettaMapViewer(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          const begin = Offset(0.0, 1.0);
+                          const end = Offset.zero;
+                          const curve = Curves.ease;
+                          final tween = Tween(begin: begin, end: end);
+                          final curvedAnimation = CurvedAnimation(
+                            parent: animation,
+                            curve: curve,
+                          );
+                          return SlideTransition(
+                            position: tween.animate(curvedAnimation),
+                            child: child,
+                          );
+                        }),
                   );
                 },
                 icon: const Icon(FontAwesomeIcons.mapLocationDot),
@@ -115,10 +141,12 @@ class _MarettaPageState extends State<MarettaPage> {
             Wrap(
               spacing: 12.0,
               runSpacing: 12.0,
-              children: Provider.of<MarettaNotifier>(context)
-                  .list
+              children: Channel.kr.keys
                   .map((e) => _ChannelCard(
-                        item: e,
+                        channel: e,
+                        item: Provider.of<MarettaNotifier>(context)
+                                .reportList[e] ??
+                            [],
                       ))
                   .toList(),
             ),
@@ -137,9 +165,10 @@ class _MarettaPageState extends State<MarettaPage> {
 }
 
 class _ChannelCard extends StatelessWidget {
-  final MarettaChannelModel item;
+  final List<MarettaModel> item;
+  final AllChannel channel;
 
-  const _ChannelCard({super.key, required this.item});
+  const _ChannelCard({super.key, required this.channel, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -154,11 +183,12 @@ class _ChannelCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                Channel.toKrServerName(item.channel),
+                Channel.toKrServerName(channel),
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const Divider(),
-              ...item.details.map((e) => _ChannelLine(item: e)).toList(),
+              ...List.generate(Channel.kr[channel]!,
+                  (index) => _ChannelLine(item: item[index]))
             ],
           ),
         ),
@@ -191,11 +221,20 @@ class _ChannelLine extends StatelessWidget {
   MarettaStatus getStatus(BuildContext context) {
     if (item.status == MarettaStatus.dead) {
       Duration diff = elapsed(context);
-      if (diff.inMinutes > 60) {
+      if (diff.inMinutes > 90) {
         return MarettaStatus.unknown;
+      } else if (diff.inMinutes > 60) {
+        return MarettaStatus.alive;
+      } else {
+        return MarettaStatus.dead;
+      }
+    } else if (item.status == MarettaStatus.alive) {
+      Duration diff = elapsed(context);
+      if (diff.inMinutes < 30) {
+        return MarettaStatus.alive;
       }
     }
-    return item.status;
+    return MarettaStatus.unknown;
   }
 
   Color getColor(BuildContext context) {
@@ -225,6 +264,9 @@ class _ChannelLine extends StatelessWidget {
   }
 
   Duration elapsed(BuildContext context) {
+    if (item.statusAt == null) {
+      return const Duration(days: 1);
+    }
     return Provider.of<RealTimeNotifier>(context)
         .now
         .difference(item.statusAt!);
@@ -232,6 +274,9 @@ class _ChannelLine extends StatelessWidget {
 
   String elapsedToString(BuildContext context) {
     Duration diff = elapsed(context);
+    if (diff.inMinutes > 60) {
+      diff = diff - const Duration(hours: 1);
+    }
     if (diff.inMinutes >= 0 && diff.inMinutes <= 1) {
       return '방금';
     } else if (diff.inMinutes > 1) {
@@ -244,7 +289,7 @@ class _ChannelLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: item.status == MarettaStatus.unknown
+      onTap: getStatus(context) == MarettaStatus.unknown
           ? null
           : () => showDetail(context),
       child: Padding(
@@ -275,7 +320,7 @@ class _ChannelLine extends StatelessWidget {
                 ),
               ],
             ),
-            item.status == MarettaStatus.unknown
+            getStatus(context) == MarettaStatus.unknown
                 ? const SizedBox()
                 : Padding(
                     padding: const EdgeInsets.all(4.0),

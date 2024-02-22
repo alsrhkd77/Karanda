@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -5,65 +7,100 @@ import 'package:karanda/common/api.dart';
 import 'package:karanda/common/blacklist_model.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:karanda/maretta/maretta_channel_model.dart';
 import 'package:karanda/common/http.dart' as http;
+import 'package:karanda/maretta/maretta_model.dart';
 import 'package:karanda/maretta/maretta_report_model.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_channel/status.dart' as status;
 
 class MarettaNotifier with ChangeNotifier {
-  List<MarettaChannelModel> list = [];
+  Map<AllChannel, List<MarettaModel>> reportList = HashMap();
   Map<String, BlacklistModel> blacklist = {};
+  WebSocketChannel? _channel;
+  Timer? _timer;
+  DateTime? _lastUpdate;
 
   MarettaNotifier() {
-    makeChannelList();
+    initList();
+    connect();
     //getBlacklist();
-    getReports();
   }
 
-  void makeChannelList() {
+  Future<void> connect() async {
+    _channel = WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports));
+    await _channel?.ready;
+    _channel?.stream.listen(
+      (message) {
+        if (message != null && message != '') {
+          for (Map data in jsonDecode(message)) {
+            MarettaReportModel report = MarettaReportModel.fromData(data);
+            _addReport(report);
+          }
+          _lastUpdate = DateTime.now();
+          notifyListeners();
+        }
+      },
+      onDone: () {
+        if (_channel?.closeCode == status.abnormalClosure) {
+          _timer?.cancel();
+          _timer = null;
+          connect();
+        }
+      },
+      onError: (e) {
+        print(
+            'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
+        print(e);
+      },
+    );
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) => requestUpdate());
+  }
+
+  void requestUpdate(){
+    if (_lastUpdate != null && _lastUpdate!.isBefore(DateTime.now().subtract(const Duration(minutes: 20)))) {
+      _channel?.sink.add('update');
+    }
+  }
+
+  void disconnect(){
+    _channel?.sink.close(status.normalClosure);
+    _channel = null;
+    _timer?.cancel();
+    _timer = null;
+  }
+
+  void initList() {
     for (AllChannel channel in Channel.kr.keys) {
-      MarettaChannelModel marettaModel = MarettaChannelModel(
-        channel: channel,
-        channelNumber: Channel.kr[channel]!,
+      reportList[channel] = List<MarettaModel>.generate(
+        Channel.kr[channel]!,
+        (index) => MarettaModel(
+          channel: channel,
+          channelNumber: index + 1,
+        ),
+        growable: false,
       );
-      list.add(marettaModel);
     }
     notifyListeners();
   }
 
-  Future<void> createReport(MarettaReportModel item) async {
+  Future<bool> createReport(MarettaReportModel item) async {
     final response = await http.post(Api.createMarettaStatusReport,
         body: item.toJson(), json: true);
     if (response.statusCode == 200) {
-      MarettaReportModel report =
-          MarettaReportModel.fromData(jsonDecode(response.bodyUTF));
-      _addReport(report);
+      return true;
+    } else {
+      return false;
     }
-    notifyListeners();
-  }
-
-  Future<void> getReports() async {
-    final response = await http
-        .get(Api.getMarettaStatusReport)
-        .timeout(const Duration(seconds: 15));
-    if (response.statusCode == 200) {
-      for (Map data in jsonDecode(response.bodyUTF)) {
-        MarettaReportModel report = MarettaReportModel.fromData(data);
-        _addReport(report);
-      }
-    }
-    notifyListeners();
   }
 
   void _addReport(MarettaReportModel report) {
     if (!blacklist.keys.contains(report.reporterDiscordId)) {
-      for (MarettaChannelModel channel in list) {
-        if (channel.channel == report.channel) {
-          if (channel.details[report.channelNum - 1].report == null ||
-              report.reportAt.isAfter(
-                  channel.details[report.channelNum - 1].report!.reportAt)) {
-            channel.details[report.channelNum - 1].report = report;
-          }
-        }
+      MarettaReportModel? old =
+          reportList[report.channel]?[report.channelNum - 1].report;
+      if (old == null) {
+        reportList[report.channel]?[report.channelNum - 1].report = report;
+      } else if (report.reportAt.isAfter(old.reportAt)) {
+        reportList[report.channel]?[report.channelNum - 1].report = report;
       }
     }
   }
@@ -75,7 +112,7 @@ class MarettaNotifier with ChangeNotifier {
       for (Map data in jsonDecode(response.bodyUTF)) {
         BlacklistModel item = BlacklistModel.fromData(data);
         items[item.discordId] = item;
-        print(item.userName);
+        //print(item.userName);
       }
       blacklist = items;
       notifyListeners();
@@ -94,5 +131,11 @@ class MarettaNotifier with ChangeNotifier {
       blacklist[blocked.discordId] = blocked;
       notifyListeners();
     }
+  }
+
+  @override
+  void dispose() {
+    disconnect();
+    super.dispose();
   }
 }

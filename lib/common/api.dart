@@ -80,6 +80,8 @@ class Api {
 
   static String get updateChecklistItem => '$_checklist/update/checklist-item';
 
+  static String get marettaStatusReports => '$_socketServer/maretta/reports';
+
   static String get createMarettaStatusReport => '$_marettaStatusReport/create/report';
 
   static String get getMarettaStatusReport => '$_marettaStatusReport/get/reports';

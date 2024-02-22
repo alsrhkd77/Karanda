@@ -12,36 +12,15 @@ class MarettaModel {
 
   MarettaStatus get status => _getStatus();
 
-  DateTime? get statusAt => _getStatusAt();
-
-  DateTime? _getStatusAt() {
-    if (report == null) {
-      return null;
-    }
-    if (!report!.alive &&
-        DateTime.now()
-            .isAfter(report!.reportAt.add(const Duration(hours: 1)))) {
-      return report!.reportAt.add(const Duration(hours: 1));
-    }
-    return report!.reportAt;
-  }
+  DateTime? get statusAt => report?.reportAt;
 
   MarettaStatus _getStatus() {
-    if (report != null &&
-        DateTime.now()
-            .isBefore(report!.reportAt.add(const Duration(hours: 2)))) {
-      if (report!.alive &&
-          DateTime.now()
-              .isAfter(report!.reportAt.add(const Duration(hours: 1)))) {
-        return MarettaStatus.unknown;
-      } else if (!report!.alive &&
-          DateTime.now()
-              .isAfter(report!.reportAt.add(const Duration(hours: 1)))) {
+    if (report != null){
+      if(report!.alive){
         return MarettaStatus.alive;
       }
-      return report!.alive ? MarettaStatus.alive : MarettaStatus.dead;
-    } else {
-      return MarettaStatus.unknown;
+      return MarettaStatus.dead;
     }
+    return MarettaStatus.unknown;
   }
 }
