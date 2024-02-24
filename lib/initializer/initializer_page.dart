@@ -39,6 +39,7 @@ class _InitializerPageState extends State<InitializerPage> {
     await windowManager.hide();
     await windowManager.setTitleBarStyle(TitleBarStyle.normal);
     await windowManager.setSize(const Size(1280, 720));
+    await windowManager.setMinimumSize(const Size(600, 550));
     await windowManager.center();
     await windowManager.show();
   }
