@@ -47,7 +47,7 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                         child: ListTile(
                           leading: Icon(FontAwesomeIcons.scaleUnbalanced),
                           title: TitleText(
-                            '통합 거래소 뷰어 (Beta)',
+                            '통합 거래소 (Beta)',
                             bold: true,
                           ),
                         ),
