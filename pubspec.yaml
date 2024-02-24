@@ -57,6 +57,7 @@ dependencies:
   go_router: ^11.1.2
   convert: ^3.1.1
   web_socket_channel: ^2.4.0
+  window_manager: ^0.3.8
 
 dev_dependencies:
   flutter_test:
