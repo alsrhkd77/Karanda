@@ -105,6 +105,32 @@ Win32Window::~Win32Window() {
 bool Win32Window::CreateAndShow(const std::wstring& title,
                                 const Point& origin,
                                 const Size& size) {
+  HANDLE hMutexHandle=CreateMutex(NULL, TRUE, L"karanda.win32.mutex");
+  HWND handle=FindWindowA("FLUTTER_RUNNER_WIN32_WINDOW", NULL);
+
+  if (GetLastError() == ERROR_ALREADY_EXISTS)
+  {
+
+    WINDOWPLACEMENT place = { sizeof(WINDOWPLACEMENT) };
+    GetWindowPlacement(handle, &place);
+    switch(place.showCmd)
+    {
+        case SW_SHOWMAXIMIZED:
+            ShowWindow(handle, SW_SHOWMAXIMIZED);
+            break;
+        case SW_SHOWMINIMIZED:
+            ShowWindow(handle, SW_RESTORE);
+            break;
+        default:
+            ShowWindow(handle, SW_NORMAL);
+            break;
+    }
+    SetWindowPos(0, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+    SetForegroundWindow(handle);
+    return 0;
+  }
+  ReleaseMutex(hMutexHandle);
+
   Destroy();
 
   const wchar_t* window_class =
@@ -117,7 +143,7 @@ bool Win32Window::CreateAndShow(const std::wstring& title,
   double scale_factor = dpi / 96.0;
 
   HWND window = CreateWindow(
-      window_class, title.c_str(), WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+      window_class, title.c_str(), WS_OVERLAPPEDWINDOW,
       Scale(origin.x, scale_factor), Scale(origin.y, scale_factor),
       Scale(size.width, scale_factor), Scale(size.height, scale_factor),
       nullptr, nullptr, GetModuleHandle(nullptr), this);
