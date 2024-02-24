@@ -44,14 +44,13 @@ import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //usePathUrlStrategy();
-  await windowManager.ensureInitialized();
   if (!kIsWeb) {
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      await windowManager.ensureInitialized();
       WindowOptions windowOptions = const WindowOptions(
         size: Size(350, 360),
         center: true,
-        //backgroundColor: Colors.transparent,
-        skipTaskbar: false,
+        title: "Karanda",
         titleBarStyle: TitleBarStyle.hidden,
       );
       windowManager.waitUntilReadyToShow(windowOptions, () async {
