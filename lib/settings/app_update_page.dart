@@ -1,12 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:karanda/settings/version_notifier.dart';
-import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
-import 'package:provider/provider.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:http/http.dart' as http;
 
 class AppUpdatePage extends StatefulWidget {
   const AppUpdatePage({Key? key}) : super(key: key);
@@ -18,10 +18,30 @@ class AppUpdatePage extends StatefulWidget {
 class _AppUpdatePageState extends State<AppUpdatePage> {
   bool _loading = false;
   double _downloadProgress = 0;
+  String currentVersion = '';
+  String latestVersion = '';
 
   @override
   void initState() {
     super.initState();
+    getCurrentVersion();
+    getLatestVersion();
+  }
+
+  Future<void> getCurrentVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      currentVersion = packageInfo.version;
+    });
+  }
+
+  Future<void> getLatestVersion() async {
+    final response = await http.get(Uri.parse(
+        'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/version.json'));
+    Map data = jsonDecode(response.body);
+    setState(() {
+      latestVersion = data['version'] ?? '';
+    });
   }
 
   Future<void> downloadNewVersion() async {
@@ -33,7 +53,7 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
     await dio.download(
         'https://github.com/HwanSangYeonHwa/Karanda/releases/latest/download/SetupKaranda.exe',
         savePath, onReceiveProgress: (received, total) {
-      final progress = (received / total) * 100;
+      final progress = received / total;
       setState(() {
         _downloadProgress = progress;
       });
@@ -46,7 +66,8 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
   }
 
   Future<void> openFile(String path) async {
-    await Process.start(path, ["-t", "-l", "1000", "/silent"]).then((value) => {});
+    await Process.start(path, ["-t", "-l", "1000", "/silent"])
+        .then((value) => {});
   }
 
   Widget buildButton() {
@@ -58,81 +79,80 @@ class _AppUpdatePageState extends State<AppUpdatePage> {
         child: const CircularProgressIndicator(),
       );
     }
-    return ElevatedButton(
-      onPressed: downloadNewVersion,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10.0),
-        child: const Text('Update'),
-      ),
-    );
+    if (currentVersion.isNotEmpty &&
+        latestVersion.isNotEmpty &&
+        currentVersion != latestVersion) {
+      return ElevatedButton(
+        onPressed: downloadNewVersion,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10.0),
+          child: const Text('Update'),
+        ),
+      );
+    }
+    return Container();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb) {
-      return const Scaffold(
-        appBar: DefaultAppBar(),
-        body: CannotUseInWeb(),
-      );
-    }
-    return Consumer(builder: (context, VersionNotifier versionNotifier, _){
-      return Scaffold(
-        appBar: const DefaultAppBar(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Card(
-                margin: const EdgeInsets.all(12.0),
-                child: Container(
-                  width: 320,
-                  margin: const EdgeInsets.all(48.0),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Karanda',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 40.0),
+    return Scaffold(
+      appBar: const DefaultAppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Card(
+              margin: const EdgeInsets.all(12.0),
+              child: Container(
+                width: 320,
+                margin: const EdgeInsets.all(48.0),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Karanda',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 40.0),
+                    ),
+                    const SizedBox(
+                      height: 22.0,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(4.0),
+                      child: Text(
+                        currentVersion.isNotEmpty
+                            ? '현재 버전: $currentVersion'
+                            : '',
+                        style: const TextStyle(fontSize: 18.0),
                       ),
-                      const SizedBox(
-                        height: 22.0,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(4.0),
+                      child: Text(
+                        latestVersion.isNotEmpty ? '최신 버전: $latestVersion' : '',
+                        style: const TextStyle(fontSize: 18.0),
                       ),
-                      Container(
-                        margin: const EdgeInsets.all(4.0),
-                        child: Text(
-                          '현재 버전: ${versionNotifier.currentVersion}',
-                          style: const TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(4.0),
-                        child: Text(
-                          '최신 버전: ${versionNotifier.latestVersion}',
-                          style: const TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              _downloadProgress > 0
-                  ? Container(
-                margin: const EdgeInsets.all(18.0),
-                constraints: const BoxConstraints(
-                  maxWidth: 720,
-                ),
-                child: LinearProgressIndicator(
-                  color: Colors.green,
-                  minHeight: 14.0,
-                  value: _downloadProgress,
-                ),
-              )
-                  : const SizedBox(),
-              versionNotifier.currentVersion != versionNotifier.latestVersion ? buildButton() : const SizedBox(),
-            ],
-          ),
+            ),
+            _downloadProgress > 0
+                ? Container(
+                    margin: const EdgeInsets.all(18.0),
+                    constraints: const BoxConstraints(
+                      maxWidth: 720,
+                    ),
+                    child: LinearProgressIndicator(
+                      color: Colors.green,
+                      minHeight: 14.0,
+                      value: _downloadProgress,
+                    ),
+                  )
+                : const SizedBox(),
+            buildButton(),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

@@ -18,11 +18,11 @@ import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
-import 'package:karanda/settings/version_notifier.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
+import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:window_manager/window_manager.dart';
 import 'settings/app_update_page.dart';
 
@@ -99,7 +99,12 @@ final GoRouter _router = GoRouter(
               ),
               GoRoute(
                 path: 'desktop-app',
-                builder: (context, state) => const AppUpdatePage(),
+                builder: (context, state) {
+                  if(kIsWeb) {
+                    return const CannotUseInWeb();
+                  }
+                  return const AppUpdatePage();
+                },
               ),
               GoRoute(
                 path: 'theme',
@@ -123,10 +128,6 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'auth/error',
           builder: (context, state) => const AuthErrorPage(),
-        ),
-        GoRoute(
-          path: 'desktop-app',
-          builder: (context, state) => const AppUpdatePage(),
         ),
         GoRoute(
           path: 'horse',
@@ -211,10 +212,12 @@ class MyApp extends StatelessWidget {
           create: (_) => SettingsNotifier(),
           lazy: false,
         ),
+        /*
         ChangeNotifierProvider(
           create: (_) => VersionNotifier(rootScaffoldMessengerKey, _router),
           lazy: false,
         ),
+         */
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
           create: (_) => AuthNotifier(rootScaffoldMessengerKey),

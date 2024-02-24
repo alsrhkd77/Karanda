@@ -1,8 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:karanda/auth/auth_notifier.dart';
+import 'package:karanda/initializer/karanda_initializer.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 
 class InitializerPage extends StatefulWidget {
@@ -13,17 +16,31 @@ class InitializerPage extends StatefulWidget {
 }
 
 class _InitializerPageState extends State<InitializerPage> {
+  final KarandaInitializer initializer = KarandaInitializer();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => runTasks());
+  }
+
+  Future<void> runTasks() async {
+    try {
+      await initializer.runTasks(context.read<AuthNotifier>().authorization());
+    } catch (e) {
+      print(e);
+    } finally {
+      await setWindows();
+      context.go("/");
+    }
+  }
 
   Future<void> setWindows() async {
-    //await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
-
-    await Future.delayed(Duration(seconds: 3));
     await windowManager.hide();
     await windowManager.setTitleBarStyle(TitleBarStyle.normal);
     await windowManager.setSize(const Size(1280, 720));
     await windowManager.center();
     await windowManager.show();
-    context.go("/");
   }
 
   @override
@@ -35,7 +52,8 @@ class _InitializerPageState extends State<InitializerPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,9 +66,13 @@ class _InitializerPageState extends State<InitializerPage> {
                       fontSize: 22.0,
                     ),
                   ),
-                  Text('2.5.3', style: TextStyle(
-                    color: Colors.grey.shade600
-                  ),),
+                  StreamBuilder(
+                    stream: initializer.version,
+                    builder: (context, snapshot) => Text(
+                      snapshot.hasData ? snapshot.data! : '',
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -66,11 +88,22 @@ class _InitializerPageState extends State<InitializerPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Text('Check for update'),
+                    child: StreamBuilder(
+                      stream: initializer.task,
+                      builder: (context, snapshot) =>
+                          Text(snapshot.hasData ? snapshot.data! : ''),
+                    ),
                   ),
-                  LinearProgressIndicator(
-                    borderRadius: BorderRadius.circular(12.0),
-                    value: 0.58,
+                  StreamBuilder(
+                    stream: initializer.percent,
+                    builder: (context, snapshot) => LinearPercentIndicator(
+                      animation: true,
+                      progressColor: Colors.blue.shade400,
+                      animationDuration: 500,
+                      percent: snapshot.hasData ? snapshot.data! : 0,
+                      barRadius: const Radius.circular(12.0),
+                      animateFromLastPercent: true,
+                    ),
                   ),
                 ],
               ),
@@ -79,13 +112,5 @@ class _InitializerPageState extends State<InitializerPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (!kIsWeb) {
-      setWindows();
-    }
   }
 }

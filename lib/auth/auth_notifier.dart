@@ -31,7 +31,9 @@ class AuthNotifier with ChangeNotifier {
   String get discordId => _discordId;
 
   AuthNotifier(this._rootScaffoldMessengerKey) {
-    authorization();
+    if(kIsWeb){
+      authorization();
+    }
   }
 
   void authenticate() {
@@ -62,7 +64,7 @@ class AuthNotifier with ChangeNotifier {
 
   Future<bool> _authorization() async {
     try {
-      final response = await http.get(Api.authorization).timeout(const Duration(seconds: 15));
+      final response = await http.get(Api.authorization).timeout(const Duration(seconds: 20));
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
@@ -76,7 +78,9 @@ class AuthNotifier with ChangeNotifier {
       }
     } catch (e) {
       await _logout();
-      _showSnackBar(content: '사용자 인증에 실패했습니다');
+      if(kIsWeb){
+        _showSnackBar(content: '사용자 인증에 실패했습니다');
+      }
     }
     return false;
   }
