@@ -125,12 +125,14 @@ class _TradeMarketSearchBarWidgetState
                                   : null,
                               padding: const EdgeInsets.all(16.0),
                               child: ListTile(
+                                /*
                                 leading: BdoItemImageWidget(
                                   code: item.code,
                                   enhancementLevel: '',
                                   size: 50,
                                   grade: item.grade,
                                 ),
+                                 */
                                 title: Text(option),
                               ),
                             );
@@ -143,6 +145,16 @@ class _TradeMarketSearchBarWidgetState
               );
             },
             optionsBuilder: (TextEditingValue textEditingValue) async {
+              String input = textEditingValue.text.trim();
+              if(input.isEmpty){
+                return const Iterable<String>.empty();
+              }
+              return context
+                  .read<TradeMarketNotifier>()
+                  .itemNames
+                  .keys
+                  .where((element) => element.contains(input));
+              /*
               final Iterable<String>? options =
                   await debouncedSearch(textEditingValue.text);
               if (options == null) {
@@ -150,6 +162,7 @@ class _TradeMarketSearchBarWidgetState
               }
               lastOptions = options;
               return options;
+              */
             },
             onSelected: (String value) {
               setState(() {
