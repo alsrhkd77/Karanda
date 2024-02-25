@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 
 class AuthNotifier with ChangeNotifier {
   final GlobalKey<ScaffoldMessengerState> _rootScaffoldMessengerKey;
+  final GoRouter goRouter;
 
   bool _authenticated = false;
   bool _waitResponse = false;
@@ -30,7 +31,7 @@ class AuthNotifier with ChangeNotifier {
 
   String get discordId => _discordId;
 
-  AuthNotifier(this._rootScaffoldMessengerKey) {
+  AuthNotifier(this._rootScaffoldMessengerKey, this.goRouter) {
     if(kIsWeb){
       authorization();
     }
@@ -131,11 +132,11 @@ class AuthNotifier with ChangeNotifier {
     if (result) {
       await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
       if(await _authorization()){
-        _rootScaffoldMessengerKey.currentState?.context.go('/');
+        goRouter.go('/');
       }
     } else{
       await deleteToken();
-      _rootScaffoldMessengerKey.currentState?.context.go('/auth/error');
+      goRouter.go('/auth/error');
     }
   }
 

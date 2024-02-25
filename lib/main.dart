@@ -17,6 +17,7 @@ import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
+import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
@@ -110,7 +111,12 @@ final GoRouter _router = GoRouter(
                 path: 'theme',
                 builder: (context, state) => const ThemeSettingPage(),
               ),
-            ]),
+              GoRoute(
+                path: 'support-karanda',
+                builder: (context, state) => const SupportKarandaPage(),
+              ),
+            ],
+        ),
         GoRoute(
           path: 'auth/info',
           builder: (context, state) => const AuthPage(
@@ -220,7 +226,7 @@ class MyApp extends StatelessWidget {
          */
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
-          create: (_) => AuthNotifier(rootScaffoldMessengerKey),
+          create: (_) => AuthNotifier(rootScaffoldMessengerKey, _router),
           lazy: false,
         ),
         ChangeNotifierProxyProvider<AuthNotifier, ChecklistNotifier>(
