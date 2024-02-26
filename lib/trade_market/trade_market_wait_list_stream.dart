@@ -11,7 +11,8 @@ class TradeMarketWaitListStream {
   final _dataStreamController = StreamController<List<TradeMarketWaitItem>>();
   WebSocketChannel? _channel;
   Timer? _timer;
-  DateTime? _lastUpdate;
+  DateTime? lastUpdate;
+  bool connected = false;
 
   TradeMarketWaitListStream() {
     connect();
@@ -23,51 +24,61 @@ class TradeMarketWaitListStream {
   Future<void> connect() async {
     const storage = FlutterSecureStorage();
     String token = await storage.read(key: 'karanda-token') ?? '';
-    _channel = WebSocketChannel.connect(Uri.parse('${Api.marketWaitList}?token=$token'));
-    await _channel?.ready;
-    _channel?.stream.listen(
-      (message) {
-        List<TradeMarketWaitItem> result = [];
-        if (message != null && message != '') {
-          List decoded = jsonDecode(message);
-          for (var data in decoded) {
-            TradeMarketWaitItem item = TradeMarketWaitItem.fromData(data);
-            result.add(item);
+    if (!connected) {
+      _channel = WebSocketChannel.connect(
+          Uri.parse('${Api.marketWaitList}?token=$token'));
+      await _channel?.ready;
+      _channel?.stream.listen(
+        (message) {
+          List<TradeMarketWaitItem> result = [];
+          if (message != null && message != '') {
+            List decoded = jsonDecode(message);
+            for (var data in decoded) {
+              TradeMarketWaitItem item = TradeMarketWaitItem.fromData(data);
+              result.add(item);
+            }
+            _dataStreamController.sink.add(result);
+            lastUpdate = DateTime.now();
           }
-          _dataStreamController.sink.add(result);
-          _lastUpdate = DateTime.now();
-        }
-      },
-      onDone: () {
-        if(_channel?.closeCode == status.abnormalClosure){
-          _timer?.cancel();
-          _timer = null;
-          connect();
-        }
-      },
-      onError: (e) {
-        print('error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
-        print(e);
-      },
-    );
-    _timer = Timer.periodic(
-        const Duration(seconds: 30), (timer) => _requestUpdate());
+        },
+        onDone: () {
+          if (_channel?.closeCode == status.noStatusReceived) {
+            connected = false;
+          }
+          if (_channel?.closeCode == status.abnormalClosure) {
+            _timer?.cancel();
+            _timer = null;
+            connected = false;
+            connect();
+          }
+        },
+        onError: (e) {
+          print(
+              'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
+          print(e);
+        },
+      );
+      _timer = _timer ??
+          Timer.periodic(
+              const Duration(seconds: 30), (timer) => _requestUpdate());
+      connected = true;
+    }
   }
 
   void _requestUpdate() {
-    if (_lastUpdate != null &&
-        _lastUpdate!
+    if (lastUpdate != null &&
+        lastUpdate!
             .isBefore(DateTime.now().subtract(const Duration(seconds: 90)))) {
       _channel?.sink.add('update');
     }
   }
 
-  void disconnect(){
+  void disconnect() {
     _timer?.cancel();
     _timer = null;
     _channel?.sink.close(status.normalClosure);
     _channel = null;
-
+    connected = false;
   }
 
   void dispose() {
@@ -76,5 +87,6 @@ class TradeMarketWaitListStream {
     _channel?.sink.close(status.normalClosure);
     _channel = null;
     _dataStreamController.close();
+    connected = false;
   }
 }

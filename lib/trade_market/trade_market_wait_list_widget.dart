@@ -9,6 +9,7 @@ import 'package:karanda/trade_market/trade_market_wait_item.dart';
 import 'package:karanda/trade_market/trade_market_wait_list_stream.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:window_manager/window_manager.dart';
 
 class TradeMarketWaitListWidget extends StatefulWidget {
   const TradeMarketWaitListWidget({super.key});
@@ -18,19 +19,41 @@ class TradeMarketWaitListWidget extends StatefulWidget {
       _TradeMarketWaitListWidgetState();
 }
 
-class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget> {
+class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
+    with WindowListener {
   final TradeMarketWaitListStream dataStream = TradeMarketWaitListStream();
+
+  @override
+  void initState() {
+    super.initState();
+    windowManager.addListener(this);
+  }
+
+  void show(int a) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(a.toString())));
+  }
 
   @override
   void activate() {
     super.activate();
-    //dataStream.connect();
+    dataStream.connect();
   }
 
   @override
   void deactivate() {
-    //dataStream.disconnect();
+    dataStream.disconnect();
     super.deactivate();
+  }
+
+  @override
+  void onWindowFocus() {
+    dataStream.connect();
+  }
+
+  @override
+  void onWindowClose() {
+    dataStream.disconnect();
   }
 
   @override
@@ -43,11 +66,21 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget> {
             child: LoadingIndicator(),
           );
         }
+        if (snapshot.hasError) {
+          return const SliverToBoxAdapter(
+            child: LoadingIndicator(),
+          );
+        }
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return Center(
-                  child: _WaitItemTile(item: snapshot.requireData[index]));
+              return Column(
+                children: [
+                  Center(
+                      child: _WaitItemTile(item: snapshot.requireData[index])),
+                  Text(dataStream.lastUpdate.toString()),
+                ],
+              );
             },
             childCount: snapshot.requireData.length,
           ),
@@ -59,6 +92,7 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget> {
   @override
   void dispose() {
     dataStream.dispose();
+    windowManager.removeListener(this);
     super.dispose();
   }
 }

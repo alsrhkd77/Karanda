@@ -18,6 +18,7 @@ import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/need_login_snack_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
+import 'package:window_manager/window_manager.dart';
 
 class MarettaPage extends StatefulWidget {
   const MarettaPage({super.key});
@@ -26,21 +27,40 @@ class MarettaPage extends StatefulWidget {
   State<MarettaPage> createState() => _MarettaPageState();
 }
 
-class _MarettaPageState extends State<MarettaPage> {
+class _MarettaPageState extends State<MarettaPage> with WindowListener {
   late MarettaNotifier _provider;
 
   @override
   void initState() {
     super.initState();
+    windowManager.addListener(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _provider = Provider.of<MarettaNotifier>(context, listen: false);
-      _provider.connect();
+      _provider.disconnect();
     });
+  }
+
+  @override
+  void activate() {
+    super.activate();
+    _provider.disconnect();
+  }
+
+  @override
+  void onWindowFocus() {
+    _provider.disconnect();
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    _provider.disconnect();
   }
 
   @override
   void dispose() {
     _provider.disconnect();
+    windowManager.removeListener(this);
     super.dispose();
   }
 
