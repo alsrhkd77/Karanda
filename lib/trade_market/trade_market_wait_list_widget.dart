@@ -74,13 +74,8 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return Column(
-                children: [
-                  Center(
-                      child: _WaitItemTile(item: snapshot.requireData[index])),
-                  Text(dataStream.lastUpdate.toString()),
-                ],
-              );
+              return Center(
+                  child: _WaitItemTile(item: snapshot.requireData[index]));
             },
             childCount: snapshot.requireData.length,
           ),
