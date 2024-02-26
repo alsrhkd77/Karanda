@@ -109,7 +109,7 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                           .watch<TradeMarketNotifier>()
                           .itemInfo[code]!
                           .category),
-                      trailing: DropdownMenu<String>(
+                      trailing: snapshot.data!.isEmpty ? null : DropdownMenu<String>(
                         initialSelection: '',
                         inputDecorationTheme: InputDecorationTheme(
                           contentPadding: const EdgeInsets.symmetric(
