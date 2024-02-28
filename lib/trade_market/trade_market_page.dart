@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
@@ -59,6 +60,50 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                         sliver: const SliverToBoxAdapter(
                           child: TradeMarketSearchBarWidget(),
                         ),
+                      ),
+                      SliverPadding(
+                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        sliver: const SliverToBoxAdapter(
+                          child: ListTile(
+                            title: TitleText(
+                              '프리셋',
+                              bold: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        sliver: SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: InkWell(
+                                    onTap: (){
+                                      context.go('/trade-market/cooking-box');
+                                    },
+                                    child: SizedBox(
+                                      width: 260,
+                                      height: 54,
+                                      child: Center(
+                                        child: ListTile(
+                                          leading: Image.asset('assets/image/cooking_box.png'),
+                                          title: const Text('황납용 요리'),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: GlobalProperties.scrollViewPadding,
                       ),
                       SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: horizontalPadding),

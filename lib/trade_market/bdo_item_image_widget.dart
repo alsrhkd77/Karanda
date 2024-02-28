@@ -5,14 +5,14 @@ import 'package:karanda/common/global_properties.dart';
 
 class BdoItemImageWidget extends StatelessWidget {
   final String code;
-  final int grade;
+  final int? grade;
   final String enhancementLevel;
   final double size;
 
   const BdoItemImageWidget({
     super.key,
     required this.code,
-    this.grade = 0,
+    this.grade,
     this.enhancementLevel = '',
     this.size = 44,
   });
@@ -27,7 +27,10 @@ class BdoItemImageWidget extends StatelessWidget {
       padding: EdgeInsets.all(size * 0.1),
       decoration: BoxDecoration(
           border: Border.all(
-              color: GlobalProperties.bdoItemGradeColor[grade], width: 1.2),
+              color: grade == null
+                  ? Colors.transparent
+                  : GlobalProperties.bdoItemGradeColor[grade!],
+              width: 1.2),
           borderRadius: BorderRadius.circular(4.0)),
       child: Stack(
         alignment: Alignment.center,

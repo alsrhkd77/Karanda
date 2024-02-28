@@ -1,0 +1,734 @@
+[
+    {
+        "name": "견습가의 요리상자",
+        "code": 9851,
+        "price": 52000,
+        "materials": [
+            {
+                "name": "테프빵",
+                "code": 9214,
+                "needed": 390
+            },
+            {
+                "name": "고급 당근 주스",
+                "code": 9210,
+                "needed": 360
+            },
+            {
+                "name": "특상품 당근 주스",
+                "code": 9211,
+                "needed": 180
+            },
+            {
+                "name": "막걸리",
+                "code": 9262,
+                "needed": 180
+            },
+            {
+                "name": "무화과 파이",
+                "code": 9216,
+                "needed": 60
+            },
+            {
+                "name": "생선 훈제 스테이크",
+                "code": 9417,
+                "needed": 180
+            },
+            {
+                "name": "과일 주스",
+                "code": 9257,
+                "needed": 60
+            },
+            {
+                "name": "맥주",
+                "code": 9213,
+                "needed": 60
+            },
+            {
+                "name": "생선 튀김",
+                "code": 9407,
+                "needed": 90
+            },
+            {
+                "name": "곡물 수프",
+                "code": 9255,
+                "needed": 45
+            },
+            {
+                "name": "오곡 닭죽",
+                "code": 9494,
+                "needed": 30
+            },
+            {
+                "name": "삶은 새알",
+                "code": 9402,
+                "needed": 30
+            },
+            {
+                "name": "해물 버섯 샐러드",
+                "code": 9419,
+                "needed": 30
+            },
+            {
+                "name": "알로에 쿠키",
+                "code": 9205,
+                "needed": 21
+            },
+            {
+                "name": "생선찜",
+                "code": 9409,
+                "needed": 30
+            },
+            {
+                "name": "채소 튀김",
+                "code": 9256,
+                "needed": 15
+            },
+            {
+                "name": "유자 사탕",
+                "code": 9378,
+                "needed": 54
+            },
+            {
+                "name": "유자 주스",
+                "code": 9355,
+                "needed": 48
+            },
+            {
+                "name": "누룽지",
+                "code": 820831,
+                "needed": 30
+            },
+            {
+                "name": "대추 차",
+                "code": 820839,
+                "needed": 30
+            }
+        ]
+    },
+    {
+        "name": "숙련가의 요리상자",
+        "code": 9852,
+        "price": 80000,
+        "materials": [
+            {
+                "name": "새구이",
+                "code": 9492,
+                "needed": 90
+            },
+            {
+                "name": "생선 절임",
+                "code": 9412,
+                "needed": 120
+            },
+            {
+                "name": "대추야자주",
+                "code": 9219,
+                "needed": 60
+            },
+            {
+                "name": "벌꿀주",
+                "code": 9206,
+                "needed": 60
+            },
+            {
+                "name": "피시 필레 칩",
+                "code": 9208,
+                "needed": 75
+            },
+            {
+                "name": "과실주",
+                "code": 9201,
+                "needed": 45
+            },
+            {
+                "name": "피스타치오 볶음밥",
+                "code": 9217,
+                "needed": 36
+            },
+            {
+                "name": "해물 버터 구이",
+                "code": 9421,
+                "needed": 36
+            },
+            {
+                "name": "생선 수프",
+                "code": 9418,
+                "needed": 33
+            },
+            {
+                "name": "향이 좋은 차",
+                "code": 9270,
+                "needed": 21
+            },
+            {
+                "name": "해물찜",
+                "code": 9411,
+                "needed": 30
+            },
+            {
+                "name": "과일과 채소 샐러드",
+                "code": 9258,
+                "needed": 21
+            },
+            {
+                "name": "새고기 찜",
+                "code": 9405,
+                "needed": 18
+            },
+            {
+                "name": "해물 파스타",
+                "code": 9413,
+                "needed": 18
+            },
+            {
+                "name": "오믈렛",
+                "code": 9269,
+                "needed": 18
+            },
+            {
+                "name": "채소 볶음",
+                "code": 9241,
+                "needed": 18
+            },
+            {
+                "name": "델로티아 주스",
+                "code": 9327,
+                "needed": 24
+            },
+            {
+                "name": "유자주",
+                "code": 9351,
+                "needed": 30
+            },
+            {
+                "name": "잘 우려진 상황 버섯 차",
+                "code": 9366,
+                "needed": 21
+            },
+            {
+                "name": "상황 버섯 막걸리",
+                "code": 9367,
+                "needed": 15
+            },
+            {
+                "name": "숭늉",
+                "code": 820833,
+                "needed": 36
+            },
+            {
+                "name": "가래떡",
+                "code": 820845,
+                "needed": 39
+            },
+            {
+                "name": "팥시루떡",
+                "code": 820849,
+                "needed": 39
+            }
+        ]
+    },
+    {
+        "name": "전문가의 요리상자",
+        "code": 9853,
+        "price": 120000,
+        "materials": [
+            {
+                "name": "과일 파이",
+                "code": 9264,
+                "needed": 24
+            },
+            {
+                "name": "생선 살 샐러드",
+                "code": 9423,
+                "needed": 24
+            },
+            {
+                "name": "대하 찜",
+                "code": 9473,
+                "needed": 24
+            },
+            {
+                "name": "새고기 튀김",
+                "code": 9403,
+                "needed": 24
+            },
+            {
+                "name": "새고기 볶음",
+                "code": 9331,
+                "needed": 24
+            },
+            {
+                "name": "닭 가슴살 샐러드",
+                "code": 9335,
+                "needed": 24
+            },
+            {
+                "name": "미트 파이",
+                "code": 9265,
+                "needed": 21
+            },
+            {
+                "name": "알로에 요거트",
+                "code": 9204,
+                "needed": 18
+            },
+            {
+                "name": "해물 볶음",
+                "code": 9420,
+                "needed": 21
+            },
+            {
+                "name": "사막 만두",
+                "code": 9410,
+                "needed": 18
+            },
+            {
+                "name": "마못 통구이",
+                "code": 9488,
+                "needed": 18
+            },
+            {
+                "name": "쿠스쿠스",
+                "code": 9220,
+                "needed": 18
+            },
+            {
+                "name": "미트 스튜",
+                "code": 9414,
+                "needed": 18
+            },
+            {
+                "name": "대하 샐러드",
+                "code": 9471,
+                "needed": 18
+            },
+            {
+                "name": "프리카 뱀 스튜",
+                "code": 9215,
+                "needed": 15
+            },
+            {
+                "name": "채소 절임",
+                "code": 9202,
+                "needed": 18
+            },
+            {
+                "name": "부드러운 빵",
+                "code": 9260,
+                "needed": 15
+            },
+            {
+                "name": "과일 푸딩",
+                "code": 9259,
+                "needed": 15
+            },
+            {
+                "name": "유자 양파 절임",
+                "code": 9361,
+                "needed": 12
+            },
+            {
+                "name": "꾀꼬리 버섯 리조또",
+                "code": 9349,
+                "needed": 12
+            },
+            {
+                "name": "쌀밥",
+                "code": 820815,
+                "needed": 15
+            },
+            {
+                "name": "팥죽",
+                "code": 820825,
+                "needed": 15
+            },
+            {
+                "name": "구운 은행",
+                "code": 820843,
+                "needed": 18
+            }
+        ]
+    },
+    {
+        "name": "장인의 요리상자",
+        "code": 9854,
+        "price": 160000,
+        "materials": [
+            {
+                "name": "코코넛 칵테일",
+                "code": 9307,
+                "needed": 54
+            },
+            {
+                "name": "코코넛 생선 튀김",
+                "code": 9309,
+                "needed": 36
+            },
+            {
+                "name": "코코넛 파스타",
+                "code": 9308,
+                "needed": 21
+            },
+            {
+                "name": "무지개 양송이 치즈구이",
+                "code": 9483,
+                "needed": 21
+            },
+            {
+                "name": "테프 샌드위치",
+                "code": 9218,
+                "needed": 18
+            },
+            {
+                "name": "굴전",
+                "code": 9475,
+                "needed": 18
+            },
+            {
+                "name": "무지개 양송이 샌드위치",
+                "code": 9316,
+                "needed": 18
+            },
+            {
+                "name": "고기 수프",
+                "code": 9424,
+                "needed": 18
+            },
+            {
+                "name": "델로티아 타르트",
+                "code": 9323,
+                "needed": 18
+            },
+            {
+                "name": "전갈 구이",
+                "code": 9461,
+                "needed": 15
+            },
+            {
+                "name": "보르츠",
+                "code": 9408,
+                "needed": 15
+            },
+            {
+                "name": "구운 소시지",
+                "code": 9427,
+                "needed": 15
+            },
+            {
+                "name": "치즈 파이",
+                "code": 9268,
+                "needed": 15
+            },
+            {
+                "name": "미트 파스타",
+                "code": 9416,
+                "needed": 15
+            },
+            {
+                "name": "도마뱀 케밥",
+                "code": 9406,
+                "needed": 15
+            },
+            {
+                "name": "스테이크",
+                "code": 9401,
+                "needed": 15
+            },
+            {
+                "name": "오트밀",
+                "code": 9261,
+                "needed": 15
+            },
+            {
+                "name": "꾀꼬리 버섯 찌개",
+                "code": 9339,
+                "needed": 27
+            },
+            {
+                "name": "꾀꼬리 버섯 죽",
+                "code": 9345,
+                "needed": 24
+            },
+            {
+                "name": "과일 셔벗",
+                "code": 9376,
+                "needed": 21
+            },
+            {
+                "name": "꾀꼬리 버섯 감자 스튜",
+                "code": 9341,
+                "needed": 15
+            },
+            {
+                "name": "상황 버섯 삼계탕",
+                "code": 9371,
+                "needed": 15
+            },
+            {
+                "name": "콩나물무침",
+                "code": 820811,
+                "needed": 21
+            },
+            {
+                "name": "녹두전",
+                "code": 820821,
+                "needed": 15
+            },
+            {
+                "name": "메밀묵",
+                "code": 820823,
+                "needed": 36
+            }
+        ]
+    },
+    {
+        "name": "명장의 요리상자",
+        "code": 9855,
+        "price": 220000,
+        "materials": [
+            {
+                "name": "안주 모음",
+                "code": 9209,
+                "needed": 27
+            },
+            {
+                "name": "프랭크 샌드위치",
+                "code": 9337,
+                "needed": 21
+            },
+            {
+                "name": "델로티아 밀크티",
+                "code": 9329,
+                "needed": 21
+            },
+            {
+                "name": "수테차",
+                "code": 9207,
+                "needed": 18
+            },
+            {
+                "name": "밀크티",
+                "code": 9263,
+                "needed": 18
+            },
+            {
+                "name": "라마 꼬치 치즈구이",
+                "code": 9490,
+                "needed": 18
+            },
+            {
+                "name": "치즈 그라탱",
+                "code": 9203,
+                "needed": 18
+            },
+            {
+                "name": "고기 볶음",
+                "code": 9426,
+                "needed": 18
+            },
+            {
+                "name": "사냥꾼의 샐러드",
+                "code": 9459,
+                "needed": 18
+            },
+            {
+                "name": "벌집 쿠키",
+                "code": 9266,
+                "needed": 18
+            },
+            {
+                "name": "살코기 샐러드",
+                "code": 9425,
+                "needed": 18
+            },
+            {
+                "name": "미트 크로켓",
+                "code": 9404,
+                "needed": 18
+            },
+            {
+                "name": "고사리 나물 볶음",
+                "code": 9318,
+                "needed": 18
+            },
+            {
+                "name": "고사리 고기 볶음",
+                "code": 9333,
+                "needed": 18
+            },
+            {
+                "name": "델로티아 푸딩",
+                "code": 9325,
+                "needed": 18
+            },
+            {
+                "name": "정글의 왕 햄버그",
+                "code": 9463,
+                "needed": 15
+            },
+            {
+                "name": "미트 샌드위치",
+                "code": 9415,
+                "needed": 15
+            },
+            {
+                "name": "햄 샌드위치",
+                "code": 9267,
+                "needed": 15
+            },
+            {
+                "name": "암흑 푸딩",
+                "code": 9422,
+                "needed": 15
+            },
+            {
+                "name": "호르믹",
+                "code": 9486,
+                "needed": 15
+            },
+            {
+                "name": "맛이 깊은 스테이크",
+                "code": 9496,
+                "needed": 15
+            },
+            {
+                "name": "꾀꼬리 버섯 고기 볶음",
+                "code": 9343,
+                "needed": 18
+            },
+            {
+                "name": "에일 샌드위치",
+                "code": 9369,
+                "needed": 18
+            },
+            {
+                "name": "된장찌개",
+                "code": 820819,
+                "needed": 18
+            },
+            {
+                "name": "산적",
+                "code": 820829,
+                "needed": 15
+            },
+            {
+                "name": "백김치",
+                "code": 820801,
+                "needed": 21
+            },
+            {
+                "name": "동치미",
+                "code": 820805,
+                "needed": 24
+            }
+        ]
+    },
+    {
+        "name": "도인의 요리상자",
+        "code": 9856,
+        "price": 320000,
+        "materials": [
+            {
+                "name": "카마실비아 정식",
+                "code": 9635,
+                "needed": 33
+            },
+            {
+                "name": "마고리아 해물 특식",
+                "code": 9634,
+                "needed": 21
+            },
+            {
+                "name": "랍스터 버터구이",
+                "code": 9477,
+                "needed": 21
+            },
+            {
+                "name": "세렌디아 정식",
+                "code": 9603,
+                "needed": 21
+            },
+            {
+                "name": "발렌시아 정식",
+                "code": 9609,
+                "needed": 18
+            },
+            {
+                "name": "드리간 특식",
+                "code": 9637,
+                "needed": 18
+            },
+            {
+                "name": "기사단의 전투 식량",
+                "code": 9631,
+                "needed": 18
+            },
+            {
+                "name": "아레하자 특식",
+                "code": 9632,
+                "needed": 27
+            },
+            {
+                "name": "칼페온 정식",
+                "code": 9605,
+                "needed": 18
+            },
+            {
+                "name": "발레노스 정식",
+                "code": 9601,
+                "needed": 24
+            },
+            {
+                "name": "메디아 정식",
+                "code": 9607,
+                "needed": 15
+            },
+            {
+                "name": "오딜리타 정식",
+                "code": 9638,
+                "needed": 15
+            },
+            {
+                "name": "칼크의 담금주",
+                "code": 9469,
+                "needed": 12
+            },
+            {
+                "name": "조갯살 조림",
+                "code": 9479,
+                "needed": 12
+            },
+            {
+                "name": "에일 특산품 특식",
+                "code": 9360,
+                "needed": 39
+            },
+            {
+                "name": "발락스 도시락",
+                "code": 9359,
+                "needed": 27
+            },
+            {
+                "name": "에일 정식",
+                "code": 9640,
+                "needed": 21
+            },
+            {
+                "name": "무들 원조 국밥",
+                "code": 820856,
+                "needed": 12
+            },
+            {
+                "name": "달벌 원조 국밥",
+                "code": 820857,
+                "needed": 12
+            },
+            {
+                "name": "볏골 원조 국밥",
+                "code": 820858,
+                "needed": 12
+            }
+        ]
+    }
+]

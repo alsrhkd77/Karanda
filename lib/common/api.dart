@@ -39,6 +39,8 @@ class Api {
     }
   }
 
+  static String get latestVersion => 'https://www.karanda.kr/version.json';
+
   static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
 
   static String get _checklist => '$_server/checklist';
@@ -93,4 +95,6 @@ class Api {
   static String get marketWaitList => '$_socketServer/trade-market/wait-list';
 
   static String get marketItemDetail => '$_tradeMarket/get/detail';
+
+  static String get marketItemLatest => '$_tradeMarket/get/latest';
 }

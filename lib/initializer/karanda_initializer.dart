@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:karanda/common/api.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
 
@@ -47,7 +48,7 @@ class KarandaInitializer {
   }
 
   Future<String> _getLatestVersion() async {
-    final response = await http.get(Uri.parse('https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/version.json'));
+    final response = await http.get(Uri.parse(Api.latestVersion));
     Map data = {};
     if(response.statusCode == 200){
        data = jsonDecode(response.body);

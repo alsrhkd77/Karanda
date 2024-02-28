@@ -27,4 +27,24 @@ class TradeMarketProvider {
     }
     return result;
   }
+
+  static Future<List<TradeMarketDataModel>> getLatest(Map<String, String> items) async {
+    String param = '';
+    for(String key in items.keys){
+      if(param.isNotEmpty){
+        param = '$param&target_list=';
+      }
+      param = '$param${key}_${items[key]}';
+    }
+    final response = await http.get('${Api.marketItemLatest}?target_list=$param');
+    if(response.statusCode == 200){
+      List<TradeMarketDataModel> result = [];
+      for (Map data in jsonDecode(response.bodyUTF)) {
+        TradeMarketDataModel dataModel = TradeMarketDataModel.fromData(data);
+        result.add(dataModel);
+      }
+      return result;
+    }
+    return [];
+  }
 }
