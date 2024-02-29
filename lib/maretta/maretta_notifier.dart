@@ -72,8 +72,7 @@ class MarettaNotifier with ChangeNotifier {
           print(e);
         },
       );
-      _timer ??= Timer.periodic(
-          const Duration(minutes: 1), (timer) => requestUpdate());
+      //_timer ??= Timer.periodic(const Duration(minutes: 1), (timer) => requestUpdate());
       connected = true;
     }
   }
