@@ -27,6 +27,19 @@ class MarettaNotifier with ChangeNotifier {
     //getBlacklist();
   }
 
+  Future<void> getReports() async {
+    final response = await http
+        .get(Api.getMarettaStatusReport)
+        .timeout(const Duration(seconds: 15));
+    if (response.statusCode == 200) {
+      for (Map data in jsonDecode(response.bodyUTF)) {
+        MarettaReportModel report = MarettaReportModel.fromData(data);
+        _addReport(report);
+      }
+    }
+    notifyListeners();
+  }
+
   Future<void> connect() async {
     if (!connected) {
       _channel = WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports));

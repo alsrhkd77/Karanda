@@ -36,6 +36,7 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
     windowManager.addListener(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _provider = Provider.of<MarettaNotifier>(context, listen: false);
+      _provider.getReports();
       _provider.connect();
     });
   }
