@@ -24,7 +24,7 @@ class MarettaReportModel implements Comparable<MarettaReportModel> {
     reportId = data['id'];
     reporterDiscordId = data['reporter_discord_id'];
     reporterName = data['reporter_name'];
-    reportAt = DateTime.parse(data['report_at']).toLocal();
+    reportAt = DateTime.parse(data['report_at']);
     alive = data['alive'];
     channel = AllChannel.values.byName(data['channel']);
     channelNum = data['channel_num'];
@@ -34,7 +34,7 @@ class MarettaReportModel implements Comparable<MarettaReportModel> {
     Map data = jsonDecode(json);
     reportId = data['id'];
     reporterName = data['reporter_name'];
-    reportAt = DateTime.parse(data['report_at']).toLocal();
+    reportAt = DateTime.parse(data['report_at']);
     alive = data['alive'];
     channel = AllChannel.values.byName(data['channel']);
     channelNum = data['channel_num'];
@@ -43,7 +43,7 @@ class MarettaReportModel implements Comparable<MarettaReportModel> {
   String toJson() {
     Map data = {
       'reporter_name': reporterName,
-      'report_at': reportAt.toUtc().format('yyyy-MM-ddTHH:mm:ss'),
+      'report_at': reportAt.format('yyyy-MM-ddTHH:mm:ss'),
       'alive': alive,
       'channel': channel.name,
       'channel_num': channelNum,
