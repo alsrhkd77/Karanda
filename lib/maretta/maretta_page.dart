@@ -49,7 +49,7 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
 
   @override
   void onWindowFocus() {
-    _provider.disconnect();
+    _provider.connect();
   }
 
   @override
