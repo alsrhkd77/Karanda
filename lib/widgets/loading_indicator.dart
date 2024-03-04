@@ -11,6 +11,15 @@ class LoadingIndicator extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
+        child: SpinKitDualRing(
+          size: size,
+          color: Colors.blue,
+        ),
+      ),
+    );
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(30.0),
         child: SpinKitPulsingGrid(
           size: size,
           color: Colors.blue,
