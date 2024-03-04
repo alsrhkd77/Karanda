@@ -42,6 +42,7 @@ class MarettaNotifier with ChangeNotifier {
 
   Future<void> connect() async {
     if (!connected) {
+      getReports();
       _channel = WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports));
       await _channel?.ready;
       _channel?.stream.listen(
