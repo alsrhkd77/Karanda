@@ -138,9 +138,9 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
   }
 
   Future<void> getPriceData(String key) async {
-    Map<String, String> param = {};
+    Map<String, List<String>> param = {};
     for (Map item in boxData[key]["materials"]) {
-      param[item["code"].toString()] = '0';
+      param[item["code"].toString()] = ['0'];
     }
     List<TradeMarketDataModel> data =
         await TradeMarketProvider.getLatest(param);
@@ -218,7 +218,7 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                       alignment: WrapAlignment.center,
                       children: [
                         Container(
-                          margin: EdgeInsets.all(12.0),
+                          margin: const EdgeInsets.all(12.0),
                           constraints: const BoxConstraints(maxWidth: 140),
                           child: TextField(
                             keyboardType:
@@ -248,7 +248,7 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.all(12.0),
+                          margin: const EdgeInsets.all(12.0),
                           constraints: const BoxConstraints(maxWidth: 140),
                           child: TextField(
                             keyboardType:
@@ -282,7 +282,7 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: GlobalProperties.scrollViewHorizontalPadding(width)),
-                  sliver: SliverToBoxAdapter(
+                  sliver: const SliverToBoxAdapter(
                     child: ListTile(
                       title: Text('요리'),
                       trailing: Text('예상 이윤'),
@@ -365,13 +365,14 @@ class _ItemTile extends StatelessWidget {
     }
 
     return Card(
-      margin: EdgeInsets.all(6.0),
+      margin: const EdgeInsets.all(6.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 6.0),
         child: ListTile(
           leading: BdoItemImageWidget(
             code: priceData.code.toString(),
             size: 49,
+            grade: foodData["grade"],
           ),
           title: Text('${foodData["name"]} × ${foodData["needed"]}'),
           subtitle: Text(

@@ -19,7 +19,7 @@ class BdoItemImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double fontSize = size / 3.8;
+    double fontSize = size / 3.5;
     return Container(
       width: size,
       height: size,
@@ -69,7 +69,7 @@ class BdoItemImageWidget extends StatelessWidget {
                 ],
                 foreground: Paint()
                   ..style = PaintingStyle.stroke
-                  ..strokeWidth = fontSize * 0.2
+                  ..strokeWidth = fontSize * 0.25
                   ..color = Colors.red),
           ),
           Text(

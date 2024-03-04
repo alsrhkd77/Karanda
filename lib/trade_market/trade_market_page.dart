@@ -22,9 +22,9 @@ class TradeMarketPage extends StatefulWidget {
 class _TradeMarketPageState extends State<TradeMarketPage> {
   @override
   Widget build(BuildContext context) {
-    if(context.watch<AuthNotifier>().waitResponse){
+    if (context.watch<AuthNotifier>().waitResponse) {
       return const LoadingPage();
-    } else if(!context.watch<AuthNotifier>().authenticated) {
+    } else if (!context.watch<AuthNotifier>().authenticated) {
       return const LoadingPage();
     }
 
@@ -55,14 +55,14 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                       ),
                       SliverPadding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: horizontalPadding, vertical: 12.0
-                        ),
+                            horizontal: horizontalPadding, vertical: 12.0),
                         sliver: const SliverToBoxAdapter(
                           child: TradeMarketSearchBarWidget(),
                         ),
                       ),
                       SliverPadding(
-                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: horizontalPadding),
                         sliver: const SliverToBoxAdapter(
                           child: ListTile(
                             title: TitleText(
@@ -73,32 +73,22 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                         ),
                       ),
                       SliverPadding(
-                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: horizontalPadding),
                         sliver: SliverToBoxAdapter(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Card(
-                                  clipBehavior: Clip.hardEdge,
-                                  child: InkWell(
-                                    onTap: (){
-                                      context.go('/trade-market/cooking-box');
-                                    },
-                                    child: SizedBox(
-                                      width: 260,
-                                      height: 54,
-                                      child: Center(
-                                        child: ListTile(
-                                          leading: Image.asset('assets/image/cooking_box.png'),
-                                          title: const Text('황납용 요리'),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          child: Row(
+                            children: [
+                              _PresetCard(
+                                  route: '/trade-market/cooking-box',
+                                  imagePath: 'assets/image/cooking_box.png',
+                                  title: '황납용 요리',
+                              ),
+                              _PresetCard(
+                                route: '/trade-market/melody-of-stars',
+                                imagePath: 'assets/image/melody_of_stars.png',
+                                title: '별들의 선율',
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -106,7 +96,8 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                         padding: GlobalProperties.scrollViewPadding,
                       ),
                       SliverPadding(
-                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: horizontalPadding),
                         sliver: const SliverToBoxAdapter(
                           child: ListTile(
                             title: TitleText(
@@ -117,7 +108,8 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                         ),
                       ),
                       SliverPadding(
-                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: horizontalPadding),
                         sliver: const TradeMarketWaitListWidget(),
                       ),
                       SliverPadding(
@@ -128,6 +120,41 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
           ),
         );
       },
+    );
+  }
+}
+
+class _PresetCard extends StatelessWidget {
+  final String route;
+  final String imagePath;
+  final String title;
+
+  const _PresetCard(
+      {super.key,
+      required this.route,
+      required this.imagePath,
+      required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        onTap: () {
+          context.go(route);
+        },
+        child: SizedBox(
+          width: 260,
+          height: 56,
+          child: Center(
+            child: ListTile(
+              leading: Image.asset(imagePath),
+              title: Text(title),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

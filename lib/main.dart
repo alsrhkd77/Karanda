@@ -21,6 +21,7 @@ import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/presets/cooking_box_page.dart';
+import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
@@ -201,6 +202,10 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: 'cooking-box',
               builder: (context, state) => const CookingBoxPage(),
+            ),
+            GoRoute(
+              path: 'melody-of-stars',
+              builder: (context, state) => const MelodyOfStarsPage(),
             ),
           ],
         ),
