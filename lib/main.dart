@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/auth/auth_error_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
@@ -13,10 +14,15 @@ import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/real_time_notifier.dart';
+import 'package:karanda/event_calender/event_calendar_page.dart';
 import 'package:karanda/event_calender/event_calender_notifier.dart';
+import 'package:karanda/home/home_page.dart';
+import 'package:karanda/horse/horse_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
+import 'package:karanda/settings/settings_notifier.dart';
+import 'package:karanda/settings/settings_page.dart';
 import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
@@ -28,13 +34,6 @@ import 'package:karanda/trade_market/trade_market_page.dart';
 import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:window_manager/window_manager.dart';
 import 'settings/app_update_page.dart';
-
-import '../artifact/artifact_page.dart';
-import '../event_calender/event_calendar_page.dart';
-import '../home/home_page.dart';
-import '../horse/horse_page.dart';
-import '../settings/settings_notifier.dart';
-import '../settings/settings_page.dart';
 import 'atoraxxion/sycrakea_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -228,12 +227,6 @@ class MyApp extends StatelessWidget {
           create: (_) => SettingsNotifier(),
           lazy: false,
         ),
-        /*
-        ChangeNotifierProvider(
-          create: (_) => VersionNotifier(rootScaffoldMessengerKey, _router),
-          lazy: false,
-        ),
-         */
         ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
         ChangeNotifierProvider(
           create: (_) => AuthNotifier(rootScaffoldMessengerKey, _router),

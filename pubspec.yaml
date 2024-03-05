@@ -132,10 +132,10 @@ flutter:
       fonts:
         - asset: fonts/NotoSansKR/NotoSansKR-Thin.ttf
           weight: 100
-        - asset: fonts/NotoSansKR/NotoSansKR-ExtraLight.ttf
-          weight: 200
-        - asset: fonts/NotoSansKR/NotoSansKR-Light.ttf
-          weight: 300
+#        - asset: fonts/NotoSansKR/NotoSansKR-ExtraLight.ttf
+#          weight: 200
+#        - asset: fonts/NotoSansKR/NotoSansKR-Light.ttf
+#          weight: 300
         - asset: fonts/NotoSansKR/NotoSansKR-Regular.ttf
           weight: 400
         - asset: fonts/NotoSansKR/NotoSansKR-Medium.ttf
