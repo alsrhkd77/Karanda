@@ -73,11 +73,11 @@ class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
       appBar: const DefaultAppBar(),
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: ListTile(
-                title: const TitleText('별들의 선율 재료'),
+                title: TitleText('별들의 선율 재료'),
               ),
             ),
           ),

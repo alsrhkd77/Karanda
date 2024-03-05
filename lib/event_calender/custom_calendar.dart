@@ -49,31 +49,29 @@ class _CustomCalendarState extends State<CustomCalendar> {
           height: (events.length * eventBarHeight) + 85,
           child: ScrollConfiguration(
             behavior: CustomScrollBehavior(),
-            child: CustomScrollView(
+            child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Stack(
-                    children: [
-                      _CalendarFrame(
-                        eventCount: events.length,
-                        maxDays: maxDays,
-                        eventBarHeight: eventBarHeight,
-                        cellWidth: cellWidth,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 82,
-                          ),
-                          ...events.map((e) => _EventBar(event: e, maxDays: maxDays, height: eventBarHeight, cellWidth: cellWidth,)),
-                        ],
-                      ),
-                    ],
-                  ),
+              child: Center(
+                child: Stack(
+                  children: [
+                    _CalendarFrame(
+                      eventCount: events.length,
+                      maxDays: maxDays,
+                      eventBarHeight: eventBarHeight,
+                      cellWidth: cellWidth,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 82,
+                        ),
+                        ...events.map((e) => _EventBar(event: e, maxDays: maxDays, height: eventBarHeight, cellWidth: cellWidth,)),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
