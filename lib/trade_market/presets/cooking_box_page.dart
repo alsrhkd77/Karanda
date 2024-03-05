@@ -10,6 +10,7 @@ import 'package:karanda/trade_market/trade_market_provider.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CookingBoxPage extends StatefulWidget {
   const CookingBoxPage({super.key});
@@ -22,9 +23,10 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
   Map boxData = {};
   Map<String, List> priceData = {};
   String selected = '9856';
-  int contributions = 200;  //공헌도
-  int proficiency = 1200;    //요리 숙련도
-  final TextEditingController _contributionsController = TextEditingController();
+  int contributions = 200; //공헌도
+  int proficiency = 1200; //요리 숙련도
+  final TextEditingController _contributionsController =
+      TextEditingController();
   final TextEditingController _proficiencyController = TextEditingController();
   final List<int> proficiencyList = [
     0,
@@ -116,9 +118,49 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
   @override
   void initState() {
     super.initState();
+    getUserData();
     getBoxData();
-    _contributionsController.text = contributions.toString();
-    _proficiencyController.text = proficiency.toString();
+  }
+
+  Future<void> getUserData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    int? userContributions =
+        sharedPreferences.getInt('cooking_box_user_contributions'); //공헌도
+    int? userProficiency =
+        sharedPreferences.getInt('cooking_box_user_proficiency'); //요리 숙련도
+    if (userContributions != null || userProficiency != null) {
+      contributions = userContributions ?? contributions;
+      proficiency = userProficiency ?? proficiency;
+    }
+    setState(() {
+      _contributionsController.text = contributions.toString();
+      _proficiencyController.text = proficiency.toString();
+    });
+  }
+
+  Future<void> updateContributions(String value) async {
+    //공헌도
+    if (value.isNotEmpty) {
+      setState(() {
+        contributions = int.parse(value);
+      });
+    }
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.setInt('cooking_box_user_contributions', contributions);
+  }
+
+  Future<void> updateProficiency(String value) async {
+    //요리 숙련도
+    if (value.isNotEmpty) {
+      setState(() {
+        proficiency = int.parse(value);
+      });
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setInt('cooking_box_user_proficiency', proficiency);
+    }
   }
 
   Future<void> getBoxData() async {
@@ -228,7 +270,6 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                                   RegExp(r'^(\d{0,3})')),
                             ],
                             textAlign: TextAlign.center,
-
                             decoration: InputDecoration(
                               labelText: '공헌도',
                               border: OutlineInputBorder(
@@ -238,13 +279,7 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                               ),
                             ),
                             controller: _contributionsController,
-                            onChanged: (value){
-                              if(value.isNotEmpty){
-                                setState(() {
-                                  contributions = int.parse(value);
-                                });
-                              }
-                            },
+                            onChanged: updateContributions,
                           ),
                         ),
                         Container(
@@ -267,13 +302,7 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                                     const BorderSide(color: Colors.blue),
                               ),
                             ),
-                            onChanged: (value) {
-                              if(value.isNotEmpty){
-                                setState(() {
-                                  proficiency = int.parse(value);
-                                });
-                              }
-                            },
+                            onChanged: updateProficiency,
                           ),
                         ),
                       ],
@@ -281,7 +310,9 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                   ),
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: GlobalProperties.scrollViewHorizontalPadding(width)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal:
+                          GlobalProperties.scrollViewHorizontalPadding(width)),
                   sliver: const SliverToBoxAdapter(
                     child: ListTile(
                       title: Text('요리'),
@@ -305,13 +336,17 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                               TradeMarketDataModel price =
                                   priceData[selected]?[index];
                               return _ItemTile(
-                                  priceData: price,
-                                  foodData: boxData[selected]["materials"]
-                                      .firstWhere((element) =>
-                                          element["code"] == price.code),
+                                priceData: price,
+                                foodData: boxData[selected]["materials"]
+                                    .firstWhere((element) =>
+                                        element["code"] == price.code),
                                 boxCount: (contributions / 2).floor(),
                                 additionalMargin: additionalMargin,
-                                boxPrice: (boxData[selected]["price"] * 2.5).floor() + (boxData[selected]["price"] * additionalMargin).floor(),
+                                boxPrice:
+                                    (boxData[selected]["price"] * 2.5).floor() +
+                                        (boxData[selected]["price"] *
+                                                additionalMargin)
+                                            .floor(),
                               );
                             },
                             childCount: priceData[selected]?.length ?? 0,
@@ -334,13 +369,19 @@ class _ItemTile extends StatelessWidget {
   final double additionalMargin;
   final int boxPrice;
 
+  const _ItemTile(
+      {super.key,
+      required this.priceData,
+      required this.foodData,
+      required this.boxCount,
+      required this.additionalMargin,
+      required this.boxPrice});
 
-  const _ItemTile({super.key, required this.priceData, required this.foodData, required this.boxCount, required this.additionalMargin, required this.boxPrice});
-
-  String _stockStatus(){
+  String _stockStatus() {
     if (priceData.currentStock == 0) {
       return ' (품절)';
-    } else if (priceData.currentStock < boxCount * (foodData["needed"] as int)){
+    } else if (priceData.currentStock <
+        boxCount * (foodData["needed"] as int)) {
       return ' (재고 부족)';
     } else {
       return '';
@@ -354,13 +395,14 @@ class _ItemTile extends StatelessWidget {
     final int materialTotalCosts = materialCosts * boxCount;
     final int margin = (boxCount * boxPrice) - materialTotalCosts;
     final Color? color;
-    if(priceData.currentStock == 0){
+    if (priceData.currentStock == 0) {
       color = Colors.red;
-    } else if(priceData.currentStock < boxCount * (foodData["needed"] as int)) {
+    } else if (priceData.currentStock <
+        boxCount * (foodData["needed"] as int)) {
       color = Colors.orangeAccent;
-    } else if(margin < 0){
+    } else if (margin < 0) {
       color = Colors.orangeAccent;
-    } else{
+    } else {
       color = null;
     }
 
@@ -377,7 +419,10 @@ class _ItemTile extends StatelessWidget {
           title: Text('${foodData["name"]} × ${foodData["needed"]}'),
           subtitle: Text(
               '${format.format(materialCosts)} (요리당 ${format.format(priceData.price)})'),
-          trailing: Text('${format.format(margin)}${_stockStatus()}', style: TextStyle(fontSize: 12, color: color),),
+          trailing: Text(
+            '${format.format(margin)}${_stockStatus()}',
+            style: TextStyle(fontSize: 12, color: color),
+          ),
         ),
       ),
     );
