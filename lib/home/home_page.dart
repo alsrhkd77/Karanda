@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
       path: '/maretta',
     ),
     _Service(
-      name: '통합 거래소 (Beta)',
+      name: '통합 거래소',
       icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
     ),
