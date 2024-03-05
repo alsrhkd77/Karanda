@@ -83,7 +83,6 @@ class _HomePageState extends State<HomePage> {
       name: '통합 거래소 (Beta)',
       icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
-      needLogin: true,
     ),
   ];
 

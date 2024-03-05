@@ -4,7 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
@@ -43,11 +42,6 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(context.watch<AuthNotifier>().waitResponse){
-      return const LoadingPage();
-    } else if(!context.watch<AuthNotifier>().authenticated) {
-      return const LoadingPage();
-    }
     if (context.watch<TradeMarketNotifier>().itemInfo.isEmpty) {
       return const LoadingPage();
     } else if (!context

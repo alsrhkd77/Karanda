@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_search_bar_widget.dart';
 import 'package:karanda/trade_market/trade_market_wait_list_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
-import 'package:karanda/widgets/loading_page.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
@@ -22,12 +20,6 @@ class TradeMarketPage extends StatefulWidget {
 class _TradeMarketPageState extends State<TradeMarketPage> {
   @override
   Widget build(BuildContext context) {
-    if (context.watch<AuthNotifier>().waitResponse) {
-      return const LoadingPage();
-    } else if (!context.watch<AuthNotifier>().authenticated) {
-      return const LoadingPage();
-    }
-
     double horizontalPadding = GlobalProperties.scrollViewHorizontalPadding(
         MediaQuery.of(context).size.width);
     return Consumer<TradeMarketNotifier>(
