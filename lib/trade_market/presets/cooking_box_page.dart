@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
@@ -408,20 +409,28 @@ class _ItemTile extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.all(6.0),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6.0),
-        child: ListTile(
-          leading: BdoItemImageWidget(
-            code: priceData.code.toString(),
-            size: 49,
-            grade: foodData["grade"],
-          ),
-          title: Text('${foodData["name"]} × ${foodData["needed"]}'),
-          subtitle: Text(
-              '${format.format(materialCosts)} (요리당 ${format.format(priceData.price)})'),
-          trailing: Text(
-            '${format.format(margin)}${_stockStatus()}',
-            style: TextStyle(fontSize: 12, color: color),
+      child: InkWell(
+        onTap: () {
+          context.go(
+            '/trade-market/detail?name=${foodData["name"]}',
+            extra: priceData.code.toString(),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6.0),
+          child: ListTile(
+            leading: BdoItemImageWidget(
+              code: priceData.code.toString(),
+              size: 49,
+              grade: foodData["grade"],
+            ),
+            title: Text('${foodData["name"]} × ${foodData["needed"]}'),
+            subtitle: Text(
+                '${format.format(materialCosts)} (요리당 ${format.format(priceData.price)})'),
+            trailing: Text(
+              '${format.format(margin)}${_stockStatus()}',
+              style: TextStyle(fontSize: 12, color: color),
+            ),
           ),
         ),
       ),

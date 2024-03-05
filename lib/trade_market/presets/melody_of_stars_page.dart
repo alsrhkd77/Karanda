@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
@@ -133,24 +134,32 @@ class _ItemTile extends StatelessWidget {
     if (itemInfo == null) return Container();
     return Card(
       margin: const EdgeInsets.all(6.0),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6.0),
-        child: ListTile(
-          leading: BdoItemImageWidget(
-            code: data.code.toString(),
-            size: 49,
-            grade: 2,
-            enhancementLevel:
-                itemInfo.enhancementLevelToString(data.enhancementLevel),
-          ),
-          title: Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
-          subtitle: Text(
-              '선율 1개당 ${format.format((data.price / transform[data.enhancementLevel - 1]).round())}'),
-          trailing: Text(
-            '${format.format(data.price)}$stockStatus',
-            style: TextStyle(
-              fontSize: 12,
-              color: data.currentStock == 0 ? Colors.red : null,
+      child: InkWell(
+        onTap: (){
+          context.go(
+            '/trade-market/detail?name=${itemInfo.name}',
+            extra: itemInfo.code,
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6.0),
+          child: ListTile(
+            leading: BdoItemImageWidget(
+              code: data.code.toString(),
+              size: 49,
+              grade: 2,
+              enhancementLevel:
+                  itemInfo.enhancementLevelToString(data.enhancementLevel),
+            ),
+            title: Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
+            subtitle: Text(
+                '선율 1개당 ${format.format((data.price / transform[data.enhancementLevel - 1]).round())}'),
+            trailing: Text(
+              '${format.format(data.price)}$stockStatus',
+              style: TextStyle(
+                fontSize: 12,
+                color: data.currentStock == 0 ? Colors.red : null,
+              ),
             ),
           ),
         ),

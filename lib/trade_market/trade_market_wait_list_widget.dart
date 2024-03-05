@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
@@ -107,7 +108,12 @@ class _WaitItemTile extends StatelessWidget {
       margin: const EdgeInsets.all(8.0),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        //onTap: (){},
+        onTap: () {
+          context.go(
+            '/trade-market/detail?name=${itemInfo.name}',
+            extra: itemInfo.code,
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: ListTile(
