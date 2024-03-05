@@ -11,6 +11,12 @@
                 "grade": 1
             },
             {
+                "name": "푹신한 테프빵",
+                "code": 9299,
+                "needed": 130,
+                "grade": 2
+            },
+            {
                 "name": "고급 당근 주스",
                 "code": 9210,
                 "needed": 360,
@@ -29,10 +35,22 @@
                 "grade": 1
             },
             {
+                "name": "잘 익은 막걸리",
+                "code": 9279,
+                "needed": 60,
+                "grade": 2
+            },
+            {
                 "name": "무화과 파이",
                 "code": 9216,
                 "needed": 60,
                 "grade": 1
+            },
+            {
+                "name": "달콤한 무화과 파이",
+                "code": 9301,
+                "needed": 20,
+                "grade": 2
             },
             {
                 "name": "생선 훈제 스테이크",
@@ -41,10 +59,22 @@
                 "grade": 1
             },
             {
+                "name": "노릇한 생선 훈제 스테이크",
+                "code": 9445,
+                "needed": 60,
+                "grade": 2
+            },
+            {
                 "name": "과일 주스",
                 "code": 9257,
                 "needed": 60,
                 "grade": 1
+            },
+            {
+                "name": "과즙이 진한 과일 주스",
+                "code": 9278,
+                "needed": 20,
+                "grade": 2
             },
             {
                 "name": "맥주",
@@ -53,10 +83,22 @@
                 "grade": 1
             },
             {
+                "name": "시원한 생맥주",
+                "code": 9283,
+                "needed": 20,
+                "grade": 2
+            },
+            {
                 "name": "생선 튀김",
                 "code": 9407,
                 "needed": 90,
                 "grade": 1
+            },
+            {
+                "name": "바삭한 생선 튀김",
+                "code": 9429,
+                "needed": 30,
+                "grade": 2
             },
             {
                 "name": "곡물 수프",
@@ -65,10 +107,22 @@
                 "grade": 1
             },
             {
+                "name": "특제 곡물 수프",
+                "code": 9275,
+                "needed": 15,
+                "grade": 2
+            },
+            {
                 "name": "오곡 닭죽",
                 "code": 9494,
                 "needed": 30,
                 "grade": 1
+            },
+            {
+                "name": "걸쭉한 오곡 닭죽",
+                "code": 9495,
+                "needed": 10,
+                "grade": 2
             },
             {
                 "name": "삶은 새알",
@@ -77,10 +131,22 @@
                 "grade": 1
             },
             {
+                "name": "보기 좋게 삶은 새알",
+                "code": 9436,
+                "needed": 10,
+                "grade": 2
+            },
+            {
                 "name": "해물 버섯 샐러드",
                 "code": 9419,
                 "needed": 30,
                 "grade": 1
+            },
+            {
+                "name": "특제 해물 버섯 샐러드",
+                "code": 9446,
+                "needed": 10,
+                "grade": 2
             },
             {
                 "name": "알로에 쿠키",
@@ -89,10 +155,22 @@
                 "grade": 1
             },
             {
+                "name": "달콤한 알로에 쿠키",
+                "code": 9294,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "생선찜",
                 "code": 9409,
                 "needed": 30,
                 "grade": 1
+            },
+            {
+                "name": "담백한 생선찜",
+                "code": 9439,
+                "needed": 10,
+                "grade": 2
             },
             {
                 "name": "채소 튀김",
@@ -101,10 +179,22 @@
                 "grade": 1
             },
             {
+                "name": "바삭한 채소 튀김",
+                "code": 9271,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "유자 사탕",
                 "code": 9378,
                 "needed": 54,
                 "grade": 1
+            },
+            {
+                "name": "새콤한 유자 사탕",
+                "code": 9379,
+                "needed": 18,
+                "grade": 2
             },
             {
                 "name": "유자 주스",
@@ -113,16 +203,34 @@
                 "grade": 1
             },
             {
+                "name": "달콤한 유자 주스",
+                "code": 9356,
+                "needed": 16,
+                "grade": 2
+            },
+            {
                 "name": "누룽지",
                 "code": 820831,
                 "needed": 30,
                 "grade": 1
             },
             {
+                "name": "바삭바삭 누룽지",
+                "code": 820832,
+                "needed": 10,
+                "grade": 2
+            },
+            {
                 "name": "대추 차",
                 "code": 820839,
                 "needed": 30,
                 "grade": 1
+            },
+            {
+                "name": "향이 짙은 대추 차",
+                "code": 820840,
+                "needed": 10,
+                "grade": 2
             }
         ]
     },
@@ -138,10 +246,22 @@
                 "grade": 1
             },
             {
+                "name": "모락모락 새구이",
+                "code": 9493,
+                "needed": 30,
+                "grade": 2
+            },
+            {
                 "name": "생선 절임",
                 "code": 9412,
                 "needed": 120,
                 "grade": 1
+            },
+            {
+                "name": "새콤한 생선 절임",
+                "code": 9454,
+                "needed": 40,
+                "grade": 2
             },
             {
                 "name": "대추야자주",
@@ -150,10 +270,22 @@
                 "grade": 1
             },
             {
+                "name": "순한 대추야자주",
+                "code": 9304,
+                "needed": 20,
+                "grade": 2
+            },
+            {
                 "name": "벌꿀주",
                 "code": 9206,
                 "needed": 60,
                 "grade": 1
+            },
+            {
+                "name": "톡 쏘는 벌꿀주",
+                "code": 9295,
+                "needed": 20,
+                "grade": 2
             },
             {
                 "name": "피시 필레 칩",
@@ -162,10 +294,22 @@
                 "grade": 1
             },
             {
+                "name": "먹음직한 피시 필레 칩",
+                "code": 9297,
+                "needed": 25,
+                "grade": 2
+            },
+            {
                 "name": "과실주",
                 "code": 9201,
                 "needed": 45,
                 "grade": 1
+            },
+            {
+                "name": "감미로운 과실주",
+                "code": 9280,
+                "needed": 15,
+                "grade": 2
             },
             {
                 "name": "피스타치오 볶음밥",
@@ -174,10 +318,22 @@
                 "grade": 1
             },
             {
+                "name": "고소한 피스타치오 볶음밥",
+                "code": 9302,
+                "needed": 12,
+                "grade": 2
+            },
+            {
                 "name": "해물 버터 구이",
                 "code": 9421,
                 "needed": 36,
                 "grade": 1
+            },
+            {
+                "name": "고소한 해물 버터 구이",
+                "code": 9433,
+                "needed": 12,
+                "grade": 2
             },
             {
                 "name": "생선 수프",
@@ -186,10 +342,22 @@
                 "grade": 1
             },
             {
+                "name": "특제 생선 수프",
+                "code": 9428,
+                "needed": 11,
+                "grade": 2
+            },
+            {
                 "name": "향이 좋은 차",
                 "code": 9270,
                 "needed": 21,
                 "grade": 1
+            },
+            {
+                "name": "향이 진한 차",
+                "code": 9292,
+                "needed": 7,
+                "grade": 2
             },
             {
                 "name": "해물찜",
@@ -198,10 +366,22 @@
                 "grade": 1
             },
             {
+                "name": "푸짐한 해물찜",
+                "code": 9440,
+                "needed": 10,
+                "grade": 2
+            },
+            {
                 "name": "과일과 채소 샐러드",
                 "code": 9258,
                 "needed": 21,
                 "grade": 1
+            },
+            {
+                "name": "신선한 과일과 채소 샐러드",
+                "code": 9285,
+                "needed": 7,
+                "grade": 2
             },
             {
                 "name": "새고기 찜",
@@ -210,10 +390,22 @@
                 "grade": 1
             },
             {
+                "name": "잘 숙성된 새고기 찜",
+                "code": 9450,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "해물 파스타",
                 "code": 9413,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "고급 해물 파스타",
+                "code": 9441,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "오믈렛",
@@ -222,10 +414,22 @@
                 "grade": 1
             },
             {
+                "name": "속이 부드러운 오믈렛",
+                "code": 9291,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "채소 볶음",
                 "code": 9241,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "아삭아삭한 채소 볶음",
+                "code": 9284,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "델로티아 주스",
@@ -234,10 +438,22 @@
                 "grade": 1
             },
             {
+                "name": "시원한 델로티아 주스",
+                "code": 9328,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "유자주",
                 "code": 9351,
                 "needed": 30,
                 "grade": 1
+            },
+            {
+                "name": "새콤한 유자주",
+                "code": 9352,
+                "needed": 10,
+                "grade": 2
             },
             {
                 "name": "잘 우려진 상황 버섯 차",
@@ -252,10 +468,22 @@
                 "grade": 1
             },
             {
+                "name": "부드러운 상황 버섯 막걸리",
+                "code": 9368,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "숭늉",
                 "code": 820833,
                 "needed": 36,
                 "grade": 1
+            },
+            {
+                "name": "고소한 숭늉",
+                "code": 820834,
+                "needed": 12,
+                "grade": 2
             },
             {
                 "name": "가래떡",
@@ -264,10 +492,22 @@
                 "grade": 1
             },
             {
+                "name": "쫀득쫀득한 가래떡",
+                "code": 820846,
+                "needed": 13,
+                "grade": 2
+            },
+            {
                 "name": "팥시루떡",
                 "code": 820849,
                 "needed": 39,
                 "grade": 1
+            },
+            {
+                "name": "부드러운 팥시루떡",
+                "code": 820850,
+                "needed": 13,
+                "grade": 2
             }
         ]
     },
@@ -283,10 +523,22 @@
                 "grade": 1
             },
             {
+                "name": "달콤한 과일 파이",
+                "code": 9287,
+                "needed": 8,
+                "grade": 2
+            },
+            {
                 "name": "생선 살 샐러드",
                 "code": 9423,
                 "needed": 24,
                 "grade": 1
+            },
+            {
+                "name": "신선한 생선 살 샐러드",
+                "code": 9449,
+                "needed": 8,
+                "grade": 2
             },
             {
                 "name": "대하 찜",
@@ -295,10 +547,22 @@
                 "grade": 1
             },
             {
+                "name": "푸짐한 대하 찜",
+                "code": 9474,
+                "needed": 8,
+                "grade": 2
+            },
+            {
                 "name": "새고기 튀김",
                 "code": 9403,
                 "needed": 24,
                 "grade": 1
+            },
+            {
+                "name": "신성한 새고기 튀김",
+                "code": 9437,
+                "needed": 8,
+                "grade": 2
             },
             {
                 "name": "새고기 볶음",
@@ -307,10 +571,22 @@
                 "grade": 1
             },
             {
+                "name": "고소한 새고기 볶음",
+                "code": 9332,
+                "needed": 8,
+                "grade": 2
+            },
+            {
                 "name": "닭 가슴살 샐러드",
                 "code": 9335,
                 "needed": 24,
                 "grade": 1
+            },
+            {
+                "name": "신선한 닭 가슴살 샐러드",
+                "code": 9336,
+                "needed": 8,
+                "grade": 2
             },
             {
                 "name": "미트 파이",
@@ -319,10 +595,22 @@
                 "grade": 1
             },
             {
+                "name": "담백한 미트 파이",
+                "code": 9288,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "알로에 요거트",
                 "code": 9204,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "진한 알로에 요거트",
+                "code": 9293,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "해물 볶음",
@@ -331,10 +619,22 @@
                 "grade": 1
             },
             {
+                "name": "특제 해물 볶음",
+                "code": 9447,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "사막 만두",
                 "code": 9410,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "쫄깃쫄깃한 사막 만두",
+                "code": 9453,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "마못 통구이",
@@ -343,10 +643,22 @@
                 "grade": 1
             },
             {
+                "name": "노릇한 마못 통구이",
+                "code": 9489,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "쿠스쿠스",
                 "code": 9220,
                 "needed": 18,
                 "grade": 2
+            },
+            {
+                "name": "재래식 쿠스쿠스",
+                "code": 9305,
+                "needed": 6,
+                "grade": 3
             },
             {
                 "name": "미트 스튜",
@@ -355,10 +667,21 @@
                 "grade": 1
             },
             {
+                "name": "진한 미트 스튜",
+                "code": 9442,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "대하 샐러드",
                 "code": 9471,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "새콤 달콤 대하 샐러드",
+                "code": 9214,
+                "needed": 6
             },
             {
                 "name": "프리카 뱀 스튜",
@@ -367,10 +690,22 @@
                 "grade": 1
             },
             {
+                "name": "진한 프리카 뱀 스튜",
+                "code": 9300,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "채소 절임",
                 "code": 9202,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "새콤달콤한 채소 절임",
+                "code": 9281,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "부드러운 빵",
@@ -379,10 +714,22 @@
                 "grade": 1
             },
             {
+                "name": "촉촉한 우유빵",
+                "code": 9286,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "과일 푸딩",
                 "code": 9259,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "특제 과일 푸딩",
+                "code": 9274,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "유자 양파 절임",
@@ -391,10 +738,22 @@
                 "grade": 1
             },
             {
+                "name": "아삭아삭한 유자 양파 절임",
+                "code": 9362,
+                "needed": 4,
+                "grade": 2
+            },
+            {
                 "name": "꾀꼬리 버섯 리조또",
                 "code": 9349,
                 "needed": 12,
                 "grade": 2
+            },
+            {
+                "name": "향이 깊은 꾀꼬리 버섯 리조또",
+                "code": 9350,
+                "needed": 4,
+                "grade": 3
             },
             {
                 "name": "쌀밥",
@@ -403,16 +762,34 @@
                 "grade": 1
             },
             {
+                "name": "김이 모락모락 나는 쌀밥",
+                "code": 820816,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "팥죽",
                 "code": 820825,
                 "needed": 15,
                 "grade": 1
             },
             {
+                "name": "새알이 듬뿍 든 팥죽",
+                "code": 820826,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "구운 은행",
                 "code": 820843,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "고소한 구운 은행",
+                "code": 820844,
+                "needed": 6,
+                "grade": 2
             }
         ]
     },
@@ -428,10 +805,22 @@
                 "grade": 1
             },
             {
+                "name": "시원한 코코넛 칵테일",
+                "code": 9310,
+                "needed": 18,
+                "grade": 2
+            },
+            {
                 "name": "코코넛 생선 튀김",
                 "code": 9309,
                 "needed": 36,
                 "grade": 1
+            },
+            {
+                "name": "바삭한 코코넛 생선 튀김",
+                "code": 9312,
+                "needed": 12,
+                "grade": 2
             },
             {
                 "name": "코코넛 파스타",
@@ -440,10 +829,22 @@
                 "grade": 1
             },
             {
+                "name": "달콤한 코코넛 파스타",
+                "code": 9311,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "무지개 양송이 치즈구이",
                 "code": 9483,
                 "needed": 21,
                 "grade": 1
+            },
+            {
+                "name": "담백한 무지개 양송이 치즈구이",
+                "code": 9484,
+                "needed": 7,
+                "grade": 2
             },
             {
                 "name": "테프 샌드위치",
@@ -452,10 +853,22 @@
                 "grade": 2
             },
             {
+                "name": "매콤한 테프 샌드위치",
+                "code": 9303,
+                "needed": 6,
+                "grade": 3
+            },
+            {
                 "name": "굴전",
                 "code": 9475,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "향긋한 굴전",
+                "code": 9476,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "무지개 양송이 샌드위치",
@@ -464,10 +877,22 @@
                 "grade": 1
             },
             {
+                "name": "달콤한 무지개 양송이 샌드위치",
+                "code": 9317,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "고기 수프",
                 "code": 9424,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "특제 고기 수프",
+                "code": 9434,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "델로티아 타르트",
@@ -476,10 +901,22 @@
                 "grade": 1
             },
             {
+                "name": "고급 델로티아 타르트",
+                "code": 9324,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "전갈 구이",
                 "code": 9461,
                 "needed": 15,
                 "grade": 2
+            },
+            {
+                "name": "바삭한 전갈 구이",
+                "code": 9462,
+                "needed": 5,
+                "grade": 3
             },
             {
                 "name": "보르츠",
@@ -488,10 +925,22 @@
                 "grade": 1
             },
             {
+                "name": "향이 진한 보르츠",
+                "code": 9452,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "구운 소시지",
                 "code": 9427,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "훈연 소시지",
+                "code": 9431,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "치즈 파이",
@@ -500,10 +949,22 @@
                 "grade": 1
             },
             {
+                "name": "고급 치즈 파이",
+                "code": 9273,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "미트 파스타",
                 "code": 9416,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "깔끔한 미트 파스타",
+                "code": 9444,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "도마뱀 케밥",
@@ -512,10 +973,22 @@
                 "grade": 1
             },
             {
+                "name": "담백한 도마뱀 케밥",
+                "code": 9451,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "스테이크",
                 "code": 9401,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "육즙이 진한 스테이크",
+                "code": 9430,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "오트밀",
@@ -524,16 +997,34 @@
                 "grade": 1
             },
             {
+                "name": "정제된 오트밀",
+                "code": 9276,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "꾀꼬리 버섯 찌개",
                 "code": 9339,
                 "needed": 27,
                 "grade": 1
             },
             {
+                "name": "매콤한 꾀꼬리 버섯 찌개",
+                "code": 9340,
+                "needed": 9,
+                "grade": 2
+            },
+            {
                 "name": "꾀꼬리 버섯 죽",
                 "code": 9345,
                 "needed": 24,
                 "grade": 1
+            },
+            {
+                "name": "고소한 꾀꼬리 버섯 죽",
+                "code": 9346,
+                "needed": 8,
+                "grade": 2
             },
             {
                 "name": "과일 셔벗",
@@ -548,6 +1039,12 @@
                 "grade": 1
             },
             {
+                "name": "영양 가득한 꾀꼬리 버섯 감자 스튜",
+                "code": 9342,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "상황 버섯 삼계탕",
                 "code": 9371,
                 "needed": 15,
@@ -560,16 +1057,34 @@
                 "grade": 1
             },
             {
+                "name": "아삭한 콩나물무침",
+                "code": 820812,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "녹두전",
                 "code": 820821,
                 "needed": 15,
                 "grade": 1
             },
             {
+                "name": "바삭한 녹두전",
+                "code": 820822,
+                "needed": 5,
+                "grade": 2
+            },
+            {
                 "name": "메밀묵",
                 "code": 820823,
                 "needed": 36,
                 "grade": 1
+            },
+            {
+                "name": "쫄깃쫄깃 메밀묵",
+                "code": 820824,
+                "needed": 12,
+                "grade": 2
             }
         ]
     },
@@ -585,10 +1100,22 @@
                 "grade": 1
             },
             {
+                "name": "풍성한 안주 모음",
+                "code": 9298,
+                "needed": 9,
+                "grade": 2
+            },
+            {
                 "name": "프랭크 샌드위치",
                 "code": 9337,
                 "needed": 21,
                 "grade": 2
+            },
+            {
+                "name": "고급 프랭크 샌드위치",
+                "code": 9338,
+                "needed": 7,
+                "grade": 3
             },
             {
                 "name": "델로티아 밀크티",
@@ -597,10 +1124,22 @@
                 "grade": 1
             },
             {
+                "name": "향긋한 델로티아 밀크티",
+                "code": 9330,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "수테차",
                 "code": 9207,
                 "needed": 18,
                 "grade": 2
+            },
+            {
+                "name": "몸에 좋은 수테차",
+                "code": 9296,
+                "needed": 6,
+                "grade": 3
             },
             {
                 "name": "밀크티",
@@ -609,10 +1148,28 @@
                 "grade": 2
             },
             {
+                "name": "부드러운 밀크티",
+                "code": 9277,
+                "needed": 6,
+                "grade": 3
+            },
+            {
                 "name": "라마 꼬치 치즈구이",
                 "code": 9490,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "라마 꼬치 치즈구이",
+                "code": 9490,
+                "needed": 18,
+                "grade": 1
+            },
+            {
+                "name": "매콤한 라마 꼬치 치즈구이",
+                "code": 9491,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "치즈 그라탱",
@@ -621,15 +1178,33 @@
                 "grade": 1
             },
             {
+                "name": "쫀득한 치즈 그라탱",
+                "code": 9282,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "고기 볶음",
                 "code": 9426,
                 "needed": 18,
                 "grade": 1
             },
             {
+                "name": "특제 고기 볶음",
+                "code": 9432,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "사냥꾼의 샐러드",
                 "code": 9459,
                 "needed": 18,
+                "grade": 2
+            },
+            {
+                "name": "신선한 사냥꾼의 샐러드",
+                "code": 9460,
+                "needed": 6,
                 "grade": 2
             },
             {
@@ -639,10 +1214,22 @@
                 "grade": 1
             },
             {
+                "name": "바삭한 벌집 쿠키",
+                "code": 9289,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "살코기 샐러드",
                 "code": 9425,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "1등급 살코기 샐러드",
+                "code": 9435,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "미트 크로켓",
@@ -651,10 +1238,22 @@
                 "grade": 1
             },
             {
+                "name": "바삭한 미트 크로켓",
+                "code": 9438,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "고사리 나물 볶음",
                 "code": 9318,
                 "needed": 18,
                 "grade": 1
+            },
+            {
+                "name": "고소한 고사리 나물 볶음",
+                "code": 9319,
+                "needed": 6,
+                "grade": 2
             },
             {
                 "name": "고사리 고기 볶음",
@@ -663,10 +1262,22 @@
                 "grade": 2
             },
             {
+                "name": "담백한 고사리 고기 볶음",
+                "code": 9334,
+                "needed": 6,
+                "grade": 3
+            },
+            {
                 "name": "델로티아 푸딩",
                 "code": 9325,
                 "needed": 18,
                 "grade": 2
+            },
+            {
+                "name": "델로티아 핏빛 푸딩",
+                "code": 9326,
+                "needed": 6,
+                "grade": 3
             },
             {
                 "name": "정글의 왕 햄버그",
@@ -675,10 +1286,22 @@
                 "grade": 2
             },
             {
+                "name": "큼직한 정글의 왕 햄버그",
+                "code": 9464,
+                "needed": 5,
+                "grade": 3
+            },
+            {
                 "name": "미트 샌드위치",
                 "code": 9415,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "고급 미트 샌드위치",
+                "code": 9443,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "햄 샌드위치",
@@ -687,16 +1310,34 @@
                 "grade": 2
             },
             {
+                "name": "고급 햄 샌드위치",
+                "code": 9290,
+                "needed": 5,
+                "grade": 3
+            },
+            {
                 "name": "암흑 푸딩",
                 "code": 9422,
                 "needed": 15,
                 "grade": 2
             },
             {
+                "name": "핏빛 암흑 푸딩",
+                "code": 9448,
+                "needed": 5,
+                "grade": 3
+            },
+            {
                 "name": "호르믹",
                 "code": 9486,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "진한 호르믹",
+                "code": 9487,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "맛이 깊은 스테이크",
@@ -711,6 +1352,12 @@
                 "grade": 1
             },
             {
+                "name": "푸짐한 꾀꼬리 버섯 고기 볶음",
+                "code": 9344,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "에일 샌드위치",
                 "code": 9369,
                 "needed": 18,
@@ -723,10 +1370,22 @@
                 "grade": 1
             },
             {
+                "name": "구수한 된장찌개",
+                "code": 820820,
+                "needed": 6,
+                "grade": 2
+            },
+            {
                 "name": "산적",
                 "code": 820829,
                 "needed": 15,
                 "grade": 1
+            },
+            {
+                "name": "부드러운 산적",
+                "code": 820830,
+                "needed": 5,
+                "grade": 2
             },
             {
                 "name": "백김치",
@@ -735,10 +1394,22 @@
                 "grade": 1
             },
             {
+                "name": "시원한 백김치",
+                "code": 820802,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "동치미",
                 "code": 820805,
                 "needed": 24,
                 "grade": 1
+            },
+            {
+                "name": "새콤한 동치미",
+                "code": 820806,
+                "needed": 8,
+                "grade": 2
             }
         ]
     },
@@ -754,6 +1425,12 @@
                 "grade": 3
             },
             {
+                "name": "특제 카마실비아 정식",
+                "code": 9636,
+                "needed": 11,
+                "grade": 4
+            },
+            {
                 "name": "마고리아 해물 특식",
                 "code": 9634,
                 "needed": 21,
@@ -766,16 +1443,34 @@
                 "grade": 1
             },
             {
+                "name": "노릇한 랍스터 버터구이",
+                "code": 9478,
+                "needed": 7,
+                "grade": 2
+            },
+            {
                 "name": "세렌디아 정식",
                 "code": 9603,
                 "needed": 21,
                 "grade": 3
             },
             {
+                "name": "특제 세렌디아 정식",
+                "code": 9604,
+                "needed": 7,
+                "grade": 4
+            },
+            {
                 "name": "발렌시아 정식",
                 "code": 9609,
                 "needed": 18,
                 "grade": 3
+            },
+            {
+                "name": "특제 발렌시아 정식",
+                "code": 9610,
+                "needed": 6,
+                "grade": 4
             },
             {
                 "name": "드리간 특식",
@@ -802,10 +1497,22 @@
                 "grade": 3
             },
             {
+                "name": "특제 칼페온 정식",
+                "code": 9606,
+                "needed": 6,
+                "grade": 4
+            },
+            {
                 "name": "발레노스 정식",
                 "code": 9601,
                 "needed": 24,
                 "grade": 3
+            },
+            {
+                "name": "특제 발레노스 정식",
+                "code": 9602,
+                "needed": 8,
+                "grade": 4
             },
             {
                 "name": "메디아 정식",
@@ -814,10 +1521,22 @@
                 "grade": 3
             },
             {
+                "name": "특제 메디아 정식",
+                "code": 9608,
+                "needed": 5,
+                "grade": 4
+            },
+            {
                 "name": "오딜리타 정식",
                 "code": 9638,
                 "needed": 15,
                 "grade": 3
+            },
+            {
+                "name": "특제 오딜리타 정식",
+                "code": 9639,
+                "needed": 5,
+                "grade": 4
             },
             {
                 "name": "칼크의 담금주",
@@ -826,10 +1545,22 @@
                 "grade": 3
             },
             {
+                "name": "칼크의 독한 담금주",
+                "code": 9470,
+                "needed": 4,
+                "grade": 4
+            },
+            {
                 "name": "조갯살 조림",
                 "code": 9479,
                 "needed": 12,
                 "grade": 1
+            },
+            {
+                "name": "큼직한 조갯살 조림",
+                "code": 9480,
+                "needed": 4,
+                "grade": 2
             },
             {
                 "name": "에일 특산품 특식",
@@ -848,6 +1579,12 @@
                 "code": 9640,
                 "needed": 21,
                 "grade": 3
+            },
+            {
+                "name": "특제 에일 정식",
+                "code": 9641,
+                "needed": 7,
+                "grade": 4
             },
             {
                 "name": "무들 원조 국밥",
