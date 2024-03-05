@@ -20,7 +20,9 @@ class ArtifactNotifier with ChangeNotifier {
   }
 
   Iterable<String> autoComplete(String txt) {
-    return options.where((element) => element.contains(txt));
+    Set<String> result = {txt};
+    result.addAll(options.where((element) => element.contains(txt)));
+    return result;
   }
 
   void addKeyword(String keyword) {
