@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_search_bar_widget.dart';
@@ -68,20 +69,7 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                         padding:
                             EdgeInsets.symmetric(horizontal: horizontalPadding),
                         sliver: SliverToBoxAdapter(
-                          child: Row(
-                            children: [
-                              _PresetCard(
-                                  route: '/trade-market/cooking-box',
-                                  imagePath: 'assets/image/cooking_box.png',
-                                  title: '황납용 요리',
-                              ),
-                              _PresetCard(
-                                route: '/trade-market/melody-of-stars',
-                                imagePath: 'assets/image/melody_of_stars.png',
-                                title: '별들의 선율',
-                              ),
-                            ],
-                          ),
+                          child: _Presets(),
                         ),
                       ),
                       SliverPadding(
@@ -145,6 +133,34 @@ class _PresetCard extends StatelessWidget {
               title: Text(title),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Presets extends StatelessWidget {
+  const _Presets({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScrollConfiguration(
+      behavior: CustomScrollBehavior(),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            _PresetCard(
+              route: '/trade-market/cooking-box',
+              imagePath: 'assets/image/cooking_box.png',
+              title: '황납용 요리',
+            ),
+            _PresetCard(
+              route: '/trade-market/melody-of-stars',
+              imagePath: 'assets/image/melody_of_stars.png',
+              title: '별들의 선율',
+            ),
+          ],
         ),
       ),
     );
