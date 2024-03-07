@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -32,7 +33,7 @@ class _AuthPageState extends State<AuthPage> {
         await Provider.of<AuthNotifier>(context, listen: false).saveToken(
             token: token, refreshToken: refreshToken);
         await Provider.of<AuthNotifier>(context, listen: false).authorization();
-        context.go('/');
+        context.goWithGa('/');
       }
     }
   }
@@ -116,7 +117,7 @@ class _AuthPageState extends State<AuthPage> {
           await Provider.of<AuthNotifier>(context, listen: false).unregister();
       if (status) {
         context.pop();
-        context.go('/');
+        context.goWithGa('/');
       }
     }
   }
@@ -125,7 +126,7 @@ class _AuthPageState extends State<AuthPage> {
     _showDialog('로그아웃');
     await Provider.of<AuthNotifier>(context, listen: false).logout();
     context.pop();
-    context.go('/');
+    context.goWithGa('/');
   }
 
   void _showDialog(String title) {

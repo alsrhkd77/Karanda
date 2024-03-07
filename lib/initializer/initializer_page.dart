@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/initializer/karanda_initializer.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +31,7 @@ class _InitializerPageState extends State<InitializerPage> {
       print(e);
     } finally {
       await setWindows();
-      context.go("/");
+      context.goWithGa("/");
     }
   }
 

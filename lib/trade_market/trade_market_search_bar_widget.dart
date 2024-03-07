@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:go_router/go_router.dart';
-import 'package:karanda/trade_market/bdo_item_image_widget.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/trade_market/market_item_model.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +24,7 @@ class _TradeMarketSearchBarWidgetState
 
   void goDetail(String code, String name) {
     textEditingController.text = "";
-    context.go('/trade-market/detail?name=$name', extra: code);
+    context.goWithGa('/trade-market/detail?name=$name', extra: code);
   }
 
   Future<Iterable<String>> search(String value) async {

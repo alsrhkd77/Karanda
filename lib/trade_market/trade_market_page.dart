@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_search_bar_widget.dart';
 import 'package:karanda/trade_market/trade_market_wait_list_widget.dart';
@@ -68,7 +68,7 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                       SliverPadding(
                         padding:
                             EdgeInsets.symmetric(horizontal: horizontalPadding),
-                        sliver: SliverToBoxAdapter(
+                        sliver: const SliverToBoxAdapter(
                           child: _Presets(),
                         ),
                       ),
@@ -122,7 +122,7 @@ class _PresetCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
-          context.go(route);
+          context.goWithGa(route);
         },
         child: SizedBox(
           width: 260,

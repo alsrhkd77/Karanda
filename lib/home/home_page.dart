@@ -4,12 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/common/go_router_extension.dart';
+import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
+import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
-
-import '../common/launch_url.dart';
-import '../widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
             style: const TextStyle(fontSize: 15.0),
           ),
           leading: Icon(service.icon),
-          onTap: () => context.go(service.path),
+          onTap: () => context.goWithGa(service.path),
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 
 class AuthErrorPage extends StatelessWidget {
@@ -38,7 +38,7 @@ class AuthErrorPage extends StatelessWidget {
             ),
             OutlinedButton.icon(
               onPressed: () {
-                context.go('/');
+                context.goWithGa('/');
               },
               icon: const Icon(Icons.home),
               label: Container(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/http_response_extension.dart';
@@ -132,11 +133,11 @@ class AuthNotifier with ChangeNotifier {
     if (result) {
       await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
       if(await _authorization()){
-        goRouter.go('/');
+        goRouter.goWithGa('/');
       }
     } else{
       await deleteToken();
-      goRouter.go('/auth/error');
+      goRouter.goWithGa('/auth/error');
     }
   }
 

@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/trade_market/trade_market_data_model.dart';
 import 'package:karanda/trade_market/trade_market_provider.dart';
@@ -408,10 +408,11 @@ class _ItemTile extends StatelessWidget {
     }
 
     return Card(
+      clipBehavior: Clip.hardEdge,
       margin: const EdgeInsets.all(6.0),
       child: InkWell(
         onTap: () {
-          context.go(
+          context.goWithGa(
             '/trade-market/detail?name=${foodData["name"]}',
             extra: priceData.code.toString(),
           );

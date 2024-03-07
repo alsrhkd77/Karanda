@@ -32,6 +32,11 @@
       gtag('js', new Date());
 
       gtag('config', 'G-W9DJ1J6PL5');
+
+      <!-- Send flutter page transitions -->
+      function sendNavigation(location) {
+          gtag('config', 'G-W9DJ1J6PL5', {page_path: location});
+      }
     </script>
 
 
