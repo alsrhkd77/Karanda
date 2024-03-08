@@ -10,6 +10,7 @@ class ShipExtensionNotifier with ChangeNotifier {
   String select = "에페리아 중범선 : 비상";
   List<ShipExtensionModel> ships = [];
   List<ShipExtensionItemModel> items = [];
+  List<String> finished = [];
 
 
   ShipExtensionNotifier(){
@@ -56,7 +57,8 @@ class ShipExtensionNotifier with ChangeNotifier {
       }
       data[m]!.parts = parts.toList();
       data[m]!.parts.sort();
-      data[m]!.need = model[m]!;
+      data
+      [m]!.need = model[m]!;
     }
 
     return data.values.toList();
@@ -115,8 +117,22 @@ class ShipExtensionNotifier with ChangeNotifier {
       select = selected;
     }
 
+    List<String>? finishedItems = sharedPreferences.getStringList('ship_extension_f');
+    if(finishedItems != null){
+      finished = finishedItems;
+    }
+
     items = itemData;
     ships = shipData;
     notifyListeners();
+  }
+
+  Future<void> updateFinished(String partsName) async {
+    if(!finished.remove(partsName)){
+      finished.add(partsName);
+    }
+    notifyListeners();
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setStringList('ship_extension_f', finished);
   }
 }
