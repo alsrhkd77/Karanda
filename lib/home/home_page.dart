@@ -276,9 +276,9 @@ class _HomePageState extends State<HomePage> {
         title: const Text(
           'Karanda',
           style: TextStyle(
-              fontFamily: 'NanumSquareRound',
-              fontWeight: FontWeight.w700,
-              fontSize: 26.0,
+            fontFamily: 'NanumSquareRound',
+            fontWeight: FontWeight.w700,
+            fontSize: 26.0,
           ),
         ),
         actions: [
@@ -356,11 +356,73 @@ class _HomePageState extends State<HomePage> {
                     ' 또는 저작물이 포함되어 있습니다.',
                     style: TextStyle(color: Colors.grey, fontSize: 10.5),
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 15.0,
+                ),
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButton: const _FAB(),
+    );
+  }
+}
+
+class _FAB extends StatefulWidget {
+  const _FAB({super.key});
+
+  @override
+  State<_FAB> createState() => _FABState();
+}
+
+class _FABState extends State<_FAB> {
+  bool extended = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onHover: (_) {
+        setState(() {
+          extended = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          extended = false;
+        });
+      },
+      child: FloatingActionButton.extended(
+        onPressed: () => launchURL(Api.karandaDiscordServer),
+        icon: const Icon(
+          FontAwesomeIcons.discord,
+          color: Colors.white,
+        ),
+        label: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 150),
+          transitionBuilder: (Widget child, Animation<double> animation) =>
+              FadeTransition(
+            opacity: animation,
+            child: SizeTransition(
+              sizeFactor: animation,
+              axis: Axis.horizontal,
+              child: child,
+            ),
+          ),
+          child: extended
+              ? const Padding(
+                  padding: EdgeInsets.only(left: 8.6),
+                  child: Text(
+                    'Discord',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )
+              : Container(),
+        ),
+        backgroundColor: const Color.fromRGBO(88, 101, 242, 1),
+        extendedIconLabelSpacing: 1.2,
       ),
     );
   }
