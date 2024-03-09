@@ -7,7 +7,8 @@
       "reward": 2
     },
     "가격": 1500,
-    "path": "assets/image/shipExtension/0001.png"
+    "path": "assets/image/shipExtension/0001.png",
+    "code": 5807
   },
   "강화된 섬나무 증착합판": {
     "주 획득처": {
@@ -17,7 +18,8 @@
       "reward": 10
     },
     "가격": 80,
-    "path": "assets/image/shipExtension/0002.png"
+    "path": "assets/image/shipExtension/0002.png",
+    "code": 5814
   },
   "심해초 줄기": {
     "주 획득처": {
@@ -27,7 +29,8 @@
       "reward": 4
     },
     "가격": 600,
-    "path": "assets/image/shipExtension/0003.png"
+    "path": "assets/image/shipExtension/0003.png",
+    "code": 5829
   },
   "대양의 견고한 현철": {
     "주 획득처": {
@@ -37,7 +40,8 @@
       "reward": 0
     },
     "가격": 160,
-    "path": "assets/image/shipExtension/0004.png"
+    "path": "assets/image/shipExtension/0004.png",
+    "code": 5832
   },
   "순수한 진주 결정": {
     "주 획득처": {
@@ -47,7 +51,8 @@
       "reward": 2
     },
     "가격": 550,
-    "path": "assets/image/shipExtension/0005.png"
+    "path": "assets/image/shipExtension/0005.png",
+    "code": 5820
   },
   "콕스해적단의 유물(협상 하급)": {
     "주 획득처": {
@@ -57,7 +62,8 @@
       "reward": 3
     },
     "가격": 150,
-    "path": "assets/image/shipExtension/0006.png"
+    "path": "assets/image/shipExtension/0006.png",
+    "code": 5822
   },
   "콕스해적단의 유물(전투)": {
     "주 획득처": {
@@ -67,7 +73,8 @@
       "reward": 3
     },
     "가격": 800,
-    "path": "assets/image/shipExtension/0007.png"
+    "path": "assets/image/shipExtension/0007.png",
+    "code": 5824
   },
   "달의 비늘이 새겨진 합판": {
     "주 획득처": {
@@ -77,7 +84,8 @@
       "reward": 10
     },
     "가격": 160,
-    "path": "assets/image/shipExtension/0008.png"
+    "path": "assets/image/shipExtension/0008.png",
+    "code": 5827
   },
   "파도빛이 감도는 규격 각목": {
     "주 획득처": {
@@ -87,7 +95,8 @@
       "reward": 3
     },
     "가격": 350,
-    "path": "assets/image/shipExtension/0009.png"
+    "path": "assets/image/shipExtension/0009.png",
+    "code": 5810
   },
   "순수한 암초 조각": {
     "주 획득처": {
@@ -97,7 +106,8 @@
       "reward": 8
     },
     "가격": 140,
-    "path": "assets/image/shipExtension/0010.png"
+    "path": "assets/image/shipExtension/0010.png",
+    "code": 5828
   },
   "콕스해적단의 유물(협상 상급)": {
     "주 획득처": {
@@ -107,7 +117,8 @@
       "reward": 1
     },
     "가격": 800,
-    "path": "assets/image/shipExtension/0011.png"
+    "path": "assets/image/shipExtension/0011.png",
+    "code": 5823
   },
   "빛나는 코발트 주괴": {
     "주 획득처": {
@@ -117,7 +128,8 @@
       "reward": 0
     },
     "가격": 800,
-    "path": "assets/image/shipExtension/0012.png"
+    "path": "assets/image/shipExtension/0012.png",
+    "code": 5830
   },
   "짙은 파도빛이 감도는 규격 각목": {
     "주 획득처": {
@@ -127,7 +139,8 @@
       "reward": 3
     },
     "가격": 1000,
-    "path": "assets/image/shipExtension/0013.png"
+    "path": "assets/image/shipExtension/0013.png",
+    "code": 5812
   },
   "달의 핏줄이 새겨진 아마포": {
     "주 획득처": {
@@ -137,7 +150,8 @@
       "reward": 3
     },
     "가격": 600,
-    "path": "assets/image/shipExtension/0014.png"
+    "path": "assets/image/shipExtension/0014.png",
+    "code": 5809
   },
   "심해의 눈물": {
     "주 획득처": {
@@ -147,7 +161,8 @@
       "reward": 1
     },
     "가격": 3900,
-    "path": "assets/image/shipExtension/0015.png"
+    "path": "assets/image/shipExtension/0015.png",
+    "code": 5821
   },
   "화려한 암염 주괴": {
     "주 획득처": {
@@ -157,7 +172,8 @@
       "reward": 0
     },
     "가격": 1600,
-    "path": "assets/image/shipExtension/0016.png"
+    "path": "assets/image/shipExtension/0016.png",
+    "code": 5815
   },
   "화려한 진주 결정": {
     "주 획득처": {
@@ -167,6 +183,7 @@
       "reward": 0
     },
     "가격": 1600,
-    "path": "assets/image/shipExtension/0017.png"
+    "path": "assets/image/shipExtension/0017.png",
+    "code": 5831
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
+import 'package:karanda/ship_extension/ship_extension_item_model.dart';
 import 'package:karanda/ship_extension/ship_extension_notifier.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -397,8 +398,7 @@ class _ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final extensionItems = context.select<ShipExtensionNotifier, List<ShipExtensionItemModel>>((ShipExtensionNotifier s) => s.extensionItems);
-    final extensionItems =
-        context.watch<ShipExtensionNotifier>().extensionItems;
+    List<ShipExtensionItemModel> extensionItems = context.watch<ShipExtensionNotifier>().extensionItems();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12.0),
       //height: _extensionController.extensionItems.length * 99,

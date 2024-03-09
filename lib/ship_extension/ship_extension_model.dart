@@ -26,30 +26,52 @@ class ShipExtensionModel {
     item = data['item'];
   } //선박 증축 재료
 
-  Map<String, int> getNeed(){
+  Map<String, int> getNeed(List<String> exclude){
     Map<String, int> result = {};
     for(String prow in prowItem.keys){
-      result[prow] = prowItem[prow];
+      if(!exclude.contains('prow')){
+        result[prow] = prowItem[prow] as int;
+      } else{
+        result[prow] = 0;
+      }
     }
     for(String plating in platingItem.keys){
       if(result.containsKey(plating)){
-        result[plating] = result[plating]! + platingItem[plating] as int;
+        if(!exclude.contains('plating')){
+          result[plating] = result[plating]! + platingItem[plating] as int;
+        }
       }else{
-        result[plating] = platingItem[plating];
+        if(!exclude.contains('plating')){
+          result[plating] = platingItem[plating] as int;
+        } else {
+          result[plating] = 0;
+        }
       }
     }
     for(String cannon in cannonItem.keys){
       if(result.containsKey(cannon)){
-        result[cannon] = result[cannon]! + cannonItem[cannon] as int;
+        if(!exclude.contains('cannon')){
+          result[cannon] = result[cannon]! + cannonItem[cannon] as int;
+        }
       }else{
-        result[cannon] = cannonItem[cannon];
+        if(!exclude.contains('cannon')){
+          result[cannon] = cannonItem[cannon] as int;
+        } else{
+          result[cannon] = 0;
+        }
       }
     }
     for(String windSail in windSailItem.keys){
       if(result.containsKey(windSail)){
-        result[windSail] = result[windSail]! + windSailItem[windSail] as int;
+        if(!exclude.contains('windSail')){
+          result[windSail] = result[windSail]! + windSailItem[windSail] as int;
+        }
       }else{
-        result[windSail] = windSailItem[windSail];
+        if(!exclude.contains('windSail')){
+          result[windSail] = windSailItem[windSail] as int;
+        } else{
+          result[windSail] = 0;
+        }
       }
     }
     for(String i in item.keys){
