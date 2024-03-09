@@ -5,6 +5,7 @@ class ShipExtensionItemModel{
   late String npc;
   late int reward;
   late int price;
+  late int code;
   late String assetPath;
   List<String> parts = [];
 
@@ -19,5 +20,6 @@ class ShipExtensionItemModel{
     reward = farming['reward'];
     price = data['가격'];
     assetPath = data['path'];
+    code = data['code'];
   }
 }

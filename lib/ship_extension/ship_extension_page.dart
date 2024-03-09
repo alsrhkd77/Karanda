@@ -432,7 +432,7 @@ class _ItemList extends StatelessWidget {
                 }
                 context
                     .read<ShipExtensionNotifier>()
-                    .updateUserItem(extensionItems[index].name, insert);
+                    .updateUserItem(extensionItems[index].code, insert);
               },
             ),
           );
