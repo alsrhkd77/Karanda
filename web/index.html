@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--
-      If you are serving your web app in a path other than the root, change the
-      href value below to reflect the base path you are serving from.
-
-      The path provided below has to start and end with a slash "/" in order for
-      it to work correctly.
-
-      For more details:
-      * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-      This is a placeholder for base href that will be replaced by the value of
-      the `--base-href` argument provided to `flutter build`.
-    -->
     <!--<base href="$FLUTTER_BASE_HREF">-->
     <base href="/">
 
@@ -23,20 +10,29 @@
 
     <!-- Google search engine -->
     <meta content="fahdkc5Z4GY4O_xXkE3seM1IF7d6IXxQn7SMK_CYmRg" name="google-site-verification"/>
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9DJ1J6PL5"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'G-W9DJ1J6PL5');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-      <!-- Send flutter page transitions -->
-      sendNavigation = function(location) {
-          gtag('config', 'G-W9DJ1J6PL5', {page_path: location});
-      }
+        gtag('js', new Date());
+
+        gtag('config', 'G-W9DJ1J6PL5', {send_page_view: false});
+
+        <!-- Send flutter page transitions -->
+        sendNavigation = function (location) {
+            gtag('event', 'page_view', {
+                //page_title: '<Page Title>',
+                page_location: location,
+                page_path: location,
+                send_to: 'G-W9DJ1J6PL5'
+            })
+        }
     </script>
 
 
@@ -57,13 +53,13 @@
     <link href="manifest.json" rel="manifest">
 </head>
 <body>
-<!-- Install button, hidden by default -->
+<!-- Install button, hidden by default
 <div class="hidden" id="installContainer">
     <button id="butInstall" type="button">
         Install
     </button>
 </div>
-<script src="install.js" type="application/javascript"></script>
+<script src="install.js" type="application/javascript"></script>-->
 
 <img class="center" src="img/flutter-logo.png"/>
 
