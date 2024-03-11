@@ -470,7 +470,7 @@ class _Footer extends StatelessWidget {
                           tooltip: 'Toss',
                         ),
                         const SizedBox(
-                          width: 15.0,
+                          width: 12.0,
                         ),
                         IconButton(
                           onPressed: () =>

@@ -241,10 +241,6 @@ class MyApp extends StatelessWidget {
             return checklistNotifier!;
           },
         ),
-        ChangeNotifierProvider(
-          create: (_) => BdoWorldTimeNotifier(),
-          lazy: false,
-        ),
         ChangeNotifierProvider(create: (_) => TradeMarketNotifier()),
         ChangeNotifierProvider(
           create: (_) => BdoWorldTimeNotifier(),
