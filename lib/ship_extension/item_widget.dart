@@ -33,7 +33,7 @@ class _ItemWidgetState extends State<ItemWidget> {
     int dDay = widget.item.reward == 0
         ? 0
         : ((widget.item.need - widget.item.user) / widget.item.reward).ceil();
-    double percent = widget.item.user / widget.item.need;
+    double percent = widget.item.need > 0 ?widget.item.user / widget.item.need : 0;
     if (dDay < 0) dDay = 0;
     if (widget.item.reward > 0) {
       farming = '$farming - ${widget.item.npc}';

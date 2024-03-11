@@ -5,6 +5,7 @@ import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/ship_extension/ship_extension_item_model.dart';
 import 'package:karanda/ship_extension/ship_extension_notifier.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
+import 'package:karanda/widgets/custom_check_icon.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -128,8 +129,7 @@ class _FinishedParts extends StatelessWidget {
                   grade: 2,
                 ),
                 finished.contains('prow')
-                    ? Icon(
-                        Icons.check,
+                    ? CustomCheckIcon(
                         color: Colors.greenAccent.shade400.withOpacity(0.85),
                         size: 44.0,
                       )
@@ -151,11 +151,10 @@ class _FinishedParts extends StatelessWidget {
                   grade: 2,
                 ),
                 finished.contains('plating')
-                    ? Icon(
-                  Icons.check,
-                  color: Colors.greenAccent.shade400.withOpacity(0.85),
-                  size: 44.0,
-                )
+                    ? CustomCheckIcon(
+                        color: Colors.greenAccent.shade400.withOpacity(0.85),
+                        size: 44.0,
+                      )
                     : Container(),
               ],
             ),
@@ -174,11 +173,10 @@ class _FinishedParts extends StatelessWidget {
                   grade: 2,
                 ),
                 finished.contains('cannon')
-                    ? Icon(
-                  Icons.check,
-                  color: Colors.greenAccent.shade400.withOpacity(0.85),
-                  size: 44.0,
-                )
+                    ? CustomCheckIcon(
+                        color: Colors.greenAccent.shade400.withOpacity(0.85),
+                        size: 44.0,
+                      )
                     : Container(),
               ],
             ),
@@ -197,11 +195,10 @@ class _FinishedParts extends StatelessWidget {
                   grade: 2,
                 ),
                 finished.contains('windSail')
-                    ? Icon(
-                  Icons.check,
-                  color: Colors.greenAccent.shade400.withOpacity(0.85),
-                  size: 44.0,
-                )
+                    ? CustomCheckIcon(
+                        color: Colors.greenAccent.shade400.withOpacity(0.85),
+                        size: 44.0,
+                      )
                     : Container(),
               ],
             ),
@@ -398,7 +395,8 @@ class _ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final extensionItems = context.select<ShipExtensionNotifier, List<ShipExtensionItemModel>>((ShipExtensionNotifier s) => s.extensionItems);
-    List<ShipExtensionItemModel> extensionItems = context.watch<ShipExtensionNotifier>().extensionItems();
+    List<ShipExtensionItemModel> extensionItems =
+        context.watch<ShipExtensionNotifier>().extensionItems();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12.0),
       //height: _extensionController.extensionItems.length * 99,
