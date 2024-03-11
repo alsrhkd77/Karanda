@@ -5,7 +5,6 @@ import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
-import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/settings/brand_card.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
