@@ -3,7 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
+import 'package:karanda/common/launch_url.dart';
+import 'package:karanda/settings/brand_card.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -142,6 +145,13 @@ class _AuthPageState extends State<AuthPage> {
   Widget _auth() {
     return Column(
       children: [
+        const ListTile(
+          title: TitleText('소셜 로그인', bold: true),
+        ),
+        const Divider(),
+        const SizedBox(height: 24.0,),
+        BrandCard(assetPath: 'assets/image/discord_full.png', onTap: () => Provider.of<AuthNotifier>(context, listen: false).authenticate()),
+        /*
         Container(
           constraints: const BoxConstraints(
             maxWidth: 400.0,
@@ -169,6 +179,7 @@ class _AuthPageState extends State<AuthPage> {
             label: const Text(' 디스코드로 로그인'),
           ),
         ),
+         */
       ],
     );
   }
@@ -190,8 +201,8 @@ class _AuthPageState extends State<AuthPage> {
             ),
             Container(
               constraints: const BoxConstraints(
-                maxWidth: 300,
-                maxHeight: 300,
+                maxWidth: 280,
+                maxHeight: 280,
               ),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 40),
               decoration: BoxDecoration(
@@ -244,8 +255,8 @@ class _AuthPageState extends State<AuthPage> {
           child: Container(
             margin: const EdgeInsets.all(12.0),
             width: Size.infinite.width,
-            constraints: const BoxConstraints(
-              maxWidth: 700,
+            constraints: BoxConstraints(
+              maxWidth: GlobalProperties.widthConstrains,
             ),
             child: Provider.of<AuthNotifier>(context).authenticated
                 ? _userInfo()

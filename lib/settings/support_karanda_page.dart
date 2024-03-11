@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/launch_url.dart';
+import 'package:karanda/settings/brand_card.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -27,8 +28,8 @@ class SupportKarandaPage extends StatelessWidget {
                 ),
                 const Divider(),
                 const SizedBox(height: 24.0,),
-                _Card(assetPath: 'assets/image/toss_full.png', onTap: () => launchURL('https://toss.me/hammuu')),
-                _Card(assetPath: 'assets/image/bmc_full.png', onTap: () => launchURL('https://www.buymeacoffee.com/hammuu')),
+                BrandCard(assetPath: 'assets/image/toss_full.png', onTap: () => launchURL('https://toss.me/hammuu')),
+                BrandCard(assetPath: 'assets/image/bmc_full.png', onTap: () => launchURL('https://www.buymeacoffee.com/hammuu')),
               ],
             ),
           ),
