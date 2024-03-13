@@ -26,12 +26,16 @@
 
         <!-- Send flutter page transitions -->
         sendNavigation = function (location) {
-            gtag('event', 'page_view', {
-                page_title: location,
-                page_location: location,
-                page_path: location,
-                send_to: 'G-W9DJ1J6PL5'
-            })
+            try{
+                gtag('event', 'page_view', {
+                    page_title: location,
+                    page_location: location,
+                    page_path: location,
+                    send_to: 'G-W9DJ1J6PL5'
+                })
+            } catch (e) {
+                console.log(e)
+            }
         }
     </script>
 
