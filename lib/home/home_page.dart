@@ -84,6 +84,11 @@ class _HomePageState extends State<HomePage> {
       icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
     ),
+    _Service(
+      name: '선박 증축',
+      icon: FontAwesomeIcons.ship,
+      path: '/ship-upgrading',
+    ),
   ];
 
   final List<_Link> links = [

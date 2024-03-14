@@ -105,12 +105,14 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                           .category),
                       trailing: snapshot.data!.keys.length <= 1 ? null : DropdownMenu<String>(
                         initialSelection: '',
+                        /*
                         inputDecorationTheme: InputDecorationTheme(
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 12.0),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0)),
                         ),
+                         */
                         dropdownMenuEntries: snapshot.data!.keys
                             .map<DropdownMenuEntry<String>>(
                                 (e) => DropdownMenuEntry(

@@ -25,6 +25,7 @@ import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/settings/settings_page.dart';
 import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
+import 'package:karanda/ship_upgrading/ship_upgrading_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/presets/cooking_box_page.dart';
 import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
@@ -63,6 +64,15 @@ Future<void> main() async {
   }
   initializeDateFormatting().then((_) => runApp(MyApp()));
 }
+
+final _dropdownMenuTheme = DropdownMenuThemeData(
+  inputDecorationTheme: InputDecorationTheme(
+    contentPadding: const EdgeInsets.symmetric(
+        vertical: 4.0, horizontal: 12.0),
+    border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0)),
+  ),
+);
 
 final GoRouter _router = GoRouter(
   initialLocation: '/window-init',
@@ -165,6 +175,10 @@ final GoRouter _router = GoRouter(
           builder: (context, state) => const ShipExtensionPage(),
         ),
         GoRoute(
+          path: 'ship-upgrading',
+          builder: (context, state) => const ShipUpgradingPage(),
+        ),
+        GoRoute(
           path: 'trade-calculator',
           builder: (context, state) => const TradeCalculatorPage(),
         ),
@@ -255,17 +269,19 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
-            title: '카란다 | Karanda',
+            title: 'Karanda|카란다',
             theme: ThemeData(
               useMaterial3: true,
               fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
               colorSchemeSeed: Colors.blue,
+              dropdownMenuTheme: _dropdownMenuTheme,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
               fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
+              dropdownMenuTheme: _dropdownMenuTheme,
             ),
             themeMode: settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             routerConfig: _router,
