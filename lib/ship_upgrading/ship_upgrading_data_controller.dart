@@ -7,41 +7,125 @@ import 'package:karanda/ship_upgrading/ship_upgrading_parts.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_ship.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ShipUpgradingDataController{
-  final _materialDataStreamController = StreamController<Map<String, ShipUpgradingMaterial>>();
-  final _selectedShipDataStreamController = StreamController<ShipUpgradingShip>();
-  Stream<Map<String, ShipUpgradingMaterial>> get materials => _materialDataStreamController.stream;
-  Stream<ShipUpgradingShip> get selectedShip => _selectedShipDataStreamController.stream;
+class ShipUpgradingDataController {
+  final _materialDataStreamController =
+      StreamController<Map<String, ShipUpgradingMaterial>>.broadcast();
+  final _partsDataStreamController =
+      StreamController<Map<String, ShipUpgradingParts>>();
+  final _selectedShipDataStreamController =
+      StreamController<ShipUpgradingShip>.broadcast();
+  final _totalPercentStreamController = StreamController<double>();
 
+  Stream<Map<String, ShipUpgradingMaterial>> get materials =>
+      _materialDataStreamController.stream;
+
+  Stream<Map<String, ShipUpgradingParts>> get parts =>
+      _partsDataStreamController.stream;
+
+  Stream<ShipUpgradingShip> get selectedShipData =>
+      _selectedShipDataStreamController.stream;
+
+  Stream<double> get totalPercent => _totalPercentStreamController.stream;
+
+  Map<String, ShipUpgradingMaterial> _materials = {};
   Map<String, ShipUpgradingShip> _ship = {};
   Map<String, ShipUpgradingParts> _parts = {};
 
   Map<String, ShipUpgradingShip> get ship => _ship;
 
-  Future<void> updateSelected(String selected) async {
-    if(_ship.containsKey(selected)){
-      final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-      sharedPreferences.setString('ship_upgrading_selected_ship', selected);
-      _selectedShipDataStreamController.sink.add(_ship[selected]!);
+  ShipUpgradingDataController(){
+    materials.listen((event) => updateTotalPercent(event.values.toList()));
+  }
+
+  void updateTotalPercent(List<ShipUpgradingMaterial> dataList){
+    double need = 0;
+    double stock = 0;
+    for (ShipUpgradingMaterial data in dataList) {
+      need += data.neededPoint;
+      stock += data.stockPoint;
     }
+    if (need <= 0) {
+      _totalPercentStreamController.sink.add(0);
+    }
+    _totalPercentStreamController.sink.add(stock / need);
+  }
+
+  Future<void> updateSelected(String selected) async {
+    if (_ship.containsKey(selected)) {
+      _selectedShipDataStreamController.sink.add(_ship[selected]!);
+      _initMaterialData(selected);
+      final sharedPreferences = await SharedPreferences.getInstance();
+      sharedPreferences.setString('ship_upgrading_selected_ship', selected);
+    }
+  }
+
+  Future<void> updateUserStock(String code, int value) async {
+    if (_materials.containsKey(code)) {
+      _materials[code]!.userStock = value;
+      _materialDataStreamController.sink.add(_materials);
+      final sharedPreferences = await SharedPreferences.getInstance();
+      sharedPreferences.setInt('ship_upgrading_material_stock_$code', value);
+    }
+  }
+
+  Future<void> setFinished(String key) async {
+    if (_parts.containsKey(key)) {
+      _parts[key]!.finished = !_parts[key]!.finished;
+      _partsDataStreamController.sink.add(_parts);
+
+      //update total stock
+      for (String k in _parts[key]!.materials.keys) {
+        if (_parts[key]!.finished) {
+          _materials[k]!.finished += _parts[key]!.materials[k]!.need;
+        } else {
+          _materials[k]!.finished -= _parts[key]!.materials[k]!.need;
+        }
+      }
+      _materialDataStreamController.sink.add(_materials);
+
+      final sharedPreferences = await SharedPreferences.getInstance();
+      sharedPreferences.setBool(
+          'ship_upgrading_finished_parts_$key', _parts[key]!.finished);
+    }
+  }
+
+  void _initMaterialData(String selectedShip) {
+    for (ShipUpgradingMaterial m in _materials.values) {
+      m.finished = 0;
+      m.totalNeeded = 0;
+    }
+    for (String partsKey in _ship[selectedShip]!.parts) {
+      for (String key in _parts[partsKey]!.materials.keys) {
+        _materials[key]!.totalNeeded += _parts[partsKey]!.materials[key]!.need;
+        if (_parts[partsKey]!.finished) {
+          _materials[key]!.finished += _parts[partsKey]!.materials[key]!.need;
+        }
+      }
+    }
+    _materialDataStreamController.sink.add(_materials);
   }
 
   Future<bool> getBaseData() async {
     bool result = false;
-    try{
-      Map data = jsonDecode(await rootBundle.loadString('assets/data/ship_upgrading.json'));
+    try {
+      Map data = jsonDecode(
+          await rootBundle.loadString('assets/data/ship_upgrading.json'));
 
-      _materialDataStreamController.sink.add(_getMaterialData(data['materials']));
+      _materials = await _getMaterialData(data['materials']);
+      _materialDataStreamController.sink.add(_materials);
 
-      _parts = _getPartsData(data['parts']);
+      _parts = await _getPartsData(data['parts']);
+      _partsDataStreamController.sink.add(_parts);
 
-      _ship = _getShipData(data['types']);
+      _ship = _getShipData(data['types'], _parts);
+      final sharedPreferences = await SharedPreferences.getInstance();
 
-      final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-      String? selected = sharedPreferences.getString('ship_upgrading_selected_ship');
+      String? selected =
+          sharedPreferences.getString('ship_upgrading_selected_ship');
       selected = selected ?? _ship.keys.first;
       _selectedShipDataStreamController.sink.add(_ship[selected]!);
+
+      _initMaterialData(selected);
 
       result = true;
     } catch (e) {
@@ -50,33 +134,53 @@ class ShipUpgradingDataController{
     return result;
   }
 
-
-
-  Map<String, ShipUpgradingMaterial> _getMaterialData(Map data){
+  Future<Map<String, ShipUpgradingMaterial>> _getMaterialData(Map data) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
     Map<String, ShipUpgradingMaterial> materialData = {};
-    for(String key in data.keys){
-      materialData[key] = ShipUpgradingMaterial.fromData(data[key]);
+    for (String key in data.keys) {
+      int stock =
+          sharedPreferences.getInt('ship_upgrading_material_stock_$key') ?? 0;
+      materialData[key] = ShipUpgradingMaterial.fromData(data[key])
+        ..userStock = stock
+        ..controller.text = stock > 0 ? stock.toString() : '';
     }
     return materialData;
   }
 
-  Map<String, ShipUpgradingParts> _getPartsData(Map data){
+  Future<Map<String, ShipUpgradingParts>> _getPartsData(Map data) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
     Map<String, ShipUpgradingParts> partsData = {};
-    for(String key in data.keys){
-      partsData[key] = ShipUpgradingParts.fromData(data[key]);
+    for (String key in data.keys) {
+      bool finished =
+          sharedPreferences.getBool('ship_upgrading_finished_parts_$key') ??
+              false;
+      partsData[key] = ShipUpgradingParts.fromData(data[key])
+        ..finished = finished;
+      for (String k in partsData[key]!.materials.keys) {
+        int days = 0;
+        if (_materials[k]!.obtain.reward > 0) {
+          days = (partsData[key]!.materials[k]!.need /
+                  _materials[k]!.obtain.reward)
+              .ceil();
+        }
+        partsData[key]!.materials[k]!.days = days;
+      }
     }
     return partsData;
   }
 
-  Map<String, ShipUpgradingShip> _getShipData(Map data){
+  Map<String, ShipUpgradingShip> _getShipData(
+      Map data, Map<String, ShipUpgradingParts> partsData) {
     Map<String, ShipUpgradingShip> shipData = {};
-    for(String key in data.keys){
-      shipData[key] = ShipUpgradingShip.fromData(data[key], _parts);
+    for (String key in data.keys) {
+      shipData[key] = ShipUpgradingShip.fromData(data[key], partsData);
     }
     return shipData;
   }
 
-  void dispose(){
+  void dispose() {
     _materialDataStreamController.close();
+    _partsDataStreamController.close();
+    _selectedShipDataStreamController.close();
   }
 }

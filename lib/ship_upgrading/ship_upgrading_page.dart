@@ -1,9 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_data_controller.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_material.dart';
+import 'package:karanda/ship_upgrading/ship_upgrading_parts.dart';
+import 'package:karanda/ship_upgrading/ship_upgrading_ship.dart';
+import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -59,13 +65,18 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
                 ),
               ),
             ),
-            loading
-                ? const LoadingIndicator()
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _Head(dataController: dataController),
-                  ),
-            _Body(dataStream: dataController.materials),
+            _Head(
+                selectedShipStream: dataController.selectedShipData,
+                shipData: dataController.ship,
+                updateSelected: dataController.updateSelected,
+                dataController: dataController),
+            _Body(
+              dataController: dataController,
+              screenWidth: MediaQuery.of(context).size.width,
+            ),
+            SizedBox(
+              height: 24.0,
+            )
           ],
         ),
       ),
@@ -75,8 +86,16 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
 
 class _Head extends StatelessWidget {
   final ShipUpgradingDataController dataController;
+  final Stream<ShipUpgradingShip> selectedShipStream;
+  final Map<String, ShipUpgradingShip> shipData;
+  final Function(String) updateSelected;
 
-  const _Head({super.key, required this.dataController});
+  const _Head(
+      {super.key,
+      required this.selectedShipStream,
+      required this.shipData,
+      required this.updateSelected,
+      required this.dataController});
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +107,16 @@ class _Head extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _ShipTypeSelector(dataController: dataController),
+            child: _ShipTypeSelector(
+              selectedShipStream: selectedShipStream,
+              shipData: shipData,
+              updateSelected: updateSelected,
+              dataController: dataController,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _PercentInHeader(),
+            child: _PercentInHeader(stream: dataController.totalPercent),
           ),
         ],
       ),
@@ -102,16 +126,26 @@ class _Head extends StatelessWidget {
 
 class _ShipTypeSelector extends StatelessWidget {
   final ShipUpgradingDataController dataController;
+  final Stream<ShipUpgradingShip> selectedShipStream;
+  final Map<String, ShipUpgradingShip> shipData;
+  final Function(String) updateSelected;
 
-  const _ShipTypeSelector({super.key, required this.dataController});
+  const _ShipTypeSelector(
+      {super.key,
+      required this.selectedShipStream,
+      required this.shipData,
+      required this.updateSelected,
+      required this.dataController});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: dataController.selectedShip,
+      stream: dataController.selectedShipData,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Container();
+          return SizedBox(
+            height: 15.0,
+          );
         }
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,17 +153,17 @@ class _ShipTypeSelector extends StatelessWidget {
             Container(),
             DropdownMenu<String>(
               initialSelection: snapshot.data?.nameEN,
-              dropdownMenuEntries: dataController.ship.keys
+              dropdownMenuEntries: shipData.keys
                   .map<DropdownMenuEntry<String>>(
                     (e) => DropdownMenuEntry(
-                      value: dataController.ship[e]!.nameEN,
-                      label: dataController.ship[e]!.nameKR,
+                      value: shipData[e]!.nameEN,
+                      label: shipData[e]!.nameKR,
                     ),
                   )
                   .toList(),
               onSelected: (String? value) {
                 if (value != null) {
-                  dataController.updateSelected(value);
+                  updateSelected(value);
                 }
               },
             ),
@@ -141,7 +175,147 @@ class _ShipTypeSelector extends StatelessWidget {
 }
 
 class _PercentInHeader extends StatelessWidget {
-  const _PercentInHeader({super.key});
+  final Stream<double> stream;
+
+  const _PercentInHeader({super.key, required this.stream});
+
+  MaterialColor getColor(double percent) {
+    if (percent < 0.25) {
+      return Colors.red;
+    } else if (percent < 0.5) {
+      return Colors.orange;
+    } else if (percent < 0.75) {
+      return Colors.yellow;
+    } else if (percent < 1) {
+      return Colors.green;
+    }
+    return Colors.blue;
+  }
+
+  double getPercent(List<ShipUpgradingMaterial> dataList) {
+    double need = 0;
+    double stock = 0;
+    for (ShipUpgradingMaterial data in dataList) {
+      need += data.neededPoint;
+      stock += data.stockPoint;
+    }
+    if (need <= 0) {
+      return 0;
+    }
+    return stock / need;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: stream,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return SizedBox(
+            height: 15.0,
+          );
+        }
+        //double percent = getPercent(snapshot.data!.values.toList());
+        return Flex(
+          direction: Axis.horizontal,
+          children: [
+            Flexible(
+              fit: FlexFit.tight,
+              child: LinearPercentIndicator(
+                animation: true,
+                animationDuration: 500,
+                percent: snapshot.data!,
+                barRadius: const Radius.circular(4.0),
+                progressColor: getColor(snapshot.data!),
+                animateFromLastPercent: true,
+              ),
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            Text(
+              "${(snapshot.data! * 100).toStringAsFixed(2)}%",
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  final ShipUpgradingDataController dataController;
+  final double screenWidth;
+
+  const _Body(
+      {super.key, required this.dataController, required this.screenWidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScrollConfiguration(
+      behavior: CustomScrollBehavior(),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: SizedBox(
+          width: GlobalProperties.widthConstrains - 48,
+          child: StreamBuilder(
+            stream: dataController.selectedShipData,
+            builder: (context, selected) {
+              return StreamBuilder(
+                stream: dataController.parts,
+                builder: (context, parts) {
+                  return StreamBuilder(
+                    stream: dataController.materials,
+                    builder: (context, materials) {
+                      if (!materials.hasData ||
+                          !selected.hasData ||
+                          !parts.hasData) {
+                        return const LoadingIndicator();
+                      }
+                      return Column(
+                        children: selected.data!.parts
+                            .map<_PartsCard>((e) => _PartsCard(
+                                  parts: parts.data![e]!,
+                                  materials: materials.data!,
+                                  screenWidth: screenWidth,
+                                  onInputChanged:
+                                      dataController.updateUserStock,
+                                  setFinished: dataController.setFinished,
+                                ))
+                            .toList(),
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PartsCard extends StatelessWidget {
+  final double screenWidth;
+  final ShipUpgradingParts parts;
+  final Map<String, ShipUpgradingMaterial> materials;
+  final Function(String, int) onInputChanged;
+  final Function(String) setFinished;
+
+  const _PartsCard(
+      {super.key,
+      required this.parts,
+      required this.screenWidth,
+      required this.materials,
+      required this.onInputChanged,
+      required this.setFinished});
+
+  int getDDay(int need, int stock, int reward) {
+    need = need - stock;
+    if (need <= 0) return 0;
+    return (need / reward).ceil();
+  }
 
   MaterialColor getColor(double percent) {
     if (percent < 0.25) {
@@ -158,56 +332,161 @@ class _PercentInHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double percent = 0.4983;
-    return Flex(
-      direction: Axis.horizontal,
-      children: [
-        Flexible(
-          fit: FlexFit.tight,
-          child: LinearPercentIndicator(
-            animation: true,
-            animationDuration: 500,
-            percent: percent,
-            barRadius: const Radius.circular(4.0),
-            progressColor: getColor(percent),
-            animateFromLastPercent: true,
-          ),
-        ),
-        const SizedBox(
-          width: 4,
-        ),
-        Text(
-          "${(percent * 100).toStringAsFixed(2)}%",
-        ),
-      ],
-    );
-  }
-}
+    double percent = 0;
+    if (!parts.finished) {
+      double totalNeed = 0;
+      double totalStock = 0;
+      for (String key in parts.materials.keys) {
+        int num = materials[key]!.obtain.reward > 0
+            ? materials[key]!.obtain.reward
+            : materials[key]!.obtain.trade;
 
-class _Body extends StatelessWidget {
-  final Stream<Map<String, ShipUpgradingMaterial>> dataStream;
-  const _Body({super.key, required this.dataStream});
+        totalNeed += parts.materials[key]!.need / num;
 
-  @override
-  Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: CustomScrollBehavior(),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: GlobalProperties.widthConstrains,
-            minWidth: 480,
-          ),
-          child: StreamBuilder(
-            stream: dataStream,
-            builder: (context, snapshot){
-              if(!snapshot.hasData){
-                return const LoadingIndicator();
-              }
-              return LoadingIndicator();
-            },
-          ),
+        if (materials[key]!.userStock > parts.materials[key]!.need) {
+          totalStock += parts.materials[key]!.need / num;
+        } else {
+          totalStock += materials[key]!.userStock / num;
+        }
+      }
+      percent = totalStock / totalNeed;
+    }
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 12.0),
+        child: Column(
+          children: [
+            ListTile(
+              leading: BdoItemImageWidget(
+                code: parts.code.toString(),
+                grade: parts.grade,
+                size: 46,
+              ),
+              title: Text(parts.nameKR),
+              trailing: parts.type != ShipParts.license
+                  ? OutlinedButton.icon(
+                      onPressed: () => setFinished(parts.code.toString()),
+                      clipBehavior: Clip.hardEdge,
+                      icon: Icon(Icons.check_rounded),
+                      label: Text('제작 완료'),
+                      style: OutlinedButton.styleFrom(
+                          //foregroundColor: Colors.grey.shade700,
+                          foregroundColor: parts.finished
+                              ? Colors.green.shade400
+                              : Colors.grey.shade700,
+                          side: BorderSide(
+                              color: parts.finished
+                                  ? Colors.green.shade400
+                                  : Colors.grey.shade700),
+                          animationDuration: const Duration(milliseconds: 650)),
+                    )
+                  : null,
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+              child: LinearPercentIndicator(
+                animation: true,
+                animationDuration: 500,
+                percent: percent,
+                barRadius: const Radius.circular(4.0),
+                progressColor: getColor(percent),
+                backgroundColor: Colors.grey.shade700.withOpacity(0.6),
+                animateFromLastPercent: true,
+                lineHeight: 1.8,
+              ),
+            ),
+            Table(
+              border: TableBorder(
+                  horizontalInside: BorderSide(
+                      color: Colors.grey.shade700.withOpacity(0.0), width: 0.6),
+                  verticalInside: BorderSide(
+                      color: Colors.grey.shade700.withOpacity(0.0),
+                      width: 0.6)),
+              columnWidths: <int, TableColumnWidth>{
+                0: FixedColumnWidth(58),
+                1: FixedColumnWidth(180),
+                2: FixedColumnWidth(450),
+                3: FixedColumnWidth(120),
+                4: FixedColumnWidth(80),
+                5: FixedColumnWidth(110),
+                6: FixedColumnWidth(80),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              defaultColumnWidth: FixedColumnWidth(80),
+              children: parts.materials.keys
+                  .map<TableRow>(
+                    (e) => TableRow(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: BdoItemImageWidget(
+                            code: materials[e]!.code.toString(),
+                            grade: 0,
+                            size: 44,
+                          ),
+                        ),
+                        Text(materials[e]!.nameKR.replaceAll('(', '\n('),
+                            textAlign: TextAlign.center),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(materials[e]!.obtain.nameWithNpc),
+                              Text(materials[e]!.obtain.detailWithReward),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: materials[e]!.controller,
+                            keyboardType:
+                                const TextInputType.numberWithOptions(),
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^(\d{0,3})')),
+                            ],
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide:
+                                    const BorderSide(color: Colors.blue),
+                              ),
+                              contentPadding: EdgeInsets.all(0),
+                            ),
+                            textAlign: TextAlign.center,
+                            onChanged: (String value) {
+                              int parsed = int.tryParse(value) ?? 0;
+                              onInputChanged(e, parsed);
+                            },
+                          ),
+                        ),
+                        Text(
+                          '${parts.materials[e]!.need.toString()}개',
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          parts.finished || materials[e]!.obtain.reward <= 0
+                              ? '-'
+                              : '${getDDay(parts.materials[e]!.need, materials[e]!.userStock, materials[e]!.obtain.reward)}일 / ${parts.materials[e]!.days}일',
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          parts.finished
+                              ? '-'
+                              : '${(materials[e]!.userStock / parts.materials[e]!.need * 100).toStringAsFixed(2)}%',
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
         ),
       ),
     );

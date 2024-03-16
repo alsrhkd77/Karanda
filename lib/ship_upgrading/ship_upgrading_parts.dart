@@ -7,6 +7,8 @@ class ShipUpgradingParts {
   late int grade;
   late Map<String, MaterialsNeeded> materials;
 
+  late bool finished;
+
   ShipUpgradingParts.fromData(Map data){
     code = data['code'];
     nameKR = data['name']['kr'];
@@ -24,6 +26,7 @@ class ShipUpgradingParts {
 class MaterialsNeeded {
   late int code;
   late int need;
+  late int days;
 
   MaterialsNeeded.fromData(Map data) {
     code = data['code'];
