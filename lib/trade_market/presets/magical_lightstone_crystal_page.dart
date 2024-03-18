@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
@@ -15,49 +16,42 @@ import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 
-class MelodyOfStarsPage extends StatefulWidget {
-  const MelodyOfStarsPage({super.key});
+class MagicalLightstoneCrystalPage extends StatefulWidget {
+  const MagicalLightstoneCrystalPage({super.key});
 
   @override
-  State<MelodyOfStarsPage> createState() => _MelodyOfStarsPageState();
+  State<MagicalLightstoneCrystalPage> createState() =>
+      _MagicalLightstoneCrystalPageState();
 }
 
-class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
-  Map melodyOfStars = {};
+class _MagicalLightstoneCrystalPageState
+    extends State<MagicalLightstoneCrystalPage> {
+  Map baseData = {};
   List<TradeMarketDataModel> priceData = [];
-  final List<int> transform = [1, 5, 25]; // 강화 단계별 별들의 선율 변환 갯수
-
-  @override
-  void initState() {
-    super.initState();
-    getBaseData();
-  }
 
   Future<void> getBaseData() async {
-    List data = jsonDecode(
-        await rootBundle.loadString('assets/data/melody_of_stars.json'));
-    Map result = {};
-    for (Map item in data) {
-      result[item["code"].toString()] = item;
-    }
+    Map data = jsonDecode(await rootBundle
+        .loadString('assets/data/magical_lightstone_crystal.json'));
     setState(() {
-      melodyOfStars = result;
+      baseData = data;
     });
     getPriceData();
   }
 
   Future<void> getPriceData() async {
     Map<String, List<String>> param = {};
-    for (String key in melodyOfStars.keys) {
-      param[key] = ["1", "2", "3"]; // 장, 광, 고
+    for (String code in baseData.keys) {
+      param[code] = ['0'];
     }
     List<TradeMarketDataModel> data =
         await TradeMarketProvider.getLatest(param);
     data.sort((a, b) {
-      if ((a.currentStock > 0 && b.currentStock > 0) || (a.currentStock == 0 && b.currentStock == 0)) {
-        double aPrice = a.price / transform[a.enhancementLevel - 1];
-        double bPrice = b.price / transform[b.enhancementLevel - 1];
-        return aPrice.compareTo(bPrice);
+      if ((a.currentStock > 0 && b.currentStock > 0) ||
+          (a.currentStock == 0 && b.currentStock == 0)) {
+        Map itemA = baseData[a.code];
+        Map itemB = baseData[b.code];
+        return (a.price / itemA["received"])
+            .compareTo(b.price / itemB["received"]);
       }
       return b.currentStock.compareTo(a.currentStock);
     });
@@ -77,7 +71,7 @@ class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: ListTile(
-                title: TitleText('별들의 선율 재료'),
+                title: TitleText('마력의 광명석 결정 재료'),
               ),
             ),
           ),
@@ -104,7 +98,10 @@ class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
-                        return _ItemTile(data: priceData[index]);
+                        return _ItemTile(
+                          data: priceData[index],
+                          received: baseData[priceData[index].code.toString()],
+                        );
                       },
                       childCount: priceData.length,
                     ),
@@ -121,22 +118,22 @@ class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
 
 class _ItemTile extends StatelessWidget {
   final TradeMarketDataModel data;
+  final int received;
 
-  const _ItemTile({super.key, required this.data});
+  const _ItemTile({super.key, required this.data, required this.received});
 
   @override
   Widget build(BuildContext context) {
     MarketItemModel? itemInfo =
         context.read<TradeMarketNotifier>().itemInfo[data.code.toString()];
     final format = NumberFormat('###,###,###,###');
-    final List<int> transform = [1, 5, 25]; // 강화 단계별 별들의 선율 변환 갯수
     String stockStatus = data.currentStock == 0 ? ' (품절)' : '';
     if (itemInfo == null) return Container();
     return Card(
       clipBehavior: Clip.hardEdge,
       margin: const EdgeInsets.all(6.0),
       child: InkWell(
-        onTap: (){
+        onTap: () {
           context.goWithGa(
             '/trade-market/detail?name=${itemInfo.name}',
             extra: itemInfo.code.toString(),
@@ -148,13 +145,13 @@ class _ItemTile extends StatelessWidget {
             leading: BdoItemImageWidget(
               code: data.code.toString(),
               size: 49,
-              grade: 2,
+              grade: itemInfo.grade,
               enhancementLevel:
                   itemInfo.enhancementLevelToString(data.enhancementLevel),
             ),
-            title: Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
-            subtitle: Text(
-                '선율 1개당 ${format.format((data.price / transform[data.enhancementLevel - 1]).round())}'),
+            title:
+                Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
+            subtitle: Text('결정 1개당 ${format.format((data.price / received).round())}'),
             trailing: Text(
               '${format.format(data.price)}$stockStatus',
               style: TextStyle(
