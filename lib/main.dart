@@ -28,6 +28,7 @@ import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/presets/cooking_box_page.dart';
+import 'package:karanda/trade_market/presets/magical_lightstone_crystal_page.dart';
 import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
@@ -219,6 +220,10 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: 'melody-of-stars',
               builder: (context, state) => const MelodyOfStarsPage(),
+            ),
+            GoRoute(
+              path: 'magical-lightstone-crystal',
+              builder: (context, state) => const MagicalLightstoneCrystalPage(),
             ),
           ],
         ),

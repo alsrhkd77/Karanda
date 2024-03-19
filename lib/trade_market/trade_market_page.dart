@@ -146,7 +146,7 @@ class _Presets extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: CustomScrollBehavior(),
-      child: SingleChildScrollView(
+      child: const SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
@@ -159,6 +159,11 @@ class _Presets extends StatelessWidget {
               route: '/trade-market/melody-of-stars',
               imagePath: 'assets/image/melody_of_stars.png',
               title: '별들의 선율',
+            ),
+            _PresetCard(
+              route: '/trade-market/magical-lightstone-crystal',
+              imagePath: 'assets/image/magical_lightstone_crystal.png',
+              title: '마력의 광명석 결정',
             ),
           ],
         ),

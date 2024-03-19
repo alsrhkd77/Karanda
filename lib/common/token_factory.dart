@@ -16,6 +16,7 @@ class TokenFactory {
       issuer: _issuer
     );
     String secret = const String.fromEnvironment('SECRET');
+    if(secret.isEmpty) return '';
     String token = jwt.sign(SecretKey(secret));
     return token;
   }
