@@ -2,6 +2,12 @@
 
 편의성 기능 모음
 
+## 실행
+### 개발 환경 args
+```
+ --web-port=2345 --dart-define=SECRET={SECRET_FROM_FIRESTORE}
+```
+
 ## 사용
 
 - Link: [https://github.com/HwanSangYeonHwa/Karanda](https://github.com/HwanSangYeonHwa/Karanda)
