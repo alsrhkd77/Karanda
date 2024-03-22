@@ -29,6 +29,13 @@ class _MagicalLightstoneCrystalPageState
   Map baseData = {};
   List<TradeMarketDataModel> priceData = [];
 
+
+  @override
+  void initState() {
+    super.initState();
+    getBaseData();
+  }
+
   Future<void> getBaseData() async {
     Map data = jsonDecode(await rootBundle
         .loadString('assets/data/magical_lightstone_crystal.json'));
@@ -48,8 +55,8 @@ class _MagicalLightstoneCrystalPageState
     data.sort((a, b) {
       if ((a.currentStock > 0 && b.currentStock > 0) ||
           (a.currentStock == 0 && b.currentStock == 0)) {
-        Map itemA = baseData[a.code];
-        Map itemB = baseData[b.code];
+        Map itemA = baseData[a.code.toString()];
+        Map itemB = baseData[b.code.toString()];
         return (a.price / itemA["received"])
             .compareTo(b.price / itemB["received"]);
       }
@@ -100,7 +107,7 @@ class _MagicalLightstoneCrystalPageState
                       (context, index) {
                         return _ItemTile(
                           data: priceData[index],
-                          received: baseData[priceData[index].code.toString()],
+                          received: baseData[priceData[index].code.toString()]['received'],
                         );
                       },
                       childCount: priceData.length,
