@@ -54,7 +54,8 @@ class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
     List<TradeMarketDataModel> data =
         await TradeMarketProvider.getLatest(param);
     data.sort((a, b) {
-      if ((a.currentStock > 0 && b.currentStock > 0) || (a.currentStock == 0 && b.currentStock == 0)) {
+      if ((a.currentStock > 0 && b.currentStock > 0) ||
+          (a.currentStock == 0 && b.currentStock == 0)) {
         double aPrice = a.price / transform[a.enhancementLevel - 1];
         double bPrice = b.price / transform[b.enhancementLevel - 1];
         return aPrice.compareTo(bPrice);
@@ -135,33 +136,30 @@ class _ItemTile extends StatelessWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       margin: const EdgeInsets.all(6.0),
-      child: InkWell(
-        onTap: (){
+      child: ListTile(
+        onTap: () {
           context.goWithGa(
             '/trade-market/detail?name=${itemInfo.name}',
             extra: itemInfo.code.toString(),
           );
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: ListTile(
-            leading: BdoItemImageWidget(
-              code: data.code.toString(),
-              size: 49,
-              grade: 2,
-              enhancementLevel:
-                  itemInfo.enhancementLevelToString(data.enhancementLevel),
-            ),
-            title: Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
-            subtitle: Text(
-                '선율 1개당 ${format.format((data.price / transform[data.enhancementLevel - 1]).round())}'),
-            trailing: Text(
-              '${format.format(data.price)}$stockStatus',
-              style: TextStyle(
-                fontSize: 12,
-                color: data.currentStock == 0 ? Colors.red : null,
-              ),
-            ),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 6.0, horizontal: 16.0),
+        leading: BdoItemImageWidget(
+          code: data.code.toString(),
+          size: 49,
+          grade: 2,
+          enhancementLevel:
+              itemInfo.enhancementLevelToString(data.enhancementLevel),
+        ),
+        title: Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
+        subtitle: Text(
+            '선율 1개당 ${format.format((data.price / transform[data.enhancementLevel - 1]).round())}'),
+        trailing: Text(
+          '${format.format(data.price)}$stockStatus',
+          style: TextStyle(
+            fontSize: 12,
+            color: data.currentStock == 0 ? Colors.red : null,
           ),
         ),
       ),

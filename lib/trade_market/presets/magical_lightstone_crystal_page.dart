@@ -29,7 +29,6 @@ class _MagicalLightstoneCrystalPageState
   Map baseData = {};
   List<TradeMarketDataModel> priceData = [];
 
-
   @override
   void initState() {
     super.initState();
@@ -107,7 +106,8 @@ class _MagicalLightstoneCrystalPageState
                       (context, index) {
                         return _ItemTile(
                           data: priceData[index],
-                          received: baseData[priceData[index].code.toString()]['received'],
+                          received: baseData[priceData[index].code.toString()]
+                              ['received'],
                         );
                       },
                       childCount: priceData.length,
@@ -139,33 +139,30 @@ class _ItemTile extends StatelessWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       margin: const EdgeInsets.all(6.0),
-      child: InkWell(
+      child: ListTile(
         onTap: () {
           context.goWithGa(
             '/trade-market/detail?name=${itemInfo.name}',
             extra: itemInfo.code.toString(),
           );
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: ListTile(
-            leading: BdoItemImageWidget(
-              code: data.code.toString(),
-              size: 49,
-              grade: itemInfo.grade,
-              enhancementLevel:
-                  itemInfo.enhancementLevelToString(data.enhancementLevel),
-            ),
-            title:
-                Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
-            subtitle: Text('결정 1개당 ${format.format((data.price / received).round())}'),
-            trailing: Text(
-              '${format.format(data.price)}$stockStatus',
-              style: TextStyle(
-                fontSize: 12,
-                color: data.currentStock == 0 ? Colors.red : null,
-              ),
-            ),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 6.0, horizontal: 16.0),
+        leading: BdoItemImageWidget(
+          code: data.code.toString(),
+          size: 49,
+          grade: itemInfo.grade,
+          enhancementLevel:
+              itemInfo.enhancementLevelToString(data.enhancementLevel),
+        ),
+        title: Text(itemInfo.nameWithEnhancementLevel(data.enhancementLevel)),
+        subtitle:
+            Text('결정 1개당 ${format.format((data.price / received).round())}'),
+        trailing: Text(
+          '${format.format(data.price)}$stockStatus',
+          style: TextStyle(
+            fontSize: 12,
+            color: data.currentStock == 0 ? Colors.red : null,
           ),
         ),
       ),

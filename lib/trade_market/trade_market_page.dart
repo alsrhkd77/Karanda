@@ -120,18 +120,18 @@ class _PresetCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
       clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: () {
-          context.goWithGa(route);
-        },
-        child: SizedBox(
-          width: 260,
-          height: 56,
-          child: Center(
-            child: ListTile(
-              leading: Image.asset(imagePath),
-              title: Text(title),
-            ),
+      child: SizedBox(
+        width: 260,
+        height: 56,
+        child: Center(
+          child: ListTile(
+            onTap: () {
+              context.goWithGa(route);
+            },
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+            leading: Image.asset(imagePath),
+            title: Text(title),
           ),
         ),
       ),

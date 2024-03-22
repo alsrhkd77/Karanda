@@ -410,29 +410,26 @@ class _ItemTile extends StatelessWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       margin: const EdgeInsets.all(6.0),
-      child: InkWell(
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 6.0, horizontal: 16.0),
         onTap: () {
           context.goWithGa(
             '/trade-market/detail?name=${foodData["name"]}',
             extra: priceData.code.toString(),
           );
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: ListTile(
-            leading: BdoItemImageWidget(
-              code: priceData.code.toString(),
-              size: 49,
-              grade: foodData["grade"],
-            ),
-            title: Text('${foodData["name"]} × ${foodData["needed"]}'),
-            subtitle: Text(
-                '${format.format(materialCosts)} (요리당 ${format.format(priceData.price)})'),
-            trailing: Text(
-              '${format.format(margin)}${_stockStatus()}',
-              style: TextStyle(fontSize: 12, color: color),
-            ),
-          ),
+        leading: BdoItemImageWidget(
+          code: priceData.code.toString(),
+          size: 49,
+          grade: foodData["grade"],
+        ),
+        title: Text('${foodData["name"]} × ${foodData["needed"]}'),
+        subtitle: Text(
+            '${format.format(materialCosts)} (요리당 ${format.format(priceData.price)})'),
+        trailing: Text(
+          '${format.format(margin)}${_stockStatus()}',
+          style: TextStyle(fontSize: 12, color: color),
         ),
       ),
     );

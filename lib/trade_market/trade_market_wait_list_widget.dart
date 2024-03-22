@@ -102,60 +102,55 @@ class _WaitItemTile extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(8.0),
       clipBehavior: Clip.antiAlias,
-      child: InkWell(
+      child: ListTile(
         onTap: () {
           context.goWithGa(
             '/trade-market/detail?name=${itemInfo.name}',
             extra: itemInfo.code,
           );
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
-          child: ListTile(
-            leading: BdoItemImageWidget(
-              code: item.itemCode.toString(),
-              enhancementLevel:
-                  itemInfo.enhancementLevelToString(item.enhancementLevel),
-              grade: itemInfo.grade,
-              size: 48,
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+        leading: BdoItemImageWidget(
+          code: item.itemCode.toString(),
+          enhancementLevel:
+              itemInfo.enhancementLevelToString(item.enhancementLevel),
+          grade: itemInfo.grade,
+          size: 48,
+        ),
+        title: Text(itemInfo.nameWithEnhancementLevel(item.enhancementLevel)),
+        subtitle: Row(
+          children: [
+            const Icon(
+              FontAwesomeIcons.coins,
+              size: 12,
             ),
-            title:
-                Text(itemInfo.nameWithEnhancementLevel(item.enhancementLevel)),
-            subtitle: Row(
-              children: [
-                const Icon(
-                  FontAwesomeIcons.coins,
-                  size: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: Text(format.format(item.price)),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Text(format.format(item.price)),
             ),
-            trailing: Consumer<RealTimeNotifier>(
-              builder: (context, notifier, _) {
-                int seconds =
-                    item.targetTime.difference(notifier.now).inSeconds;
-                int minutes = (seconds / 60).floor();
-                String text = '';
-                if (seconds <= 0) {
-                  text = '등록됨';
-                } else if (minutes > 0) {
-                  text = '$minutes분 ${seconds % 60}초';
-                } else {
-                  text = '${seconds % 60}초';
-                }
-                return Text(
-                  text,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: seconds <= 0 ? Colors.green.shade400 : null,
-                  ),
-                );
-              },
-            ),
-          ),
+          ],
+        ),
+        trailing: Consumer<RealTimeNotifier>(
+          builder: (context, notifier, _) {
+            int seconds = item.targetTime.difference(notifier.now).inSeconds;
+            int minutes = (seconds / 60).floor();
+            String text = '';
+            if (seconds <= 0) {
+              text = '등록됨';
+            } else if (minutes > 0) {
+              text = '$minutes분 ${seconds % 60}초';
+            } else {
+              text = '${seconds % 60}초';
+            }
+            return Text(
+              text,
+              style: TextStyle(
+                fontSize: 12,
+                color: seconds <= 0 ? Colors.green.shade400 : null,
+              ),
+            );
+          },
         ),
       ),
     );
