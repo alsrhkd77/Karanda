@@ -44,7 +44,7 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
   @override
   void activate() {
     super.activate();
-    _provider.disconnect();
+    _provider.connect();
   }
 
   @override
@@ -52,15 +52,21 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
     _provider.connect();
   }
 
+
   @override
-  void deactivate() {
-    super.deactivate();
+  void onWindowClose() {
     _provider.disconnect();
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     _provider.disconnect();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _provider.dispose();
     windowManager.removeListener(this);
     super.dispose();
   }

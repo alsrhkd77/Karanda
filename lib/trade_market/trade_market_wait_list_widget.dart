@@ -30,11 +30,6 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
     windowManager.addListener(this);
   }
 
-  void show(int a) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(a.toString())));
-  }
-
   @override
   void activate() {
     super.activate();
@@ -54,7 +49,7 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
 
   @override
   void onWindowClose() {
-    dataStream.disconnect();
+    dataStream.dispose();
   }
 
   @override

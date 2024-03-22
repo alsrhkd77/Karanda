@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/token_factory.dart';
 import 'package:karanda/trade_market/trade_market_wait_item.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -12,7 +12,6 @@ class TradeMarketWaitListStream {
   WebSocketChannel? _channel;
   Timer? _timer;
   DateTime? lastUpdate;
-  bool connected = false;
 
   TradeMarketWaitListStream() {
     connect();
@@ -22,47 +21,44 @@ class TradeMarketWaitListStream {
       _dataStreamController.stream;
 
   Future<void> connect() async {
-    const storage = FlutterSecureStorage();
-    String token = await storage.read(key: 'karanda-token') ?? '';
-    if (!connected) {
-      _channel = WebSocketChannel.connect(
-          Uri.parse('${Api.marketWaitList}?token=$token'));
-      await _channel?.ready;
-      _channel?.stream.listen(
-        (message) {
-          List<TradeMarketWaitItem> result = [];
-          if (message != null && message != '') {
-            List decoded = jsonDecode(message);
-            for (var data in decoded) {
-              TradeMarketWaitItem item = TradeMarketWaitItem.fromData(data);
-              result.add(item);
-            }
-            _dataStreamController.sink.add(result);
-            lastUpdate = DateTime.now();
+    String token = TokenFactory.serviceToken();
+    _channel = WebSocketChannel.connect(
+        Uri.parse('${Api.marketWaitList}?token=$token'));
+    await _channel?.ready;
+    _channel?.stream.listen(
+          (message) {
+        List<TradeMarketWaitItem> result = [];
+        if (message != null && message != '') {
+          List decoded = jsonDecode(message);
+          for (var data in decoded) {
+            TradeMarketWaitItem item = TradeMarketWaitItem.fromData(data);
+            result.add(item);
           }
-        },
-        onDone: () {
-          if (_channel?.closeCode == status.noStatusReceived) {
-            connected = false;
-          }
-          if (_channel?.closeCode == status.abnormalClosure) {
-            _timer?.cancel();
-            _timer = null;
-            connected = false;
-            connect();
-          }
-        },
-        onError: (e) {
-          print(
-              'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
-          print(e);
-        },
-      );
-      _timer = _timer ??
-          Timer.periodic(
-              const Duration(seconds: 30), (timer) => _requestUpdate());
-      connected = true;
-    }
+          _dataStreamController.sink.add(result);
+          lastUpdate = DateTime.now();
+        }
+      },
+      onDone: () {
+        if (_channel?.closeCode == status.abnormalClosure) {
+          _timer?.cancel();
+          _timer = null;
+          connect();
+        }
+        if (_channel?.closeCode == status.noStatusReceived) {
+          _timer?.cancel();
+          _timer = null;
+          connect();
+        }
+      },
+      onError: (e) {
+        print(
+            'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
+        print(e);
+      },
+    );
+    _timer = _timer ??
+        Timer.periodic(
+            const Duration(seconds: 30), (timer) => _requestUpdate());
   }
 
   void _requestUpdate() {
@@ -77,16 +73,10 @@ class TradeMarketWaitListStream {
     _timer?.cancel();
     _timer = null;
     _channel?.sink.close(status.normalClosure);
-    _channel = null;
-    connected = false;
   }
 
   void dispose() {
-    _timer?.cancel();
-    _timer = null;
-    _channel?.sink.close(status.normalClosure);
-    _channel = null;
+    disconnect();
     _dataStreamController.close();
-    connected = false;
   }
 }

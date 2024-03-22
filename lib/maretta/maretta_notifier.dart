@@ -17,9 +17,6 @@ class MarettaNotifier with ChangeNotifier {
   Map<AllChannel, List<MarettaModel>> reportList = HashMap();
   Map<String, BlacklistModel> blacklist = {};
   WebSocketChannel? _channel;
-  Timer? _timer;
-  DateTime? _lastUpdate;
-  bool connected = false;
 
   MarettaNotifier() {
     initList();
@@ -41,57 +38,36 @@ class MarettaNotifier with ChangeNotifier {
   }
 
   Future<void> connect() async {
-    if (!connected) {
-      getReports();
-      _channel = WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports));
-      await _channel?.ready;
-      _channel?.stream.listen(
-        (message) {
-          if (message != null && message != '') {
-            for (Map data in jsonDecode(message)) {
-              MarettaReportModel report = MarettaReportModel.fromData(data);
-              _addReport(report);
-            }
-            _lastUpdate = DateTime.now();
-            notifyListeners();
+    _channel = WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports));
+    await _channel?.ready;
+    _channel?.stream.listen(
+          (message) {
+        if (message != null && message != '') {
+          for (Map data in jsonDecode(message)) {
+            MarettaReportModel report = MarettaReportModel.fromData(data);
+            _addReport(report);
           }
-        },
-        onDone: () {
-          if (_channel?.closeCode == status.noStatusReceived) {
-            connected = false;
-          }
-          if (_channel?.closeCode == status.abnormalClosure) {
-            _timer?.cancel();
-            _timer = null;
-            connected = false;
-            connect();
-          }
-        },
-        onError: (e) {
-          print(
-              'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
-          print(e);
-        },
-      );
-      //_timer ??= Timer.periodic(const Duration(minutes: 1), (timer) => requestUpdate());
-      connected = true;
-    }
-  }
-
-  void requestUpdate() {
-    if (_lastUpdate != null &&
-        _lastUpdate!
-            .isBefore(DateTime.now().subtract(const Duration(minutes: 10)))) {
-      _channel?.sink.add('update');
-    }
+          notifyListeners();
+        }
+      },
+      onDone: () {
+        if (_channel?.closeCode == status.noStatusReceived) {
+          connect();
+        }
+        if (_channel?.closeCode == status.abnormalClosure) {
+          connect();
+        }
+      },
+      onError: (e) {
+        print(
+            'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
+        print(e);
+      },
+    );
   }
 
   void disconnect() {
     _channel?.sink.close(status.normalClosure);
-    _channel = null;
-    _timer?.cancel();
-    _timer = null;
-    connected = false;
   }
 
   void initList() {
