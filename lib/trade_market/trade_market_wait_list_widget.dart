@@ -44,13 +44,15 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
 
   @override
   void onWindowFocus() {
-    dataStream.connect();
+    //dataStream.connect();
   }
 
   @override
   void onWindowClose() {
     dataStream.dispose();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,8 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
               return Center(
-                  child: _WaitItemTile(item: snapshot.requireData[index]));
+                  child: _WaitItemTile(item: snapshot.requireData[index]),
+              );
             },
             childCount: snapshot.requireData.length,
           ),

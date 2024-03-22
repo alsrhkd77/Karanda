@@ -417,7 +417,7 @@ class _FABState extends State<_FAB> {
           ),
           child: extended
               ? const Padding(
-                  padding: EdgeInsets.only(left: 8.6, right: 0.8),
+                  padding: EdgeInsets.only(left: 8.6, right: 0.8, bottom: 0.6),
                   child: Text(
                     'Discord',
                     style: TextStyle(

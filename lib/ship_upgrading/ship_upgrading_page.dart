@@ -74,7 +74,7 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
               dataController: dataController,
               screenWidth: MediaQuery.of(context).size.width,
             ),
-            SizedBox(
+            const SizedBox(
               height: 24.0,
             )
           ],
@@ -143,7 +143,7 @@ class _ShipTypeSelector extends StatelessWidget {
       stream: dataController.selectedShipData,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return SizedBox(
+          return const SizedBox(
             height: 15.0,
           );
         }
@@ -211,7 +211,7 @@ class _PercentInHeader extends StatelessWidget {
       stream: stream,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return SizedBox(
+          return const SizedBox(
             height: 15.0,
           );
         }
@@ -352,7 +352,7 @@ class _PartsCard extends StatelessWidget {
       percent = totalStock / totalNeed;
     }
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+      margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 12.0),
         child: Column(
@@ -368,8 +368,8 @@ class _PartsCard extends StatelessWidget {
                   ? OutlinedButton.icon(
                       onPressed: () => setFinished(parts.code.toString()),
                       clipBehavior: Clip.hardEdge,
-                      icon: Icon(Icons.check_rounded),
-                      label: Text('제작 완료'),
+                      icon: const Icon(Icons.check_rounded),
+                      label: const Text('제작 완료'),
                       style: OutlinedButton.styleFrom(
                           //foregroundColor: Colors.grey.shade700,
                           foregroundColor: parts.finished
@@ -385,7 +385,7 @@ class _PartsCard extends StatelessWidget {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
               child: LinearPercentIndicator(
                 animation: true,
                 animationDuration: 500,
@@ -404,7 +404,7 @@ class _PartsCard extends StatelessWidget {
                   verticalInside: BorderSide(
                       color: Colors.grey.shade700.withOpacity(0.0),
                       width: 0.6)),
-              columnWidths: <int, TableColumnWidth>{
+              columnWidths: const <int, TableColumnWidth>{
                 0: FixedColumnWidth(58),
                 1: FixedColumnWidth(180),
                 2: FixedColumnWidth(450),
@@ -414,75 +414,16 @@ class _PartsCard extends StatelessWidget {
                 6: FixedColumnWidth(80),
               },
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              defaultColumnWidth: FixedColumnWidth(80),
+              defaultColumnWidth: const FixedColumnWidth(80),
               children: parts.materials.keys
                   .map<TableRow>(
-                    (e) => TableRow(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: BdoItemImageWidget(
-                            code: materials[e]!.code.toString(),
-                            grade: 0,
-                            size: 44,
-                          ),
-                        ),
-                        Text(materials[e]!.nameKR.replaceAll('(', '\n('),
-                            textAlign: TextAlign.center),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(materials[e]!.obtain.nameWithNpc),
-                              Text(materials[e]!.obtain.detailWithReward),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: materials[e]!.controller,
-                            keyboardType:
-                                const TextInputType.numberWithOptions(),
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'^(\d{0,3})')),
-                            ],
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide:
-                                    const BorderSide(color: Colors.blue),
-                              ),
-                              contentPadding: EdgeInsets.all(0),
-                            ),
-                            textAlign: TextAlign.center,
-                            onChanged: (String value) {
-                              int parsed = int.tryParse(value) ?? 0;
-                              onInputChanged(e, parsed);
-                            },
-                          ),
-                        ),
-                        Text(
-                          '${parts.materials[e]!.need.toString()}개',
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          parts.finished || materials[e]!.obtain.reward <= 0
-                              ? '-'
-                              : '${getDDay(parts.materials[e]!.need, materials[e]!.userStock, materials[e]!.obtain.reward)}일 / ${parts.materials[e]!.days}일',
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          parts.finished
-                              ? '-'
-                              : '${(materials[e]!.userStock / parts.materials[e]!.need * 100).toStringAsFixed(2)}%',
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                    (e) => _MaterialItem(
+                      material: materials[e]!,
+                      need: parts.materials[e]!.need,
+                      finished: parts.finished,
+                      onInputChanged: onInputChanged,
+                      totalDays: parts.materials[e]!.days,
+                    ).toTableRow(),
                   )
                   .toList(),
             ),
@@ -490,5 +431,92 @@ class _PartsCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _MaterialItem {
+  final ShipUpgradingMaterial material;
+  final int need;
+  final int totalDays;
+  final bool finished;
+  final Function(String, int) onInputChanged;
+
+  _MaterialItem(
+      {required this.material,
+      required this.need,
+      required this.finished,
+      required this.onInputChanged,
+      required this.totalDays});
+
+  int getDDay(int need, int stock, int reward) {
+    need = need - stock;
+    if (need <= 0) return 0;
+    return (need / reward).ceil();
+  }
+
+  TableRow toTableRow() {
+    return TableRow(children: [
+      Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: BdoItemImageWidget(
+          code: material.code.toString(),
+          grade: 0,
+          size: 44,
+        ),
+      ),
+      Text(material.nameKR.replaceAll('(', '\n('), textAlign: TextAlign.center),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(material.obtain.nameWithNpc),
+            Text(
+              material.obtain.detailWithReward,
+              style: const TextStyle(fontSize: 12.0),
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextFormField(
+          controller: material.controller,
+          keyboardType: const TextInputType.numberWithOptions(),
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
+          ],
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(color: Colors.blue),
+            ),
+            contentPadding: const EdgeInsets.all(0),
+          ),
+          textAlign: TextAlign.center,
+          onChanged: (String value) {
+            int parsed = int.tryParse(value) ?? 0;
+            onInputChanged(material.code.toString(), parsed);
+          },
+        ),
+      ),
+      Text(
+        '${need.toString()}개',
+        textAlign: TextAlign.center,
+      ),
+      Text(
+        finished || material.obtain.reward <= 0
+            ? '-'
+            : '${getDDay(need, material.userStock, material.obtain.reward)}일 / $totalDays일',
+        textAlign: TextAlign.center,
+      ),
+      Text(
+        finished
+            ? '-'
+            : '${(material.userStock / need * 100).toStringAsFixed(2)}%',
+        textAlign: TextAlign.center,
+      ),
+    ]);
   }
 }
