@@ -67,6 +67,17 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
             child: LoadingIndicator(),
           );
         }
+        if(snapshot.requireData.isEmpty){
+          return const SliverToBoxAdapter(
+            child: Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text("등록 대기중인 상품이 없습니다"),
+              ),
+            ),
+          );
+        }
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
