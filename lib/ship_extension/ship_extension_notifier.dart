@@ -117,7 +117,7 @@ class ShipExtensionNotifier with ChangeNotifier {
     items.firstWhere((element) => element.code == code).user = count;
     notifyListeners();
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setInt('ship_extension_materials_$code', count);
+    sharedPreferences.setInt('ship_upgrading_material_stock_$code', count);
   }
 
   Future<void> getShipData() async {
@@ -145,12 +145,12 @@ class ShipExtensionNotifier with ChangeNotifier {
     for (String i in shipExtensionItem.keys) {
       ShipExtensionItemModel item =
       ShipExtensionItemModel.fromJson(i, shipExtensionItem[i]!);
-      int? userOld = sharedPreferences.getInt('ship_extension_user_${item.name}');
+      int? userOld = sharedPreferences.getInt('ship_extension_materials_${item.name}');
       if(userOld != null){
-        sharedPreferences.setInt('ship_extension_materials_${item.code}', userOld);
-        sharedPreferences.remove('ship_extension_user_${item.name}');
+        sharedPreferences.setInt('ship_upgrading_material_stock_${item.code}', userOld);
+        sharedPreferences.remove('ship_extension_materials_${item.name}');
       }
-      item.user = sharedPreferences.getInt('ship_extension_materials_${item.code}') ?? 0;
+      item.user = sharedPreferences.getInt('ship_upgrading_material_stock_${item.code}') ?? 0;
       itemData.add(item);
     }
 
