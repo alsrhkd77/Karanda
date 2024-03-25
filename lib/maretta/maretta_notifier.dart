@@ -10,6 +10,7 @@ import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:karanda/maretta/maretta_model.dart';
 import 'package:karanda/maretta/maretta_report_model.dart';
+import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -24,6 +25,7 @@ class MarettaNotifier with ChangeNotifier {
     //getBlacklist();
   }
 
+  /*
   Future<void> getReports() async {
     final response = await http
         .get(Api.getMarettaStatusReport)
@@ -36,12 +38,16 @@ class MarettaNotifier with ChangeNotifier {
     }
     notifyListeners();
   }
+   */
 
   Future<void> connect() async {
-    _channel = WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports));
+    _channel = kIsWeb
+        ? WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports))
+        : IOWebSocketChannel.connect(Uri.parse(Api.marettaStatusReports),
+            pingInterval: const Duration(seconds: 30));
     await _channel?.ready;
     _channel?.stream.listen(
-          (message) {
+      (message) {
         if (message != null && message != '') {
           for (Map data in jsonDecode(message)) {
             MarettaReportModel report = MarettaReportModel.fromData(data);
@@ -51,10 +57,7 @@ class MarettaNotifier with ChangeNotifier {
         }
       },
       onDone: () {
-        if (_channel?.closeCode == status.noStatusReceived) {
-          connect();
-        }
-        if (_channel?.closeCode == status.abnormalClosure) {
+        if (_channel?.closeCode != status.normalClosure) {
           connect();
         }
       },
@@ -63,6 +66,7 @@ class MarettaNotifier with ChangeNotifier {
             'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
         print(e);
       },
+      cancelOnError: true,
     );
   }
 
