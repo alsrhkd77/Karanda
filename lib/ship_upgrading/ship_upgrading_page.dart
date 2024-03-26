@@ -8,6 +8,7 @@ import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_data_controller.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_material.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_parts.dart';
+import 'package:karanda/ship_upgrading/ship_upgrading_settings_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_ship.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -55,13 +56,26 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: ListTile(
-                leading: Icon(FontAwesomeIcons.ship),
-                title: TitleText(
+                leading: const Icon(FontAwesomeIcons.ship),
+                title: const TitleText(
                   '선박 증축',
                   bold: true,
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ShipUpgradingSettingsPage(
+                          dataController: dataController,
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.construction),
+                  tooltip: "설정",
                 ),
               ),
             ),
@@ -75,10 +89,18 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
               screenWidth: MediaQuery.of(context).size.width,
             ),
             const SizedBox(
-              height: 24.0,
+              height: 36.0,
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){
+          dataController.runDailyQuest();
+        },
+        icon: Icon(Icons.add_task),
+        label: Text("일일퀘스트"),
+        focusNode: FocusNode(skipTraversal: true),
       ),
     );
   }
@@ -259,30 +281,40 @@ class _Body extends StatelessWidget {
         child: SizedBox(
           width: GlobalProperties.widthConstrains - 48,
           child: StreamBuilder(
-            stream: dataController.selectedShipData,
-            builder: (context, selected) {
+            stream: dataController.setting,
+            builder: (context, setting) {
               return StreamBuilder(
-                stream: dataController.parts,
-                builder: (context, parts) {
+                stream: dataController.selectedShipData,
+                builder: (context, selected) {
                   return StreamBuilder(
-                    stream: dataController.materials,
-                    builder: (context, materials) {
-                      if (!materials.hasData ||
-                          !selected.hasData ||
-                          !parts.hasData) {
-                        return const LoadingIndicator();
-                      }
-                      return Column(
-                        children: selected.data!.parts
-                            .map<_PartsCard>((e) => _PartsCard(
-                                  parts: parts.data![e]!,
-                                  materials: materials.data!,
-                                  screenWidth: screenWidth,
-                                  onInputChanged:
-                                      dataController.updateUserStock,
-                                  setFinished: dataController.setFinished,
-                                ))
-                            .toList(),
+                    stream: dataController.parts,
+                    builder: (context, parts) {
+                      return StreamBuilder(
+                        stream: dataController.materials,
+                        builder: (context, materials) {
+                          if (!materials.hasData ||
+                              !selected.hasData ||
+                              !parts.hasData ||
+                              !setting.hasData) {
+                            return const LoadingIndicator();
+                          }
+                          return Column(
+                            children: selected.requireData.parts
+                                .map<_PartsCard>((e) => _PartsCard(
+                                      parts: parts.requireData[e]!,
+                                      materials: materials.requireData,
+                                      screenWidth: screenWidth,
+                                      onInputChanged:
+                                          dataController.updateUserStock,
+                                      setFinished: dataController.setFinished,
+                                      closeFinished: setting
+                                          .requireData.closeFinishedParts,
+                                      showHeaders:
+                                          setting.requireData.showTableHeader,
+                                    ))
+                                .toList(),
+                          );
+                        },
                       );
                     },
                   );
@@ -300,6 +332,8 @@ class _PartsCard extends StatelessWidget {
   final double screenWidth;
   final ShipUpgradingParts parts;
   final Map<String, ShipUpgradingMaterial> materials;
+  final bool closeFinished;
+  final bool showHeaders;
   final Function(String, int) onInputChanged;
   final Function(String) setFinished;
 
@@ -309,7 +343,9 @@ class _PartsCard extends StatelessWidget {
       required this.screenWidth,
       required this.materials,
       required this.onInputChanged,
-      required this.setFinished});
+      required this.setFinished,
+      required this.closeFinished,
+      required this.showHeaders});
 
   int getDDay(int need, int stock, int reward) {
     need = need - stock;
@@ -352,7 +388,7 @@ class _PartsCard extends StatelessWidget {
       percent = totalStock / totalNeed;
     }
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+      margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 12.0),
         child: Column(
@@ -378,55 +414,61 @@ class _PartsCard extends StatelessWidget {
                           side: BorderSide(
                               color: parts.finished
                                   ? Colors.green.shade400
-                                  : Colors.grey.shade700),
+                                  : Colors.grey.shade700,
+                              width: 2.0),
                           animationDuration: const Duration(milliseconds: 650)),
+                      focusNode: FocusNode(skipTraversal: true),
                     )
                   : null,
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
-              child: LinearPercentIndicator(
-                animation: true,
-                animationDuration: 500,
-                percent: percent,
-                barRadius: const Radius.circular(4.0),
-                progressColor: getColor(percent),
-                backgroundColor: Colors.grey.shade700.withOpacity(0.6),
-                animateFromLastPercent: true,
-                lineHeight: 1.8,
-              ),
-            ),
-            Table(
-              border: TableBorder(
-                  horizontalInside: BorderSide(
-                      color: Colors.grey.shade700.withOpacity(0.0), width: 0.6),
-                  verticalInside: BorderSide(
-                      color: Colors.grey.shade700.withOpacity(0.0),
-                      width: 0.6)),
-              columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(58),
-                1: FixedColumnWidth(180),
-                2: FixedColumnWidth(450),
-                3: FixedColumnWidth(120),
-                4: FixedColumnWidth(80),
-                5: FixedColumnWidth(110),
-                6: FixedColumnWidth(80),
-              },
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              defaultColumnWidth: const FixedColumnWidth(80),
-              children: parts.materials.keys
-                  .map<TableRow>(
-                    (e) => _MaterialItem(
-                      material: materials[e]!,
-                      need: parts.materials[e]!.need,
-                      finished: parts.finished,
-                      onInputChanged: onInputChanged,
-                      totalDays: parts.materials[e]!.days,
-                    ).toTableRow(),
+            !parts.finished || !closeFinished
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 12.0),
+                    child: LinearPercentIndicator(
+                      animation: true,
+                      animationDuration: 500,
+                      percent: percent,
+                      barRadius: const Radius.circular(4.0),
+                      progressColor: getColor(percent),
+                      backgroundColor: Colors.grey.shade700.withOpacity(0.6),
+                      animateFromLastPercent: true,
+                      lineHeight: 1.8,
+                    ),
                   )
-                  .toList(),
-            ),
+                : Container(),
+            !parts.finished || !closeFinished
+                ? Table(
+                    border: TableBorder(
+                        horizontalInside: BorderSide(
+                            color: Colors.grey.shade700.withOpacity(0.0),
+                            width: 0.6),
+                        verticalInside: BorderSide(
+                            color: Colors.grey.shade700.withOpacity(0.0),
+                            width: 0.6)),
+                    columnWidths: const <int, TableColumnWidth>{
+                      0: FixedColumnWidth(58),
+                      1: FixedColumnWidth(190),
+                      2: FixedColumnWidth(450),
+                      3: FixedColumnWidth(100),
+                      4: FixedColumnWidth(80),
+                      5: FixedColumnWidth(110),
+                      6: FixedColumnWidth(80),
+                    },
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    defaultColumnWidth: const FixedColumnWidth(80),
+                    children: (showHeaders ? [_MaterialItem.header()] : [])
+                      ..addAll(parts.materials.keys.map<TableRow>(
+                        (e) => _MaterialItem(
+                          material: materials[e]!,
+                          need: parts.materials[e]!.need,
+                          finished: parts.finished,
+                          onInputChanged: onInputChanged,
+                          totalDays: parts.materials[e]!.days,
+                        ).toTableRow(),
+                      )),
+                  )
+                : Container(),
           ],
         ),
       ),
@@ -452,6 +494,19 @@ class _MaterialItem {
     need = need - stock;
     if (need <= 0) return 0;
     return (need / reward).ceil();
+  }
+
+  MaterialColor getColor(double percent) {
+    if (percent < 0.25) {
+      return Colors.red;
+    } else if (percent < 0.5) {
+      return Colors.orange;
+    } else if (percent < 0.75) {
+      return Colors.yellow;
+    } else if (percent < 1) {
+      return Colors.green;
+    }
+    return Colors.blue;
   }
 
   TableRow toTableRow() {
@@ -492,7 +547,7 @@ class _MaterialItem {
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(color: Colors.blue),
             ),
-            contentPadding: const EdgeInsets.all(0),
+            contentPadding: EdgeInsets.zero,
           ),
           textAlign: TextAlign.center,
           onChanged: (String value) {
@@ -516,6 +571,50 @@ class _MaterialItem {
             ? '-'
             : '${(material.userStock / need * 100).toStringAsFixed(2)}%',
         textAlign: TextAlign.center,
+        style: TextStyle(
+          color: finished ? null : getColor(material.userStock / need),
+        ),
+      ),
+    ]);
+  }
+
+  static TableRow header() {
+    TextStyle style = const TextStyle(
+      fontWeight: FontWeight.bold,
+    );
+    return TableRow(children: [
+      const SizedBox(
+        height: 26.0,
+      ),
+      Text(
+        "아이템",
+        textAlign: TextAlign.center,
+        style: style,
+      ),
+      Text(
+        "주요 획득처",
+        textAlign: TextAlign.center,
+        style: style,
+      ),
+      Text(
+        "보유",
+        textAlign: TextAlign.center,
+        style: style,
+      ),
+      Text(
+        "필요",
+        textAlign: TextAlign.center,
+        style: style,
+      ),
+      Text(
+        "남은 일수",
+        textAlign: TextAlign.center,
+        style: style,
+      ),
+      Text(
+        "달성률",
+        textAlign: TextAlign.center,
+        style: style,
       ),
     ]);
   }

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_material.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_parts.dart';
+import 'package:karanda/ship_upgrading/ship_upgrading_setting.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_ship.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +16,7 @@ class ShipUpgradingDataController {
   final _selectedShipDataStreamController =
       StreamController<ShipUpgradingShip>.broadcast();
   final _totalPercentStreamController = StreamController<double>();
+  final _settingStreamController = StreamController<ShipUpgradingSetting>.broadcast();
 
   Stream<Map<String, ShipUpgradingMaterial>> get materials =>
       _materialDataStreamController.stream;
@@ -27,14 +29,26 @@ class ShipUpgradingDataController {
 
   Stream<double> get totalPercent => _totalPercentStreamController.stream;
 
+  Stream<ShipUpgradingSetting> get setting => _settingStreamController.stream;
+
   Map<String, ShipUpgradingMaterial> _materials = {};
   Map<String, ShipUpgradingShip> _ship = {};
   Map<String, ShipUpgradingParts> _parts = {};
+  final ShipUpgradingSetting _setting = ShipUpgradingSetting();
 
   Map<String, ShipUpgradingShip> get ship => _ship;
 
   ShipUpgradingDataController(){
     materials.listen((event) => updateTotalPercent(event.values.toList()));
+  }
+
+  Future<void> runDailyQuest() async {
+    for(String key in _setting.dailyQuest.keys){
+      int stock = _materials[key]?.userStock ?? 0;
+      stock += _setting.dailyQuest[key]!;
+      if(stock > 999) stock = 999;
+      await updateUserStock(key, stock);
+    }
   }
 
   void updateTotalPercent(List<ShipUpgradingMaterial> dataList){
@@ -62,6 +76,7 @@ class ShipUpgradingDataController {
   Future<void> updateUserStock(String code, int value) async {
     if (_materials.containsKey(code)) {
       _materials[code]!.userStock = value;
+      _materials[code]!.controller.text = value > 0 ? value.toString() : '';
       _materialDataStreamController.sink.add(_materials);
       final sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.setInt('ship_upgrading_material_stock_$code', value);
@@ -87,6 +102,26 @@ class ShipUpgradingDataController {
       sharedPreferences.setBool(
           'ship_upgrading_finished_parts_$key', _parts[key]!.finished);
     }
+  }
+
+  void setCardCloseSetting(bool value){
+    _setting.closeFinishedParts = value;
+    _settingStreamController.sink.add(_setting);
+  }
+
+  void setShowTableHeaders(bool value){
+    _setting.showTableHeader = value;
+    _settingStreamController.sink.add(_setting);
+  }
+
+  void setDailyQuest(String code, int value){
+    _setting.updateDailyQuest(code, value);
+    _settingStreamController.sink.add(_setting);
+  }
+
+  void addListener(){
+    _settingStreamController.sink.add(_setting);
+    _materialDataStreamController.sink.add(_materials);
   }
 
   void _initMaterialData(String selectedShip) {
@@ -126,6 +161,9 @@ class ShipUpgradingDataController {
       _selectedShipDataStreamController.sink.add(_ship[selected]!);
 
       _initMaterialData(selected);
+
+      await _setting.load();
+      _settingStreamController.sink.add(_setting);
 
       result = true;
     } catch (e) {
@@ -182,5 +220,6 @@ class ShipUpgradingDataController {
     _materialDataStreamController.close();
     _partsDataStreamController.close();
     _selectedShipDataStreamController.close();
+    _settingStreamController.close();
   }
 }

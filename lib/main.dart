@@ -274,7 +274,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
-            title: 'Karanda|카란다',
+            title: 'Karanda - 카란다',
             theme: ThemeData(
               useMaterial3: true,
               fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),

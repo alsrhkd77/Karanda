@@ -345,6 +345,7 @@ class _SearchBarState extends State<_SearchBar> {
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(color: Colors.blue),
                 ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12)
               ),
             );
           },
