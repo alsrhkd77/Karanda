@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_data_controller.dart';
@@ -57,7 +58,7 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: const Icon(FontAwesomeIcons.ship),
                 title: const TitleText(
@@ -88,6 +89,12 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
               dataController: dataController,
               screenWidth: MediaQuery.of(context).size.width,
             ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("TIP - 아이템 이름을 누르면 보유 갯수가 증가하고, 아이콘을 누르면 감소합니다!",
+                  style: TextStyle(color: Colors.grey),
+                  textAlign: TextAlign.center),
+            ),
             const SizedBox(
               height: 36.0,
             )
@@ -95,11 +102,20 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){
-          dataController.runDailyQuest();
+        onPressed: () async {
+          bool? result = await showDialog(
+            context: context,
+            builder: (context) => const _AddDailyQuestDialog(),
+          );
+          if (result != null && result) {
+            print("true");
+            //dataController.runDailyQuest();
+          }
         },
-        icon: Icon(Icons.add_task),
-        label: Text("일일퀘스트"),
+        //isExtended: false,
+        tooltip: '일일퀘스트',
+        icon: const Icon(Icons.add_task),
+        label: const Text("일일퀘스트"),
         focusNode: FocusNode(skipTraversal: true),
       ),
     );
@@ -311,6 +327,10 @@ class _Body extends StatelessWidget {
                                           .requireData.closeFinishedParts,
                                       showHeaders:
                                           setting.requireData.showTableHeader,
+                                      increase:
+                                          dataController.increaseUserStock,
+                                      decrease:
+                                          dataController.decreaseUserStock,
                                     ))
                                 .toList(),
                           );
@@ -336,6 +356,8 @@ class _PartsCard extends StatelessWidget {
   final bool showHeaders;
   final Function(String, int) onInputChanged;
   final Function(String) setFinished;
+  final Function(String) increase;
+  final Function(String) decrease;
 
   const _PartsCard(
       {super.key,
@@ -345,7 +367,9 @@ class _PartsCard extends StatelessWidget {
       required this.onInputChanged,
       required this.setFinished,
       required this.closeFinished,
-      required this.showHeaders});
+      required this.showHeaders,
+      required this.increase,
+      required this.decrease});
 
   int getDDay(int need, int stock, int reward) {
     need = need - stock;
@@ -447,8 +471,8 @@ class _PartsCard extends StatelessWidget {
                             color: Colors.grey.shade700.withOpacity(0.0),
                             width: 0.6)),
                     columnWidths: const <int, TableColumnWidth>{
-                      0: FixedColumnWidth(58),
-                      1: FixedColumnWidth(190),
+                      0: FixedColumnWidth(56),
+                      1: FixedColumnWidth(180),
                       2: FixedColumnWidth(450),
                       3: FixedColumnWidth(100),
                       4: FixedColumnWidth(80),
@@ -465,6 +489,8 @@ class _PartsCard extends StatelessWidget {
                           finished: parts.finished,
                           onInputChanged: onInputChanged,
                           totalDays: parts.materials[e]!.days,
+                          increase: increase,
+                          decrease: decrease,
                         ).toTableRow(),
                       )),
                   )
@@ -482,12 +508,16 @@ class _MaterialItem {
   final int totalDays;
   final bool finished;
   final Function(String, int) onInputChanged;
+  final Function(String) increase;
+  final Function(String) decrease;
 
   _MaterialItem(
       {required this.material,
       required this.need,
       required this.finished,
       required this.onInputChanged,
+      required this.increase,
+      required this.decrease,
       required this.totalDays});
 
   int getDDay(int need, int stock, int reward) {
@@ -513,13 +543,21 @@ class _MaterialItem {
     return TableRow(children: [
       Padding(
         padding: const EdgeInsets.all(6.0),
-        child: BdoItemImageWidget(
-          code: material.code.toString(),
-          grade: 0,
-          size: 44,
+        child: InkWell(
+          onTap: () => decrease(material.code.toString()),
+          borderRadius: BorderRadius.circular(4.0),
+          child: BdoItemImageWidget(
+            code: material.code.toString(),
+            grade: material.grade,
+            size: 44,
+          ),
         ),
       ),
-      Text(material.nameKR.replaceAll('(', '\n('), textAlign: TextAlign.center),
+      TextButton(
+          onPressed: () => increase(material.code.toString()),
+          child: Text(material.nameKR.replaceAll('(', '\n('),
+              textAlign: TextAlign.center)),
+      //Text(material.nameKR.replaceAll('(', '\n('), textAlign: TextAlign.center),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -617,5 +655,55 @@ class _MaterialItem {
         style: style,
       ),
     ]);
+  }
+}
+
+class _AddDailyQuestDialog extends StatelessWidget {
+  const _AddDailyQuestDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('일일퀘스트 재료 추가'),
+      content: const Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text("일일 퀘스트로 얻는 재료 하루치 분량을 \n한 번에 추가합니다"),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "각 재료별 추가 갯수는 오른쪽 상단의\n설정탭에서 변경할 수 있습니다",
+              style: TextStyle(color: Colors.grey, fontSize: 12.5),
+            ),
+          ),
+        ],
+      ),
+      actionsAlignment: MainAxisAlignment.spaceBetween,
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            context.pop(false);
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+          ),
+          child: const Text("취소"),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            context.pop(true);
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.blue,
+          ),
+          child: const Text("추가"),
+        ),
+      ],
+    );
   }
 }

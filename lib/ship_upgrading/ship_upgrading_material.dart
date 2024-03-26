@@ -5,11 +5,13 @@ class ShipUpgradingMaterial {
   late String nameKR;
   late int price;
   late int grade;
-  late ObtainDetail obtain;
+  List<ObtainDetail> obtains = [];
   final controller = TextEditingController();
   int userStock = 0;
   int totalNeeded = 0;
   int finished = 0;
+
+  ObtainDetail get obtain => obtains.first;
 
   double get _stockPoint => obtain.reward > 0
       ? (userStock + finished) / obtain.reward
@@ -26,8 +28,11 @@ class ShipUpgradingMaterial {
     code = data['code'];
     nameKR = data['name']['kr'];
     price = data['price'];
-    grade = 0;
-    obtain = ObtainDetail.fromData(data['obtain']);
+    grade = data['grade'];
+    for(Map d in data['obtains']){
+      ObtainDetail detail = ObtainDetail.fromData(d);
+      obtains.add(detail);
+    }
   }
 }
 

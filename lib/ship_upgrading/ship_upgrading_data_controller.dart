@@ -83,6 +83,22 @@ class ShipUpgradingDataController {
     }
   }
 
+  Future<void> increaseUserStock(String code) async {
+    int stock = _materials[code]?.userStock ?? 0;
+    if(stock < 999){
+      stock += 1;
+      await updateUserStock(code, stock);
+    }
+  }
+
+  Future<void> decreaseUserStock(String code) async {
+    int stock = _materials[code]?.userStock ?? 0;
+    if(stock > 0){
+      stock -= 1;
+      await updateUserStock(code, stock);
+    }
+  }
+
   Future<void> setFinished(String key) async {
     if (_parts.containsKey(key)) {
       _parts[key]!.finished = !_parts[key]!.finished;

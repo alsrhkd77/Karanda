@@ -91,6 +91,7 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                                   ))
                               .toList(),
                         ),
+                        const SizedBox(height: 24.0,)
                       ],
                     );
                   },
@@ -117,7 +118,7 @@ class _MaterialListTile extends StatelessWidget {
     return ListTile(
       leading: BdoItemImageWidget(
         code: material.code.toString(),
-        grade: 0,
+        grade: material.grade,
         size: 38,
       ),
       title: Text(material.nameKR),
