@@ -174,6 +174,7 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'ship-extension',
           builder: (context, state) => const ShipExtensionPage(),
+          redirect: (context, state) => '/ship-upgrading',
         ),
         GoRoute(
           path: 'ship-upgrading',

@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     _Service(
       name: '선박 증축',
       icon: FontAwesomeIcons.ship,
-      path: '/ship-extension',
+      path: '/ship-upgrading',
     ),
     _Service(
       name: '이벤트 캘린더',
@@ -83,11 +83,6 @@ class _HomePageState extends State<HomePage> {
       name: '통합 거래소',
       icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
-    ),
-    _Service(
-      name: '선박 증축',
-      icon: FontAwesomeIcons.ship,
-      path: '/ship-upgrading',
     ),
   ];
 
