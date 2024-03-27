@@ -5,7 +5,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ShipUpgradingSetting {
   bool _closeFinishedParts = true;
   bool _showTableHeader = true;
-  Map<String, int> _dailyQuest = {};
+  Map<String, int> _dailyQuest = {
+    "5807": 2,
+    "5814": 10,
+    "5829": 6,
+    "5820": 2,
+    "5822": 3,
+    "5824": 3,
+    "5827": 20,
+    "5810": 5,
+    "5828": 8,
+    "5823": 1,
+    "5812": 4,
+    "5809": 3,
+    "5821": 1,
+  };
 
   Map<String, int> get dailyQuest => _dailyQuest;
 
@@ -23,8 +37,8 @@ class ShipUpgradingSetting {
     save();
   }
 
-  void updateDailyQuest(String key, int value){
-    if(value <= 0){
+  void updateDailyQuest(String key, int value) {
+    if (value <= 0) {
       _dailyQuest.remove(key);
     } else {
       _dailyQuest[key] = value;
@@ -45,7 +59,7 @@ class ShipUpgradingSetting {
   Future<void> load() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     String json = sharedPreferences.getString('ship_upgrading_setting') ?? '';
-    if(json.isNotEmpty){
+    if (json.isNotEmpty) {
       Map data = jsonDecode(json);
       _closeFinishedParts = data['close_finished_parts'] ?? _closeFinishedParts;
       _showTableHeader = data['show_table_header'] ?? _showTableHeader;

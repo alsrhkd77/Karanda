@@ -13,6 +13,12 @@ class ShipUpgradingMaterial {
 
   ObtainDetail get obtain => obtains.first;
 
+
+  double get _stockPoint => ((userStock + finished) * price).toDouble();
+
+  double get neededPoint => (totalNeeded * price).toDouble();
+
+  /*
   double get _stockPoint => obtain.reward > 0
       ? (userStock + finished) / obtain.reward
       : (userStock + finished) / obtain.trade;
@@ -20,6 +26,7 @@ class ShipUpgradingMaterial {
   double get neededPoint => obtain.reward > 0
       ? totalNeeded / obtain.reward
       : totalNeeded / obtain.trade;
+   */
 
   double get stockPoint =>
       _stockPoint > neededPoint ? neededPoint : _stockPoint;
@@ -29,7 +36,7 @@ class ShipUpgradingMaterial {
     nameKR = data['name']['kr'];
     price = data['price'];
     grade = data['grade'];
-    for(Map d in data['obtains']){
+    for (Map d in data['obtains']) {
       ObtainDetail detail = ObtainDetail.fromData(d);
       obtains.add(detail);
     }

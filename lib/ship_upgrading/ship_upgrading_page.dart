@@ -108,8 +108,7 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
             builder: (context) => const _AddDailyQuestDialog(),
           );
           if (result != null && result) {
-            print("true");
-            //dataController.runDailyQuest();
+            dataController.runDailyQuest();
           }
         },
         //isExtended: false,
@@ -394,9 +393,10 @@ class _PartsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double percent = 0;
     if (!parts.finished) {
-      double totalNeed = 0;
-      double totalStock = 0;
+      int totalNeed = 0;
+      int totalStock = 0;
       for (String key in parts.materials.keys) {
+        /*
         int num = materials[key]!.obtain.reward > 0
             ? materials[key]!.obtain.reward
             : materials[key]!.obtain.trade;
@@ -407,6 +407,13 @@ class _PartsCard extends StatelessWidget {
           totalStock += parts.materials[key]!.need / num;
         } else {
           totalStock += materials[key]!.userStock / num;
+        }
+         */
+        totalNeed += parts.materials[key]!.need * materials[key]!.price;
+        if (materials[key]!.userStock > parts.materials[key]!.need) {
+          totalStock += parts.materials[key]!.need * materials[key]!.price;
+        } else {
+          totalStock += materials[key]!.userStock * materials[key]!.price;
         }
       }
       percent = totalStock / totalNeed;
@@ -546,6 +553,7 @@ class _MaterialItem {
         child: InkWell(
           onTap: () => decrease(material.code.toString()),
           borderRadius: BorderRadius.circular(4.0),
+          focusNode: FocusNode(skipTraversal: true),
           child: BdoItemImageWidget(
             code: material.code.toString(),
             grade: material.grade,
@@ -554,9 +562,11 @@ class _MaterialItem {
         ),
       ),
       TextButton(
-          onPressed: () => increase(material.code.toString()),
-          child: Text(material.nameKR.replaceAll('(', '\n('),
-              textAlign: TextAlign.center)),
+        onPressed: () => increase(material.code.toString()),
+        focusNode: FocusNode(skipTraversal: true),
+        child: Text(material.nameKR.replaceAll('(', '\n('),
+            textAlign: TextAlign.center),
+      ),
       //Text(material.nameKR.replaceAll('(', '\n('), textAlign: TextAlign.center),
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -675,7 +685,7 @@ class _AddDailyQuestDialog extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              "각 재료별 추가 갯수는 오른쪽 상단의\n설정탭에서 변경할 수 있습니다",
+              "재료별 추가 갯수는 오른쪽 상단의\n설정탭에서 변경할 수 있습니다",
               style: TextStyle(color: Colors.grey, fontSize: 12.5),
             ),
           ),
