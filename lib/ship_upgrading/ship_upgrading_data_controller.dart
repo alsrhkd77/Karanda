@@ -76,7 +76,10 @@ class ShipUpgradingDataController {
   Future<void> updateUserStock(String code, int value) async {
     if (_materials.containsKey(code)) {
       _materials[code]!.userStock = value;
-      _materials[code]!.controller.text = value > 0 ? value.toString() : '';
+      String str = value > 0 ? value.toString() : '';
+      if(_materials[code]!.controller.text != str){
+        _materials[code]!.controller.text = str;
+      }
       _materialDataStreamController.sink.add(_materials);
       final sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.setInt('ship_upgrading_material_stock_$code', value);
