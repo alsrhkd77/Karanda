@@ -317,13 +317,15 @@ class _SearchBarState extends State<_SearchBar> {
               focusNode: focusNode,
               maxLength: 20,
               onSubmitted: (String value) {
-                if (notifier.autoComplete(value.trim()).isNotEmpty &&
-                    notifier.autoComplete(value.trim()).first == value) {
+                onSubmit();
+                /*
+                if (notifier.autoComplete(value.trim()).isNotEmpty) {
                   notifier.addKeyword(value.trim());
                   textEditingController.clear();
                 } else {
                   onSubmit();
                 }
+                 */
                 FocusScope.of(context).requestFocus(focusNode);
               },
               decoration: InputDecoration(
@@ -396,6 +398,12 @@ class _SearchBarState extends State<_SearchBar> {
                 ),
               ),
             );
+          },
+          onSelected: (value) {
+            if(value.isNotEmpty){
+              notifier.addKeyword(value);
+              textEditingController.clear();
+            }
           },
           optionsBuilder: (TextEditingValue textEditingValue) {
             if (textEditingValue.text.trim().isEmpty) {
