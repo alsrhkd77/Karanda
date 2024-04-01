@@ -157,7 +157,7 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
       itemCount: parleyList.length,
       itemBuilder: (context, index) {
         parleyList[index]['decreased parley'] =
-            (parleyList[index]['parley'] * (100 - _decrease) / 100).round();
+            (parleyList[index]['parley'] * (100 - _decrease) / 100).floor();  //올림일 경우 ceil()
         return Card(
           margin: const EdgeInsets.all(8.0),
           child: Padding(
