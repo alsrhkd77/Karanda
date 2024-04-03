@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/blacklist_model.dart';
 import 'package:karanda/common/channel.dart';
+import 'package:karanda/common/custom_web_socket_channel/custom_web_socket_channel.dart';
 import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:karanda/maretta/maretta_model.dart';
@@ -18,6 +19,8 @@ class MarettaNotifier with ChangeNotifier {
   Map<AllChannel, List<MarettaModel>> reportList = HashMap();
   Map<String, BlacklistModel> blacklist = {};
   WebSocketChannel? _channel;
+  StreamSubscription? _subscription;
+  final CustomWebSocketChannel _webSocketChannel = CustomWebSocketChannel(Api.marettaStatusReports);
 
   MarettaNotifier() {
     initList();
@@ -40,7 +43,19 @@ class MarettaNotifier with ChangeNotifier {
   }
    */
 
-  Future<void> connect() async {
+  void connect() {
+    _subscription = _webSocketChannel.stream.listen((message) {
+      if (message != null && message != '') {
+        for (Map data in jsonDecode(message)) {
+          MarettaReportModel report = MarettaReportModel.fromData(data);
+          _addReport(report);
+        }
+        notifyListeners();
+      }
+    });
+    _webSocketChannel.connect();
+
+    /*
     _channel = kIsWeb
         ? WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports))
         : IOWebSocketChannel.connect(Uri.parse(Api.marettaStatusReports),
@@ -68,10 +83,13 @@ class MarettaNotifier with ChangeNotifier {
       },
       cancelOnError: true,
     );
+     */
   }
 
   void disconnect() {
-    _channel?.sink.close(status.normalClosure);
+    //_channel?.sink.close(status.normalClosure);
+    _webSocketChannel.disconnect();
+    _subscription?.cancel();
   }
 
   void initList() {
@@ -141,6 +159,7 @@ class MarettaNotifier with ChangeNotifier {
   @override
   void dispose() {
     disconnect();
+    _webSocketChannel.close();
     super.dispose();
   }
 }

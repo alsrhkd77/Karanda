@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/custom_web_socket_channel/custom_web_socket_channel.dart';
 import 'package:karanda/common/token_factory.dart';
 import 'package:karanda/trade_market/trade_market_wait_item.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -10,6 +11,8 @@ import 'package:web_socket_channel/status.dart' as status;
 class TradeMarketWaitListStream {
   final _dataStreamController = StreamController<List<TradeMarketWaitItem>>();
   WebSocketChannel? _channel;
+  final CustomWebSocketChannel _webSocketChannel = CustomWebSocketChannel('${Api.marketWaitList}?token=${TokenFactory.serviceToken()}');
+  StreamSubscription? _subscription;
   Timer? _timer;
   DateTime? lastUpdate;
 
@@ -21,6 +24,20 @@ class TradeMarketWaitListStream {
       _dataStreamController.stream;
 
   Future<void> connect() async {
+    _subscription = _webSocketChannel.stream.listen((message) {
+      List<TradeMarketWaitItem> result = [];
+      if (message != null && message != '') {
+        List decoded = jsonDecode(message);
+        for (var data in decoded) {
+          TradeMarketWaitItem item = TradeMarketWaitItem.fromData(data);
+          result.add(item);
+        }
+        _dataStreamController.sink.add(result);
+        lastUpdate = DateTime.now();
+      }
+    });
+    _webSocketChannel.connect();
+    /*
     String token = TokenFactory.serviceToken();
     _channel = WebSocketChannel.connect(
         Uri.parse('${Api.marketWaitList}?token=$token'));
@@ -56,6 +73,7 @@ class TradeMarketWaitListStream {
         print(e);
       },
     );
+    */
     _timer = _timer ??
         Timer.periodic(
             const Duration(seconds: 30), (timer) => _requestUpdate());
@@ -65,14 +83,17 @@ class TradeMarketWaitListStream {
     if (lastUpdate != null &&
         lastUpdate!
             .isBefore(DateTime.now().subtract(const Duration(seconds: 90)))) {
-      _channel?.sink.add('update');
+      _webSocketChannel.send('update');
+      //_channel?.sink.add('update');
     }
   }
 
   void disconnect() {
     _timer?.cancel();
     _timer = null;
-    _channel?.sink.close(status.normalClosure);
+    //_channel?.sink.close(status.normalClosure);
+    _webSocketChannel.disconnect();
+    _subscription?.cancel();
   }
 
   void dispose() {
