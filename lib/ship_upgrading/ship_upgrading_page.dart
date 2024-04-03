@@ -322,6 +322,8 @@ class _Body extends StatelessWidget {
                                       onInputChanged:
                                           dataController.updateUserStock,
                                       setFinished: dataController.setFinished,
+                                      showTotalNeeded:
+                                          setting.requireData.showTotalNeeded,
                                       closeFinished: setting
                                           .requireData.closeFinishedParts,
                                       showHeaders:
@@ -353,22 +355,25 @@ class _PartsCard extends StatelessWidget {
   final Map<String, ShipUpgradingMaterial> materials;
   final bool closeFinished;
   final bool showHeaders;
+  final bool showTotalNeeded;
   final Function(String, int) onInputChanged;
   final Function(String) setFinished;
   final Function(String) increase;
   final Function(String) decrease;
 
-  const _PartsCard(
-      {super.key,
-      required this.parts,
-      required this.screenWidth,
-      required this.materials,
-      required this.onInputChanged,
-      required this.setFinished,
-      required this.closeFinished,
-      required this.showHeaders,
-      required this.increase,
-      required this.decrease});
+  const _PartsCard({
+    super.key,
+    required this.parts,
+    required this.screenWidth,
+    required this.materials,
+    required this.onInputChanged,
+    required this.setFinished,
+    required this.closeFinished,
+    required this.showHeaders,
+    required this.increase,
+    required this.decrease,
+    required this.showTotalNeeded,
+  });
 
   int getDDay(int need, int stock, int reward) {
     need = need - stock;
@@ -488,12 +493,18 @@ class _PartsCard extends StatelessWidget {
                     },
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                     defaultColumnWidth: const FixedColumnWidth(80),
-                    children: (showHeaders ? [_MaterialItem.header()] : [])
+                    children: (showHeaders
+                        ? [
+                            _MaterialItem.header(
+                                showTotalNeeded: showTotalNeeded)
+                          ]
+                        : [])
                       ..addAll(parts.materials.keys.map<TableRow>(
                         (e) => _MaterialItem(
                           material: materials[e]!,
                           need: parts.materials[e]!.need,
                           finished: parts.finished,
+                          showTotalNeeded: showTotalNeeded,
                           onInputChanged: onInputChanged,
                           totalDays: parts.materials[e]!.days,
                           increase: increase,
@@ -514,12 +525,14 @@ class _MaterialItem {
   final int need;
   final int totalDays;
   final bool finished;
+  final bool showTotalNeeded;
   final Function(String, int) onInputChanged;
   final Function(String) increase;
   final Function(String) decrease;
 
   _MaterialItem(
       {required this.material,
+      required this.showTotalNeeded,
       required this.need,
       required this.finished,
       required this.onInputChanged,
@@ -604,8 +617,18 @@ class _MaterialItem {
           },
         ),
       ),
-      Text(
-        '${need.toString()}개',
+      Text.rich(
+        TextSpan(
+          text: '${need.toString()}개',
+          children: showTotalNeeded && need != material.totalNeeded
+              ? [
+                  TextSpan(
+                    text: '\n(${material.totalNeeded})',
+                    style: const TextStyle(fontSize: 12),
+                  )
+                ]
+              : [],
+        ),
         textAlign: TextAlign.center,
       ),
       Text(
@@ -626,7 +649,7 @@ class _MaterialItem {
     ]);
   }
 
-  static TableRow header() {
+  static TableRow header({required bool showTotalNeeded}) {
     TextStyle style = const TextStyle(
       fontWeight: FontWeight.bold,
     );
@@ -649,8 +672,13 @@ class _MaterialItem {
         textAlign: TextAlign.center,
         style: style,
       ),
-      Text(
-        "필요",
+      Text.rich(
+        TextSpan(
+          text: "필요",
+          children: showTotalNeeded
+              ? [const TextSpan(text: "\n(합계)", style: TextStyle(fontSize: 12))]
+              : [],
+        ),
         textAlign: TextAlign.center,
         style: style,
       ),

@@ -73,6 +73,19 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                             },
                           ),
                         ),
+                        ListTile(
+                          title: const Text('재료 합계 표시'),
+                          subtitle: const Text(
+                            "모든 파츠 제작에 필요한 재료 합계를 표시합니다",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          trailing: Switch(
+                            value: snapshot.requireData.showTotalNeeded,
+                            onChanged: (value) {
+                              widget.dataController.setShowTotalNeeded(value);
+                            },
+                          ),
+                        ),
                         ExpansionTile(
                           //initiallyExpanded: true,
                           title: const Text('일일퀘스트'),
@@ -91,7 +104,9 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                                   ))
                               .toList(),
                         ),
-                        const SizedBox(height: 24.0,)
+                        const SizedBox(
+                          height: 24.0,
+                        )
                       ],
                     );
                   },

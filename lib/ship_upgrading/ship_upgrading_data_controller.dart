@@ -138,6 +138,11 @@ class ShipUpgradingDataController {
     _settingStreamController.sink.add(_setting);
   }
 
+  void setShowTotalNeeded(bool value){
+    _setting.showTotalNeeded = value;
+    _settingStreamController.sink.add(_setting);
+  }
+
   void addListener(){
     _settingStreamController.sink.add(_setting);
     _materialDataStreamController.sink.add(_materials);
