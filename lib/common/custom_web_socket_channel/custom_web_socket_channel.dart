@@ -96,7 +96,7 @@ class CustomWebSocketChannel {
           connect();
         }
       } else {
-        _visibilityTimer = Timer(const Duration(minutes: 1), () {
+        _visibilityTimer = Timer(const Duration(seconds: 30), () {
           disconnect();
         });
       }
@@ -118,8 +118,8 @@ class CustomWebSocketChannel {
 
   void _increaseReconnectLatency() {
     _reconnectLatency = _reconnectLatency * 3;
-    if (_reconnectLatency > 600) {
-      _reconnectLatency = 600;
+    if (_reconnectLatency > 300) {
+      _reconnectLatency = 300;
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import './visibility_change_listener.dart'
-    if (dart.library.js_interop) './visibility_change_listener.dart';
+import 'package:karanda/common/custom_web_socket_channel/web_visibility/visibility_change_listener.dart'
+    if (dart.library.js_interop) 'package:karanda/common/custom_web_socket_channel/web_visibility/web_visibility_change_listener.dart';
 
 class WebVisibility {
   final StreamController _controller = StreamController<bool>.broadcast();
