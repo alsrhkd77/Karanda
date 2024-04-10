@@ -68,10 +68,8 @@ Future<void> main() async {
 
 final _dropdownMenuTheme = DropdownMenuThemeData(
   inputDecorationTheme: InputDecorationTheme(
-    contentPadding: const EdgeInsets.symmetric(
-        vertical: 4.0, horizontal: 12.0),
-    border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.0)),
+    contentPadding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
   ),
 );
 
@@ -83,51 +81,50 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => const HomePage(),
       routes: [
         GoRoute(
-          path: 'window-init',
-          builder: (context, state) => const InitializerPage(),
-          redirect: (BuildContext context, GoRouterState state) {
-            if(kIsWeb){
-              return '/';
-            }
-            return null;
-          }
-        ),
+            path: 'window-init',
+            builder: (context, state) => const InitializerPage(),
+            redirect: (BuildContext context, GoRouterState state) {
+              if (kIsWeb) {
+                return '/';
+              }
+              return null;
+            }),
         GoRoute(
-            path: 'settings',
-            builder: (context, state) => const SettingsPage(),
-            routes: [
-              GoRoute(
-                path: 'auth/info',
-                builder: (context, state) => const AuthPage(
-                  token: null,
-                  refreshToken: null,
-                ),
+          path: 'settings',
+          builder: (context, state) => const SettingsPage(),
+          routes: [
+            GoRoute(
+              path: 'auth/info',
+              builder: (context, state) => const AuthPage(
+                token: null,
+                refreshToken: null,
               ),
-              GoRoute(
-                path: 'auth/authenticate',
-                builder: (context, state) => AuthPage(
-                  token: state.uri.queryParameters['token'],
-                  refreshToken: state.uri.queryParameters['refresh-token'],
-                ),
+            ),
+            GoRoute(
+              path: 'auth/authenticate',
+              builder: (context, state) => AuthPage(
+                token: state.uri.queryParameters['token'],
+                refreshToken: state.uri.queryParameters['refresh-token'],
               ),
-              GoRoute(
-                path: 'desktop-app',
-                builder: (context, state) {
-                  if(kIsWeb) {
-                    return const CannotUseInWeb();
-                  }
-                  return const AppUpdatePage();
-                },
-              ),
-              GoRoute(
-                path: 'theme',
-                builder: (context, state) => const ThemeSettingPage(),
-              ),
-              GoRoute(
-                path: 'support-karanda',
-                builder: (context, state) => const SupportKarandaPage(),
-              ),
-            ],
+            ),
+            GoRoute(
+              path: 'desktop-app',
+              builder: (context, state) {
+                if (kIsWeb) {
+                  return const CannotUseInWeb();
+                }
+                return const AppUpdatePage();
+              },
+            ),
+            GoRoute(
+              path: 'theme',
+              builder: (context, state) => const ThemeSettingPage(),
+            ),
+            GoRoute(
+              path: 'support-karanda',
+              builder: (context, state) => const SupportKarandaPage(),
+            ),
+          ],
         ),
         GoRoute(
           path: 'auth/info',
