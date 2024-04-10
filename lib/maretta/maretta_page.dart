@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/global_properties.dart';
@@ -15,6 +16,7 @@ import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_report_dialog.dart';
 import 'package:karanda/maretta/maretta_report_model.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/need_login_snack_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +54,6 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
     //_provider.reconnect();
   }
 
-
   @override
   void onWindowClose() {
     _provider.dispose();
@@ -66,7 +67,7 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
 
   @override
   void dispose() {
-    _provider.dispose();
+    //_provider.dispose();
     windowManager.removeListener(this);
     super.dispose();
   }
@@ -76,7 +77,14 @@ class _MarettaPageState extends State<MarettaPage> with WindowListener {
       MarettaReportModel? item = await showDialog(
           context: context, builder: (_) => const MarettaReportDialog());
       if (item != null) {
+        showDialog(
+          context: context,
+          builder: (_) => LoadingIndicatorDialog(
+            title: "제보 전송",
+          ),
+        );
         bool result = await context.read<MarettaNotifier>().createReport(item);
+        context.pop();
         if (!result) {
           showReportFailedSnackBar();
         }

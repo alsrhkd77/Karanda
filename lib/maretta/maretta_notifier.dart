@@ -11,16 +11,14 @@ import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:karanda/maretta/maretta_model.dart';
 import 'package:karanda/maretta/maretta_report_model.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_channel/status.dart' as status;
 
 class MarettaNotifier with ChangeNotifier {
   Map<AllChannel, List<MarettaModel>> reportList = HashMap();
   Map<String, BlacklistModel> blacklist = {};
-  WebSocketChannel? _channel;
   StreamSubscription? _subscription;
-  final CustomWebSocketChannel _webSocketChannel = CustomWebSocketChannel(Api.marettaStatusReports);
+  final CustomWebSocketChannel _webSocketChannel =
+      CustomWebSocketChannel(Api.marettaStatusReports);
+
 
   MarettaNotifier() {
     initList();
@@ -54,40 +52,9 @@ class MarettaNotifier with ChangeNotifier {
       }
     });
     _webSocketChannel.connect();
-
-    /*
-    _channel = kIsWeb
-        ? WebSocketChannel.connect(Uri.parse(Api.marettaStatusReports))
-        : IOWebSocketChannel.connect(Uri.parse(Api.marettaStatusReports),
-            pingInterval: const Duration(seconds: 30));
-    await _channel?.ready;
-    _channel?.stream.listen(
-      (message) {
-        if (message != null && message != '') {
-          for (Map data in jsonDecode(message)) {
-            MarettaReportModel report = MarettaReportModel.fromData(data);
-            _addReport(report);
-          }
-          notifyListeners();
-        }
-      },
-      onDone: () {
-        if (_channel?.closeCode != status.normalClosure) {
-          connect();
-        }
-      },
-      onError: (e) {
-        print(
-            'error code:${_channel?.closeCode}, reason:${_channel?.closeReason}');
-        print(e);
-      },
-      cancelOnError: true,
-    );
-     */
   }
 
   void disconnect() {
-    //_channel?.sink.close(status.normalClosure);
     _webSocketChannel.disconnect();
     _subscription?.cancel();
   }
@@ -109,7 +76,7 @@ class MarettaNotifier with ChangeNotifier {
   Future<bool> createReport(MarettaReportModel item) async {
     final response = await http.post(Api.createMarettaStatusReport,
         body: item.toJson(), json: true);
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {
       return false;

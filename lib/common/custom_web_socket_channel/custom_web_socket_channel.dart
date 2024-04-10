@@ -88,11 +88,11 @@ class CustomWebSocketChannel {
   void _addWebVisibilityListener() {
     _webVisibility.stream.listen((visible) {
       if (visible) {
-        if (_visibilityTimer != null &&
-            _visibilityTimer!.isActive &&
-            !_connected) {
+        if (_visibilityTimer != null && _visibilityTimer!.isActive) {
           _visibilityTimer?.cancel();
           _visibilityTimer = null;
+        }
+        if(!_connected){
           connect();
         }
       } else {
