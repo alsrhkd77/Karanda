@@ -108,12 +108,14 @@ class _PresetCard extends StatelessWidget {
   final String route;
   final String imagePath;
   final String title;
+  final String description;
 
   const _PresetCard(
       {super.key,
       required this.route,
       required this.imagePath,
-      required this.title});
+      required this.title,
+      required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -128,23 +130,30 @@ class _PresetCard extends StatelessWidget {
             context.goWithGa(route);
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
             child: Row(
               children: [
-                Image.asset(
-                  imagePath,
-                  width: 88,
-                  height: 88,
-                  fit: BoxFit.scaleDown,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 4.0, vertical: 4.0),
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 12.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 2.0, vertical: 12.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         title,
                         style: const TextStyle(fontSize: 16.0),
+                      ),
+                      Text(
+                        description,
+                        style: const TextStyle(color: Colors.grey),
                       )
                     ],
                   ),
@@ -172,17 +181,20 @@ class _Presets extends StatelessWidget {
             _PresetCard(
               route: '/trade-market/cooking-box',
               imagePath: 'assets/image/cooking_box.png',
-              title: '황납용 요리',
+              title: '황실 납품용 요리',
+              description: '황납 상자별 재료 요리',
             ),
             _PresetCard(
               route: '/trade-market/melody-of-stars',
               imagePath: 'assets/image/melody_of_stars.png',
               title: '별들의 선율',
+              description: '선율 제작용 재료 악세',
             ),
             _PresetCard(
               route: '/trade-market/magical-lightstone-crystal',
               imagePath: 'assets/image/magical_lightstone_crystal.png',
               title: '마력의 광명석 결정',
+              description: '광명석 결정 제작 재료',
             ),
           ],
         ),
