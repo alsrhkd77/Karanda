@@ -102,6 +102,12 @@ class ShipUpgradingDataController {
     }
   }
 
+  Future<void> resetUserStock() async {
+    for(String itemCode in _materials.keys){
+      await updateUserStock(itemCode, 0);
+    }
+  }
+
   Future<void> setFinished(String key) async {
     if (_parts.containsKey(key)) {
       _parts[key]!.finished = !_parts[key]!.finished;
@@ -143,7 +149,7 @@ class ShipUpgradingDataController {
     _settingStreamController.sink.add(_setting);
   }
 
-  void addListener(){
+  void subscribe(){
     _settingStreamController.sink.add(_setting);
     _materialDataStreamController.sink.add(_materials);
   }

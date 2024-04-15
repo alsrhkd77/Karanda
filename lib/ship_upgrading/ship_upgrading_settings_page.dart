@@ -6,6 +6,7 @@ import 'package:karanda/ship_upgrading/ship_upgrading_material.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
+import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
 
 class ShipUpgradingSettingsPage extends StatefulWidget {
@@ -26,13 +27,47 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
     super.initState();
     dataController = widget.dataController;
     WidgetsBinding.instance
-        .addPostFrameCallback((timeStamp) => dataController.addListener());
+        .addPostFrameCallback((timeStamp) => dataController.subscribe());
+  }
+
+  Future<void> resetUserStock() async {
+    bool? result = await showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              title: const Text('보유 재고 초기화'),
+              content: const Text('모든 재료의 보유 재고를 초기화합니다.'),
+              actionsAlignment: MainAxisAlignment.spaceBetween,
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: const Text('취소'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: const Text('초기화'),
+                )
+              ],
+            ));
+    if(result != null && result){
+      showDialog(
+        context: context,
+        builder: (_) => const LoadingIndicatorDialog(
+          title: '처리중',
+        ),
+      );
+      await dataController.resetUserStock();
+      Navigator.of(context).pop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(),
+      appBar: const DefaultAppBar(),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -104,9 +139,25 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                                   ))
                               .toList(),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: ElevatedButton(
+                            onPressed: () => resetUserStock(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              foregroundColor: Colors.white,
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.all(8.0),
+                              width: double.infinity,
+                              child: const Text('보유 재고 초기화'),
+                            ),
+                          ),
+                        ),
                         const SizedBox(
                           height: 24.0,
-                        )
+                        ),
                       ],
                     );
                   },
