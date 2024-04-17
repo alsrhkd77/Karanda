@@ -6,7 +6,6 @@ import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/launch_url.dart';
-import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
@@ -447,52 +446,6 @@ class _Footer extends StatelessWidget {
             ? Axis.vertical
             : Axis.horizontal,
         children: [
-          /*
-          Expanded(
-            child: Card(
-              margin: const EdgeInsets.all(12.0),
-              elevation: 4.0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text('Karanda의 후원자가 되어주세요!'),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () => launchURL('https://toss.me/hammuu'),
-                          icon: Image.asset(
-                            'assets/icons/toss.png',
-                            height: 32,
-                            width: 32,
-                          ),
-                          tooltip: 'Toss',
-                        ),
-                        const SizedBox(
-                          width: 12.0,
-                        ),
-                        IconButton(
-                          onPressed: () =>
-                              launchURL('https://www.buymeacoffee.com/hammuu'),
-                          icon: Image.asset(
-                            context.watch<SettingsNotifier>().darkMode
-                                ? 'assets/icons/bmc_reverse.png'
-                                : 'assets/icons/bmc.png',
-                            height: 32,
-                            width: 32,
-                          ),
-                          tooltip: 'Buy Me a Coffee',
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          */
           Expanded(
             child: Card(
               margin: const EdgeInsets.all(12.0),
@@ -510,7 +463,6 @@ class _Footer extends StatelessWidget {
                         ]
                       ),
                     ),
-                    //const Text('Karanda의 후원자가 되어주세요!'),
                     FilledButton(
                       onPressed: () => {context.push('/settings/support-karanda')},
                       child: const Text('후원하기'),
