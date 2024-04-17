@@ -52,7 +52,7 @@ class ArtifactNotifier with ChangeNotifier {
         .then((response) => response.body);
      */
     lightStonesJson = await rootBundle.loadString('assets/data/light_stones.json');
-    combinationJson = await rootBundle.loadString('/assets/data/combination.json');
+    combinationJson = await rootBundle.loadString('assets/data/combination.json');
 
     Map<String, dynamic> lightStonesData = jsonDecode(lightStonesJson);
     Map<String, dynamic> combinationData = jsonDecode(combinationJson);
