@@ -65,15 +65,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const Divider(),
                 socialLogin(),
-                /*
-                ListTile(
-                  leading: const Icon(FontAwesomeIcons.route),
-                  title: const Text('실험적 서비스'),
-                  onTap: () {
-                    Get.toNamed('/experimental-function');
-                  },
-                ),
-                 */
                 ListTile(
                   leading: const Icon(Icons.palette_outlined),
                   title: const Text('테마'),
@@ -88,7 +79,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         trailing: const Icon(Icons.open_in_new),
                         onTap: () => launchURL(
                             'https://github.com/HwanSangYeonHwa/Karanda/releases'),
-                      )
+                      ) : Container(),
+                /*
                     : ListTile(
                         leading: const Icon(Icons.system_update_alt_rounded),
                         title: const Text('업데이트'),
@@ -96,19 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           context.push('/settings/desktop-app');
                         },
                       ),
-                /*
-                ListTile(
-                  leading: const Icon(Icons.dark_mode_outlined),
-                  title: const Text('다크 모드'),
-                  trailing: Switch(
-                    value: Provider.of<SettingsNotifier>(context).darkMode,
-                    onChanged: (value) {
-                      Provider.of<SettingsNotifier>(context, listen: false)
-                          .setDarkMode(value);
-                    },
-                  ),
-                ),
-                */
+                 */
                 const ListTile(
                   leading: Icon(Icons.public),
                   title: Text('서버'),
@@ -117,6 +97,16 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+                /*
+                const ListTile(
+                  leading: Icon(Icons.language),
+                  title: Text('언어 (Language)'),
+                  trailing: Text(
+                    '한국어',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                 */
                 ListTile(
                   leading: const Icon(Icons.loyalty_outlined),
                   title: const Text('Karanda 후원하기'),
@@ -136,6 +126,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   trailing: const Icon(Icons.open_in_new),
                   onTap: () => launchURL(
                       'https://github.com/HwanSangYeonHwa/Karanda/releases'),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.info_outline),
+                  title: const Text('정보'),
+                  onTap: () {
+                    context.push('/settings/karanda-info');
+                  },
                 ),
               ],
             ),

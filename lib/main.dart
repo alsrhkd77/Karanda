@@ -21,6 +21,7 @@ import 'package:karanda/horse/horse_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
+import 'package:karanda/settings/karanda_info_page.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/settings/settings_page.dart';
 import 'package:karanda/settings/support_karanda_page.dart';
@@ -33,9 +34,7 @@ import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
-import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:window_manager/window_manager.dart';
-import 'settings/app_update_page.dart';
 import 'atoraxxion/sycrakea_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -73,6 +72,11 @@ final _dropdownMenuTheme = DropdownMenuThemeData(
   ),
 );
 
+final _actionIconTheme = ActionIconThemeData(
+  backButtonIconBuilder: (BuildContext context) =>
+      const Icon(Icons.arrow_back_ios_new),
+);
+
 final GoRouter _router = GoRouter(
   initialLocation: '/window-init',
   routes: [
@@ -108,21 +112,16 @@ final GoRouter _router = GoRouter(
               ),
             ),
             GoRoute(
-              path: 'desktop-app',
-              builder: (context, state) {
-                if (kIsWeb) {
-                  return const CannotUseInWeb();
-                }
-                return const AppUpdatePage();
-              },
-            ),
-            GoRoute(
               path: 'theme',
               builder: (context, state) => const ThemeSettingPage(),
             ),
             GoRoute(
               path: 'support-karanda',
               builder: (context, state) => const SupportKarandaPage(),
+            ),
+            GoRoute(
+              path: 'karanda-info',
+              builder: (context, state) => const KarandaInfoPage(),
             ),
           ],
         ),
@@ -278,6 +277,7 @@ class MyApp extends StatelessWidget {
               fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
               colorSchemeSeed: Colors.blue,
               dropdownMenuTheme: _dropdownMenuTheme,
+              actionIconTheme: _actionIconTheme,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
@@ -285,6 +285,7 @@ class MyApp extends StatelessWidget {
               colorSchemeSeed: Colors.blueAccent,
               brightness: Brightness.dark,
               dropdownMenuTheme: _dropdownMenuTheme,
+              actionIconTheme: _actionIconTheme,
             ),
             themeMode: settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             routerConfig: _router,
