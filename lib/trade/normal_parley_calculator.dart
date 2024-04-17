@@ -102,10 +102,13 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
     if (tradeLevelList.length > 1) {
       return true;
     }
+    /*
     String jsonString = await http
         .get(Uri.parse(
             'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/tradeLevel.json'))
         .then((response) => response.body);
+     */
+    String jsonString = await rootBundle.loadString('assets/data/trade_level.json');
     tradeLevelList.addAll(jsonDecode(jsonString));
 
     getTradeLevel();

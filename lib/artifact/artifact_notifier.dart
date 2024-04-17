@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 
@@ -41,14 +42,18 @@ class ArtifactNotifier with ChangeNotifier {
     String combinationJson = '';
     String lightStonesJson = '';
 
+    /*
     lightStonesJson = await http
         .get(Uri.parse(
-            'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/lightStones.json'))
+            'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/light_stones.json'))
         .then((response) => response.body);
     combinationJson = await http
         .get(Uri.parse(
             'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/combination.json'))
         .then((response) => response.body);
+     */
+    lightStonesJson = await rootBundle.loadString('assets/data/light_stones.json');
+    combinationJson = await rootBundle.loadString('/assets/data/combination.json');
 
     Map<String, dynamic> lightStonesData = jsonDecode(lightStonesJson);
     Map<String, dynamic> combinationData = jsonDecode(combinationJson);

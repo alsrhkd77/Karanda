@@ -60,7 +60,7 @@ class KarandaInitializer {
   Future<void> _downloadNewVersion() async {
     _textStreamController.sink.add("다운로드 가능한 업데이트 확인 중");
     final List<String> mirrors = [
-      'https://github.com/Hammuu/Karanda/releases/latest/download/SetupKaranda.exe',
+      'https://github.com/Hammuu1112/Karanda/releases/latest/download/SetupKaranda.exe',
       'https://github.com/HwanSangYeonHwa/Karanda/releases/latest/download/SetupKaranda.exe',
       '${Api.storage}/SetupKaranda.exe'
     ];
