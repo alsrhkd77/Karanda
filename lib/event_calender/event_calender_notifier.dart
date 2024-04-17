@@ -20,17 +20,27 @@ class EventCalenderNotifier with ChangeNotifier {
 
   List<EventModel> get allEvents => _filtering(_events);
 
-
-  EventCalenderNotifier(){
+  EventCalenderNotifier() {
     getData();
   }
 
   Future<List<EventModel>> getData() async {
     List<EventModel> result = [];
+    String json = '';
     final response = await http.get(Uri.parse(
-        'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/events.json'));
+        'https://raw.githubusercontent.com/Hammuu1112/black_event/main/events.json'));
+    if (response.statusCode != 200) {
+      await http
+          .get(Uri.parse(
+              'https://raw.githubusercontent.com/HwanSangYeonHwa/black_event/main/events.json'))
+          .then((value) => {
+                if (value.statusCode == 200) {json = value.body}
+              });
+    } else {
+      json = response.body;
+    }
 
-    Map body = jsonDecode(response.body);
+    Map body = jsonDecode(json);
     List data = body['events'];
     DateTime lastUpdate = DateTime.parse(body['last_update']);
     _lastUpdate = lastUpdate.format('yy.MM.dd HH:mm:ss');
@@ -58,8 +68,9 @@ class EventCalenderNotifier with ChangeNotifier {
             url,
             thumbnail,
             meta,
-            Colors.primaries[Random().nextInt(Colors.primaries.length)].shade100),
-            //color),
+            Colors
+                .primaries[Random().nextInt(Colors.primaries.length)].shade100),
+        //color),
       );
     }
     _events = result;

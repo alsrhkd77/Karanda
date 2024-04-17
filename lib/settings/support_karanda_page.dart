@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/settings/brand_card.dart';
-import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
-import 'package:provider/provider.dart';
 
 class SupportKarandaPage extends StatelessWidget {
   const SupportKarandaPage({super.key});
