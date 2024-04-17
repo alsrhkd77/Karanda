@@ -51,8 +51,6 @@ class Api {
 
   static String get _tradeMarket => '$_server/trade-market';
 
-  static String get data => '$storage/bdo/Hammuu';
-
   static String get itemImage => '$storage/bdo/item/image';
 
   static String get _marettaStatusReport => '$_server/maretta';

@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:http/http.dart' as http;
 
 class KarandaInitializer {
   final _percentStreamController = StreamController<double>();
@@ -30,6 +30,7 @@ class KarandaInitializer {
     _percentStreamController.sink.add(2/taskNumber);
     if(currentVersion.isNotEmpty && latestVersion.isNotEmpty && currentVersion != latestVersion){
       await _downloadNewVersion();
+      await Future.delayed(const Duration(milliseconds: 1000));
     }
     _percentStreamController.sink.add(3/taskNumber);
 
@@ -48,7 +49,7 @@ class KarandaInitializer {
   }
 
   Future<String> _getLatestVersion() async {
-    final response = await http.get(Uri.parse(Api.latestVersion));
+    final response = await http.get(Api.latestVersion);
     Map data = {};
     if(response.statusCode == 200){
        data = jsonDecode(response.body);
@@ -57,20 +58,34 @@ class KarandaInitializer {
   }
 
   Future<void> _downloadNewVersion() async {
-    _textStreamController.sink.add("최신 버전 다운로드");
-    _percentStreamController.sink.add(0);
-    final Dio dio = Dio();
-    String savePath = '${Directory.current.path}/SetupKaranda.exe';
-    await dio.download(
-        'https://github.com/HwanSangYeonHwa/Karanda/releases/latest/download/SetupKaranda.exe',
-        savePath, onReceiveProgress: (received, total) {
-      final progress = received / total;
-      _percentStreamController.sink.add(progress);
-    });
-
-    _textStreamController.sink.add("업데이트");
-    await Future.delayed(const Duration(milliseconds: 500));
-    await _openFile(savePath);
+    _textStreamController.sink.add("다운로드 가능한 업데이트 확인 중");
+    final List<String> mirrors = [
+      'https://github.com/Hammuu/Karanda/releases/latest/download/SetupKaranda.exe',
+      'https://github.com/HwanSangYeonHwa/Karanda/releases/latest/download/SetupKaranda.exe',
+      '${Api.storage}/SetupKaranda.exe'
+    ];
+    String updatePath = '';
+    for(String path in mirrors){
+      final response = await http.head(path);
+      if(response.statusCode == 200){
+        updatePath = path;
+        break;
+      }
+    }
+    if (updatePath.isNotEmpty){
+      _textStreamController.sink.add("최신 버전 다운로드");
+      _percentStreamController.sink.add(0);
+      String savePath = '${Directory.current.path}/SetupKaranda.exe';
+      final Dio dio = Dio();
+      await dio.download(updatePath,
+          savePath, onReceiveProgress: (received, total) {
+            final progress = received / total;
+            _percentStreamController.sink.add(progress);
+          });
+      _textStreamController.sink.add("업데이트");
+      await Future.delayed(const Duration(milliseconds: 500));
+      await _openFile(savePath);
+    }
   }
 
   Future<void> _openFile(String path) async {
