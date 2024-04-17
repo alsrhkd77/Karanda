@@ -29,7 +29,7 @@ class SupportKarandaPage extends StatelessWidget {
                 const Divider(),
                 const SizedBox(height: 24.0,),
                 BrandCard(assetPath: 'assets/image/toss_full.png', onTap: () => launchURL('https://toss.me/hammuu')),
-                BrandCard(assetPath: 'assets/image/bmc_full.png', onTap: () => launchURL('https://www.buymeacoffee.com/hammuu')),
+                //BrandCard(assetPath: 'assets/image/bmc_full.png', onTap: () => launchURL('https://www.buymeacoffee.com/hammuu')),
               ],
             ),
           ),
@@ -38,28 +38,3 @@ class SupportKarandaPage extends StatelessWidget {
     );
   }
 }
-
-class _Card extends StatelessWidget {
-  final String assetPath;
-  final Function onTap;
-  const _Card({super.key, required this.assetPath, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final path = context.watch<SettingsNotifier>().darkMode ? assetPath.replaceAll('.', '_reverse.') : assetPath;
-    return Container(
-      constraints: const BoxConstraints(
-          maxWidth: 500
-      ),
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        margin: const EdgeInsets.all(24.0),
-        child: InkWell(
-          onTap: () => onTap(),
-          child: Image.asset(path, fit: BoxFit.cover),
-        ),
-      ),
-    );
-  }
-}
-

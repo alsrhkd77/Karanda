@@ -447,6 +447,7 @@ class _Footer extends StatelessWidget {
             ? Axis.vertical
             : Axis.horizontal,
         children: [
+          /*
           Expanded(
             child: Card(
               margin: const EdgeInsets.all(12.0),
@@ -485,6 +486,34 @@ class _Footer extends StatelessWidget {
                           tooltip: 'Buy Me a Coffee',
                         ),
                       ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          */
+          Expanded(
+            child: Card(
+              margin: const EdgeInsets.all(12.0),
+              elevation: 4.0,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(text: 'Karanda', style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(text: '의 후원자가 되어주세요!')
+                        ]
+                      ),
+                    ),
+                    //const Text('Karanda의 후원자가 되어주세요!'),
+                    FilledButton(
+                      onPressed: () => {context.push('/settings/support-karanda')},
+                      child: const Text('후원하기'),
                     ),
                   ],
                 ),
