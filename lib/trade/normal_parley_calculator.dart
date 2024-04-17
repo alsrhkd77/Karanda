@@ -107,7 +107,8 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
             'https://raw.githubusercontent.com/HwanSangYeonHwa/Karanda/main/assets/assets/data/tradeLevel.json'))
         .then((response) => response.body);
      */
-    String jsonString = await rootBundle.loadString('assets/data/trade_level.json');
+    String jsonString =
+        await rootBundle.loadString('assets/data/trade_level.json');
     tradeLevelList.addAll(jsonDecode(jsonString));
 
     getTradeLevel();
@@ -159,7 +160,8 @@ class _NormalParleyCalculatorState extends State<NormalParleyCalculator> {
       itemCount: parleyList.length,
       itemBuilder: (context, index) {
         parleyList[index]['decreased parley'] =
-            (parleyList[index]['parley'] * (100 - _decrease) / 100).floor();  //올림일 경우 ceil()
+            (parleyList[index]['parley'] * (100 - _decrease) / 100)
+                .floor(); //올림일 경우 ceil()
         return Card(
           margin: const EdgeInsets.all(8.0),
           child: Padding(
