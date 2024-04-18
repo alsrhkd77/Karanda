@@ -65,9 +65,12 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                           ),
                         ),
                       ),
-                      SliverToBoxAdapter(
-                        child: _Presets(
-                          horizontalPadding: horizontalPadding,
+                      SliverPadding(
+                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        sliver: SliverToBoxAdapter(
+                          child: _Presets(
+                            horizontalPadding: horizontalPadding,
+                          ),
                         ),
                       ),
                       SliverPadding(
@@ -115,7 +118,7 @@ class _PresetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
       clipBehavior: Clip.hardEdge,
       child: SizedBox(
         width: 280,
@@ -182,17 +185,12 @@ class _PresetsState extends State<_Presets> {
         behavior: CustomScrollBehavior(),
         child: Scrollbar(
           controller: _scrollController,
-          interactive: widget.horizontalPadding > 12.0 ? false : true,
+          //interactive: widget.horizontalPadding > 12.0 ? false : true,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.fromLTRB(
-              widget.horizontalPadding,
-              0,
-              widget.horizontalPadding,
-              GlobalProperties.scrollViewVerticalPadding / 2,
-            ),
+            padding: EdgeInsets.only(bottom: GlobalProperties.scrollViewVerticalPadding / 2),
             controller: _scrollController,
-            physics: widget.horizontalPadding > 12.0 ? const NeverScrollableScrollPhysics() : null,
+            //physics: widget.horizontalPadding > 12.0 ? const NeverScrollableScrollPhysics() : null,
             child: const Row(
               children: [
                 _PresetCard(
