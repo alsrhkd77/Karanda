@@ -65,15 +65,10 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
                           ),
                         ),
                       ),
-                      SliverPadding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: horizontalPadding),
-                        sliver: const SliverToBoxAdapter(
-                          child: _Presets(),
+                      SliverToBoxAdapter(
+                        child: _Presets(
+                          horizontalPadding: horizontalPadding,
                         ),
-                      ),
-                      SliverPadding(
-                        padding: GlobalProperties.scrollViewPadding,
                       ),
                       SliverPadding(
                         padding:
@@ -167,36 +162,65 @@ class _PresetCard extends StatelessWidget {
   }
 }
 
-class _Presets extends StatelessWidget {
-  const _Presets({super.key});
+class _Presets extends StatefulWidget {
+  final double horizontalPadding;
+
+  const _Presets({super.key, required this.horizontalPadding});
+
+  @override
+  State<_Presets> createState() => _PresetsState();
+}
+
+class _PresetsState extends State<_Presets> {
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: CustomScrollBehavior(),
-      child: const SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            _PresetCard(
-              route: '/trade-market/cooking-box',
-              imagePath: 'assets/image/cooking_box.png',
-              title: '황실 납품용 요리',
-              description: '황납 상자별 재료 요리',
+    return Padding(
+      padding: EdgeInsets.only(bottom: GlobalProperties.scrollViewVerticalPadding / 2,),
+      child: ScrollConfiguration(
+        behavior: CustomScrollBehavior(),
+        child: Scrollbar(
+          controller: _scrollController,
+          interactive: widget.horizontalPadding <= 12.0 ? true : false,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.fromLTRB(
+              widget.horizontalPadding,
+              0,
+              widget.horizontalPadding,
+              GlobalProperties.scrollViewVerticalPadding / 2,
             ),
-            _PresetCard(
-              route: '/trade-market/melody-of-stars',
-              imagePath: 'assets/image/melody_of_stars.png',
-              title: '별들의 선율',
-              description: '선율 제작용 재료 악세',
+            controller: _scrollController,
+            child: const Row(
+              children: [
+                _PresetCard(
+                  route: '/trade-market/cooking-box',
+                  imagePath: 'assets/image/cooking_box.png',
+                  title: '황실 납품용 요리',
+                  description: '황납 상자별 재료 요리',
+                ),
+                _PresetCard(
+                  route: '/trade-market/melody-of-stars',
+                  imagePath: 'assets/image/melody_of_stars.png',
+                  title: '별들의 선율',
+                  description: '선율 제작용 재료 악세',
+                ),
+                _PresetCard(
+                  route: '/trade-market/dehkias-light',
+                  imagePath: 'assets/image/dehkias_light.png',
+                  title: '데키아의 불빛',
+                  description: '불빛 제작용 재료 악세',
+                ),
+                _PresetCard(
+                  route: '/trade-market/magical-lightstone-crystal',
+                  imagePath: 'assets/image/magical_lightstone_crystal.png',
+                  title: '마력의 광명석 결정',
+                  description: '광명석 결정 제작 재료',
+                ),
+              ],
             ),
-            _PresetCard(
-              route: '/trade-market/magical-lightstone-crystal',
-              imagePath: 'assets/image/magical_lightstone_crystal.png',
-              title: '마력의 광명석 결정',
-              description: '광명석 결정 제작 재료',
-            ),
-          ],
+          ),
         ),
       ),
     );
