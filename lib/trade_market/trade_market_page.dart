@@ -177,12 +177,12 @@ class _PresetsState extends State<_Presets> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: GlobalProperties.scrollViewVerticalPadding / 2,),
+      padding: EdgeInsets.only(bottom: GlobalProperties.scrollViewVerticalPadding / 2),
       child: ScrollConfiguration(
         behavior: CustomScrollBehavior(),
         child: Scrollbar(
           controller: _scrollController,
-          interactive: widget.horizontalPadding <= 12.0 ? true : false,
+          interactive: widget.horizontalPadding > 12.0 ? false : true,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.fromLTRB(
@@ -192,6 +192,7 @@ class _PresetsState extends State<_Presets> {
               GlobalProperties.scrollViewVerticalPadding / 2,
             ),
             controller: _scrollController,
+            physics: widget.horizontalPadding > 12.0 ? const NeverScrollableScrollPhysics() : null,
             child: const Row(
               children: [
                 _PresetCard(
