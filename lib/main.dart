@@ -29,6 +29,7 @@ import 'package:karanda/settings/theme_setting_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/trade_market/presets/cooking_box_page.dart';
+import 'package:karanda/trade_market/presets/dehkias_light_page.dart';
 import 'package:karanda/trade_market/presets/magical_lightstone_crystal_page.dart';
 import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
@@ -221,6 +222,10 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: 'magical-lightstone-crystal',
               builder: (context, state) => const MagicalLightstoneCrystalPage(),
+            ),
+            GoRoute(
+              path: 'dehkias-light',
+              builder: (context, state) => const DehkiasLightPage(),
             ),
           ],
         ),
