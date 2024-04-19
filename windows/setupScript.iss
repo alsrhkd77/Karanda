@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Karanda"
-#define MyAppVersion GetVersionNumbersString('E:\Github\karanda\build\windows\x64\runner\Release\Karanda.exe')
+#define MyAppVersion GetVersionNumbersString('..\build\windows\x64\runner\Release\Karanda.exe')
 #define MyAppPublisher "Hammuu"
 #define MyAppURL "https://www.karanda.kr"
 #define MyAppExeName "Karanda.exe"
