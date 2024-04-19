@@ -123,9 +123,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 ListTile(
                   leading: const Icon(Icons.description_outlined),
                   title: const Text('패치 내역'),
-                  trailing: const Icon(Icons.open_in_new),
-                  onTap: () => launchURL(
-                      'https://github.com/HwanSangYeonHwa/Karanda/releases'),
+                  onTap: () {
+                    context.push('/settings/change-log');
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.info_outline),

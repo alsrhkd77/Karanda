@@ -21,6 +21,7 @@ import 'package:karanda/horse/horse_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
+import 'package:karanda/settings/change_log_page.dart';
 import 'package:karanda/settings/karanda_info_page.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/settings/settings_page.dart';
@@ -119,6 +120,10 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: 'support-karanda',
               builder: (context, state) => const SupportKarandaPage(),
+            ),
+            GoRoute(
+              path: 'change-log',
+              builder: (context, state) => const ChangeLogPage(),
             ),
             GoRoute(
               path: 'karanda-info',
