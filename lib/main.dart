@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:js';
 
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
