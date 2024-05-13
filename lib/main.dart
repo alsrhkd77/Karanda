@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:js';
 
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,7 @@ import 'package:karanda/horse/horse_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
+import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/settings/change_log_page.dart';
 import 'package:karanda/settings/karanda_info_page.dart';
 import 'package:karanda/settings/settings_notifier.dart';
@@ -233,6 +235,10 @@ final GoRouter _router = GoRouter(
               builder: (context, state) => const DehkiasLightPage(),
             ),
           ],
+        ),
+        GoRoute(
+          path: 'broadcast-widget/bdo-timer',
+          builder: (context, state) => const ObsBdoTimerPage(),
         ),
       ],
     ),
