@@ -97,4 +97,8 @@ class Api {
   static String get marketItemDetail => '$_tradeMarket/get/detail';
 
   static String get marketItemLatest => '$_tradeMarket/get/latest';
+
+  static String get _chzzk => '$_server/chzzk';
+
+  static String get chzzkLiveStatus => '$_chzzk/get/live-status';
 }

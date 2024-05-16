@@ -6,6 +6,7 @@ import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/launch_url.dart';
+import 'package:karanda/home/chzzk_banner.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
@@ -316,6 +317,14 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+                const Center(
+                  child: Wrap(
+                    spacing: 24.0,
+                    children: [
+                      ChzzkBanner(),
+                    ],
+                  ),
+                ),
                 /* Services */
                 const ListTile(
                   leading: Icon(FontAwesomeIcons.code),
@@ -333,16 +342,16 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 12.0,
                 ),
-                //Center(child: _ChzzkBanner()),
+                /*
                 const Center(
                   child: Wrap(
                     spacing: 24.0,
                     children: [
-                      _ChzzkBanner(),
-                      //_ChzzkBanner(),
+                      ChzzkBanner(),
                     ],
                   ),
                 ),
+                 */
                 /* Links */
                 const ListTile(
                   leading: Icon(FontAwesomeIcons.link),
@@ -509,23 +518,6 @@ class _Footer extends StatelessWidget {
     );
   }
 }
-
-class _ChzzkBanner extends StatelessWidget {
-  const _ChzzkBanner({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      margin: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () => launchURL('https://chzzk.naver.com/e28fd3efe38595427f8e51142c91b247'),
-        child: Image.asset('assets/image/live_banner.jpg', fit: BoxFit.cover),
-      ),
-    );
-  }
-}
-
 
 class _Service {
   String name;
