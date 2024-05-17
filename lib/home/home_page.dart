@@ -74,13 +74,11 @@ class _HomePageState extends State<HomePage> {
       icon: FontAwesomeIcons.staffSnake,
       path: '/color-counter',
     ),
-    /*
     _Service(
       name: '마레타 현황 (임시)',
       icon: FontAwesomeIcons.circleNodes,
       path: '/maretta',
     ),
-     */
     _Service(
       name: '통합 거래소',
       icon: FontAwesomeIcons.scaleUnbalanced,
