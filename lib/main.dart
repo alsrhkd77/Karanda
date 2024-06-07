@@ -22,6 +22,7 @@ import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
+import 'package:karanda/obs_widgets/partrigio_page.dart';
 import 'package:karanda/settings/change_log_page.dart';
 import 'package:karanda/settings/karanda_info_page.dart';
 import 'package:karanda/settings/settings_notifier.dart';
@@ -238,6 +239,10 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'broadcast-widget/bdo-timer',
           builder: (context, state) => const ObsBdoTimerPage(),
+        ),
+        GoRoute(
+          path: 'broadcast-widget/partrigio',
+          builder: (context, state) => PartrigioPage(),
         ),
       ],
     ),
