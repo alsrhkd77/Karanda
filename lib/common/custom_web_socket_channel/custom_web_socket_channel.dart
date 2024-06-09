@@ -96,7 +96,7 @@ class CustomWebSocketChannel {
           connect();
         }
       } else {
-        _visibilityTimer = Timer(const Duration(seconds: 30), () {
+        _visibilityTimer = Timer(const Duration(seconds: 20), () {
           disconnect();
         });
       }
