@@ -216,19 +216,6 @@ class _SycrakeaPageState extends State<SycrakeaPage> {
               const SizedBox(
                 height: 50,
               ),
-              /*
-              const Text('이 계산기는 인벤 "깜깜한섬"님의 엑셀 계산기를 참고하여 만들었습니다.'),
-              TextButton(
-                  onPressed: () {
-                    _launchURL(
-                        'https://www.inven.co.kr/board/black/3584/48842');
-                  },
-                  child: const Text(
-                      'https://www.inven.co.kr/board/black/3584/48842')),\
-               */
-              const SizedBox(
-                height: 20,
-              ),
             ],
           ),
         ),

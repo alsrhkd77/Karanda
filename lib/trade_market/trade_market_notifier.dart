@@ -40,8 +40,4 @@ class TradeMarketNotifier with ChangeNotifier {
     itemInfo = itemDataMap;
     notifyListeners();
   }
-
-  void testApi() {
-    getData();
-  }
 }
