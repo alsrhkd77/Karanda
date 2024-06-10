@@ -5,10 +5,8 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:karanda/trade_market/market_item_model.dart';
-import 'package:karanda/trade_market/trade_market_provider.dart';
 
 class TradeMarketNotifier with ChangeNotifier {
-  final provider = TradeMarketProvider();
   SplayTreeMap<String, MarketItemModel> itemInfo = SplayTreeMap();
 
   SplayTreeMap<String, String> get itemNames => SplayTreeMap.fromIterable(
