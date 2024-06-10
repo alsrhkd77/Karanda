@@ -14,7 +14,7 @@ class ReleaseApiProvider {
   static Future<List> getReleases() async {
     List result = [];
     final http.Response response = await http.get(
-      Uri.parse('https://api.github.com/repos/HwanSangYeonHwa/Karanda/releases?per_page=80'),
+      Uri.parse('https://api.github.com/repos/Hammuu1112/Karanda/releases?per_page=80'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -26,7 +26,7 @@ class ReleaseApiProvider {
   static Future<Map> getLatest() async {
     Map result = {};
     final http.Response response = await http.get(
-      Uri.parse('https://api.github.com/repos/HwanSangYeonHwa/Karanda/releases/latest'),
+      Uri.parse('https://api.github.com/repos/Hammuu1112/Karanda/releases/latest'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
