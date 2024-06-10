@@ -228,13 +228,13 @@ class _NewTagChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Chip(
-      label: Text(
+    return Chip(
+      label: const Text(
         'NEW',
         style: TextStyle(color: Colors.white, fontSize: 12),
       ),
-      backgroundColor: Colors.lightGreen,
-      side: BorderSide(color: Colors.lightGreen),
+      backgroundColor: Colors.green.shade400,
+      side: BorderSide(color: Colors.green.shade400),
     );
   }
 }
@@ -251,8 +251,8 @@ class _DeadlineTagChip extends StatelessWidget {
         count > 0 ? 'D-$count' : 'D-Day',
         style: const TextStyle(color: Colors.white, fontSize: 12),
       ),
-      backgroundColor: Colors.red,
-      side: const BorderSide(color: Colors.red),
+      backgroundColor: Colors.red.shade600,
+      side: BorderSide(color: Colors.red.shade600),
     );
   }
 }
