@@ -39,41 +39,43 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
           if (!snapshot.hasData) {
             return const LoadingIndicator();
           }
-          if(snapshot.requireData.isEmpty){
+          if (snapshot.requireData.isEmpty) {
             return const LoadingIndicator();
           }
           return CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
                 child: ListTile(
-                  title: TitleText(
+                  title: const TitleText(
                     '이벤트 캘린더',
                     bold: true,
                   ),
-                  leading: Icon(Icons.celebration_outlined),
+                  leading: const Icon(Icons.celebration_outlined),
                   trailing: MenuAnchor(
-                    alignmentOffset: Offset(-80, -10),
+                    alignmentOffset: const Offset(-80, -10),
                     menuChildren: [
                       MenuItemButton(
-                        child: Text('마감일순'),
-                        leadingIcon: Icon(FontAwesomeIcons.arrowUpShortWide),
-                        onPressed: (){
+                        onPressed: () {
                           newsDataController.sortEventsByDeadline();
                         },
+                        leadingIcon:
+                            const Icon(FontAwesomeIcons.arrowUpShortWide),
+                        child: const Text('마감일순'),
                       ),
                       MenuItemButton(
-                        child: Text('시작일순'),
-                        leadingIcon: Icon(FontAwesomeIcons.arrowDownWideShort),
-                        onPressed: (){
+                        onPressed: () {
                           newsDataController.sortEventsByAdded();
                         },
+                        leadingIcon:
+                            const Icon(FontAwesomeIcons.arrowDownWideShort),
+                        child: const Text('시작일순'),
                       ),
                       MenuItemButton(
-                        child: Text('무작위'),
-                        leadingIcon: Icon(FontAwesomeIcons.shuffle),
-                        onPressed: (){
+                        onPressed: () {
                           newsDataController.shuffleEvents();
                         },
+                        leadingIcon: const Icon(FontAwesomeIcons.shuffle),
+                        child: const Text('무작위'),
                       ),
                     ],
                     builder: (BuildContext context, MenuController controller,
@@ -86,7 +88,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                             controller.open();
                           }
                         },
-                        icon: Icon(FontAwesomeIcons.filter),
+                        icon: const Icon(FontAwesomeIcons.filter),
                       );
                     },
                   ),
@@ -162,6 +164,15 @@ class _EventCard extends StatelessWidget {
               width: min(maxWidth, 380),
             ),
             Positioned(
+              right: 10,
+              top: 8,
+              child: eventModel.nearDeadline
+                  ? _DeadlineTagChip(
+                      count: eventModel.countToInt(),
+                    )
+                  : (eventModel.newTag ? const _NewTagChip() : Container()),
+            ),
+            Positioned(
               bottom: 0,
               left: -12,
               child: Container(
@@ -177,9 +188,10 @@ class _EventCard extends StatelessWidget {
                     Text(
                       eventModel.title,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                          color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.white,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(
@@ -207,6 +219,40 @@ class _EventCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _NewTagChip extends StatelessWidget {
+  const _NewTagChip({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Chip(
+      label: Text(
+        'NEW',
+        style: TextStyle(color: Colors.white, fontSize: 12),
+      ),
+      backgroundColor: Colors.lightGreen,
+      side: BorderSide(color: Colors.lightGreen),
+    );
+  }
+}
+
+class _DeadlineTagChip extends StatelessWidget {
+  final int count;
+
+  const _DeadlineTagChip({super.key, required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    return Chip(
+      label: Text(
+        count > 0 ? 'D-$count' : 'D-Day',
+        style: const TextStyle(color: Colors.white, fontSize: 12),
+      ),
+      backgroundColor: Colors.red,
+      side: const BorderSide(color: Colors.red),
     );
   }
 }
