@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class BdoNewsModel{
   late String title;
   late String url;
@@ -8,8 +6,7 @@ class BdoNewsModel{
   late String contentId;
   late DateTime added;
 
-  BdoNewsModel.fromJson(String json){
-    Map data = jsonDecode(json);
+  BdoNewsModel.fromData(Map data){
     title = data['title'];
     url = data['url'];
     thumbnail = data['thumbnail'];

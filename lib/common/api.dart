@@ -51,11 +51,13 @@ class Api {
 
   static String get _tradeMarket => '$_server/trade-market';
 
-  static String get itemImage => '$storage/bdo/item/image';
-
   static String get _marettaStatusReport => '$_server/maretta';
 
   static String get _blacklist => '$_server/blacklist';
+
+  static String get _chzzk => '$_server/chzzk';
+
+  static String get _bdoNews => 'https://raw.githubusercontent.com/Hammuu1112/news/main/news';
 
   static String get authorization => '$_server/auth/discord/authorization';
 
@@ -92,13 +94,19 @@ class Api {
 
   static String get createMarettaBlacklist => '$_blacklist/create/maretta';
 
+  static String get itemImage => '$storage/bdo/item/image';
+
   static String get marketWaitList => '$_socketServer/trade-market/wait-list';
 
   static String get marketItemDetail => '$_tradeMarket/get/detail';
 
   static String get marketItemLatest => '$_tradeMarket/get/latest';
 
-  static String get _chzzk => '$_server/chzzk';
-
   static String get chzzkLiveStatus => '$_chzzk/get/live-status';
+
+  static String get bdoEvents => '$_bdoNews/kr_event.json';
+
+  static String get bdoUpdates => '$_bdoNews/kr_update.json';
+
+  static String get bdoLabUpdates => '$_bdoNews/lab_update.json';
 }

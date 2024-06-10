@@ -1,82 +1,99 @@
+import 'package:flutter/material.dart';
+import 'package:karanda/bdo_news/models/bdo_event_model.dart';
+import 'package:karanda/common/custom_scroll_behavior.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/launch_url.dart';
-import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/widgets/title_text.dart';
-import 'package:provider/provider.dart';
-
-import '../common/custom_scroll_behavior.dart';
-import '../event_calender/event_model.dart';
-import 'package:flutter/material.dart';
 
 class CustomCalendar extends StatefulWidget {
-  final List<EventModel>? data;
+  final List<BdoEventModel> events;
   final double? height;
 
-  const CustomCalendar({this.height, this.data, Key? key}) : super(key: key);
+  const CustomCalendar({this.height, required this.events, Key? key})
+      : super(key: key);
 
   @override
   State<CustomCalendar> createState() => _CustomCalendarState();
 }
 
 class _CustomCalendarState extends State<CustomCalendar> {
+  final ScrollController _scrollController = ScrollController();
   bool openCalendar = false;
   final int maxDays = 31;
   final double eventBarHeight = 45;
   final double cellWidth = 120;
+  int? newEventCount;
+  int viewItemCount = 0;
 
   @override
   void initState() {
+    var newEvents = widget.events.where((element) => element.newTag);
+    if (newEvents.isNotEmpty) {
+      newEventCount = newEvents.length;
+    }
+    viewItemCount = newEventCount ?? widget.events.length;
     super.initState();
   }
 
   void open() {
     setState(() {
       openCalendar = !openCalendar;
+      viewItemCount = openCalendar
+          ? widget.events.length
+          : (newEventCount ?? widget.events.length);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<EventModel> events = context
-        .select<EventCalenderNotifier, List<EventModel>>(
-            (value) => value.events)
-        .where((element) => element.deadline.isBefore(
-            DateTime.now().add(Duration(days: openCalendar ? 999 : 14))))
-        .toList();
     return Column(
       children: [
         SizedBox(
-          height: (events.length * eventBarHeight) + 85,
+          height: (viewItemCount * eventBarHeight) + 94,
           child: ScrollConfiguration(
             behavior: CustomScrollBehavior(),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Center(
-                child: Stack(
-                  children: [
-                    _CalendarFrame(
-                      eventCount: events.length,
-                      maxDays: maxDays,
-                      eventBarHeight: eventBarHeight,
-                      cellWidth: cellWidth,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 82,
-                        ),
-                        ...events.map((e) => _EventBar(event: e, maxDays: maxDays, height: eventBarHeight, cellWidth: cellWidth,)),
-                      ],
-                    ),
-                  ],
+            child: Scrollbar(
+              controller: _scrollController,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Center(
+                  child: Stack(
+                    children: [
+                      _CalendarFrame(
+                        eventCount: viewItemCount,
+                        maxDays: maxDays,
+                        eventBarHeight: eventBarHeight,
+                        cellWidth: cellWidth,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 82,
+                          ),
+                          ...widget.events
+                              .take(viewItemCount)
+                              .map((e) {
+                            return _EventBar(
+                              event: e,
+                              maxDays: maxDays,
+                              height: eventBarHeight,
+                              cellWidth: cellWidth,
+                            );
+                          }),
+                          //...events.map((e) => _EventBar(event: e, maxDays: maxDays, height: eventBarHeight, cellWidth: cellWidth,)),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
           child: ElevatedButton(
             onPressed: open,
             child: Row(
@@ -162,7 +179,7 @@ class _CalendarFrame extends StatelessWidget {
 }
 
 class _EventBar extends StatelessWidget {
-  final EventModel event;
+  final BdoEventModel event;
   final int maxDays;
   final double height;
   final double cellWidth;
@@ -176,7 +193,7 @@ class _EventBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int count = int.parse(event.count.split(' ').first);
+    int count = event.countToInt() + 1;
     if (count > maxDays) count = maxDays;
     return SizedBox(
       width: count * cellWidth,
