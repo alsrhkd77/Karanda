@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/bdo_news/bdo_news_data_controller.dart';
 import 'package:karanda/bdo_news/event_calendar/custom_calendar.dart';
 import 'package:karanda/bdo_news/models/bdo_event_model.dart';
+import 'package:karanda/bdo_news/widgets/deadline_tag_chip.dart';
+import 'package:karanda/bdo_news/widgets/new_tag_chip.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/launch_url.dart';
@@ -167,10 +169,10 @@ class _EventCard extends StatelessWidget {
               right: 10,
               top: 8,
               child: eventModel.nearDeadline
-                  ? _DeadlineTagChip(
+                  ? DeadlineTagChip(
                       count: eventModel.countToInt(),
                     )
-                  : (eventModel.newTag ? const _NewTagChip() : Container()),
+                  : (eventModel.newTag ? const NewTagChip() : Container()),
             ),
             Positioned(
               bottom: 0,
@@ -219,40 +221,6 @@ class _EventCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _NewTagChip extends StatelessWidget {
-  const _NewTagChip({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Chip(
-      label: const Text(
-        'NEW',
-        style: TextStyle(color: Colors.white, fontSize: 12),
-      ),
-      backgroundColor: Colors.green.shade400,
-      side: BorderSide(color: Colors.green.shade400),
-    );
-  }
-}
-
-class _DeadlineTagChip extends StatelessWidget {
-  final int count;
-
-  const _DeadlineTagChip({super.key, required this.count});
-
-  @override
-  Widget build(BuildContext context) {
-    return Chip(
-      label: Text(
-        count > 0 ? 'D-$count' : 'D-Day',
-        style: const TextStyle(color: Colors.white, fontSize: 12),
-      ),
-      backgroundColor: Colors.red.shade600,
-      side: BorderSide(color: Colors.red.shade600),
     );
   }
 }

@@ -104,14 +104,14 @@ class BdoNewsDataController {
 
   Future<void> _getUpdates() async {
     List<BdoUpdateModel> result = await BdoNewsProvider.getKRUpdates();
-    result.sort((a, b) => a.added.compareTo(b.added));
+    result.sort((a, b) => b.added.compareTo(a.added));
     _updates = result;
     _publishUpdates();
   }
 
   Future<void> _getLabUpdates() async {
     List<BdoUpdateModel> result = await BdoNewsProvider.getLabUpdates();
-    result.sort((a, b) => a.added.compareTo(b.added));
+    result.sort((a, b) => b.added.compareTo(a.added));
     _labUpdates = result;
     _publishLabUpdates();
   }

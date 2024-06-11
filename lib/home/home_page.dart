@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
+import 'package:karanda/bdo_news/bdo_news_data_controller.dart';
+import 'package:karanda/bdo_news/widgets/bdo_event_widget.dart';
+import 'package:karanda/bdo_news/widgets/bdo_update_widget.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
@@ -21,6 +24,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final BdoNewsDataController _newsDataController = BdoNewsDataController();
   final List<_Service> services = [
     _Service(
       name: '선박 증축',
@@ -128,6 +132,16 @@ class _HomePageState extends State<HomePage> {
       url: 'https://github.com/LorenzCK/OnTopReplica',
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _newsDataController.subscribeEvents();
+      _newsDataController.subscribeLabUpdates();
+      _newsDataController.subscribeUpdates();
+    });
+  }
 
   Widget singleIconTile(_Service service) {
     bool enabled = true;
@@ -340,6 +354,15 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 12.0,
                 ),
+                const ListTile(
+                  leading: Icon(FontAwesomeIcons.newspaper),
+                  title: TitleText('News', bold: true),
+                ),
+                const Divider(),
+                _News(dataController: _newsDataController),
+                const SizedBox(
+                  height: 12.0,
+                ),
                 /*
                 const Center(
                   child: Wrap(
@@ -448,6 +471,36 @@ class _FABState extends State<_FAB> {
   }
 }
 
+class _News extends StatelessWidget {
+  final BdoNewsDataController dataController;
+
+  const _News({super.key, required this.dataController});
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      runSpacing: 2.0,
+      spacing: 2.0,
+      children: [
+        Container(
+          margin: const EdgeInsets.all(4.0),
+          constraints: const BoxConstraints(
+            maxWidth: 400,
+          ),
+          child: const BdoEventWidget(),
+        ),
+        Container(
+          margin: const EdgeInsets.all(4.0),
+          constraints: const BoxConstraints(
+            maxWidth: 400,
+          ),
+          child: const BdoUpdateWidget(),
+        ),
+      ],
+    );
+  }
+}
+
 class _Footer extends StatelessWidget {
   const _Footer({super.key});
 
@@ -475,15 +528,16 @@ class _Footer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: 'Karanda', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: '의 후원자가 되어주세요!')
-                        ]
-                      ),
+                      TextSpan(children: [
+                        TextSpan(
+                            text: 'Karanda',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: '의 후원자가 되어주세요!')
+                      ]),
                     ),
                     FilledButton(
-                      onPressed: () => {context.push('/settings/support-karanda')},
+                      onPressed: () =>
+                          {context.push('/settings/support-karanda')},
                       child: const Text('후원하기'),
                     ),
                   ],
