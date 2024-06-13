@@ -15,9 +15,9 @@ import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/real_time_notifier.dart';
-import 'package:karanda/event_calender/event_calender_notifier.dart';
 import 'package:karanda/home/home_page.dart';
 import 'package:karanda/horse/horse_page.dart';
+import 'package:karanda/horse_status/horse_status_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/maretta/maretta_page.dart';
@@ -46,7 +46,7 @@ import 'package:provider/provider.dart';
 import 'ship_extension/ship_extension_page.dart';
 import 'shutdown_scheduler/shutdown_scheduler_notifier.dart';
 import 'shutdown_scheduler/shutdown_scheduler_page.dart';
-import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
+//import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -154,6 +154,11 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'horse',
           builder: (context, state) => const HorsePage(),
+          redirect: (context, state) => '/horse-status-calculator',
+        ),
+        GoRoute(
+          path: 'horse-status-calculator',
+          builder: (context, state) => const HorseStatusPage(),
         ),
         GoRoute(
           path: 'event-calendar',
@@ -284,7 +289,6 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (_) => MarettaNotifier()),
         ChangeNotifierProvider(create: (_) => RealTimeNotifier()),
-        ChangeNotifierProvider(create: (_) => EventCalenderNotifier()),
       ],
       child: Consumer(
         builder: (context, SettingsNotifier settings, _) {
