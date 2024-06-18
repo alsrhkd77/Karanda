@@ -80,16 +80,6 @@
     }
   },
   "equipment": {
-    "52612": {
-      "code": 52612,
-      "type": "Barding",
-      "name": {
-        "en": "Krogdalo's Barding",
-        "kr": "크로그달로의 마갑"
-      },
-      "grade": 3,
-      "spec": {}
-    },
     "52501": {
       "code": 52501,
       "type": "Champron",
@@ -442,6 +432,64 @@
       "grade": 1,
       "spec": {
         "brake": [2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4, 3.6, 3.8, 4.0]
+      }
+    }
+  },
+  "pearl equipment": {
+    "Barding": {
+      "code": 0,
+      "type": "Barding",
+      "name": {
+        "en": "Barding",
+        "kr": "마갑"
+      },
+      "spec": {
+        "speed": 0.0,
+        "accel": 0.0,
+        "turn": 0.0,
+        "brake": 0.0
+      }
+    },
+    "Champron": {
+      "code": 0,
+      "type": "Champron",
+      "name": {
+        "en": "Champron",
+        "kr": "마면"
+      },
+      "spec": {
+        "speed": 0.0,
+        "accel": 2.0,
+        "turn": 0.0,
+        "brake": 0.0
+      }
+    },
+    "Saddle": {
+      "code": 0,
+      "type": "Saddle",
+      "name": {
+        "en": "Saddle",
+        "kr": "안장"
+      },
+      "spec": {
+        "speed": 0.0,
+        "accel": 0.0,
+        "turn": 0.0,
+        "brake": 0.0
+      }
+    },
+    "Stirrups": {
+      "code": 0,
+      "type": "Stirrups",
+      "name": {
+        "en": "Stirrups",
+        "kr": "등자"
+      },
+      "spec": {
+        "speed": 0.0,
+        "accel": 0.0,
+        "turn": 2.0,
+        "brake": 0.0
       }
     }
   }
