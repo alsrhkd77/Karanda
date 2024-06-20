@@ -2,74 +2,71 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:karanda/horse_status/models/horse_equipment_model.dart';
-import 'package:karanda/horse_status/models/horse_model.dart';
-import 'package:karanda/horse_status/models/horse_pearl_equipment_model.dart';
-import 'package:karanda/horse_status/models/horse_spec_model.dart';
-import 'package:karanda/horse_status/models/horse_status_model.dart';
+import 'package:karanda/horse_status/models/horse_equipment.dart';
+import 'package:karanda/horse_status/models/horse.dart';
+import 'package:karanda/horse_status/models/horse_pearl_equipment.dart';
+import 'package:karanda/horse_status/models/horse_spec.dart';
+import 'package:karanda/horse_status/models/horse_status.dart';
 
 class HorseStatusDataController {
-  final _selectedBreedController = StreamController<HorseModel>();
+  final _selectedBreedController = StreamController<Horse>.broadcast();
   final _selectedEquipmentsController =
-      StreamController<Map<String, HorseEquipmentModel>>();
+      StreamController<Map<String, HorseEquipment>>();
   final _selectedPearlEquipmentsController =
       StreamController<Map<String, bool>>();
-  final _horseSpecInputController = StreamController<HorseSpecModel>();
-  final _resultStatusController = StreamController<HorseStatusModel>();
+  final _resultStatusController = StreamController<HorseStatus>();
 
-  final List<HorseModel> _breeds = [];
-  final Map<String, List<HorseEquipmentModel>> _equipments = {};
-  final Map<String, HorsePearlEquipmentModel> _pearlEquipments = {};
-  late HorseModel _selectedBreed;
-  final Map<String, HorseEquipmentModel> _selectedEquipments = {};
+  final List<Horse> _breeds = [];
+  final Map<String, List<HorseEquipment>> _equipments = {};
+  final Map<String, HorsePearlEquipment> _pearlEquipments = {};
+  Horse? _selectedBreed;
+  final Map<String, HorseEquipment> _selectedEquipments = {};
   final Map<String, bool> _selectedPearlEquipments = {};
-  HorseStatusModel _resultStatus = HorseStatusModel();
+  final HorseStatus _resultStatus = HorseStatus();
 
-  Stream<HorseModel> get selectedBreed => _selectedBreedController.stream;
+  Stream<Horse> get selectedBreed => _selectedBreedController.stream;
 
-  Stream<Map<String, HorseEquipmentModel>> get selectedEquipments =>
+  Stream<Map<String, HorseEquipment>> get selectedEquipments =>
       _selectedEquipmentsController.stream;
 
   Stream<Map<String, bool>> get selectedPearlEquipments =>
       _selectedPearlEquipmentsController.stream;
 
-  Stream<HorseSpecModel> get horseSpec => _horseSpecInputController.stream;
+  Stream<HorseStatus> get resultStatus => _resultStatusController.stream;
 
-  Stream<HorseStatusModel> get resultStatus => _resultStatusController.stream;
+  List<Horse> get breeds => _breeds;
 
-  List<HorseModel> get breeds => _breeds;
+  Map<String, List<HorseEquipment>> get equipments => _equipments;
 
-  Map<String, List<HorseEquipmentModel>> get equipments => _equipments;
-
-  Map<String, HorsePearlEquipmentModel> get pearlEquipments => _pearlEquipments;
+  Map<String, HorsePearlEquipment> get pearlEquipments => _pearlEquipments;
 
   Future<void> getBaseData() async {
     Map data = jsonDecode(
         await rootBundle.loadString('assets/data/horse_status.json'));
 
     for (String key in data['breed'].keys) {
-      _breeds.add(HorseModel.fromData(data['breed'][key]));
+      _breeds.add(Horse.fromData(data['breed'][key]));
     }
     _selectedBreed = _breeds.first;
-    _resultStatus.baseSpec = _selectedBreed.spec;
-    _selectedBreedController.sink.add(_selectedBreed);
+    _resultStatus.baseSpec = _selectedBreed!.spec;
+    _selectedBreedController.sink.add(_selectedBreed!);
 
     for (String key in data['equipment'].keys) {
-      HorseEquipmentModel item =
-          HorseEquipmentModel.fromData(data['equipment'][key]);
+      HorseEquipment item =
+          HorseEquipment.fromData(data['equipment'][key]);
       if (!_equipments.containsKey(item.type)) {
-        _equipments[item.type] = [HorseEquipmentModel(type: item.type)];
+        _equipments[item.type] = [HorseEquipment(type: item.type)];
       }
       _equipments[item.type]?.add(item);
     }
-    for (List<HorseEquipmentModel> element in _equipments.values) {
+    for (List<HorseEquipment> element in _equipments.values) {
       _selectedEquipments[element.first.type] = element.first;
     }
     _selectedEquipmentsController.sink.add(_selectedEquipments);
 
     for (String key in data['pearl equipment'].keys) {
-      HorsePearlEquipmentModel item =
-          HorsePearlEquipmentModel.fromData(data['pearl equipment'][key]);
+      HorsePearlEquipment item =
+          HorsePearlEquipment.fromData(data['pearl equipment'][key]);
       if (!_selectedPearlEquipments.containsKey(key)) {
         _selectedPearlEquipments[key] = false;
       }
@@ -81,9 +78,9 @@ class HorseStatusDataController {
 
   void selectBreed(String name) {
     _selectedBreed = _breeds.firstWhere((element) => element.nameEN == name);
-    _selectedBreedController.sink.add(_selectedBreed);
+    _selectedBreedController.sink.add(_selectedBreed!);
 
-    _resultStatus.baseSpec = _selectedBreed.spec;
+    _resultStatus.baseSpec = _selectedBreed!.spec;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
@@ -116,8 +113,8 @@ class HorseStatusDataController {
   }
 
   void _setAdditionalSpec(){
-    HorseSpecModel specModel = HorseSpecModel();
-    for(HorseEquipmentModel item in _selectedEquipments.values){
+    HorseSpec specModel = HorseSpec();
+    for(HorseEquipment item in _selectedEquipments.values){
       specModel = specModel + item.spec;
     }
     for(String key in _selectedPearlEquipments.keys){
@@ -158,5 +155,11 @@ class HorseStatusDataController {
     _resultStatus.finalSpec.brake = value;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
+  }
+
+  void subscribe(){
+    if(_selectedBreed != null){
+      _selectedBreedController.sink.add(_selectedBreed!);
+    }
   }
 }
