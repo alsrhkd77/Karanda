@@ -23,6 +23,13 @@ class _ChzzkBannerState extends State<ChzzkBanner> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) => getLiveStatus());
   }
 
+
+  @override
+  void activate() {
+    super.activate();
+    getLiveStatus();
+  }
+
   Future<void> getLiveStatus() async {
     bool result = false;
     try {
