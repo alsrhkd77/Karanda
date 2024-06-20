@@ -78,16 +78,39 @@ class _ContentsState extends State<_Contents> {
   @override
   void initState() {
     super.initState();
-    animationTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      pageController.animateToPage(nextPage,
-          duration: const Duration(milliseconds: 250), curve: Curves.ease);
-    });
+    animationTimer = Timer.periodic(
+      const Duration(seconds: 5),
+      (timer) => scrollPage(),
+    );
+  }
+
+  @override
+  void activate() {
+    super.activate();
+    animationTimer = Timer.periodic(
+      const Duration(seconds: 5),
+      (timer) => scrollPage(),
+    );
+  }
+
+  @override
+  void deactivate() {
+    animationTimer.cancel();
+    super.deactivate();
   }
 
   @override
   void dispose() {
     animationTimer.cancel();
     super.dispose();
+  }
+
+  void scrollPage() {
+    pageController.animateToPage(
+      nextPage,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.ease,
+    );
   }
 
   @override
