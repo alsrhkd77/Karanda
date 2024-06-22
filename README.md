@@ -10,10 +10,10 @@
 
 ## 사용
 
-- Link: [https://github.com/HwanSangYeonHwa/Karanda](https://github.com/HwanSangYeonHwa/Karanda)
+- Link: [https://github.com/Hammuu1112/Karanda](https://github.com/HwanSangYeonHwa/Karanda)
 - Web: [https://www.karanda.kr](https://www.karanda.kr)
-- Windows Desktop App: [https://github.com/HwanSangYeonHwa/Karanda/releases](https://github.com/HwanSangYeonHwa/Karanda/releases)
-- Wiki: [https://github.com/HwanSangYeonHwa/Karanda/wiki](https://github.com/HwanSangYeonHwa/Karanda/wiki)
+- Windows Desktop App: [https://github.com/Hammuu1112/Karanda/releases](https://github.com/HwanSangYeonHwa/Karanda/releases)
+- Wiki: [https://github.com/Hammuu1112/Karanda/wiki](https://github.com/HwanSangYeonHwa/Karanda/wiki)
 
 ## 개발 언어
 
@@ -28,7 +28,7 @@
 - [x] 시카라키아 아홉문장 실타래 계산기 [바로가기](https://www.karanda.kr/#/sycrakea)
 - [x] 광명석 조합식 탐색기 [바로가기](https://www.karanda.kr/#/artifact)
 - [x] 예약 종료 (Windows desktop 환경에서만 사용가능) [바로가기](https://www.karanda.kr/#/shutdown-scheduler)
-- [x] 선박 증축 재료 수급 현황 [바로가기](https://www.karanda.kr/#/ship-extension)
+- [x] 선박 증축 재료 수급 현황 [바로가기](https://www.karanda.kr/#/ship-upgrading)
 - [x] 물교 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
 - [x] 1단계 교환 비용 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
 - [x] 주화 환율 계산기 [바로가기](https://www.karanda.kr/#/trade-calculator)
