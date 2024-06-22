@@ -54,7 +54,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                   ),
                   leading: const Icon(Icons.celebration_outlined),
                   trailing: MenuAnchor(
-                    alignmentOffset: const Offset(-80, -10),
+                    alignmentOffset: const Offset(-95, -10),
                     menuChildren: [
                       MenuItemButton(
                         onPressed: () {
@@ -62,7 +62,10 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                         },
                         leadingIcon:
                             const Icon(FontAwesomeIcons.arrowUpShortWide),
-                        child: const Text('마감일순'),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('마감일순'),
+                        ),
                       ),
                       MenuItemButton(
                         onPressed: () {
@@ -70,14 +73,20 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                         },
                         leadingIcon:
                             const Icon(FontAwesomeIcons.arrowDownWideShort),
-                        child: const Text('시작일순'),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('시작일순'),
+                        ),
                       ),
                       MenuItemButton(
                         onPressed: () {
                           newsDataController.shuffleEvents();
                         },
                         leadingIcon: const Icon(FontAwesomeIcons.shuffle),
-                        child: const Text('무작위'),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('무작위'),
+                        ),
                       ),
                     ],
                     builder: (BuildContext context, MenuController controller,
