@@ -26,7 +26,7 @@ class SupportKarandaPage extends StatelessWidget {
                 ),
                 const Divider(),
                 const SizedBox(height: 24.0,),
-                BrandCard(assetPath: 'assets/image/toss_full.png', onTap: () => launchURL('https://toss.me/hammuu'), hasReverse: true,),
+                //BrandCard(assetPath: 'assets/image/toss_full.png', onTap: () => launchURL('https://toss.me/hammuu'), hasReverse: true,),
                 BrandCard(assetPath: 'assets/image/chzzk_full.png', onTap: () => launchURL('https://chzzk.naver.com/e28fd3efe38595427f8e51142c91b247')),
               ],
             ),
