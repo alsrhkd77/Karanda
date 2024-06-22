@@ -246,7 +246,7 @@ class _PearlEquipmentCard extends StatelessWidget {
         stream: dataController.selectedPearlEquipments,
         builder: (context, selected) {
           if (!selected.hasData) {
-            return const LoadingIndicator();
+            return Container();
           }
           return _ExpansionCard(
             title: '펄 마구',
@@ -335,7 +335,7 @@ class _StatusInputCardState extends State<_StatusInputCard> {
         stream: widget.dataController.selectedBreed,
         builder: (context, breed) {
           if (!breed.hasData) {
-            return const LoadingIndicator();
+            return Container();
           }
           return Card(
             margin: const EdgeInsets.all(8.0),
