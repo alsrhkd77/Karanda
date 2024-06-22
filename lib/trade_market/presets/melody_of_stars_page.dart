@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -74,11 +75,19 @@ class _MelodyOfStarsPageState extends State<MelodyOfStarsPage> {
       appBar: const DefaultAppBar(),
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                title: TitleText('별들의 선율 재료'),
+                title: const TitleText('별들의 선율 재료'),
+                trailing: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => const _ExchangeRateDialog());
+                  },
+                  icon: const Icon(Icons.help_outline),
+                ),
               ),
             ),
           ),
@@ -163,6 +172,19 @@ class _ItemTile extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ExchangeRateDialog extends StatelessWidget {
+  const _ExchangeRateDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('변환 비율'),
+      content: const Text('melody_of_stars_exchange_rate')
+          .tr(args: ['1', '5', '25']),
     );
   }
 }
