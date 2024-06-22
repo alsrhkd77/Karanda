@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     _Service(
       name: '말 성장치 계산기',
       icon: FontAwesomeIcons.stickerMule,
-      path: '/horse-status-calculator',
+      path: '/horse',
     ),
     _Service(
       name: '시카라키아 아홉문장 계산기',
