@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -51,6 +52,7 @@ import 'shutdown_scheduler/shutdown_scheduler_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //usePathUrlStrategy();
+  await EasyLocalization.ensureInitialized();
   if (!kIsWeb) {
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
       await windowManager.ensureInitialized();
@@ -66,7 +68,17 @@ Future<void> main() async {
       });
     }
   }
-  initializeDateFormatting().then((_) => runApp(MyApp()));
+  initializeDateFormatting().then((_) => runApp(
+        EasyLocalization(
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('ko', 'KR'),
+          ],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en', 'US'),
+          child: MyApp(),
+        ),
+      ));
 }
 
 final _dropdownMenuTheme = DropdownMenuThemeData(
@@ -295,6 +307,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: rootScaffoldMessengerKey,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             title: 'Karanda - 카란다',
             theme: ThemeData(
               useMaterial3: true,

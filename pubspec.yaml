@@ -63,6 +63,7 @@ dependencies:
   ffi: ^2.1.0
   flutter_markdown: ^0.6.20
   smooth_page_indicator: ^1.1.0
+  easy_localization: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,7 @@ flutter:
     - assets/image/logo/
     - assets/image/
     - assets/brand/
+    - assets/translations/
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 
