@@ -52,8 +52,7 @@ class HorseStatusDataController {
     _selectedBreedController.sink.add(_selectedBreed!);
 
     for (String key in data['equipment'].keys) {
-      HorseEquipment item =
-          HorseEquipment.fromData(data['equipment'][key]);
+      HorseEquipment item = HorseEquipment.fromData(data['equipment'][key]);
       if (!_equipments.containsKey(item.type)) {
         _equipments[item.type] = [HorseEquipment(type: item.type)];
       }
@@ -112,53 +111,59 @@ class HorseStatusDataController {
     }
   }
 
-  void _setAdditionalSpec(){
+  void _setAdditionalSpec() {
     HorseSpec specModel = HorseSpec();
-    for(HorseEquipment item in _selectedEquipments.values){
+    for (HorseEquipment item in _selectedEquipments.values) {
       specModel = specModel + item.spec;
     }
-    for(String key in _selectedPearlEquipments.keys){
-      if(_selectedPearlEquipments[key]!){
+    bool pearlSetOption = true; //펄마구 세트 옵션 체크
+    for (String key in _selectedPearlEquipments.keys) {
+      if (_selectedPearlEquipments[key]!) {
         specModel = specModel + _pearlEquipments[key]!.spec;
+      } else {
+        pearlSetOption = false;
       }
+    }
+    if (pearlSetOption) {
+      specModel.speed += 1.0;
     }
     _resultStatus.additionalSpec = specModel;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
 
-  void setLevel(int value){
+  void setLevel(int value) {
     _resultStatus.level = value;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
 
-  void setSpeed(double value){
+  void setSpeed(double value) {
     _resultStatus.finalSpec.speed = value;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
 
-  void setAccel(double value){
+  void setAccel(double value) {
     _resultStatus.finalSpec.accel = value;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
 
-  void setTurn(double value){
+  void setTurn(double value) {
     _resultStatus.finalSpec.turn = value;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
 
-  void setBrake(double value){
+  void setBrake(double value) {
     _resultStatus.finalSpec.brake = value;
     _resultStatus.calculate();
     _resultStatusController.sink.add(_resultStatus);
   }
 
-  void subscribe(){
-    if(_selectedBreed != null){
+  void subscribe() {
+    if (_selectedBreed != null) {
       _selectedBreedController.sink.add(_selectedBreed!);
     }
   }
