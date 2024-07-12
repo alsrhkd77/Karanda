@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
@@ -39,7 +40,7 @@ class KarandaInitializer {
     _percentStreamController.sink.add(3 / taskNumber);
 
     _textStreamController.sink.add("사용자 인증 정보 확인");
-    await authorization;
+    if(!kDebugMode) await authorization;
     _percentStreamController.sink.add(4 / taskNumber);
 
     _textStreamController.sink.add("시작하는 중");
