@@ -159,7 +159,7 @@ class _CombinationCard extends StatelessWidget {
       margin: const EdgeInsets.all(12.0),
       shadowColor:
           data['name'].toString().startsWith('[') ? Colors.red : Colors.green,
-      elevation: 8.0,
+      elevation: 2.5,
       clipBehavior: Clip.antiAlias,
       child: Container(
         padding: const EdgeInsets.all(12.0),
