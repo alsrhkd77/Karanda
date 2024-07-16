@@ -92,6 +92,10 @@ final _actionIconTheme = ActionIconThemeData(
       const Icon(Icons.arrow_back_ios_new),
 );
 
+const _floatingActionButtonTheme = FloatingActionButtonThemeData(
+  backgroundColor: Colors.blueAccent,
+);
+
 final GoRouter _router = GoRouter(
   initialLocation: '/window-init',
   routes: [
@@ -311,6 +315,7 @@ class MyApp extends StatelessWidget {
               colorSchemeSeed: const Color.fromRGBO(87, 132, 193, 1.0),
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
+              floatingActionButtonTheme: _floatingActionButtonTheme,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
@@ -322,10 +327,12 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.dark,
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
+              floatingActionButtonTheme: _floatingActionButtonTheme,
               //appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(24, 24, 24, 1.0)),
-              appBarTheme: const AppBarTheme(backgroundColor: Color.fromRGBO(25, 25, 28, 1.0)),
+              appBarTheme: const AppBarTheme(
+                  backgroundColor: Color.fromRGBO(25, 25, 27, 1.0)),
               //scaffoldBackgroundColor: Color.fromRGBO(24, 24, 24, 1.0),
-              scaffoldBackgroundColor: const Color.fromRGBO(25, 25, 28, 1.0),
+              scaffoldBackgroundColor: const Color.fromRGBO(25, 25, 27, 1.0),
               //scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 24, 1.0),
               //cardTheme: CardTheme(color: Color.fromRGBO(40, 40, 40, 1.0)),
             ),
