@@ -93,7 +93,7 @@ final _actionIconTheme = ActionIconThemeData(
 );
 
 const _floatingActionButtonTheme = FloatingActionButtonThemeData(
-  backgroundColor: Colors.blueAccent,
+  backgroundColor: Colors.blue,
 );
 
 final GoRouter _router = GoRouter(
