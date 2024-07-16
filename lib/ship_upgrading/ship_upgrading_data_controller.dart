@@ -12,7 +12,7 @@ class ShipUpgradingDataController {
   final _materialDataStreamController =
       StreamController<Map<String, ShipUpgradingMaterial>>.broadcast();
   final _partsDataStreamController =
-      StreamController<Map<String, ShipUpgradingParts>>();
+      StreamController<Map<String, ShipUpgradingParts>>.broadcast();
   final _selectedShipDataStreamController =
       StreamController<ShipUpgradingShip>.broadcast();
   final _totalPercentStreamController = StreamController<double>();
@@ -34,6 +34,7 @@ class ShipUpgradingDataController {
   Map<String, ShipUpgradingMaterial> _materials = {};
   Map<String, ShipUpgradingShip> _ship = {};
   Map<String, ShipUpgradingParts> _parts = {};
+  String _selectedShip = '';
   final ShipUpgradingSetting _setting = ShipUpgradingSetting();
 
   Map<String, ShipUpgradingShip> get ship => _ship;
@@ -66,7 +67,8 @@ class ShipUpgradingDataController {
 
   Future<void> updateSelected(String selected) async {
     if (_ship.containsKey(selected)) {
-      _selectedShipDataStreamController.sink.add(_ship[selected]!);
+      _selectedShip = selected;
+      _selectedShipDataStreamController.sink.add(_ship[_selectedShip]!);
       _initMaterialData(selected);
       final sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.setString('ship_upgrading_selected_ship', selected);
@@ -152,6 +154,8 @@ class ShipUpgradingDataController {
   void subscribe(){
     _settingStreamController.sink.add(_setting);
     _materialDataStreamController.sink.add(_materials);
+    _partsDataStreamController.sink.add(_parts);
+    _selectedShipDataStreamController.sink.add(_ship[_selectedShip]!);
   }
 
   void _initMaterialData(String selectedShip) {
@@ -187,10 +191,10 @@ class ShipUpgradingDataController {
 
       String? selected =
           sharedPreferences.getString('ship_upgrading_selected_ship');
-      selected = selected ?? _ship.keys.first;
-      _selectedShipDataStreamController.sink.add(_ship[selected]!);
+      _selectedShip = selected ?? _ship.keys.first;
+      _selectedShipDataStreamController.sink.add(_ship[_selectedShip]!);
 
-      _initMaterialData(selected);
+      _initMaterialData(_selectedShip);
 
       await _setting.load();
       _settingStreamController.sink.add(_setting);

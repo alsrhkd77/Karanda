@@ -11,6 +11,7 @@ import 'package:karanda/ship_upgrading/ship_upgrading_material.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_parts.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_settings_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_ship.dart';
+import 'package:karanda/ship_upgrading/widgets/list_by_parts.dart';
 import 'package:karanda/trade_market/bdo_item_image_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
@@ -27,7 +28,7 @@ class ShipUpgradingPage extends StatefulWidget {
 class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
   final ShipUpgradingDataController dataController =
       ShipUpgradingDataController();
-  bool loading = true;
+  bool loading = false;
 
   @override
   void initState() {
@@ -37,11 +38,13 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
 
   Future<void> ready() async {
     bool result = await dataController.getBaseData();
+    print(result);
     if (result) {
       setState(() {
-        loading = false;
+        loading = true;
       });
     }
+    dataController.subscribe();
   }
 
   @override
@@ -54,53 +57,79 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const DefaultAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: const Icon(FontAwesomeIcons.ship),
-                title: const TitleText(
-                  '선박 증축',
-                  bold: true,
-                ),
-                trailing: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ShipUpgradingSettingsPage(
-                          dataController: dataController,
-                        ),
+      body: loading
+          ? SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: const Icon(FontAwesomeIcons.ship),
+                      title: const TitleText(
+                        '선박 증축',
+                        bold: true,
                       ),
-                    );
-                  },
-                  icon: const Icon(Icons.construction),
-                  tooltip: "설정",
-                ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          StreamBuilder(
+                            stream: dataController.setting,
+                            builder: (context, setting) {
+                              if (!setting.hasData) {
+                                return Container();
+                              }
+                              return IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.dynamic_form_outlined),
+                                color: setting.requireData.changeForm
+                                    ? Colors.blue
+                                    : null,
+                              );
+                            },
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ShipUpgradingSettingsPage(
+                                    dataController: dataController,
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.construction),
+                            tooltip: "설정",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  _Head(
+                      selectedShipStream: dataController.selectedShipData,
+                      shipData: dataController.ship,
+                      updateSelected: dataController.updateSelected,
+                      dataController: dataController),
+                  _Body(
+                    dataController: dataController,
+                    screenWidth: MediaQuery.of(context).size.width,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                        "TIP - 아이템 이름을 누르면 보유 갯수가 증가하고, 아이콘을 누르면 감소합니다!",
+                        style: TextStyle(color: Colors.grey),
+                        textAlign: TextAlign.center),
+                  ),
+                  const SizedBox(
+                    height: 36.0,
+                  )
+                ],
               ),
-            ),
-            _Head(
-                selectedShipStream: dataController.selectedShipData,
-                shipData: dataController.ship,
-                updateSelected: dataController.updateSelected,
-                dataController: dataController),
-            _Body(
-              dataController: dataController,
-              screenWidth: MediaQuery.of(context).size.width,
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text("TIP - 아이템 이름을 누르면 보유 갯수가 증가하고, 아이콘을 누르면 감소합니다!",
-                  style: TextStyle(color: Colors.grey),
-                  textAlign: TextAlign.center),
-            ),
-            const SizedBox(
-              height: 36.0,
             )
-          ],
-        ),
-      ),
+          : const Center(
+              child: LoadingIndicator(),
+            ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           bool? result = await showDialog(
@@ -295,6 +324,7 @@ class _Body extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: SizedBox(
           width: GlobalProperties.widthConstrains - 48,
+          /*
           child: StreamBuilder(
             stream: dataController.setting,
             builder: (context, setting) {
@@ -343,12 +373,14 @@ class _Body extends StatelessWidget {
               );
             },
           ),
+           */
+          child: ListByParts(dataController: dataController, screenWidth: screenWidth,),
         ),
       ),
     );
   }
 }
-
+/*
 class _PartsCard extends StatelessWidget {
   final double screenWidth;
   final ShipUpgradingParts parts;
@@ -695,6 +727,7 @@ class _MaterialItem {
     ]);
   }
 }
+ */
 
 class _AddDailyQuestDialog extends StatelessWidget {
   const _AddDailyQuestDialog({super.key});

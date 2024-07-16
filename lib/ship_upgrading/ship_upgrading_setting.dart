@@ -6,6 +6,7 @@ class ShipUpgradingSetting {
   bool _closeFinishedParts = true;
   bool _showTableHeader = true;
   bool _showTotalNeeded = true;
+  bool _changeForm = true;
   Map<String, int> _dailyQuest = {
     "5807": 2,
     "5814": 10,
@@ -45,6 +46,13 @@ class ShipUpgradingSetting {
     save();
   }
 
+  bool get changeForm => _changeForm;
+
+  set changeForm(bool value) {
+    _changeForm = value;
+    save();
+  }
+
   void updateDailyQuest(String key, int value) {
     if (value <= 0) {
       _dailyQuest.remove(key);
@@ -61,6 +69,7 @@ class ShipUpgradingSetting {
       'show_table_header': _showTableHeader,
       'show_total_needed': _showTotalNeeded,
       'daily_quest': _dailyQuest,
+      'change_form': _changeForm,
     };
     sharedPreferences.setString('ship_upgrading_setting', jsonEncode(data));
   }
@@ -73,6 +82,7 @@ class ShipUpgradingSetting {
       _closeFinishedParts = data['close_finished_parts'] ?? _closeFinishedParts;
       _showTableHeader = data['show_table_header'] ?? _showTableHeader;
       _showTotalNeeded = data['show_total_needed'] ?? _showTotalNeeded;
+      _changeForm = data['change_form'] ?? _changeForm;
       _dailyQuest = Map<String, int>.from(data['daily_quest'] ?? _dailyQuest);
     }
   }
