@@ -1,0 +1,342 @@
+{
+  "garmoth": {
+    "name": "garmoth",
+    "kr": [
+      {
+        "weekday": 0,
+        "hour": 14,
+        "minute": 0
+      },
+      {
+        "weekday": 0,
+        "hour": 23,
+        "minute": 15
+      }
+    ]
+  },
+  "vell": {
+    "name": "vell",
+    "kr": [
+      {
+        "weekday": 4,
+        "hour": 0,
+        "minute": 15
+      },
+      {
+        "weekday": 7,
+        "hour": 17,
+        "minute": 0
+      }
+    ]
+  },
+  "karanda": {
+    "name": "karanda",
+    "kr": [
+      {
+        "weekday": 1,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 3,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 4,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 23,
+        "minute": 45
+      }
+    ]
+  },
+  "kzarka": {
+    "name": "kzarka",
+    "kr": [
+      {
+        "weekday": 1,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 1,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 1,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 3,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 3,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 3,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 4,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 11,
+        "minute": 0
+      }
+    ]
+  },
+  "offin": {
+    "name": "offin",
+    "kr" : [
+      {
+        "weekday": 1,
+        "hour": 23,
+        "minute": 45
+      },
+      {
+        "weekday": 3,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 23,
+        "minute": 45
+      }
+    ]
+  },
+  "nouver": {
+    "name": "nouver",
+    "kr": [
+      {
+        "weekday": 1,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 1,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 3,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 3,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 4,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 4,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 20,
+        "minute": 0
+      }
+    ]
+  },
+  "kutum": {
+    "name": "kutum",
+    "kr": [
+      {
+        "weekday": 1,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 2,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 4,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 4,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 5,
+        "hour": 20,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 11,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 2,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 16,
+        "minute": 0
+      },
+      {
+        "weekday": 7,
+        "hour": 20,
+        "minute": 0
+      }
+    ]
+  },
+  "quint": {
+    "name": "quint",
+    "kr": [
+      {
+        "weekday": 3,
+        "hour": 19,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 19,
+        "minute": 0
+      }
+    ]
+  },
+  "muraka": {
+    "name": "muraka",
+    "kr": [
+      {
+        "weekday": 3,
+        "hour": 19,
+        "minute": 0
+      },
+      {
+        "weekday": 6,
+        "hour": 19,
+        "minute": 0
+      }
+    ]
+  }
+}
