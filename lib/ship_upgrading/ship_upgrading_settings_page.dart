@@ -90,7 +90,7 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                           title: TitleText('선박 증축 설정', bold: true),
                         ),
                         const Divider(),
-                        ListTile(
+                        snapshot.requireData.changeForm ? ListTile(
                           title: const Text('제작 완료된 카드 닫기'),
                           trailing: Switch(
                             value: snapshot.requireData.closeFinishedParts,
@@ -98,7 +98,7 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                               widget.dataController.setCardCloseSetting(value);
                             },
                           ),
-                        ),
+                        ) : Container(),
                         ListTile(
                           title: const Text('항목 이름 표시'),
                           trailing: Switch(
@@ -108,7 +108,7 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                             },
                           ),
                         ),
-                        ListTile(
+                        snapshot.requireData.changeForm ? ListTile(
                           title: const Text('재료 합계 표시'),
                           subtitle: const Text(
                             "모든 파츠 제작에 필요한 재료 합계를 표시합니다",
@@ -120,7 +120,7 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
                               widget.dataController.setShowTotalNeeded(value);
                             },
                           ),
-                        ),
+                        ) : Container(),
                         ExpansionTile(
                           //initiallyExpanded: true,
                           title: const Text('일일퀘스트'),

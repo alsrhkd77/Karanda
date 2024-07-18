@@ -16,7 +16,8 @@ class ShipUpgradingDataController {
   final _selectedShipDataStreamController =
       StreamController<ShipUpgradingShip>.broadcast();
   final _totalPercentStreamController = StreamController<double>();
-  final _settingStreamController = StreamController<ShipUpgradingSetting>.broadcast();
+  final _settingStreamController =
+      StreamController<ShipUpgradingSetting>.broadcast();
 
   Stream<Map<String, ShipUpgradingMaterial>> get materials =>
       _materialDataStreamController.stream;
@@ -39,25 +40,25 @@ class ShipUpgradingDataController {
 
   Map<String, ShipUpgradingShip> get ship => _ship;
 
-  ShipUpgradingDataController(){
+  ShipUpgradingDataController() {
     materials.listen((event) => updateTotalPercent(event.values.toList()));
   }
 
   Future<void> runDailyQuest() async {
-    for(String key in _setting.dailyQuest.keys){
+    for (String key in _setting.dailyQuest.keys) {
       int stock = _materials[key]?.userStock ?? 0;
       stock += _setting.dailyQuest[key]!;
-      if(stock > 999) stock = 999;
+      if (stock > 999) stock = 999;
       await updateUserStock(key, stock);
     }
   }
 
-  void updateTotalPercent(List<ShipUpgradingMaterial> dataList){
+  void updateTotalPercent(List<ShipUpgradingMaterial> dataList) {
     double need = 0;
     double stock = 0;
     for (ShipUpgradingMaterial data in dataList) {
       need += data.neededPoint;
-      stock += data.stockPoint;
+      stock += _setting.changeForm ? data.stockPointWithFinished : data.stockPoint;
     }
     if (need <= 0) {
       _totalPercentStreamController.sink.add(0);
@@ -79,7 +80,7 @@ class ShipUpgradingDataController {
     if (_materials.containsKey(code)) {
       _materials[code]!.userStock = value;
       String str = value > 0 ? value.toString() : '';
-      if(_materials[code]!.controller.text != str){
+      if (_materials[code]!.controller.text != str) {
         _materials[code]!.controller.text = str;
       }
       _materialDataStreamController.sink.add(_materials);
@@ -90,7 +91,7 @@ class ShipUpgradingDataController {
 
   Future<void> increaseUserStock(String code) async {
     int stock = _materials[code]?.userStock ?? 0;
-    if(stock < 999){
+    if (stock < 999) {
       stock += 1;
       await updateUserStock(code, stock);
     }
@@ -98,14 +99,14 @@ class ShipUpgradingDataController {
 
   Future<void> decreaseUserStock(String code) async {
     int stock = _materials[code]?.userStock ?? 0;
-    if(stock > 0){
+    if (stock > 0) {
       stock -= 1;
       await updateUserStock(code, stock);
     }
   }
 
   Future<void> resetUserStock() async {
-    for(String itemCode in _materials.keys){
+    for (String itemCode in _materials.keys) {
       await updateUserStock(itemCode, 0);
     }
   }
@@ -131,27 +132,33 @@ class ShipUpgradingDataController {
     }
   }
 
-  void setCardCloseSetting(bool value){
+  void setCardCloseSetting(bool value) {
     _setting.closeFinishedParts = value;
     _settingStreamController.sink.add(_setting);
   }
 
-  void setShowTableHeaders(bool value){
+  void setShowTableHeaders(bool value) {
     _setting.showTableHeader = value;
     _settingStreamController.sink.add(_setting);
   }
 
-  void setDailyQuest(String code, int value){
+  void setDailyQuest(String code, int value) {
     _setting.updateDailyQuest(code, value);
     _settingStreamController.sink.add(_setting);
   }
 
-  void setShowTotalNeeded(bool value){
+  void setShowTotalNeeded(bool value) {
     _setting.showTotalNeeded = value;
     _settingStreamController.sink.add(_setting);
   }
 
-  void subscribe(){
+  void setChangeForm() {
+    _setting.changeForm = !_setting.changeForm;
+    _settingStreamController.sink.add(_setting);
+    updateTotalPercent(_materials.values.toList());
+  }
+
+  void subscribe() {
     _settingStreamController.sink.add(_setting);
     _materialDataStreamController.sink.add(_materials);
     _partsDataStreamController.sink.add(_parts);
@@ -162,10 +169,16 @@ class ShipUpgradingDataController {
     for (ShipUpgradingMaterial m in _materials.values) {
       m.finished = 0;
       m.totalNeeded = 0;
+      m.totalDays = 0;
     }
     for (String partsKey in _ship[selectedShip]!.parts) {
       for (String key in _parts[partsKey]!.materials.keys) {
         _materials[key]!.totalNeeded += _parts[partsKey]!.materials[key]!.need;
+        if (_materials[key]!.obtain.reward > 0) {
+          _materials[key]!.totalDays =
+              (_materials[key]!.totalNeeded / _materials[key]!.obtain.reward)
+                  .ceil();
+        }
         if (_parts[partsKey]!.finished) {
           _materials[key]!.finished += _parts[partsKey]!.materials[key]!.need;
         }

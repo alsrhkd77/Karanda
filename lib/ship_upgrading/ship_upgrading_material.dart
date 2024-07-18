@@ -9,12 +9,14 @@ class ShipUpgradingMaterial {
   final controller = TextEditingController();
   int userStock = 0;
   int totalNeeded = 0;
+  int totalDays = 0;
   int finished = 0;
 
   ObtainDetail get obtain => obtains.first;
 
+  double get _stockPointWithFinished => ((userStock + finished) * price).toDouble();
 
-  double get _stockPoint => ((userStock + finished) * price).toDouble();
+  double get _stockPoint => (userStock * price).toDouble();
 
   double get neededPoint => (totalNeeded * price).toDouble();
 
@@ -28,8 +30,10 @@ class ShipUpgradingMaterial {
       : totalNeeded / obtain.trade;
    */
 
-  double get stockPoint =>
-      _stockPoint > neededPoint ? neededPoint : _stockPoint;
+  double get stockPointWithFinished =>
+      _stockPointWithFinished > neededPoint ? neededPoint : _stockPointWithFinished;
+
+  double get stockPoint => _stockPoint > neededPoint ? neededPoint : _stockPoint;
 
   ShipUpgradingMaterial.fromData(Map data) {
     code = data['code'];

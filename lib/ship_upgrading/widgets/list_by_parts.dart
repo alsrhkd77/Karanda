@@ -11,9 +11,14 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 class ListByParts extends StatefulWidget {
   final ShipUpgradingDataController dataController;
   final double screenWidth;
-  //final ShipUpgradingSetting setting;
+  final ShipUpgradingSetting setting;
 
-  const ListByParts({super.key, required this.dataController, required this.screenWidth,});
+  const ListByParts({
+    super.key,
+    required this.dataController,
+    required this.screenWidth,
+    required this.setting,
+  });
 
   @override
   State<ListByParts> createState() => _ListByPartsState();
@@ -33,46 +38,32 @@ class _ListByPartsState extends State<ListByParts> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: dataController.setting,
-      builder: (context, setting) {
+      stream: dataController.selectedShipData,
+      builder: (context, selected) {
         return StreamBuilder(
-          stream: dataController.selectedShipData,
-          builder: (context, selected) {
+          stream: dataController.parts,
+          builder: (context, parts) {
             return StreamBuilder(
-              stream: dataController.parts,
-              builder: (context, parts) {
-                return StreamBuilder(
-                  stream: dataController.materials,
-                  builder: (context, materials) {
-                    if (!materials.hasData ||
-                        !selected.hasData ||
-                        !parts.hasData ||
-                        !setting.hasData) {
-                      return const LoadingIndicator();
-                    }
-                    return Column(
-                      children: selected.requireData.parts
-                          .map<_PartsCard>((e) => _PartsCard(
-                        parts: parts.requireData[e]!,
-                        materials: materials.requireData,
-                        screenWidth: widget.screenWidth,
-                        onInputChanged:
-                        dataController.updateUserStock,
-                        setFinished: dataController.setFinished,
-                        showTotalNeeded:
-                        setting.requireData.showTotalNeeded,
-                        closeFinished: setting
-                            .requireData.closeFinishedParts,
-                        showHeaders:
-                        setting.requireData.showTableHeader,
-                        increase:
-                        dataController.increaseUserStock,
-                        decrease:
-                        dataController.decreaseUserStock,
-                      ))
-                          .toList(),
-                    );
-                  },
+              stream: dataController.materials,
+              builder: (context, materials) {
+                if (!materials.hasData || !selected.hasData || !parts.hasData) {
+                  return const LoadingIndicator();
+                }
+                return Column(
+                  children: selected.requireData.parts
+                      .map<_PartsCard>((e) => _PartsCard(
+                            parts: parts.requireData[e]!,
+                            materials: materials.requireData,
+                            screenWidth: widget.screenWidth,
+                            onInputChanged: dataController.updateUserStock,
+                            setFinished: dataController.setFinished,
+                            showTotalNeeded: widget.setting.showTotalNeeded,
+                            closeFinished: widget.setting.closeFinishedParts,
+                            showHeaders: widget.setting.showTableHeader,
+                            increase: dataController.increaseUserStock,
+                            decrease: dataController.decreaseUserStock,
+                          ))
+                      .toList(),
                 );
               },
             );
@@ -172,80 +163,80 @@ class _PartsCard extends StatelessWidget {
               title: Text(parts.nameKR),
               trailing: parts.type != ShipParts.license
                   ? OutlinedButton.icon(
-                onPressed: () => setFinished(parts.code.toString()),
-                clipBehavior: Clip.hardEdge,
-                icon: const Icon(Icons.check_rounded),
-                label: const Text('제작 완료'),
-                style: OutlinedButton.styleFrom(
-                  //foregroundColor: Colors.grey.shade700,
-                    foregroundColor: parts.finished
-                        ? Colors.green.shade400
-                        : Colors.grey.shade700,
-                    side: BorderSide(
-                        color: parts.finished
-                            ? Colors.green.shade400
-                            : Colors.grey.shade700,
-                        width: 2.0),
-                    animationDuration: const Duration(milliseconds: 650)),
-                focusNode: FocusNode(skipTraversal: true),
-              )
+                      onPressed: () => setFinished(parts.code.toString()),
+                      clipBehavior: Clip.hardEdge,
+                      icon: const Icon(Icons.check_rounded),
+                      label: const Text('제작 완료'),
+                      style: OutlinedButton.styleFrom(
+                          //foregroundColor: Colors.grey.shade700,
+                          foregroundColor: parts.finished
+                              ? Colors.green.shade400
+                              : Colors.grey.shade700,
+                          side: BorderSide(
+                              color: parts.finished
+                                  ? Colors.green.shade400
+                                  : Colors.grey.shade700,
+                              width: 2.0),
+                          animationDuration: const Duration(milliseconds: 650)),
+                      focusNode: FocusNode(skipTraversal: true),
+                    )
                   : null,
             ),
             !parts.finished || !closeFinished
                 ? Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0, vertical: 12.0),
-              child: LinearPercentIndicator(
-                animation: true,
-                animationDuration: 500,
-                percent: percent,
-                barRadius: const Radius.circular(4.0),
-                progressColor: getColor(percent),
-                backgroundColor: Colors.grey.shade700.withOpacity(0.6),
-                animateFromLastPercent: true,
-                lineHeight: 1.8,
-              ),
-            )
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 12.0),
+                    child: LinearPercentIndicator(
+                      animation: true,
+                      animationDuration: 500,
+                      percent: percent,
+                      barRadius: const Radius.circular(4.0),
+                      progressColor: getColor(percent),
+                      backgroundColor: Colors.grey.shade700.withOpacity(0.6),
+                      animateFromLastPercent: true,
+                      lineHeight: 1.8,
+                    ),
+                  )
                 : Container(),
             !parts.finished || !closeFinished
                 ? Table(
-              border: TableBorder(
-                  horizontalInside: BorderSide(
-                      color: Colors.grey.shade700.withOpacity(0.0),
-                      width: 0.6),
-                  verticalInside: BorderSide(
-                      color: Colors.grey.shade700.withOpacity(0.0),
-                      width: 0.6)),
-              columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(56),
-                1: FixedColumnWidth(180),
-                2: FixedColumnWidth(450),
-                3: FixedColumnWidth(100),
-                4: FixedColumnWidth(80),
-                5: FixedColumnWidth(110),
-                6: FixedColumnWidth(80),
-              },
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              defaultColumnWidth: const FixedColumnWidth(80),
-              children: (showHeaders
-                  ? [
-                MaterialItemRow.header(
-                    showTotalNeeded: showTotalNeeded)
-              ]
-                  : [])
-                ..addAll(parts.materials.keys.map<TableRow>(
-                      (e) => MaterialItemRow(
-                    material: materials[e]!,
-                    need: parts.materials[e]!.need,
-                    finished: parts.finished,
-                    showTotalNeeded: showTotalNeeded,
-                    onInputChanged: onInputChanged,
-                    totalDays: parts.materials[e]!.days,
-                    increase: increase,
-                    decrease: decrease,
-                  ).toTableRow(),
-                )),
-            )
+                    border: TableBorder(
+                        horizontalInside: BorderSide(
+                            color: Colors.grey.shade700.withOpacity(0.0),
+                            width: 0.6),
+                        verticalInside: BorderSide(
+                            color: Colors.grey.shade700.withOpacity(0.0),
+                            width: 0.6)),
+                    columnWidths: const <int, TableColumnWidth>{
+                      0: FixedColumnWidth(56),
+                      1: FixedColumnWidth(180),
+                      2: FixedColumnWidth(450),
+                      3: FixedColumnWidth(100),
+                      4: FixedColumnWidth(80),
+                      5: FixedColumnWidth(110),
+                      6: FixedColumnWidth(80),
+                    },
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    defaultColumnWidth: const FixedColumnWidth(80),
+                    children: (showHeaders
+                        ? [
+                            MaterialItemRow.header(
+                                showTotalNeeded: showTotalNeeded)
+                          ]
+                        : [])
+                      ..addAll(parts.materials.keys.map<TableRow>(
+                        (e) => MaterialItemRow(
+                          material: materials[e]!,
+                          need: parts.materials[e]!.need,
+                          finished: parts.finished,
+                          showTotalNeeded: showTotalNeeded,
+                          onInputChanged: onInputChanged,
+                          totalDays: parts.materials[e]!.days,
+                          increase: increase,
+                          decrease: decrease,
+                        ).toTableRow(),
+                      )),
+                  )
                 : Container(),
           ],
         ),
