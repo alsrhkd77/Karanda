@@ -34,4 +34,12 @@ extension TimeOfDayExtension on TimeOfDay {
     String strTime = timeToString(lang: time);
     return '$strDayPeriod $strTime';
   }
+
+  int compareTo(TimeOfDay other) {
+    if (hour < other.hour) return -1;
+    if (hour > other.hour) return 1;
+    if (minute < other.minute) return -1;
+    if (minute > other.minute) return 1;
+    return 0;
+  }
 }
