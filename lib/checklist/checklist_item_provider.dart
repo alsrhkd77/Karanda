@@ -34,7 +34,7 @@ class ChecklistItemProvider{
 
   Future<ChecklistFinishedItem> createFinishedItem(String title, DateTime selected) async {
     Map item = {
-      "finish_at":selected.date().format(null),
+      "finish_at":selected.toDate().format(null),
       "checklist_item":title
     };
     final response = await http.post(Api.createChecklistFinishedItem, body: jsonEncode(item), json: true);

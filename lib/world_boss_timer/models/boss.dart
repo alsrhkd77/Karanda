@@ -6,5 +6,5 @@ class Boss {
   List<BossData> fixed = [];
   List<EventBossData> event = [];
 
-
+  Boss(this.spawnTime);
 }

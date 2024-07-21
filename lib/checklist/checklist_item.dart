@@ -77,7 +77,7 @@ class ChecklistItem {
         break;
       case Cycle.daily:
         for (int i = 0; i < finishedItem.length; i++) {
-          if (finishedItem[i].finishAt.date() == selected.date()) {
+          if (finishedItem[i].finishAt.toDate() == selected.toDate()) {
             result = i;
           }
         }
@@ -87,7 +87,7 @@ class ChecklistItem {
         for (int i = 0; i < 7; i++) {
           DateTime day = selected.subtract(Duration(days: i));
           if (day.weekday == DateTime.monday) {
-            monday = day.date().subtract(const Duration(microseconds: 1));
+            monday = day.toDate().subtract(const Duration(microseconds: 1));
             break;
           }
         }
@@ -105,7 +105,7 @@ class ChecklistItem {
         for (int i = 0; i < 7; i++) {
           DateTime day = selected.subtract(Duration(days: i));
           if (day.weekday == DateTime.thursday) {
-            thursday = day.date().subtract(const Duration(microseconds: 1));
+            thursday = day.toDate().subtract(const Duration(microseconds: 1));
             break;
           }
         }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/world_boss_timer/models/spawn_time.dart';
 
 class BossData {
@@ -18,5 +19,6 @@ class BossData {
         ),
       ));
     }
+    spawnTimesKR.sort((a, b) => a.timeOfDay.compareTo(b.timeOfDay));
   }
 }
