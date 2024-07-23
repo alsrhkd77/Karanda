@@ -21,4 +21,16 @@ class BossData {
     }
     spawnTimesKR.sort((a, b) => a.timeOfDay.compareTo(b.timeOfDay));
   }
+
+  bool check(DateTime time){
+    TimeOfDay timeOfDay = TimeOfDay.fromDateTime(time);
+    for(SpawnTime spawnTime in spawnTimesKR){
+      if(spawnTime.timeOfDay == timeOfDay){
+        if(spawnTime.weekday == 0 || spawnTime.weekday == time.weekday){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }

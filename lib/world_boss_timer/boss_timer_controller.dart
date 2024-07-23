@@ -14,7 +14,7 @@ import 'package:karanda/world_boss_timer/models/spawn_time.dart';
 
 class BossTimerController {
   final BossQueue _bossQueue = BossQueue();
-  StreamController queueStreamController = StreamController<BossQueue>();
+  final StreamController<BossQueue> _queueStreamController = StreamController<BossQueue>();
   late Map<String, BossData> fixedBosses;
   late Map<String, EventBossData> eventBosses;
   Map<TimeOfDay, Set<String>> timeTable = {};
@@ -22,7 +22,7 @@ class BossTimerController {
   final ServerTime _serverTime = ServerTime();
   late StreamSubscription _subscription;
 
-  Stream get stream => queueStreamController.stream;
+  Stream<BossQueue> get stream => _queueStreamController.stream;
 
   BossTimerController() {
     init();
@@ -30,6 +30,7 @@ class BossTimerController {
 
   Future<void> init() async {
     await getBaseData();
+    initializeBossQueue();
     _subscription = _serverTime.stream.listen(check);
   }
 
@@ -67,139 +68,142 @@ class BossTimerController {
 
     _spawnTimes.sort((a, b) => a.compareTo(b));
     print(timeTable);
-    initializeBossQueue();
   }
 
-  /* 서버 시간이 업데이트 될 때 마다 보스 확인 */
+  /* 시간이 업데이트 될 때 마다 보스 확인 */
   void check(snapshot){
     DateTime now = snapshot;
-    print(_bossQueue.next.spawnTime.difference(now));
+    //print(_bossQueue.next.spawnTime.difference(now));
     if(_bossQueue.next.spawnTime.difference(now).inSeconds < 0){
       updateBossQueue();
     }
   }
 
   void updateBossQueue(){
+    TimeOfDay time = TimeOfDay.fromDateTime(_bossQueue.next.spawnTime);
+    DateTime serverDate = _serverTime.now.toDate();
+    int index = _spawnTimes.indexOf(time);
+    _bossQueue.previous = _bossQueue.next;
+    _bossQueue.next = _bossQueue.followed;
+    if(time == _spawnTimes.last){
+      serverDate = serverDate.add(const Duration(days: 1));
+      index = 0;
+    } else {
+      index += 1;
+    }
+    while(true){
+      DateTime spawnTime = serverDate.copyWith(hour: _spawnTimes[index].hour, minute: _spawnTimes[index].minute);
+      List<BossData> fixed = getFixedBosses(spawnTime);
+      List<EventBossData> event = getEventBosses(spawnTime);
+      if(fixed.isNotEmpty || event.isNotEmpty){
+        _bossQueue.followed = Boss(spawnTime);
+        _bossQueue.followed.fixed = fixed;
+        _bossQueue.followed.event = event;
+        break;
+      }
 
-    print("update");
+      if(index == _spawnTimes.length - 1){
+        serverDate = serverDate.add(const Duration(days: 1));
+        index = 0;
+      } else {
+        index++;
+      }
+    }
+
+    _queueStreamController.sink.add(_bossQueue);
   }
 
   void initializeBossQueue() {
-    DateTime serverDate = _serverTime.now.toDate();
-    for (int i = 0; i < _spawnTimes.length; i++) {
-      DateTime time = serverDate.copyWith(
-          hour: _spawnTimes[i].hour, minute: _spawnTimes[i].minute);
-      if (i == _spawnTimes.length - 1 && time.isBefore(_serverTime.now)) {
-        time = time.add(const Duration(days: 1));
-        setBossQueue(
-          previous: time.copyWith(
-            hour: _spawnTimes.last.hour,
-            minute: _spawnTimes.last.minute,
-          ),
-          previousTimeOfDay: _spawnTimes.last,
-          next: time.copyWith(
-            hour: _spawnTimes.first.hour,
-            minute: _spawnTimes.first.minute,
-          ),
-          nextTimeOfDay: _spawnTimes.first,
-          followed: time.copyWith(
-            hour: _spawnTimes[1].hour,
-            minute: _spawnTimes[1].minute,
-          ),
-          followedTimeOfDay: _spawnTimes[1],
-        );
-        break;
-      } else if (time.isAfter(_serverTime.now)) {
-        if (i == _spawnTimes.length - 1) {
-          setBossQueue(
-            previous: time.copyWith(
-              hour: _spawnTimes[i - 1].hour,
-              minute: _spawnTimes[i - 1].minute,
-            ),
-            previousTimeOfDay: _spawnTimes[i - 1],
-            next: time,
-            nextTimeOfDay: _spawnTimes[i],
-            followed: time
-                .copyWith(
-                  hour: _spawnTimes[0].hour,
-                  minute: _spawnTimes[0].minute,
-                )
-                .add(const Duration(days: 1)),
-            followedTimeOfDay: _spawnTimes[0],
-          );
-        } else if (i == 0) {
-          setBossQueue(
-            previous: time
-                .copyWith(
-                  hour: _spawnTimes.last.hour,
-                  minute: _spawnTimes.last.minute,
-                )
-                .subtract(const Duration(days: 1)),
-            previousTimeOfDay: _spawnTimes.last,
-            next: time,
-            nextTimeOfDay: _spawnTimes[i],
-            followed: time.copyWith(
-              hour: _spawnTimes[i + 1].hour,
-              minute: _spawnTimes[i + 1].minute,
-            ),
-            followedTimeOfDay: _spawnTimes[i + 1],
-          );
-        } else {
-          setBossQueue(
-            previous: time.copyWith(
-              hour: _spawnTimes[i - 1].hour,
-              minute: _spawnTimes[i - 1].minute,
-            ),
-            previousTimeOfDay: _spawnTimes[i - 1],
-            next: time,
-            nextTimeOfDay: _spawnTimes[i],
-            followed: time.copyWith(
-              hour: _spawnTimes[i + 1].hour,
-              minute: _spawnTimes[i + 1].minute,
-            ),
-            followedTimeOfDay: _spawnTimes[i + 1],
-          );
+    DateTime time = _serverTime.now.toDate();
+    int index = _spawnTimes.length - 1;
+
+    /* get previous boss */
+    while(true){
+      time = time.copyWith(hour: _spawnTimes[index].hour, minute: _spawnTimes[index].minute);
+      if(time.isBefore(_serverTime.now)){
+        List<BossData> fixed = getFixedBosses(time);
+        List<EventBossData> event = getEventBosses(time);
+        if(fixed.isNotEmpty || event.isNotEmpty){
+          _bossQueue.previous = Boss(time);
+          _bossQueue.previous.fixed = fixed;
+          _bossQueue.previous.event = event;
+          break;
         }
-        break;
+      }
+
+      if(index == 0){
+        time = time.subtract(const Duration(days: 1));
+        index = _spawnTimes.length - 1;
+      } else {
+        index--;
       }
     }
-    print(_bossQueue.previous.spawnTime);
-    print(_bossQueue.next.spawnTime);
-    print(_bossQueue.followed.spawnTime);
+
+    /* get next boss */
+    while(true){
+      time = time.copyWith(hour: _spawnTimes[index].hour, minute: _spawnTimes[index].minute);
+      if(time.isAfter(_serverTime.now)){
+        List<BossData> fixed = getFixedBosses(time);
+        List<EventBossData> event = getEventBosses(time);
+        if(fixed.isNotEmpty || event.isNotEmpty){
+          _bossQueue.next = Boss(time);
+          _bossQueue.next.fixed = fixed;
+          _bossQueue.next.event = event;
+          index++;
+          break;
+        }
+      }
+
+      if(index == _spawnTimes.length - 1){
+        time = time.add(const Duration(days: 1));
+        index = 0;
+      } else {
+        index++;
+      }
+    }
+
+    /* get followed boss */
+    if(index == _spawnTimes.length){
+      time = time.add(const Duration(days: 1));
+      index = 0;
+    }
+    while(true){
+      time = time.copyWith(hour: _spawnTimes[index].hour, minute: _spawnTimes[index].minute);
+      List<BossData> fixed = getFixedBosses(time);
+      List<EventBossData> event = getEventBosses(time);
+      if(fixed.isNotEmpty || event.isNotEmpty){
+        _bossQueue.followed = Boss(time);
+        _bossQueue.followed.fixed = fixed;
+        _bossQueue.followed.event = event;
+        break;
+      }
+
+      if(index == _spawnTimes.length - 1){
+        time = time.add(const Duration(days: 1));
+        index = 0;
+      } else {
+        index++;
+      }
+    }
+    _queueStreamController.sink.add(_bossQueue);
   }
 
-  void setBossQueue(
-      {required DateTime previous,
-      required DateTime next,
-      required DateTime followed,
-      required TimeOfDay previousTimeOfDay,
-      required TimeOfDay nextTimeOfDay,
-      required TimeOfDay followedTimeOfDay}) {
-    _bossQueue.next = Boss(next);
-    _bossQueue.next.fixed = getFixedBosses(nextTimeOfDay);
-    _bossQueue.next.event = getEventBosses(nextTimeOfDay);
-    _bossQueue.previous = Boss(previous);
-    _bossQueue.previous.fixed = getFixedBosses(previousTimeOfDay);
-    _bossQueue.previous.event = getEventBosses(previousTimeOfDay);
-    _bossQueue.followed = Boss(followed);
-    _bossQueue.followed.fixed = getFixedBosses(followedTimeOfDay);
-    _bossQueue.followed.event = getEventBosses(followedTimeOfDay);
-  }
-
-  List<BossData> getFixedBosses(TimeOfDay timeOfDay) {
+  List<BossData> getFixedBosses(DateTime time) {
+    TimeOfDay timeOfDay = TimeOfDay.fromDateTime(time);
     List<BossData> result = [];
     for (String name in timeTable[timeOfDay]!) {
-      if (fixedBosses.containsKey(name)) {
+      if (fixedBosses.containsKey(name) && fixedBosses[name]!.check(time)) {
         result.add(fixedBosses[name]!);
       }
     }
     return result;
   }
 
-  List<EventBossData> getEventBosses(TimeOfDay timeOfDay) {
+  List<EventBossData> getEventBosses(DateTime time) {
+    TimeOfDay timeOfDay = TimeOfDay.fromDateTime(time);
     List<EventBossData> result = [];
     for (String name in timeTable[timeOfDay]!) {
-      if (eventBosses.containsKey(name)) {
+      if (eventBosses.containsKey(name) && eventBosses[name]!.check(time)) {
         EventBossData target = eventBosses[name]!;
         if (target.start.isBefore(_serverTime.now) &&
             target.end.isAfter(_serverTime.now)) {
@@ -210,20 +214,8 @@ class BossTimerController {
     return result;
   }
 
-  //없어도 될듯?
-  bool checkEventBoss(String name) {
-    if (eventBosses.containsKey(name)) {
-      EventBossData target = eventBosses[name]!;
-      if (target.start.isBefore(_serverTime.now) &&
-          target.end.isAfter(_serverTime.now)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   void dispose() {
-    queueStreamController.close();
+    _queueStreamController.close();
     _subscription.cancel();
   }
 }

@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:karanda/common/real_time.dart';
 
 class ServerTime {
-  final StreamController _controller = StreamController<DateTime>.broadcast();
+  final StreamController<DateTime> _controller = StreamController<DateTime>.broadcast();
   Duration offset = const Duration(hours: 9);  //서버시각 - UTC 시각
   final RealTime _realtime = RealTime();
   late StreamSubscription _subscription;
 
   DateTime now = DateTime.now().toUtc();
 
-  Stream get stream => _controller.stream;
+  Stream<DateTime> get stream => _controller.stream;
 
   static final ServerTime _instance = ServerTime._internal();
 
