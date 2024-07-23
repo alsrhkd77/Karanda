@@ -80,7 +80,7 @@ class BossTimerController {
   }
 
   void updateBossQueue(){
-    TimeOfDay time = TimeOfDay.fromDateTime(_bossQueue.next.spawnTime);
+    TimeOfDay time = TimeOfDay.fromDateTime(_bossQueue.followed.spawnTime);
     DateTime serverDate = _serverTime.now.toDate();
     int index = _spawnTimes.indexOf(time);
     _bossQueue.previous = _bossQueue.next;
