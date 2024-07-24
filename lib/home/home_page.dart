@@ -1,3 +1,4 @@
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +16,8 @@ import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:window_manager/window_manager.dart';
+import 'dart:developer' as developer;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +26,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WindowListener {
   final BdoNewsDataController _newsDataController = BdoNewsDataController();
   final List<_Service> services = [
     _Service(
@@ -141,11 +144,27 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    windowManager.addListener(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _newsDataController.subscribeEvents();
       _newsDataController.subscribeLabUpdates();
       _newsDataController.subscribeUpdates();
     });
+  }
+
+  @override
+  Future<void> onWindowClose() async {
+    try {
+      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
+      for (final windowId in subWindowIds) {
+        WindowController controller = WindowController.fromWindowId(windowId);
+        controller.close();
+      }
+    } catch (e) {
+      developer.log('Overlay did not exit correctly\n$e', name: 'overlay');
+    } finally {
+      await windowManager.destroy();
+    }
   }
 
   Widget singleIconTile(_Service service) {

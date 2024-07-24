@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
+import 'package:karanda/world_boss_timer/boss_timer_controller.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class KarandaInitializer {
@@ -24,7 +25,7 @@ class KarandaInitializer {
   }
 
   Future<void> runTasks(Future<void> authorization) async {
-    int taskNumber = 4;
+    int taskNumber = 5;
     _textStreamController.sink.add("업데이트 확인");
     _percentStreamController.sink.add(0);
     String currentVersion = await _getCurrentVersion();
@@ -42,6 +43,10 @@ class KarandaInitializer {
     _textStreamController.sink.add("사용자 인증 정보 확인");
     if(!kDebugMode) await authorization;
     _percentStreamController.sink.add(4 / taskNumber);
+
+    _textStreamController.sink.add("오버레이 준비");
+    BossTimerController();
+    _percentStreamController.sink.add(5 / taskNumber);
 
     _textStreamController.sink.add("시작하는 중");
     await Future.delayed(const Duration(milliseconds: 500));

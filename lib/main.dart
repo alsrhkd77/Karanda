@@ -1,13 +1,17 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
+import 'package:karanda/overlay/overlay_app.dart';
 import 'package:karanda/route.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
@@ -17,36 +21,53 @@ import 'package:provider/provider.dart';
 import 'shutdown_scheduler/shutdown_scheduler_notifier.dart';
 //import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   //usePathUrlStrategy();
   await EasyLocalization.ensureInitialized();
-  if (!kIsWeb) {
-    if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-      await windowManager.ensureInitialized();
-      WindowOptions windowOptions = const WindowOptions(
-        size: Size(350, 360),
-        center: true,
-        title: "Karanda",
-        titleBarStyle: TitleBarStyle.hidden,
-      );
-      windowManager.waitUntilReadyToShow(windowOptions, () async {
-        await windowManager.show();
-        await windowManager.focus();
-      });
+  Widget app;
+
+  if(args.firstOrNull == 'multi_window'){
+    /* Start up overlay */
+    await Window.initialize();
+    await Window.setEffect(effect: WindowEffect.transparent);
+    final windowId = int.parse(args[1]);
+    final arguments = args[2].isEmpty ? {} : jsonDecode(args[2]);
+    app = OverlayApp(
+      windowController: WindowController.fromWindowId(windowId),
+      arguments: arguments,
+    );
+  } else {
+    if (!kIsWeb) {
+      if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+        await windowManager.ensureInitialized();
+        await windowManager.setPreventClose(true);
+        WindowOptions windowOptions = const WindowOptions(
+          size: Size(350, 360),
+          center: true,
+          title: "Karanda",
+          titleBarStyle: TitleBarStyle.hidden,
+        );
+        windowManager.waitUntilReadyToShow(windowOptions, () async {
+          await windowManager.show();
+          await windowManager.focus();
+        });
+      }
     }
+    app = MyApp();
   }
+
   initializeDateFormatting().then((_) => runApp(
-        EasyLocalization(
-          supportedLocales: const [
-            Locale('en', 'US'),
-            Locale('ko', 'KR'),
-          ],
-          path: 'assets/translations',
-          fallbackLocale: const Locale('ko', 'KR'),
-          child: MyApp(),
-        ),
-      ));
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ko', 'KR'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('ko', 'KR'),
+      child: app,
+    ),
+  ));
 }
 
 final _dropdownMenuTheme = DropdownMenuThemeData(

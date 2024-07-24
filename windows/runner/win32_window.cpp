@@ -125,7 +125,7 @@ bool Win32Window::Create(const std::wstring& title,
                          const Size& size) {
   #if(!_DEBUG)
   HANDLE hMutexHandle=CreateMutex(NULL, TRUE, L"karanda.win32.mutex");
-  HWND handle=FindWindowA("FLUTTER_RUNNER_WIN32_WINDOW", NULL);
+  HWND handle=FindWindowA("FLUTTER_RUNNER_WIN32_WINDOW", "Karanda");
 
   if (GetLastError() == ERROR_ALREADY_EXISTS)
   {

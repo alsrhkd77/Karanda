@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:karanda/world_boss_timer/models/boss_data.dart';
 import 'package:karanda/world_boss_timer/models/event_boss_data.dart';
@@ -21,5 +23,13 @@ class Boss {
     }
     result = result.replaceFirst(', ', '');
     return result;
+  }
+
+  String toMessage(){
+    Map data = {
+      "spawnTime": spawnTime.toString(),
+      "names": _getNamesOfBosses()
+    };
+    return jsonEncode(data);
   }
 }

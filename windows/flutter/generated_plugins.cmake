@@ -3,6 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  desktop_multi_window
+  flutter_acrylic
   flutter_secure_storage_windows
   screen_retriever
   url_launcher_windows

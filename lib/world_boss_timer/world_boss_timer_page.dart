@@ -20,24 +20,31 @@ class _WorldBossTimerPageState extends State<WorldBossTimerPage> {
   final BossTimerController _controller = BossTimerController();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => _controller.subscribe());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const DefaultAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ListTile(
+            ListTile(
               leading: Icon(FontAwesomeIcons.dragon),
               title: TitleText(
                 '보스 타이머',
                 bold: true,
               ),
+              trailing: IconButton(onPressed: (){_controller.bbb();}, icon: Icon(Icons.access_time_sharp)),
             ),
             StreamBuilder(
                 stream: _controller.stream,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return LoadingIndicator();
+                    return const LoadingIndicator();
                   }
                   return Wrap(
                     children: [
@@ -49,6 +56,12 @@ class _WorldBossTimerPageState extends State<WorldBossTimerPage> {
                 }),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          _controller.aaa();
+        },
+        child: Icon(Icons.ac_unit_outlined),
       ),
     );
   }
@@ -87,8 +100,7 @@ class _CardState extends State<_Card> {
                   style: Theme.of(context).textTheme.displayMedium,
                   children: [
                     TextSpan(
-                        text: TimeOfDay.fromDateTime(widget.boss.spawnTime)
-                            .timeWithPeriod()),
+                        text: TimeOfDay.fromDateTime(widget.boss.spawnTime).timeWithoutPeriod()),
                     TextSpan(text: ' ${widget.boss.names}'),
                   ])),
               Text(

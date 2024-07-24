@@ -35,6 +35,15 @@ extension TimeOfDayExtension on TimeOfDay {
     return '$strDayPeriod $strTime';
   }
 
+  String timeWithoutPeriod({String lang = ''}) {
+    String strHour = hour.toString().padLeft(2, '0');
+    String strMinute = minute.toString().padLeft(2, '0');
+    if (lang.toUpperCase() == 'KR') {
+      return '$strHour시$strMinute분';
+    }
+    return '$strHour:$strMinute';
+  }
+
   int compareTo(TimeOfDay other) {
     if (hour < other.hour) return -1;
     if (hour > other.hour) return 1;

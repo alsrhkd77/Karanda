@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 2.7.5+20240622
 
 environment:
-  sdk: ">=2.19.0 <3.0.0"
+  sdk: '>=3.4.3 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -58,12 +58,14 @@ dependencies:
   convert: ^3.1.1
   web_socket_channel: ^2.4.0
   window_manager: ^0.3.8
+  screen_retriever: ^0.1.9
   dart_jsonwebtoken: ^2.13.0
-  win32: ^5.2.0
-  ffi: ^2.1.0
+  win32: ^5.5.1
   flutter_markdown: ^0.6.20
   smooth_page_indicator: ^1.1.0
   easy_localization: ^3.0.7
+  desktop_multi_window: ^0.2.0
+  flutter_acrylic: ^1.1.4
 
 dev_dependencies:
   flutter_test:
