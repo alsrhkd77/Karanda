@@ -22,16 +22,22 @@ class _CustomCalendarState extends State<CustomCalendar> {
   final int maxDays = 31;
   final double eventBarHeight = 45;
   final double cellWidth = 120;
-  int? newEventCount;
+  int? endingNextWeek;
   int viewItemCount = 0;
 
   @override
   void initState() {
-    var newEvents = widget.events.where((element) => element.newTag);
-    if (newEvents.isNotEmpty) {
-      newEventCount = newEvents.length;
+    var events = widget.events.where((element) {
+      Duration diff = DateTime.now().difference(element.deadline);
+      if(diff.inDays < 8){
+        return true;
+      }
+      return false;
+    });
+    if (events.isNotEmpty) {
+      endingNextWeek = events.length;
     }
-    viewItemCount = newEventCount ?? widget.events.length;
+    viewItemCount = endingNextWeek ?? widget.events.length;
     super.initState();
   }
 
@@ -40,7 +46,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
       openCalendar = !openCalendar;
       viewItemCount = openCalendar
           ? widget.events.length
-          : (newEventCount ?? widget.events.length);
+          : (endingNextWeek ?? widget.events.length);
     });
   }
 
