@@ -28,7 +28,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
   @override
   void initState() {
     var events = widget.events.where((element) {
-      Duration diff = DateTime.now().difference(element.deadline);
+      Duration diff = element.deadline.difference(DateTime.now());
       if(diff.inDays < 8){
         return true;
       }
