@@ -11,7 +11,7 @@ class NewTagChip extends StatelessWidget {
         style: TextStyle(color: Colors.white, fontSize: 12),
       ),
       backgroundColor: Colors.green.shade400,
-      side: BorderSide(color: Colors.green.shade400),
+      side: BorderSide.none,
     );
   }
 }

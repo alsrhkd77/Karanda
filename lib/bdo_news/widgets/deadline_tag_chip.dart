@@ -13,7 +13,7 @@ class DeadlineTagChip extends StatelessWidget {
         style: const TextStyle(color: Colors.white, fontSize: 12),
       ),
       backgroundColor: Colors.red.shade600,
-      side: BorderSide(color: Colors.red.shade600),
+      side: BorderSide.none,
     );
   }
 }
