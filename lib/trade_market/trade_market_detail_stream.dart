@@ -18,6 +18,7 @@ class TradeMarketDetailStream {
   }
 
   Future<void> _getData() async {
+    _dataStreamController.addError(500);
     Map<String, List<TradeMarketDataModel>> result = {};
     final response = await http.get('${Api.marketItemDetail}/${item.code}');
     if (response.statusCode == 200) {
@@ -33,7 +34,7 @@ class TradeMarketDetailStream {
         result[key]!.sort((a, b) => b.date.compareTo(a.date));
       }
     } else {
-      _dataStreamController.addError(response.statusCode);
+      _dataStreamController.addError(Exception(response.statusCode));
     }
     _dataStreamController.sink.add(result);
   }

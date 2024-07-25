@@ -64,13 +64,13 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
         body: StreamBuilder(
             stream: dataStream?.marketDetailData,
           builder: (context, snapshot) {
-            if (!snapshot.hasData) {
+            if (snapshot.hasError) {
+              return const Center(
+                child: TitleText('상세 정보를 가져오는데 실패했습니다'),
+              );
+            } else if (!snapshot.hasData) {
               return const Center(
                 child: LoadingIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: TitleText('정보를 가져오는데 실패했습니다!'),
               );
             }
             double horizontalPadding =
