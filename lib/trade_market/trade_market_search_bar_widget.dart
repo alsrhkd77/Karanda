@@ -144,7 +144,7 @@ class _TradeMarketSearchBarWidgetState
               );
             },
             optionsBuilder: (TextEditingValue textEditingValue) async {
-              String input = textEditingValue.text.trim();
+              String input = textEditingValue.text.replaceAll(' ', '');
               if(input.isEmpty){
                 return const Iterable<String>.empty();
               }
@@ -152,7 +152,7 @@ class _TradeMarketSearchBarWidgetState
                   .read<TradeMarketNotifier>()
                   .itemNames
                   .keys
-                  .where((element) => element.contains(input));
+                  .where((element) => element.replaceAll(' ', '').contains(input));
               /*
               final Iterable<String>? options =
                   await debouncedSearch(textEditingValue.text);
