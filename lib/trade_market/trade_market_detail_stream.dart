@@ -33,7 +33,7 @@ class TradeMarketDetailStream {
         result[key]!.sort((a, b) => b.date.compareTo(a.date));
       }
     } else {
-      _dataStreamController.sink.addError(Exception(response.statusCode));
+      _dataStreamController.addError(response.statusCode);
     }
     _dataStreamController.sink.add(result);
   }
