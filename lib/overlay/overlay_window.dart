@@ -53,7 +53,7 @@ class OverlayWindow {
   }
 
   void invokeMethod({required String method, dynamic arguments}){
-    print("send");
+    print("send $method");
     if(windowId != null){
       DesktopMultiWindow.invokeMethod(windowId!, method, arguments);
     }

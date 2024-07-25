@@ -30,7 +30,7 @@ import 'package:karanda/trade_market/presets/magical_lightstone_crystal_page.dar
 import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
-import 'package:karanda/world_boss_timer/world_boss_timer_page.dart';
+import 'package:karanda/world_boss/world_boss_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
@@ -188,8 +188,8 @@ final GoRouter router = GoRouter(
           ],
         ),
         GoRoute(
-          path: 'boss-timer',
-          builder: (context, state) => const WorldBossTimerPage(),
+          path: 'world-boss',
+          builder: (context, state) => const WorldBossPage(),
         ),
         GoRoute(
           path: 'broadcast-widget/bdo-timer',

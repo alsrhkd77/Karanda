@@ -92,9 +92,9 @@ class _HomePageState extends State<HomePage> with WindowListener {
       path: '/trade-market',
     ),
     _Service(
-      name: '보스 타이머',
+      name: '월드 보스',
       icon: FontAwesomeIcons.dragon,
-      path: '/boss-timer',
+      path: '/world-boss',
     ),
   ];
 

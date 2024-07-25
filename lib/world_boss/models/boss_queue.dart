@@ -1,4 +1,4 @@
-import 'package:karanda/world_boss_timer/models/boss.dart';
+import 'package:karanda/world_boss/models/boss.dart';
 
 class BossQueue {
   late Boss previous;

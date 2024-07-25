@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:karanda/world_boss_timer/models/boss_data.dart';
-import 'package:karanda/world_boss_timer/models/event_boss_data.dart';
+import 'package:karanda/world_boss/models/boss_data.dart';
+import 'package:karanda/world_boss/models/event_boss_data.dart';
 
 class Boss {
   late DateTime spawnTime;
@@ -13,15 +13,25 @@ class Boss {
 
   String get names => _getNamesOfBosses();
 
+  List<String> get nameList => _getNameListOfBosses();
+
   String _getNamesOfBosses(){
     String result = '';
-    for(BossData data in fixed){
-      result = '$result, ${data.name.tr()}';
-    }
-    for(EventBossData data in event){
-      result = '$result, ${data.name.tr()}';
+    for(String name in nameList){
+      result = '$result, ${name.tr()}';
     }
     result = result.replaceFirst(', ', '');
+    return result;
+  }
+
+  List<String> _getNameListOfBosses(){
+    List<String> result = [];
+    for(BossData data in fixed){
+      result.add(data.name);
+    }
+    for(EventBossData data in event){
+      result.add(data.name);
+    }
     return result;
   }
 

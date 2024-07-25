@@ -8,16 +8,19 @@ import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/overlay/overlay_window.dart';
-import 'package:karanda/world_boss_timer/models/boss.dart';
-import 'package:karanda/world_boss_timer/models/boss_data.dart';
-import 'package:karanda/world_boss_timer/models/boss_queue.dart';
-import 'package:karanda/world_boss_timer/models/event_boss_data.dart';
-import 'package:karanda/world_boss_timer/models/spawn_time.dart';
+import 'package:karanda/world_boss/models/boss.dart';
+import 'package:karanda/world_boss/models/boss_data.dart';
+import 'package:karanda/world_boss/models/boss_queue.dart';
+import 'package:karanda/world_boss/models/event_boss_data.dart';
+import 'package:karanda/world_boss/models/spawn_time.dart';
+import 'package:karanda/world_boss/models/world_boss_setting.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BossTimerController {
+class WorldBossController {
   final BossQueue _bossQueue = BossQueue();
+  late WorldBossSetting _settings;
+  late List<bool> _alarm;
   final StreamController<BossQueue> _queueStreamController =
       StreamController<BossQueue>.broadcast();
   late Map<String, BossData> fixedBosses;
@@ -28,68 +31,84 @@ class BossTimerController {
   late StreamSubscription _subscription;
   late OverlayWindow overlay;
 
-  static final BossTimerController _instance = BossTimerController._internal();
+  static final WorldBossController _instance = WorldBossController._internal();
 
   Stream<BossQueue> get stream => _queueStreamController.stream;
 
-  factory BossTimerController() {
+  factory WorldBossController() {
     return _instance;
   }
 
-  BossTimerController._internal(){
+  WorldBossController._internal(){
     init();
   }
 
   Future<void> init() async {
-    await getSettings();
     await getBaseData();
     initializeBossQueue();
-    _subscription = _serverTime.stream.listen(check);
+    await getSettings();
     if(!kIsWeb){
       await overlay.create();
       overlay.invokeMethod(method: "next boss", arguments: _bossQueue.next.toMessage());
       //overlay.showOverlay();
       //overlay.hideOverlay();
     }
-  }
-
-  void aaa(){
-    overlay.showOverlay();
-  }
-
-  void bbb(){
-    overlay.hideOverlay();
+    _subscription = _serverTime.stream.listen(check);
   }
 
   /* 시간이 업데이트 될 때 마다 보스 확인 */
   void check(snapshot) {
     DateTime now = snapshot;
     //print(_bossQueue.next.spawnTime.difference(now));
-    if (_bossQueue.next.spawnTime.difference(now).inSeconds < -60) {
+    Duration diff = _bossQueue.next.spawnTime.difference(now);
+    if (diff.inSeconds < -60) {
       updateBossQueue();
+    } else {
+      for(int i =0; i<_settings.alarm.length;i++){
+        if(_alarm[i]) break;
+        if(diff.inMinutes == _settings.alarm[i] - 1){
+          overlay.invokeMethod(method: "alert", arguments: _bossQueue.next.toMessage());
+          _alarm[i] = true;
+          break;
+        }
+      }
     }
   }
 
   Future<void> getSettings() async {
-    String key = "boss_timer";
+    String key = "World Boss";
     final sharedPreferences = await SharedPreferences.getInstance();
+    String? settingsData = sharedPreferences.getString('${key}_overlay');
+    if(settingsData == null){
+      _settings = WorldBossSetting.fromJson({});
+    } else{
+      _settings = WorldBossSetting.fromJson(jsonDecode(settingsData));
+    }
+    Duration diff = _bossQueue.next.spawnTime.difference(_serverTime.now);
+    _alarm = [];
+    for(int sec in _settings.alarm){
+      if(diff.inMinutes - sec <= 1){  // 2분 이하로 남은 알림 안띄우게
+        _alarm.add(true);
+      } else {
+        _alarm.add(false);
+      }
+    }
     if(!kIsWeb){
       String overlayData = sharedPreferences.getString('${key}_overlay') ?? "";
       if(overlayData.isEmpty){
         Display primary = await screenRetriever.getPrimaryDisplay();
         overlay = OverlayWindow.fromJson({
-          "title": "Boss timer",
+          "title": "Karanda - World Boss",
           "x": primary.size.width - 380.0,
           "y": primary.size.height * 2 / 4,
           "width": 380.0,
-          "height": 280.0,
+          "height": 180.0,
           "show": true
         });
       } else {
         overlay = OverlayWindow.fromJson(jsonDecode(overlayData));
       }
     }
-    String settingsData = sharedPreferences.getString('${key}_overlay') ?? "";
   }
 
   Future<void> getBaseData() async {
@@ -142,13 +161,15 @@ class BossTimerController {
     while (true) {
       DateTime spawnTime = serverDate.copyWith(
           hour: _spawnTimes[index].hour, minute: _spawnTimes[index].minute);
-      List<BossData> fixed = getFixedBosses(spawnTime);
-      List<EventBossData> event = getEventBosses(spawnTime);
-      if (fixed.isNotEmpty || event.isNotEmpty) {
-        _bossQueue.followed = Boss(spawnTime);
-        _bossQueue.followed.fixed = fixed;
-        _bossQueue.followed.event = event;
-        break;
+      if(spawnTime.isAfter(_bossQueue.next.spawnTime)){
+        List<BossData> fixed = getFixedBosses(spawnTime);
+        List<EventBossData> event = getEventBosses(spawnTime);
+        if (fixed.isNotEmpty || event.isNotEmpty) {
+          _bossQueue.followed = Boss(spawnTime);
+          _bossQueue.followed.fixed = fixed;
+          _bossQueue.followed.event = event;
+          break;
+        }
       }
 
       if (index == _spawnTimes.length - 1) {
@@ -163,6 +184,10 @@ class BossTimerController {
 
     if(!kIsWeb){
       overlay.invokeMethod(method: "next boss", arguments: _bossQueue.next.toMessage());
+    }
+
+    for(int i = 0; i < _alarm.length; i++){
+      _alarm[i] = false;
     }
   }
 

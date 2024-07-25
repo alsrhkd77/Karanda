@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
-import 'package:karanda/world_boss_timer/models/spawn_time.dart';
+import 'package:karanda/world_boss/models/spawn_time.dart';
 
 class BossData {
   late String name;

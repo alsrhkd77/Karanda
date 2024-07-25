@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
-import 'package:karanda/world_boss_timer/boss_timer_controller.dart';
+import 'package:karanda/world_boss/world_boss_controller.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class KarandaInitializer {
@@ -45,7 +45,7 @@ class KarandaInitializer {
     _percentStreamController.sink.add(4 / taskNumber);
 
     _textStreamController.sink.add("오버레이 준비");
-    BossTimerController();
+    WorldBossController();
     _percentStreamController.sink.add(5 / taskNumber);
 
     _textStreamController.sink.add("시작하는 중");

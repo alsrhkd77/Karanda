@@ -1,4 +1,4 @@
-import 'package:karanda/world_boss_timer/models/boss_data.dart';
+import 'package:karanda/world_boss/models/boss_data.dart';
 
 class EventBossData extends BossData {
   late DateTime start;

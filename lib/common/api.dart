@@ -96,6 +96,8 @@ class Api {
 
   static String get itemImage => '$storage/bdo/item/image';
 
+  static String get worldBossPortrait => '$storage/bdo/worldboss/portrait';
+
   static String get marketWaitList => '$_socketServer/trade-market/wait-list';
 
   static String get marketItemDetail => '$_tradeMarket/get/detail';
