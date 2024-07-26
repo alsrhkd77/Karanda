@@ -23,7 +23,8 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
   String? names;
   ServerTime serverTime = ServerTime();
   double opacity = 1.0;
-  Timer? _timer;
+  Duration duration = Duration.zero;
+  Timer? timer;
 
   @override
   void initState() {
@@ -35,6 +36,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
     if (call.method == 'next boss') {
       Map data = jsonDecode(call.arguments);
       setState(() {
+        duration = const Duration(milliseconds: 500);
         spawnTime = DateTime.parse(data["spawnTime"]);
         timeOfDay = TimeOfDay.fromDateTime(spawnTime!);
         names = data["names"];
@@ -45,14 +47,14 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
       setState(() {
         opacity = 1.0;
       });
-      _timer?.cancel();
-      _timer = Timer(
-        Duration(seconds: 10),
+      timer?.cancel();
+      timer = Timer(
+        const Duration(seconds: 10),
         () {
           setState(() {
             opacity = 0.0;
           });
-          _timer = null;
+          timer = null;
         },
       );
     }
@@ -63,7 +65,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
     return Scaffold(
       body: AnimatedOpacity(
         opacity: opacity,
-        duration: const Duration(milliseconds: 500),
+        duration: duration,
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
@@ -106,7 +108,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
                                 style: style,
                               ),
                               Text(
-                                '${diff.inMinutes + 1}분 뒤',
+                                diff.isNegative ? '출현!' : '${diff.inMinutes + 1}분 뒤',
                                 style: style,
                               )
                             ],

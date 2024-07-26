@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/settings/volume_slider.dart';
 
 import '../common/launch_url.dart';
 import '../widgets/default_app_bar.dart';
@@ -65,6 +66,14 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const Divider(),
                 socialLogin(),
+                kIsWeb
+                    ? ListTile(
+                        leading: const Icon(Icons.install_desktop),
+                        title: const Text('Install Windows desktop'),
+                        trailing: const Icon(Icons.open_in_new),
+                        onTap: () => launchURL(Api.latestInstaller),
+                      )
+                    : Container(),
                 ListTile(
                   leading: const Icon(Icons.palette_outlined),
                   title: const Text('테마'),
@@ -72,23 +81,19 @@ class _SettingsPageState extends State<SettingsPage> {
                     context.push('/settings/theme');
                   },
                 ),
-                kIsWeb
-                    ? ListTile(
-                        leading: const Icon(Icons.install_desktop),
-                        title: const Text('Install Windows desktop'),
-                        trailing: const Icon(Icons.open_in_new),
-                        onTap: () => launchURL(
-                            'https://github.com/HwanSangYeonHwa/Karanda/releases'),
-                      ) : Container(),
-                /*
-                    : ListTile(
-                        leading: const Icon(Icons.system_update_alt_rounded),
-                        title: const Text('업데이트'),
-                        onTap: () {
-                          context.push('/settings/desktop-app');
-                        },
-                      ),
-                 */
+                const ExpansionTile(
+                  //initiallyExpanded: true,
+                  leading: Icon(Icons.volume_up),
+                  title: Text('음량'),
+                  expandedAlignment: Alignment.centerLeft,
+                  childrenPadding: EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
+                  children: [
+                    VolumeSlider(),
+                  ],
+                ),
                 const ListTile(
                   leading: Icon(Icons.public),
                   title: Text('서버'),

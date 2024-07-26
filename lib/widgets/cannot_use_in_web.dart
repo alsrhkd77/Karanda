@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/common/api.dart';
 
 import '../common/launch_url.dart';
 
@@ -27,8 +28,7 @@ class CannotUseInWeb extends StatelessWidget {
             ),
           ),
           OutlinedButton(
-            onPressed: () => launchURL(
-                'https://github.com/HwanSangYeonHwa/Karanda/releases'),
+            onPressed: () => launchURL(Api.latestInstaller),
             child: Container(
               margin: const EdgeInsets.all(12.0),
               child: const Text('Download Karanda desktop app'),

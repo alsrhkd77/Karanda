@@ -43,6 +43,8 @@ class Api {
 
   static String get latestVersion => 'https://www.karanda.kr/version.json';
 
+  static String get latestInstaller => 'https://github.com/Hammuu1112/Karanda/releases/latest';
+
   static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
 
   static String get _checklist => '$_server/checklist';

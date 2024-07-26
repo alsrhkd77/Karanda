@@ -364,8 +364,8 @@
         },
         {
           "weekday": 0,
-          "hour": 1,
-          "minute": 15
+          "hour": 23,
+          "minute": 0
         }
       ]
     }

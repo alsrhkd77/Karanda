@@ -15,6 +15,7 @@ import 'package:karanda/overlay/overlay_app.dart';
 import 'package:karanda/route.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
+import 'package:media_kit/media_kit.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,9 +55,9 @@ Future<void> main(List<String> args) async {
         });
       }
     }
+    MediaKit.ensureInitialized();
     app = MyApp();
   }
-
   initializeDateFormatting().then((_) => runApp(
     EasyLocalization(
       supportedLocales: const [
@@ -84,6 +85,14 @@ final _actionIconTheme = ActionIconThemeData(
 
 const _floatingActionButtonTheme = FloatingActionButtonThemeData(
   backgroundColor: Colors.blue,
+);
+
+InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(8.0),
+    borderSide: const BorderSide(color: Colors.blue),
+  ),
+  contentPadding: const EdgeInsets.symmetric(horizontal: 12.0),
 );
 
 class MyApp extends StatelessWidget {
@@ -138,6 +147,7 @@ class MyApp extends StatelessWidget {
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
               floatingActionButtonTheme: _floatingActionButtonTheme,
+              inputDecorationTheme: _inputDecorationTheme,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
@@ -150,6 +160,7 @@ class MyApp extends StatelessWidget {
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
               floatingActionButtonTheme: _floatingActionButtonTheme,
+              inputDecorationTheme: _inputDecorationTheme,
               //appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(24, 24, 24, 1.0)),
               appBarTheme: const AppBarTheme(
                   backgroundColor: Color.fromRGBO(25, 25, 27, 1.0)),

@@ -66,6 +66,8 @@ dependencies:
   easy_localization: ^3.0.7
   desktop_multi_window: ^0.2.0
   flutter_acrylic: ^1.1.4
+  media_kit: ^1.1.10
+  media_kit_libs_audio: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -100,6 +102,7 @@ flutter:
     - assets/image/
     - assets/brand/
     - assets/translations/
+    - assets/sounds/
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

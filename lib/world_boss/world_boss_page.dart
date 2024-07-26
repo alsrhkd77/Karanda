@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/duration_extension.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -8,6 +9,7 @@ import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:karanda/world_boss/world_boss_controller.dart';
 import 'package:karanda/world_boss/models/boss.dart';
+import 'package:karanda/world_boss/world_boss_settings_page.dart';
 
 class WorldBossPage extends StatefulWidget {
   const WorldBossPage({super.key});
@@ -33,12 +35,25 @@ class _WorldBossPageState extends State<WorldBossPage> {
       appBar: const DefaultAppBar(),
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: ListTile(
-              leading: Icon(FontAwesomeIcons.dragon),
-              title: TitleText(
+              leading: const Icon(FontAwesomeIcons.dragon),
+              title: const TitleText(
                 '월드 보스',
                 bold: true,
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WorldBossSettingsPage(
+                        controller: _controller,
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.construction),
+                tooltip: '설정',
               ),
             ),
           ),
@@ -126,7 +141,10 @@ class _CardState extends State<_Card> {
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
                       Text(
-                        diff.toString().replaceAll('-', '').split('.').first,
+                        diff.isNegative ? '출현!' : diff
+                            .splitString()
+                            .replaceAll('-', '')
+                            .padLeft(8, '0'),
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium
@@ -162,7 +180,9 @@ class BossImageAvatar extends StatelessWidget {
         //radius: 80.0,
         backgroundColor: Colors.transparent,
         minRadius: 60.0,
-        foregroundImage: NetworkImage('${Api.worldBossPortrait}/$name.png',),
+        foregroundImage: NetworkImage(
+          '${Api.worldBossPortrait}/$name.png',
+        ),
       ),
     );
   }
