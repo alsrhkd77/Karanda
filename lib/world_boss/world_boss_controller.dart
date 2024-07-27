@@ -357,6 +357,7 @@ class WorldBossController {
         _alarm.add(false);
       }
     }
+    _saveWorldBossSettings();
 
     _settingsStreamController.sink.add(_settings);
     return true;
@@ -365,6 +366,7 @@ class WorldBossController {
   void removeAlarm(int index) {
     _settings.alarm.removeAt(index);
     _alarm.removeAt(index);
+    _saveWorldBossSettings();
     _settingsStreamController.sink.add(_settings);
   }
 
