@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:karanda/common/date_time_extension.dart';
 
 /*
 * 밤타임: 22:00 ~ 07:00
@@ -124,24 +125,6 @@ class BdoWorldTimeNotifier with ChangeNotifier {
   void dispose() {
     _timer.cancel();
     super.dispose();
-  }
-}
-
-extension DateTimeExtension on DateTime {
-  bool inTime(TimeOfDay start, TimeOfDay end) {
-    if(hour == start.hour && minute >= start.minute){
-      if(hour == end.hour && minute > end.minute){
-        return false;
-      }
-      return true;
-    }
-    if (hour > start.hour && hour < end.hour) {
-      return true;
-    }
-    if(hour == end.hour && minute <= end.minute){
-      return true;
-    }
-    return false;
   }
 }
 
