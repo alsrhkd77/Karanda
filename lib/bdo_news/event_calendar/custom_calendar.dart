@@ -38,6 +38,9 @@ class _CustomCalendarState extends State<CustomCalendar> {
       endingNextWeek = events.length;
     }
     viewItemCount = endingNextWeek ?? widget.events.length;
+    if(viewItemCount < widget.events.length / 3){
+      viewItemCount = widget.events.length ~/ 3;
+    }
     super.initState();
   }
 
