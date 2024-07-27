@@ -24,7 +24,8 @@ class WorldBossController {
   late List<bool> _alarm;
   final StreamController<BossQueue> _queueStreamController =
       StreamController<BossQueue>.broadcast();
-  final StreamController<WorldBossSetting> _settingsStreamController = StreamController<WorldBossSetting>.broadcast();
+  final StreamController<WorldBossSetting> _settingsStreamController =
+      StreamController<WorldBossSetting>.broadcast();
   late Map<String, BossData> fixedBosses;
   late Map<String, EventBossData> eventBosses;
   Map<TimeOfDay, Set<String>> timeTable = {};
@@ -38,22 +39,26 @@ class WorldBossController {
   static final WorldBossController _instance = WorldBossController._internal();
 
   Stream<BossQueue> get stream => _queueStreamController.stream;
+
   Stream<WorldBossSetting> get settings => _settingsStreamController.stream;
 
   factory WorldBossController() => _instance;
 
-  WorldBossController._internal(){
-    _init();
+  WorldBossController._internal() {
+    if(kIsWeb){
+      init();
+    }
   }
 
-  Future<void> _init() async {
+  Future<void> init() async {
     await _getBaseData();
     _initializeBossQueue();
     await _getSettings();
-    if(!kIsWeb){
+    if (!kIsWeb) {
       await overlay.create();
       await Future.delayed(const Duration(milliseconds: 500));
-      overlay.invokeMethod(method: "next boss", arguments: _bossQueue.next.toMessage());
+      overlay.invokeMethod(
+          method: "next boss", arguments: _bossQueue.next.toMessage());
     }
     _subscription = _serverTime.stream.listen(_check);
   }
@@ -64,14 +69,15 @@ class WorldBossController {
     Duration diff = _bossQueue.next.spawnTime.difference(now);
     if (diff.inSeconds <= -60) {
       _updateBossQueue();
-    } else if(diff.inSeconds < 0 && !_regeneration){
+    } else if (diff.inSeconds < 0 && !_regeneration) {
       _alert();
       _regeneration = true;
     } else {
-      List<int> list = _settings.alarm;
+      List<int> list = _settings.alarm.toSet().toList();
+      list.remove(0);
       list.sort();
-      for(int i =0; i<list.length;i++){
-        if(diff.inMinutes == list[i] - 1 && !_alarm[i]){
+      for (int i = 0; i < list.length; i++) {
+        if (diff.inMinutes == list[i] - 1 && !_alarm[i]) {
           _alert();
           _alarm[i] = true;
           break;
@@ -81,11 +87,12 @@ class WorldBossController {
   }
 
   /* 오버레이에 전송, 알림을 재생 */
-  void _alert(){
-    if(_settings.useOverlay){
-      overlay.invokeMethod(method: "alert", arguments: _bossQueue.next.toMessage());
+  void _alert() {
+    if (_settings.useOverlay) {
+      overlay.invokeMethod(
+          method: "alert", arguments: _bossQueue.next.toMessage());
     }
-    if(_settings.useAlarm){
+    if (_settings.useAlarm) {
       _audioController.bossAlarm();
     }
   }
@@ -94,25 +101,26 @@ class WorldBossController {
     String key = "world_boss";
     final sharedPreferences = await SharedPreferences.getInstance();
     String? settingsData = sharedPreferences.getString('${key}_settings');
-    if(settingsData == null){
+    if (settingsData == null) {
       _settings = WorldBossSetting.fromJson({});
-    } else{
+    } else {
       _settings = WorldBossSetting.fromJson(jsonDecode(settingsData));
     }
     _settingsStreamController.sink.add(_settings);
 
     Duration diff = _bossQueue.next.spawnTime.difference(_serverTime.now);
     _alarm = [];
-    for(int minutes in _settings.alarm){
-      if(diff.inMinutes - minutes <= 1){  // 2분 이하로 남은 알림 안띄우게
+    for (int minutes in _settings.alarm) {
+      if (diff.inMinutes - minutes <= 1) {
+        // 2분 이하로 남은 알림 안띄우게
         _alarm.add(true);
       } else {
         _alarm.add(false);
       }
     }
-    if(!kIsWeb){
+    if (!kIsWeb) {
       String overlayData = sharedPreferences.getString('${key}_overlay') ?? "";
-      if(overlayData.isEmpty){
+      if (overlayData.isEmpty) {
         Display primary = await screenRetriever.getPrimaryDisplay();
         overlay = OverlayWindow.fromJson({
           "title": "Karanda - World Boss",
@@ -178,7 +186,7 @@ class WorldBossController {
     while (true) {
       DateTime spawnTime = serverDate.copyWith(
           hour: _spawnTimes[index].hour, minute: _spawnTimes[index].minute);
-      if(spawnTime.isAfter(_bossQueue.next.spawnTime)){
+      if (spawnTime.isAfter(_bossQueue.next.spawnTime)) {
         List<BossData> fixed = _getFixedBosses(spawnTime);
         List<EventBossData> event = _getEventBosses(spawnTime);
         if (fixed.isNotEmpty || event.isNotEmpty) {
@@ -199,11 +207,12 @@ class WorldBossController {
 
     _queueStreamController.sink.add(_bossQueue);
 
-    if(!kIsWeb){
-      overlay.invokeMethod(method: "next boss", arguments: _bossQueue.next.toMessage());
+    if (!kIsWeb) {
+      overlay.invokeMethod(
+          method: "next boss", arguments: _bossQueue.next.toMessage());
     }
 
-    for(int i = 0; i < _alarm.length; i++){
+    for (int i = 0; i < _alarm.length; i++) {
       _alarm[i] = false;
     }
     _regeneration = false;
@@ -313,25 +322,50 @@ class WorldBossController {
     return result;
   }
 
-  void updateUseAlarm(bool value){
+  void updateUseAlarm(bool value) {
     _settings.useAlarm = value;
     _settingsStreamController.sink.add(_settings);
     _saveWorldBossSettings();
   }
 
-  void updateUseOverlay(bool value){
+  void updateUseOverlay(bool value) {
     _settings.useOverlay = value;
     _settingsStreamController.sink.add(_settings);
     _saveWorldBossSettings();
   }
 
-  void updateAlarm(int index, int minute){
-    if(_settings.alarm.contains(minute)){
-      return;
-    }
+  void updateAlarm(int index, int minute) {
     _settings.alarm[index] = minute;
     _settingsStreamController.sink.add(_settings);
     _saveWorldBossSettings();
+  }
+
+  bool addAlarm(int minute) {
+    if (_settings.alarm.contains(minute)) {
+      return false;
+    }
+    _settings.alarm.add(minute);
+    _settings.alarm.sort();
+
+    Duration diff = _bossQueue.next.spawnTime.difference(_serverTime.now);
+    _alarm = [];
+    for (int minutes in _settings.alarm) {
+      if (diff.inMinutes - minutes <= 0) {
+        // 0분 이하로 남은 알림 안띄우게
+        _alarm.add(true);
+      } else {
+        _alarm.add(false);
+      }
+    }
+
+    _settingsStreamController.sink.add(_settings);
+    return true;
+  }
+
+  void removeAlarm(int index) {
+    _settings.alarm.removeAt(index);
+    _alarm.removeAt(index);
+    _settingsStreamController.sink.add(_settings);
   }
 
   Future<void> _saveWorldBossSettings() async {
@@ -340,8 +374,8 @@ class WorldBossController {
     sharedPreferences.setString(key, jsonEncode(_settings.toJson()));
   }
 
-  void subscribe(){
-    if(timeTable.isNotEmpty){
+  void subscribe() {
+    if (timeTable.isNotEmpty) {
       _queueStreamController.sink.add(_bossQueue);
       _settingsStreamController.sink.add(_settings);
     }

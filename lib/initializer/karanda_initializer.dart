@@ -41,11 +41,12 @@ class KarandaInitializer {
     _percentStreamController.sink.add(3 / taskNumber);
 
     _textStreamController.sink.add("사용자 인증 정보 확인");
-    if(!kDebugMode) await authorization;
+    if (!kDebugMode) await authorization;
     _percentStreamController.sink.add(4 / taskNumber);
 
     _textStreamController.sink.add("오버레이 준비");
-    WorldBossController();
+    WorldBossController worldBossController = WorldBossController();
+    await worldBossController.init();
     _percentStreamController.sink.add(5 / taskNumber);
 
     _textStreamController.sink.add("시작하는 중");
