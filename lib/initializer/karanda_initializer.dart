@@ -32,10 +32,10 @@ class KarandaInitializer {
     _percentStreamController.sink.add(1 / taskNumber);
     String latestVersion = await _getLatestVersion();
     _percentStreamController.sink.add(2 / taskNumber);
-    if (currentVersion.isNotEmpty &&
-        latestVersion.isNotEmpty &&
-        currentVersion != latestVersion) {
-      await _downloadNewVersion();
+    if (currentVersion.isNotEmpty && latestVersion.isNotEmpty) {
+      if(!currentVersionIsLatest(currentVersion, latestVersion)){
+        await _downloadNewVersion();
+      }
       await Future.delayed(const Duration(milliseconds: 1000));
     }
     _percentStreamController.sink.add(3 / taskNumber);
@@ -51,6 +51,21 @@ class KarandaInitializer {
 
     _textStreamController.sink.add("시작하는 중");
     await Future.delayed(const Duration(milliseconds: 500));
+  }
+
+  bool currentVersionIsLatest(String currentVersion, String latestVersion) {
+    List<int> current =
+        currentVersion.split('.').map((element) => int.parse(element)).toList();
+    List<int> latest =
+        latestVersion.split('.').map((element) => int.parse(element)).toList();
+    if (current[0] < latest[0]) {
+      return false;
+    } else if (current[1] < latest[1]) {
+      return false;
+    } else if (current[2] < latest[2]) {
+      return false;
+    }
+    return true;
   }
 
   Future<String> _getCurrentVersion() async {
