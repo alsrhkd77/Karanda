@@ -62,7 +62,7 @@ class WorldBossController {
   Future<void> _check(snapshot) async {
     DateTime now = snapshot;
     Duration diff = _bossQueue.next.spawnTime.difference(now);
-    if (diff.inSeconds < -60) {
+    if (diff.inSeconds <= -60) {
       _updateBossQueue();
     } else if(diff.inSeconds < 0 && !_regeneration){
       _alert();
