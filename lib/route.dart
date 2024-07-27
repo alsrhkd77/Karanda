@@ -20,7 +20,6 @@ import 'package:karanda/settings/karanda_info_page.dart';
 import 'package:karanda/settings/settings_page.dart';
 import 'package:karanda/settings/support_karanda_page.dart';
 import 'package:karanda/settings/theme_setting_page.dart';
-import 'package:karanda/ship_extension/ship_extension_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_page.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
@@ -128,7 +127,7 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: 'ship-extension',
-          builder: (context, state) => const ShipExtensionPage(),
+          builder: (context, state) => const ShipUpgradingPage(),
           redirect: (context, state) => '/ship-upgrading',
         ),
         GoRoute(
