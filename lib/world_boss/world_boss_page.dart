@@ -39,7 +39,7 @@ class _WorldBossPageState extends State<WorldBossPage> {
             child: ListTile(
               leading: const Icon(FontAwesomeIcons.dragon),
               title: const TitleText(
-                '월드 보스',
+                '월드 보스 (Beta)',
                 bold: true,
               ),
               trailing: IconButton(

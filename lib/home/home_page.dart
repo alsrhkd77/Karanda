@@ -81,18 +81,20 @@ class _HomePageState extends State<HomePage> with WindowListener {
       icon: FontAwesomeIcons.staffSnake,
       path: '/color-counter',
     ),
+    /*
     _Service(
       name: '마레타 현황 (임시)',
       icon: FontAwesomeIcons.circleNodes,
       path: '/maretta',
     ),
+     */
     _Service(
       name: '통합 거래소',
       icon: FontAwesomeIcons.scaleUnbalanced,
       path: '/trade-market',
     ),
     _Service(
-      name: '월드 보스',
+      name: '월드 보스 (Beta)',
       icon: FontAwesomeIcons.dragon,
       path: '/world-boss',
     ),
