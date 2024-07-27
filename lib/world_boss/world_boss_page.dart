@@ -141,7 +141,7 @@ class _CardState extends State<_Card> {
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
                       Text(
-                        diff.isNegative ? '출현!' : diff
+                        diff.isNegative && diff.inMinutes == 0 ? '출현!' : diff
                             .splitString()
                             .replaceAll('-', '')
                             .padLeft(8, '0'),
