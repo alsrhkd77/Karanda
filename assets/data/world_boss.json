@@ -4,12 +4,72 @@
       "name": "garmoth",
       "kr": [
         {
-          "weekday": 0,
+          "weekday": 1,
           "hour": 14,
           "minute": 0
         },
         {
-          "weekday": 0,
+          "weekday": 1,
+          "hour": 23,
+          "minute": 15
+        },
+        {
+          "weekday": 2,
+          "hour": 14,
+          "minute": 0
+        },
+        {
+          "weekday": 2,
+          "hour": 23,
+          "minute": 15
+        },
+        {
+          "weekday": 3,
+          "hour": 14,
+          "minute": 0
+        },
+        {
+          "weekday": 3,
+          "hour": 23,
+          "minute": 15
+        },
+        {
+          "weekday": 4,
+          "hour": 14,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
+          "hour": 23,
+          "minute": 15
+        },
+        {
+          "weekday": 5,
+          "hour": 14,
+          "minute": 0
+        },
+        {
+          "weekday": 5,
+          "hour": 23,
+          "minute": 15
+        },
+        {
+          "weekday": 6,
+          "hour": 14,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
+          "hour": 0,
+          "minute": 15
+        },
+        {
+          "weekday": 7,
+          "hour": 14,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
           "hour": 23,
           "minute": 15
         }
