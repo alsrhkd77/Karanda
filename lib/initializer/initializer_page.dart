@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/initializer/karanda_initializer.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 
 class InitializerPage extends StatefulWidget {
@@ -36,11 +38,24 @@ class _InitializerPageState extends State<InitializerPage> {
   }
 
   Future<void> setWindows() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    double width = sharedPreferences.getDouble('width') ?? 1280;
+    double height = sharedPreferences.getDouble('height') ?? 720;
+    double? dx = sharedPreferences.getDouble('x');
+    double? dy = sharedPreferences.getDouble('y');
     await windowManager.hide();
     await windowManager.setTitleBarStyle(TitleBarStyle.normal);
-    await windowManager.setSize(const Size(1280, 720));
+    if(kDebugMode){
+      await windowManager.setSize(const Size(1280, 720));
+    } else {
+      await windowManager.setSize(Size(width, height));
+    }
     await windowManager.setMinimumSize(const Size(600, 550));
-    await windowManager.center();
+    if(dx == null || dy == null || kDebugMode){
+      await windowManager.center();
+    } else {
+      windowManager.setPosition(Offset(dx, dy));
+    }
     await windowManager.show();
   }
 

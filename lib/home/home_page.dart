@@ -16,6 +16,7 @@ import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 import 'dart:developer' as developer;
 
@@ -152,6 +153,34 @@ class _HomePageState extends State<HomePage> with WindowListener {
       _newsDataController.subscribeLabUpdates();
       _newsDataController.subscribeUpdates();
     });
+  }
+
+
+  @override
+  void dispose() {
+    windowManager.removeListener(this);
+    super.dispose();
+  }
+
+
+  @override
+  Future<void> onWindowResized() async {
+    Size size = await windowManager.getSize();
+    final sharedPreferences = await SharedPreferences.getInstance();
+    if(!kDebugMode){
+      sharedPreferences.setDouble("width", size.width);
+      sharedPreferences.setDouble("height", size.height);
+    }
+  }
+
+  @override
+  Future<void> onWindowMoved() async {
+    Offset position = await windowManager.getPosition();
+    final sharedPreferences = await SharedPreferences.getInstance();
+    if(!kDebugMode){
+      sharedPreferences.setDouble("x", position.dx);
+      sharedPreferences.setDouble("y", position.dy);
+    }
   }
 
   @override
