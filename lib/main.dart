@@ -9,6 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
+import 'package:karanda/common/command_line_arguments.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/overlay/overlay_app.dart';
@@ -41,6 +42,7 @@ Future<void> main(List<String> args) async {
   } else {
     if (!kIsWeb) {
       if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+        CommandLineArguments.setArguments(args);
         await windowManager.ensureInitialized();
         await windowManager.setPreventClose(true);
         WindowOptions windowOptions = const WindowOptions(
@@ -96,7 +98,7 @@ InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(
 );
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, }) : super(key: key);
   final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
+import 'package:karanda/common/command_line_arguments.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:karanda/world_boss/world_boss_controller.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -25,18 +26,24 @@ class KarandaInitializer {
   }
 
   Future<void> runTasks(Future<void> authorization) async {
+    if(CommandLineArguments.forceUpdate) {
+      await _downloadNewVersion();
+    }
+
     int taskNumber = 5;
-    _textStreamController.sink.add("업데이트 확인");
-    _percentStreamController.sink.add(0);
-    String currentVersion = await _getCurrentVersion();
-    _percentStreamController.sink.add(1 / taskNumber);
-    String latestVersion = await _getLatestVersion();
-    _percentStreamController.sink.add(2 / taskNumber);
-    if (currentVersion.isNotEmpty && latestVersion.isNotEmpty) {
-      if(!currentVersionIsLatest(currentVersion, latestVersion)){
-        await _downloadNewVersion();
+    if(!CommandLineArguments.skipUpdate){
+      _textStreamController.sink.add("업데이트 확인");
+      _percentStreamController.sink.add(0);
+      String currentVersion = await _getCurrentVersion();
+      _percentStreamController.sink.add(1 / taskNumber);
+      String latestVersion = await _getLatestVersion();
+      _percentStreamController.sink.add(2 / taskNumber);
+      if (currentVersion.isNotEmpty && latestVersion.isNotEmpty) {
+        if(!currentVersionIsLatest(currentVersion, latestVersion)){
+          await _downloadNewVersion();
+        }
+        await Future.delayed(const Duration(milliseconds: 1000));
       }
-      await Future.delayed(const Duration(milliseconds: 1000));
     }
     _percentStreamController.sink.add(3 / taskNumber);
 
@@ -87,8 +94,7 @@ class KarandaInitializer {
     _textStreamController.sink.add("다운로드 가능한 업데이트 확인 중");
     final List<String> mirrors = [
       '${Api.latestInstaller}/download/SetupKaranda.exe',
-      'https://github.com/HwanSangYeonHwa/Karanda/releases/latest/download/SetupKaranda.exe',
-      '${Api.storage}/SetupKaranda.exe'
+      '${Api.storage}/SetupKaranda.exe',
     ];
     String updatePath = '';
     for (String path in mirrors) {
