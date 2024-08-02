@@ -42,8 +42,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
         names = data["names"];
         opacity = 0.0;
       });
-    }
-    if (call.method == 'alert') {
+    } else if (call.method == 'alert') {
       setState(() {
         opacity = 1.0;
       });
