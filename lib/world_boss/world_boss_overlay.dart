@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,8 +23,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
   TimeOfDay timeOfDay = TimeOfDay.now();
   String? names;
   ServerTime serverTime = ServerTime();
-  double opacity = 1.0;
-  Duration duration = Duration.zero;
+  double opacity = 0.0;
   Timer? timer;
 
   @override
@@ -36,11 +36,9 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
     if (call.method == 'next boss') {
       Map data = jsonDecode(call.arguments);
       setState(() {
-        duration = const Duration(milliseconds: 500);
         spawnTime = DateTime.parse(data["spawnTime"]);
         timeOfDay = TimeOfDay.fromDateTime(spawnTime!);
         names = data["names"];
-        opacity = 0.0;
       });
     } else if (call.method == 'alert') {
       setState(() {
@@ -64,13 +62,13 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
     return Scaffold(
       body: AnimatedOpacity(
         opacity: opacity,
-        duration: duration,
+        duration: const Duration(milliseconds: 500),
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -78,42 +76,52 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
                     leading: const Icon(FontAwesomeIcons.dragon),
                     title: Text(
                       '월드 보스',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.bold,
-                      ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                     ),
                   ),
-                  StreamBuilder(
-                      stream: serverTime.stream,
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData ||
-                            spawnTime == null ||
-                            names == null) {
-                          return Container();
-                        }
-                        Duration diff =
-                            spawnTime!.difference(snapshot.requireData);
-                        TextStyle? style =
-                            Theme.of(context).textTheme.headlineSmall;
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: StreamBuilder(
+                        stream: serverTime.stream,
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData ||
+                              spawnTime == null ||
+                              names == null) {
+                            return const Text("");
+                          }
+                          Duration diff =
+                              spawnTime!.difference(snapshot.requireData);
+                          TextStyle? style =
+                              Theme.of(context).textTheme.titleLarge;
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                '${timeOfDay.timeWithoutPeriod()} $names',
+                                timeOfDay.timeWithoutPeriod(),
                                 style: style,
                               ),
+                              SizedBox(
+                                width: 130,
+                                child: AutoSizeText(
+                                  '$names',
+                                  maxLines: 2,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                ),
+                              ),
                               Text(
-                                diff.isNegative ? '출현!' : '${diff.inMinutes + 1}분 뒤',
+                                diff.isNegative
+                                    ? '출현!'
+                                    : '${diff.inMinutes + 1}분 뒤',
                                 style: style,
                               )
                             ],
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                  ),
                 ],
               ),
             ),

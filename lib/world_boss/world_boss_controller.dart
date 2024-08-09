@@ -45,7 +45,7 @@ class WorldBossController {
   factory WorldBossController() => _instance;
 
   WorldBossController._internal() {
-    if(kIsWeb){
+    if (kIsWeb) {
       init();
     }
   }
@@ -126,7 +126,7 @@ class WorldBossController {
           "title": "Karanda - World Boss",
           "x": primary.size.width - 420.0,
           "y": primary.size.height - 220.0,
-          "width": 380.0,
+          "width": 365.0,
           "height": 180.0,
           "show": true
         });

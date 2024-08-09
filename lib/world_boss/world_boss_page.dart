@@ -28,6 +28,35 @@ class _WorldBossPageState extends State<WorldBossPage> {
         .addPostFrameCallback((timeStamp) => _controller.subscribe());
   }
 
+  double calcAspectRatio(double width) {
+    if (width > 1800) {
+      return 1.2;
+    }
+    if (width > 1700) {
+      return 1.0;
+    }
+    if (width > 1600) {
+      return 0.9;
+    }
+    if (width > 1400) {
+      return 0.8;
+    } else if (width > 1200) {
+      return 0.7;
+    } else if (width > 800) {
+      return 0.7;
+    }
+    return 1.0;
+  }
+
+  int calcCrossAxisCount(double width) {
+    if (width > 1200) {
+      return 3;
+    } else if (width > 800) {
+      return 2;
+    }
+    return 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
@@ -68,10 +97,10 @@ class _WorldBossPageState extends State<WorldBossPage> {
                 return SliverPadding(
                   padding: const EdgeInsets.all(12.0),
                   sliver: SliverGrid.count(
-                    crossAxisCount: width > 1120 ? 3 : 1,
+                    crossAxisCount: calcCrossAxisCount(width),
                     mainAxisSpacing: 8.0,
                     crossAxisSpacing: 8.0,
-                    childAspectRatio: width > 1400 ? 1.2 : 1.0,
+                    childAspectRatio: calcAspectRatio(width),
                     children: [
                       _Card(boss: snapshot.requireData.previous),
                       _Card(boss: snapshot.requireData.next),
@@ -105,63 +134,58 @@ class _CardState extends State<_Card> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 380),
-      child: Card(
-        child: StreamBuilder(
-          stream: _serverTime.stream,
-          builder: (context, now) {
-            if (!now.hasData) {
-              return Container();
-            }
-            Duration diff = widget.boss.spawnTime.difference(now.requireData);
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Card(
+      child: StreamBuilder(
+        stream: _serverTime.stream,
+        builder: (context, now) {
+          if (!now.hasData) {
+            return Container();
+          }
+          Duration diff = widget.boss.spawnTime.difference(now.requireData);
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                TimeOfDay.fromDateTime(widget.boss.spawnTime)
+                    .timeWithoutPeriod(),
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              Wrap(
+                alignment: WrapAlignment.center,
+                children: widget.boss.nameList
+                    .map((e) => BossImageAvatar(name: e))
+                    .toList(),
+              ),
+              Column(
                 children: [
                   Text(
-                    TimeOfDay.fromDateTime(widget.boss.spawnTime)
-                        .timeWithoutPeriod(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                    widget.boss.names,
+                    style: Theme.of(context).textTheme.displaySmall,
+                    textAlign: TextAlign.center,
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: widget.boss.nameList
-                        .map((e) => BossImageAvatar(name: e))
-                        .toList(),
+                  const SizedBox(
+                    height: 8.0,
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        widget.boss.names,
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      Text(
-                        diff.isNegative && diff.inMinutes == 0 ? '출현!' : diff
+                  Text(
+                    diff.isNegative && diff.inMinutes == 0
+                        ? '출현!'
+                        : diff
                             .splitString()
                             .replaceAll('-', '')
                             .padLeft(8, '0'),
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium
-                            ?.copyWith(
-                                color: diff.isNegative
-                                    ? (diff.inMinutes == 0
-                                        ? Colors.green
-                                        : Colors.red)
-                                    : Colors.blue),
-                      ),
-                    ],
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: diff.isNegative
+                            ? (diff.inMinutes == 0 ? Colors.green : Colors.red)
+                            : Colors.blue),
                   ),
                 ],
               ),
-            );
-          },
-        ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -177,9 +201,8 @@ class BossImageAvatar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: CircleAvatar(
-        //radius: 80.0,
+        radius: 60.0,
         backgroundColor: Colors.transparent,
-        minRadius: 60.0,
         foregroundImage: NetworkImage(
           '${Api.worldBossPortrait}/$name.png',
         ),
