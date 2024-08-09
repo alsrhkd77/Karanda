@@ -394,13 +394,263 @@
           "minute": 0
         }
       ]
+    },
+    "bulgasal": {
+      "name": "bulgasal",
+      "kr": [
+        {
+          "weekday": 1,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 1,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 2,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 2,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 3,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 3,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 4,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 5,
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "weekday": 5,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 6,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 6,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 7,
+          "hour": 20,
+          "minute": 0
+        }
+      ]
+    },
+    "uturi": {
+      "name": "uturi",
+      "kr": [
+        {
+          "weekday": 1,
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "weekday": 1,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 2,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 3,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 5,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 5,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 6,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 7,
+          "hour": 20,
+          "minute": 0
+        }
+      ]
+    },
+    "golden_pig_king": {
+      "name": "golden_pig_king",
+      "kr": [
+        {
+          "weekday": 1,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 1,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 2,
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "weekday": 2,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 3,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 3,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 4,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 5,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 6,
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
+          "hour": 23,
+          "minute": 45
+        }
+      ]
+    },
+    "sangoon": {
+      "name": "sangoon",
+      "kr": [
+        {
+          "weekday": 1,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 2,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 2,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 3,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
+          "hour": 20,
+          "minute": 0
+        },
+        {
+          "weekday": 5,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 5,
+          "hour": 23,
+          "minute": 45
+        },
+        {
+          "weekday": 6,
+          "hour": 16,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "weekday": 7,
+          "hour": 23,
+          "minute": 45
+        }
+      ]
     }
   },
   "event": {
     "baby_vell": {
       "name": "baby_vell",
       "start": "2024-07-18 00:00:00",
-      "end": "2024-08-17 05:00:00",
+      "end": "2024-08-07 05:00:00",
       "kr": [
         {
           "weekday": 0,
