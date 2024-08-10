@@ -126,7 +126,7 @@ class WorldBossController {
           "title": "Karanda - World Boss",
           "x": primary.size.width - 420.0,
           "y": primary.size.height - 220.0,
-          "width": 365.0,
+          "width": 340.0,
           "height": 180.0,
           "show": true
         });
@@ -208,8 +208,10 @@ class WorldBossController {
     _queueStreamController.sink.add(_bossQueue);
 
     if (!kIsWeb) {
-      overlay.invokeMethod(
-          method: "next boss", arguments: _bossQueue.next.toMessage());
+      Timer(const Duration(seconds: 1), (){
+        overlay.invokeMethod(
+            method: "next boss", arguments: _bossQueue.next.toMessage());
+      });
     }
 
     for (int i = 0; i < _alarm.length; i++) {

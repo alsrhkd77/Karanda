@@ -23,7 +23,8 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
   TimeOfDay timeOfDay = TimeOfDay.now();
   String? names;
   ServerTime serverTime = ServerTime();
-  double opacity = 0.0;
+  double opacity = 0.1;
+  Duration duration = Duration.zero;
   Timer? timer;
 
   @override
@@ -39,6 +40,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
         spawnTime = DateTime.parse(data["spawnTime"]);
         timeOfDay = TimeOfDay.fromDateTime(spawnTime!);
         names = data["names"];
+        opacity = 0.0;
       });
     } else if (call.method == 'alert') {
       setState(() {
@@ -62,13 +64,16 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
     return Scaffold(
       body: AnimatedOpacity(
         opacity: opacity,
-        duration: const Duration(milliseconds: 500),
+        duration: duration,
+        onEnd: (){
+          duration = const Duration(milliseconds: 500);
+        },
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -80,6 +85,11 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
+                    ),
+                    trailing: Text(
+                      spawnTime == null ? '' : timeOfDay.timeWithoutPeriod(),
+                      style:
+                      Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                   Padding(
@@ -97,19 +107,21 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
                           TextStyle? style =
                               Theme.of(context).textTheme.titleLarge;
                           return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              /*
                               Text(
                                 timeOfDay.timeWithoutPeriod(),
                                 style: style,
                               ),
+                               */
                               SizedBox(
-                                width: 130,
+                                width: 200,
                                 child: AutoSizeText(
                                   '$names',
                                   maxLines: 2,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleLarge,
+                                  style: style,
                                 ),
                               ),
                               Text(
