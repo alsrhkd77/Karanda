@@ -32,7 +32,6 @@ Future<void> main(List<String> args) async {
   if (args.firstOrNull == 'multi_window') {
     /* Start up overlay */
     await Window.initialize();
-    await Window.setEffect(effect: WindowEffect.transparent);
     final windowId = int.parse(args[1]);
     final arguments = args[2].isEmpty ? {} : jsonDecode(args[2]);
     app = OverlayApp(

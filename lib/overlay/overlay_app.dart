@@ -1,6 +1,7 @@
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:karanda/overlay/utils/overlay_utils.dart';
 import 'package:karanda/world_boss/world_boss_overlay.dart';
 
@@ -27,6 +28,11 @@ class OverlayApp extends StatelessWidget {
   OverlayApp({super.key, required this.windowController, this.arguments}){
     setOverlay(windowTitle: arguments!["title"]);
     arguments?["show"] ? showOverlay(windowTitle: arguments!["title"]) : hideOverlay(windowTitle: arguments!["title"]);
+    setTransparent();
+  }
+
+  Future<void> setTransparent() async {
+    await Window.setEffect(effect: WindowEffect.transparent);
   }
 
   @override
