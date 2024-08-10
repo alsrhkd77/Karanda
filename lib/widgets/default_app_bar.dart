@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 
@@ -22,13 +23,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: () {
           context.goWithGa('/');
         },
-        child: const Text(
+        child: Text(
           'Karanda',
-          style: TextStyle(
-            fontFamily: 'NanumSquareRound',
-            fontWeight: FontWeight.w700,
-            fontSize: 26.0,
-          ),
+          style: GoogleFonts.dongle(fontSize: 46),
         ),
       ),
       bottom: bottom,

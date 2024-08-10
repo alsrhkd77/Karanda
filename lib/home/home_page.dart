@@ -2,6 +2,7 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/bdo_news/bdo_news_data_controller.dart';
 import 'package:karanda/bdo_news/widgets/bdo_event_widget.dart';
@@ -155,19 +156,17 @@ class _HomePageState extends State<HomePage> with WindowListener {
     });
   }
 
-
   @override
   void dispose() {
     windowManager.removeListener(this);
     super.dispose();
   }
 
-
   @override
   Future<void> onWindowResized() async {
     Size size = await windowManager.getSize();
     final sharedPreferences = await SharedPreferences.getInstance();
-    if(!kDebugMode){
+    if (!kDebugMode) {
       sharedPreferences.setDouble("width", size.width);
       sharedPreferences.setDouble("height", size.height);
     }
@@ -177,7 +176,7 @@ class _HomePageState extends State<HomePage> with WindowListener {
   Future<void> onWindowMoved() async {
     Offset position = await windowManager.getPosition();
     final sharedPreferences = await SharedPreferences.getInstance();
-    if(!kDebugMode){
+    if (!kDebugMode) {
       sharedPreferences.setDouble("x", position.dx);
       sharedPreferences.setDouble("y", position.dy);
     }
@@ -342,13 +341,9 @@ class _HomePageState extends State<HomePage> with WindowListener {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Karanda',
-          style: TextStyle(
-            fontFamily: 'NanumSquareRound',
-            fontWeight: FontWeight.w700,
-            fontSize: 26.0,
-          ),
+          style: GoogleFonts.dongle(fontSize: 46),
         ),
         actions: [
           Container(

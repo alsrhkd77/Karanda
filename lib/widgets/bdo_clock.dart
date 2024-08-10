@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:provider/provider.dart';
@@ -27,11 +28,10 @@ class BdoClock extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 3.0, 0, 0),
-          child: Text(time.timeWithPeriod(),
-              style: const TextStyle(
-                  fontFamily: 'NanumSquareRound',
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold)),
+          child: Text(
+            time.timeWithPeriod(),
+            style: GoogleFonts.dongle(fontSize: 28.0),
+          ),
         ),
       ],
     );

@@ -29,7 +29,7 @@ Future<void> main(List<String> args) async {
   await EasyLocalization.ensureInitialized();
   Widget app;
 
-  if(args.firstOrNull == 'multi_window'){
+  if (args.firstOrNull == 'multi_window') {
     /* Start up overlay */
     await Window.initialize();
     await Window.setEffect(effect: WindowEffect.transparent);
@@ -61,16 +61,16 @@ Future<void> main(List<String> args) async {
     app = MyApp();
   }
   initializeDateFormatting().then((_) => runApp(
-    EasyLocalization(
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('ko', 'KR'),
-      ],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('ko', 'KR'),
-      child: app,
-    ),
-  ));
+        EasyLocalization(
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('ko', 'KR'),
+          ],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('ko', 'KR'),
+          child: app,
+        ),
+      ));
 }
 
 final _dropdownMenuTheme = DropdownMenuThemeData(
@@ -98,7 +98,9 @@ InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(
 );
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key, }) : super(key: key);
+  MyApp({
+    Key? key,
+  }) : super(key: key);
   final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
@@ -144,16 +146,21 @@ class MyApp extends StatelessWidget {
             title: 'Karanda - 카란다',
             theme: ThemeData(
               useMaterial3: true,
-              fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
+              fontFamily: 'Maplestory',
               colorSchemeSeed: const Color.fromRGBO(87, 132, 193, 1.0),
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
               floatingActionButtonTheme: _floatingActionButtonTheme,
               inputDecorationTheme: _inputDecorationTheme,
+              textTheme: settings.getTextTheme(
+                ThemeData(
+                  colorSchemeSeed: const Color.fromRGBO(87, 132, 193, 1.0),
+                ).textTheme,
+              ),
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
-              fontFamily: toBeginningOfSentenceCase(settings.fontFamily.name),
+              fontFamily: 'Maplestory',
               colorSchemeSeed: Colors.indigoAccent,
               //colorSchemeSeed: Color.fromRGBO(87, 132, 193, 1.0),
               //colorSchemeSeed: Color.fromRGBO(61, 133, 184, 1.0),
@@ -163,12 +170,15 @@ class MyApp extends StatelessWidget {
               actionIconTheme: _actionIconTheme,
               floatingActionButtonTheme: _floatingActionButtonTheme,
               inputDecorationTheme: _inputDecorationTheme,
-              //appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(24, 24, 24, 1.0)),
               appBarTheme: const AppBarTheme(
                   backgroundColor: Color.fromRGBO(25, 25, 27, 1.0)),
-              //scaffoldBackgroundColor: Color.fromRGBO(24, 24, 24, 1.0),
               scaffoldBackgroundColor: const Color.fromRGBO(25, 25, 27, 1.0),
-              //scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 24, 1.0),
+              textTheme: settings.getTextTheme(
+                ThemeData(
+                  colorSchemeSeed: Colors.indigoAccent,
+                  brightness: Brightness.dark,
+                ).textTheme,
+              ),
               //cardTheme: CardTheme(color: Color.fromRGBO(40, 40, 40, 1.0)),
             ),
             themeMode: settings.darkMode ? ThemeMode.dark : ThemeMode.light,

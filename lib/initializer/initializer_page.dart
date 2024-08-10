@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/initializer/karanda_initializer.dart';
@@ -45,13 +46,13 @@ class _InitializerPageState extends State<InitializerPage> {
     double? dy = sharedPreferences.getDouble('y');
     await windowManager.hide();
     await windowManager.setTitleBarStyle(TitleBarStyle.normal);
-    if(kDebugMode){
+    if (kDebugMode) {
       await windowManager.setSize(const Size(1280, 720));
     } else {
       await windowManager.setSize(Size(width, height));
     }
     await windowManager.setMinimumSize(const Size(600, 550));
-    if(dx == null || dy == null || kDebugMode){
+    if (dx == null || dy == null || kDebugMode) {
       await windowManager.center();
     } else {
       windowManager.setPosition(Offset(dx, dy));
@@ -69,17 +70,15 @@ class _InitializerPageState extends State<InitializerPage> {
           children: [
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+                  const EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Karanda',
-                    style: TextStyle(
-                      fontFamily: 'NanumSquareRound',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22.0,
+                    style: GoogleFonts.dongle(
+                      fontSize: 34,
                     ),
                   ),
                   StreamBuilder(
