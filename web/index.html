@@ -24,7 +24,7 @@
 
         gtag('config', 'G-W9DJ1J6PL5', {send_page_view: false});
 
-        <!-- Send flutter page transitions -->
+        /* Send flutter page transitions */
         sendNavigation = function (location) {
             try{
                 gtag('event', 'page_view', {
@@ -39,13 +39,12 @@
         }
     </script>
 
-
     <!-- iOS meta tags & icons -->
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="blue" name="apple-mobile-web-app-status-bar-style">
     <meta content="Karanda" name="apple-mobile-web-app-title">
     <link href="icons/apple-touch-icon.png" rel="apple-touch-icon">
-
+zzzzzz
     <!-- Favicon -->
     <link href="icons/favicon.ico" rel="icon" type="image/x-icon"/>
     <link href="icons/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
@@ -56,21 +55,11 @@
     <title>Karanda</title>
     <link href="manifest.json" rel="manifest">
 </head>
-<body>
-<!-- Install button, hidden by default
-<div class="hidden" id="installContainer">
-    <button id="butInstall" type="button">
-        Install
-    </button>
-</div>
-<script src="install.js" type="application/javascript"></script>-->
 
+<body>
 <img id="splashImage" class="center" src="img/flutter-logo.png"/>
 
-<!--<script src="main.dart.js" type="application/javascript"></script>-->
-<!-- This script installs service_worker.js to provide PWA functionality to
-     application. For more information, see:
-     https://developers.google.com/web/fundamentals/primers/service-workers -->
+<!-- Hide background image in broadcast widgets -->
 <script>
     if(window.location) {
         const hash = window.location.hash;
