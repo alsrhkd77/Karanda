@@ -325,12 +325,17 @@
         },
         {
           "weekday": 4,
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "weekday": 4,
           "hour": 16,
           "minute": 0
         },
         {
           "weekday": 4,
-          "hour": 2,
+          "hour": 20,
           "minute": 0
         },
         {
