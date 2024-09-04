@@ -54,7 +54,7 @@ class OverlayApp extends StatelessWidget {
             backgroundColor: Color.fromRGBO(25, 25, 27, 1.0)),
         scaffoldBackgroundColor: Colors.transparent,
       ),
-      home: WorldBossOverlay(),
+      home: WorldBossOverlay(windowTitle: arguments!["title"],),
     );
   }
 }

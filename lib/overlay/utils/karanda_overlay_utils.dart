@@ -9,3 +9,5 @@ void hideFrame(int hWnd) => throw UnsupportedError('Unsupported platform');
 void showWindow(int hWnd) => throw UnsupportedError('Unsupported platform');
 
 void hideWindow(int hWnd) => throw UnsupportedError('Unsupported platform');
+
+void setTopMost(int hWnd) => throw UnsupportedError('Unsupported platform');

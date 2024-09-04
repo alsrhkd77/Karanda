@@ -37,3 +37,12 @@ void hideOverlay({required String windowTitle}){
     developer.log('Unsupported ${e.message}', name: 'overlay utils');
   }
 }
+
+void setOverlayTopMost({required String windowTitle}){
+  try {
+    int handle = getWindowHandle(title: windowTitle);
+    setTopMost(handle);
+  } on UnsupportedError catch (e) {
+    developer.log('Unsupported ${e.message}', name: 'overlay utils');
+  }
+}

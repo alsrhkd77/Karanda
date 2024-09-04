@@ -63,3 +63,16 @@ void showFrame(int hWnd) {
           SET_WINDOW_POS_FLAGS.SWP_NOSIZE |
           SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED);
 }
+
+void setTopMost(int hWnd) {
+  SetWindowPos(
+      hWnd,
+      HWND_TOPMOST,
+      0,
+      0,
+      0,
+      0,
+      SET_WINDOW_POS_FLAGS.SWP_NOMOVE |
+          SET_WINDOW_POS_FLAGS.SWP_NOSIZE |
+          SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED);
+}

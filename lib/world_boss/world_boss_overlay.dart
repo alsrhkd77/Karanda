@@ -10,9 +10,12 @@ import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/real_time.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
+import 'package:karanda/overlay/utils/overlay_utils.dart';
 
 class WorldBossOverlay extends StatefulWidget {
-  const WorldBossOverlay({super.key});
+  final String windowTitle;
+
+  const WorldBossOverlay({super.key, required this.windowTitle});
 
   @override
   State<WorldBossOverlay> createState() => _WorldBossOverlayState();
@@ -43,6 +46,7 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
         opacity = 0.0;
       });
     } else if (call.method == 'alert') {
+      setOverlayTopMost(windowTitle: widget.windowTitle);
       setState(() {
         opacity = 1.0;
       });
