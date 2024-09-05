@@ -184,17 +184,16 @@ class _HomePageState extends State<HomePage> with WindowListener {
 
   @override
   Future<void> onWindowClose() async {
-    try {
-      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
-      for (final windowId in subWindowIds) {
+    final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
+    for (final windowId in subWindowIds) {
+      try {
         WindowController controller = WindowController.fromWindowId(windowId);
         controller.close();
+      } catch (e) {
+        developer.log('Overlay did not exit correctly\n$e', name: 'overlay');
       }
-    } catch (e) {
-      developer.log('Overlay did not exit correctly\n$e', name: 'overlay');
-    } finally {
-      await windowManager.destroy();
     }
+    await windowManager.destroy();
   }
 
   Widget singleIconTile(_Service service) {
