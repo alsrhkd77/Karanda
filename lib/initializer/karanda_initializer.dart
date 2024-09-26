@@ -26,20 +26,22 @@ class KarandaInitializer {
   }
 
   Future<void> runTasks(Future<void> authorization) async {
-    if(CommandLineArguments.forceUpdate) {
+    if (CommandLineArguments.forceUpdate) {
       await _downloadNewVersion();
     }
 
     int taskNumber = 5;
-    if(!CommandLineArguments.skipUpdate){
+    if (!CommandLineArguments.skipUpdate) {
       _textStreamController.sink.add("업데이트 확인");
       _percentStreamController.sink.add(0);
       String currentVersion = await _getCurrentVersion();
       _percentStreamController.sink.add(1 / taskNumber);
       String latestVersion = await _getLatestVersion();
       _percentStreamController.sink.add(2 / taskNumber);
-      if (currentVersion.isNotEmpty && latestVersion.isNotEmpty) {
-        if(!currentVersionIsLatest(currentVersion, latestVersion)){
+      if (currentVersion.isNotEmpty &&
+          latestVersion.isNotEmpty &&
+          !kDebugMode) {
+        if (!currentVersionIsLatest(currentVersion, latestVersion)) {
           await _downloadNewVersion();
         }
         await Future.delayed(const Duration(milliseconds: 1000));
