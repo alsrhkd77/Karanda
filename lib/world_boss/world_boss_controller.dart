@@ -8,7 +8,7 @@ import 'package:karanda/common/audio_controller.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
-import 'package:karanda/overlay/overlay_window.dart';
+import 'package:karanda/overlay/overlay_manager.dart';
 import 'package:karanda/world_boss/models/boss.dart';
 import 'package:karanda/world_boss/models/boss_data.dart';
 import 'package:karanda/world_boss/models/boss_queue.dart';
@@ -19,6 +19,7 @@ import 'package:screen_retriever/screen_retriever.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WorldBossController {
+  final OverlayManager _overlayManager = OverlayManager();
   final BossQueue _bossQueue = BossQueue();
   late WorldBossSetting _settings;
   late List<bool> _alarm;
@@ -32,7 +33,6 @@ class WorldBossController {
   final List<TimeOfDay> _spawnTimes = [];
   final ServerTime _serverTime = ServerTime();
   late StreamSubscription _subscription;
-  late OverlayWindow overlay;
   final AudioController _audioController = AudioController();
   bool _regeneration = false; // 보스 출현
 
@@ -55,10 +55,10 @@ class WorldBossController {
     _initializeBossQueue();
     await _getSettings();
     if (!kIsWeb) {
-      await overlay.create();
-      await Future.delayed(const Duration(milliseconds: 500));
-      overlay.invokeMethod(
-          method: "next boss", arguments: _bossQueue.next.toMessage());
+      _overlayManager.sendData(
+        method: "next world boss",
+        data: _bossQueue.next.toMessage(),
+      );
     }
     _subscription = _serverTime.stream.listen(_check);
   }
@@ -88,10 +88,7 @@ class WorldBossController {
 
   /* 오버레이에 전송, 알림을 재생 */
   void _alert() {
-    if (_settings.useOverlay) {
-      overlay.invokeMethod(
-          method: "alert", arguments: _bossQueue.next.toMessage());
-    }
+    _overlayManager.sendData(method: "callback", data: "alert world boss");
     if (_settings.useAlarm) {
       _audioController.bossAlarm();
     }
@@ -116,22 +113,6 @@ class WorldBossController {
         _alarm.add(true);
       } else {
         _alarm.add(false);
-      }
-    }
-    if (!kIsWeb) {
-      String overlayData = sharedPreferences.getString('${key}_overlay') ?? "";
-      if (overlayData.isEmpty) {
-        Display primary = await screenRetriever.getPrimaryDisplay();
-        overlay = OverlayWindow.fromJson({
-          "title": "Karanda - World Boss",
-          "x": primary.size.width - 420.0,
-          "y": primary.size.height - 220.0,
-          "width": 340.0,
-          "height": 180.0,
-          "show": true
-        });
-      } else {
-        overlay = OverlayWindow.fromJson(jsonDecode(overlayData));
       }
     }
   }
@@ -208,10 +189,7 @@ class WorldBossController {
     _queueStreamController.sink.add(_bossQueue);
 
     if (!kIsWeb) {
-      Timer(const Duration(seconds: 1), (){
-        overlay.invokeMethod(
-            method: "next boss", arguments: _bossQueue.next.toMessage());
-      });
+      _overlayManager.sendData(method: "next world boss", data: _bossQueue.next.toMessage());
     }
 
     for (int i = 0; i < _alarm.length; i++) {
@@ -330,12 +308,6 @@ class WorldBossController {
     _saveWorldBossSettings();
   }
 
-  void updateUseOverlay(bool value) {
-    _settings.useOverlay = value;
-    _settingsStreamController.sink.add(_settings);
-    _saveWorldBossSettings();
-  }
-
   void updateAlarm(int index, int minute) {
     _settings.alarm[index] = minute;
     _settingsStreamController.sink.add(_settings);
@@ -387,6 +359,7 @@ class WorldBossController {
 
   void dispose() {
     _queueStreamController.close();
+    _settingsStreamController.close();
     _subscription.cancel();
   }
 }

@@ -56,7 +56,6 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   go_router: ^11.1.2
   convert: ^3.1.1
-  web_socket_channel: ^2.4.0
   window_manager: ^0.3.8
   screen_retriever: ^0.1.9
   dart_jsonwebtoken: ^2.13.0
@@ -65,9 +64,10 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   easy_localization: ^3.0.7
   desktop_multi_window: ^0.2.0
-  flutter_acrylic: ^1.1.4
   media_kit: ^1.1.10
   media_kit_libs_audio: ^1.0.4
+  stomp_dart_client: ^2.0.0
+  flutter_box_transform: ^0.4.6
 
 dev_dependencies:
   flutter_test:

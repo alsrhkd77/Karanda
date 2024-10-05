@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/command_line_arguments.dart';
 import 'package:karanda/common/http.dart' as http;
+import 'package:karanda/overlay/overlay_manager.dart';
 import 'package:karanda/world_boss/world_boss_controller.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -50,10 +51,14 @@ class KarandaInitializer {
     _percentStreamController.sink.add(3 / taskNumber);
 
     _textStreamController.sink.add("사용자 인증 정보 확인");
-    if (!kDebugMode) await authorization;
+    await authorization;
     _percentStreamController.sink.add(4 / taskNumber);
 
     _textStreamController.sink.add("오버레이 준비");
+    OverlayManager overlayManager = OverlayManager();
+    await overlayManager.startOverlay();
+    await Future.delayed(const Duration(milliseconds: 1200));
+
     WorldBossController worldBossController = WorldBossController();
     await worldBossController.init();
     _percentStreamController.sink.add(5 / taskNumber);

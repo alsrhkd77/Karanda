@@ -61,19 +61,6 @@ class _WorldBossSettingsPageState extends State<WorldBossSettingsPage> {
                         },
                       ),
                     ),
-                    ListTile(
-                      title: const Text('오버레이 켜기'),
-                      trailing: Switch(
-                        value: settings.requireData.useOverlay,
-                        onChanged: (value) {
-                          if (kIsWeb) {
-                            DownloadDesktopSnackBar(context);
-                          } else {
-                            controller.updateUseOverlay(value);
-                          }
-                        },
-                      ),
-                    ),
                     ExpansionTile(
                       //initiallyExpanded: true,
                       title: const Text('알림 시간'),

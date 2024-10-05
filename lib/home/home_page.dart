@@ -72,12 +72,14 @@ class _HomePageState extends State<HomePage> with WindowListener {
       path: '/shutdown-scheduler',
       onlyWindows: true,
     ),
+    /*
     _Service(
       name: '숙제 체크리스트 (Beta)',
       icon: FontAwesomeIcons.listCheck,
       path: '/checklist',
       needLogin: true,
     ),
+     */
     _Service(
       name: '시카라키아 컬러 카운터',
       icon: FontAwesomeIcons.staffSnake,
@@ -99,6 +101,12 @@ class _HomePageState extends State<HomePage> with WindowListener {
       name: '월드 보스 (Beta)',
       icon: FontAwesomeIcons.dragon,
       path: '/world-boss',
+    ),
+    _Service(
+      name: '오버레이 (Beta)',
+      icon: FontAwesomeIcons.layerGroup,
+      path: '/overlay',
+      onlyWindows: true,
     ),
   ];
 
@@ -184,14 +192,18 @@ class _HomePageState extends State<HomePage> with WindowListener {
 
   @override
   Future<void> onWindowClose() async {
-    final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
-    for (final windowId in subWindowIds) {
-      try {
-        WindowController controller = WindowController.fromWindowId(windowId);
-        controller.close();
-      } catch (e) {
-        developer.log('Overlay did not exit correctly\n$e', name: 'overlay');
+    try {
+      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
+      for (final windowId in subWindowIds) {
+        try {
+          WindowController controller = WindowController.fromWindowId(windowId);
+          controller.close();
+        } catch (e) {
+          developer.log('Overlay did not exit correctly\n$e', name: 'overlay');
+        }
       }
+    } catch (e) {
+      developer.log('Failed to get SubWindowIds\n$e', name: 'overlay');
     }
     await windowManager.destroy();
   }

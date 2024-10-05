@@ -1,13 +1,7 @@
-int getMainWindowHandle() => throw UnsupportedError('Unsupported platform');
+int getOverlayWindowHandle() => throw UnsupportedError('Unsupported platform');
 
-int getWindowHandle({required String title}) => throw UnsupportedError('Unsupported platform');
+void setOverlay(int hWnd, double width, double height) => throw UnsupportedError('Unsupported platform');
 
-void showFrame(int hWnd) => throw UnsupportedError('Unsupported platform');
+void enableClick(int hWnd) => throw UnsupportedError('Unsupported platform');
 
-void hideFrame(int hWnd) => throw UnsupportedError('Unsupported platform');
-
-void showWindow(int hWnd) => throw UnsupportedError('Unsupported platform');
-
-void hideWindow(int hWnd) => throw UnsupportedError('Unsupported platform');
-
-void setTopMost(int hWnd) => throw UnsupportedError('Unsupported platform');
+void disableClick(int hWnd) => throw UnsupportedError('Unsupported platform');

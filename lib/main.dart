@@ -4,15 +4,16 @@ import 'dart:io';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/checklist/checklist_notifier.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/command_line_arguments.dart';
 import 'package:karanda/common/real_time_notifier.dart';
+import 'package:karanda/common/web_socket_manager/web_socket_manager.dart';
 import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:karanda/overlay/overlay_app.dart';
+import 'package:karanda/overlay/overlay_data_controller.dart';
 import 'package:karanda/route.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
@@ -31,9 +32,11 @@ Future<void> main(List<String> args) async {
 
   if (args.firstOrNull == 'multi_window') {
     /* Start up overlay */
-    await Window.initialize();
     final windowId = int.parse(args[1]);
-    final arguments = args[2].isEmpty ? {} : jsonDecode(args[2]);
+    final Map arguments = args[2].isEmpty ? {} : jsonDecode(args[2]);
+    final dataController = OverlayDataController();
+    dataController.setScreenSize(width: arguments['width'], height: arguments['height']);
+    dataController.setOverlayStatus(arguments['overlay status']);
     app = OverlayApp(
       windowController: WindowController.fromWindowId(windowId),
       arguments: arguments,
@@ -56,6 +59,7 @@ Future<void> main(List<String> args) async {
         });
       }
     }
+    WebSocketManager();
     MediaKit.ensureInitialized();
     app = MyApp();
   }
@@ -85,7 +89,7 @@ final _actionIconTheme = ActionIconThemeData(
 );
 
 const _floatingActionButtonTheme = FloatingActionButtonThemeData(
-  backgroundColor: Colors.blue,
+  backgroundColor: Colors.indigoAccent,
 );
 
 InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(

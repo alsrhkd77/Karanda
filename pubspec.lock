@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  box_transform:
+    dependency: transitive
+    description:
+      name: box_transform
+      sha256: "99744e5f5edb2056128d3846894bfa6d4a02b5a4ef42657cf957a345731cff2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.4"
   characters:
     dependency: transitive
     description:
@@ -206,14 +214,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_acrylic:
+  flutter_box_transform:
     dependency: "direct main"
     description:
-      name: flutter_acrylic
-      sha256: b3996dbde5abf5823cc9ead4cf2e5267c3181f15585fe47ce4dc4472e7ec827a
+      name: flutter_box_transform
+      sha256: "428619d0ea67631e4486b7a2ba46b1f6589420dcb9d0e520f8c81b98bd211159"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.4"
+    version: "0.4.6"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -413,14 +421,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  macos_window_utils:
-    dependency: transitive
-    description:
-      name: macos_window_utils
-      sha256: "230be594d26f6dee92c5a1544f4242d25138a5bfb9f185b27f14de3949ef0be8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.5.0"
   markdown:
     dependency: transitive
     description:
@@ -762,6 +762,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  stomp_dart_client:
+    dependency: "direct main"
+    description:
+      name: stomp_dart_client
+      sha256: "244a243c8d56dd1a64e5d27f599d7d6077866267aff506f9dd9e60630c41cba7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   stream_channel:
     dependency: transitive
     description:
@@ -931,7 +939,7 @@ packages:
     source: hosted
     version: "0.5.1"
   web_socket_channel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: web_socket_channel
       sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b

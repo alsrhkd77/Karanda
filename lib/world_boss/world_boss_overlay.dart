@@ -46,7 +46,6 @@ class _WorldBossOverlayState extends State<WorldBossOverlay> {
         opacity = 0.0;
       });
     } else if (call.method == 'alert') {
-      setOverlayTopMost(windowTitle: widget.windowTitle);
       setState(() {
         opacity = 1.0;
       });
