@@ -1,25 +1,87 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
-import 'package:karanda/common/custom_web_socket_channel/custom_web_socket_channel.dart';
-import 'package:karanda/common/token_factory.dart';
+import 'package:karanda/common/web_socket_manager/web_socket_manager.dart';
+import 'package:karanda/common/web_visibility/web_visibility.dart';
 import 'package:karanda/trade_market/trade_market_wait_item.dart';
+import 'package:karanda/common/http.dart' as http;
 
 class TradeMarketWaitListStream {
-  final _dataStreamController = StreamController<List<TradeMarketWaitItem>>();
-  final CustomWebSocketChannel _webSocketChannel = CustomWebSocketChannel('${Api.marketWaitList}?token=${TokenFactory.serviceToken()}');
+  final _dataStreamController = StreamController<List<TradeMarketWaitItem>>.broadcast();
+  List<TradeMarketWaitItem>? _data;
+  /*
+  final CustomWebSocketChannel _webSocketChannel = CustomWebSocketChannel(
+      '${Api.marketWaitList}?token=${TokenFactory.serviceToken()}');
   StreamSubscription? _subscription;
   Timer? _timer;
+  */
   DateTime? lastUpdate;
 
-  TradeMarketWaitListStream() {
-    connect();
+  final WebSocketManager _webSocketManager = WebSocketManager();
+  final WebVisibility _webVisibility = WebVisibility();
+
+  factory TradeMarketWaitListStream() {
+    return _instance;
+  }
+
+  static final TradeMarketWaitListStream _instance =
+      TradeMarketWaitListStream._internal();
+
+  TradeMarketWaitListStream._internal() {
+    //connect();
+    _getLatest();
+    _register();
+    if(kIsWeb){
+      _webVisibility.stream.listen((visible){
+        if(visible){
+          _getLatest();
+        }
+      });
+    }
   }
 
   Stream<List<TradeMarketWaitItem>> get waitItemList =>
       _dataStreamController.stream;
 
+  void _register() {
+    _webSocketManager.register(
+      destination: Api.marketWaitListChannel,
+      callback: (message) {
+        if (message.body != null && message.body!.isNotEmpty) {
+          _parse(message.body!);
+        }
+      },
+    );
+  }
+
+  Future<void> _getLatest() async {
+    final response = await http.get(Api.marketWaitList);
+    if(response.statusCode == 200){
+      _parse(response.body);
+    }
+  }
+
+  void _parse(String data){
+    List<TradeMarketWaitItem> result = [];
+    List decoded = jsonDecode(data);
+    for (var data in decoded) {
+      TradeMarketWaitItem item = TradeMarketWaitItem.fromData(data);
+      result.add(item);
+    }
+    _data = result;
+    _dataStreamController.sink.add(_data!);
+    lastUpdate = DateTime.now();
+  }
+
+  void publish(){
+    if(_data != null){
+      _dataStreamController.sink.add(_data!);
+    }
+  }
+
+  /*
   Future<void> connect() async {
     _subscription = _webSocketChannel.stream.listen((message) {
       List<TradeMarketWaitItem> result = [];
@@ -58,4 +120,5 @@ class TradeMarketWaitListStream {
     disconnect();
     _dataStreamController.close();
   }
+   */
 }

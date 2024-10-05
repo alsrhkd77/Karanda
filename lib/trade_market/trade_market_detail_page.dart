@@ -174,13 +174,13 @@ class _Head extends StatelessWidget {
   final TradeMarketDataModel data;
   final String enhancementLevel;
   final MarketItemModel itemInfo;
-  final format = NumberFormat('###,###,###,###');
+  final format = NumberFormat('###,###,###,###,###');
 
   _Head({super.key, required this.data, required this.enhancementLevel, required this.itemInfo});
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = const TextStyle(fontSize: 16.0);
+    const textStyle = TextStyle(fontSize: 16.0);
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -229,7 +229,7 @@ class _Head extends StatelessWidget {
 
 class _PriceChart extends StatelessWidget {
   final List<TradeMarketDataModel> data;
-  final format = NumberFormat('###,###,###,###');
+  final format = NumberFormat('###,###,###,###,###');
 
   _PriceChart({super.key, required this.data});
 
@@ -303,6 +303,17 @@ class _PriceChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(data.isEmpty){
+      return const SliverToBoxAdapter(
+          child: AspectRatio(
+              aspectRatio: 2.7,
+              child: Card(
+                margin: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                child: Center(child: Text("데이터가 충분하지 않습니다")),
+              ),
+          ),
+      );
+    }
     final int maxPrice = data.map<int>((e) => e.price).reduce(max);
     final int minPrice = data.map<int>((e) => e.price).reduce(min);
     final int midPrice = minPrice + ((maxPrice - minPrice) / 2).round();

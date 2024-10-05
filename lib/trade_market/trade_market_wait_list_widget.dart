@@ -27,18 +27,20 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((timeStamp) => dataStream.publish());
     windowManager.addListener(this);
   }
 
   @override
   void activate() {
     super.activate();
-    dataStream.connect();
+    //dataStream.connect();
   }
 
   @override
   void deactivate() {
-    dataStream.disconnect();
+    //dataStream.disconnect();
     super.deactivate();
   }
 
@@ -49,10 +51,8 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
 
   @override
   void onWindowClose() {
-    dataStream.dispose();
+    //dataStream.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
             child: LoadingIndicator(),
           );
         }
-        if(snapshot.requireData.isEmpty){
+        if (snapshot.requireData.isEmpty) {
           return const SliverToBoxAdapter(
             child: Align(
               alignment: Alignment.center,
@@ -84,7 +84,7 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
               return Center(
-                  child: _WaitItemTile(item: snapshot.requireData[index]),
+                child: _WaitItemTile(item: snapshot.requireData[index]),
               );
             },
             childCount: snapshot.requireData.length,
@@ -96,7 +96,7 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
 
   @override
   void dispose() {
-    dataStream.dispose();
+    //dataStream.dispose();
     windowManager.removeListener(this);
     super.dispose();
   }
@@ -104,7 +104,7 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
 
 class _WaitItemTile extends StatelessWidget {
   final TradeMarketWaitItem item;
-  final format = NumberFormat('###,###,###,###');
+  final format = NumberFormat('###,###,###,###,###');
 
   _WaitItemTile({super.key, required this.item});
 

@@ -7,11 +7,11 @@ class TradeMarketDataModel{
   late DateTime date;
 
   TradeMarketDataModel.fromData(Map data){
-    code = data['item_num'];
-    enhancementLevel = data['enhancement_level'];
+    code = data['item_num'] ?? data['itemNum'];
+    enhancementLevel = data['enhancement_level'] ?? data['enhancementLevel'];
     price = data['price'];
-    cumulativeVolume = data['cumulative_volume'];
-    currentStock = data['current_stock'];
+    cumulativeVolume = data['cumulative_volume'] ?? data['cumulativeVolume'];
+    currentStock = data['current_stock'] ?? data['currentStock'];
     date = DateTime.parse(data['date']);
   }
 }

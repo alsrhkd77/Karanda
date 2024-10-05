@@ -21,6 +21,10 @@ class Api {
   static String get _socketServer =>
       _server.replaceAll('http', 'ws');
 
+  static String get webSocketChannel => '${_server.replaceAll('http', 'ws')}/live-channel';
+
+  static String get _webSocketPrefix => '/live-data';
+
   static String get karandaDiscordServer => 'https://discord.gg/8ZRAMGdcYG';
 
   static String get authenticateWeb {
@@ -100,13 +104,15 @@ class Api {
 
   static String get worldBossPortrait => '$storage/bdo/worldboss/portrait';
 
-  static String get marketWaitList => '$_socketServer/trade-market/wait-list';
+  static String get marketWaitListChannel => '$_webSocketPrefix/trade-market/wait-list';
 
-  static String get marketItemDetail => '$_tradeMarket/get/detail';
+  static String get marketWaitList => '$_tradeMarket/wait-list';
 
-  static String get marketItemLatest => '$_tradeMarket/get/latest';
+  static String get marketItemDetail => '$_tradeMarket/detail';
 
-  static String get chzzkLiveStatus => '$_chzzk/get/live-status';
+  static String get marketItemLatest => '$_tradeMarket/latest';
+
+  static String get chzzkLiveStatus => '$_chzzk/live-status';
 
   static String get bdoEvents => '$_bdoNews/kr_event.json';
 
