@@ -4,7 +4,6 @@ import 'dart:developer' as developer;
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/services.dart';
 import 'package:karanda/overlay/utils/overlay_utils.dart' as util;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OverlayDataController {
   Size _screenSize = Size.zero;

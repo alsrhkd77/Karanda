@@ -10,7 +10,6 @@ import 'package:karanda/overlay/overlay_data_controller.dart';
 import 'package:karanda/overlay/utils/box_utils.dart';
 import 'package:karanda/widgets/custom_angular_handle.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class WorldBossOverlayWidget extends StatefulWidget {
   final bool editMode;

@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
-import 'package:karanda/widgets/download_desktop_snack_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:karanda/world_boss/world_boss_controller.dart';

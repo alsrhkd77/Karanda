@@ -15,7 +15,6 @@ import 'package:karanda/world_boss/models/boss_queue.dart';
 import 'package:karanda/world_boss/models/event_boss_data.dart';
 import 'package:karanda/world_boss/models/spawn_time.dart';
 import 'package:karanda/world_boss/models/world_boss_setting.dart';
-import 'package:screen_retriever/screen_retriever.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WorldBossController {
