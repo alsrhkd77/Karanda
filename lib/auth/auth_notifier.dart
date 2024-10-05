@@ -72,7 +72,7 @@ class AuthNotifier with ChangeNotifier {
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
-        _discordId = data['discord_id'];
+        _discordId = data['discord_id'] ?? data['discordId'];
         notifyListeners();
         return true;
       } else if(response.statusCode == 401){
@@ -114,7 +114,7 @@ class AuthNotifier with ChangeNotifier {
   //run only windows app
   Future<void> listenRedirect() async {
     bool result = false;
-    HttpServer redirectServer = await HttpServer.bind("localhost", 8082);
+    HttpServer redirectServer = await HttpServer.bind("localhost", 8082, shared: true);
     HttpRequest request = await redirectServer.first;
     Map<String, String> data = request.uri.queryParameters;
     try {

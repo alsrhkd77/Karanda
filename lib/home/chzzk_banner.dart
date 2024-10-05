@@ -35,7 +35,7 @@ class _ChzzkBannerState extends State<ChzzkBanner> {
     try {
       final response = await http.get(Api.chzzkLiveStatus);
       if (response.statusCode == 200) {
-        result = jsonDecode(response.bodyUTF)["live-status"];
+        result = bool.tryParse(response.body) ?? false;
       }
     } catch (e) {
       print(e);

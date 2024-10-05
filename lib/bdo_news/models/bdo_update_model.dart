@@ -11,7 +11,6 @@ class BdoUpdateModel extends BdoNewsModel {
 
   bool isRecent(){
     Duration diff = DateTime.now().difference(added);
-    print(diff.inDays);
     return diff.inDays < 4 ? true : false;
   }
 }
