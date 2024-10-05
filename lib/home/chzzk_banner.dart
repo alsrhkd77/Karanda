@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/common/http.dart' as http;
 
