@@ -81,8 +81,9 @@ class _Contents extends StatelessWidget {
             leading: Icon(icon),
             title: TitleText(title),
           ),
-          AspectRatio(
-            aspectRatio: 1.9,
+          SizedBox(
+            width: 380,
+            height: 200,
             child: Card(
               margin: const EdgeInsets.symmetric(horizontal: 16.0),
               clipBehavior: Clip.antiAlias,

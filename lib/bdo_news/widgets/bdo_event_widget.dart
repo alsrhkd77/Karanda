@@ -123,8 +123,9 @@ class _ContentsState extends State<_Contents> {
             leading: const Icon(Icons.celebration_outlined),
             title: TitleText(widget.nearDeadline ? '마감 임박 이벤트' : '신규 이벤트'),
           ),
-          AspectRatio(
-            aspectRatio: 1.9,
+          SizedBox(
+            width: 380,
+            height: 200,
             child: Card(
               margin: const EdgeInsets.symmetric(horizontal: 16.0),
               clipBehavior: Clip.antiAlias,
