@@ -90,6 +90,7 @@ final _actionIconTheme = ActionIconThemeData(
 
 const _floatingActionButtonTheme = FloatingActionButtonThemeData(
   backgroundColor: Colors.indigoAccent,
+  foregroundColor: Colors.white
 );
 
 InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(
