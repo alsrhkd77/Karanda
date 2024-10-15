@@ -30,6 +30,7 @@ import 'package:karanda/trade_market/presets/magical_lightstone_crystal_page.dar
 import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
+import 'package:karanda/verification_center/verification_center_page.dart';
 import 'package:karanda/world_boss/world_boss_page.dart';
 
 final GoRouter router = GoRouter(
@@ -208,6 +209,10 @@ final GoRouter router = GoRouter(
             }
             return null;
           },
+        ),
+        GoRoute(
+          path: 'verification-center',
+          builder: (context, state) => const VerificationCenterPage(),
         ),
       ],
     ),

@@ -63,6 +63,8 @@ class Api {
 
   static String get _chzzk => '$_server/chzzk';
 
+  static String get _bdoFamily => '$_server/auth/bdo-family';
+
   static String get _bdoNews => 'https://raw.githubusercontent.com/Hammuu1112/news/main/news';
 
   static String get authorization => '$_server/auth/discord/authorization';
@@ -104,6 +106,8 @@ class Api {
 
   static String get worldBossPortrait => '$storage/bdo/worldboss/portrait';
 
+  static String get classSymbol => '$storage/bdo/class-symbol';
+
   static String get marketWaitListChannel => '$_webSocketPrefix/trade-market/wait-list';
 
   static String get marketWaitList => '$_tradeMarket/wait-list';
@@ -119,4 +123,6 @@ class Api {
   static String get bdoUpdates => '$_bdoNews/kr_update.json';
 
   static String get bdoLabUpdates => '$_bdoNews/lab_update.json';
+
+  static String get startFamilyVerification => '$_bdoFamily/start-verification';
 }

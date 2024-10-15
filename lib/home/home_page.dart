@@ -108,6 +108,11 @@ class _HomePageState extends State<HomePage> with WindowListener {
       path: '/overlay',
       onlyWindows: true,
     ),
+    _Service(
+      name: '인증 센터', //Verification Center Family Verification
+      icon: FontAwesomeIcons.idCard,
+      path: '/verification-center',
+    ),
   ];
 
   final List<_Link> links = [
