@@ -61,7 +61,7 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
     Rect rect = await BoxUtils.loadBoxRect(key) ??
         Rect.fromLTWH(
           _dataController.screenSize.width - 380,
-          _dataController.screenSize.height - 210,
+          _dataController.screenSize.height - 200,
           320,
           140,
         );
@@ -150,6 +150,7 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                                 return Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     /*
                                   Text(
@@ -170,6 +171,7 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                                      */
                                     Text(
                                       names,
+                                      //'불가살, 우투리\n누베르, 오핀',
                                       style: style,
                                       textAlign: TextAlign.center,
                                     ),
