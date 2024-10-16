@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/verification_center/verification_center_data_controller.dart';
 import 'package:karanda/verification_center/widgets/main_family_chip.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 
 class FamilyVerificationPage extends StatefulWidget {
-  const FamilyVerificationPage({super.key});
+  final VerificationCenterDataController dataController;
+
+  const FamilyVerificationPage({super.key, required this.dataController});
 
   @override
   State<FamilyVerificationPage> createState() => _FamilyVerificationPageState();

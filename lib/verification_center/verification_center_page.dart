@@ -3,13 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/verification_center/start_family_verification_page.dart';
+import 'package:karanda/verification_center/verification_center_data_controller.dart';
 import 'package:karanda/verification_center/widgets/main_family_chip.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 
 class VerificationCenterPage extends StatelessWidget {
-  const VerificationCenterPage({super.key});
+  final VerificationCenterDataController dataController =
+      VerificationCenterDataController();
+
+  VerificationCenterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +60,9 @@ class VerificationCenterPage extends StatelessWidget {
                   ),
                   _FamilyTile(),
                   _FamilyTile(),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   ListTile(
                     title: TitleText(
                       '내 인증 카드',
@@ -68,18 +74,20 @@ class VerificationCenterPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 50.0,
-            )
+            const SizedBox(height: 50.0),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.add_task),
-        label: Text('가문 등록'),
+        icon: const Icon(Icons.add_task),
+        label: const Text('가문 등록'),
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => StartFamilyVerificationPage())
+            MaterialPageRoute(
+              builder: (context) => StartFamilyVerificationPage(
+                dataController: dataController,
+              ),
+            ),
           );
         },
       ),
@@ -129,11 +137,15 @@ class _VerificationCardTile extends StatelessWidget {
             leading: ClassSymbolWidget(className: 'dark knight'),
             title: Text('키워드 없음 #KR'),
             subtitle: Text(DateTime.now().format('yyyy.MM.dd')),
-            trailing: IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red,)),
+            trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                )),
           ),
         ),
       ),
     );
   }
 }
-

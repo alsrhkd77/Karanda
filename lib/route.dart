@@ -212,7 +212,7 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: 'verification-center',
-          builder: (context, state) => const VerificationCenterPage(),
+          builder: (context, state) => VerificationCenterPage(),
         ),
       ],
     ),

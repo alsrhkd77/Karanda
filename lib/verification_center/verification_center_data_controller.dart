@@ -4,7 +4,7 @@ import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
 
 class VerificationCenterDataController {
-  Future<void> startVerification(
+  Future<bool> startVerification(
       String region, String code, String familyName) async {
     await http.post(
       Api.startFamilyVerification,
@@ -15,5 +15,6 @@ class VerificationCenterDataController {
       }),
       json: true,
     );
+    return true;
   }
 }

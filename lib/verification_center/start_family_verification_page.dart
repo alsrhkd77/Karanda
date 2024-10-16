@@ -1,15 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/verification_center/family_verification_page.dart';
+import 'package:karanda/verification_center/verification_center_data_controller.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
 
 class StartFamilyVerificationPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final familyNameTextController = TextEditingController();
   final profileURLTextController = TextEditingController();
+  final VerificationCenterDataController dataController;
 
-  StartFamilyVerificationPage({super.key});
+  StartFamilyVerificationPage({super.key, required this.dataController});
+
+  Future<void> submit(BuildContext context) async {
+    String region = "KR";
+    String code = profileURLTextController.text;
+    String familyName = familyNameTextController.text;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const LoadingIndicatorDialog(),
+    );
+    bool result =
+        await dataController.startVerification(region, code, familyName);
+    if (context.mounted) {
+      Navigator.of(context).pop();
+      if (result) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FamilyVerificationPage(dataController: dataController,),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Row(
+              children: [
+                Icon(
+                  Icons.report_problem_outlined,
+                  color: Colors.redAccent,
+                ),
+                SizedBox(
+                  width: 8.0,
+                ),
+                Text("가문 등록에 실패했습니다."),
+              ],
+            ),
+            duration: const Duration(seconds: 3),
+            behavior: SnackBarBehavior.floating,
+            margin: GlobalProperties.snackBarMargin,
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +133,7 @@ class StartFamilyVerificationPage extends StatelessWidget {
                   onPressed: () {
                     final formState = formKey.currentState!;
                     if (formState.validate()) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FamilyVerificationPage(),
-                        ),
-                      );
-                      print("send");
+                      submit(context);
                     }
                   },
                   child: const Padding(
