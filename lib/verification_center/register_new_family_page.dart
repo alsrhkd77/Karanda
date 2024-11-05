@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/verification_center/family_verification_page.dart';
+import 'package:karanda/verification_center/models/bdo_family.dart';
 import 'package:karanda/verification_center/verification_center_data_controller.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
 
-class StartFamilyVerificationPage extends StatelessWidget {
+class RegisterNewFamilyPage extends StatelessWidget {
+  final VerificationCenterDataController dataController;
   final formKey = GlobalKey<FormState>();
   final familyNameTextController = TextEditingController();
   final profileURLTextController = TextEditingController();
-  final VerificationCenterDataController dataController;
 
-  StartFamilyVerificationPage({super.key, required this.dataController});
+  RegisterNewFamilyPage({super.key, required this.dataController});
 
   Future<void> submit(BuildContext context) async {
     String region = "KR";
-    String code = profileURLTextController.text;
+    String code = parseUrl(profileURLTextController.text);
     String familyName = familyNameTextController.text;
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => const LoadingIndicatorDialog(),
     );
-    bool result =
-        await dataController.startVerification(region, code, familyName);
+    BdoFamily? result = await dataController.register(region, code, familyName);
     if (context.mounted) {
       Navigator.of(context).pop();
-      if (result) {
+      if (result != null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => FamilyVerificationPage(dataController: dataController,),
+            builder: (context) => FamilyVerificationPage(dataController: dataController, familyData: result,),
           ),
         );
       } else {
@@ -56,6 +56,17 @@ class StartFamilyVerificationPage extends StatelessWidget {
         );
       }
     }
+  }
+  
+  String parseUrl(String url) {
+    String result = '';
+    for(String item in url.split('&')){
+      if(item.contains('profileTarget=')){
+        result = item.split('profileTarget=').last;
+        break;
+      }
+    }
+    return result;
   }
 
   @override
@@ -112,6 +123,8 @@ class StartFamilyVerificationPage extends StatelessWidget {
                       validator: (String? value) {
                         if (value?.isEmpty ?? true) {
                           return '모험가 프로필 URL을 입력해주세요';
+                        } else if (!value!.contains("profileTarget=") || !value.startsWith('https://')) {
+                          return '올바르지 않은 형식입니다';
                         }
                         return null;
                       },

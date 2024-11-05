@@ -124,5 +124,15 @@ class Api {
 
   static String get bdoLabUpdates => '$_bdoNews/lab_update.json';
 
-  static String get startFamilyVerification => '$_bdoFamily/start-verification';
+  static String get allFamilies => '$_bdoFamily/families';
+
+  static String get registerFamily => '$_bdoFamily/register';
+
+  static String get verifyFamily => '$_bdoFamily/verify';
+
+  static String get unregisterFamily => '$_bdoFamily/unregister';
+
+  static String get refreshFamilyData => '$_bdoFamily/refresh';
+
+  static String get setMainFamily => '$_bdoFamily/set-main';
 }

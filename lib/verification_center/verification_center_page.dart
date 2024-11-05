@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/verification_center/start_family_verification_page.dart';
+import 'package:karanda/verification_center/family_verification_page.dart';
+import 'package:karanda/verification_center/models/bdo_family.dart';
+import 'package:karanda/verification_center/register_new_family_page.dart';
 import 'package:karanda/verification_center/verification_center_data_controller.dart';
-import 'package:karanda/verification_center/widgets/main_family_chip.dart';
+import 'package:karanda/verification_center/widgets/main_family_name_widget.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 
 class VerificationCenterPage extends StatelessWidget {
@@ -52,18 +55,19 @@ class VerificationCenterPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ListTile(
+                  const ListTile(
                     title: TitleText(
                       '내 가문',
                       bold: true,
                     ),
                   ),
-                  _FamilyTile(),
-                  _FamilyTile(),
+                  _Families(
+                    dataController: dataController,
+                  ),
                   const SizedBox(
                     height: 15,
                   ),
-                  ListTile(
+                  const ListTile(
                     title: TitleText(
                       '내 인증 카드',
                       bold: true,
@@ -84,9 +88,7 @@ class VerificationCenterPage extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => StartFamilyVerificationPage(
-                dataController: dataController,
-              ),
+              builder: (context) => RegisterNewFamilyPage(dataController: dataController,),
             ),
           );
         },
@@ -95,26 +97,69 @@ class VerificationCenterPage extends StatelessWidget {
   }
 }
 
+class _Families extends StatefulWidget {
+  final VerificationCenterDataController dataController;
+
+  const _Families({super.key, required this.dataController});
+
+  @override
+  State<_Families> createState() => _FamiliesState();
+}
+
+class _FamiliesState extends State<_Families> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: widget.dataController.familyListStream,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const LoadingIndicator();
+        } else if (snapshot.requireData.isEmpty) {
+          return const SizedBox(
+            height: 40.0,
+            child: Text("등록된 가문이 없습니다."),
+          );
+        }
+        return Column(
+          children: snapshot.requireData
+              .map((family) => _FamilyTile(family: family, dataController: widget.dataController,))
+              .toList(),
+        );
+      },
+    );
+  }
+}
+
 class _FamilyTile extends StatelessWidget {
-  const _FamilyTile({super.key});
+  final VerificationCenterDataController dataController;
+  final BdoFamily family;
+
+  const _FamilyTile({super.key, required this.family, required this.dataController});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FamilyVerificationPage(dataController: dataController, familyData: family,),
+            ),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ListTile(
-            leading: ClassSymbolWidget(className: 'wizard'),
-            title: Row(
-              children: [Text('하라쿤타'), MainFamilyChip()],
-            ),
-            trailing: Icon(
-              Icons.verified,
-              color: Colors.blueAccent,
-            ),
+            leading: ClassSymbolWidget(className: family.mainClass.name),
+            title: MainFamilyNameWidget(family: family),
+            trailing: family.verified
+                ? const Icon(
+                    Icons.verified,
+                    color: Colors.blueAccent,
+                  )
+                : null,
           ),
         ),
       ),

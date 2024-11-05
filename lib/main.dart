@@ -35,7 +35,8 @@ Future<void> main(List<String> args) async {
     final windowId = int.parse(args[1]);
     final Map arguments = args[2].isEmpty ? {} : jsonDecode(args[2]);
     final dataController = OverlayDataController();
-    dataController.setScreenSize(width: arguments['width'], height: arguments['height']);
+    dataController.setScreenSize(
+        width: arguments['width'], height: arguments['height']);
     dataController.setOverlayStatus(arguments['overlay status']);
     app = OverlayApp(
       windowController: WindowController.fromWindowId(windowId),
@@ -90,7 +91,7 @@ final _actionIconTheme = ActionIconThemeData(
 
 const _floatingActionButtonTheme = FloatingActionButtonThemeData(
   backgroundColor: Colors.indigoAccent,
-  foregroundColor: Colors.white
+  foregroundColor: Colors.white,
 );
 
 InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(

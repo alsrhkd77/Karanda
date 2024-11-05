@@ -8,6 +8,7 @@ import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/http_response_extension.dart';
+import 'package:karanda/verification_center/models/bdo_family.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,7 @@ class AuthNotifier with ChangeNotifier {
   late String _username;
   late String _avatar;
   late String _discordId;
+  BdoFamily? _mainFamily;
 
   bool get authenticated => _authenticated;
 
@@ -32,8 +34,10 @@ class AuthNotifier with ChangeNotifier {
 
   String get discordId => _discordId;
 
+  BdoFamily? get mainFamily => _mainFamily;
+
   AuthNotifier(this._rootScaffoldMessengerKey, this.goRouter) {
-    if(kIsWeb){
+    if (kIsWeb) {
       authorization();
     }
   }
@@ -52,11 +56,11 @@ class AuthNotifier with ChangeNotifier {
   }
 
   Future<void> authorization() async {
-    if(!_waitResponse && !_authenticated){
+    if (!_waitResponse) {
       _waitResponse = true;
       notifyListeners();
       const storage = FlutterSecureStorage();
-      if(await storage.containsKey(key: 'karanda-token')){
+      if (await storage.containsKey(key: 'karanda-token')) {
         await _authorization();
       }
       _waitResponse = false;
@@ -66,21 +70,26 @@ class AuthNotifier with ChangeNotifier {
 
   Future<bool> _authorization() async {
     try {
-      final response = await http.get(Api.authorization).timeout(const Duration(seconds: 20));
+      final response = await http
+          .get(Api.authorization)
+          .timeout(const Duration(seconds: 20));
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
         _discordId = data['discord_id'] ?? data['discordId'];
+        if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
+          _mainFamily = BdoFamily.fromData(data['mainFamily']);
+        }
         notifyListeners();
         return true;
-      } else if(response.statusCode == 401){
+      } else if (response.statusCode == 401) {
         return await tokenRefresh();
       }
     } catch (e) {
       await _logout();
-      if(kIsWeb){
+      if (kIsWeb) {
         _showSnackBar(content: '사용자 인증에 실패했습니다');
       }
     }
@@ -90,18 +99,21 @@ class AuthNotifier with ChangeNotifier {
   Future<bool> tokenRefresh() async {
     const storage = FlutterSecureStorage();
     String? refreshToken = await storage.read(key: 'refresh-token');
-    if(refreshToken != null){
-      Map<String, String> data = {
-        'refresh-token': refreshToken
-      };
+    if (refreshToken != null) {
+      Map<String, String> data = {'refresh-token': refreshToken};
       final response = await http.post(Api.tokenRefresh, headers: data);
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
-        _discordId = data['discord_id'];
-        saveToken(token: data['token'], refreshToken: data['refresh-token']);
+        _discordId = data['discord_id'] ?? data['discordId'];
+        if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
+          _mainFamily = BdoFamily.fromData(data['mainFamily']);
+        }
+        saveToken(
+            token: data['token'],
+            refreshToken: data['refresh-token'] ?? data['refreshToken']);
         notifyListeners();
         return true;
       }
@@ -114,7 +126,8 @@ class AuthNotifier with ChangeNotifier {
   //run only windows app
   Future<void> listenRedirect() async {
     bool result = false;
-    HttpServer redirectServer = await HttpServer.bind("localhost", 8082, shared: true);
+    HttpServer redirectServer =
+        await HttpServer.bind("localhost", 8082, shared: true);
     HttpRequest request = await redirectServer.first;
     Map<String, String> data = request.uri.queryParameters;
     try {
@@ -122,20 +135,21 @@ class AuthNotifier with ChangeNotifier {
         result = true;
         request.response.redirect(Uri.parse('https://discord.com'));
       } else {
-        request.response.redirect(Uri.parse('https://www.karanda.kr/auth/error'));
+        request.response
+            .redirect(Uri.parse('https://www.karanda.kr/#/auth/error'));
       }
-    }
-    finally{
+    } finally {
       await request.response.close();
       await redirectServer.close();
     }
 
     if (result) {
-      await saveToken(token: data['token']!, refreshToken: data['refresh-token']!);
-      if(await _authorization()){
+      await saveToken(
+          token: data['token']!, refreshToken: data['refresh-token']!);
+      if (await _authorization()) {
         goRouter.goWithGa('/');
       }
-    } else{
+    } else {
       await deleteToken();
       goRouter.goWithGa('/auth/error');
     }
@@ -171,7 +185,8 @@ class AuthNotifier with ChangeNotifier {
     await storage.delete(key: 'refresh-token');
   }
 
-  Future<void> saveToken({required String token, required String refreshToken}) async {
+  Future<void> saveToken(
+      {required String token, required String refreshToken}) async {
     const storage = FlutterSecureStorage();
     await storage.write(key: 'karanda-token', value: token);
     await storage.write(key: 'refresh-token', value: refreshToken);
@@ -184,7 +199,7 @@ class AuthNotifier with ChangeNotifier {
     }
   }
 
-  void _showSnackBar({required String content}){
+  void _showSnackBar({required String content}) {
     _rootScaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
         content: Text(content),
