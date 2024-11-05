@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:karanda/common/enums/bdo_class.dart';
 
 class BdoFamily {
