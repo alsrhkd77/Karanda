@@ -5,6 +5,7 @@ import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/atoraxxion/sycrakea_page.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/auth/auth_error_page.dart';
+import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
 import 'package:karanda/checklist/checklist_page.dart';
@@ -31,7 +32,9 @@ import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
 import 'package:karanda/verification_center/verification_center_page.dart';
+import 'package:karanda/widgets/loading_page.dart';
 import 'package:karanda/world_boss/world_boss_page.dart';
+import 'package:provider/provider.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
@@ -212,7 +215,12 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: 'verification-center',
-          builder: (context, state) => VerificationCenterPage(),
+          builder: (context, state) {
+            if(context.watch<AuthNotifier>().waitResponse){
+              return const LoadingPage();
+            }
+            return VerificationCenterPage();
+          },
         ),
       ],
     ),
