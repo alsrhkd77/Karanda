@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_box_transform/flutter_box_transform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/real_time.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
@@ -90,7 +91,6 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                   ? opacity
                   : 0.0,
           child: Card(
-            color: Colors.black.withOpacity(0.8),
             elevation: 0.0,
             child: Padding(
               padding:
@@ -120,7 +120,7 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                                 fontWeight: FontWeight.bold,
                               ),
                         ),
-                        trailing: StreamBuilder(
+                        /*trailing: StreamBuilder(
                           stream: realTime.stream,
                           builder: (context, realTimeSnapshot) {
                             return Text(
@@ -132,6 +132,10 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                               style: Theme.of(context).textTheme.titleMedium,
                             );
                           },
+                        ),*/
+                        trailing: Text(
+                          spawnTime.format('HH:mm'),
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
                       Expanded(
