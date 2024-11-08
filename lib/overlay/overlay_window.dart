@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/overlay/overlay_data_controller.dart';
 import 'package:karanda/overlay/widgets/boss_hp_scale_indicator_overlay_widget.dart';
+import 'package:karanda/overlay/widgets/clock_overlay_widget.dart';
 import 'package:karanda/overlay/widgets/world_boss_overlay_widget.dart';
 
 class OverlayWindow extends StatefulWidget {
@@ -32,13 +33,18 @@ class _OverlayWindowState extends State<OverlayWindow> {
                 fit: StackFit.expand,
                 alignment: Alignment.center,
                 children: [
+                  BossHpScaleIndicatorOverlayWidget(
+                    editMode: editMode.requireData,
+                    enabled:
+                        status.requireData["bossHpScaleIndicator"] ?? false,
+                  ),
+                  ClockOverlayWidget(
+                    editMode: editMode.requireData,
+                    enabled: status.requireData["clock"] ?? false,
+                  ),
                   WorldBossOverlayWidget(
                     editMode: editMode.requireData,
                     enabled: status.requireData["worldBoss"] ?? false,
-                  ),
-                  BossHpScaleIndicatorOverlayWidget(
-                    editMode: editMode.requireData,
-                    enabled: status.requireData["bossHpScaleIndicator"] ?? false,
                   ),
                   Positioned(
                     width: 200,

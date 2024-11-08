@@ -16,9 +16,19 @@ class GlobalProperties {
         : scrollViewVerticalPadding;
   }
 
+  static EdgeInsetsGeometry constrainedScrollViewPadding(double width) {
+    return EdgeInsets.symmetric(
+      vertical: _scrollViewPadding,
+      horizontal: scrollViewHorizontalPadding(width),
+    );
+  }
+
   static EdgeInsetsGeometry get snackBarMargin => const EdgeInsets.all(24.0);
 
-  static List<Color> get bdoItemGradeColor => [Colors.grey, Colors.green, Colors.blue, Colors.orangeAccent, Colors.red];
+  static List<Color> get bdoItemGradeColor =>
+      [Colors.grey, Colors.green, Colors.blue, Colors.orangeAccent, Colors.red];
 
   static String get chzzkChannelId => 'e28fd3efe38595427f8e51142c91b247';
+
+  static double get overlayCardOpacity => 0.7;
 }
