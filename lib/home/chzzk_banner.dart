@@ -37,9 +37,11 @@ class _ChzzkBannerState extends State<ChzzkBanner> {
     } catch (e) {
       print(e);
     } finally {
-      setState(() {
-        liveStatus = result;
-      });
+      if(context.mounted){
+        setState(() {
+          liveStatus = result;
+        });
+      }
     }
   }
 
