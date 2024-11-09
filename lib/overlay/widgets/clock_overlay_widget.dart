@@ -85,10 +85,9 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                         Text.rich(TextSpan(
                           children: [
                             TextSpan(
-                              text: '${now.dayPeriod()} ',
-                            ),
+                                text: '${now.dayPeriod()} '),
                             TextSpan(
-                              text: now.hourOfPeriod.toString(),
+                              text: now.hourOfPeriod.toString().padLeft(2, '0'),
                             ),
                             TextSpan(
                               text: snapshot.requireData.format(':'),
@@ -98,12 +97,12 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                                       color: Colors.grey.withOpacity(0.8)),
                             ),
                             TextSpan(
-                              text: now.minute.toString(),
-                            ),
+                                text: now.minute.toString().padLeft(2, '0')),
                           ],
-                          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                            letterSpacing: 1.5
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge
+                              ?.copyWith(letterSpacing: 1.5),
                         )),
                         Text.rich(
                           TextSpan(
