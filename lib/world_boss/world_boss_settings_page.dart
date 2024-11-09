@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
-import 'package:karanda/widgets/title_text.dart';
+import 'package:karanda/world_boss/BossImageAvatar.dart';
 import 'package:karanda/world_boss/world_boss_controller.dart';
 
 class WorldBossSettingsPage extends StatefulWidget {
@@ -30,77 +31,84 @@ class _WorldBossSettingsPageState extends State<WorldBossSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            margin: const EdgeInsets.all(12.0),
-            constraints:
-                BoxConstraints(maxWidth: GlobalProperties.widthConstrains),
-            child: StreamBuilder(
-              stream: controller.settings,
-              builder: (context, settings) {
-                if (!settings.hasData) {
-                  return const LoadingIndicator();
-                }
-                return Column(
-                  children: [
-                    const ListTile(
-                      title: TitleText('월드 보스 설정', bold: true),
-                    ),
-                    const Divider(),
-                    ListTile(
-                      title: const Text('알림음 켜기'),
-                      subtitle: const Text('웹에서는 정상적으로 동작하지 않을 수 있습니다'),
-                      trailing: Switch(
-                        value: settings.requireData.useAlarm,
-                        onChanged: (value) {
-                          controller.updateUseAlarm(value);
-                        },
-                      ),
-                    ),
-                    ExpansionTile(
-                      //initiallyExpanded: true,
-                      title: const Text('알림 시간'),
-                      expandedAlignment: Alignment.centerLeft,
-                      childrenPadding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 4.0),
-                      children: List.generate(
-                        settings.requireData.alarm.length + 1,
-                        (index) {
-                          if (index == settings.requireData.alarm.length &&
-                              settings.requireData.alarm.length < 10) {
-                            return _AddAlarm(
-                              add: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (_) => _AddAlarmDialog(
-                                    add: (minute) =>
-                                        controller.addAlarm(minute),
-                                  ),
-                                );
-                              },
-                            );
-                          }
-                          return _Alarm(
-                            index: index,
-                            onChanged: (int value) {
-                              controller.updateAlarm(index, value);
-                            },
-                            initialValue: settings.requireData.alarm[index],
-                            remove: () {
-                              controller.removeAlarm(index);
-                            },
+      appBar: const DefaultAppBar(
+        icon: Icons.construction,
+        title: '월드 보스 설정',
+      ),
+      body: StreamBuilder(
+        stream: controller.settings,
+        builder: (context, settings) {
+          if (!settings.hasData) {
+            return const LoadingIndicator();
+          }
+          return CustomBase(
+            children: [
+              ListTile(
+                title: const Text('알림음 켜기'),
+                subtitle: const Text('웹에서는 정상적으로 동작하지 않을 수 있습니다'),
+                trailing: Switch(
+                  value: settings.requireData.useAlarm,
+                  onChanged: (value) {
+                    controller.updateUseAlarm(value);
+                  },
+                ),
+              ),
+              ExpansionTile(
+                //initiallyExpanded: true,
+                title: const Text('알림 시간'),
+                expandedAlignment: Alignment.centerLeft,
+                childrenPadding: const EdgeInsets.symmetric(
+                    horizontal: 8.0, vertical: 4.0),
+                children: List.generate(
+                  settings.requireData.alarm.length + 1,
+                      (index) {
+                    if (index == settings.requireData.alarm.length &&
+                        settings.requireData.alarm.length < 10) {
+                      return _AddAlarm(
+                        add: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => _AddAlarmDialog(
+                              add: (minute) =>
+                                  controller.addAlarm(minute),
+                            ),
                           );
                         },
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ),
+                      );
+                    }
+                    return _Alarm(
+                      index: index,
+                      onChanged: (int value) {
+                        controller.updateAlarm(index, value);
+                      },
+                      initialValue: settings.requireData.alarm[index],
+                      remove: () {
+                        controller.removeAlarm(index);
+                      },
+                    );
+                  },
+                ),
+              ),
+              ExpansionTile(
+                title: const Text("제외할 보스"),
+                childrenPadding: const EdgeInsets.symmetric(
+                    horizontal: 8.0, vertical: 4.0),
+                children: controller.fixedBosses.keys.map((e) {
+                  return CheckboxListTile(
+                    title: Text(e).tr(),
+                    secondary: BossImageAvatar(name: e),
+                    value: settings.requireData.excludedBoss.contains(e),
+                    onChanged: (value) {
+                      if (value != null) {
+                        controller.excludeBoss(e);
+                      }
+                    },
+                  );
+                }).toList(),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

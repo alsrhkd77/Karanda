@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:karanda/common/api.dart';
 import 'package:karanda/common/duration_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
+import 'package:karanda/world_boss/BossImageAvatar.dart';
 import 'package:karanda/world_boss/world_boss_controller.dart';
 import 'package:karanda/world_boss/models/boss.dart';
 import 'package:karanda/world_boss/world_boss_settings_page.dart';
@@ -50,14 +50,15 @@ class _WorldBossPageState extends State<WorldBossPage> {
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
+              onPressed: () async {
+                await Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => WorldBossSettingsPage(
                       controller: _controller,
                     ),
                   ),
                 );
+                _controller.init();
               },
               icon: const Icon(Icons.construction),
               tooltip: '설정',
@@ -178,25 +179,6 @@ class _CardState extends State<_Card> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class BossImageAvatar extends StatelessWidget {
-  final String name;
-
-  const BossImageAvatar({super.key, required this.name});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        foregroundImage: NetworkImage(
-          '${Api.worldBossPortrait}/$name.png',
-        ),
       ),
     );
   }

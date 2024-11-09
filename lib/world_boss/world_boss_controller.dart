@@ -279,7 +279,7 @@ class WorldBossController {
     TimeOfDay timeOfDay = TimeOfDay.fromDateTime(time);
     List<BossData> result = [];
     for (String name in timeTable[timeOfDay]!) {
-      if (fixedBosses.containsKey(name) && fixedBosses[name]!.check(time)) {
+      if (fixedBosses.containsKey(name) && fixedBosses[name]!.check(time) && !_settings.excludedBoss.contains(name)) {
         result.add(fixedBosses[name]!);
       }
     }
@@ -339,6 +339,16 @@ class WorldBossController {
   void removeAlarm(int index) {
     _settings.alarm.removeAt(index);
     _alarm.removeAt(index);
+    _saveWorldBossSettings();
+    _settingsStreamController.sink.add(_settings);
+  }
+
+  void excludeBoss(String key){
+    if(_settings.excludedBoss.contains(key)){
+      _settings.excludedBoss.remove(key);
+    } else {
+      _settings.excludedBoss.add(key);
+    }
     _saveWorldBossSettings();
     _settingsStreamController.sink.add(_settings);
   }
