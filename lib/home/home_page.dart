@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -8,10 +10,10 @@ import 'package:karanda/bdo_news/bdo_news_data_controller.dart';
 import 'package:karanda/bdo_news/widgets/bdo_event_widget.dart';
 import 'package:karanda/bdo_news/widgets/bdo_update_widget.dart';
 import 'package:karanda/common/api.dart';
-import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/home/chzzk_banner.dart';
+import 'package:karanda/home/widgets/link_section_widget.dart';
+import 'package:karanda/home/widgets/service_section_widget.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
@@ -30,133 +32,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WindowListener {
   final BdoNewsDataController _newsDataController = BdoNewsDataController();
-  final List<_Service> services = [
-    _Service(
-      name: '선박 증축',
-      icon: FontAwesomeIcons.ship,
-      path: '/ship-upgrading',
-    ),
-    _Service(
-      name: '이벤트 캘린더',
-      icon: Icons.celebration_outlined,
-      path: '/event-calendar',
-    ),
-    _Service(
-      name: '광명석 조합식',
-      icon: FontAwesomeIcons.splotch,
-      path: '/artifact',
-    ),
-    _Service(
-      name: '말 성장치 계산기',
-      icon: FontAwesomeIcons.stickerMule,
-      path: '/horse',
-    ),
-    _Service(
-      name: '시카라키아 아홉문장 계산기',
-      icon: FontAwesomeIcons.calculator,
-      path: '/sycrakea',
-    ),
-    _Service(
-      name: '요루나키아 보름달이 뜬 밤 계산기',
-      icon: FontAwesomeIcons.calculator,
-      path: '/yolunakea-moon',
-    ),
-    _Service(
-      name: '물물교환 계산기',
-      icon: FontAwesomeIcons.arrowRightArrowLeft,
-      path: '/trade-calculator',
-    ),
-    _Service(
-      name: '예약 종료',
-      icon: FontAwesomeIcons.powerOff,
-      path: '/shutdown-scheduler',
-      onlyWindows: true,
-    ),
-    /*
-    _Service(
-      name: '숙제 체크리스트 (Beta)',
-      icon: FontAwesomeIcons.listCheck,
-      path: '/checklist',
-      needLogin: true,
-    ),
-     */
-    _Service(
-      name: '시카라키아 컬러 카운터',
-      icon: FontAwesomeIcons.staffSnake,
-      path: '/color-counter',
-    ),
-    /*
-    _Service(
-      name: '마레타 현황 (임시)',
-      icon: FontAwesomeIcons.circleNodes,
-      path: '/maretta',
-    ),
-     */
-    _Service(
-      name: '통합 거래소',
-      icon: FontAwesomeIcons.scaleUnbalanced,
-      path: '/trade-market',
-    ),
-    _Service(
-      name: '월드 보스 (Beta)',
-      icon: FontAwesomeIcons.dragon,
-      path: '/world-boss',
-    ),
-    _Service(
-      name: '오버레이 (Beta)',
-      icon: FontAwesomeIcons.layerGroup,
-      path: '/overlay',
-      onlyWindows: true,
-    ),
-    _Service(
-      name: '인증 센터', //Verification Center Family Verification
-      icon: FontAwesomeIcons.idCard,
-      path: '/verification-center',
-    ),
-  ];
-
-  final List<_Link> links = [
-    _Link(
-      name: '검은사막 공식 홈페이지',
-      icon: 'assets/icons/bdo.png',
-      url: 'https://www.kr.playblackdesert.com',
-    ),
-    _Link(
-      name: '검은사막 연구소(테스트 서버)',
-      icon: 'assets/icons/bdo.png',
-      url: 'https://www.global-lab.playblackdesert.com',
-    ),
-    _Link(
-      name: '검은사막 인벤',
-      icon: 'assets/icons/inven.png',
-      url: 'https://black.inven.co.kr',
-    ),
-    _Link(
-      name: '검은사막 인벤 지도시뮬레이터',
-      icon: 'assets/icons/inven.png',
-      url: 'https://black.inven.co.kr/dataninfo/map',
-    ),
-    _Link(
-      name: 'Garmoth',
-      icon: 'assets/icons/garmoth.png',
-      url: 'https://garmoth.com',
-    ),
-    _Link(
-      name: 'BDO Codex',
-      icon: 'assets/icons/bdocodex.png',
-      url: 'https://bdocodex.com/kr',
-    ),
-    _Link(
-      name: 'BDOLYTICS',
-      icon: 'assets/icons/bdolytics.png',
-      url: 'https://bdolytics.com/ko/KR',
-    ),
-    _Link(
-      name: 'OnTopReplica',
-      icon: 'assets/icons/onTopReplica.png',
-      url: 'https://github.com/LorenzCK/OnTopReplica',
-    ),
-  ];
+  final widthConstrains = 1520;
 
   @override
   void initState() {
@@ -213,98 +89,10 @@ class _HomePageState extends State<HomePage> with WindowListener {
     await windowManager.destroy();
   }
 
-  Widget singleIconTile(_Service service) {
-    bool enabled = true;
-    if (service.needLogin) {
-      enabled =
-          context.select<AuthNotifier, bool>((value) => value.authenticated);
-    }
-    if (service.onlyWindows) {
-      enabled = !kIsWeb;
-    }
-    return Container(
-      margin: const EdgeInsets.all(4.0),
-      constraints: const BoxConstraints(
-        maxWidth: 400,
-      ),
-      child: InkWell(
-        onTap: enabled
-            ? null
-            : () {
-                String content = '사용할 수 없는 서비스 입니다';
-                if (service.needLogin) {
-                  content = '로그인이 필요한 서비스 입니다';
-                }
-                if (service.onlyWindows) {
-                  content = 'Desktop에서 사용할 수 있습니다';
-                }
-                _showSnackBar(content: content);
-              },
-        child: ListTile(
-          enabled: enabled,
-          title: Text(
-            service.name,
-            style: const TextStyle(fontSize: 15.0),
-          ),
-          leading: Icon(service.icon),
-          onTap: () => context.goWithGa(service.path),
-        ),
-      ),
-    );
-  }
-
-  Widget singleImageTile(
-      {required String name, required String icon, required String url}) {
-    return Container(
-      margin: const EdgeInsets.all(4.0),
-      constraints: const BoxConstraints(
-        maxWidth: 400,
-      ),
-      child: ListTile(
-        title: Text(
-          name,
-          style: const TextStyle(fontSize: 15.0),
-        ),
-        leading: Image.asset(
-          icon,
-          height: 25,
-          width: 25,
-          fit: BoxFit.contain,
-          filterQuality: FilterQuality.low,
-        ),
-        onTap: () => launchURL(url),
-      ),
-    );
-  }
-
   Widget bdoClock() {
     return const Padding(
       padding: EdgeInsets.fromLTRB(10.0, 4.0, 0, 0),
       child: BdoClock(),
-    );
-  }
-
-  void _showSnackBar({required String content}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            const Icon(
-              Icons.lock,
-              color: Colors.redAccent,
-            ),
-            const SizedBox(
-              width: 8.0,
-            ),
-            Text(content),
-          ],
-        ),
-        duration: const Duration(seconds: 3),
-        behavior: SnackBarBehavior.floating,
-        margin: GlobalProperties.snackBarMargin,
-        showCloseIcon: true,
-        backgroundColor: Theme.of(context).snackBarTheme.backgroundColor,
-      ),
     );
   }
 
@@ -354,6 +142,9 @@ class _HomePageState extends State<HomePage> with WindowListener {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.sizeOf(context).width;
+    int count = max(min(width ~/ 400, 3), 1);
+    double childAspectRatio = (min(width, widthConstrains) / count) / 54;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -374,103 +165,88 @@ class _HomePageState extends State<HomePage> with WindowListener {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 1520,
-            ),
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        padding: EdgeInsets.symmetric(
+            vertical: 12.0,
+            horizontal: width > widthConstrains + 12
+                ? (width - widthConstrains) / 2
+                : 12),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      bdoClock(),
-                      loginButton(),
-                    ],
-                  ),
-                ),
-                const Center(
-                  child: Wrap(
-                    spacing: 24.0,
-                    children: [
-                      ChzzkBanner(),
-                    ],
-                  ),
-                ),
-                /* Services */
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.code),
-                  title: TitleText(
-                    'Services',
-                    bold: true,
-                  ),
-                ),
-                const Divider(),
-                Wrap(
-                  runSpacing: 2.0,
-                  spacing: 2.0,
-                  children: services.map((e) => singleIconTile(e)).toList(),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.newspaper),
-                  title: TitleText('News', bold: true),
-                ),
-                const Divider(),
-                _News(dataController: _newsDataController),
-                const SizedBox(
-                  height: 12.0,
-                ),
-                /*
-                const Center(
-                  child: Wrap(
-                    spacing: 24.0,
-                    children: [
-                      ChzzkBanner(),
-                    ],
-                  ),
-                ),
-                 */
-                /* Links */
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.link),
-                  title: TitleText('Links', bold: true),
-                ),
-                const Divider(),
-                Wrap(
-                  runSpacing: 2.0,
-                  spacing: 2.0,
-                  children: links
-                      .map((e) => singleImageTile(
-                          name: e.name, icon: e.icon, url: e.url))
-                      .toList(),
-                ),
-                const Divider(),
-                const _Footer(),
-                Container(
-                  alignment: Alignment.center,
-                  child: const Text(
-                    '본 콘텐츠는 펄어비스의 공식 자료가 아니며,'
-                    ' 본 콘텐츠에는 펄어비스가 권리를 보유하고 있는 상표'
-                    ' 또는 저작물이 포함되어 있습니다.',
-                    style: TextStyle(color: Colors.grey, fontSize: 10.5),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15.0,
-                ),
+                bdoClock(),
+                loginButton(),
               ],
             ),
           ),
-        ),
+          const Center(child: ChzzkBanner()),
+
+          /* Services */
+          const ListTile(
+            leading: Icon(FontAwesomeIcons.code),
+            title: TitleText(
+              'Services',
+              bold: true,
+            ),
+          ),
+          const Divider(),
+          ServiceSectionWidget(
+            count: count,
+            childAspectRatio: childAspectRatio,
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+
+          /* News */
+          const ListTile(
+            leading: Icon(FontAwesomeIcons.newspaper),
+            title: TitleText('News', bold: true),
+          ),
+          const Divider(),
+          _News(
+            count: count,
+            //childAspectRatio: (min(width, widthConstrains) / count) / 380,
+            childAspectRatio: width < 400 ? 1.2 : 1.3,
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+
+          /* Links */
+          const ListTile(
+            leading: Icon(FontAwesomeIcons.link),
+            title: TitleText('Links', bold: true),
+          ),
+          const Divider(),
+          LinkSectionWidget(
+            count: count,
+            childAspectRatio: childAspectRatio,
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+
+          /* Footer */
+          const Divider(),
+          const _Footer(),
+          Container(
+            alignment: Alignment.center,
+            child: const Text(
+              '본 콘텐츠는 펄어비스의 공식 자료가 아니며,'
+              ' 본 콘텐츠에는 펄어비스가 권리를 보유하고 있는 상표'
+              ' 또는 저작물이 포함되어 있습니다.',
+              style: TextStyle(color: Colors.grey, fontSize: 10.5),
+            ),
+          ),
+          const SizedBox(
+            height: 15.0,
+          ),
+        ],
       ),
       floatingActionButton: const _FAB(),
     );
@@ -538,31 +314,26 @@ class _FABState extends State<_FAB> {
 }
 
 class _News extends StatelessWidget {
-  final BdoNewsDataController dataController;
+  final int count;
+  final double childAspectRatio;
 
-  const _News({super.key, required this.dataController});
+  const _News({
+    super.key,
+    required this.count,
+    required this.childAspectRatio,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 2.0,
-      spacing: 2.0,
-      children: [
-        Container(
-          margin: const EdgeInsets.all(4.0),
-          constraints: const BoxConstraints(
-            maxWidth: 400,
-          ),
-          child: const BdoEventWidget(),
-        ),
-        Container(
-          margin: const EdgeInsets.all(4.0),
-          constraints: const BoxConstraints(
-            maxWidth: 400,
-          ),
-          child: const BdoUpdateWidget(),
-        ),
-      ],
+    return GridView.count(
+      shrinkWrap: true,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: count,
+      childAspectRatio: childAspectRatio,
+      mainAxisSpacing: 2.0,
+      crossAxisSpacing: 2.0,
+      children: const [BdoEventWidget(), BdoUpdateWidget()],
     );
   }
 }
@@ -595,16 +366,18 @@ class _Footer extends StatelessWidget {
                   children: [
                     const Text.rich(
                       TextSpan(children: [
+                        TextSpan(text: 'Support '),
                         TextSpan(
                             text: 'Karanda',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: '의 후원자가 되어주세요!')
+                            style: TextStyle(fontWeight: FontWeight.bold),),
+                        TextSpan(text: '!'),
                       ]),
+                      overflow: TextOverflow.fade,
                     ),
                     FilledButton(
                       onPressed: () =>
                           {context.push('/settings/support-karanda')},
-                      child: const Text('후원하기'),
+                      child: const Text('Support'),
                     ),
                   ],
                 ),
@@ -635,28 +408,4 @@ class _Footer extends StatelessWidget {
       ),
     );
   }
-}
-
-class _Service {
-  String name;
-  IconData icon;
-  String path;
-  bool needLogin;
-  bool onlyWindows;
-
-  _Service({
-    required this.name,
-    required this.icon,
-    required this.path,
-    this.needLogin = false,
-    this.onlyWindows = false,
-  });
-}
-
-class _Link {
-  String name;
-  String icon;
-  String url;
-
-  _Link({required this.name, required this.icon, required this.url});
 }

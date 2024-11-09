@@ -6,7 +6,6 @@ import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/overlay/overlay_manager.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
-import 'package:karanda/widgets/title_text.dart';
 
 class OverlayPage extends StatefulWidget {
   const OverlayPage({super.key});
@@ -28,6 +27,9 @@ class _OverlayPageState extends State<OverlayPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.sizeOf(context).width;
+    int count = min(width ~/ 420, 3);
+    double childAspectRatio = (min(width, GlobalProperties.widthConstrains) / count) / 72;
     return Scaffold(
       appBar: const DefaultAppBar(
         icon: FontAwesomeIcons.layerGroup,
@@ -39,11 +41,10 @@ class _OverlayPageState extends State<OverlayPage> {
           if (!snapshot.hasData) {
             return const LoadingIndicator();
           }
-          double width = MediaQuery.sizeOf(context).width;
           return GridView.count(
-            crossAxisCount: min(width ~/ 420, 3),
+            crossAxisCount: count,
             padding: GlobalProperties.constrainedScrollViewPadding(width),
-            childAspectRatio: 420 / 72,
+            childAspectRatio: childAspectRatio,
             crossAxisSpacing: 8.0,
             mainAxisSpacing: 8.0,
             children: [

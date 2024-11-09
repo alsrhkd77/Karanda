@@ -118,16 +118,16 @@ class _ContentsState extends State<_Contents> {
     return InkWell(
       onTap: () => context.goWithGa('/event-calendar'),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           ListTile(
             leading: const Icon(Icons.celebration_outlined),
             title: TitleText(widget.nearDeadline ? '마감 임박 이벤트' : '신규 이벤트'),
           ),
-          SizedBox(
-            width: 380,
-            height: 200,
+          AspectRatio(
+            aspectRatio: 1.8,
             child: Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               clipBehavior: Clip.antiAlias,
               child: PageView.builder(
                 controller: pageController,
@@ -175,41 +175,45 @@ class _CardContent extends StatelessWidget {
     return InkWell(
       onTap: () => launchUrl(Uri.parse(event.url)),
       child: Stack(
+        fit: StackFit.expand,
         children: [
           Image.network(
             event.thumbnail,
-            fit: BoxFit.cover,
-            //width: min(maxWidth, 380),
+            fit: BoxFit.fill,
           ),
           Positioned(
-            left: 0,
-            bottom: 0,
+            left: -1,
+            bottom: -1,
             child: Container(
-              width: 400 - 32,
-              height: 58,
+              width: 800,
+              height: 80,
               alignment: Alignment.bottomLeft,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.8),
-                  Colors.black
-                ],
-                stops: const [0.0, 0.4, 1.0],
-              )),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  event.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                    color: Colors.white,
-                  ),
-                  overflow: TextOverflow.ellipsis,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.7),
+                    Colors.black
+                  ],
+                  stops: const [0.0, 0.5, 1.0],
                 ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                event.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                  color: Colors.white,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),

@@ -41,7 +41,7 @@ class _BdoUpdateWidgetState extends State<BdoUpdateWidget> {
               if (labUpdates.requireData.first.isRecent()) {
                 return _Contents(
                   title: '연구소',
-                  icon: Icons.update,
+                  icon: Icons.science_outlined,
                   item: labUpdates.requireData.first,
                 );
               }
@@ -76,53 +76,57 @@ class _Contents extends StatelessWidget {
     return InkWell(
       onTap: () => launchUrl(Uri.parse(item.url)),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           ListTile(
             leading: Icon(icon),
             title: TitleText(title),
           ),
-          SizedBox(
-            width: 380,
-            height: 200,
+          AspectRatio(
+            aspectRatio: 1.8,
             child: Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               clipBehavior: Clip.antiAlias,
               child: Stack(
+                fit: StackFit.expand,
                 children: [
                   Image.network(
                     item.thumbnail,
-                    fit: BoxFit.cover,
-                    //width: min(maxWidth, 380),
+                    fit: BoxFit.fill,
                   ),
                   Positioned(
-                    left: 0,
-                    bottom: 0,
+                    left: -1,
+                    bottom: -1,
                     child: Container(
-                      width: 400 - 32,
-                      height: 58,
+                      width: 800,
+                      height: 80,
                       alignment: Alignment.bottomLeft,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.8),
-                          Colors.black
-                        ],
-                        stops: const [0.0, 0.4, 1.0],
-                      )),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(
-                          item.title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0,
-                            color: Colors.white,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.7),
+                            Colors.black
+                          ],
+                          stops: const [0.0, 0.5, 1.0],
                         ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        item.title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
