@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_box_transform/flutter_box_transform.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/real_time.dart';
+import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/overlay/overlay_data_controller.dart';
 import 'package:karanda/overlay/utils/box_utils.dart';
 import 'package:karanda/widgets/custom_angular_handle.dart';
@@ -75,6 +76,7 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                       child: LoadingIndicator(),
                     );
                   }
+                  TimeOfDay now = TimeOfDay.fromDateTime(snapshot.requireData);
                   return FittedBox(
                     fit: BoxFit.contain,
                     child: Column(
@@ -83,7 +85,10 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                         Text.rich(TextSpan(
                           children: [
                             TextSpan(
-                              text: snapshot.requireData.format('HH'),
+                              text: '${now.dayPeriod()} ',
+                            ),
+                            TextSpan(
+                              text: now.hourOfPeriod.toString(),
                             ),
                             TextSpan(
                               text: snapshot.requireData.format(':'),
@@ -93,7 +98,7 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                                       color: Colors.grey.withOpacity(0.8)),
                             ),
                             TextSpan(
-                              text: snapshot.requireData.format('mm'),
+                              text: now.minute.toString(),
                             ),
                           ],
                           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
