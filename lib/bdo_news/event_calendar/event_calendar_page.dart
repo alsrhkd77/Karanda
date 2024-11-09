@@ -8,7 +8,6 @@ import 'package:karanda/bdo_news/models/bdo_event_model.dart';
 import 'package:karanda/bdo_news/widgets/deadline_tag_chip.dart';
 import 'package:karanda/bdo_news/widgets/new_tag_chip.dart';
 import 'package:karanda/common/date_time_extension.dart';
-import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
@@ -34,7 +33,62 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: DefaultAppBar(
+        title: '이벤트 캘린더',
+        icon: Icons.celebration_outlined,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: MenuAnchor(
+              menuChildren: [
+                MenuItemButton(
+                  onPressed: () {
+                    newsDataController.sortEventsByDeadline();
+                  },
+                  leadingIcon: const Icon(FontAwesomeIcons.arrowUpShortWide),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('마감일순'),
+                  ),
+                ),
+                MenuItemButton(
+                  onPressed: () {
+                    newsDataController.sortEventsByAdded();
+                  },
+                  leadingIcon: const Icon(FontAwesomeIcons.arrowDownWideShort),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('시작일순'),
+                  ),
+                ),
+                MenuItemButton(
+                  onPressed: () {
+                    newsDataController.shuffleEvents();
+                  },
+                  leadingIcon: const Icon(FontAwesomeIcons.shuffle),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('무작위'),
+                  ),
+                ),
+              ],
+              builder: (BuildContext context, MenuController controller,
+                  Widget? child) {
+                return IconButton(
+                  onPressed: () {
+                    if (controller.isOpen) {
+                      controller.close();
+                    } else {
+                      controller.open();
+                    }
+                  },
+                  icon: const Icon(FontAwesomeIcons.filter),
+                );
+              },
+            ),
+          )
+        ],
+      ),
       body: StreamBuilder(
         stream: newsDataController.events,
         builder: (context, snapshot) {
@@ -46,65 +100,6 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
           }
           return CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
-                child: ListTile(
-                  title: const TitleText(
-                    '이벤트 캘린더',
-                    bold: true,
-                  ),
-                  leading: const Icon(Icons.celebration_outlined),
-                  trailing: MenuAnchor(
-                    alignmentOffset: const Offset(-95, -10),
-                    menuChildren: [
-                      MenuItemButton(
-                        onPressed: () {
-                          newsDataController.sortEventsByDeadline();
-                        },
-                        leadingIcon:
-                            const Icon(FontAwesomeIcons.arrowUpShortWide),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('마감일순'),
-                        ),
-                      ),
-                      MenuItemButton(
-                        onPressed: () {
-                          newsDataController.sortEventsByAdded();
-                        },
-                        leadingIcon:
-                            const Icon(FontAwesomeIcons.arrowDownWideShort),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('시작일순'),
-                        ),
-                      ),
-                      MenuItemButton(
-                        onPressed: () {
-                          newsDataController.shuffleEvents();
-                        },
-                        leadingIcon: const Icon(FontAwesomeIcons.shuffle),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('무작위'),
-                        ),
-                      ),
-                    ],
-                    builder: (BuildContext context, MenuController controller,
-                        Widget? child) {
-                      return IconButton(
-                        onPressed: () {
-                          if (controller.isOpen) {
-                            controller.close();
-                          } else {
-                            controller.open();
-                          }
-                        },
-                        icon: const Icon(FontAwesomeIcons.filter),
-                      );
-                    },
-                  ),
-                ),
-              ),
               SliverToBoxAdapter(
                 child: CustomCalendar(
                   events: snapshot.requireData,
@@ -118,12 +113,10 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                   title: TitleText('이벤트 바로가기'),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: _EventCardList(
-                  events: snapshot.requireData,
-                ),
+              _EventCardList(
+                events: snapshot.requireData,
               ),
-              SliverPadding(padding: GlobalProperties.scrollViewPadding),
+              const SliverToBoxAdapter(child: SizedBox(height: 25.0)),
             ],
           );
         },
@@ -139,14 +132,19 @@ class _EventCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double maxWidth = MediaQuery.of(context).size.width;
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: 16.0,
-      runSpacing: 16.0,
-      children: events
-          .map((e) => _EventCard(eventModel: e, maxWidth: maxWidth))
-          .toList(),
+    double width = MediaQuery.of(context).size.width;
+    int count = max(1, width ~/ 380);
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      sliver: SliverGrid.count(
+        crossAxisCount: count,
+        childAspectRatio: 1.77,
+        mainAxisSpacing: 12.0,
+        crossAxisSpacing: 12.0,
+        children: events
+            .map((e) => _EventCard(eventModel: e, maxWidth: width))
+            .toList(),
+      ),
     );
   }
 }
@@ -161,18 +159,16 @@ class _EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(12.0),
       clipBehavior: Clip.antiAlias,
       elevation: 4.0,
       child: InkWell(
         onTap: () => launchURL(eventModel.url),
         child: Stack(
-          //clipBehavior: Clip.hardEdge,
+          fit: StackFit.expand,
           children: [
             Image.network(
               eventModel.thumbnail,
-              fit: BoxFit.cover,
-              width: min(maxWidth, 380),
+              fit: BoxFit.fill,
             ),
             Positioned(
               right: 10,
@@ -183,18 +179,14 @@ class _EventCard extends StatelessWidget {
                     )
                   : (eventModel.newTag ? const NewTagChip() : Container()),
             ),
-            Positioned(
-              bottom: 0,
-              left: -12,
+            Align(
+              alignment: Alignment.bottomCenter,
               child: Container(
-                width: 392,
-                constraints: BoxConstraints(
-                  maxWidth: maxWidth - 12,
-                ),
-                padding: const EdgeInsets.fromLTRB(20, 12, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8.0, 12.0, 12.0, 4.0),
                 color: Colors.black.withOpacity(0.4),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       eventModel.title,
