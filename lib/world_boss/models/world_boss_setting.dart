@@ -5,7 +5,7 @@ class WorldBossSetting {
 
   WorldBossSetting.fromJson(Map data) {
     useAlarm = data['use-alarm'] ?? useAlarm;
-    excludedBoss = data['excluded-boss'].cast<String>() ?? [];
+    excludedBoss = (data['excluded-boss'] ?? []).cast<String>();
     if(data.containsKey('alarm')) {
       alarm = List.generate(data['alarm'].length, (index) => data['alarm'][index]);
     }

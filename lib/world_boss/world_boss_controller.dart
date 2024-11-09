@@ -51,8 +51,8 @@ class WorldBossController {
 
   Future<void> init() async {
     await _getBaseData();
-    _initializeBossQueue();
     await _getSettings();
+    _initializeBossQueue();
     if (!kIsWeb) {
       _overlayManager.sendData(
         method: "next world boss",
@@ -103,17 +103,6 @@ class WorldBossController {
       _settings = WorldBossSetting.fromJson(jsonDecode(settingsData));
     }
     _settingsStreamController.sink.add(_settings);
-
-    Duration diff = _bossQueue.next.spawnTime.difference(_serverTime.now);
-    _alarm = [];
-    for (int minutes in _settings.alarm) {
-      if (diff.inSeconds - minutes * 60 <= 30) {
-        // 30초 이하로 남은 알림 안띄우게
-        _alarm.add(true);
-      } else {
-        _alarm.add(false);
-      }
-    }
   }
 
   Future<void> _getBaseData() async {
@@ -272,6 +261,18 @@ class WorldBossController {
         index++;
       }
     }
+
+    Duration diff = _bossQueue.next.spawnTime.difference(_serverTime.now);
+    _alarm = [];
+    for (int minutes in _settings.alarm) {
+      if (diff.inSeconds - minutes * 60 <= 30) {
+        // 30초 이하로 남은 알림 안띄우게
+        _alarm.add(true);
+      } else {
+        _alarm.add(false);
+      }
+    }
+
     _queueStreamController.sink.add(_bossQueue);
   }
 
