@@ -34,9 +34,9 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
   Future<void> loadBoxProperties() async {
     Rect rect = await BoxUtils.loadBoxRect(key) ??
         Rect.fromLTWH(
-          dataController.screenSize.width - 300,
+          dataController.screenSize.width - 320,
           70,
-          240,
+          260,
           100,
         );
     _boxController.setRect(rect);
@@ -85,7 +85,11 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                         Text.rich(TextSpan(
                           children: [
                             TextSpan(
-                                text: '${now.dayPeriod()} '),
+                                text: '${now.dayPeriod()} ',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                            ),
                             TextSpan(
                               text: now.hourOfPeriod.toString().padLeft(2, '0'),
                             ),
