@@ -46,12 +46,21 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
       return const LoadingPage();
     } else if (!context
         .watch<TradeMarketNotifier>()
-        .itemNames
-        .containsKey(name)) {
-      return const LoadingPage(); //error 없는 아이템
+        .itemInfo
+        .values
+        .any((item) => item.name == name)) {
+      return const Center(
+        child: TitleText('일치하는 아이템을 찾을 수 없습니다.'),
+      );
     }
     if (code.isEmpty) {
-      code = context.read<TradeMarketNotifier>().itemNames[name] ?? '';
+      code = context
+              .read<TradeMarketNotifier>()
+              .itemInfo
+              .values
+              .firstWhere((item) => item.name == name)
+              .code ??
+          '';
     }
     dataStream ??= TradeMarketDetailStream(
         item: context.watch<TradeMarketNotifier>().itemInfo[code]!);
@@ -62,7 +71,7 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
       child: Scaffold(
         appBar: const DefaultAppBar(),
         body: StreamBuilder(
-            stream: dataStream?.marketDetailData,
+          stream: dataStream?.marketDetailData,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Center(
@@ -74,8 +83,8 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
               );
             }
             double horizontalPadding =
-            GlobalProperties.scrollViewHorizontalPadding(
-                MediaQuery.of(context).size.width);
+                GlobalProperties.scrollViewHorizontalPadding(
+                    MediaQuery.of(context).size.width);
             return CustomScrollView(
               slivers: [
                 SliverPadding(
@@ -103,9 +112,11 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                           .watch<TradeMarketNotifier>()
                           .itemInfo[code]!
                           .category),
-                      trailing: snapshot.data!.keys.length <= 1 ? null : DropdownMenu<String>(
-                        initialSelection: '',
-                        /*
+                      trailing: snapshot.data!.keys.length <= 1
+                          ? null
+                          : DropdownMenu<String>(
+                              initialSelection: '',
+                              /*
                         inputDecorationTheme: InputDecorationTheme(
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 12.0),
@@ -113,23 +124,23 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                               borderRadius: BorderRadius.circular(8.0)),
                         ),
                          */
-                        dropdownMenuEntries: snapshot.data!.keys
-                            .map<DropdownMenuEntry<String>>(
-                                (e) => DropdownMenuEntry(
-                              value: e,
-                              label:
-                              '${MarketItemModel.convertEnhancementLevel(e)}$name',
-                            ))
-                            .toList(),
-                        onSelected: (String? value) {
-                          if (value != null &&
-                              snapshot.data!.containsKey(value)) {
-                            setState(() {
-                              selected = value;
-                            });
-                          }
-                        },
-                      ),
+                              dropdownMenuEntries: snapshot.data!.keys
+                                  .map<DropdownMenuEntry<String>>(
+                                      (e) => DropdownMenuEntry(
+                                            value: e,
+                                            label:
+                                                '${MarketItemModel.convertEnhancementLevel(e)}$name',
+                                          ))
+                                  .toList(),
+                              onSelected: (String? value) {
+                                if (value != null &&
+                                    snapshot.data!.containsKey(value)) {
+                                  setState(() {
+                                    selected = value;
+                                  });
+                                }
+                              },
+                            ),
                     ),
                   ),
                 ),
@@ -138,7 +149,8 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                       horizontal: horizontalPadding, vertical: 12.0),
                   sliver: _Head(
                     data: snapshot.data![selected]!.first,
-                    itemInfo: context.watch<TradeMarketNotifier>().itemInfo[code]!,
+                    itemInfo:
+                        context.watch<TradeMarketNotifier>().itemInfo[code]!,
                     enhancementLevel: selected,
                   ),
                 ),
@@ -152,7 +164,8 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                  sliver: _PriceChart(data: snapshot.data![selected]!.sublist(1)),
+                  sliver:
+                      _PriceChart(data: snapshot.data![selected]!.sublist(1)),
                 ),
                 SliverPadding(padding: GlobalProperties.scrollViewPadding),
               ],
@@ -176,7 +189,11 @@ class _Head extends StatelessWidget {
   final MarketItemModel itemInfo;
   final format = NumberFormat('###,###,###,###,###');
 
-  _Head({super.key, required this.data, required this.enhancementLevel, required this.itemInfo});
+  _Head(
+      {super.key,
+      required this.data,
+      required this.enhancementLevel,
+      required this.itemInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +206,11 @@ class _Head extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           direction: Axis.horizontal,
           children: [
-            BdoItemImageWidget(code: itemInfo.code, size: 74, enhancementLevel: enhancementLevel, grade: itemInfo.grade),
+            BdoItemImageWidget(
+                code: itemInfo.code,
+                size: 74,
+                enhancementLevel: enhancementLevel,
+                grade: itemInfo.grade),
             SizedBox(
               width: 280,
               child: Column(
@@ -256,7 +277,8 @@ class _PriceChart extends StatelessWidget {
     return SideTitleWidget(
       axisSide: meta.axisSide,
       //fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 0),
-      child: Text(meta.formattedValue, textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
+      child: Text(meta.formattedValue,
+          textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
     );
   }
 
@@ -303,15 +325,15 @@ class _PriceChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(data.isEmpty){
+    if (data.isEmpty) {
       return const SliverToBoxAdapter(
-          child: AspectRatio(
-              aspectRatio: 2.7,
-              child: Card(
-                margin: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-                child: Center(child: Text("데이터가 충분하지 않습니다")),
-              ),
+        child: AspectRatio(
+          aspectRatio: 2.7,
+          child: Card(
+            margin: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+            child: Center(child: Text("데이터가 충분하지 않습니다")),
           ),
+        ),
       );
     }
     final int maxPrice = data.map<int>((e) => e.price).reduce(max);

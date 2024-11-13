@@ -9,11 +9,7 @@ import 'package:karanda/trade_market/market_item_model.dart';
 class TradeMarketNotifier with ChangeNotifier {
   SplayTreeMap<String, MarketItemModel> itemInfo = SplayTreeMap();
 
-  SplayTreeMap<String, String> get itemNames => SplayTreeMap.fromIterable(
-        itemInfo.values,
-        key: (element) => element.name,
-        value: (element) => element.code,
-      );
+  SplayTreeMap<String, String> itemNames = SplayTreeMap();
 
   List<MarketItemModel> categories = [];
   List<MarketItemModel> items = [];
@@ -36,6 +32,11 @@ class TradeMarketNotifier with ChangeNotifier {
       itemDataMap[item.code] = item;
     }
     itemInfo = itemDataMap;
+    itemNames = SplayTreeMap.fromIterable(
+      itemInfo.values.where((item) => item.tradeAble),
+      key: (element) => element.name,
+      value: (element) => element.code,
+    );
     notifyListeners();
   }
 }

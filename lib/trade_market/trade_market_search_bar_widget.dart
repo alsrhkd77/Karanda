@@ -142,8 +142,14 @@ class _TradeMarketSearchBarWidgetState
               if (input.isEmpty) {
                 return const Iterable<String>.empty();
               }
-              return context.read<TradeMarketNotifier>().itemNames.keys.where(
-                  (element) => element.replaceAll(' ', '').contains(input));
+              return context
+                  .read<TradeMarketNotifier>()
+                  .itemInfo
+                  .values
+                  .where((item) =>
+                      item.tradeAble &&
+                      item.name.replaceAll(' ', '').contains(input))
+                  .map((item) => item.name);
               /*
               final Iterable<String>? options =
                   await debouncedSearch(textEditingValue.text);
