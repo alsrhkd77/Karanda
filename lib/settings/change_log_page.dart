@@ -37,6 +37,7 @@ class _ChangeLogPageState extends State<ChangeLogPage> {
     setState(() {
       markdown = result;
     });
+    print(markdown);
   }
 
   @override
@@ -57,15 +58,18 @@ class _ChangeLogPageState extends State<ChangeLogPage> {
                 ],
               ),
               styleSheet: MarkdownStyleSheet(
-                  blockquoteDecoration:
-                      BoxDecoration(color: Colors.grey.withOpacity(0.1)),
-                  codeblockDecoration: BoxDecoration(
-                    color: Colors.grey.shade400,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  code: TextStyle(
-                      backgroundColor: Colors.grey.shade400,
-                      color: Colors.black)),
+                blockquoteDecoration:
+                    BoxDecoration(color: Colors.grey.withOpacity(0.1)),
+                codeblockDecoration: BoxDecoration(
+                  color: Colors.grey.shade400,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                code: TextStyle(
+                  backgroundColor: Colors.grey.shade400,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               padding: EdgeInsets.symmetric(
                   vertical: 12.0, horizontal: horizontalPadding + 6.0),
             ),
