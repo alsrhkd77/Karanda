@@ -7,6 +7,7 @@ class MarketItemModel {
   late int grade;
   late String mainCategory;
   late String subCategory;
+  late bool tradeAble;
 
   String get category => '$mainCategory > $subCategory';
 
@@ -19,6 +20,7 @@ class MarketItemModel {
     List<String> category = parsedData[4].split('_');
     mainCategory = category.first;
     subCategory = category.last;
+    tradeAble = bool.parse(parsedData[5]);
   }
 
   String nameWithEnhancementLevel(int enhancementLevel){
