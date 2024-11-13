@@ -20,6 +20,7 @@ class _TradeMarketSearchBarWidgetState
   TextEditingController textEditingController = TextEditingController();
   Iterable<String> lastOptions = [];
   late final _Debounceable<Iterable<String>?, String> debouncedSearch;
+
   //FocusNode focusNode = FocusNode();  // Use to request focus
 
   void goDetail(String code, String name) {
@@ -99,8 +100,9 @@ class _TradeMarketSearchBarWidgetState
                       itemCount: options.length,
                       itemBuilder: (BuildContext context, int index) {
                         final String option = options.elementAt(index);
-                        MarketItemModel? item = notifier.itemInfo[notifier.itemNames[option]];
-                        if(item == null){
+                        MarketItemModel? item =
+                            notifier.itemInfo[notifier.itemNames[option]];
+                        if (item == null) {
                           return Container();
                         }
                         return InkWell(
@@ -123,17 +125,9 @@ class _TradeMarketSearchBarWidgetState
                                   ? Theme.of(context).focusColor
                                   : null,
                               padding: const EdgeInsets.all(16.0),
-                              child: ListTile(
-                                /*
-                                leading: BdoItemImageWidget(
-                                  code: item.code,
-                                  enhancementLevel: '',
-                                  size: 50,
-                                  grade: item.grade,
-                                ),
-                                 */
-                                title: Text(option),
-                              ),
+                              child: Text(
+                                  RawAutocomplete.defaultStringForOption(
+                                      option)),
                             );
                           }),
                         );
@@ -145,14 +139,11 @@ class _TradeMarketSearchBarWidgetState
             },
             optionsBuilder: (TextEditingValue textEditingValue) async {
               String input = textEditingValue.text.replaceAll(' ', '');
-              if(input.isEmpty){
+              if (input.isEmpty) {
                 return const Iterable<String>.empty();
               }
-              return context
-                  .read<TradeMarketNotifier>()
-                  .itemNames
-                  .keys
-                  .where((element) => element.replaceAll(' ', '').contains(input));
+              return context.read<TradeMarketNotifier>().itemNames.keys.where(
+                  (element) => element.replaceAll(' ', '').contains(input));
               /*
               final Iterable<String>? options =
                   await debouncedSearch(textEditingValue.text);
