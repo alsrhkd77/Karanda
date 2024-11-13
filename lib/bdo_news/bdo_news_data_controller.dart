@@ -111,6 +111,7 @@ class BdoNewsDataController {
 
   Future<void> _getLabUpdates() async {
     List<BdoUpdateModel> result = await BdoNewsProvider.getLabUpdates();
+    result = result.where((data) => data.major).toList();
     result.sort((a, b) => b.added.compareTo(a.added));
     _labUpdates = result;
     _publishLabUpdates();
