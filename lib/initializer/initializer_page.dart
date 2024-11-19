@@ -28,13 +28,16 @@ class _InitializerPageState extends State<InitializerPage> {
   }
 
   Future<void> runTasks() async {
+    bool result = true;
     try {
-      await initializer.runTasks(context.read<AuthNotifier>().authorization());
+       result = await initializer.runTasks(context.read<AuthNotifier>().authorization());
     } catch (e) {
       print(e);
     } finally {
-      await setWindows();
-      context.goWithGa("/");
+      if(result){
+        await setWindows();
+        context.goWithGa("/");
+      }
     }
   }
 

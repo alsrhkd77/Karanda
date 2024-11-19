@@ -26,7 +26,7 @@ class KarandaInitializer {
     _getLatestVersion();
   }
 
-  Future<void> runTasks(Future<void> authorization) async {
+  Future<bool> runTasks(Future<void> authorization) async {
     if (CommandLineArguments.forceUpdate) {
       await _downloadNewVersion();
     }
@@ -45,7 +45,8 @@ class KarandaInitializer {
         if (!currentVersionIsLatest(currentVersion, latestVersion)) {
           await _downloadNewVersion();
         }
-        await Future.delayed(const Duration(milliseconds: 1000));
+        _textStreamController.sink.add("업데이트 대기중");
+        return false;
       }
     }
     _percentStreamController.sink.add(3 / taskNumber);
@@ -65,6 +66,7 @@ class KarandaInitializer {
 
     _textStreamController.sink.add("시작하는 중");
     await Future.delayed(const Duration(milliseconds: 500));
+    return true;
   }
 
   bool currentVersionIsLatest(String currentVersion, String latestVersion) {
