@@ -40,6 +40,10 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
           100,
         );
     _boxController.setRect(rect);
+    _boxController.setConstraints(const BoxConstraints(
+      minWidth: 130,
+      minHeight: 50,
+    ));
   }
 
   @override
@@ -86,10 +90,8 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                           children: [
                             TextSpan(
                                 text: '${now.dayPeriod()} ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineSmall
-                            ),
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall),
                             TextSpan(
                               text: now.hourOfPeriod.toString().padLeft(2, '0'),
                             ),

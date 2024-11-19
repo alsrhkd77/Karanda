@@ -66,6 +66,10 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
           140,
         );
     _boxController.setRect(rect);
+    _boxController.setConstraints(const BoxConstraints(
+      minWidth: 300,
+      minHeight: 120,
+    ));
   }
 
   @override
