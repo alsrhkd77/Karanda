@@ -76,16 +76,13 @@ class _HomePageState extends State<HomePage> with WindowListener {
     try {
       final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
       for (final windowId in subWindowIds) {
-        try {
-          WindowController controller = WindowController.fromWindowId(windowId);
-          controller.close();
-        } catch (e) {
-          developer.log('Overlay did not exit correctly\n$e', name: 'overlay');
-        }
+        WindowController controller = WindowController.fromWindowId(windowId);
+        await controller.close();
       }
     } catch (e) {
       developer.log('Failed to get SubWindowIds\n$e', name: 'overlay');
     }
+    await windowManager.hide();
     await windowManager.destroy();
   }
 
