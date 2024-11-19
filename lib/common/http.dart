@@ -70,11 +70,7 @@ Future<Map<String, String>> _setToken(Map<String, String>? headers) async {
   const storage = FlutterSecureStorage();
   String? token = await storage.read(key: 'karanda-token');
   if (token != null) {
-    if(kDebugMode){
-      headers.addAll({'Authorization': "Bearer $token"});
-    } else {
-      headers.addAll({'Authorization': token});
-    }
+    headers.addAll({'Authorization': "Bearer $token"});
   }
   headers.addAll({'Qualification': TokenFactory.serviceToken()});
   return headers;

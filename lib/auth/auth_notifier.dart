@@ -100,7 +100,7 @@ class AuthNotifier with ChangeNotifier {
     const storage = FlutterSecureStorage();
     String? refreshToken = await storage.read(key: 'refresh-token');
     if (refreshToken != null) {
-      Map<String, String> data = {'refresh-token': refreshToken};
+      Map<String, String> data = {'refresh-token': 'Bearer $refreshToken'};
       final response = await http.get(Api.tokenRefresh, headers: data);
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
