@@ -230,18 +230,57 @@ class _HomePageState extends State<HomePage> with WindowListener {
 
           /* Footer */
           const Divider(),
-          const _Footer(),
-          Container(
-            alignment: Alignment.center,
-            child: const Text(
-              '본 콘텐츠는 펄어비스의 공식 자료가 아니며,'
-              ' 본 콘텐츠에는 펄어비스가 권리를 보유하고 있는 상표'
-              ' 또는 저작물이 포함되어 있습니다.',
-              style: TextStyle(color: Colors.grey, fontSize: 10.5),
-            ),
+          _Footer(
+            children: [
+              Container(
+                width: Size.infinite.width,
+                child: Card(
+                  margin: const EdgeInsets.all(12.0),
+                  elevation: 4.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Text('Karanda의 후원자가 되어주세요!'),
+                      FilledButton(
+                        onPressed: () =>
+                            {context.push('/settings/support-karanda')},
+                        child: const Text('후원하기'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                width: Size.infinite.width,
+                child: Card(
+                  margin: const EdgeInsets.all(12.0),
+                  elevation: 4.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Text('불편한 점이 있으신가요?'),
+                      FilledButton(
+                        onPressed: () =>
+                            launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
+                        child: const Text('문의하기'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 15.0,
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+              alignment: Alignment.center,
+              child: const Text(
+                '본 콘텐츠는 펄어비스의 공식 자료가 아니며,'
+                ' 본 콘텐츠에는 펄어비스가 권리를 보유하고 있는 상표'
+                ' 또는 저작물이 포함되어 있습니다.',
+                style: TextStyle(color: Colors.grey, fontSize: 10.5),
+              ),
+            ),
           ),
         ],
       ),
@@ -336,67 +375,62 @@ class _News extends StatelessWidget {
 }
 
 class _Footer extends StatelessWidget {
-  const _Footer({super.key});
+  final List<Widget> children;
+
+  const _Footer({super.key, required this.children});
 
   final double iconSize = 32;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(
-        maxHeight: 220,
-      ),
-      padding: const EdgeInsets.all(12.0),
+    bool isVertical = MediaQuery.of(context).size.width < 800;
+    return SizedBox(
+      height: isVertical ? 200 : 100,
       child: Flex(
-        direction: MediaQuery.of(context).size.width < 850
-            ? Axis.vertical
-            : Axis.horizontal,
+        direction: isVertical ? Axis.vertical : Axis.horizontal,
         children: [
           Expanded(
-            child: Card(
-              margin: const EdgeInsets.all(12.0),
-              elevation: 4.0,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text.rich(
-                      TextSpan(children: [
-                        TextSpan(text: 'Support '),
-                        TextSpan(
-                            text: 'Karanda',
-                            style: TextStyle(fontWeight: FontWeight.bold),),
-                        TextSpan(text: '!'),
-                      ]),
-                      overflow: TextOverflow.fade,
-                    ),
-                    FilledButton(
-                      onPressed: () =>
-                          {context.push('/settings/support-karanda')},
-                      child: const Text('Support'),
-                    ),
-                  ],
+            child: SizedBox(
+              width: isVertical ? Size.infinite.width : null,
+              child: Card(
+                margin: const EdgeInsets.all(8.0),
+                elevation: 4.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Text('Karanda의 후원자가 되어주세요!'),
+                      FilledButton(
+                        onPressed: () =>
+                        {context.push('/settings/support-karanda')},
+                        child: const Text('후원하기'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
           Expanded(
-            child: Card(
-              margin: const EdgeInsets.all(12.0),
-              elevation: 4.0,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text('불편한 점이 있으신가요?'),
-                    FilledButton(
-                      onPressed: () =>
-                          launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
-                      child: const Text('문의하기'),
-                    ),
-                  ],
+            child: SizedBox(
+              width: isVertical ? Size.infinite.width : null,
+              child: Card(
+                margin: const EdgeInsets.all(8.0),
+                elevation: 4.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Text('불편한 점이 있으신가요?'),
+                      FilledButton(
+                        onPressed: () =>
+                            launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6'),
+                        child: const Text('문의하기'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
