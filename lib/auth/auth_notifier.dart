@@ -101,7 +101,7 @@ class AuthNotifier with ChangeNotifier {
     String? refreshToken = await storage.read(key: 'refresh-token');
     if (refreshToken != null) {
       Map<String, String> data = {'refresh-token': refreshToken};
-      final response = await http.post(Api.tokenRefresh, headers: data);
+      final response = await http.get(Api.tokenRefresh, headers: data);
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
