@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
+
 class RealTime {
   final StreamController<DateTime> _controller = StreamController<DateTime>.broadcast();
   late Timer _timer;
@@ -16,6 +18,11 @@ class RealTime {
 
   RealTime._internal() {
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) => _update());
+  }
+
+  void _synchronize(){
+    final formatter = DateFormat('EEE, d MMM yyyy HH:mm:ss'); // For GMT
+    final dateTime = formatter.parse("");
   }
 
   void _update() {
