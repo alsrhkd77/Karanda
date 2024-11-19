@@ -83,8 +83,8 @@ class WebSocketManager {
   StompConfig _buildConfig() {
     return StompConfig(
         url: Api.webSocketChannel,
-        reconnectDelay: const Duration(seconds: 10),
-        connectionTimeout: const Duration(seconds: 50),
+        reconnectDelay: const Duration(seconds: 30),
+        connectionTimeout: const Duration(seconds: 59),
         heartbeatIncoming: const Duration(microseconds: 30000),
         heartbeatOutgoing: const Duration(microseconds: 40000),
         stompConnectHeaders: {
