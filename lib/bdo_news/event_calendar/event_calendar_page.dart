@@ -139,8 +139,8 @@ class _EventCardList extends StatelessWidget {
       sliver: SliverGrid.count(
         crossAxisCount: count,
         childAspectRatio: 1.77,
-        mainAxisSpacing: 12.0,
-        crossAxisSpacing: 12.0,
+        mainAxisSpacing: 24.0,
+        crossAxisSpacing: 24.0,
         children: events
             .map((e) => _EventCard(eventModel: e, maxWidth: width))
             .toList(),
