@@ -50,7 +50,7 @@ class OverlayManager {
 
   Future<void> loadOverlayStatus() async {
     final instance = await SharedPreferences.getInstance();
-    Map data = jsonDecode(instance.getString("overlay-status") ?? "");
+    Map data = jsonDecode(instance.getString("overlay-status") ?? "{}");
     for (String key in _overlayStatus.keys) {
       _overlayStatus[key] = data[key] ?? false;
     }
