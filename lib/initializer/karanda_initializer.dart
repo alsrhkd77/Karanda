@@ -44,9 +44,9 @@ class KarandaInitializer {
           !kDebugMode) {
         if (!currentVersionIsLatest(currentVersion, latestVersion)) {
           await _downloadNewVersion();
+          _textStreamController.sink.add("업데이트 대기중");
+          return false;
         }
-        _textStreamController.sink.add("업데이트 대기중");
-        return false;
       }
     }
     _percentStreamController.sink.add(3 / taskNumber);
