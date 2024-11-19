@@ -1,3 +1,12 @@
+# Release 버전 빌드
+### 빌드 전 확인 사항
+`pubspec.yaml`에 버전 확인하기
+
+### 빌드 명령어
+```
+ flutter build {platform} --release --dart-define=SECRET={SECRET_FROM_FIRESTORE}
+```
+
 # 클래스 아이콘
 공홈 클래스 svg 이용, 흰색 png 사용 - 80x80
 
