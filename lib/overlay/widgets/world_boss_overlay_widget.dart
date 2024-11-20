@@ -14,9 +14,14 @@ import 'package:karanda/widgets/loading_indicator.dart';
 class WorldBossOverlayWidget extends StatefulWidget {
   final bool editMode;
   final bool enabled;
+  final bool showAlways;
 
-  const WorldBossOverlayWidget(
-      {super.key, required this.editMode, required this.enabled});
+  const WorldBossOverlayWidget({
+    super.key,
+    required this.editMode,
+    required this.enabled,
+    required this.showAlways,
+  });
 
   @override
   State<WorldBossOverlayWidget> createState() => _WorldBossOverlayWidgetState();
@@ -91,7 +96,9 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
           opacity: widget.editMode
               ? 1.0
               : widget.enabled
-                  ? opacity
+                  ? widget.showAlways
+                      ? 1.0
+                      : opacity
                   : 0.0,
           child: Card(
             elevation: 0.0,

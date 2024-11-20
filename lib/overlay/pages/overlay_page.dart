@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/overlay/overlay_manager.dart';
+import 'package:karanda/overlay/pages/world_boss_overlay_settings_page.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 
@@ -29,7 +30,8 @@ class _OverlayPageState extends State<OverlayPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     int count = min(width ~/ 420, 3);
-    double childAspectRatio = (min(width, GlobalProperties.widthConstrains) / count) / 72;
+    double childAspectRatio =
+        (min(width, GlobalProperties.widthConstrains) / count) / 72;
     return Scaffold(
       appBar: const DefaultAppBar(
         icon: FontAwesomeIcons.layerGroup,
@@ -58,13 +60,12 @@ class _OverlayPageState extends State<OverlayPage> {
                   );
                 },
                 onTap: () {
-                  _overlayManager.setOverlayStatus(
-                    key: "worldBoss",
-                    value: !snapshot.requireData["worldBoss"]!,
-                  );
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const WorldBossOverlaySettingsPage(),
+                  ));
                 },
               ),
-              /*_CustomTile(
+              _CustomTile(
                 title: "보스 HP 인디케이터",
                 value: snapshot.requireData["bossHpScaleIndicator"]!,
                 onChanged: (bool value) {
@@ -79,7 +80,7 @@ class _OverlayPageState extends State<OverlayPage> {
                     value: !snapshot.requireData["bossHpScaleIndicator"]!,
                   );
                 },
-              ),*/
+              ),
               _CustomTile(
                 title: "시계",
                 value: snapshot.requireData["clock"]!,

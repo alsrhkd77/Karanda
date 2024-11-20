@@ -25,7 +25,7 @@ class OverlayApp extends StatelessWidget {
         colorSchemeSeed: Colors.indigoAccent,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.transparent,
-        cardTheme: CardTheme(color: Colors.black.withOpacity(0.5))
+        cardTheme: CardTheme(color: Colors.black.withOpacity(0.8))
       ),
       home: const OverlayWindow(),
     );

@@ -33,11 +33,6 @@ class _OverlayWindowState extends State<OverlayWindow> {
                 fit: StackFit.expand,
                 alignment: Alignment.center,
                 children: [
-                  BossHpScaleIndicatorOverlayWidget(
-                    editMode: editMode.requireData,
-                    enabled:
-                        status.requireData["bossHpScaleIndicator"] ?? false,
-                  ),
                   ClockOverlayWidget(
                     editMode: editMode.requireData,
                     enabled: status.requireData["clock"] ?? false,
@@ -45,6 +40,13 @@ class _OverlayWindowState extends State<OverlayWindow> {
                   WorldBossOverlayWidget(
                     editMode: editMode.requireData,
                     enabled: status.requireData["worldBoss"] ?? false,
+                    showAlways:
+                        status.requireData["worldBossShowAlways"] ?? false,
+                  ),
+                  BossHpScaleIndicatorOverlayWidget(
+                    editMode: editMode.requireData,
+                    enabled:
+                    status.requireData["bossHpScaleIndicator"] ?? false,
                   ),
                   Positioned(
                     width: 200,

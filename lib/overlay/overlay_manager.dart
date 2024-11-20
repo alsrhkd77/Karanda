@@ -14,6 +14,7 @@ class OverlayManager {
 
   final Map<String, bool> _overlayStatus = {
     "worldBoss": false,
+    "worldBossShowAlways": false,
     "bossHpScaleIndicator": false,
     "clock": false,
   };
