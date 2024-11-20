@@ -64,7 +64,7 @@ class _OverlayPageState extends State<OverlayPage> {
                   );
                 },
               ),
-              _CustomTile(
+              /*_CustomTile(
                 title: "보스 HP 인디케이터",
                 value: snapshot.requireData["bossHpScaleIndicator"]!,
                 onChanged: (bool value) {
@@ -79,7 +79,7 @@ class _OverlayPageState extends State<OverlayPage> {
                     value: !snapshot.requireData["bossHpScaleIndicator"]!,
                   );
                 },
-              ),
+              ),*/
               _CustomTile(
                 title: "시계",
                 value: snapshot.requireData["clock"]!,

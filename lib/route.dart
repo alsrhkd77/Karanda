@@ -16,7 +16,7 @@ import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/maretta/maretta_page.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
-import 'package:karanda/overlay/overlay_page.dart';
+import 'package:karanda/overlay/pages/overlay_page.dart';
 import 'package:karanda/settings/change_log_page.dart';
 import 'package:karanda/settings/karanda_info_page.dart';
 import 'package:karanda/settings/settings_page.dart';
