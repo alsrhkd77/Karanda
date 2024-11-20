@@ -72,13 +72,13 @@ class AuthNotifier with ChangeNotifier {
     try {
       final response = await http
           .get(Api.authorization)
-          .timeout(const Duration(seconds: 20));
+          .timeout(const Duration(seconds: 30));
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
-        _discordId = data['discord_id'] ?? data['discordId'];
+        _discordId = data['discordId'];
         if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
           _mainFamily = BdoFamily.fromData(data['mainFamily']);
         }
@@ -107,7 +107,7 @@ class AuthNotifier with ChangeNotifier {
         _authenticated = true;
         _avatar = data['avatar'];
         _username = data['username'];
-        _discordId = data['discord_id'] ?? data['discordId'];
+        _discordId = data['discordId'];
         if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
           _mainFamily = BdoFamily.fromData(data['mainFamily']);
         }
