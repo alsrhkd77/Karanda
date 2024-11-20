@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karanda/common/go_router_extension.dart';
-import 'package:karanda/widgets/bdo_clock.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final PreferredSizeWidget? bottom;
@@ -15,13 +14,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     if(title == null){
       return AppBar(
-        centerTitle: title == null ? true : false,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0.0, 4.0, 18.0, 0),
-            child: BdoClock(),
-          ),
-        ],
+        centerTitle: true,
         title: InkWell(
           hoverColor: Colors.transparent,
           onTap: () {
@@ -32,6 +25,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
             style: GoogleFonts.dongle(fontSize: 46),
           ),
         ),
+        actions: actions,
         bottom: bottom,
       );
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_data_controller.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_material.dart';
@@ -67,7 +68,10 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: const DefaultAppBar(
+        title: "선박 증축",
+        icon: FontAwesomeIcons.ship,
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

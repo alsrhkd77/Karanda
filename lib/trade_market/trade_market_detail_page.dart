@@ -58,8 +58,9 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
               .read<TradeMarketNotifier>()
               .itemInfo
               .values
-              .firstWhere((item) => item.name == name)
-              .code ??
+              .where((item) => item.name == name)
+              .firstOrNull
+              ?.code ??
           '';
     }
     dataStream ??= TradeMarketDetailStream(
@@ -69,7 +70,10 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        appBar: const DefaultAppBar(),
+        appBar: const DefaultAppBar(
+          title: "통합 거래소 아이템 상세",
+          icon: FontAwesomeIcons.scaleUnbalanced,
+        ),
         body: StreamBuilder(
           stream: dataStream?.marketDetailData,
           builder: (context, snapshot) {
@@ -87,18 +91,6 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
                     MediaQuery.of(context).size.width);
             return CustomScrollView(
               slivers: [
-                SliverPadding(
-                  padding: GlobalProperties.scrollViewPadding,
-                  sliver: const SliverToBoxAdapter(
-                    child: ListTile(
-                      leading: Icon(FontAwesomeIcons.scaleUnbalanced),
-                      title: TitleText(
-                        '거래소 아이템 상세',
-                        bold: true,
-                      ),
-                    ),
-                  ),
-                ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
                       horizontal: horizontalPadding, vertical: 12.0),

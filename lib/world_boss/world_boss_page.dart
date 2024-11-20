@@ -48,7 +48,7 @@ class _WorldBossPageState extends State<WorldBossPage> {
         title: "월드 보스 (Beta)",
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 12),
+            padding: GlobalProperties.appBarActionPadding,
             child: IconButton(
               onPressed: () async {
                 await Navigator.of(context).push(

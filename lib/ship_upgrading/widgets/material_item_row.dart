@@ -53,7 +53,7 @@ class MaterialItemRow {
           child: BdoItemImageWidget(
             code: material.code.toString(),
             grade: material.grade,
-            size: 44,
+            size: 45,
           ),
         ),
       ),

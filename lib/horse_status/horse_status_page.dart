@@ -12,7 +12,6 @@ import 'package:karanda/horse_status/models/horse.dart';
 import 'package:karanda/horse_status/models/horse_status.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
-import 'package:karanda/widgets/title_text.dart';
 
 class HorseStatusPage extends StatefulWidget {
   const HorseStatusPage({super.key});
@@ -41,55 +40,52 @@ class _HorseStatusPageState extends State<HorseStatusPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: const DefaultAppBar(
+        title: "말 성장치 계산기",
+        icon: FontAwesomeIcons.stickerMule,
+      ),
       body: dataLoaded
           ? SingleChildScrollView(
-              child: Column(
-                children: [
-                  const ListTile(
-                    leading: Icon(FontAwesomeIcons.stickerMule),
-                    title: TitleText('말 성장치 계산기', bold: true),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: GlobalProperties.widthConstrains,
+                ),
+                child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(),
+                            _BreedSelector(
+                              breeds: dataController.breeds,
+                              onSelected: dataController.selectBreed,
+                            ),
+                          ],
+                        ),
+                      ),
+                      _EquipmentCard(dataController: dataController),
+                      _PearlEquipmentCard(dataController: dataController),
+                      _StatusInputCard(dataController: dataController),
+                      _ResultCard(dataController: dataController),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "* 등급컷 - 최상급: 0.85, 상급: 0.81, 중급: 0.78, 하급: 0.75",
+                          style: TextStyle(color: Colors.grey),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12.0,
+                      ),
+                    ],
                   ),
-                  Container(
-                    constraints: BoxConstraints(
-                      maxWidth: GlobalProperties.widthConstrains,
-                    ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(),
-                              _BreedSelector(
-                                breeds: dataController.breeds,
-                                onSelected: dataController.selectBreed,
-                              ),
-                            ],
-                          ),
-                        ),
-                        _EquipmentCard(dataController: dataController),
-                        _PearlEquipmentCard(dataController: dataController),
-                        _StatusInputCard(dataController: dataController),
-                        _ResultCard(dataController: dataController),
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "* 등급컷 - 최상급: 0.85, 상급: 0.81, 중급: 0.78, 하급: 0.75",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 12.0,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
               ),
-            )
+            ),
+          )
           : const LoadingIndicator(),
     );
   }

@@ -30,22 +30,16 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: Scaffold(
-            appBar: const DefaultAppBar(),
+            appBar: const DefaultAppBar(
+              title: "통합 거래소",
+              icon: FontAwesomeIcons.scaleUnbalanced,
+            ),
             body: notifier.itemInfo.isEmpty
                 ? const Center(
                     child: LoadingIndicator(),
                   )
                 : CustomScrollView(
                     slivers: [
-                      const SliverToBoxAdapter(
-                        child: ListTile(
-                          leading: Icon(FontAwesomeIcons.scaleUnbalanced),
-                          title: TitleText(
-                            '통합 거래소',
-                            bold: true,
-                          ),
-                        ),
-                      ),
                       SliverPadding(
                         padding: EdgeInsets.symmetric(
                             horizontal: horizontalPadding, vertical: 12.0),

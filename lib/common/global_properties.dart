@@ -31,4 +31,6 @@ class GlobalProperties {
   static String get chzzkChannelId => 'e28fd3efe38595427f8e51142c91b247';
 
   static double get overlayCardOpacity => 0.7;
+
+  static EdgeInsets get appBarActionPadding => const EdgeInsets.only(right: 12.0);
 }

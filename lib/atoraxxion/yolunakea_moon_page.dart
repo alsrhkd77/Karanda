@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'dart:developer' as developer;
@@ -359,7 +360,10 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: const DefaultAppBar(
+        title: "요루나키아 보름달이 뜬 밤 계산기",
+        icon: FontAwesomeIcons.calculator,
+      ),
       body: GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
@@ -373,14 +377,6 @@ class _YolunakeaMoonPageState extends State<YolunakeaMoonPage> {
               ),
               child: Column(
                 children: [
-                  const Text(
-                    '아토락시온 요루나키아 공략',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const Text('보름달이 뜬 밤 계산기'),
-                  const SizedBox(
-                    height: 24,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.end,

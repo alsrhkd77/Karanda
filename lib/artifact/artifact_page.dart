@@ -27,28 +27,27 @@ class _ArtifactPageState extends State<ArtifactPage> {
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: Scaffold(
-        appBar: const DefaultAppBar(),
-        body: ChangeNotifierProvider(
-          create: (_) => ArtifactNotifier(),
-          child: Consumer<ArtifactNotifier>(
-            builder: (_, notifier, __) {
-              if (notifier.options.isEmpty) {
-                return const LoadingIndicator();
-              }
-              return CustomScrollView(
+      child: ChangeNotifierProvider(
+        create: (_) => ArtifactNotifier(),
+        child: Consumer<ArtifactNotifier>(
+          builder: (_, notifier, __) {
+            if (notifier.options.isEmpty) {
+              return const Scaffold(body: LoadingIndicator());
+            }
+            return Scaffold(
+              appBar: DefaultAppBar(
+                title: '광명석 조합식',
+                icon: FontAwesomeIcons.splotch,
+                actions: [
+                  Padding(
+                    padding: GlobalProperties.appBarActionPadding,
+                    child: const _FilterButton(),
+                  )
+                ],
+              ),
+              body: CustomScrollView(
                 controller: _mainScrollController,
                 slivers: [
-                  const SliverToBoxAdapter(
-                    child: ListTile(
-                      leading: Icon(FontAwesomeIcons.splotch),
-                      title: TitleText(
-                        '광명석 조합식',
-                        bold: true,
-                      ),
-                      trailing: _FilterButton(),
-                    ),
-                  ),
                   SliverPadding(
                     padding: EdgeInsets.symmetric(
                         horizontal: horizontalPadding,
@@ -64,7 +63,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
                   ),
                   SliverPadding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: horizontalPadding),
+                    EdgeInsets.symmetric(horizontal: horizontalPadding),
                     sliver: const _CardList(),
                   ),
                   SliverPadding(
@@ -76,17 +75,17 @@ class _ArtifactPageState extends State<ArtifactPage> {
                     ),
                   ),
                 ],
-              );
-            },
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(FontAwesomeIcons.arrowUp),
-          onPressed: () {
-            _mainScrollController.animateTo(
-              0,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.linear,
+              ),
+              floatingActionButton: FloatingActionButton(
+                child: const Icon(FontAwesomeIcons.arrowUp),
+                onPressed: () {
+                  _mainScrollController.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.linear,
+                  );
+                },
+              ),
             );
           },
         ),

@@ -15,7 +15,6 @@ import 'package:karanda/ship_upgrading/widgets/list_by_materials.dart';
 import 'package:karanda/ship_upgrading/widgets/list_by_parts.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
-import 'package:karanda/widgets/title_text.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ShipUpgradingPage extends StatefulWidget {
@@ -55,7 +54,6 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
       body: StreamBuilder(
         stream: dataController.setting,
         builder: (context, setting) {
@@ -64,47 +62,42 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
               child: LoadingIndicator(),
             );
           }
-          return SingleChildScrollView(
-            child: Column(
-              children: [
+          return Scaffold(
+            appBar: DefaultAppBar(
+              title: "선박 증축",
+              icon: FontAwesomeIcons.ship,
+              actions: [
+                IconButton(
+                  onPressed: dataController.setChangeForm,
+                  icon: Icon(
+                    Icons.dynamic_form_outlined,
+                    color: setting.requireData.changeForm
+                        ? Colors.blue
+                        : null,
+                  ),
+                  tooltip: "리스트 타입",
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: const Icon(FontAwesomeIcons.ship),
-                    title: const TitleText(
-                      '선박 증축',
-                      bold: true,
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: dataController.setChangeForm,
-                          icon: Icon(
-                            Icons.dynamic_form_outlined,
-                            color: setting.requireData.changeForm
-                                ? Colors.blue
-                                : null,
+                  padding: GlobalProperties.appBarActionPadding,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ShipUpgradingSettingsPage(
+                            dataController: dataController,
                           ),
-                          tooltip: "리스트 타입",
                         ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => ShipUpgradingSettingsPage(
-                                  dataController: dataController,
-                                ),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.construction),
-                          tooltip: "설정",
-                        ),
-                      ],
-                    ),
+                      );
+                    },
+                    icon: const Icon(Icons.construction),
+                    tooltip: "설정",
                   ),
                 ),
+              ],
+            ),
+            body: ListView(
+              padding: GlobalProperties.scrollViewPadding,
+              children: [
                 _Head(
                     selectedShipStream: dataController.selectedShipData,
                     shipData: dataController.ship,
@@ -126,24 +119,24 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
                 )
               ],
             ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () async {
+                bool? result = await showDialog(
+                  context: context,
+                  builder: (context) => const _AddDailyQuestDialog(),
+                );
+                if (result != null && result) {
+                  dataController.runDailyQuest();
+                }
+              },
+              //isExtended: false,
+              tooltip: '일일퀘스트',
+              icon: const Icon(Icons.add_task),
+              label: const Text("일일퀘스트"),
+              focusNode: FocusNode(skipTraversal: true),
+            ),
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          bool? result = await showDialog(
-            context: context,
-            builder: (context) => const _AddDailyQuestDialog(),
-          );
-          if (result != null && result) {
-            dataController.runDailyQuest();
-          }
-        },
-        //isExtended: false,
-        tooltip: '일일퀘스트',
-        icon: const Icon(Icons.add_task),
-        label: const Text("일일퀘스트"),
-        focusNode: FocusNode(skipTraversal: true),
       ),
     );
   }
@@ -322,22 +315,24 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: CustomScrollBehavior(),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: SizedBox(
-          width: GlobalProperties.widthConstrains - 48,
-          child: setting.changeForm
-              ? ListByParts(
-                  dataController: dataController,
-                  screenWidth: screenWidth,
-                  setting: setting,
-                )
-              : ListByMaterials(
-                  dataController: dataController,
-                  setting: setting,
-                ),
+    return Center(
+      child: ScrollConfiguration(
+        behavior: CustomScrollBehavior(),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: SizedBox(
+            width: GlobalProperties.widthConstrains - 48,
+            child: setting.changeForm
+                ? ListByParts(
+                    dataController: dataController,
+                    screenWidth: screenWidth,
+                    setting: setting,
+                  )
+                : ListByMaterials(
+                    dataController: dataController,
+                    setting: setting,
+                  ),
+          ),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
@@ -213,7 +214,10 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
     double width = MediaQuery.of(context).size.width;
     double additionalMargin = getAdditionalMargin();
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: const DefaultAppBar(
+        title: "통합 거래소 프리셋",
+        icon: FontAwesomeIcons.scaleUnbalanced,
+      ),
       body: boxData.isEmpty
           ? const Center(child: LoadingIndicator())
           : CustomScrollView(

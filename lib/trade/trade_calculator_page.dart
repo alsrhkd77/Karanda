@@ -20,6 +20,8 @@ class _TradeCalculatorPageState extends State<TradeCalculatorPage> {
       length: 4,
       child: Scaffold(
         appBar: const DefaultAppBar(
+          title: "물물교환 계산기",
+          icon: FontAwesomeIcons.arrowRightArrowLeft,
           bottom: TabBar(
             automaticIndicatorColorAdjustment: true,
             indicatorSize: TabBarIndicatorSize.tab,

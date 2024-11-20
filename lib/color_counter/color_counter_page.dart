@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 
 class ColorCounterPage extends StatefulWidget {
@@ -33,12 +34,12 @@ class _ColorCounterPageState extends State<ColorCounterPage> {
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.0),
-              side: BorderSide(color: Colors.black)),
+              side: const BorderSide(color: Colors.black)),
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
         ),
         onPressed: () {},
-        child: Text('12', style: TextStyle(fontSize: 32.0)),
+        child: const Text('12', style: TextStyle(fontSize: 32.0)),
       ),
     );
   }
@@ -48,7 +49,10 @@ class _ColorCounterPageState extends State<ColorCounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: const DefaultAppBar(
+        title: "시카라키아 컬러 카운터",
+        icon: FontAwesomeIcons.staffSnake,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
