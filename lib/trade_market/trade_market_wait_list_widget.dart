@@ -10,7 +10,6 @@ import 'package:karanda/trade_market/trade_market_wait_item.dart';
 import 'package:karanda/trade_market/trade_market_wait_list_stream.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:window_manager/window_manager.dart';
 
 class TradeMarketWaitListWidget extends StatefulWidget {
   const TradeMarketWaitListWidget({super.key});
