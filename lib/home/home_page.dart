@@ -396,7 +396,7 @@ class _Footer extends StatelessWidget {
                 margin: const EdgeInsets.all(8.0),
                 elevation: 4.0,
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -419,7 +419,7 @@ class _Footer extends StatelessWidget {
                 margin: const EdgeInsets.all(8.0),
                 elevation: 4.0,
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
