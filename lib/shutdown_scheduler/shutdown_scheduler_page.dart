@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
@@ -66,84 +67,86 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
             title: "예약 종료",
             icon: FontAwesomeIcons.powerOff,
           ),
-          body: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 1440,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const SizedBox(),
-
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 2,
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: Card(
-                      clipBehavior: Clip.antiAlias,
-                      child: InkWell(
-                        onTap: selectTime,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          fit: StackFit.expand,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 24.0,
-                                horizontal:
-                                    MediaQuery.of(context).size.width / 15,
+          body: Padding(
+            padding: GlobalProperties.scrollViewPadding,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 1440,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Card(
+                        clipBehavior: Clip.antiAlias,
+                        child: InkWell(
+                          onTap: selectTime,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            fit: StackFit.expand,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 24.0,
+                                  horizontal:
+                                      MediaQuery.of(context).size.width / 15,
+                                ),
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: shutdownSchedulerNotifier.running
+                                      ? buildTimer(
+                                          shutdownSchedulerNotifier.target)
+                                      : buildTimePicker(),
+                                ),
                               ),
-                              child: FittedBox(
-                                fit: BoxFit.contain,
+                              Positioned(
+                                right: 15.0,
+                                top: 15.0,
                                 child: shutdownSchedulerNotifier.running
-                                    ? buildTimer(
-                                        shutdownSchedulerNotifier.target)
-                                    : buildTimePicker(),
-                              ),
-                            ),
-                            Positioned(
-                              right: 15.0,
-                              top: 15.0,
-                              child: shutdownSchedulerNotifier.running
-                                  ? Row(
-                                      children: [
-                                        Text(
-                                          TimeOfDay.fromDateTime(
-                                                  shutdownSchedulerNotifier
-                                                      .target)
-                                              .timeWithPeriod(
-                                                  period: 'KR', time: 'KR'),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 8.0),
-                                          child: SpinKitHourGlass(
-                                            color: Colors.blue,
-                                            size: 25,
-                                            duration: Duration(seconds: 2),
+                                    ? Row(
+                                        children: [
+                                          Text(
+                                            TimeOfDay.fromDateTime(
+                                                    shutdownSchedulerNotifier
+                                                        .target)
+                                                .timeWithPeriod(
+                                                    period: 'KR', time: 'KR'),
                                           ),
-                                        ),
-                                      ],
-                                    )
-                                  : const Icon(FontAwesomeIcons.clock),
-                            ),
-                          ],
+                                          const Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 8.0),
+                                            child: SpinKitHourGlass(
+                                              color: Colors.blue,
+                                              size: 25,
+                                              duration: Duration(seconds: 2),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : const Icon(FontAwesomeIcons.clock),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                  //Build Button
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: _BuildButton(
-                      running: shutdownSchedulerNotifier.running,
-                      start: () =>
-                          shutdownSchedulerNotifier.startSchedule(selected),
-                      cancel: shutdownSchedulerNotifier.cancelSchedule,
+                    //Build Button
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: _BuildButton(
+                        running: shutdownSchedulerNotifier.running,
+                        start: () =>
+                            shutdownSchedulerNotifier.startSchedule(selected),
+                        cancel: shutdownSchedulerNotifier.cancelSchedule,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
