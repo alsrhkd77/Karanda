@@ -89,11 +89,6 @@ final _actionIconTheme = ActionIconThemeData(
       const Icon(Icons.arrow_back_ios_new),
 );
 
-const _floatingActionButtonTheme = FloatingActionButtonThemeData(
-  backgroundColor: Colors.indigoAccent,
-  foregroundColor: Colors.white,
-);
-
 InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(
   border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(8.0),
