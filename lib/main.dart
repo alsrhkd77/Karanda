@@ -150,12 +150,10 @@ class MyApp extends StatelessWidget {
             locale: context.locale,
             title: 'Karanda - 카란다',
             theme: ThemeData(
-              useMaterial3: true,
               fontFamily: 'Maplestory',
               colorSchemeSeed: const Color.fromRGBO(87, 132, 193, 1.0),
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
-              floatingActionButtonTheme: _floatingActionButtonTheme,
               inputDecorationTheme: _inputDecorationTheme,
               textTheme: settings.getTextTheme(
                 ThemeData(
@@ -164,27 +162,27 @@ class MyApp extends StatelessWidget {
               ),
             ),
             darkTheme: ThemeData(
-              useMaterial3: true,
+              //useMaterial3: true,
               fontFamily: 'Maplestory',
-              colorSchemeSeed: Colors.indigoAccent,
-              //colorSchemeSeed: Color.fromRGBO(87, 132, 193, 1.0),
+              //colorSchemeSeed: Colors.indigo,
+              colorSchemeSeed: const Color.fromRGBO(63, 81, 121, 1.0),
               //colorSchemeSeed: Color.fromRGBO(61, 133, 184, 1.0),
               //colorSchemeSeed: Color.fromRGBO(164, 210, 224, 1.0),
               brightness: Brightness.dark,
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
-              floatingActionButtonTheme: _floatingActionButtonTheme,
               inputDecorationTheme: _inputDecorationTheme,
               appBarTheme: const AppBarTheme(
-                  backgroundColor: Color.fromRGBO(25, 25, 27, 1.0)),
-              scaffoldBackgroundColor: const Color.fromRGBO(25, 25, 27, 1.0),
+                backgroundColor: Color.fromRGBO(20, 20, 22, 1.0),
+              ),
+              scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 22, 1.0),
               textTheme: settings.getTextTheme(
                 ThemeData(
-                  colorSchemeSeed: Colors.indigoAccent,
+                  colorSchemeSeed: const Color.fromRGBO(63, 81, 121, 1.0),
                   brightness: Brightness.dark,
                 ).textTheme,
               ),
-              //cardTheme: CardTheme(color: Color.fromRGBO(40, 40, 40, 1.0)),
+              //cardColor: const Color.fromRGBO(31, 31, 36, 1.0),
             ),
             themeMode: settings.darkMode ? ThemeMode.dark : ThemeMode.light,
             routerConfig: router,
