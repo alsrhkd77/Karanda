@@ -17,9 +17,11 @@ class GlobalProperties {
   }
 
   static EdgeInsetsGeometry constrainedScrollViewPadding(double width) {
-    return EdgeInsets.symmetric(
-      vertical: _scrollViewPadding,
-      horizontal: scrollViewHorizontalPadding(width),
+    return EdgeInsets.only(
+      left: scrollViewHorizontalPadding(width),
+      right: scrollViewHorizontalPadding(width),
+      top: _scrollViewPadding,
+      bottom: _scrollViewPadding * 2,
     );
   }
 

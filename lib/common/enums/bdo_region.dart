@@ -1,0 +1,4 @@
+enum BdoRegion {
+  KR,
+  NA,
+}

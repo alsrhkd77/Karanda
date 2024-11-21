@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:karanda/common/global_properties.dart';
 
 class CustomBase extends StatelessWidget {
-  final List<Widget>? children;
+  final List<Widget> children;
 
-  const CustomBase({super.key, this.children});
+  const CustomBase({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CustomBase extends StatelessWidget {
     return Center(
       child: ListView(
         padding: GlobalProperties.constrainedScrollViewPadding(width),
-        children: children ?? [],
+        children: children,
       ),
     );
   }

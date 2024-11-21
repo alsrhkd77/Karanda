@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:karanda/adventurer_hub/adventurer_hub_page.dart';
 import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/atoraxxion/sycrakea_page.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
@@ -8,12 +9,10 @@ import 'package:karanda/auth/auth_error_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
-import 'package:karanda/checklist/checklist_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/home/home_page.dart';
 import 'package:karanda/horse_status/horse_status_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
-import 'package:karanda/maretta/maretta_page.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
 import 'package:karanda/overlay/pages/overlay_page.dart';
@@ -151,16 +150,8 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: 'checklist',
-          builder: (context, state) => const ChecklistPage(),
-        ),
-        GoRoute(
           path: 'color-counter',
           builder: (context, state) => const ColorCounterPage(),
-        ),
-        GoRoute(
-          path: 'maretta',
-          builder: (context, state) => const MarettaPage(),
         ),
         GoRoute(
           path: 'trade-market',
@@ -220,6 +211,15 @@ final GoRouter router = GoRouter(
               return const LoadingPage();
             }
             return VerificationCenterPage();
+          },
+        ),
+        GoRoute(
+          path: 'adventurer-hub',
+          builder: (context, state) {
+            if(context.watch<AuthNotifier>().waitResponse){
+              return const LoadingPage();
+            }
+            return AdventurerHubPage();
           },
         ),
       ],

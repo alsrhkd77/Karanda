@@ -88,10 +88,30 @@ class ServiceSectionWidget extends StatelessWidget {
           windowsOnly: true,
         ),
         _ServiceTile(
-          title: '인증 센터', //Verification Center Family Verification
+          title: '인증 센터 (Beta)', //Verification Center Family Verification
           icon: FontAwesomeIcons.idCard,
           path: '/verification-center',
         ),
+        _ServiceTile(
+          title: '모험가 허브 (Beta)',
+          icon: FontAwesomeIcons.circleNodes,
+          path: '/adventurer-hub',
+        ),
+        /*_ServiceTile(
+          title: '채널 버프 (Beta)',
+          icon: FontAwesomeIcons.hubspot,
+          path: '/',
+        ),
+        _ServiceTile(
+          title: '필드 보스 (Beta)',
+          icon: FontAwesomeIcons.feather,
+          path: '/',
+        ),
+        _ServiceTile(
+          title: '확성기 아이콘',
+          icon: FontAwesomeIcons.bullhorn,
+          path: '/',
+        ),*/
       ],
     );
   }
