@@ -413,7 +413,7 @@ class _ItemTile extends StatelessWidget {
 
     return Card(
       clipBehavior: Clip.hardEdge,
-      margin: const EdgeInsets.all(6.0),
+      margin: const EdgeInsets.all(4.0),
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 6.0, horizontal: 16.0),

@@ -20,8 +20,7 @@ class TradeMarketWaitListWidget extends StatefulWidget {
       _TradeMarketWaitListWidgetState();
 }
 
-class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
-    with WindowListener {
+class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget> {
   final TradeMarketWaitListStream dataStream = TradeMarketWaitListStream();
 
   @override
@@ -29,29 +28,6 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
     super.initState();
     WidgetsBinding.instance
         .addPostFrameCallback((timeStamp) => dataStream.publish());
-    windowManager.addListener(this);
-  }
-
-  @override
-  void activate() {
-    super.activate();
-    //dataStream.connect();
-  }
-
-  @override
-  void deactivate() {
-    //dataStream.disconnect();
-    super.deactivate();
-  }
-
-  @override
-  void onWindowFocus() {
-    //dataStream.connect();
-  }
-
-  @override
-  void onWindowClose() {
-    //dataStream.dispose();
   }
 
   @override
@@ -93,13 +69,6 @@ class _TradeMarketWaitListWidgetState extends State<TradeMarketWaitListWidget>
       },
     );
   }
-
-  @override
-  void dispose() {
-    //dataStream.dispose();
-    windowManager.removeListener(this);
-    super.dispose();
-  }
 }
 
 class _WaitItemTile extends StatelessWidget {
@@ -114,7 +83,7 @@ class _WaitItemTile extends StatelessWidget {
         context.read<TradeMarketNotifier>().itemInfo[item.itemCode.toString()];
     if (itemInfo == null) return Container();
     return Card(
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(4.0),
       clipBehavior: Clip.antiAlias,
       child: ListTile(
         onTap: () {

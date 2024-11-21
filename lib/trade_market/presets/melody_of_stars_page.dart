@@ -148,7 +148,7 @@ class _ItemTile extends StatelessWidget {
     if (itemInfo == null) return Container();
     return Card(
       clipBehavior: Clip.hardEdge,
-      margin: const EdgeInsets.all(6.0),
+      margin: const EdgeInsets.all(4.0),
       child: ListTile(
         onTap: () {
           context.goWithGa(
