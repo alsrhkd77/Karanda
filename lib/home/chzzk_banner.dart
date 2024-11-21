@@ -20,11 +20,10 @@ class _ChzzkBannerState extends State<ChzzkBanner> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) => getLiveStatus());
   }
 
-
   @override
   void activate() {
     super.activate();
-    getLiveStatus();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => getLiveStatus());
   }
 
   Future<void> getLiveStatus() async {
@@ -37,7 +36,7 @@ class _ChzzkBannerState extends State<ChzzkBanner> {
     } catch (e) {
       print(e);
     } finally {
-      if(context.mounted){
+      if(context.mounted && liveStatus != result){
         setState(() {
           liveStatus = result;
         });
