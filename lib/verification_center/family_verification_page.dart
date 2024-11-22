@@ -7,6 +7,7 @@ import 'package:karanda/verification_center/models/bdo_family.dart';
 import 'package:karanda/verification_center/verification_center_data_controller.dart';
 import 'package:karanda/verification_center/widgets/main_family_name_widget.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
+import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -191,49 +192,35 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
         title: "가문 인증 정보",
         icon: Icons.add_task,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: GlobalProperties.scrollViewPadding,
-          child: Column(
-            children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: GlobalProperties.widthConstrains,
-                ),
-                child: Column(
-                  children: [
-                    _Profile(familyData: familyData),
-                    familyData.verified && familyData.lastUpdated != null
-                        ? _RefreshButton(
-                            lastUpdated: familyData.lastUpdated!,
-                            onPressed: refresh,
-                          )
-                        : const SizedBox(),
-                    _SetMainFamilyButton(
-                      family: familyData,
-                      onPressed: setMain,
-                    ),
-                    Container(
-                      width: Size.infinite.width,
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                        ),
-                        onPressed: unregister,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('가문 삭제'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+      body: CustomBase(
+        children: [
+          _Profile(familyData: familyData),
+          familyData.verified && familyData.lastUpdated != null
+              ? _RefreshButton(
+                  lastUpdated: familyData.lastUpdated!,
+                  onPressed: refresh,
+                )
+              : const SizedBox(),
+          _SetMainFamilyButton(
+            family: familyData,
+            onPressed: setMain,
           ),
-        ),
+          Container(
+            width: Size.infinite.width,
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: unregister,
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('가문 삭제'),
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: familyData.verified
           ? FloatingActionButton.extended(
@@ -450,7 +437,8 @@ class _FamilyUnregisterDialogState extends State<_FamilyUnregisterDialog> {
           const SizedBox(
             height: 12,
           ),
-          const Text('1. 가문 삭제 시 연결된 인증 카드도 모두 삭제됩니다.\n2. 삭제된 데이터는 다시 복구할 수 없습니다.'),
+          const Text(
+              '1. 가문 삭제 시 연결된 인증 카드도 모두 삭제됩니다.\n2. 삭제된 데이터는 다시 복구할 수 없습니다.'),
           const SizedBox(
             height: 24.0,
           ),
