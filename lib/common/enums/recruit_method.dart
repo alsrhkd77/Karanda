@@ -1,0 +1,4 @@
+enum RecruitMethod {
+  karandaReservation,
+  inGameWhispers
+}

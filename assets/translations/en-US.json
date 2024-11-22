@@ -1,10 +1,20 @@
 {
+  "select": "Select",
+  "cancel": "Cancel",
   "Karanda": "Karanda",
+  "reporting": "Reporting",
+
+  "--Text Field validator": "",
+  "validate empty": "This field must not be empty",
+  "validate zero": "Must be greater than 0",
+
   "Champron": "Champron",
   "Saddle": "Saddle",
   "Horseshoe": "Horseshoe",
   "Stirrups": "Stirrups",
   "melody_of_stars_exchange_rate": "PRI (Ⅰ): ×{}\nDUO (Ⅱ): ×{}\nTRI (Ⅲ): ×{}",
+
+  "--World boss": "",
   "garmoth": "garmoth",
   "vell": "vell",
   "karanda": "karanda",
@@ -19,5 +29,37 @@
   "golden_pig_king": "golden pig king",
   "sangoon": "sangoon",
   "baby_vell": "baby vell",
-  "zodd": "zodd"
+  "zodd": "zodd",
+
+  "--Adventurer hub": "",
+  "recruitment": "recruitment",
+  "recruitment post": "recruitment post",
+  "adventurer hub": {
+    "new post": "Create new post",
+    "FAB label": "Create"
+  },
+  "adventurer hub category": {
+    "partyAndPlatoon": "Party & Platoon",
+    "guildRaidMercenaries": "Guild raid mercenaries"
+  },
+  "recruit method": {
+    "karandaReservation": "Karanda reservation",
+    "inGameWhispers": "In-game whispers"
+  },
+  "edit recruitment post": "Edit recruitment post",
+  "edit recruitment": {
+    "title": "Title (required)",
+    "guild name": "Guild name (required)",
+    "number of recruits": "Number of recruits (required)",
+    "recruit method": "Recruit method",
+    "start immediately": "Start recruiting immediately",
+    "show contents after join": "Show details after join",
+    "details": "Recruitment details",
+    "details hint": "hint text",
+    "discord link": "Discord invitation code or link",
+    "discord link validate failed": "You can only enter a Discord invite code or link",
+    "save": "Save",
+    "caution card title": "Caution",
+    "caution card contents" : "1. New posts can be published once per hour.\n2. Published posts cannot be deleted."
+  }
 }

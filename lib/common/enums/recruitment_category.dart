@@ -1,4 +1,4 @@
 enum RecruitmentCategory {
-  partyRecruitment,
-  guildRaidMercenariesRecruitment,
+  partyAndPlatoon,
+  guildRaidMercenaries,
 }

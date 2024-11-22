@@ -20,3 +20,7 @@ svg -> png -> split png
 
 # 카리자드 관련 패치
 [https://www.kr.playblackdesert.com/ko-KR/News/Detail?groupContentNo=13030&countryType=ko-KR](https://www.kr.playblackdesert.com/ko-KR/News/Detail?groupContentNo=13030&countryType=ko-KR)
+
+# 기타
+party = 파티
+platoon = 부대

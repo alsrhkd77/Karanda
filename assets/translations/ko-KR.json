@@ -1,10 +1,20 @@
 {
+  "select": "선택",
+  "cancel": "취소",
   "Karanda": "카란다",
+  "reporting": "신고하기",
+
+  "--Text Field validator": "",
+  "validate empty": "필수입니다",
+  "validate zero": "0보다 커야 합니다",
+
   "Champron": "마면",
   "Saddle": "안장",
   "Horseshoe": "편자",
   "Stirrups": "등자",
   "melody_of_stars_exchange_rate": "장 (Ⅰ): {}개\n광 (Ⅱ): {}개\n고 (Ⅲ): {}개",
+
+  "--World boss": "",
   "garmoth": "가모스",
   "vell": "벨",
   "karanda": "카란다",
@@ -19,5 +29,37 @@
   "golden_pig_king": "금돼지왕",
   "sangoon": "산군",
   "baby_vell": "아기 벨",
-  "zodd": "조드"
+  "zodd": "조드",
+
+  "--Adventurer hub": "",
+  "recruitment": "모집",
+  "recruitment post": "모집 공고",
+  "adventurer hub": {
+    "new post": "모집 공고 만들기",
+    "FAB label": "모집하기"
+  },
+  "adventurer hub category": {
+    "partyAndPlatoon": "파티 & 부대",
+    "guildRaidMercenaries": "길드 레이드 용병"
+  },
+  "recruit method": {
+    "karandaReservation": "Karanda 예약",
+    "inGameWhispers": "인게임 귓속말"
+  },
+  "edit recruitment post": "모집 공고 작성",
+  "edit recruitment": {
+    "title": "제목 (필수)",
+    "guild name": "길드명 (필수)",
+    "number of recruits": "모집 인원 (필수)",
+    "recruit method": "모집 방법",
+    "start immediately": "즉시 모집 시작",
+    "show contents after join": "가입 승인 후 상세 내용 보이기",
+    "details": "모집 상세",
+    "details hint": "hint text",
+    "discord link": "Discord 초대 코드/링크 (선택)",
+    "discord link validate failed": "Discord 초대 코드 또는 링크만 입력할 수 있습니다",
+    "save": "작성 완료",
+    "caution card title": "주의사항",
+    "caution card contents" : "1. 새로운 모집 공고는 1시간에 한 번 게시할 수 있습니다.\n2. 게시된 공고는 삭제할 수 없습니다."
+  }
 }

@@ -46,12 +46,12 @@ class _HorseStatusPageState extends State<HorseStatusPage> {
       ),
       body: dataLoaded
           ? SingleChildScrollView(
-            child: Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: GlobalProperties.widthConstrains,
-                ),
-                child: Column(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: GlobalProperties.widthConstrains,
+                  ),
+                  child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -83,9 +83,9 @@ class _HorseStatusPageState extends State<HorseStatusPage> {
                       ),
                     ],
                   ),
+                ),
               ),
-            ),
-          )
+            )
           : const LoadingIndicator(),
     );
   }
@@ -604,12 +604,14 @@ class _ResultGradeChipLineState extends State<_ResultGradeChipLine> {
       constraints: const BoxConstraints(maxWidth: 540),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: grades
-            .map((e) => Chip(
-                  label: Text(e),
-                  backgroundColor: widget.grade == e ? Colors.blue : null,
-                ))
-            .toList(),
+        children: grades.map((e) {
+          return Chip(
+            label: Text(e),
+            backgroundColor: widget.grade == e ? Colors.blue : Colors.grey,
+            labelStyle: const TextStyle(color: Colors.white),
+            side: BorderSide.none,
+          );
+        }).toList(),
       ),
     );
   }

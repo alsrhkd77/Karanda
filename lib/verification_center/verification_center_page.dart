@@ -8,6 +8,7 @@ import 'package:karanda/verification_center/register_new_family_page.dart';
 import 'package:karanda/verification_center/verification_center_data_controller.dart';
 import 'package:karanda/verification_center/widgets/main_family_name_widget.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
+import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
@@ -21,66 +22,44 @@ class VerificationCenterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
-      body: SingleChildScrollView(
-        padding: GlobalProperties.scrollViewPadding,
-        child: Column(
-          children: [
-            const ListTile(
-              leading: Icon(FontAwesomeIcons.idCard),
-              title: TitleText(
-                '인증 센터',
-                bold: true,
+      appBar: const DefaultAppBar(
+        title: '인증 센터',
+        icon: FontAwesomeIcons.idCard,
+      ),
+      body: CustomBase(
+        children: [
+          TextField(
+            textInputAction: TextInputAction.go,
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search),
+              hintText: '인증 카드의 검증 코드를 입력해주세요',
+              labelText: '인증 카드 검증',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(color: Colors.blue),
               ),
             ),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: GlobalProperties.widthConstrains,
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: TextField(
-                      textInputAction: TextInputAction.go,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        counter: Container(),
-                        hintText: '인증 카드의 검증 코드를 입력해주세요',
-                        labelText: '인증 카드 검증',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(color: Colors.blue),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const ListTile(
-                    title: TitleText(
-                      '내 가문',
-                      bold: true,
-                    ),
-                  ),
-                  _Families(
-                    dataController: dataController,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const ListTile(
-                    title: TitleText(
-                      '내 인증 카드',
-                      bold: true,
-                    ),
-                  ),
-                  _VerificationCardTile(),
-                  _VerificationCardTile(),
-                ],
-              ),
+          ),
+          SizedBox(height: GlobalProperties.scrollViewVerticalPadding),
+          const ListTile(
+            title: TitleText(
+              '내 가문',
+              bold: true,
             ),
-            const SizedBox(height: 50.0),
-          ],
-        ),
+          ),
+          _Families(
+            dataController: dataController,
+          ),
+          SizedBox(height: GlobalProperties.scrollViewVerticalPadding),
+          const ListTile(
+            title: TitleText(
+              '내 인증 카드',
+              bold: true,
+            ),
+          ),
+          _VerificationCardTile(),
+          _VerificationCardTile(),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.add_task),
