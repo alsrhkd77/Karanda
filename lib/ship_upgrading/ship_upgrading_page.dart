@@ -364,14 +364,11 @@ class _AddDailyQuestDialog extends StatelessWidget {
       ),
       actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             context.pop(false);
           },
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.red,
-          ),
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.red),
           child: const Text("취소"),
         ),
         ElevatedButton(

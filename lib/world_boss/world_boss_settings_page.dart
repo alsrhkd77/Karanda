@@ -263,11 +263,8 @@ class _AddAlarmDialogState extends State<_AddAlarmDialog> {
         ],
       ),
       actions: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.red,
-          ),
+        TextButton(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.red),
           onPressed: () {
             context.pop();
           },
