@@ -13,6 +13,7 @@ import 'package:karanda/ship_upgrading/ship_upgrading_settings_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_ship.dart';
 import 'package:karanda/ship_upgrading/widgets/list_by_materials.dart';
 import 'package:karanda/ship_upgrading/widgets/list_by_parts.dart';
+import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -95,14 +96,14 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
                 ),
               ],
             ),
-            body: ListView(
-              padding: GlobalProperties.scrollViewPadding,
+            body: CustomBase(
               children: [
                 _Head(
                     selectedShipStream: dataController.selectedShipData,
                     shipData: dataController.ship,
                     updateSelected: dataController.updateSelected,
-                    dataController: dataController),
+                    dataController: dataController,),
+                SizedBox(height: GlobalProperties.scrollViewVerticalPadding,),
                 _Body(
                   dataController: dataController,
                   screenWidth: MediaQuery.of(context).size.width,
