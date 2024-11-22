@@ -31,7 +31,10 @@ class RegisterNewFamilyPage extends StatelessWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => FamilyVerificationPage(dataController: dataController, familyData: result,),
+            builder: (context) => FamilyVerificationPage(
+              dataController: dataController,
+              familyData: result,
+            ),
           ),
         );
       } else {
@@ -57,11 +60,11 @@ class RegisterNewFamilyPage extends StatelessWidget {
       }
     }
   }
-  
+
   String parseUrl(String url) {
     String result = '';
-    for(String item in url.split('&')){
-      if(item.contains('profileTarget=')){
+    for (String item in url.split('&')) {
+      if (item.contains('profileTarget=')) {
         result = item.split('profileTarget=').last;
         break;
       }
@@ -123,7 +126,8 @@ class RegisterNewFamilyPage extends StatelessWidget {
                       validator: (String? value) {
                         if (value?.isEmpty ?? true) {
                           return '모험가 프로필 URL을 입력해주세요';
-                        } else if (!value!.contains("profileTarget=") || !value.startsWith('https://')) {
+                        } else if (!value!.contains("profileTarget=") ||
+                            !value.startsWith('https://')) {
                           return '올바르지 않은 형식입니다';
                         }
                         return null;
@@ -141,8 +145,9 @@ class RegisterNewFamilyPage extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.indigoAccent),
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.indigoAccent,
+                  ),
                   onPressed: () {
                     final formState = formKey.currentState!;
                     if (formState.validate()) {

@@ -32,6 +32,7 @@ class _MainFamilyChip extends StatelessWidget {
         label: Text('메인'),
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         backgroundColor: Colors.blueAccent,
+        labelStyle: TextStyle(color: Colors.white),
         side: BorderSide.none,
       ),
     );

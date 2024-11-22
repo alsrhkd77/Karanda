@@ -88,7 +88,9 @@ class VerificationCenterPage extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => RegisterNewFamilyPage(dataController: dataController,),
+              builder: (context) => RegisterNewFamilyPage(
+                dataController: dataController,
+              ),
             ),
           );
         },
@@ -122,7 +124,10 @@ class _FamiliesState extends State<_Families> {
         }
         return Column(
           children: snapshot.requireData
-              .map((family) => _FamilyTile(family: family, dataController: widget.dataController,))
+              .map((family) => _FamilyTile(
+                    family: family,
+                    dataController: widget.dataController,
+                  ))
               .toList(),
         );
       },
@@ -134,34 +139,37 @@ class _FamilyTile extends StatelessWidget {
   final VerificationCenterDataController dataController;
   final BdoFamily family;
 
-  const _FamilyTile({super.key, required this.family, required this.dataController});
+  const _FamilyTile(
+      {super.key, required this.family, required this.dataController});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
-      child: InkWell(
+      child: ListTile(
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FamilyVerificationPage(dataController: dataController, familyData: family,),
+              builder: (context) => FamilyVerificationPage(
+                dataController: dataController,
+                familyData: family,
+              ),
             ),
           );
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ListTile(
-            leading: ClassSymbolWidget(className: family.mainClass.name),
-            title: MainFamilyNameWidget(family: family),
-            trailing: family.verified
-                ? const Icon(
-                    Icons.verified,
-                    color: Colors.blueAccent,
-                  )
-                : null,
-          ),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 8.0,
+          horizontal: 16.0,
         ),
+        leading: ClassSymbolWidget(className: family.mainClass.name),
+        title: MainFamilyNameWidget(family: family),
+        trailing: family.verified
+            ? const Icon(
+                Icons.verified,
+                color: Colors.blueAccent,
+              )
+            : null,
       ),
     );
   }
