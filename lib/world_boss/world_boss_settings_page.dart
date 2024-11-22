@@ -57,11 +57,11 @@ class _WorldBossSettingsPageState extends State<WorldBossSettingsPage> {
                 //initiallyExpanded: true,
                 title: const Text('알림 시간'),
                 expandedAlignment: Alignment.centerLeft,
-                childrenPadding: const EdgeInsets.symmetric(
-                    horizontal: 8.0, vertical: 4.0),
+                childrenPadding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 children: List.generate(
                   settings.requireData.alarm.length + 1,
-                      (index) {
+                  (index) {
                     if (index == settings.requireData.alarm.length &&
                         settings.requireData.alarm.length < 10) {
                       return _AddAlarm(
@@ -69,8 +69,7 @@ class _WorldBossSettingsPageState extends State<WorldBossSettingsPage> {
                           showDialog(
                             context: context,
                             builder: (_) => _AddAlarmDialog(
-                              add: (minute) =>
-                                  controller.addAlarm(minute),
+                              add: (minute) => controller.addAlarm(minute),
                             ),
                           );
                         },
@@ -91,8 +90,8 @@ class _WorldBossSettingsPageState extends State<WorldBossSettingsPage> {
               ),
               ExpansionTile(
                 title: const Text("제외할 보스"),
-                childrenPadding: const EdgeInsets.symmetric(
-                    horizontal: 8.0, vertical: 4.0),
+                childrenPadding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 children: controller.fixedBosses.keys.map((e) {
                   return CheckboxListTile(
                     title: Text(e).tr(),
@@ -265,6 +264,10 @@ class _AddAlarmDialogState extends State<_AddAlarmDialog> {
       ),
       actions: [
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+          ),
           onPressed: () {
             context.pop();
           },
@@ -282,7 +285,9 @@ class _AddAlarmDialogState extends State<_AddAlarmDialog> {
             }
           },
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue, foregroundColor: Colors.white),
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+          ),
           child: const Text('설정'),
         )
       ],
