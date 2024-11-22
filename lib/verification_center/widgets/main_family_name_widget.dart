@@ -29,9 +29,9 @@ class _MainFamilyChip extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.0),
       child: Chip(
-        label: Text('메인'),
+        label: Text('대표'),
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blue,
         labelStyle: TextStyle(color: Colors.white),
         side: BorderSide.none,
       ),

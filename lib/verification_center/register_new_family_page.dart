@@ -144,10 +144,6 @@ class RegisterNewFamilyPage extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.indigoAccent,
-                  ),
                   onPressed: () {
                     final formState = formKey.currentState!;
                     if (formState.validate()) {

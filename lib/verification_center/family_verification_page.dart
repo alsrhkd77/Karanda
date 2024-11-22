@@ -24,7 +24,6 @@ class FamilyVerificationPage extends StatefulWidget {
 }
 
 class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
-  final TextStyle leadingStyle = const TextStyle(fontSize: 16);
   late BdoFamily familyData;
 
   @override
@@ -81,7 +80,8 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
         await widget.dataController.setMain(familyData.region, familyData.code);
     if (context.mounted) {
       if (result) {
-        Provider.of<AuthNotifier>(context, listen: false).authorization(); // update user info
+        Provider.of<AuthNotifier>(context, listen: false)
+            .authorization(); // update user info
       }
       Navigator.of(context).pop();
     }
@@ -106,7 +106,8 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
           familyData = result;
         });
         if (result.verified) {
-          Provider.of<AuthNotifier>(context, listen: false).authorization(); // update user info
+          Provider.of<AuthNotifier>(context, listen: false)
+              .authorization(); // update user info
           showVerificationCompleteSnackBar();
         } else {
           showNextVerificationSnackBar();
@@ -186,91 +187,22 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: const DefaultAppBar(
+        title: "가문 인증 정보",
+        icon: Icons.add_task,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: GlobalProperties.scrollViewPadding,
           child: Column(
             children: [
-              const ListTile(
-                leading: Icon(Icons.add_task),
-                title: TitleText(
-                  "가문 인증 정보",
-                  bold: true,
-                ),
-              ),
               ConstrainedBox(
                 constraints: BoxConstraints(
                   maxWidth: GlobalProperties.widthConstrains,
                 ),
                 child: Column(
                   children: [
-                    ListTile(
-                      leading: Text('가문명:', style: leadingStyle),
-                      title: MainFamilyNameWidget(family: familyData),
-                    ),
-                    ListTile(
-                      leading: Text('서버:', style: leadingStyle),
-                      title: Text(familyData.region),
-                    ),
-                    ListTile(
-                      leading: Text('대표 클래스:', style: leadingStyle),
-                      title: Row(
-                        children: [
-                          Text(familyData.mainClass.name),
-                          ClassSymbolWidget(
-                            className: familyData.mainClass.name,
-                          )
-                        ],
-                      ),
-                    ),
-                    ListTile(
-                      leading: Text('인증 상태:', style: leadingStyle),
-                      title: familyData.verified
-                          ? const Row(
-                              children: [
-                                Text('인증 완료'),
-                                SizedBox(width: 8.0),
-                                Icon(
-                                  Icons.verified,
-                                  color: Colors.blue,
-                                ),
-                              ],
-                            )
-                          : const Row(
-                              children: [
-                                Text('미인증'),
-                                SizedBox(
-                                  width: 8.0,
-                                ),
-                                Icon(
-                                  Icons.verified,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-                    ),
-                    ListTile(
-                      leading: Text('인증 시작:', style: leadingStyle),
-                      title: Text(familyData.startVerification
-                              ?.toLocal()
-                              .format(null) ??
-                          "-"),
-                    ),
-                    ListTile(
-                      leading: Text('1단계 인증:', style: leadingStyle),
-                      title: Text(familyData.firstVerification
-                              ?.toLocal()
-                              .format(null) ??
-                          "-"),
-                    ),
-                    ListTile(
-                      leading: Text('2단계 인증:', style: leadingStyle),
-                      title: Text(familyData.secondVerification
-                              ?.toLocal()
-                              .format(null) ??
-                          "-"),
-                    ),
+                    _Profile(familyData: familyData),
                     familyData.verified && familyData.lastUpdated != null
                         ? _RefreshButton(
                             lastUpdated: familyData.lastUpdated!,
@@ -285,13 +217,14 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
                       width: Size.infinite.width,
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ),
                         onPressed: unregister,
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            '가문 삭제',
-                            style: TextStyle(color: Colors.red),
-                          ),
+                          child: Text('가문 삭제'),
                         ),
                       ),
                     ),
@@ -305,14 +238,73 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
       floatingActionButton: familyData.verified
           ? FloatingActionButton.extended(
               onPressed: () {},
-              label: Text('인증 카드 발급'),
-              icon: Icon(Icons.add_card),
+              label: const Text('인증 카드 발급'),
+              icon: const Icon(Icons.add_card),
             )
           : FloatingActionButton.extended(
               onPressed: verify,
-              label: Text('인증 진행'),
-              icon: Icon(Icons.fact_check_outlined),
+              label: const Text('인증 진행'),
+              icon: const Icon(Icons.fact_check_outlined),
             ),
+    );
+  }
+}
+
+class _Profile extends StatelessWidget {
+  final BdoFamily familyData;
+
+  const _Profile({super.key, required this.familyData});
+
+  @override
+  Widget build(BuildContext context) {
+    const TextStyle leadingStyle = TextStyle(fontSize: 16);
+    return Card(
+      margin: const EdgeInsets.all(8.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Text('가문명:', style: leadingStyle),
+              title: MainFamilyNameWidget(family: familyData),
+            ),
+            ListTile(
+              leading: const Text('서버:', style: leadingStyle),
+              title: Text(familyData.region),
+            ),
+            ListTile(
+              leading: const Text('대표 클래스:', style: leadingStyle),
+              title: Row(
+                children: [
+                  Text(familyData.mainClass.name),
+                  ClassSymbolWidget(
+                    className: familyData.mainClass.name,
+                  )
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Text('인증 상태:', style: leadingStyle),
+              title: _VerifiedText(verified: familyData.verified),
+            ),
+            ListTile(
+              leading: const Text('인증 시작:', style: leadingStyle),
+              title: Text(
+                  familyData.startVerification?.toLocal().format(null) ?? "-"),
+            ),
+            ListTile(
+              leading: const Text('1단계 인증:', style: leadingStyle),
+              title: Text(
+                  familyData.firstVerification?.toLocal().format(null) ?? "-"),
+            ),
+            ListTile(
+              leading: const Text('2단계 인증:', style: leadingStyle),
+              title: Text(
+                  familyData.secondVerification?.toLocal().format(null) ?? "-"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -332,11 +324,11 @@ class _VerificationDialogState extends State<_VerificationDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('가문 인증'),
+      title: const Text('가문 인증'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text.rich(
+          const Text.rich(
             TextSpan(
               children: [
                 TextSpan(text: "모험가 프로필의 "),
@@ -352,7 +344,7 @@ class _VerificationDialogState extends State<_VerificationDialog> {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Text(
@@ -365,7 +357,7 @@ class _VerificationDialogState extends State<_VerificationDialog> {
       actions: [
         ElevatedButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text("확인"),
+          child: const Text("확인"),
         ),
       ],
     );
@@ -458,8 +450,7 @@ class _FamilyUnregisterDialogState extends State<_FamilyUnregisterDialog> {
           const SizedBox(
             height: 12,
           ),
-          const Text('1. 가문 삭제 시 연결된 인증 카드도 모두 삭제됩니다.'),
-          const Text('2. 삭제된 데이터는 다시 복구할 수 없습니다.'),
+          const Text('1. 가문 삭제 시 연결된 인증 카드도 모두 삭제됩니다.\n2. 삭제된 데이터는 다시 복구할 수 없습니다.'),
           const SizedBox(
             height: 24.0,
           ),
@@ -504,6 +495,42 @@ class _FamilyUnregisterDialogState extends State<_FamilyUnregisterDialog> {
           ),
           onPressed: check ? () => Navigator.of(context).pop(true) : null,
           child: const Text('확인'),
+        ),
+      ],
+    );
+  }
+}
+
+class _VerifiedText extends StatelessWidget {
+  final bool verified;
+
+  const _VerifiedText({super.key, required this.verified});
+
+  @override
+  Widget build(BuildContext context) {
+    if (verified) {
+      return const Row(
+        children: [
+          Text('인증 완료'),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Icon(
+              Icons.verified,
+              color: Colors.blue,
+            ),
+          ),
+        ],
+      );
+    }
+    return const Row(
+      children: [
+        Text('미인증'),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Icon(
+            Icons.verified,
+            color: Colors.grey,
+          ),
         ),
       ],
     );
