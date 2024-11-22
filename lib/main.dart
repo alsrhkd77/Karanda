@@ -89,7 +89,7 @@ final _actionIconTheme = ActionIconThemeData(
       const Icon(Icons.arrow_back_ios_new),
 );
 
-InputDecorationTheme _inputDecorationTheme = InputDecorationTheme(
+final _inputDecorationTheme = InputDecorationTheme(
   border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(8.0),
     borderSide: const BorderSide(color: Colors.blue),
@@ -159,21 +159,28 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemeData(
               //useMaterial3: true,
               fontFamily: 'Maplestory',
-              //colorSchemeSeed: Colors.indigo,
-              colorSchemeSeed: const Color.fromRGBO(63, 81, 121, 1.0),
+              colorSchemeSeed: Colors.indigo,
+              //colorSchemeSeed: const Color.fromRGBO(63, 81, 121, 1.0),
               //colorSchemeSeed: Color.fromRGBO(61, 133, 184, 1.0),
               //colorSchemeSeed: Color.fromRGBO(164, 210, 224, 1.0),
               brightness: Brightness.dark,
               dropdownMenuTheme: _dropdownMenuTheme,
               actionIconTheme: _actionIconTheme,
               inputDecorationTheme: _inputDecorationTheme,
-              appBarTheme: const AppBarTheme(
-                backgroundColor: Color.fromRGBO(20, 20, 22, 1.0),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.indigo.shade400,
+                ),
               ),
-              scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 22, 1.0),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Color.fromRGBO(24, 24, 26, 1.0),
+              ),
+              scaffoldBackgroundColor: const Color.fromRGBO(24, 24, 26, 1.0),
+              //scaffoldBackgroundColor: const Color.fromRGBO(25, 25, 27, 1.0),
               textTheme: settings.getTextTheme(
                 ThemeData(
-                  colorSchemeSeed: const Color.fromRGBO(63, 81, 121, 1.0),
+                  colorSchemeSeed: Colors.indigo,
                   brightness: Brightness.dark,
                 ).textTheme,
               ),
