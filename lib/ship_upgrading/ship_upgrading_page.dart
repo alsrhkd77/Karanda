@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/common/custom_scroll_behavior.dart';
@@ -72,9 +71,7 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
                   onPressed: dataController.setChangeForm,
                   icon: Icon(
                     Icons.dynamic_form_outlined,
-                    color: setting.requireData.changeForm
-                        ? Colors.blue
-                        : null,
+                    color: setting.requireData.changeForm ? Colors.blue : null,
                   ),
                   tooltip: "리스트 타입",
                 ),
@@ -99,11 +96,14 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
             body: CustomBase(
               children: [
                 _Head(
-                    selectedShipStream: dataController.selectedShipData,
-                    shipData: dataController.ship,
-                    updateSelected: dataController.updateSelected,
-                    dataController: dataController,),
-                SizedBox(height: GlobalProperties.scrollViewVerticalPadding,),
+                  selectedShipStream: dataController.selectedShipData,
+                  shipData: dataController.ship,
+                  updateSelected: dataController.updateSelected,
+                  dataController: dataController,
+                ),
+                SizedBox(
+                  height: GlobalProperties.scrollViewVerticalPadding,
+                ),
                 _Body(
                   dataController: dataController,
                   screenWidth: MediaQuery.of(context).size.width,
