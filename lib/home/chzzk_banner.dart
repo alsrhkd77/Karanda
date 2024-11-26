@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
@@ -12,18 +14,20 @@ class ChzzkBanner extends StatefulWidget {
 }
 
 class _ChzzkBannerState extends State<ChzzkBanner> {
-  bool liveStatus = false;
+  final StreamController controller = StreamController<bool>();
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => getLiveStatus());
+    WidgetsBinding.instance
+        .addPostFrameCallback((timeStamp) => getLiveStatus());
   }
 
   @override
   void activate() {
     super.activate();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => getLiveStatus());
+    WidgetsBinding.instance
+        .addPostFrameCallback((timeStamp) => getLiveStatus());
   }
 
   Future<void> getLiveStatus() async {
@@ -36,27 +40,30 @@ class _ChzzkBannerState extends State<ChzzkBanner> {
     } catch (e) {
       print(e);
     } finally {
-      if(context.mounted && liveStatus != result){
-        setState(() {
-          liveStatus = result;
-        });
-      }
+      controller.sink.add(result);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if(liveStatus){
-      return Card(
-        clipBehavior: Clip.antiAlias,
-        margin: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: () => launchURL('https://chzzk.naver.com/live/${GlobalProperties.chzzkChannelId}'),
-          child: Image.asset('assets/image/live_banner.jpg', fit: BoxFit.cover),
-        ),
-      );
-    }else{
-      return Container();
-    }
+    return StreamBuilder(
+      initialData: false,
+      stream: controller.stream,
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.requireData) {
+          return Card(
+            clipBehavior: Clip.antiAlias,
+            margin: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () => launchURL(
+                  'https://chzzk.naver.com/live/${GlobalProperties.chzzkChannelId}'),
+              child: Image.asset('assets/image/live_banner.jpg',
+                  fit: BoxFit.cover),
+            ),
+          );
+        }
+        return Container();
+      },
+    );
   }
 }
