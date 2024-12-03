@@ -15,8 +15,13 @@ Future<http.Response> get(String url, {Map<String, String>? headers}) async {
   return http.get(Uri.parse(url), headers: headers);
 }
 
-Future<http.Response> post(String url,
-    {Map<String, String>? headers, Object? body, Encoding? encoding, bool? json}) async {
+Future<http.Response> post(
+  String url, {
+  Map<String, String>? headers,
+  Object? body,
+  Encoding? encoding,
+  bool? json,
+}) async {
   headers = await _setToken(headers);
   headers = _setJson(headers, json);
   return http.post(Uri.parse(url),
@@ -25,8 +30,13 @@ Future<http.Response> post(String url,
       encoding: encoding ?? Encoding.getByName('utf-8'));
 }
 
-Future<http.Response> put(String url,
-    {Map<String, String>? headers, Object? body, Encoding? encoding, bool? json}) async {
+Future<http.Response> put(
+  String url, {
+  Map<String, String>? headers,
+  Object? body,
+  Encoding? encoding,
+  bool? json,
+}) async {
   headers = await _setToken(headers);
   headers = _setJson(headers, json);
   return http.put(Uri.parse(url),
@@ -35,8 +45,13 @@ Future<http.Response> put(String url,
       encoding: encoding ?? Encoding.getByName('utf-8'));
 }
 
-Future<http.Response> patch(String url,
-    {Map<String, String>? headers, Object? body, Encoding? encoding, bool? json}) async {
+Future<http.Response> patch(
+  String url, {
+  Map<String, String>? headers,
+  Object? body,
+  Encoding? encoding,
+  bool? json,
+}) async {
   headers = await _setToken(headers);
   headers = _setJson(headers, json);
   return http.patch(Uri.parse(url),
@@ -45,8 +60,13 @@ Future<http.Response> patch(String url,
       encoding: encoding ?? Encoding.getByName('utf-8'));
 }
 
-Future<http.Response> delete(String url,
-    {Map<String, String>? headers, Object? body, Encoding? encoding, bool? json}) async {
+Future<http.Response> delete(
+  String url, {
+  Map<String, String>? headers,
+  Object? body,
+  Encoding? encoding,
+  bool? json,
+}) async {
   headers = await _setToken(headers);
   headers = _setJson(headers, json);
   return http.delete(Uri.parse(url),
