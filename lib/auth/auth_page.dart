@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
-import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/settings/brand_card.dart';
