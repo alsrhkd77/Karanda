@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> with WindowListener {
           context.push('/auth/info');
         },
         icon: CircleAvatar(
-          foregroundImage: Image.network('${Api.discordCDN}$avatar').image,
+          foregroundImage: Image.network(avatar).image,
           radius: 12,
         ),
         label: Text(

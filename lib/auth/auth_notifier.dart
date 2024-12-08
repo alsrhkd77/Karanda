@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/common/api.dart';
@@ -76,9 +77,11 @@ class AuthNotifier with ChangeNotifier {
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
-        _avatar = data['avatar'];
         _username = data['username'];
         _discordId = data['discordId'];
+        _avatar = data['avatar'] == null
+            ? "${Api.discordEmbedAvatar}/${Random().nextInt(6)}.png"
+            : "${Api.discordAvatar}/${data['avatar']}";
         if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
           _mainFamily = BdoFamily.fromData(data['mainFamily']);
         }
@@ -105,9 +108,11 @@ class AuthNotifier with ChangeNotifier {
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.bodyUTF);
         _authenticated = true;
-        _avatar = data['avatar'];
         _username = data['username'];
         _discordId = data['discordId'];
+        _avatar = data['avatar'] == null
+            ? "${Api.discordEmbedAvatar}/${Random().nextInt(6)}.png"
+            : "${Api.discordAvatar}/${data['avatar']}";
         if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
           _mainFamily = BdoFamily.fromData(data['mainFamily']);
         }

@@ -27,7 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
       String avatar = Provider.of<AuthNotifier>(context, listen: false).avatar;
       return ListTile(
         leading: CircleAvatar(
-          foregroundImage: Image.network('${Api.discordCDN}$avatar').image,
+          foregroundImage: Image.network(avatar).image,
           radius: 12,
         ),
         title: Text(username),

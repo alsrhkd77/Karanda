@@ -207,7 +207,7 @@ class _AuthPageState extends State<AuthPage> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: NetworkImage('${Api.discordCDN}$avatar'),
+                  image: NetworkImage(avatar),
                   fit: BoxFit.fill,
                 ),
               ),

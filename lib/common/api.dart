@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 class Api {
+  static String scheme = kDebugMode ? 'http' : 'https';
+
   static String get host {
     if (kReleaseMode) {
       return 'https://www.karanda.kr';
@@ -49,7 +51,11 @@ class Api {
 
   static String get latestInstaller => 'https://github.com/Hammuu1112/Karanda/releases/latest';
 
-  static String get discordCDN => 'https://cdn.discordapp.com/avatars/';
+  static String get _discordCDN => 'https://cdn.discordapp.com';
+
+  static String get discordAvatar => '$_discordCDN/avatars';
+
+  static String get discordEmbedAvatar => '$_discordCDN/embed/avatars';
 
   static String get _checklist => '$_server/checklist';
 
@@ -64,6 +70,8 @@ class Api {
   static String get _chzzk => '$_server/chzzk';
 
   static String get _bdoFamily => '$_server/auth/bdo-family';
+
+  static String get _adventurerHub => '$_server/adventurer-hub';
 
   static String get _bdoNews => 'https://raw.githubusercontent.com/Hammuu1112/news/main/news';
 
@@ -135,4 +143,6 @@ class Api {
   static String get refreshFamilyData => '$_bdoFamily/refresh';
 
   static String get setMainFamily => '$_bdoFamily/set-main';
+
+  static String get newRecruitment => '$_adventurerHub/new-post';
 }
