@@ -20,20 +20,20 @@ class AuthNotifier with ChangeNotifier {
 
   bool _authenticated = false;
   bool _waitResponse = false;
-  late String _username;
-  late String _avatar;
-  late String _discordId;
+  String? _username;
+  String? _avatar;
+  String? _discordId;
   BdoFamily? _mainFamily;
 
   bool get authenticated => _authenticated;
 
   bool get waitResponse => _waitResponse;
 
-  String get username => _username;
+  String get username => _username ?? "";
 
-  String get avatar => _avatar;
+  String get avatar => _avatar ?? "";
 
-  String get discordId => _discordId;
+  String get discordId => _discordId ?? "";
 
   BdoFamily? get mainFamily => _mainFamily;
 
