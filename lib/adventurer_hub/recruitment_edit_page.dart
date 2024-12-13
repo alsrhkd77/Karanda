@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,7 @@ import 'package:karanda/adventurer_hub/models/recruitment.dart';
 import 'package:karanda/common/enums/bdo_region.dart';
 import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/enums/recruitment_category.dart';
+import 'package:karanda/common/rest_client.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
@@ -47,7 +50,7 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
       }
       maximumTextController.text =
           widget.recruitment!.maximumParticipants.toString();
-      contentTextController.text = widget.recruitment!.contents ?? "";
+      contentTextController.text = widget.recruitment!.content ?? "";
       discordTextController.text = widget.recruitment!.discordLink ?? "";
     }
     super.initState();
@@ -59,13 +62,22 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
       builder: (context) => const LoadingIndicatorDialog(title: "Upload"),
     );
 
-    await Future.delayed(Duration(seconds: 2));
-    int statusCode = 200;
+    final response = await RestClient.post(
+      "adventurer-hub/new-post",
+      body: jsonEncode(recruitment.toData()),
+      json: true,
+    );
 
     if (context.mounted) Navigator.of(context).pop();
-    if (statusCode == 200) {
-      print("go detail page");
-    } else if (statusCode == 401) {
+    if (response.statusCode == 200) {
+      int postId = int.parse(response.body);
+      if (context.mounted) {
+        Navigator.of(context).pushReplacementNamed(
+          '/adventurer-hub/posts/$postId',
+        );
+        //context.goWithGa('/adventurer-hub/posts/$postId');
+      }
+    } else if (response.statusCode == 401) {
       print("need login");
     } else {
       print("failed");
@@ -220,7 +232,7 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                 controller: contentTextController,
                 maxLines: null,
                 minLines: 12,
-                maxLength: 1024,
+                maxLength: 1000,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 16.0,
@@ -234,6 +246,11 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
               title: TextFormField(
                 controller: discordTextController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                    RegExp(r'[1-9A-Za-z:/-\\.]+'),
+                  ),
+                ],
                 validator: (String? value) {
                   if (value == null ||
                       value.isEmpty ||
@@ -242,10 +259,10 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                     return null;
                   }
                   return context
-                      .tr("edit recruitment.discord link validate failed");
+                      .tr("edit recruitment.discord code validate failed");
                 },
                 decoration: InputDecoration(
-                  label: const Text("edit recruitment.discord link").tr(),
+                  label: const Text("edit recruitment.discord code").tr(),
                 ),
               ),
             ),
@@ -271,10 +288,9 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                           widget.recruitment?.currentParticipants ?? 0,
                       maximumParticipants:
                           int.parse(maximumTextController.text),
-                      contents: contentTextController.text,
+                      content: contentTextController.text.trim(),
                       discordLink: discordTextController.text,
                       guildName: guildTextController.text,
-                      //서버에서 공백 제거하기
                       subcategory: widget.recruitment?.subcategory,
                       showContentAfterJoin:
                           (widget.recruitment?.recruitMethod ??
@@ -340,4 +356,3 @@ class _NoteCard extends StatelessWidget {
     );
   }
 }
-

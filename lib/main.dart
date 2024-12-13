@@ -98,11 +98,10 @@ final _inputDecorationTheme = InputDecorationTheme(
 );
 
 class MyApp extends StatelessWidget {
-  MyApp({
-    Key? key,
-  }) : super(key: key);
   final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
+
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override

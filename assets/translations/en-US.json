@@ -56,10 +56,27 @@
     "show contents after join": "Show details after join",
     "details": "Recruitment details",
     "details hint": "hint text",
-    "discord link": "Discord invitation code or link",
-    "discord link validate failed": "You can only enter a Discord invite code or link",
+    "discord code": "Discord invitation code",
+    "discord code validate failed": "Enter your Discord invite code",
     "save": "Save",
     "caution card title": "Caution",
     "caution card contents" : "1. New posts can be published once per hour.\n2. Published posts cannot be deleted."
+  },
+  "recruitment post detail": {
+    "status": {
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "action": {
+      "open": "Open",
+      "close": "Close",
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "reject": "reject",
+      "approve": "Approve"
+    },
+    "success": "Request success",
+    "failed": "Request failed",
+    "copy": "Copy family name"
   }
 }

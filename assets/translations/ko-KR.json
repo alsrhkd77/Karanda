@@ -56,10 +56,27 @@
     "show contents after join": "가입 승인 후 상세 내용 보이기",
     "details": "모집 상세",
     "details hint": "hint text",
-    "discord link": "Discord 초대 코드/링크 (선택)",
-    "discord link validate failed": "Discord 초대 코드 또는 링크만 입력할 수 있습니다",
+    "discord code": "Discord 초대 코드 (선택)",
+    "discord code validate failed": "Discord 초대 코드를 입력해주세요",
     "save": "작성 완료",
     "caution card title": "주의사항",
     "caution card contents" : "1. 새로운 모집 공고는 1시간에 한 번 게시할 수 있습니다.\n2. 게시된 공고는 삭제할 수 없습니다."
+  },
+  "recruitment post detail": {
+    "status": {
+      "open": "모집중",
+      "closed": "마감"
+    },
+    "action": {
+      "open": "모집 시작",
+      "close": "모집 마감",
+      "apply": "공고 지원",
+      "cancel": "지원 취소",
+      "reject": "거절",
+      "approve": "승인"
+    },
+    "success": "요청 성공",
+    "failed": "요청 실패",
+    "copy": "가문명 복사"
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/adventurer_hub/adventurer_hub_page.dart';
+import 'package:karanda/adventurer_hub/recruitment_detail_page.dart';
 import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/atoraxxion/sycrakea_page.dart';
 import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
@@ -31,6 +32,7 @@ import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
 import 'package:karanda/verification_center/verification_center_page.dart';
+import 'package:karanda/widgets/invalid_access_page.dart';
 import 'package:karanda/widgets/loading_page.dart';
 import 'package:karanda/world_boss/world_boss_page.dart';
 import 'package:provider/provider.dart';
@@ -207,21 +209,37 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'verification-center',
           builder: (context, state) {
-            if(context.watch<AuthNotifier>().waitResponse){
+            if (context.watch<AuthNotifier>().waitResponse) {
               return const LoadingPage();
             }
             return VerificationCenterPage();
           },
         ),
         GoRoute(
-          path: 'adventurer-hub',
-          builder: (context, state) {
-            if(context.watch<AuthNotifier>().waitResponse){
-              return const LoadingPage();
-            }
-            return AdventurerHubPage();
-          },
-        ),
+            path: 'adventurer-hub',
+            builder: (context, state) {
+              if (context.watch<AuthNotifier>().waitResponse) {
+                return const LoadingPage();
+              }
+              return AdventurerHubPage();
+            },
+            routes: [
+              GoRoute(
+                path: 'posts/:postId',
+                builder: (context, state) {
+                  int? postId =
+                      int.tryParse(state.pathParameters['postId'] ?? 'failed');
+                  if (postId == null) {
+                    return const InvalidAccessPage();
+                  } else {
+                    return RecruitmentDetailPage(
+                      postId: postId,
+                      authenticated: context.read<AuthNotifier>().authenticated,
+                    );
+                  }
+                },
+              )
+            ]),
       ],
     ),
   ],

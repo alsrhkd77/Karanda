@@ -16,9 +16,10 @@ class Recruitment {
   late int currentParticipants;
   late int maximumParticipants;
   String? guildName;
-  String? contents;
+  String? content;
   String? discordLink;
   bool? showContentAfterJoin;
+  bool blinded = false;
 
   Recruitment({
     this.id,
@@ -33,7 +34,7 @@ class Recruitment {
     required this.currentParticipants,
     required this.maximumParticipants,
     this.guildName,
-    this.contents,
+    this.content,
     this.discordLink,
     this.showContentAfterJoin,
   });
@@ -42,7 +43,7 @@ class Recruitment {
     if (!data.containsKey("id") || !data.containsKey("createdAt") || !data.containsKey("author")){
       throw Exception("Invalid data - Recruitment");
     }
-    author = data["author"]; //TODO: from data 필요
+    author = User.fromData(data["author"]);
     id = data["id"];
     region = BdoRegion.values.byName(data["region"]);
     title = data["title"];
@@ -54,25 +55,26 @@ class Recruitment {
     currentParticipants = data["currentParticipants"];
     maximumParticipants = data["maximumParticipants"];
     guildName = data["guildName"];
-    contents = data["contents"];
+    content = data["content"];
     discordLink = data["discordLink"];
     showContentAfterJoin = data["showContentAfterJoin"];
+    blinded = data["blinded"];
   }
 
   Map toData(){
     Map data = {};
     data['id'] = id;
     data['author'] = author;
-    data['region'] = region;
+    data['region'] = region.name;
     data['title'] = title;
-    data['category'] = category;
+    data['category'] = category.name;
     data['subcategory'] = subcategory;
     data['status'] = status;
-    data['recruitMethod'] = recruitMethod;
+    data['recruitMethod'] = recruitMethod.name;
     data['currentParticipants'] = currentParticipants;
     data['maximumParticipants'] = maximumParticipants;
     data['guildName'] = guildName;
-    data['contents'] = contents;
+    data['content'] = content;
     data['discordLink'] = discordLink;
     data['showContentAfterJoin'] = showContentAfterJoin;
     return data;

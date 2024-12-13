@@ -1,12 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/adventurer_hub/tabs/home_tab.dart';
+import 'package:karanda/adventurer_hub/adventurer_hub_data_controller.dart';
 import 'package:karanda/adventurer_hub/recruitment_edit_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/enums/recruitment_category.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
+import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:karanda/widgets/need_login_snack_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +23,8 @@ class AdventurerHubPage extends StatefulWidget {
 class _AdventurerHubPageState extends State<AdventurerHubPage>
     with TickerProviderStateMixin {
   late final TabController _tabController;
+  final AdventurerHubDataController dataController =
+      AdventurerHubDataController();
 
   @override
   void initState() {
@@ -62,10 +67,14 @@ class _AdventurerHubPageState extends State<AdventurerHubPage>
       body: TabBarView(
         controller: _tabController,
         children: [
-          CustomBase(
-            children: [
-              Text("All!"),
-            ],
+          StreamBuilder(
+            stream: dataController.postsStream,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return LoadingIndicator();
+              }
+              return HomeTab(data: snapshot.requireData);
+            },
           ),
           CustomBase(
             children: [
@@ -88,7 +97,7 @@ class _AdventurerHubPageState extends State<AdventurerHubPage>
           ? null
           : FloatingActionButton.extended(
               onPressed: () async {
-                if(context.read<AuthNotifier>().authenticated){
+                if (context.read<AuthNotifier>().authenticated) {
                   RecruitmentCategory? selected = await showDialog(
                     context: context,
                     builder: (context) => const _SelectCategoryDialog(),
