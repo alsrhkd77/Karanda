@@ -15,6 +15,7 @@ import 'package:karanda/home/chzzk_banner.dart';
 import 'package:karanda/home/widgets/link_section_widget.dart';
 import 'package:karanda/home/widgets/service_section_widget.dart';
 import 'package:karanda/widgets/bdo_clock.dart';
+import 'package:karanda/widgets/button_loading_indicator.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -100,10 +101,7 @@ class _HomePageState extends State<HomePage> with WindowListener {
         ),
         padding: const EdgeInsets.all(16.0));
     if (Provider.of<AuthNotifier>(context).waitResponse) {
-      return const SpinKitThreeBounce(
-        size: 15.0,
-        color: Colors.blue,
-      );
+      return const ButtonLoadingIndicator();
     }
     if (Provider.of<AuthNotifier>(context).authenticated) {
       String username =
