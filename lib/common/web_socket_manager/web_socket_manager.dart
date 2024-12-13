@@ -19,9 +19,9 @@ class WebSocketManager {
 
   WebSocketManager._internal() {
     activate();
-    if(kIsWeb){
-      _webVisibility.stream.listen((visible){
-        if(visible){
+    if (kIsWeb) {
+      _webVisibility.stream.listen((visible) {
+        if (visible) {
           activate();
         } else {
           deactivate();
@@ -37,8 +37,8 @@ class WebSocketManager {
     }
   }
 
-  void deactivate(){
-    if(_client != null && _client!.connected){
+  void deactivate() {
+    if (_client != null && _client!.connected) {
       _client!.deactivate();
     }
   }
@@ -77,7 +77,11 @@ class WebSocketManager {
       }
     }
     headers.addAll({'Qualification': TokenFactory.serviceToken()});
-    return _client?.subscribe(destination: destination, headers: headers, callback: callback);
+    return _client?.subscribe(
+      destination: destination,
+      headers: headers,
+      callback: callback,
+    );
   }
 
   StompConfig _buildConfig() {
@@ -90,12 +94,14 @@ class WebSocketManager {
         stompConnectHeaders: {
           "Qualification": TokenFactory.serviceToken(),
         },
-      onConnect: (frame) async {
-        for(var sub in _subscription.values){
-          sub.unsubscribeFn = await _subscribe(destination: sub.destination, callback: sub.callback);
-        }
-      }
-    );
+        onConnect: (frame) async {
+          for (var sub in _subscription.values) {
+            sub.unsubscribeFn = await _subscribe(
+              destination: sub.destination,
+              callback: sub.callback,
+            );
+          }
+        });
   }
 }
 
@@ -104,8 +110,9 @@ class _Subscription {
   void Function(StompFrame message) callback;
   void Function({Map<String, String>? unsubscribeHeaders})? unsubscribeFn;
 
-  _Subscription(
-      {required this.destination,
-      required this.callback,
-      required this.unsubscribeFn});
+  _Subscription({
+    required this.destination,
+    required this.callback,
+    required this.unsubscribeFn,
+  });
 }
