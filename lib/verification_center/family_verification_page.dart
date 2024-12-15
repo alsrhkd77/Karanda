@@ -42,7 +42,7 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
       showLoadingDialog();
       bool result = await widget.dataController
           .unregister(familyData.region, familyData.code);
-      if (context.mounted) {
+      if (mounted) {
         if (result) {
           Provider.of<AuthNotifier>(context, listen: false)
               .authorization(); // update user info
@@ -50,8 +50,8 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
         } else {
           showFailedSnackBar();
         }
+        Navigator.of(context).pop();
       }
-      Navigator.of(context).pop();
     }
   }
 
@@ -59,7 +59,7 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
     showLoadingDialog();
     BdoFamily? newFamily =
         await widget.dataController.refresh(familyData.region, familyData.code);
-    if (context.mounted) {
+    if (mounted) {
       if (newFamily != null) {
         setState(() {
           familyData = newFamily;
@@ -79,7 +79,7 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
     showLoadingDialog();
     bool result =
         await widget.dataController.setMain(familyData.region, familyData.code);
-    if (context.mounted) {
+    if (mounted) {
       if (result) {
         Provider.of<AuthNotifier>(context, listen: false)
             .authorization(); // update user info
@@ -99,14 +99,14 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
       showLoadingDialog();
       BdoFamily? result = await widget.dataController
           .verify(familyData.region, familyData.code);
-      if (context.mounted) Navigator.of(context).pop();
+      if (mounted) Navigator.of(context).pop();
       if (result == null) {
         showFailedSnackBar();
       } else {
         setState(() {
           familyData = result;
         });
-        if (result.verified) {
+        if (result.verified && mounted) {
           Provider.of<AuthNotifier>(context, listen: false)
               .authorization(); // update user info
           showVerificationCompleteSnackBar();

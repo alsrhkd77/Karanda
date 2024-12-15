@@ -68,10 +68,10 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
       json: true,
     );
 
-    if (context.mounted) Navigator.of(context).pop();
+    if (mounted) Navigator.of(context).pop();
     if (response.statusCode == 200) {
       int postId = int.parse(response.body);
-      if (context.mounted) {
+      if (mounted) {
         Navigator.of(context).pushReplacementNamed(
           '/adventurer-hub/posts/$postId',
         );
