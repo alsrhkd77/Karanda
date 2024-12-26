@@ -17,6 +17,7 @@ class OverlayManager {
     "worldBossShowAlways": false,
     "bossHpScaleIndicator": false,
     "clock": false,
+    "adventurerHub": false,
   };
 
   Stream<Map<String, bool>> get overlayStatus =>

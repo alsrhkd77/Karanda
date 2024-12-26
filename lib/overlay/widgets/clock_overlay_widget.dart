@@ -60,28 +60,23 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
         return CustomAngularHandle(handle: handle);
       },
       contentBuilder: (context, rect, flip) {
-        return AnimatedOpacity(
-          opacity: widget.editMode
-              ? 1.0
-              : widget.enabled
-                  ? 1.0
-                  : 0.0,
-          duration: const Duration(milliseconds: 500),
-          child: Card(
-            elevation: 0.0,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: StreamBuilder(
-                stream: realTime.stream,
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const FittedBox(
-                      fit: BoxFit.contain,
-                      child: LoadingIndicator(),
-                    );
-                  }
-                  TimeOfDay now = TimeOfDay.fromDateTime(snapshot.requireData);
-                  return FittedBox(
+        return StreamBuilder(
+          stream: realTime.stream,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const FittedBox(
+                fit: BoxFit.contain,
+                child: LoadingIndicator(),
+              );
+            }
+            TimeOfDay now = TimeOfDay.fromDateTime(snapshot.requireData);
+            return AnimatedOpacity(
+              opacity: widget.enabled ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 300),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: FittedBox(
                     fit: BoxFit.contain,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -129,11 +124,11 @@ class _ClockOverlayWidgetState extends State<ClockOverlayWidget> {
                         ),
                       ],
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );

@@ -3,19 +3,33 @@ import 'dart:convert';
 import 'dart:developer' as developer;
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/services.dart';
+import 'package:karanda/adventurer_hub/models/recruitment.dart';
 import 'package:karanda/overlay/utils/overlay_utils.dart' as util;
 
 class OverlayDataController {
   Size _screenSize = Size.zero;
   final Map<String, void Function()> _callback = {};
 
-  final StreamController<Map> _overlayStatusController = StreamController<Map>();
+  final StreamController<Map> _overlayStatusController =
+      StreamController<Map>();
   final StreamController<bool> _editModeController = StreamController<bool>();
-  final StreamController<Map> _nextWorldBossDataController = StreamController<Map>();
+  final StreamController<Map> _nextWorldBossDataController =
+      StreamController<Map>();
+  final StreamController<List<Recruitment>> _adventurerHubDataController =
+      StreamController<List<Recruitment>>();
+  final StreamController<String> _notificationDataController =
+      StreamController<String>.broadcast();
 
   Stream<bool> get editModeStream => _editModeController.stream;
+
   Stream<Map> get nextBossStream => _nextWorldBossDataController.stream;
+
   Stream<Map> get overlayStatusStream => _overlayStatusController.stream;
+
+  Stream<List<Recruitment>> get adventurerHubStream =>
+      _adventurerHubDataController.stream;
+
+  Stream<String> get notificationStream => _notificationDataController.stream;
 
   Size get screenSize => _screenSize;
 
@@ -30,7 +44,10 @@ class OverlayDataController {
     registerCallback(
         method: "initialize",
         callback: () {
-          util.setOverlayMode(width: _screenSize.width, height: _screenSize.height);
+          util.setOverlayMode(
+            width: _screenSize.width,
+            height: _screenSize.height,
+          );
           _editModeController.sink.add(false);
         });
     registerCallback(
@@ -60,6 +77,16 @@ class OverlayDataController {
       case "next world boss":
         _nextWorldBossDataController.sink.add(jsonDecode(call.arguments));
         break;
+      case "adventurer hub":
+        List<Recruitment> posts = [];
+        for(Map data in jsonDecode(call.arguments)){
+          posts.add(Recruitment.fromData(data));
+        }
+        _adventurerHubDataController.sink.add(posts);
+        break;
+      case "notification":
+        _notificationDataController.sink.add(call.arguments);
+        break;
       default:
         developer.log(
           'Unsupported method ${call.method}',
@@ -73,11 +100,11 @@ class OverlayDataController {
     _screenSize = Size(width, height);
   }
 
-  void setOverlayStatus(Map data){
+  void setOverlayStatus(Map data) {
     _overlayStatusController.sink.add(data);
   }
 
-  void disableEditMode(){
+  void disableEditMode() {
     util.disableEditMode();
     _editModeController.sink.add(false);
   }

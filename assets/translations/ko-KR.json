@@ -3,6 +3,7 @@
   "cancel": "취소",
   "Karanda": "카란다",
   "reporting": "신고하기",
+  "login required": "로그인이 필요합니다.",
 
   "--Text Field validator": "",
   "validate empty": "필수입니다",
@@ -32,15 +33,24 @@
   "zodd": "조드",
 
   "--Adventurer hub": "",
+  "adventurer hub title": "모험가 허브 (Beta)",
   "recruitment": "모집",
   "recruitment post": "모집 공고",
   "adventurer hub": {
     "new post": "모집 공고 만들기",
-    "FAB label": "모집하기"
+    "FAB label": "모집하기",
+    "members": "모집 인원\n({})",
+    "require main family": "대표 가문이 설정되지 않았습니다.",
+    "recently applied": "최근 지원 내역",
+    "recently applied empty": "최근 지원 내역이 없습니다.",
+    "my posts": "작성한 모집",
+    "my posts empty": "최근 작성한 모집이 없습니다.",
+    "no posts open": "모집중인 공고가 없습니다.",
+    "post opened": "모집 시작 [ {} ]"
   },
   "adventurer hub category": {
     "partyAndPlatoon": "파티 & 부대",
-    "guildRaidMercenaries": "길드 레이드 용병"
+    "guildWarHeroes": "길드 용병"
   },
   "recruit method": {
     "karandaReservation": "Karanda 예약",
@@ -63,9 +73,19 @@
     "caution card contents" : "1. 새로운 모집 공고는 1시간에 한 번 게시할 수 있습니다.\n2. 게시된 공고는 삭제할 수 없습니다."
   },
   "recruitment post detail": {
-    "status": {
+    "chip": {
       "open": "모집중",
-      "closed": "마감"
+      "closed": "마감",
+      "applied": "대기",
+      "canceled": "취소",
+      "approved": "승인",
+      "rejected": "거절"
+    },
+    "FAB": {
+      "applied": "신청 완료됨",
+      "canceled": "신청 취소됨",
+      "approved": "승인 완료됨\n코드: {}",
+      "rejected": "승인 거절됨"
     },
     "action": {
       "open": "모집 시작",
@@ -77,6 +97,20 @@
     },
     "success": "요청 성공",
     "failed": "요청 실패",
-    "copy": "가문명 복사"
+    "copy family name": "가문명 복사",
+    "copy code": "코드 복사",
+    "code": "코드: {}",
+    "max count": "최대: {}",
+    "current count": "승인됨: {}",
+    "applicants count": "신청자: {}",
+    "max count with current": "현재: {}  최대: {}",
+    "details": "모집 상세",
+    "applicants": "신청자",
+    "applicants are empty": "아직 신청자가 없습니다.",
+    "search not fount": "일치하는 검색 결과가 없습니다.",
+    "search": "검색",
+    "search bar hint": "가문명 또는 코드",
+    "edit": "수정",
+    "share": "공유하기"
   }
 }

@@ -13,9 +13,12 @@ class ButtonLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SpinKitThreeBounce(
-      size: size,
-      color: color,
+    return SizedBox(
+      width: size * 2,
+      child: SpinKitThreeBounce(
+        size: size,
+        color: color,
+      ),
     );
   }
 }

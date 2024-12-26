@@ -146,7 +146,7 @@ class _ServiceTile extends StatelessWidget {
           children: [
             const Icon(
               Icons.lock,
-              color: Colors.redAccent,
+              color: Colors.red,
             ),
             const SizedBox(
               width: 8.0,

@@ -10,8 +10,10 @@ class RecruitmentStatusChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Chip(
       label: Text(
-        "recruitment post detail.status.${status ? "open" : "closed"}",
-      ).tr(),
+        context.tr(
+          "recruitment post detail.chip.${status ? "open" : "closed"}",
+        ),
+      ),
       backgroundColor: status ? Colors.green : Colors.red,
       labelStyle: const TextStyle(color: Colors.white),
       side: BorderSide.none,

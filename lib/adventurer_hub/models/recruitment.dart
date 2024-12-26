@@ -1,3 +1,4 @@
+import 'package:karanda/adventurer_hub/models/applicant.dart';
 import 'package:karanda/auth/user.dart';
 import 'package:karanda/common/enums/bdo_region.dart';
 import 'package:karanda/common/enums/recruit_method.dart';
@@ -20,6 +21,7 @@ class Recruitment {
   String? discordLink;
   bool? showContentAfterJoin;
   bool blinded = false;
+  Applicant? applicant;
 
   Recruitment({
     this.id,
@@ -58,15 +60,19 @@ class Recruitment {
     content = data["content"];
     discordLink = data["discordLink"];
     showContentAfterJoin = data["showContentAfterJoin"];
-    blinded = data["blinded"];
+    blinded = data["blinded"] ?? false;
+    if(data.containsKey("applicant") && data["applicant"] != null){
+      applicant = Applicant.fromData(data["applicant"]);
+    }
   }
 
   Map toData(){
     Map data = {};
     data['id'] = id;
-    data['author'] = author;
+    data['author'] = author?.toData();
     data['region'] = region.name;
     data['title'] = title;
+    data["createdAt"] = createdAt.toString();
     data['category'] = category.name;
     data['subcategory'] = subcategory;
     data['status'] = status;

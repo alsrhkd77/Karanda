@@ -15,9 +15,9 @@ class InvalidAccessPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.warning,
-              color: Colors.red.shade400,
+              color: Colors.red,
               size: 180,
             ),
             const Padding(

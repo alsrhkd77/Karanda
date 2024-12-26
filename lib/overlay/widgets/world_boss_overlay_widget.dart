@@ -8,6 +8,7 @@ import 'package:karanda/common/real_time.dart';
 import 'package:karanda/common/server_time.dart';
 import 'package:karanda/overlay/overlay_data_controller.dart';
 import 'package:karanda/overlay/utils/box_utils.dart';
+import 'package:karanda/overlay/widgets/edit_mode_card_widget.dart';
 import 'package:karanda/widgets/custom_angular_handle.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 
@@ -91,32 +92,36 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
         return CustomAngularHandle(handle: handle);
       },
       contentBuilder: (context, rect, flip) {
-        return AnimatedOpacity(
-          duration: const Duration(milliseconds: 500),
-          opacity: widget.editMode
-              ? 1.0
-              : widget.enabled
+        return StreamBuilder(
+          stream: _dataController.nextBossStream,
+          builder: (context, nextBoss) {
+            if (widget.editMode) {
+              return const EditModeCardWidget(title: "월드 보스");
+            } else if (!nextBoss.hasData) {
+              return Opacity(
+                opacity: widget.enabled ? 1.0 : 0.0,
+                child: const Card(
+                  child: LoadingIndicator(
+                    size: 40,
+                  ),
+                ),
+              );
+            }
+            DateTime spawnTime =
+                DateTime.parse(nextBoss.requireData["spawnTime"]);
+            String names = nextBoss.requireData["names"];
+            return AnimatedOpacity(
+              opacity: widget.enabled
                   ? widget.showAlways
                       ? 1.0
                       : opacity
                   : 0.0,
-          child: Card(
-            elevation: 0.0,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-              child: StreamBuilder(
-                stream: _dataController.nextBossStream,
-                builder: (context, nextBoss) {
-                  if (!nextBoss.hasData) {
-                    return const LoadingIndicator(
-                      size: 40,
-                    );
-                  }
-                  DateTime spawnTime =
-                      DateTime.parse(nextBoss.requireData["spawnTime"]);
-                  String names = nextBoss.requireData["names"];
-                  return Column(
+              duration: const Duration(milliseconds: 300),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 12.0),
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       ListTile(
@@ -130,19 +135,6 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                                 fontWeight: FontWeight.bold,
                               ),
                         ),
-                        /*trailing: StreamBuilder(
-                          stream: realTime.stream,
-                          builder: (context, realTimeSnapshot) {
-                            return Text(
-                              realTimeSnapshot.hasData
-                                  ? TimeOfDay.fromDateTime(
-                                          realTimeSnapshot.requireData)
-                                      .timeWithoutPeriod()
-                                  : '',
-                              style: Theme.of(context).textTheme.titleMedium,
-                            );
-                          },
-                        ),*/
                         trailing: Text(
                           spawnTime.format('HH:mm'),
                           style: Theme.of(context).textTheme.titleMedium,
@@ -152,60 +144,44 @@ class _WorldBossOverlayWidgetState extends State<WorldBossOverlayWidget> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: StreamBuilder(
-                              stream: serverTime.stream,
-                              builder: (context, serverTimeSnapshot) {
-                                if (!serverTimeSnapshot.hasData) {
-                                  return const Text("");
-                                }
-                                Duration diff = spawnTime
-                                    .difference(serverTimeSnapshot.requireData);
-                                TextStyle? style =
-                                    Theme.of(context).textTheme.titleLarge;
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    /*
+                            stream: serverTime.stream,
+                            builder: (context, serverTimeSnapshot) {
+                              if (!serverTimeSnapshot.hasData) {
+                                return const Text("");
+                              }
+                              Duration diff = spawnTime
+                                  .difference(serverTimeSnapshot.requireData);
+                              TextStyle? style =
+                                  Theme.of(context).textTheme.titleLarge;
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
                                   Text(
-                                    timeOfDay.timeWithoutPeriod(),
+                                    names,
+                                    //'불가살, 우투리\n누베르, 오핀',
                                     style: style,
+                                    textAlign: TextAlign.center,
                                   ),
-                                   */
-                                    /*
-                                    SizedBox(
-                                      width: 200,
-                                      child: AutoSizeText(
-                                        '$names',
-                                        maxLines: 2,
-                                        textAlign: TextAlign.center,
-                                        style: style,
-                                      ),
-                                    ),
-                                     */
-                                    Text(
-                                      names,
-                                      //'불가살, 우투리\n누베르, 오핀',
-                                      style: style,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    Text(
-                                      diff.isNegative
-                                          ? '출현!'
-                                          : '${diff.inMinutes + 1}분 뒤',
-                                      style: style,
-                                    )
-                                  ],
-                                );
-                              }),
+                                  Text(
+                                    diff.isNegative
+                                        ? '출현!'
+                                        : '${diff.inMinutes + 1}분 뒤',
+                                    style: style,
+                                  )
+                                ],
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ],
-                  );
-                },
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );

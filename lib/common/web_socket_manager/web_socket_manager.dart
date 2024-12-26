@@ -46,12 +46,14 @@ class WebSocketManager {
   Future<void> register(
       {required String destination,
       required void Function(StompFrame message) callback}) async {
-    var unsubscribeFn =
-        await _subscribe(destination: destination, callback: callback);
+    var unsubscribeFn = _client != null && _client!.isActive
+        ? await _subscribe(destination: destination, callback: callback)
+        : null;
     _subscription[destination] = _Subscription(
-        destination: destination,
-        callback: callback,
-        unsubscribeFn: unsubscribeFn);
+      destination: destination,
+      callback: callback,
+      unsubscribeFn: unsubscribeFn,
+    );
   }
 
   void unregister({required String destination}) {
@@ -70,13 +72,10 @@ class WebSocketManager {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'karanda-token');
     if (token != null) {
-      if (kDebugMode) {
-        headers.addAll({'Authorization': "Bearer $token"});
-      } else {
-        headers.addAll({'Authorization': token});
-      }
+      headers.addAll({'Authorization': token});
     }
     headers.addAll({'Qualification': TokenFactory.serviceToken()});
+    destination = destination.replaceFirst('/REGION/', '/KR/');
     return _client?.subscribe(
       destination: destination,
       headers: headers,
@@ -86,22 +85,23 @@ class WebSocketManager {
 
   StompConfig _buildConfig() {
     return StompConfig(
-        url: Api.webSocketChannel,
-        reconnectDelay: const Duration(seconds: 30),
-        connectionTimeout: const Duration(seconds: 59),
-        heartbeatIncoming: const Duration(microseconds: 30000),
-        heartbeatOutgoing: const Duration(microseconds: 40000),
-        stompConnectHeaders: {
-          "Qualification": TokenFactory.serviceToken(),
-        },
-        onConnect: (frame) async {
-          for (var sub in _subscription.values) {
-            sub.unsubscribeFn = await _subscribe(
-              destination: sub.destination,
-              callback: sub.callback,
-            );
-          }
-        });
+      url: Api.webSocketChannel,
+      reconnectDelay: const Duration(seconds: 30),
+      connectionTimeout: const Duration(seconds: 59),
+      heartbeatIncoming: const Duration(microseconds: 30000),
+      heartbeatOutgoing: const Duration(microseconds: 40000),
+      stompConnectHeaders: {
+        "Qualification": TokenFactory.serviceToken(),
+      },
+      onConnect: (frame) async {
+        for (var sub in _subscription.values) {
+          sub.unsubscribeFn = await _subscribe(
+            destination: sub.destination,
+            callback: sub.callback,
+          );
+        }
+      },
+    );
   }
 }
 

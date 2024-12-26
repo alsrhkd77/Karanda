@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:karanda/common/api.dart';
-import 'package:karanda/verification_center/models/bdo_family.dart';
+import 'package:karanda/verification_center/models/main_family.dart';
 
 class User {
   late String discordId;
   String? avatar;
   late String username;
-  BdoFamily? mainFamily;
+  MainFamily? mainFamily;
 
   User({
     required this.discordId,
@@ -18,12 +18,21 @@ class User {
 
   User.fromData(Map data) {
     discordId = data['discordId'];
-    avatar = data['avatar'] == null
-        ? "${Api.discordEmbedAvatar}/${Random().nextInt(6)}.png"
-        : "${Api.discordAvatar}/${data['avatar']}";
+    if(data['avatar'] != null){
+      avatar = "${Api.discordAvatar}/${data['avatar']}";
+    }
     username = data['username'];
     if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
-      mainFamily = BdoFamily.fromData(data['mainFamily']);
+      mainFamily = MainFamily.fromData(data['mainFamily']);
     }
+  }
+
+  Map toData(){
+    Map data = {};
+    data['discordId'] = discordId;
+    data['avatar'] = avatar;
+    data['username'] = username;
+    data['mainFamily'] = mainFamily?.toData();
+    return data;
   }
 }

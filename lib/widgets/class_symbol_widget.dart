@@ -8,7 +8,8 @@ class ClassSymbolWidget extends StatefulWidget {
   final double size;
   final String className;
 
-  const ClassSymbolWidget({super.key, this.size = 32.0, required this.className});
+  const ClassSymbolWidget(
+      {super.key, this.size = 32.0, required this.className});
 
   @override
   State<ClassSymbolWidget> createState() => _ClassSymbolWidgetState();
@@ -17,16 +18,15 @@ class ClassSymbolWidget extends StatefulWidget {
 class _ClassSymbolWidgetState extends State<ClassSymbolWidget> {
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: toBeginningOfSentenceCase(widget.className),
-      child: SizedBox(
-        width: widget.size,
-        height: widget.size,
-        child: Image.network(
-          "${Api.classSymbol}/${widget.className}.png",
-          fit: BoxFit.fill,
-          color: context.watch<SettingsNotifier>().darkMode ? null : Colors.black,
-        ),
+    return SizedBox(
+      width: widget.size,
+      height: widget.size,
+      child: Image.network(
+        "${Api.classSymbol}/${widget.className}.png",
+        fit: BoxFit.fill,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? null
+            : Colors.black,
       ),
     );
   }

@@ -29,13 +29,4 @@ class BdoFamily {
     secondVerification = DateTime.tryParse(data['secondVerification'] ?? "");
     lastUpdated = DateTime.tryParse(data['lastUpdated'] ?? "");
   }
-
-
-  @override
-  int get hashCode => Object.hash(region, code);
-
-  @override
-  bool operator ==(Object other) {
-    return other is BdoFamily && other.region == region && other.code == code;
-  }
 }

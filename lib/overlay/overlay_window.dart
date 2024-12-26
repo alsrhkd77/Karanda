@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:karanda/overlay/overlay_data_controller.dart';
+import 'package:karanda/overlay/widgets/adventurer_hub_overlay_widget.dart';
 import 'package:karanda/overlay/widgets/boss_hp_scale_indicator_overlay_widget.dart';
 import 'package:karanda/overlay/widgets/clock_overlay_widget.dart';
 import 'package:karanda/overlay/widgets/world_boss_overlay_widget.dart';
@@ -13,6 +16,46 @@ class OverlayWindow extends StatefulWidget {
 
 class _OverlayWindowState extends State<OverlayWindow> {
   final OverlayDataController _dataController = OverlayDataController();
+  StreamSubscription? streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((timestamp) => registerListener());
+  }
+
+  void registerListener() {
+    streamSubscription =
+        _dataController.notificationStream.listen(showNotification);
+  }
+
+  void showNotification(String data) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 4,
+            horizontal: 16,
+          ),
+          leading: Image.asset(
+            "assets/brand/karanda_shape.png",
+            height: 30,
+            width: 30,
+          ),
+          title: Text(
+            data,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        padding: EdgeInsets.zero,
+        duration: const Duration(seconds: 5),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +80,8 @@ class _OverlayWindowState extends State<OverlayWindow> {
                     editMode: editMode.requireData,
                     enabled: status.requireData["clock"] ?? false,
                   ),
+                  //AdventurerHubOverlayWidget(editMode: editMode.requireData, enabled: status.requireData["adventurerHub"] ?? false,),
+                  AdventurerHubOverlayWidget(editMode: editMode.requireData, enabled: true,),
                   WorldBossOverlayWidget(
                     editMode: editMode.requireData,
                     enabled: status.requireData["worldBoss"] ?? false,
@@ -46,7 +91,7 @@ class _OverlayWindowState extends State<OverlayWindow> {
                   BossHpScaleIndicatorOverlayWidget(
                     editMode: editMode.requireData,
                     enabled:
-                    status.requireData["bossHpScaleIndicator"] ?? false,
+                        status.requireData["bossHpScaleIndicator"] ?? false,
                   ),
                   Positioned(
                     width: 200,
@@ -74,6 +119,12 @@ class _OverlayWindowState extends State<OverlayWindow> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    streamSubscription?.cancel();
+    super.dispose();
   }
 }
 

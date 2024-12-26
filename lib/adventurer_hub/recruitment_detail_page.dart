@@ -1,20 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:karanda/adventurer_hub/models/applicant.dart';
 import 'package:karanda/adventurer_hub/models/recruitment.dart';
 import 'package:karanda/adventurer_hub/recruitment_data_controller.dart';
-import 'package:karanda/adventurer_hub/widgets/recruitment_status_chip.dart';
+import 'package:karanda/adventurer_hub/recruitment_edit_page.dart';
+import 'package:karanda/adventurer_hub/tabs/recruitment_applicants_tab.dart';
+import 'package:karanda/adventurer_hub/tabs/recruitment_detail_tab.dart';
 import 'package:karanda/auth/auth_notifier.dart';
-import 'package:karanda/common/date_time_extension.dart';
-import 'package:karanda/common/enums/recruitment_category.dart';
+import 'package:karanda/common/enums/applicant_status.dart';
+import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/widgets/button_loading_indicator.dart';
-import 'package:karanda/widgets/class_symbol_widget.dart';
-import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
-import 'dart:developer' as developer;
 
 class RecruitmentDetailPage extends StatefulWidget {
   final int postId;
@@ -30,8 +30,10 @@ class RecruitmentDetailPage extends StatefulWidget {
   State<RecruitmentDetailPage> createState() => _RecruitmentDetailPageState();
 }
 
-class _RecruitmentDetailPageState extends State<RecruitmentDetailPage> {
+class _RecruitmentDetailPageState extends State<RecruitmentDetailPage>
+    with TickerProviderStateMixin {
   late RecruitmentDataController dataController;
+  late final TabController tabController;
 
   @override
   void initState() {
@@ -40,6 +42,23 @@ class _RecruitmentDetailPageState extends State<RecruitmentDetailPage> {
       authenticated: widget.authenticated,
     );
     super.initState();
+    tabController = TabController(length: 2, vsync: this);
+  }
+
+  Future<void> apply() async {
+    bool result = false;
+    result = await dataController.changeApplyStatus();
+    if (!result) {
+      showResultSnackBar(result);
+    }
+  }
+
+  Future<void> openPost() async {
+    bool result = false;
+    result = await dataController.changePostStatus();
+    if (!result) {
+      showResultSnackBar(result);
+    }
   }
 
   void showResultSnackBar(bool status) {
@@ -48,75 +67,77 @@ class _RecruitmentDetailPageState extends State<RecruitmentDetailPage> {
       behavior: SnackBarBehavior.floating,
       margin: GlobalProperties.snackBarMargin,
       showCloseIcon: true,
-      content:
-          Text("recruitment post detail.${status ? "success" : "failed"}").tr(),
+      content: Text(context
+          .tr("recruitment post detail.${status ? "success" : "failed"}")),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthNotifier>(context);
     return StreamBuilder(
       stream: dataController.recruitmentStream,
       builder: (context, snapshot) {
         return Scaffold(
           appBar: DefaultAppBar(
-            title: "모험가 허브 (Beta)",
+            title: context.tr("adventurer hub title"),
             icon: FontAwesomeIcons.circleNodes,
-            actions: !snapshot.hasData || !widget.authenticated
-                ? null
-                : [
-                    Padding(
-                      padding: GlobalProperties.appBarActionPadding,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.more_vert),
-                      ),
+            actions: snapshot.hasData && auth.authenticated
+                ? [
+                    _MenuButton(
+                      post: snapshot.requireData,
+                      updatePost: dataController.updatePost,
                     )
-                  ],
+                  ]
+                : null,
+            bottom: snapshot.hasData &&
+                    auth.authenticated &&
+                    snapshot.requireData.author!.discordId == auth.discordId &&
+                    snapshot.requireData.recruitMethod ==
+                        RecruitMethod.karandaReservation
+                ? TabBar(
+                    controller: tabController,
+                    tabs: [
+                      Tab(
+                        text: context.tr("recruitment post detail.details"),
+                      ),
+                      Tab(
+                        text: context.tr("recruitment post detail.applicants"),
+                      ),
+                    ],
+                  )
+                : null,
           ),
           body: !snapshot.hasData
               ? const LoadingIndicator()
-              : CustomBase(
-                  children: [
-                    Text(
-                      snapshot.requireData.createdAt!.toLocal().format(null),
-                      style: const TextStyle(color: Colors.grey),
+              : auth.authenticated &&
+                      snapshot.requireData.author!.discordId == auth.discordId
+                  ? TabBarView(
+                      controller: tabController,
+                      children: [
+                        RecruitmentDetailTab(
+                          data: snapshot.requireData,
+                          applyFunction: apply,
+                          openFunction: openPost,
+                        ),
+                        RecruitmentApplicantsTab(
+                          post: snapshot.requireData,
+                          stream: dataController.applicantsStream,
+                          initFunction: dataController.getApplicants,
+                          approveFunction: dataController.approve,
+                          rejectFunction: dataController.reject,
+                        ),
+                      ],
+                    )
+                  : RecruitmentDetailTab(
+                      data: snapshot.requireData,
+                      applyFunction: apply,
+                      openFunction: openPost,
                     ),
-                    _BodyCard(post: snapshot.requireData),
-                    Consumer<AuthNotifier>(
-                      builder: (context, auth, _) {
-                        if (!auth.authenticated) {
-                          return const SizedBox();
-                        }
-                        String author = snapshot.requireData.author!.discordId;
-                        bool status = snapshot.requireData.status;
-                        return _StatusButton(
-                          status: auth.discordId == author ? !status : status,
-                          onPressed: () async {
-                            bool result = false;
-                            if (auth.discordId == author) {
-                              result = await dataController.changePostStatus();
-                            } else {
-                              result = await dataController.changeApplyStatus();
-                            }
-                            showResultSnackBar(result);
-                          },
-                          name: auth.discordId == author
-                              ? (status ? "close" : "open")
-                              : (status ? "apply" : "cancel"),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: null,
-            label: Text(
-              "모집 인원\n1 / 15",
-              textAlign: TextAlign.center,
-            ),
-          ),
+          floatingActionButton: snapshot.data?.applicant != null
+              ? _ApplicantStatusFAB(applicant: snapshot.requireData.applicant!)
+              : null,
         );
       },
     );
@@ -129,143 +150,87 @@ class _RecruitmentDetailPageState extends State<RecruitmentDetailPage> {
   }
 }
 
-class _StatusButton extends StatefulWidget {
-  final bool status;
-  final Future<void> Function() onPressed;
-  final String name;
-
-  const _StatusButton({
-    super.key,
-    required this.status,
-    required this.onPressed,
-    required this.name,
-  });
-
-  @override
-  State<_StatusButton> createState() => _StatusButtonState();
-}
-
-class _StatusButtonState extends State<_StatusButton> {
-  bool request = false;
-
-  Future<void> submit() async {
-    if (!request) {
-      setState(() {
-        request = true;
-      });
-      try {
-        await widget.onPressed();
-      } catch (e) {
-        developer.log(e.toString());
-      } finally {
-        setState(() {
-          request = false;
-        });
-      }
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: widget.status ? null : Colors.red,
-        ),
-        onPressed: submit,
-        child: request
-            ? const ButtonLoadingIndicator(color: Colors.white)
-            : Text("recruitment post detail.action.${widget.name}").tr(),
-      ),
-    );
-  }
-}
-
-class _BodyCard extends StatelessWidget {
+class _MenuButton extends StatelessWidget {
   final Recruitment post;
+  final void Function(Recruitment) updatePost;
 
-  const _BodyCard({super.key, required this.post});
+  const _MenuButton({super.key, required this.post, required this.updatePost});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(8.0),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              leading: RecruitmentStatusChip(status: post.status),
-              title: Text(
-                post.category == RecruitmentCategory.guildRaidMercenaries
-                    ? '<${post.guildName}> ${post.title}'
-                    : post.title,
-                textAlign: TextAlign.center,
-              ),
-              trailing: Tooltip(
-                message: context.tr("recruitment post detail.copy"),
-                child: InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(6.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            post.author!.mainFamily!.familyName,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ),
-                        ClassSymbolWidget(
-                          className: post.author!.mainFamily!.mainClass.name,
-                        ),
-                      ],
-                    ),
-                  ),
+    context.watch<AuthNotifier>().authenticated;
+    return MenuAnchor(
+      menuChildren: [
+        MenuItemButton(
+          onPressed: () async {
+            Recruitment? result = await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => RecruitmentEditPage(
+                  category: post.category,
+                  recruitment: post,
                 ),
               ),
-            ),
-            const Divider(),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12.0,
-                horizontal: 14.0,
-              ),
-              child: Text(post.content ?? ""),
-            ),
-            _DiscordLinkButton(link: post.discordLink),
-          ],
+            );
+            if (result != null) {
+              updatePost(result);
+            }
+          },
+          leadingIcon: const Icon(Icons.edit),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(context.tr('recruitment post detail.edit')),
+          ),
         ),
-      ),
+        MenuItemButton(
+          onPressed: () {},
+          leadingIcon: const Icon(Icons.share),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(context.tr('recruitment post detail.share')),
+          ),
+        ),
+      ],
+      alignmentOffset: const Offset(-86, -8),
+      builder: (_, MenuController controller, Widget? child) {
+        return Padding(
+          padding: GlobalProperties.appBarActionPadding,
+          child: IconButton(
+            onPressed: () {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
+            icon: const Icon(Icons.more_vert_rounded),
+          ),
+        );
+      },
     );
   }
 }
 
-class _DiscordLinkButton extends StatelessWidget {
-  final String? link;
+class _ApplicantStatusFAB extends StatelessWidget {
+  final Applicant applicant;
 
-  const _DiscordLinkButton({super.key, this.link});
+  const _ApplicantStatusFAB({super.key, required this.applicant});
 
   @override
   Widget build(BuildContext context) {
-    if (link != null && link!.isNotEmpty) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12.0,
-          horizontal: 14.0,
+    return FloatingActionButton.extended(
+      tooltip: applicant.status == ApplicantStatus.approved
+          ? context.tr("recruitment post detail.copy code")
+          : null,
+      onPressed: applicant.status == ApplicantStatus.approved ? () {} : null,
+      label: Text(
+        context.tr(
+          "recruitment post detail.FAB.${applicant.status.name}",
+          args: applicant.status == ApplicantStatus.approved
+              ? [applicant.code!]
+              : null,
         ),
-        child: TextButton(
-          onPressed: () {},
-          child: Text(link!),
-        ),
-      );
-    }
-    return const SizedBox();
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 }

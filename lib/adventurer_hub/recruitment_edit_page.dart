@@ -4,14 +4,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/adventurer_hub/models/recruitment.dart';
 import 'package:karanda/common/enums/bdo_region.dart';
 import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/enums/recruitment_category.dart';
+import 'package:karanda/common/go_router_extension.dart';
+import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/common/rest_client.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
+import 'dart:developer' as developer;
 
 class RecruitmentEditPage extends StatefulWidget {
   final Recruitment? recruitment;
@@ -26,7 +30,7 @@ class RecruitmentEditPage extends StatefulWidget {
 class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
   RecruitmentCategory category = RecruitmentCategory.values.first;
   RecruitMethod recruitMethod = RecruitMethod.values.first;
-  late bool status = true;
+  late bool status = false;
   late bool showContentAfterJoin = true;
 
   final TextEditingController titleTextController = TextEditingController();
@@ -45,7 +49,7 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
       status = widget.recruitment!.status;
       showContentAfterJoin = widget.recruitment!.showContentAfterJoin ?? true;
       titleTextController.text = widget.recruitment!.title;
-      if (category == RecruitmentCategory.guildRaidMercenaries) {
+      if (category == RecruitmentCategory.guildWarHeroes) {
         guildTextController.text = widget.recruitment!.guildName!;
       }
       maximumTextController.text =
@@ -59,29 +63,56 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
   Future<void> submit(Recruitment recruitment) async {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => const LoadingIndicatorDialog(title: "Upload"),
     );
+    if (widget.recruitment == null) {
+      int? postId = await create(recruitment);
+      if (mounted) {
+        Navigator.of(context).pop();
+        if (postId != null) {
+          context.replaceNamed('/adventurer-hub');
+          context.goWithGa('/adventurer-hub/posts/$postId');
+        }
+      }
+    } else {
+      Recruitment? result = await update(recruitment);
+      if(mounted){
+        Navigator.of(context).pop();
+        if(result != null){
+          context.pop(result);
+        }
+      }
+    }
 
+  }
+
+  Future<int?> create(Recruitment recruitment) async {
+    int? postId;
     final response = await RestClient.post(
-      "adventurer-hub/new-post",
+      "adventurer-hub/post/create",
       body: jsonEncode(recruitment.toData()),
       json: true,
     );
 
-    if (mounted) Navigator.of(context).pop();
-    if (response.statusCode == 200) {
-      int postId = int.parse(response.body);
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed(
-          '/adventurer-hub/posts/$postId',
-        );
-        //context.goWithGa('/adventurer-hub/posts/$postId');
-      }
-    } else if (response.statusCode == 401) {
-      print("need login");
-    } else {
-      print("failed");
+    if (response.statusCode == 201) {
+      postId = int.parse(response.body);
     }
+    return postId;
+  }
+
+  Future<Recruitment?> update(Recruitment recruitment) async {
+    Recruitment? result;
+    final response = await RestClient.patch(
+      "adventurer-hub/post/update",
+      body: jsonEncode(recruitment.toData()),
+      json: true,
+    );
+
+    if (response.statusCode == 200) {
+      result = Recruitment.fromData(jsonDecode(response.bodyUTF));
+    }
+    return result;
   }
 
   @override
@@ -113,7 +144,7 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                     vertical: 16.0,
                     horizontal: 12.0,
                   ),
-                  label: const Text("edit recruitment.title").tr(),
+                  label: Text(context.tr("edit recruitment.title")),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
@@ -124,19 +155,19 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                 },
               ),
             ),
-            category == RecruitmentCategory.guildRaidMercenaries
+            category == RecruitmentCategory.guildWarHeroes
                 ? ListTile(
                     title: TextFormField(
+                      enabled: widget.recruitment == null,
                       controller: guildTextController,
                       maxLength: 32,
                       decoration: InputDecoration(
-                        label: const Text("edit recruitment.guild name").tr(),
+                        label: Text(context.tr("edit recruitment.guild name")),
                         counterText: '',
                       ),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (category !=
-                            RecruitmentCategory.guildRaidMercenaries) {
+                        if (category != RecruitmentCategory.guildWarHeroes) {
                           return null;
                         }
                         if (value?.isEmpty ?? true) {
@@ -155,7 +186,8 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                   FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,2})')),
                 ],
                 decoration: InputDecoration(
-                  label: const Text("edit recruitment.number of recruits").tr(),
+                  label:
+                      Text(context.tr("edit recruitment.number of recruits")),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
@@ -169,9 +201,9 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
               ),
             ),
             ListTile(
-              title: const Text("edit recruitment.recruit method").tr(),
+              title: Text(context.tr("edit recruitment.recruit method")),
               trailing: DropdownMenu<RecruitMethod>(
-                enabled: widget.recruitment == null ? true : false,
+                enabled: widget.recruitment == null,
                 initialSelection: recruitMethod,
                 dropdownMenuEntries: RecruitMethod.values.map((e) {
                   return DropdownMenuEntry(
@@ -188,8 +220,8 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                 },
               ),
             ),
-            ListTile(
-              title: const Text("edit recruitment.start immediately").tr(),
+            /*ListTile(
+              title: Text(context.tr("edit recruitment.start immediately")),
               trailing: Checkbox(
                 value: status,
                 onChanged: (value) {
@@ -200,12 +232,11 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                   }
                 },
               ),
-            ),
+            ),*/
             recruitMethod == RecruitMethod.karandaReservation
                 ? ListTile(
-                    title: const Text(
-                            "edit recruitment." "show contents after join")
-                        .tr(),
+                    title: Text(context
+                        .tr("edit recruitment.show contents after join")),
                     trailing: Checkbox(
                       value: showContentAfterJoin,
                       onChanged: (value) {
@@ -219,7 +250,7 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                   )
                 : const SizedBox(),
             ListTile(
-              title: const Text("edit recruitment.details").tr(),
+              title: Text(context.tr("edit recruitment.details")),
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -262,7 +293,7 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                       .tr("edit recruitment.discord code validate failed");
                 },
                 decoration: InputDecoration(
-                  label: const Text("edit recruitment.discord code").tr(),
+                  label: Text(context.tr("edit recruitment.discord code")),
                 ),
               ),
             ),
@@ -301,14 +332,13 @@ class _RecruitmentEditPageState extends State<RecruitmentEditPage> {
                     ));
                   }
                 },
-                //icon: Icon(FontAwesomeIcons.penToSquare),
                 icon: const Icon(FontAwesomeIcons.solidFloppyDisk),
                 label: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 12.0,
                     horizontal: 4.0,
                   ),
-                  child: const Text("edit recruitment.save").tr(),
+                  child: Text(context.tr("edit recruitment.save")),
                 ),
               ),
             ),
@@ -339,16 +369,16 @@ class _NoteCard extends StatelessWidget {
             ListTile(
               leading: Icon(
                 FontAwesomeIcons.triangleExclamation,
-                color: Colors.red.shade300,
+                color: Colors.red.shade600,
               ),
-              title: const Text("edit recruitment.caution card title").tr(),
+              title: Text(context.tr("edit recruitment.caution card title")),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 8.0,
                 horizontal: 16.0,
               ),
-              child: const Text("edit recruitment.caution card contents").tr(),
+              child: Text(context.tr("edit recruitment.caution card contents")),
             ),
           ],
         ),

@@ -30,13 +30,15 @@ class _AdventurerHubPageState extends State<AdventurerHubPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    WidgetsBinding.instance
+        .addPostFrameCallback((tick) => dataController.publish());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
-        title: "모험가 허브 (Beta)",
+        title: context.tr("adventurer hub title"),
         icon: FontAwesomeIcons.circleNodes,
         actions: [
           /*TextButton(
@@ -64,34 +66,34 @@ class _AdventurerHubPageState extends State<AdventurerHubPage>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          StreamBuilder(
-            stream: dataController.postsStream,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return LoadingIndicator();
-              }
-              return HomeTab(data: snapshot.requireData);
-            },
-          ),
-          CustomBase(
+      body: StreamBuilder(
+        stream: dataController.postsStream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const LoadingIndicator();
+          }
+          return TabBarView(
+            controller: _tabController,
             children: [
-              Text("Hello world!"),
+              HomeTab(posts: snapshot.requireData),
+              CustomBase(
+                children: [
+                  Text("Hello world!"),
+                ],
+              ),
+              CustomBase(
+                children: [
+                  Text("Hello world!"),
+                ],
+              ),
+              CustomBase(
+                children: [
+                  Text("Reporting!"),
+                ],
+              ),
             ],
-          ),
-          CustomBase(
-            children: [
-              Text("Hello world!"),
-            ],
-          ),
-          CustomBase(
-            children: [
-              Text("Reporting!"),
-            ],
-          ),
-        ],
+          );
+        },
       ),
       floatingActionButton: context.watch<AuthNotifier>().waitResponse
           ? null
@@ -112,8 +114,8 @@ class _AdventurerHubPageState extends State<AdventurerHubPage>
                   NeedLoginSnackBar(context);
                 }
               },
-              label: const Text("adventurer hub.FAB label").tr(),
-              icon: const Icon(Icons.create),
+              label: Text(context.tr("adventurer hub.FAB label")),
+              icon: const Icon(FontAwesomeIcons.penToSquare),
             ),
     );
   }
@@ -138,13 +140,13 @@ class _SelectCategoryDialogState extends State<_SelectCategoryDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("adventurer hub.new post").tr(),
+      title: Text(context.tr("adventurer hub.new post")),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: RecruitmentCategory.values.map((e) {
           return RadioListTile(
             value: e,
-            title: Text("adventurer hub category.${e.name}").tr(),
+            title: Text(context.tr("adventurer hub category.${e.name}")),
             groupValue: selected,
             onChanged: (value) {
               setState(() {
@@ -159,7 +161,7 @@ class _SelectCategoryDialogState extends State<_SelectCategoryDialog> {
         TextButton(
           style: ElevatedButton.styleFrom(foregroundColor: Colors.red),
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("cancel").tr(),
+          child: Text(context.tr("cancel")),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -167,7 +169,7 @@ class _SelectCategoryDialogState extends State<_SelectCategoryDialog> {
             foregroundColor: Colors.white,
           ),
           onPressed: () => Navigator.of(context).pop(selected),
-          child: const Text("select").tr(),
+          child: Text(context.tr("select")),
         )
       ],
     );

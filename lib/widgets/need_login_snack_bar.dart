@@ -10,7 +10,7 @@ class NeedLoginSnackBar {
           children: [
             Icon(
               Icons.lock,
-              color: Colors.redAccent,
+              color: Colors.red,
             ),
             SizedBox(
               width: 8.0,

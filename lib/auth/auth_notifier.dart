@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:karanda/auth/user.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/go_router_extension.dart';
@@ -20,6 +21,8 @@ class AuthNotifier with ChangeNotifier {
 
   bool _authenticated = false;
   bool _waitResponse = false;
+  User? _user;
+
   String? _username;
   String? _avatar;
   String? _discordId;
@@ -36,6 +39,8 @@ class AuthNotifier with ChangeNotifier {
   String get discordId => _discordId ?? "";
 
   BdoFamily? get mainFamily => _mainFamily;
+
+  User? get user => _user;
 
   AuthNotifier(this._rootScaffoldMessengerKey, this.goRouter) {
     if (kIsWeb) {
@@ -85,6 +90,7 @@ class AuthNotifier with ChangeNotifier {
         if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
           _mainFamily = BdoFamily.fromData(data['mainFamily']);
         }
+        _user = User.fromData(data);
         notifyListeners();
         return true;
       } else if (response.statusCode == 401) {
@@ -116,6 +122,7 @@ class AuthNotifier with ChangeNotifier {
         if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
           _mainFamily = BdoFamily.fromData(data['mainFamily']);
         }
+        _user = User.fromData(data);
         saveToken(
             token: data['token'],
             refreshToken: data['refresh-token'] ?? data['refreshToken']);
@@ -171,6 +178,7 @@ class AuthNotifier with ChangeNotifier {
     _username = '';
     _avatar = '';
     _discordId = '';
+    _user = null;
     notifyListeners();
   }
 

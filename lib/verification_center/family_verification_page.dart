@@ -123,7 +123,7 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
         children: [
           Icon(
             Icons.report_problem_outlined,
-            color: Colors.redAccent,
+            color: Colors.red,
           ),
           SizedBox(
             width: 8.0,
