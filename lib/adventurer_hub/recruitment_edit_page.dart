@@ -15,7 +15,6 @@ import 'package:karanda/common/rest_client.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
-import 'dart:developer' as developer;
 
 class RecruitmentEditPage extends StatefulWidget {
   final Recruitment? recruitment;

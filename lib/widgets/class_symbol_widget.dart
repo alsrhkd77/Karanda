@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:karanda/common/api.dart';
-import 'package:karanda/settings/settings_notifier.dart';
-import 'package:provider/provider.dart';
 
 class ClassSymbolWidget extends StatefulWidget {
   final double size;

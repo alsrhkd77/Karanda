@@ -11,7 +11,6 @@ import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/enums/recruitment_category.dart';
 import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/widgets/button_loading_indicator.dart';
-import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/discord_name_widget.dart';
 import 'package:karanda/widgets/family_name_widget.dart';

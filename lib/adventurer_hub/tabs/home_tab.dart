@@ -5,7 +5,6 @@ import 'package:karanda/adventurer_hub/widgets/applicant_status_chip.dart';
 import 'package:karanda/adventurer_hub/widgets/recruitment_list_card.dart';
 import 'package:karanda/adventurer_hub/widgets/recruitment_status_chip.dart';
 import 'package:karanda/auth/auth_notifier.dart';
-import 'package:karanda/common/enums/applicant_status.dart';
 import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/widgets/custom_base.dart';
