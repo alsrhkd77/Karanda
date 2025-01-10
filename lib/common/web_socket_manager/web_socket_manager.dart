@@ -1,17 +1,22 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/token_factory.dart';
 import 'package:karanda/common/web_visibility/web_visibility.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
+import 'dart:developer' as developer;
 
 class WebSocketManager {
-  static final WebSocketManager _instance = WebSocketManager._internal();
-
-  final Map<String, _Subscription> _subscription = {};
-
   final WebVisibility _webVisibility = WebVisibility();
   StompClient? _client;
+  Timer? _reconnectTimer;
+  int _backOff = 200;
+  final Map<String, _Subscription> _subscription = {};
+
+  static final WebSocketManager _instance = WebSocketManager._internal();
 
   factory WebSocketManager() {
     return _instance;
@@ -30,7 +35,7 @@ class WebSocketManager {
     }
   }
 
-  Future<void> activate() async {
+  void activate() {
     if (_client == null || !_client!.connected) {
       _client = StompClient(config: _buildConfig());
       _client!.activate();
@@ -86,7 +91,16 @@ class WebSocketManager {
   StompConfig _buildConfig() {
     return StompConfig(
       url: Api.webSocketChannel,
-      reconnectDelay: const Duration(seconds: 30),
+      onWebSocketDone: (){
+        _reconnectTimer?.cancel();
+        _backOff = min(_backOff * 2, 600000);
+        _reconnectTimer = Timer(Duration(milliseconds: _backOff), activate);
+        _client?.deactivate();
+        _client = null;
+      },
+      onDisconnect: (frame){
+        developer.log("STOMP disconnected, ${frame.toString()}");
+      },
       connectionTimeout: const Duration(seconds: 59),
       heartbeatIncoming: const Duration(microseconds: 30000),
       heartbeatOutgoing: const Duration(microseconds: 40000),
@@ -94,6 +108,8 @@ class WebSocketManager {
         "Qualification": TokenFactory.serviceToken(),
       },
       onConnect: (frame) async {
+        _reconnectTimer?.cancel();
+        _backOff = 200;
         for (var sub in _subscription.values) {
           sub.unsubscribeFn = await _subscribe(
             destination: sub.destination,
