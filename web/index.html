@@ -54,6 +54,19 @@
 
     <title>Karanda</title>
     <link href="manifest.json" rel="manifest">
+
+    <!-- FileSaver -->
+    <script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+    <script>
+        function saveAsFileJS(data, filename) {
+            try {
+                let blob = new Blob([data]);
+                saveAs(blob, filename)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    </script>
 </head>
 
 <body>
