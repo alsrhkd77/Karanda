@@ -1,23 +1,39 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
+import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/verification_center/family_verification_page.dart';
 import 'package:karanda/verification_center/models/bdo_family.dart';
+import 'package:karanda/verification_center/models/simplified_adventurer_card.dart';
 import 'package:karanda/verification_center/register_new_family_page.dart';
-import 'package:karanda/verification_center/verification_center_data_controller.dart';
+import 'package:karanda/verification_center/services/verification_center_data_controller.dart';
 import 'package:karanda/verification_center/widgets/main_family_name_widget.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
+import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';
+import 'package:provider/provider.dart';
 
 class VerificationCenterPage extends StatelessWidget {
   final VerificationCenterDataController dataController =
       VerificationCenterDataController();
 
   VerificationCenterPage({super.key});
+
+  Future<void> deleteAdventurerCard(String code, BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) => LoadingIndicatorDialog(),
+      barrierDismissible: false,
+    );
+    await dataController.deleteAdventurerCard(code);
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +67,16 @@ class VerificationCenterPage extends StatelessWidget {
             dataController: dataController,
           ),
           SizedBox(height: GlobalProperties.scrollViewVerticalPadding),
-          const ListTile(
+          ListTile(
             title: TitleText(
-              '내 인증 카드',
+              context.tr('adventurer card.title'),
               bold: true,
             ),
           ),
-          _VerificationCardTile(),
-          _VerificationCardTile(),
+          _AdventurerCards(
+            data: dataController.adventurerCards,
+            delete: deleteAdventurerCard,
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -90,8 +108,11 @@ class _Families extends StatefulWidget {
 class _FamiliesState extends State<_Families> {
   @override
   Widget build(BuildContext context) {
+    if (!context.watch<AuthNotifier>().authenticated) {
+      return const _LoginRequired();
+    }
     return StreamBuilder(
-      stream: widget.dataController.familyListStream,
+      stream: widget.dataController.families,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const LoadingIndicator();
@@ -154,29 +175,81 @@ class _FamilyTile extends StatelessWidget {
   }
 }
 
-class _VerificationCardTile extends StatelessWidget {
-  const _VerificationCardTile({super.key});
+class _AdventurerCards extends StatelessWidget {
+  final Stream<List<SimplifiedAdventurerCard>> data;
+  final Future<void> Function(String, BuildContext) delete;
+
+  const _AdventurerCards({super.key, required this.data, required this.delete});
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: data,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const LoadingIndicator();
+        }
+        return Column(
+          children: snapshot.requireData
+              .map((item) => _AdventurerCardTile(
+                    data: item,
+                    delete: delete,
+                  ))
+              .toList(),
+        );
+      },
+    );
+  }
+}
+
+class _AdventurerCardTile extends StatelessWidget {
+  final SimplifiedAdventurerCard data;
+  final Future<void> Function(String, BuildContext) delete;
+
+  const _AdventurerCardTile({
+    super.key,
+    required this.data,
+    required this.delete,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final keywords = data.keywords.isEmpty ? "" : data.keywords;
     return Card(
       clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
-          child: ListTile(
-            leading: ClassSymbolWidget(className: 'dark knight'),
-            title: Text('키워드 없음 #KR'),
-            subtitle: Text(DateTime.now().format('yyyy.MM.dd')),
-            trailing: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.red,
-                )),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 4.0,
+          horizontal: 16.0,
+        ),
+        leading: ClassSymbolWidget(className: data.mainClass.name),
+        title: Text('$keywords #${data.region}'),
+        subtitle: Text(data.publishedOn.format("yyyy.MM.dd")),
+        trailing: IconButton(
+          onPressed: () => delete(data.verificationCode, context),
+          icon: const Icon(
+            Icons.delete,
+            color: Colors.red,
           ),
         ),
+        onTap: () {
+          context.goWithGa(
+              "/verification-center/adventurer-card/${data.verificationCode}");
+        },
+      ),
+    );
+  }
+}
+
+class _LoginRequired extends StatelessWidget {
+  const _LoginRequired({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 150,
+      child: Center(
+        child: Text(context.tr("login required")),
       ),
     );
   }

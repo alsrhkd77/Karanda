@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/verification_center/family_verification_page.dart';
 import 'package:karanda/verification_center/models/bdo_family.dart';
-import 'package:karanda/verification_center/verification_center_data_controller.dart';
+import 'package:karanda/verification_center/services/verification_center_data_controller.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/title_text.dart';

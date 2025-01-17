@@ -33,9 +33,12 @@ class MarketItemModel {
   }
 
   String enhancementLevelToString(int enhancementLevel){
-    List<String> roman = ['I', 'II', 'III', 'IV', 'V'];
+    List<String> roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
     if(enhancementLevel == 0){
       return '';
+    }
+    if(grade == 5){
+      return roman[enhancementLevel - 1];
     }
     switch (maxEnhancement){
       case 20:
@@ -62,6 +65,16 @@ class MarketItemModel {
         return '유 : ';
       case 'V':
         return '동 : ';
+      case 'VI':
+        return '운 : ';
+      case 'VII':
+        return '우 : ';
+      case 'VIII':
+        return '풍 : ';
+      case 'IX':
+        return '단 : ';
+      case 'X':
+        return '환 : ';
       default:
         return enhancementLevel;
     }

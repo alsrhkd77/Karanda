@@ -13,7 +13,7 @@ class MainFamilyNameWidget extends StatelessWidget {
     return Row(
       children: [
         Text(family.familyName),
-        Provider.of<AuthNotifier>(context).mainFamily == family
+        Provider.of<AuthNotifier>(context).mainFamily?.isSame(family) ?? false
             ? const _MainFamilyChip()
             : const SizedBox(),
       ],

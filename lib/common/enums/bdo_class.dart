@@ -1,4 +1,5 @@
 enum BdoClass {
+  unknown,
   warrior,
   ranger,
   sorceress,
@@ -27,4 +28,5 @@ enum BdoClass {
   maegu,
   scholar,
   dosa,
+  deadeye,
 }

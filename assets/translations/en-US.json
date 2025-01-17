@@ -4,17 +4,16 @@
   "Karanda": "Karanda",
   "reporting": "Reporting",
   "login required": "Login required.",
-
+  "keywords": "Keywords",
+  "backgrounds": "Backgrounds",
   "--Text Field validator": "",
   "validate empty": "This field must not be empty",
   "validate zero": "Must be greater than 0",
-
   "Champron": "Champron",
   "Saddle": "Saddle",
   "Horseshoe": "Horseshoe",
   "Stirrups": "Stirrups",
   "melody_of_stars_exchange_rate": "PRI (Ⅰ): ×{}\nDUO (Ⅱ): ×{}\nTRI (Ⅲ): ×{}",
-
   "--World boss": "",
   "garmoth": "garmoth",
   "vell": "vell",
@@ -31,7 +30,7 @@
   "sangoon": "sangoon",
   "baby_vell": "baby vell",
   "zodd": "zodd",
-
+  "piku": "piku",
   "--Adventurer hub": "",
   "adventurer hub title": "Adventurer hub (Beta)",
   "recruitment": "recruitment",
@@ -70,7 +69,7 @@
     "discord code validate failed": "Enter your Discord invite code",
     "save": "Save",
     "caution card title": "Caution",
-    "caution card contents" : "1. New posts can be published once per hour.\n2. Published posts cannot be deleted."
+    "caution card contents": "1. New posts can be published once per hour.\n2. Published posts cannot be deleted."
   },
   "recruitment post detail": {
     "chip": {
@@ -112,5 +111,25 @@
     "search bar hint": "Family name or Code",
     "edit": "수정",
     "share": "공유하기"
+  },
+  "--Adventurer card": "",
+  "adventurer card": {
+    "title": "Adventurer card",
+    "show family name": "Show family name",
+    "publish": "Publish card",
+    "verification failed": "Adventurer card verification failed",
+    "save image success": "[{}] has been saved to your Downloads folder.",
+    "download": "Download"
+  },
+  "adventurer card contents": {
+    "verification code":  "Verification code: {}",
+    "published on": "Published on: {}",
+    "family name": "Family name: {}",
+    "guild": "Guild: {}",
+    "created on": "Created on: {}",
+    "contribution points": "Contribution points: {}",
+    "highest level": "Highest LV in family: {}",
+    "life skills": "Life skills",
+    "private": "Private"
   }
 }

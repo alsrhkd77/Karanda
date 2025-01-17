@@ -3,8 +3,9 @@ import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/real_time.dart';
+import 'package:karanda/verification_center/adventurer_card_publish_page.dart';
 import 'package:karanda/verification_center/models/bdo_family.dart';
-import 'package:karanda/verification_center/verification_center_data_controller.dart';
+import 'package:karanda/verification_center/services/verification_center_data_controller.dart';
 import 'package:karanda/verification_center/widgets/main_family_name_widget.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/custom_base.dart';
@@ -224,7 +225,16 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
       ),
       floatingActionButton: familyData.verified
           ? FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AdventurerCardPublishPage(
+                      family: familyData,
+                      verificationCenterService: widget.dataController,
+                    ),
+                  ),
+                );
+              },
               label: const Text('인증 카드 발급'),
               icon: const Icon(Icons.add_card),
             )
@@ -396,7 +406,7 @@ class _SetMainFamilyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BdoFamily? mainFamily = Provider.of<AuthNotifier>(context).mainFamily;
-    if (family.verified && (mainFamily == null || mainFamily != family)) {
+    if (family.verified && (mainFamily == null || !mainFamily.isSame(family))) {
       return Container(
         width: Size.infinite.width,
         padding: const EdgeInsets.all(8.0),

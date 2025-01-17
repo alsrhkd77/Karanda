@@ -345,7 +345,7 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
                                 foodData: boxData[selected]["materials"]
                                     .firstWhere((element) =>
                                         element["code"] == price.code),
-                                boxCount: (contributions / 2).floor(),
+                                boxCount: contributions ~/ 2,
                                 additionalMargin: additionalMargin,
                                 boxPrice:
                                     (boxData[selected]["price"] * 2.5).floor() +

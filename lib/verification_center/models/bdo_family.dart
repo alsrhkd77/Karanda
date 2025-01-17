@@ -1,4 +1,5 @@
 import 'package:karanda/common/enums/bdo_class.dart';
+import 'package:karanda/verification_center/models/simplified_adventurer_card.dart';
 
 class BdoFamily {
   late String familyName;
@@ -11,6 +12,7 @@ class BdoFamily {
   DateTime? firstVerification;
   DateTime? secondVerification;
   DateTime? lastUpdated;
+  List<SimplifiedAdventurerCard> adventurerCards = [];
 
   bool get refreshable =>
       lastUpdated != null &&
@@ -28,5 +30,17 @@ class BdoFamily {
     firstVerification = DateTime.tryParse(data['firstVerification'] ?? "");
     secondVerification = DateTime.tryParse(data['secondVerification'] ?? "");
     lastUpdated = DateTime.tryParse(data['lastUpdated'] ?? "");
+    for(Map items in data['adventurerCards']){
+      adventurerCards.add(SimplifiedAdventurerCard.fromJson(items));
+    }
+  }
+
+  void removeAdventurerCard(String code){
+    adventurerCards.removeWhere((card)=> card.verificationCode == code);
+  }
+
+  bool isSame(BdoFamily other){
+    if(code == other.code && region == other.region) return true;
+    return false;
   }
 }

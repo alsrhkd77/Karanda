@@ -2,21 +2,29 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
+import 'package:karanda/common/rest_client.dart';
 import 'package:karanda/verification_center/models/bdo_family.dart';
+import 'package:karanda/verification_center/models/simplified_adventurer_card.dart';
 import 'dart:developer' as developer;
 
+import 'package:rxdart/rxdart.dart';
+
 class VerificationCenterDataController {
-  List<BdoFamily> _family = [];
-  final StreamController<List<BdoFamily>> _familyListDataController =
-      StreamController<List<BdoFamily>>();
+  final _families = BehaviorSubject<List<BdoFamily>>();
 
-  Stream<List<BdoFamily>> get familyListStream =>
-      _familyListDataController.stream;
+  Stream<List<BdoFamily>> get families => _families.stream;
 
-  List<BdoFamily> get families => _family;
+  Stream<List<SimplifiedAdventurerCard>> get adventurerCards =>
+      families.map(_toAdventurerCards);
+
+  //List<BdoFamily> get families => _family;
 
   VerificationCenterDataController() {
     getFamilies();
+  }
+
+  List<SimplifiedAdventurerCard> _toAdventurerCards(List<BdoFamily> data) {
+    return data.expand((item) => item.adventurerCards).toList();
   }
 
   Future<void> getFamilies() async {
@@ -26,8 +34,7 @@ class VerificationCenterDataController {
       for (Map data in jsonDecode(response.body)) {
         result.add(BdoFamily.fromData(data));
       }
-      _family = result;
-      _familyListDataController.sink.add(_family);
+      _families.sink.add(result);
     }
   }
 
@@ -46,8 +53,9 @@ class VerificationCenterDataController {
       );
       if (response.statusCode == 200) {
         newFamily = BdoFamily.fromData(jsonDecode(response.body));
-        _family.add(newFamily);
-        _familyListDataController.sink.add(_family);
+        final snapshot = _families.value;
+        snapshot.add(newFamily);
+        _families.sink.add(snapshot);
       }
     } catch (e) {
       developer.log("Cannot connect to server\n$e");
@@ -69,10 +77,11 @@ class VerificationCenterDataController {
       );
       if (response.statusCode == 200) {
         newFamily = BdoFamily.fromData(jsonDecode(response.body));
-        int index = _family.lastIndexWhere((item) =>
+        final snapshot = _families.value;
+        int index = snapshot.lastIndexWhere((item) =>
             item.region == newFamily!.region && item.code == newFamily.code);
-        _family[index] = newFamily;
-        _familyListDataController.sink.add(_family);
+        snapshot[index] = newFamily;
+        _families.sink.add(snapshot);
       }
     } catch (e) {
       developer.log("Cannot connect to server\n$e");
@@ -93,9 +102,10 @@ class VerificationCenterDataController {
         json: true,
       );
       if (response.statusCode == 204 || response.statusCode == 200) {
-        _family
+        final snapshot = _families.value;
+        snapshot
             .removeWhere((item) => item.region == region && item.code == code);
-        _familyListDataController.sink.add(_family);
+        _families.sink.add(snapshot);
         result = true;
       }
     } catch (e) {
@@ -118,10 +128,11 @@ class VerificationCenterDataController {
       );
       if (response.statusCode == 200) {
         family = BdoFamily.fromData(jsonDecode(response.body));
-        int index = _family.lastIndexWhere((item) =>
+        final snapshot = _families.value;
+        int index = snapshot.lastIndexWhere((item) =>
             item.region == family!.region && item.code == family.code);
-        _family[index] = family;
-        _familyListDataController.sink.add(_family);
+        snapshot[index] = family;
+        _families.sink.add(snapshot);
       }
     } catch (e) {
       developer.log("Cannot connect to server\n$e");
@@ -148,5 +159,37 @@ class VerificationCenterDataController {
       developer.log("Cannot connect to server\n$e");
     }
     return result;
+  }
+
+  void addAdventurerCard(SimplifiedAdventurerCard card, BdoFamily family){
+    final snapshot = _families.value;
+    int index = snapshot.indexWhere((item) => item.isSame(family));
+    snapshot[index].adventurerCards.add(card);
+    _families.sink.add(snapshot);
+  }
+
+  Future<bool> deleteAdventurerCard(String code) async {
+    bool result = false;
+    try {
+      final response = await RestClient.delete(
+        Api.deleteAdventurerCard,
+        body: {"code": code},
+      );
+      if(response.statusCode == 204 || response.statusCode == 200){
+        result = true;
+        final snapshot = _families.value;
+        for (BdoFamily item in snapshot) {
+          item.removeAdventurerCard(code);
+        }
+        _families.sink.add(snapshot);
+      }
+    } catch (e) {
+      developer.log("Cannot connect to server\n$e");
+    }
+    return result;
+  }
+
+  void dispose(){
+    _families.close();
   }
 }

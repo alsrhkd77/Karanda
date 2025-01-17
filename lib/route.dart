@@ -31,6 +31,7 @@ import 'package:karanda/trade_market/presets/magical_lightstone_crystal_page.dar
 import 'package:karanda/trade_market/presets/melody_of_stars_page.dart';
 import 'package:karanda/trade_market/trade_market_detail_page.dart';
 import 'package:karanda/trade_market/trade_market_page.dart';
+import 'package:karanda/verification_center/adventurer_card_view_page.dart';
 import 'package:karanda/verification_center/verification_center_page.dart';
 import 'package:karanda/widgets/invalid_access_page.dart';
 import 'package:karanda/widgets/loading_page.dart';
@@ -214,32 +215,46 @@ final GoRouter router = GoRouter(
             }
             return VerificationCenterPage();
           },
+          routes: [
+            GoRoute(
+              path: 'adventurer-card/:code',
+              builder: (context, state){
+                String? code = state.pathParameters['code'];
+                if(code == null){
+                  return const InvalidAccessPage();
+                } else {
+                  return AdventurerCardViewPage(code: code);
+                }
+              }
+            ),
+          ],
         ),
         GoRoute(
-            path: 'adventurer-hub',
-            builder: (context, state) {
-              if (context.watch<AuthNotifier>().waitResponse) {
-                return const LoadingPage();
-              }
-              return AdventurerHubPage();
-            },
-            routes: [
-              GoRoute(
-                path: 'posts/:postId',
-                builder: (context, state) {
-                  int? postId =
-                      int.tryParse(state.pathParameters['postId'] ?? 'failed');
-                  if (postId == null) {
-                    return const InvalidAccessPage();
-                  } else {
-                    return RecruitmentDetailPage(
-                      postId: postId,
-                      authenticated: context.read<AuthNotifier>().authenticated,
-                    );
-                  }
-                },
-              )
-            ]),
+          path: 'adventurer-hub',
+          builder: (context, state) {
+            if (context.watch<AuthNotifier>().waitResponse) {
+              return const LoadingPage();
+            }
+            return AdventurerHubPage();
+          },
+          routes: [
+            GoRoute(
+              path: 'posts/:postId',
+              builder: (context, state) {
+                int? postId =
+                    int.tryParse(state.pathParameters['postId'] ?? 'failed');
+                if (postId == null) {
+                  return const InvalidAccessPage();
+                } else {
+                  return RecruitmentDetailPage(
+                    postId: postId,
+                    authenticated: context.read<AuthNotifier>().authenticated,
+                  );
+                }
+              },
+            )
+          ],
+        ),
       ],
     ),
   ],

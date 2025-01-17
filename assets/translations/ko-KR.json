@@ -4,6 +4,8 @@
   "Karanda": "카란다",
   "reporting": "신고하기",
   "login required": "로그인이 필요합니다.",
+  "keywords": "키워드",
+  "backgrounds": "배경",
 
   "--Text Field validator": "",
   "validate empty": "필수입니다",
@@ -31,6 +33,7 @@
   "sangoon": "산군",
   "baby_vell": "아기 벨",
   "zodd": "조드",
+  "piku": "피크",
 
   "--Adventurer hub": "",
   "adventurer hub title": "모험가 허브 (Beta)",
@@ -112,5 +115,26 @@
     "search bar hint": "가문명 또는 코드",
     "edit": "수정",
     "share": "공유하기"
+  },
+
+  "--Adventurer card": "",
+  "adventurer card": {
+    "title": "모험가 카드",
+    "show family name": "가문명 표시하기",
+    "publish": "모험가 카드 발행",
+    "verification failed": "모험가 카드 확인 실패",
+    "save image": "[{}]가 다운로드 폴더에 저장되었습니다.",
+    "download": "다운로드"
+  },
+  "adventurer card contents": {
+    "verification code":  "검증 코드: {}",
+    "published on": "발급일: {}",
+    "family name": "가문명: {}",
+    "guild": "소속 길드: {}",
+    "created on": "가문생성일: {}",
+    "contribution points": "공헌도: {}",
+    "highest level": "가문 내 최고 레벨: {}",
+    "life skills": "생활 레벨",
+    "private": "비공개"
   }
 }

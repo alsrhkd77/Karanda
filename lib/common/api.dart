@@ -13,15 +13,13 @@ class Api {
 
   static String get _server {
     if (kReleaseMode) {
-      //return 'https://karanda-server-6hf3d25tnq-an.a.run.app';
       return 'https://api.karanda.kr';
     } else {
       return 'http://localhost:8000';
     }
   }
 
-  static String get _socketServer =>
-      _server.replaceAll('http', 'ws');
+  static String get _socketServer => _server.replaceAll('http', 'ws');
 
   static String get webSocketChannel => '${_server.replaceAll('http', 'ws')}/live-channel';
 
@@ -59,7 +57,7 @@ class Api {
 
   static String get _checklist => '$_server/checklist';
 
-  static String get storage => 'https://storage.googleapis.com/storage.karanda.kr';
+  static String get storage => 'https://storage.googleapis.com/karanda';
 
   static String get _tradeMarket => '$_server/trade-market';
 
@@ -114,7 +112,13 @@ class Api {
 
   static String get worldBossPortrait => '$storage/bdo/worldboss/portrait';
 
-  static String get classSymbol => '$storage/bdo/class-symbol';
+  static String get classSymbol => '$storage/bdo/classes/symbol';
+
+  static String get classPortrait => '$storage/bdo/classes/portrait';
+
+  static String get cardBackground => '$storage/assets/card/backgrounds';
+
+  static String get cardFrame => '$storage/assets/card';
 
   static String get marketWaitListChannel => '$_webSocketPrefix/trade-market/wait-list';
 
@@ -145,4 +149,10 @@ class Api {
   static String get setMainFamily => '$_bdoFamily/set-main';
 
   static String get newRecruitment => '$_adventurerHub/new-post';
+
+  static String get publishAdventurerCard => '/auth/bdo-family/adventurer-card/publish';
+
+  static String get adventurerCardDetail => '/auth/bdo-family/adventurer-card';
+
+  static String get deleteAdventurerCard => '/auth/bdo-family/adventurer-card/delete';
 }
