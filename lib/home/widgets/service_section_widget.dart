@@ -87,16 +87,11 @@ class ServiceSectionWidget extends StatelessWidget {
           path: '/overlay',
           windowsOnly: true,
         ),
-        _ServiceTile(
-          title: '인증 센터 (Beta)', //Verification Center Family Verification
-          icon: FontAwesomeIcons.idCard,
-          path: '/verification-center',
-        ),
-        _ServiceTile(
+        /*_ServiceTile(
           title: '모험가 허브 (Beta)',
           icon: FontAwesomeIcons.circleNodes,
           path: '/adventurer-hub',
-        ),
+        ),*/
         /*_ServiceTile(
           title: '채널 버프 (Beta)',
           icon: FontAwesomeIcons.hubspot,

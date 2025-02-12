@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/verification_center/models/main_family.dart';
+import 'package:karanda/deprecated/verification_center/models/main_family.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 
 class FamilyNameWidget extends StatelessWidget {

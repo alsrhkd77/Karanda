@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/auth/auth_notifier.dart';
-import 'package:karanda/verification_center/models/bdo_family.dart';
-import 'package:provider/provider.dart';
+import 'package:karanda/deprecated/verification_center/models/bdo_family.dart';
 
 class MainFamilyNameWidget extends StatelessWidget {
   final BdoFamily family;
@@ -13,9 +11,7 @@ class MainFamilyNameWidget extends StatelessWidget {
     return Row(
       children: [
         Text(family.familyName),
-        Provider.of<AuthNotifier>(context).mainFamily?.isSame(family) ?? false
-            ? const _MainFamilyChip()
-            : const SizedBox(),
+        const _MainFamilyChip(),
       ],
     );
   }

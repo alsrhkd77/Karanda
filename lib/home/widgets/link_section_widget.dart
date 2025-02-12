@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karanda/common/api.dart';
 import 'package:karanda/common/launch_url.dart';
 
 class LinkSectionWidget extends StatelessWidget {
@@ -21,46 +22,51 @@ class LinkSectionWidget extends StatelessWidget {
       childAspectRatio: childAspectRatio,
       mainAxisSpacing: 2.0,
       crossAxisSpacing: 2.0,
-      children: const [
-        _LinkTile(
+      children: [
+        const _LinkTile(
           name: '검은사막 공식 홈페이지',
           imagePath: 'assets/icons/bdo.png',
           url: 'https://www.kr.playblackdesert.com',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: '검은사막 연구소(테스트 서버)',
           imagePath: 'assets/icons/bdo.png',
           url: 'https://www.global-lab.playblackdesert.com',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: '검은사막 인벤',
           imagePath: 'assets/icons/inven.png',
           url: 'https://black.inven.co.kr',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: '검은사막 인벤 지도시뮬레이터',
           imagePath: 'assets/icons/inven.png',
           url: 'https://black.inven.co.kr/dataninfo/map',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: 'Garmoth',
           imagePath: 'assets/icons/garmoth.png',
           url: 'https://garmoth.com',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: 'BDO Codex',
           imagePath: 'assets/icons/bdocodex.png',
           url: 'https://bdocodex.com/kr',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: 'BDOLYTICS',
           imagePath: 'assets/icons/bdolytics.png',
           url: 'https://bdolytics.com/ko/KR',
         ),
-        _LinkTile(
+        const _LinkTile(
           name: 'OnTopReplica',
           imagePath: 'assets/icons/onTopReplica.png',
           url: 'https://github.com/LorenzCK/OnTopReplica',
+        ),
+        _LinkTile(
+          name: 'Karanda 디스코드 채널',
+          imagePath: 'assets/icons/discord.png',
+          url: Api.karandaDiscordServer,
         ),
       ],
     );

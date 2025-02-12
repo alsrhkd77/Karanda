@@ -282,7 +282,7 @@ class _HomePageState extends State<HomePage> with WindowListener {
           ),
         ],
       ),
-      floatingActionButton: const _FAB(),
+      //floatingActionButton: const _FAB(),
     );
   }
 }

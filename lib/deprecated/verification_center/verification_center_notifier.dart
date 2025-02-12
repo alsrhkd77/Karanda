@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/api.dart';
-import 'package:karanda/verification_center/models/bdo_family.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'dart:developer' as developer;
+
+import 'package:karanda/deprecated/verification_center/models/bdo_family.dart';
 
 class VerificationCenterNotifier with ChangeNotifier {
   List<BdoFamily> families = [];

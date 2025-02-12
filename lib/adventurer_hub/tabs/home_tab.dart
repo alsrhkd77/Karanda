@@ -9,7 +9,6 @@ import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/discord_name_widget.dart';
-import 'package:karanda/widgets/family_name_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomeTab extends StatefulWidget {
@@ -65,12 +64,7 @@ class _UserCard extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                title: auth.mainFamily == null || !auth.mainFamily!.verified
-                    ? DiscordNameWidget(user: auth.user!)
-                    : FamilyNameWidget(family: auth.user!.mainFamily!),
-                trailing: auth.mainFamily == null || !auth.mainFamily!.verified
-                    ? const _RequireMainFamily()
-                    : null,
+                title: DiscordNameWidget(user: auth.user!),
               ),
               const Divider(),
               ListTile(

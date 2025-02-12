@@ -8,7 +8,7 @@ import 'package:karanda/adventurer_hub/widgets/applicant_status_chip.dart';
 import 'package:karanda/common/enums/applicant_status.dart';
 import 'package:karanda/widgets/button_loading_indicator.dart';
 import 'package:karanda/widgets/custom_base.dart';
-import 'package:karanda/widgets/family_name_widget.dart';
+import 'package:karanda/widgets/discord_name_widget.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 
 class RecruitmentApplicantsTab extends StatefulWidget {
@@ -45,9 +45,7 @@ class _RecruitmentApplicantsTabState extends State<RecruitmentApplicantsTab> {
   bool filter(Applicant item) {
     if (item.code != null && item.code!.contains(keyword)) {
       return true;
-    } else if (item.user.mainFamily!.familyName.contains(keyword)) {
-      return true;
-    }
+    } 
     return false;
   }
 
@@ -165,7 +163,7 @@ class _ApplicantTile extends StatelessWidget {
       margin: const EdgeInsets.all(4.0),
       child: ListTile(
         leading: ApplicantStatusChip(status: applicant.status),
-        title: FamilyNameWidget(family: applicant.user.mainFamily!),
+        title: DiscordNameWidget(user: applicant.user),
         trailing: tail(context),
       ),
     );

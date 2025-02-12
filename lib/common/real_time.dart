@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:rxdart/rxdart.dart';
 
 class RealTime {
-  final StreamController<DateTime> _controller = StreamController<DateTime>.broadcast();
+  final _controller = BehaviorSubject<DateTime>();
   late Timer _timer;
   Duration offset = Duration.zero;  //장치 utc시간이 서버 utc시간과 얼마나 차이나는지
   DateTime now = DateTime.now();

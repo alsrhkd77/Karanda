@@ -3,10 +3,10 @@ import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/real_time.dart';
-import 'package:karanda/verification_center/adventurer_card_publish_page.dart';
-import 'package:karanda/verification_center/models/bdo_family.dart';
-import 'package:karanda/verification_center/services/verification_center_data_controller.dart';
-import 'package:karanda/verification_center/widgets/main_family_name_widget.dart';
+import 'package:karanda/deprecated/verification_center/adventurer_card_publish_page.dart';
+import 'package:karanda/deprecated/verification_center/models/bdo_family.dart';
+import 'package:karanda/deprecated/verification_center/services/verification_center_data_controller.dart';
+import 'package:karanda/deprecated/verification_center/widgets/main_family_name_widget.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -65,12 +65,6 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
         setState(() {
           familyData = newFamily;
         });
-        BdoFamily? mainFamily =
-            Provider.of<AuthNotifier>(context, listen: false).mainFamily;
-        if (mainFamily != null && mainFamily.code == familyData.code) {
-          Provider.of<AuthNotifier>(context, listen: false)
-              .authorization(); // update user info
-        }
       }
       Navigator.of(context).pop();
     }
@@ -405,21 +399,17 @@ class _SetMainFamilyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BdoFamily? mainFamily = Provider.of<AuthNotifier>(context).mainFamily;
-    if (family.verified && (mainFamily == null || !mainFamily.isSame(family))) {
-      return Container(
-        width: Size.infinite.width,
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: onPressed,
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('대표 가문으로 설정'),
-          ),
+    return Container(
+      width: Size.infinite.width,
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('대표 가문으로 설정'),
         ),
-      );
-    }
-    return const SizedBox();
+      ),
+    );
   }
 }
 

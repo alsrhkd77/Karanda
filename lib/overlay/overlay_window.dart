@@ -21,8 +21,10 @@ class _OverlayWindowState extends State<OverlayWindow> {
   @override
   void initState() {
     super.initState();
+    /*
     WidgetsBinding.instance
         .addPostFrameCallback((timestamp) => registerListener());
+     */
   }
 
   void registerListener() {
@@ -81,7 +83,7 @@ class _OverlayWindowState extends State<OverlayWindow> {
                     enabled: status.requireData["clock"] ?? false,
                   ),
                   //AdventurerHubOverlayWidget(editMode: editMode.requireData, enabled: status.requireData["adventurerHub"] ?? false,),
-                  AdventurerHubOverlayWidget(editMode: editMode.requireData, enabled: true,),
+                  //AdventurerHubOverlayWidget(editMode: editMode.requireData, enabled: true,), //테스트용
                   WorldBossOverlayWidget(
                     editMode: editMode.requireData,
                     enabled: status.requireData["worldBoss"] ?? false,

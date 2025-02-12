@@ -9,7 +9,6 @@ import 'package:karanda/overlay/utils/box_utils.dart';
 import 'package:karanda/overlay/widgets/edit_mode_card_widget.dart';
 import 'package:karanda/widgets/custom_angular_handle.dart';
 import 'package:karanda/widgets/discord_name_widget.dart';
-import 'package:karanda/widgets/family_name_widget.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 
 class AdventurerHubOverlayWidget extends StatefulWidget {
@@ -136,10 +135,7 @@ class _PostTile extends StatelessWidget {
     return ListTile(
       leadingAndTrailingTextStyle: Theme.of(context).textTheme.bodyMedium,
       title: Text(title),
-      subtitle:
-          post.author!.mainFamily != null && post.author!.mainFamily!.verified
-              ? FamilyNameWidget(family: post.author!.mainFamily!)
-              : DiscordNameWidget(user: post.author!),
+      subtitle: DiscordNameWidget(user: post.author!),
     );
   }
 }

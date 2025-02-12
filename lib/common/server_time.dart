@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:karanda/common/real_time.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ServerTime {
-  final StreamController<DateTime> _controller = StreamController<DateTime>.broadcast();
+  final _controller = BehaviorSubject<DateTime>();
   Duration offset = const Duration(hours: 9);  //서버시각 - UTC 시각
   final RealTime _realtime = RealTime();
   late StreamSubscription _subscription;

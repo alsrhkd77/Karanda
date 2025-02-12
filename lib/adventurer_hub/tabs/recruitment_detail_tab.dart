@@ -13,7 +13,7 @@ import 'package:karanda/common/launch_url.dart';
 import 'package:karanda/widgets/button_loading_indicator.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/discord_name_widget.dart';
-import 'package:karanda/widgets/family_name_widget.dart';
+import 'package:karanda/deprecated/family_name_widget.dart';
 import 'dart:developer' as developer;
 
 import 'package:provider/provider.dart';
@@ -247,22 +247,9 @@ class _Author extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (author.mainFamily == null || !author.mainFamily!.verified) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: DiscordNameWidget(user: author),
-      );
-    }
-    return Tooltip(
-      message: context.tr("recruitment post detail.copy family name"),
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(6.0),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FamilyNameWidget(family: author.mainFamily!),
-        ),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DiscordNameWidget(user: author),
     );
   }
 }

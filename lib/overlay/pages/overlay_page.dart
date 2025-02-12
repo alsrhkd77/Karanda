@@ -128,22 +128,19 @@ class _CustomTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      //margin: const EdgeInsets.all(4.0),
       clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          //padding: const EdgeInsets.symmetric(vertical: 4.0),
-          //constraints: const BoxConstraints(maxWidth: 400),
-          alignment: Alignment.center,
-          child: ListTile(
-            onTap: onTap,
-            hoverColor: Colors.transparent,
-            title: Text(title),
-            trailing: Switch(
-              value: value,
-              onChanged: onChanged,
-            ),
+      child: Container(
+        alignment: Alignment.center,
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 8.0,
+          ),
+          onTap: onTap,
+          title: Text(title),
+          trailing: Switch(
+            value: value,
+            onChanged: onChanged,
           ),
         ),
       ),

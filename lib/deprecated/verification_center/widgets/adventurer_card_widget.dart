@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/enums/bdo_class.dart';
-import 'package:karanda/verification_center/models/adventurer_card.dart';
+import 'package:karanda/deprecated/verification_center/models/adventurer_card.dart';
 
 class AdventurerCardWidget extends StatelessWidget {
   final GlobalKey? widgetKey;

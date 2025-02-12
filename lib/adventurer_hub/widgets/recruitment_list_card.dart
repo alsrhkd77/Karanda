@@ -5,7 +5,6 @@ import 'package:karanda/adventurer_hub/widgets/recruitment_status_chip.dart';
 import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/widgets/discord_name_widget.dart';
-import 'package:karanda/widgets/family_name_widget.dart';
 
 class RecruitmentListCard extends StatelessWidget {
   final Recruitment post;
@@ -29,10 +28,7 @@ class RecruitmentListCard extends StatelessWidget {
           padding: const EdgeInsets.only(top: 4.0),
           child: Text(post.title),
         ),
-        subtitle:
-            post.author!.mainFamily != null && post.author!.mainFamily!.verified
-                ? FamilyNameWidget(family: post.author!.mainFamily!)
-                : DiscordNameWidget(user: post.author!),
+        subtitle: DiscordNameWidget(user: post.author!),
         trailing: Text(
           context.tr("adventurer hub.members", args: [members]),
           textAlign: TextAlign.center,

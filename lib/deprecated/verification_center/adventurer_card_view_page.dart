@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/verification_center/services/adventurer_card_view_service.dart';
-import 'package:karanda/verification_center/widgets/adventurer_card_widget.dart';
+import 'package:karanda/deprecated/verification_center/services/adventurer_card_view_service.dart';
+import 'package:karanda/deprecated/verification_center/widgets/adventurer_card_widget.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
 

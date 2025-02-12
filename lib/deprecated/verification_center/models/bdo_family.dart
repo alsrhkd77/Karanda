@@ -1,5 +1,5 @@
 import 'package:karanda/common/enums/bdo_class.dart';
-import 'package:karanda/verification_center/models/simplified_adventurer_card.dart';
+import 'package:karanda/deprecated/verification_center/models/simplified_adventurer_card.dart';
 
 class BdoFamily {
   late String familyName;

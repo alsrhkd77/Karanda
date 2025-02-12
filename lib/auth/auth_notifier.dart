@@ -10,7 +10,6 @@ import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:karanda/verification_center/models/bdo_family.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:go_router/go_router.dart';
@@ -26,7 +25,6 @@ class AuthNotifier with ChangeNotifier {
   String? _username;
   String? _avatar;
   String? _discordId;
-  BdoFamily? _mainFamily;
 
   bool get authenticated => _authenticated;
 
@@ -37,8 +35,6 @@ class AuthNotifier with ChangeNotifier {
   String get avatar => _avatar ?? "";
 
   String get discordId => _discordId ?? "";
-
-  BdoFamily? get mainFamily => _mainFamily;
 
   User? get user => _user;
 
@@ -87,9 +83,6 @@ class AuthNotifier with ChangeNotifier {
         _avatar = data['avatar'] == null
             ? "${Api.discordEmbedAvatar}/${Random().nextInt(6)}.png"
             : "${Api.discordAvatar}/${data['avatar']}";
-        if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
-          _mainFamily = BdoFamily.fromData(data['mainFamily']);
-        }
         _user = User.fromData(data);
         notifyListeners();
         return true;
@@ -119,9 +112,6 @@ class AuthNotifier with ChangeNotifier {
         _avatar = data['avatar'] == null
             ? "${Api.discordEmbedAvatar}/${Random().nextInt(6)}.png"
             : "${Api.discordAvatar}/${data['avatar']}";
-        if (data.containsKey('mainFamily') && data['mainFamily'] != null) {
-          _mainFamily = BdoFamily.fromData(data['mainFamily']);
-        }
         _user = User.fromData(data);
         saveToken(
             token: data['token'],

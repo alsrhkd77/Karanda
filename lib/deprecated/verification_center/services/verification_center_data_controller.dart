@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:karanda/common/rest_client.dart';
-import 'package:karanda/verification_center/models/bdo_family.dart';
-import 'package:karanda/verification_center/models/simplified_adventurer_card.dart';
+import 'package:karanda/deprecated/verification_center/models/bdo_family.dart';
+import 'package:karanda/deprecated/verification_center/models/simplified_adventurer_card.dart';
 import 'dart:developer' as developer;
 
 import 'package:rxdart/rxdart.dart';
