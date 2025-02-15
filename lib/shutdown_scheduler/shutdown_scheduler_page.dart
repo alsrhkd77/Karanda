@@ -84,7 +84,9 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
                       child: Card(
                         clipBehavior: Clip.antiAlias,
                         child: InkWell(
-                          onTap: selectTime,
+                          onTap: shutdownSchedulerNotifier.running
+                              ? null
+                              : selectTime,
                           child: Stack(
                             alignment: Alignment.center,
                             fit: StackFit.expand,
