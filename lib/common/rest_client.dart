@@ -4,8 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
-import 'package:karanda/common/api.dart';
 import 'package:karanda/common/token_factory.dart';
+import 'package:karanda/utils/api_endpoints/karanda_api.dart';
+import 'dart:developer' as developer;
 
 class RestClient {
   static String get _scheme => kDebugMode ? 'http' : 'https';
@@ -179,9 +180,9 @@ class RestClient {
 
   static Uri _uri({required String path, Map<String, dynamic>? parameters}) {
     return Uri(
-      scheme: Api.scheme,
-      host: _host,
-      port: _port,
+      scheme: KarandaApi.scheme,
+      host: KarandaApi.host,
+      port: KarandaApi.port,
       path: path,
       queryParameters: parameters,
     );
@@ -205,7 +206,52 @@ class _Client extends http.BaseClient {
     if (json) {
       request.headers['Content-Type'] = 'application/json';
     }
-    return _inner.send(request);
+    http.StreamedResponse response = await _inner.send(request);
+    if (response.statusCode == 401) {
+      try {
+        token = await tokenRefresh();
+        if (token != null) {
+          request.headers['Authorization'] = "Bearer $token";
+          return _inner.send(request);
+        }
+      } catch (e) {
+        developer.log("Failed to token refresh");
+      }
+    }
+    return response;
+  }
+
+  Future<String?> tokenRefresh() async {
+    const storage = FlutterSecureStorage();
+    final String? token = await storage.read(key: 'karanda-token');
+    final String? refreshToken = await storage.read(key: 'refresh-token');
+
+    if (token != null && refreshToken != null) {
+      final uri = Uri(
+        scheme: KarandaApi.scheme,
+        host: KarandaApi.host,
+        port: KarandaApi.port,
+        path: KarandaApi.tokenRefresh,
+      );
+
+      final response = await http.get(
+        uri,
+        headers: {
+          'Authorization': "Bearer $token",
+          'Qualification': TokenFactory.serviceToken(),
+          'refresh-token': 'Bearer $refreshToken'
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        await storage.write(key: 'karanda-token', value: data['token']);
+        await storage.write(key: 'refresh-token', value: data['refreshToken']);
+        return token;
+      }
+    }
+
+    return null;
   }
 
   @override
