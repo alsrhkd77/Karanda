@@ -59,7 +59,7 @@ class _HorseStatusPageState extends State<HorseStatusPage> {
                           padding: EdgeInsets.all(8.0),
                           child: ListTile(
                             leading: Icon(Icons.warning, color: Colors.redAccent,),
-                            title: Text("말 성장치 계산기는 다음 업데이트 시 제거될 예정입니다. 의견이 있으시다면 Karanda 디스코드 채널에서 알려주세요!"),
+                            title: Text("말 성장치 계산기는 제거될 예정입니다. 의견이 있으시다면 Karanda 디스코드 채널에서 알려주세요!"),
                           ),
                         ),
                       ),
