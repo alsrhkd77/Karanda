@@ -22,11 +22,11 @@ import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'shutdown_scheduler/shutdown_scheduler_notifier.dart';
-//import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
+import 'package:flutter_web_plugins/url_strategy.dart' show usePathUrlStrategy;
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  //usePathUrlStrategy();
+  usePathUrlStrategy();
   await EasyLocalization.ensureInitialized();
   Widget app;
 
