@@ -401,7 +401,7 @@ class _Footer extends StatelessWidget {
                       const Text('Karanda의 후원자가 되어주세요!'),
                       FilledButton(
                         onPressed: () =>
-                        {context.push('/settings/support-karanda')},
+                            {context.push('/settings/support-karanda')},
                         child: const Text('후원하기'),
                       ),
                     ],
