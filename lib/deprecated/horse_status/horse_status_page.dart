@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/horse_status/horse_status_data_controller.dart';
-import 'package:karanda/horse_status/models/horse_equipment.dart';
-import 'package:karanda/horse_status/models/horse.dart';
-import 'package:karanda/horse_status/models/horse_status.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator.dart';
+
+import 'horse_status_data_controller.dart';
+import 'models/horse.dart';
+import 'models/horse_equipment.dart';
+import 'models/horse_status.dart';
 
 class HorseStatusPage extends StatefulWidget {
   const HorseStatusPage({super.key});

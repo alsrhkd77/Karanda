@@ -2,11 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:karanda/horse_status/models/horse_equipment.dart';
-import 'package:karanda/horse_status/models/horse.dart';
-import 'package:karanda/horse_status/models/horse_pearl_equipment.dart';
-import 'package:karanda/horse_status/models/horse_spec.dart';
-import 'package:karanda/horse_status/models/horse_status.dart';
+
+import 'models/horse.dart';
+import 'models/horse_equipment.dart';
+import 'models/horse_pearl_equipment.dart';
+import 'models/horse_spec.dart';
+import 'models/horse_status.dart';
 
 class HorseStatusDataController {
   final _selectedBreedController = StreamController<Horse>.broadcast();

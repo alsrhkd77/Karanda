@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/common/blacklist_model.dart';
-import 'package:karanda/maretta/maretta_notifier.dart';
 import 'package:provider/provider.dart';
+
+import 'maretta_notifier.dart';
 
 class MarettaBlacklistDialog extends StatefulWidget {
   const MarettaBlacklistDialog({super.key});

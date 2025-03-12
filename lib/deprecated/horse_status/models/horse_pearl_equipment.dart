@@ -1,4 +1,5 @@
-import 'package:karanda/horse_status/models/horse_spec.dart';
+
+import 'horse_spec.dart';
 
 class HorsePearlEquipment{
   late int code;

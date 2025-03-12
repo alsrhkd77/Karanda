@@ -1,4 +1,6 @@
-import 'package:karanda/horse_status/models/horse_spec.dart';
+
+
+import 'horse_spec.dart';
 
 class Horse {
   late String type;

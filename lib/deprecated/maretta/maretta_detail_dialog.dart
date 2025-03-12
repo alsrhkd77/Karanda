@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
-import 'package:karanda/maretta/maretta_model.dart';
+
+import 'maretta_model.dart';
 
 class MarettaDetailDialog extends StatefulWidget {
   final MarettaModel item;

@@ -1,5 +1,6 @@
 import 'package:karanda/common/channel.dart';
-import 'package:karanda/maretta/maretta_report_model.dart';
+
+import 'maretta_report_model.dart';
 
 enum MarettaStatus { alive, unknown, dead }
 

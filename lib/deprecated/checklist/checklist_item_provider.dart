@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:karanda/checklist/checklist_item.dart';
-import 'package:karanda/checklist/checklist_finished_item.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/common/http.dart' as http;
 import 'package:karanda/common/http_response_extension.dart';
+
+import 'checklist_finished_item.dart';
+import 'checklist_item.dart';
 
 class ChecklistItemProvider{
   Future<Map<Cycle, List<ChecklistItem>>> getChecklistItems() async {

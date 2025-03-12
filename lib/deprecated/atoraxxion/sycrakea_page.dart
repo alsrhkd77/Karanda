@@ -1,7 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../widgets/default_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:karanda/widgets/default_app_bar.dart';
 
 class SycrakeaPage extends StatefulWidget {
   const SycrakeaPage({Key? key}) : super(key: key);

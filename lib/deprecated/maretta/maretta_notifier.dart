@@ -8,8 +8,9 @@ import 'package:karanda/common/blacklist_model.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/common/http.dart' as http;
-import 'package:karanda/maretta/maretta_model.dart';
-import 'package:karanda/maretta/maretta_report_model.dart';
+
+import 'maretta_model.dart';
+import 'maretta_report_model.dart';
 
 class MarettaNotifier with ChangeNotifier {
   Map<AllChannel, List<MarettaModel>> reportList = HashMap();

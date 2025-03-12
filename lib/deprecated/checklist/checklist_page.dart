@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/auth/auth_notifier.dart';
-import 'package:karanda/checklist/checklist_item.dart';
-import 'package:karanda/checklist/checklist_notifier.dart';
-import 'package:karanda/checklist/create_checklist_item_dialog.dart';
-import 'package:karanda/checklist/edit_checklist_item_dialog.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/need_login.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import 'checklist_item.dart';
+import 'checklist_notifier.dart';
+import 'create_checklist_item_dialog.dart';
+import 'edit_checklist_item_dialog.dart';
 
 class ChecklistPage extends StatefulWidget {
   const ChecklistPage({Key? key}) : super(key: key);

@@ -8,19 +8,20 @@ import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/global_properties.dart';
 import 'package:karanda/common/real_time_notifier.dart';
-import 'package:karanda/maretta/maretta_blacklist_dialog.dart';
-import 'package:karanda/maretta/maretta_detail_dialog.dart';
-import 'package:karanda/maretta/maretta_map_viewer.dart';
-import 'package:karanda/maretta/maretta_model.dart';
-import 'package:karanda/maretta/maretta_notifier.dart';
-import 'package:karanda/maretta/maretta_report_dialog.dart';
-import 'package:karanda/maretta/maretta_report_model.dart';
+import 'package:karanda/deprecated/maretta/maretta_blacklist_dialog.dart';
+import 'package:karanda/deprecated/maretta/maretta_detail_dialog.dart';
+import 'package:karanda/deprecated/maretta/maretta_report_dialog.dart';
+import 'package:karanda/deprecated/maretta/maretta_report_model.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';
 import 'package:karanda/widgets/need_login_snack_bar.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
+
+import 'maretta_map_viewer.dart';
+import 'maretta_model.dart';
+import 'maretta_notifier.dart';
 
 class MarettaPage extends StatefulWidget {
   const MarettaPage({super.key});

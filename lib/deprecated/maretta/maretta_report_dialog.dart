@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/channel.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
-import 'package:karanda/maretta/maretta_report_model.dart';
+import 'package:karanda/deprecated/maretta/maretta_report_model.dart';
 import 'package:karanda/widgets/title_text.dart';
 import 'package:provider/provider.dart';
 

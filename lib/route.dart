@@ -4,15 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:karanda/adventurer_hub/adventurer_hub_page.dart';
 import 'package:karanda/adventurer_hub/recruitment_detail_page.dart';
 import 'package:karanda/artifact/artifact_page.dart';
-import 'package:karanda/atoraxxion/sycrakea_page.dart';
-import 'package:karanda/atoraxxion/yolunakea_moon_page.dart';
 import 'package:karanda/auth/auth_error_page.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/auth/auth_page.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
 import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/home/home_page.dart';
-import 'package:karanda/horse_status/horse_status_page.dart';
 import 'package:karanda/initializer/initializer_page.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
@@ -35,6 +32,10 @@ import 'package:karanda/widgets/invalid_access_page.dart';
 import 'package:karanda/widgets/loading_page.dart';
 import 'package:karanda/world_boss/world_boss_page.dart';
 import 'package:provider/provider.dart';
+
+import 'deprecated/atoraxxion/sycrakea_page.dart';
+import 'deprecated/atoraxxion/yolunakea_moon_page.dart';
+import 'deprecated/horse_status/horse_status_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',

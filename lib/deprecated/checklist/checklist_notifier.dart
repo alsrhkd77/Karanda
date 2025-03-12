@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/checklist/checklist_item.dart';
-import 'package:karanda/checklist/checklist_finished_item.dart';
-import 'package:karanda/checklist/checklist_item_provider.dart';
+
+import 'checklist_finished_item.dart';
+import 'checklist_item.dart';
+import 'checklist_item_provider.dart';
 
 class ChecklistNotifier with ChangeNotifier {
   final _checklistItemProvider = ChecklistItemProvider();
