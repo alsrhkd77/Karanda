@@ -36,7 +36,7 @@ class OverlayWidget extends StatelessWidget {
           opacity: show ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 300),
           child: Card(
-            child: false
+            child: resizable
                 ? _Name(feature: feature)
                 : contentBuilder(context, rect, flip),
           ),
