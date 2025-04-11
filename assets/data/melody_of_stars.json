@@ -1,106 +1,470 @@
 [
     {
         "code": 11609,
+        "enhancement level": 1,
+        "value": 1,
         "name": "선행의 목걸이"
     },
     {
         "code": 11610,
+        "enhancement level": 1,
+        "value": 1,
         "name": "스칼라 목걸이"
     },
     {
         "code": 11611,
+        "enhancement level": 1,
+        "value": 1,
         "name": "벤쇼의 목걸이"
     },
     {
         "code": 11613,
+        "enhancement level": 1,
+        "value": 1,
         "name": "고대 수호자의 인장"
     },
     {
         "code": 11631,
+        "enhancement level": 1,
+        "value": 1,
         "name": "검투사 슐츠의 목걸이"
     },
     {
         "code": 12007,
+        "enhancement level": 1,
+        "value": 1,
         "name": "그림자의 표식"
     },
     {
         "code": 12008,
+        "enhancement level": 1,
+        "value": 1,
         "name": "신전 수호자의 증표"
     },
     {
         "code": 12011,
+        "enhancement level": 1,
+        "value": 1,
         "name": "네르트 반지"
     },
     {
         "code": 12012,
+        "enhancement level": 1,
+        "value": 1,
         "name": "무법자의 반지"
     },
     {
         "code": 12017,
+        "enhancement level": 1,
+        "value": 1,
         "name": "푸른 산호초 반지"
     },
     {
         "code": 12018,
+        "enhancement level": 1,
+        "value": 1,
         "name": "붉은 산호초 반지"
     },
     {
         "code": 12045,
+        "enhancement level": 1,
+        "value": 1,
         "name": "무지개 산호초 반지"
     },
     {
         "code": 12059,
+        "enhancement level": 1,
+        "value": 1,
         "name": "가크툼의 복종반지"
     },
     {
         "code": 12207,
+        "enhancement level": 1,
+        "value": 1,
         "name": "루툼의 허리띠"
     },
     {
         "code": 12210,
+        "enhancement level": 1,
+        "value": 1,
         "name": "나무 정령의 허리띠"
     },
     {
         "code": 12211,
+        "enhancement level": 1,
+        "value": 1,
         "name": "검투사 슐츠의 허리띠"
     },
     {
         "code": 12212,
+        "enhancement level": 1,
+        "value": 1,
         "name": "가르트너 허리띠"
     },
     {
         "code": 12220,
+        "enhancement level": 1,
+        "value": 1,
         "name": "고대 병기의 핵"
     },
     {
         "code": 11807,
+        "enhancement level": 1,
+        "value": 1,
         "name": "우정의 약속"
     },
     {
         "code": 11808,
+        "enhancement level": 1,
+        "value": 1,
         "name": "마녀의 귀장식"
     },
     {
         "code": 11810,
+        "enhancement level": 1,
+        "value": 1,
         "name": "메스토 귀걸이"
     },
     {
         "code": 11811,
+        "enhancement level": 1,
+        "value": 1,
         "name": "리델 귀걸이"
     },
     {
         "code": 11815,
+        "enhancement level": 1,
+        "value": 1,
         "name": "대왕 고래 어금니 귀걸이"
     },
     {
         "code": 11816,
+        "enhancement level": 1,
+        "value": 1,
         "name": "푸른 산호초 귀걸이"
     },
     {
         "code": 11817,
+        "enhancement level": 1,
+        "value": 1,
         "name": "붉은 산호초 귀걸이"
     },
     {
         "code": 11827,
+        "enhancement level": 1,
+        "value": 1,
+        "name": "도망자 칼크의 귀걸이"
+    },
+    {
+        "code": 11609,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "선행의 목걸이"
+    },
+    {
+        "code": 11610,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "스칼라 목걸이"
+    },
+    {
+        "code": 11611,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "벤쇼의 목걸이"
+    },
+    {
+        "code": 11613,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "고대 수호자의 인장"
+    },
+    {
+        "code": 11631,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "검투사 슐츠의 목걸이"
+    },
+    {
+        "code": 12007,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "그림자의 표식"
+    },
+    {
+        "code": 12008,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "신전 수호자의 증표"
+    },
+    {
+        "code": 12011,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "네르트 반지"
+    },
+    {
+        "code": 12012,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "무법자의 반지"
+    },
+    {
+        "code": 12017,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "푸른 산호초 반지"
+    },
+    {
+        "code": 12018,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "붉은 산호초 반지"
+    },
+    {
+        "code": 12045,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "무지개 산호초 반지"
+    },
+    {
+        "code": 12059,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "가크툼의 복종반지"
+    },
+    {
+        "code": 12207,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "루툼의 허리띠"
+    },
+    {
+        "code": 12210,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "나무 정령의 허리띠"
+    },
+    {
+        "code": 12211,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "검투사 슐츠의 허리띠"
+    },
+    {
+        "code": 12212,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "가르트너 허리띠"
+    },
+    {
+        "code": 12220,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "고대 병기의 핵"
+    },
+    {
+        "code": 11807,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "우정의 약속"
+    },
+    {
+        "code": 11808,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "마녀의 귀장식"
+    },
+    {
+        "code": 11810,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "메스토 귀걸이"
+    },
+    {
+        "code": 11811,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "리델 귀걸이"
+    },
+    {
+        "code": 11815,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "대왕 고래 어금니 귀걸이"
+    },
+    {
+        "code": 11816,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "푸른 산호초 귀걸이"
+    },
+    {
+        "code": 11817,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "붉은 산호초 귀걸이"
+    },
+    {
+        "code": 11827,
+        "enhancement level": 2,
+        "value": 5,
+        "name": "도망자 칼크의 귀걸이"
+    },
+    {
+        "code": 11609,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "선행의 목걸이"
+    },
+    {
+        "code": 11610,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "스칼라 목걸이"
+    },
+    {
+        "code": 11611,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "벤쇼의 목걸이"
+    },
+    {
+        "code": 11613,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "고대 수호자의 인장"
+    },
+    {
+        "code": 11631,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "검투사 슐츠의 목걸이"
+    },
+    {
+        "code": 12007,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "그림자의 표식"
+    },
+    {
+        "code": 12008,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "신전 수호자의 증표"
+    },
+    {
+        "code": 12011,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "네르트 반지"
+    },
+    {
+        "code": 12012,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "무법자의 반지"
+    },
+    {
+        "code": 12017,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "푸른 산호초 반지"
+    },
+    {
+        "code": 12018,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "붉은 산호초 반지"
+    },
+    {
+        "code": 12045,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "무지개 산호초 반지"
+    },
+    {
+        "code": 12059,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "가크툼의 복종반지"
+    },
+    {
+        "code": 12207,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "루툼의 허리띠"
+    },
+    {
+        "code": 12210,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "나무 정령의 허리띠"
+    },
+    {
+        "code": 12211,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "검투사 슐츠의 허리띠"
+    },
+    {
+        "code": 12212,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "가르트너 허리띠"
+    },
+    {
+        "code": 12220,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "고대 병기의 핵"
+    },
+    {
+        "code": 11807,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "우정의 약속"
+    },
+    {
+        "code": 11808,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "마녀의 귀장식"
+    },
+    {
+        "code": 11810,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "메스토 귀걸이"
+    },
+    {
+        "code": 11811,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "리델 귀걸이"
+    },
+    {
+        "code": 11815,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "대왕 고래 어금니 귀걸이"
+    },
+    {
+        "code": 11816,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "푸른 산호초 귀걸이"
+    },
+    {
+        "code": 11817,
+        "enhancement level": 3,
+        "value": 25,
+        "name": "붉은 산호초 귀걸이"
+    },
+    {
+        "code": 11827,
+        "enhancement level": 3,
+        "value": 25,
         "name": "도망자 칼크의 귀걸이"
     }
 ]

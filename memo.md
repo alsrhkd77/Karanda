@@ -2,6 +2,18 @@
 ### 빌드 전 확인 사항
 `pubspec.yaml`에 버전 확인하기
 
+### Firebase 배포 명령어
+```
+firebase deploy --only hosting
+```
+
+# 구조
+ - Data source: Local / asset 데이터
+ - Api: Remote 데이터
+ - Repository: 데이터 캐싱 및 제어
+ - Service: 비즈니스 로직 (간단한 로직일 경우 생략, Repository에 역할 위임)
+ - Controller: UI State
+
 ### 빌드 명령어
 ```
  flutter build {platform} --release --dart-define=SECRET={SECRET_FROM_FIRESTORE}

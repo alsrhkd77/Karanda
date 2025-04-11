@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/common/file_saver/file_saver.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:karanda/common/rest_client.dart';
+import 'package:karanda/utils/rest_client.dart';
 import 'dart:developer' as developer;
 
 import 'package:karanda/deprecated/verification_center/models/adventurer_card.dart';

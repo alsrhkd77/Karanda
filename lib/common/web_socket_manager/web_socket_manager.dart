@@ -99,7 +99,7 @@ class WebSocketManager {
         _client = null;
       },
       onDisconnect: (frame){
-        developer.log("STOMP disconnected, ${frame.toString()}");
+        developer.log("STOMP disconnected, ${frame.command}");
       },
       connectionTimeout: const Duration(seconds: 59),
       heartbeatIncoming: const Duration(microseconds: 30000),

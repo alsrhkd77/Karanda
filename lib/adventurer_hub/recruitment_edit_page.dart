@@ -11,7 +11,7 @@ import 'package:karanda/common/enums/recruit_method.dart';
 import 'package:karanda/common/enums/recruitment_category.dart';
 import 'package:karanda/common/go_router_extension.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:karanda/common/rest_client.dart';
+import 'package:karanda/utils/rest_client.dart';
 import 'package:karanda/widgets/custom_base.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
 import 'package:karanda/widgets/loading_indicator_dialog.dart';

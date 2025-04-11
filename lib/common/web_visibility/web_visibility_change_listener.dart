@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'package:web/web.dart';
 
 void addListener({required Function onVisible, required Function onHidden}) {
   document.onVisibilityChange.listen((event) {

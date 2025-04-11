@@ -5,7 +5,7 @@ import 'package:karanda/adventurer_hub/adventurer_hub_data_controller.dart';
 import 'package:karanda/adventurer_hub/models/applicant.dart';
 import 'package:karanda/adventurer_hub/models/recruitment.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:karanda/common/rest_client.dart';
+import 'package:karanda/utils/rest_client.dart';
 import 'dart:developer' as developer;
 
 class RecruitmentDataController {

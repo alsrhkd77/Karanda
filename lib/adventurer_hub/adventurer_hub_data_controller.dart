@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:karanda/adventurer_hub/models/applicant.dart';
 import 'package:karanda/adventurer_hub/models/recruitment.dart';
 import 'package:karanda/common/http_response_extension.dart';
-import 'package:karanda/common/rest_client.dart';
+import 'package:karanda/utils/rest_client.dart';
 import 'package:karanda/common/web_socket_manager/web_socket_manager.dart';
 import 'package:karanda/overlay/overlay_manager.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';

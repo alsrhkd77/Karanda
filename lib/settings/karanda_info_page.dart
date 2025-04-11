@@ -84,7 +84,7 @@ class _KarandaInfoPageState extends State<KarandaInfoPage> {
                 ),
                 const ListTile(
                   title: Text('Flutter 버전'),
-                  subtitle: Text('3.16.5'),
+                  subtitle: Text('3.29.0'),
                 ),
               ],
             ),

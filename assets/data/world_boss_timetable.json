@@ -1,698 +1,4292 @@
 [
   {
+    "name": "vell",
+    "weekday": 4,
+    "spawn time": "0:15",
+    "utc spawn time": "15:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
     "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "0:15",
+    "utc spawn time": "15:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
     "weekday": 1,
-    "spawn time": "14:00",
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 1,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 2,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 3,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "offin",
+    "weekday": 3,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 3,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 4,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 5,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 6,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 6,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 7,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 1,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 1,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 2,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 4,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 4,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 5,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 5,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 6,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 6,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 7,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 7,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 1,
-    "spawn time": "23:15",
+    "spawn time": "14:00",
+    "utc spawn time": "5:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 2,
     "spawn time": "14:00",
-    "region": "KR"
-  },
-  {
-    "name": "garmoth",
-    "weekday": 2,
-    "spawn time": "23:15",
+    "utc spawn time": "5:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 3,
     "spawn time": "14:00",
-    "region": "KR"
-  },
-  {
-    "name": "garmoth",
-    "weekday": 3,
-    "spawn time": "23:15",
+    "utc spawn time": "5:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 4,
     "spawn time": "14:00",
-    "region": "KR"
-  },
-  {
-    "name": "garmoth",
-    "weekday": 4,
-    "spawn time": "23:15",
+    "utc spawn time": "5:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 5,
     "spawn time": "14:00",
-    "region": "KR"
-  },
-  {
-    "name": "garmoth",
-    "weekday": 5,
-    "spawn time": "23:15",
+    "utc spawn time": "5:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 6,
     "spawn time": "14:00",
-    "region": "KR"
-  },
-  {
-    "name": "garmoth",
-    "weekday": 7,
-    "spawn time": "0:15",
+    "utc spawn time": "5:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "garmoth",
     "weekday": 7,
     "spawn time": "14:00",
+    "utc spawn time": "5:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
-    "name": "garmoth",
-    "weekday": 7,
-    "spawn time": "23:15",
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
-    "name": "vell",
+    "name": "kutum",
+    "weekday": 1,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 1,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 2,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 2,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
     "weekday": 4,
-    "spawn time": "0:15",
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 4,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 5,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 5,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 6,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 6,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 6,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 7,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "black shadow",
+    "weekday": 6,
+    "spawn time": "17:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "vell",
     "weekday": 7,
     "spawn time": "17:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 1,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 3,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 4,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 5,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 5,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 6,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 6,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 7,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 7,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 7,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 1,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 1,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 1,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 2,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 2,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 2,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 3,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 3,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 4,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 5,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 6,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 7,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "offin",
-    "weekday": 1,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "offin",
-    "weekday": 3,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "offin",
-    "weekday": 5,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 1,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 1,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 2,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 3,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 3,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 4,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 4,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 5,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 6,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 6,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 7,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 7,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 1,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 2,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 4,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 4,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 4,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 5,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 5,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 6,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 7,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 7,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 7,
-    "spawn time": "20:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "quint",
     "weekday": 3,
     "spawn time": "19:00",
+    "utc spawn time": "10:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "muraka",
+    "weekday": 3,
+    "spawn time": "19:00",
+    "utc spawn time": "10:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "quint",
     "weekday": 6,
     "spawn time": "19:00",
-    "region": "KR"
-  },
-  {
-    "name": "muraka",
-    "weekday": 3,
-    "spawn time": "19:00",
+    "utc spawn time": "10:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "muraka",
     "weekday": 6,
     "spawn time": "19:00",
+    "utc spawn time": "10:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
-    "name": "bulgasal",
+    "name": "karanda",
     "weekday": 1,
-    "spawn time": "2:00",
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 1,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 1,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "bulgasal",
     "weekday": 1,
     "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 2,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 2,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 2,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 3,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 3,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 4,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 4,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 5,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "bulgasal",
+    "weekday": 5,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 5,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 7,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 7,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 1,
+    "spawn time": "23:15",
+    "utc spawn time": "14:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "garmoth",
     "weekday": 2,
-    "spawn time": "16:00",
+    "spawn time": "23:15",
+    "utc spawn time": "14:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 3,
+    "spawn time": "23:15",
+    "utc spawn time": "14:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 4,
+    "spawn time": "23:15",
+    "utc spawn time": "14:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 5,
+    "spawn time": "23:15",
+    "utc spawn time": "14:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "23:15",
+    "utc spawn time": "14:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "offin",
+    "weekday": 1,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 1,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 1,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 2,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "bulgasal",
     "weekday": 2,
     "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
-    "name": "bulgasal",
+    "name": "golden pig king",
     "weekday": 3,
-    "spawn time": "16:00",
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "bulgasal",
     "weekday": 3,
     "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "bulgasal",
     "weekday": 4,
     "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
-    "name": "bulgasal",
-    "weekday": 5,
-    "spawn time": "11:00",
+    "name": "uturi",
+    "weekday": 4,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
-    "name": "bulgasal",
+    "name": "uturi",
     "weekday": 5,
-    "spawn time": "20:00",
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 5,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "offin",
+    "weekday": 5,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
     "region": "KR"
   },
   {
     "name": "bulgasal",
     "weekday": 6,
-    "spawn time": "2:00",
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
     "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 6,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 7,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 7,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 1,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "3:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 1,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "offin",
+    "weekday": 1,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 1,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 1,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 1,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 1,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 1,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 1,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 1,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 1,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 1,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 1,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 1,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "3:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 2,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 2,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 2,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 2,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 2,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 2,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "quint",
+    "weekday": 2,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "muraka",
+    "weekday": 2,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 2,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 2,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 2,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "3:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 3,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 3,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 3,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 3,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "offin",
+    "weekday": 3,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 3,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "vell",
+    "weekday": 3,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 3,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 3,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 3,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 3,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 3,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 4,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 4,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 4,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 4,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 4,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "17:00",
+    "utc spawn time": "01:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 4,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "quint",
+    "weekday": 4,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "muraka",
+    "weekday": 4,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 4,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 4,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 4,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 4,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 4,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 5,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "3:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 5,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 5,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 5,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 5,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 5,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 5,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "black shadow",
+    "weekday": 5,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 5,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 5,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 5,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 5,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "offin",
+    "weekday": 6,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 6,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "3:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 6,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 6,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 6,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 6,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 6,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
   },
   {
     "name": "bulgasal",
     "weekday": 6,
-    "spawn time": "23:45",
-    "region": "KR"
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 6,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "black shadow",
+    "weekday": 6,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 6,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 6,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 6,
+    "spawn time": "17:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 6,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 6,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 7,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 7,
+    "spawn time": "0:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "3:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "7:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 7,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 7,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "10:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "12:00",
+    "utc spawn time": "20:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "vell",
+    "weekday": 7,
+    "spawn time": "14:00",
+    "utc spawn time": "22:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "17:15",
+    "utc spawn time": "1:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
   },
   {
     "name": "bulgasal",
     "weekday": 7,
-    "spawn time": "20:00",
-    "region": "KR"
+    "spawn time": "17:15",
+    "utc spawn time": "1:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 7,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "uturi",
+    "weekday": 7,
+    "spawn time": "20:15",
+    "utc spawn time": "4:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "21:15",
+    "utc spawn time": "5:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "6:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "NA"
+  },
+  {
+    "name": "karanda",
+    "weekday": 1,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 1,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 1,
-    "spawn time": "11:00",
-    "region": "KR"
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 1,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 1,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "offin",
+    "weekday": 1,
+    "spawn time": "12:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 1,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 1,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 1,
-    "spawn time": "23:45",
-    "region": "KR"
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 1,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 1,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 1,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 1,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 1,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "uturi",
+    "weekday": 1,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 1,
+    "spawn time": "23:15",
+    "utc spawn time": "22:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 2,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 2,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 2,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 2,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 2,
+    "spawn time": "12:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 2,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 2,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 2,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 2,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 2,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 2,
-    "spawn time": "20:00",
-    "region": "KR"
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "quint",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "muraka",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 2,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 2,
+    "spawn time": "23:15",
+    "utc spawn time": "22:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 3,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 3,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 3,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 3,
+    "spawn time": "12:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 3,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "offin",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "vell",
+    "weekday": 3,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 3,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 3,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 3,
-    "spawn time": "20:00",
-    "region": "KR"
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
-    "name": "uturi",
+    "name": "garmoth",
+    "weekday": 3,
+    "spawn time": "23:15",
+    "utc spawn time": "22:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 4,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 4,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
     "weekday": 4,
     "spawn time": "2:00",
-    "region": "KR"
+    "utc spawn time": "1:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 4,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 4,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 4,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 4,
     "spawn time": "16:00",
-    "region": "KR"
+    "utc spawn time": "15:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 4,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 4,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "quint",
+    "weekday": 4,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "muraka",
+    "weekday": 4,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 4,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 4,
-    "spawn time": "23:45",
-    "region": "KR"
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 4,
+    "spawn time": "23:15",
+    "utc spawn time": "22:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 5,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 5,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 5,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 5,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "12:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 5,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 5,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 5,
     "spawn time": "16:00",
-    "region": "KR"
+    "utc spawn time": "15:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 5,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 5,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 5,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 5,
-    "spawn time": "23:45",
-    "region": "KR"
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 5,
+    "spawn time": "23:15",
+    "utc spawn time": "22:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 6,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 6,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 6,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "offin",
+    "weekday": 6,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 6,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 6,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 6,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 6,
+    "spawn time": "12:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 6,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 6,
-    "spawn time": "23:45",
-    "region": "KR"
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 6,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "black shadow",
+    "weekday": 6,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "karanda",
+    "weekday": 6,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 6,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 6,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 6,
+    "spawn time": "19:00",
+    "utc spawn time": "18:00",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "uturi",
     "weekday": 7,
-    "spawn time": "20:00",
-    "region": "KR"
+    "spawn time": "0:15",
+    "utc spawn time": "23:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
-    "name": "golden pig king",
-    "weekday": 1,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 1,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 2,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 3,
+    "name": "kzarka",
+    "weekday": 7,
     "spawn time": "2:00",
-    "region": "KR"
+    "utc spawn time": "1:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 7,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 7,
+    "spawn time": "2:00",
+    "utc spawn time": "1:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kutum",
+    "weekday": 7,
+    "spawn time": "5:00",
+    "utc spawn time": "4:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "9:00",
+    "utc spawn time": "8:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 7,
+    "spawn time": "12:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "14:00",
+    "utc spawn time": "13:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "vell",
+    "weekday": 7,
+    "spawn time": "16:00",
+    "utc spawn time": "15:00",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "19:15",
+    "utc spawn time": "18:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "nouver",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
   },
   {
     "name": "golden pig king",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 7,
+    "spawn time": "22:15",
+    "utc spawn time": "21:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "garmoth",
+    "weekday": 7,
+    "spawn time": "23:15",
+    "utc spawn time": "22:15",
+    "utc weekday": 7,
+    "start": "",
+    "end": "",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 1,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 1,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 2,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 2,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 2,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 3,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
     "weekday": 3,
-    "spawn time": "23:45",
-    "region": "KR"
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 3,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
   },
   {
-    "name": "golden pig king",
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 3,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 4,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
     "weekday": 4,
-    "spawn time": "20:00",
-    "region": "KR"
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 4,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
   },
   {
-    "name": "golden pig king",
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 4,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 5,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
     "weekday": 5,
-    "spawn time": "20:00",
-    "region": "KR"
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 5,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
   },
   {
-    "name": "golden pig king",
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 5,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 6,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
     "weekday": 6,
-    "spawn time": "11:00",
-    "region": "KR"
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 6,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
   },
   {
-    "name": "golden pig king",
-    "weekday": 7,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 7,
-    "spawn time": "16:00",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 7,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 1,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 2,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 2,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 3,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 4,
-    "spawn time": "11:00",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 4,
-    "spawn time": "20:00",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 5,
-    "spawn time": "2:00",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 5,
-    "spawn time": "23:45",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
+    "name": "eggs-ceptional emperor",
     "weekday": 6,
-    "spawn time": "16:00",
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 6,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 7,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "9:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 7,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "16:30",
+    "utc spawn time": "23:30",
+    "utc weekday": 7,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "22:45",
+    "utc spawn time": "5:45",
+    "utc weekday": 1,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "NA"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 1,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 1,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 1,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 2,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 2,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 2,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 3,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 3,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 3,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 4,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 4,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 4,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 5,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 5,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 5,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 6,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 6,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 6,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "10:30",
+    "utc spawn time": "8:30",
+    "utc weekday": 7,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "16:30",
+    "utc spawn time": "16:30",
+    "utc weekday": 7,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "20:45",
+    "utc spawn time": "18:30",
+    "utc weekday": 7,
+    "start": "2025-04-10",
+    "end": "2025-04-24",
+    "region": "EU"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 1,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
     "region": "KR"
   },
   {
-    "name": "sangoon",
-    "weekday": 7,
-    "spawn time": "11:00",
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 1,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
     "region": "KR"
   },
   {
-    "name": "sangoon",
+    "name": "eggs-ceptional emperor",
+    "weekday": 1,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 1,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 2,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 2,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 2,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 2,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 3,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 3,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 3,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 3,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 4,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 4,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 4,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 4,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 5,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 5,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 5,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 5,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 6,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 6,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 6,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 6,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
     "weekday": 7,
-    "spawn time": "23:45",
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 7,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "17:25",
+    "utc spawn time": "8:25",
+    "utc weekday": 7,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
+    "region": "KR"
+  },
+  {
+    "name": "eggs-ceptional emperor",
+    "weekday": 7,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 7,
+    "start": "2025-04-09",
+    "end": "2025-04-30",
     "region": "KR"
   }
 ]

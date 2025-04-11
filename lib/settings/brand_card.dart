@@ -16,7 +16,7 @@ class BrandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final path = context.watch<SettingsNotifier>().darkMode && hasReverse
+    final path = Theme.of(context).brightness == Brightness.dark && hasReverse
         ? assetPath.replaceAll('.', '_reverse.')
         : assetPath;
     return Container(

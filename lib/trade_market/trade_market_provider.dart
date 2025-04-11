@@ -39,7 +39,7 @@ class TradeMarketProvider {
         param = '$param${key}_$enhancement';
       }
     }
-    final response = await http.get('${Api.marketItemLatest}?target_list=$param');
+    final response = await http.get('${Api.marketItemLatest}?region=KR&target_list=$param');
     if(response.statusCode == 200){
       List<TradeMarketDataModel> result = [];
       for (Map data in jsonDecode(response.bodyUTF)) {

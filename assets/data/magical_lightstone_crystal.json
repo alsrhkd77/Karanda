@@ -1,374 +1,374 @@
-{
-    "766104": {
-        "name": "불완전한 불의 광명석",
+[
+    {
         "code": 766104,
-        "grade": 2,
-        "received": 6
+        "enhancement level": 0,
+        "value": 6,
+        "name": "불완전한 불의 광명석"
     },
-    "766105": {
-        "name": "불완전한 땅의 광명석",
+    {
         "code": 766105,
-        "grade": 2,
-        "received": 6
+        "enhancement level": 0,
+        "value": 6,
+        "name": "불완전한 땅의 광명석"
     },
-    "766106": {
-        "name": "불완전한 바람의 광명석",
+    {
         "code": 766106,
-        "grade": 2,
-        "received": 6
+        "enhancement level": 0,
+        "value": 6,
+        "name": "불완전한 바람의 광명석"
     },
-    "766107": {
-        "name": "불완전한 풀의 광명석",
+    {
         "code": 766107,
-        "grade": 2,
-        "received": 6
+        "enhancement level": 0,
+        "value": 6,
+        "name": "불완전한 풀의 광명석"
     },
-    "758001": {
-        "name": "불의 광명석 : 격노",
+    {
         "code": 758001,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "불의 광명석 : 격노"
     },
-    "758002": {
-        "name": "불의 광명석 : 명중",
+    {
         "code": 758002,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "불의 광명석 : 명중"
     },
-    "758003": {
-        "name": "불의 광명석 : 천적",
+    {
         "code": 758003,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "불의 광명석 : 천적"
     },
-    "758017": {
-        "name": "불의 광명석 : 열정",
+    {
         "code": 758017,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "불의 광명석 : 열정"
     },
-    "758018": {
-        "name": "불의 광명석 : 질주",
+    {
         "code": 758018,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "불의 광명석 : 질주"
     },
-    "758019": {
-        "name": "불의 광명석 : 발톱",
+    {
         "code": 758019,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "불의 광명석 : 발톱"
     },
-    "760001": {
-        "name": "땅의 광명석 : 철벽",
+    {
         "code": 760001,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "땅의 광명석 : 철벽"
     },
-    "760002": {
-        "name": "땅의 광명석 : 파도",
+    {
         "code": 760002,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "땅의 광명석 : 파도"
     },
-    "760003": {
-        "name": "땅의 광명석 : 무장",
+    {
         "code": 760003,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "땅의 광명석 : 무장"
     },
-    "762001": {
-        "name": "바람의 광명석 : 심장",
+    {
         "code": 762001,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "바람의 광명석 : 심장"
     },
-    "762003": {
-        "name": "바람의 광명석 : 허파",
+    {
         "code": 762003,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "바람의 광명석 : 허파"
     },
-    "762004": {
-        "name": "바람의 광명석 : 발돋움(전투)",
+    {
         "code": 762004,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "바람의 광명석 : 발돋움(전투)"
     },
-    "762005": {
-        "name": "바람의 광명석 : 발돋움(기술)",
+    {
         "code": 762005,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "바람의 광명석 : 발돋움(기술)"
     },
-    "764011": {
-        "name": "풀의 광명석 : 초원",
+    {
         "code": 764011,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 초원"
     },
-    "764012": {
-        "name": "풀의 광명석 : 기회",
+    {
         "code": 764012,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 기회"
     },
-    "764013": {
-        "name": "풀의 광명석 : 덫",
+    {
         "code": 764013,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 덫"
     },
-    "764014": {
-        "name": "풀의 광명석 : 비법",
+    {
         "code": 764014,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 비법"
     },
-    "764015": {
-        "name": "풀의 광명석 : 시간",
+    {
         "code": 764015,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 시간"
     },
-    "764016": {
-        "name": "풀의 광명석 : 도구",
+    {
         "code": 764016,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 도구"
     },
-    "764017": {
-        "name": "풀의 광명석 : 질주",
+    {
         "code": 764017,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 질주"
     },
-    "764018": {
-        "name": "풀의 광명석 : 마차",
+    {
         "code": 764018,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 마차"
     },
-    "764019": {
-        "name": "풀의 광명석 : 과실",
+    {
         "code": 764019,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 과실"
     },
-    "764020": {
-        "name": "풀의 광명석 : 미지",
+    {
         "code": 764020,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 미지"
     },
-    "764021": {
-        "name": "풀의 광명석 : 수완",
+    {
         "code": 764021,
-        "grade": 2,
-        "received": 10
+        "enhancement level": 0,
+        "value": 10,
+        "name": "풀의 광명석 : 수완"
     },
-    "758004": {
-        "name": "불의 광명석 : 부패",
+    {
         "code": 758004,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 부패"
     },
-    "758005": {
-        "name": "불의 광명석 : 포효",
+    {
         "code": 758005,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 포효"
     },
-    "758006": {
-        "name": "불의 광명석 : 타락",
+    {
         "code": 758006,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 타락"
     },
-    "758008": {
-        "name": "불의 광명석 : 대지",
+    {
         "code": 758008,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 대지"
     },
-    "758009": {
-        "name": "불의 광명석 : 창공",
+    {
         "code": 758009,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 창공"
     },
-    "758010": {
-        "name": "불의 광명석 : 그림자",
+    {
         "code": 758010,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 그림자"
     },
-    "758011": {
-        "name": "불의 광명석 : 일격",
+    {
         "code": 758011,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 일격"
     },
-    "758013": {
-        "name": "불의 광명석 : 서리",
+    {
         "code": 758013,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 서리"
     },
-    "758014": {
-        "name": "불의 광명석 : 덩굴",
+    {
         "code": 758014,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 덩굴"
     },
-    "758015": {
-        "name": "불의 광명석 : 유성",
+    {
         "code": 758015,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 유성"
     },
-    "758016": {
-        "name": "불의 광명석 : 태풍",
+    {
         "code": 758016,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 태풍"
     },
-    "758020": {
-        "name": "불의 광명석 : 비수",
+    {
         "code": 758020,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 비수"
     },
-    "760004": {
-        "name": "땅의 광명석 : 장막",
+    {
         "code": 760004,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "땅의 광명석 : 장막"
     },
-    "760007": {
-        "name": "땅의 광명석 : 늪",
+    {
         "code": 760007,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "땅의 광명석 : 늪"
     },
-    "760008": {
-        "name": "땅의 광명석 : 모래",
+    {
         "code": 760008,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "땅의 광명석 : 모래"
     },
-    "760009": {
-        "name": "땅의 광명석 : 거석",
+    {
         "code": 760009,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "땅의 광명석 : 거석"
     },
-    "760010": {
-        "name": "땅의 광명석 : 뿌리",
+    {
         "code": 760010,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "땅의 광명석 : 뿌리"
     },
-    "762002": {
-        "name": "바람의 광명석 : 머리",
+    {
         "code": 762002,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "바람의 광명석 : 머리"
     },
-    "762006": {
-        "name": "바람의 광명석 : 깃털",
+    {
         "code": 762006,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "바람의 광명석 : 깃털"
     },
-    "764003": {
-        "name": "풀의 광명석 : 숲",
+    {
         "code": 764003,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 숲"
     },
-    "764004": {
-        "name": "풀의 광명석 : 세월",
+    {
         "code": 764004,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 세월"
     },
-    "764005": {
-        "name": "풀의 광명석 : 추적",
+    {
         "code": 764005,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 추적"
     },
-    "764006": {
-        "name": "풀의 광명석 : 배합",
+    {
         "code": 764006,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 배합"
     },
-    "764007": {
-        "name": "풀의 광명석 : 연성",
+    {
         "code": 764007,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 연성"
     },
-    "764008": {
-        "name": "풀의 광명석 : 재량",
+    {
         "code": 764008,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 재량"
     },
-    "764009": {
-        "name": "풀의 광명석 : 명마",
+    {
         "code": 764009,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 명마"
     },
-    "764010": {
-        "name": "풀의 광명석 : 파랑",
+    {
         "code": 764010,
-        "grade": 2,
-        "received": 100
+        "enhancement level": 0,
+        "value": 100,
+        "name": "풀의 광명석 : 파랑"
     },
-    "758007": {
-        "name": "불의 광명석 : 광폭",
+    {
         "code": 758007,
-        "grade": 2,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "불의 광명석 : 광폭"
     },
-    "758012": {
-        "name": "불의 광명석 : 지진",
+    {
         "code": 758012,
-        "grade": 2,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "불의 광명석 : 지진"
     },
-    "760006": {
-        "name": "땅의 광명석 : 태산",
+    {
         "code": 760006,
-        "grade": 2,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "땅의 광명석 : 태산"
     },
-    "762007": {
-        "name": "바람의 광명석 : 행운",
+    {
         "code": 762007,
-        "grade": 2,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "바람의 광명석 : 행운"
     },
-    "764001": {
-        "name": "풀의 광명석 : 야생",
+    {
         "code": 764001,
-        "grade": 2,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "풀의 광명석 : 야생"
     },
-    "764002": {
-        "name": "풀의 광명석 : 낙원",
+    {
         "code": 764002,
-        "grade": 2,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "풀의 광명석 : 낙원"
     },
-    "766101": {
-        "name": "오색빛 광명석",
+    {
         "code": 766101,
-        "grade": 3,
-        "received": 500
+        "enhancement level": 0,
+        "value": 500,
+        "name": "오색빛 광명석"
     }
-}
+]

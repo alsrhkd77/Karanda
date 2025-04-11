@@ -1,0 +1,1 @@
+enum BDORegion {KR, NA, EU, JP}
