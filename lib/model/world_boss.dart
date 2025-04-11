@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:karanda/common/api.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/utils/time_of_day_parser.dart';

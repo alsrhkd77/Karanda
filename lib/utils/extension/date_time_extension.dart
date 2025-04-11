@@ -20,19 +20,6 @@ extension DateTimeExtension on DateTime {
     final startTime = copyWith(hour: start.hour, minute: start.minute);
     final endTime = copyWith(hour: end.hour, minute: end.minute);
     return isAfter(startTime) && isBefore(endTime);
-    if (hour == start.hour && minute >= start.minute) {
-      if (hour == end.hour && minute > end.minute) {
-        return false;
-      }
-      return true;
-    }
-    if (hour > start.hour && hour < end.hour) {
-      return true;
-    }
-    if (hour == end.hour && minute <= end.minute) {
-      return true;
-    }
-    return false;
   }
 
   bool get isInPDT => _checkPDT();

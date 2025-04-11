@@ -9,7 +9,6 @@ import 'package:go_router/go_router.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
-import 'package:karanda/ui/core/ui/section.dart';
 import 'package:karanda/ui/home/widget/auth_button_widget.dart';
 import 'package:karanda/ui/home/widget/home_features_section.dart';
 import 'package:karanda/ui/home/widget/home_links_section.dart';

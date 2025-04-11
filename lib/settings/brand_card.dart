@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/settings/settings_notifier.dart';
-import 'package:provider/provider.dart';
 
 class BrandCard extends StatelessWidget {
   final String assetPath;

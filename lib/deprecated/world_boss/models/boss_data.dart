@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/common/time_of_day_extension.dart';
 import 'package:karanda/deprecated/world_boss/models/spawn_time.dart';
 
 class BossData {

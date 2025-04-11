@@ -10,13 +10,10 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
-import 'package:karanda/ui/welcome/widgets/welcome_page.dart';
-import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/command_line_arguments.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:http/http.dart' as http;
 
 import 'dart:developer' as developer;
 

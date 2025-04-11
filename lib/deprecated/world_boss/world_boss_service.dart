@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:karanda/common/server_time.dart';
-import 'package:karanda/common/time_of_day_extension.dart';
-
 import 'models/world_boss_data.dart';
 import 'models/world_boss_schedule.dart';
 
