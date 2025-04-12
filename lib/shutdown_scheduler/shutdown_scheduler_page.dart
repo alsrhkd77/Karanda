@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/global_properties.dart';
-import 'package:karanda/common/real_time_notifier.dart';
 import 'package:karanda/common/time_of_day_extension.dart';
+import 'package:karanda/repository/time_repository.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
 import 'package:karanda/widgets/cannot_use_in_web.dart';
 import 'package:karanda/widgets/default_app_bar.dart';
@@ -36,7 +36,7 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
   Widget buildTimer(DateTime target) {
     return Text(
       target
-          .difference(context.watch<RealTimeNotifier>().now)
+          .difference(context.watch<TimeRepository>().realTime)
           .toString()
           .split('.')
           .first,
