@@ -12,7 +12,7 @@ class NotFoundPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Image.asset("assets/image/not_found_404.jpg"),
+            Image.asset("assets/image/exclamation.png"),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Page not found"),

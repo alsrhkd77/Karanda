@@ -13,7 +13,7 @@ class AuthErrorPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Image.asset("assets/image/not_found_404.jpg"),
+            Image.asset("assets/image/exclamation.png"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(context.tr("auth.auth error")),
