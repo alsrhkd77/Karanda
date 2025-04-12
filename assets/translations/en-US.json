@@ -125,7 +125,7 @@
     "search hint": "Item name",
     "presets": "Presets",
     "wait list": "Waiting list",
-    "wait list is empty": "There are no products waiting to be enrolled.",
+    "wait list empty": "There are no products waiting to be enrolled.",
     "wait list complete": "Complete",
     "remaining min sec": "{minutes}min {seconds}sec",
     "remaining sec": "{}sec",

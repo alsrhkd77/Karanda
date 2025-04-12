@@ -125,7 +125,7 @@
     "search hint": "아이템 이름",
     "presets": "프리셋",
     "wait list": "등록 대기",
-    "wait list is empty": "등록 대기중인 상품이 없습니다.",
+    "wait list empty": "등록 대기중인 상품이 없습니다.",
     "wait list complete": "등록됨",
     "remaining min sec": "{minutes}분 {seconds}초",
     "remaining sec": "{}초",
