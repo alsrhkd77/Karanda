@@ -125,6 +125,7 @@ class WorldBossService {
 
   void _updateNextBoss() {
     notified.clear();
+    spawned = false;
     final data = schedule.removeAt(0);
     data.spawnTime = data.spawnTime.add(const Duration(days: 7));
     schedule.add(data);
