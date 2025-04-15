@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/utils/api_endpoints/discord_api.dart';
-
-import '../../../utils/launch_url.dart';
+import 'package:karanda/utils/external_links.dart';
+import 'package:karanda/utils/launch_url.dart';
 
 class HomeLinksSection extends StatelessWidget {
   final int count;
@@ -25,42 +25,42 @@ class HomeLinksSection extends StatelessWidget {
         _LinkTile(
           name: context.tr("home.external links.official"),
           imagePath: 'assets/icons/bdo.png',
-          url: 'https://www.kr.playblackdesert.com',
+          url: ExternalLinks.bdoOfficial,
         ),
         _LinkTile(
           name: context.tr("home.external links.lab"),
           imagePath: 'assets/icons/bdo.png',
-          url: 'https://www.global-lab.playblackdesert.com',
+          url: ExternalLinks.bdoLab,
         ),
         _LinkTile(
           name: context.tr("home.external links.inven"),
           imagePath: 'assets/icons/inven.png',
-          url: 'https://black.inven.co.kr',
+          url: ExternalLinks.bdoInven,
         ),
         _LinkTile(
           name: context.tr("home.external links.inven map"),
           imagePath: 'assets/icons/inven.png',
-          url: 'https://black.inven.co.kr/dataninfo/map',
+          url: ExternalLinks.bdoInvenMap,
         ),
         _LinkTile(
           name: context.tr("home.external links.garmoth"),
           imagePath: 'assets/icons/garmoth.png',
-          url: 'https://garmoth.com',
+          url: ExternalLinks.garmoth,
         ),
         _LinkTile(
           name: context.tr("home.external links.codex"),
           imagePath: 'assets/icons/bdocodex.png',
-          url: 'https://bdocodex.com/kr',
+          url: ExternalLinks.bdoCodex,
         ),
         _LinkTile(
           name: context.tr("home.external links.bdolytics"),
           imagePath: 'assets/icons/bdolytics.png',
-          url: 'https://bdolytics.com/ko/KR',
+          url: ExternalLinks.bdolytics,
         ),
         _LinkTile(
           name: context.tr("home.external links.ontop"),
           imagePath: 'assets/icons/onTopReplica.png',
-          url: 'https://github.com/LorenzCK/OnTopReplica',
+          url: ExternalLinks.onTopReplica,
         ),
         _LinkTile(
           name: context.tr("home.external links.karanda discord"),
