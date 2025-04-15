@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:karanda/ui/auth/controllers/auth_controller.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
-import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:provider/provider.dart';
 
 class AuthPage extends StatelessWidget {
