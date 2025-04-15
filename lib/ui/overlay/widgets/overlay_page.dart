@@ -19,13 +19,6 @@ class OverlayPage extends StatefulWidget {
 
 class _OverlayPageState extends State<OverlayPage> {
   @override
-  void initState() {
-    super.initState();
-    /*WidgetsBinding.instance.addPostFrameCallback(
-        (_) => context.read<OverlayController>().loadSettings());*/
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) =>
@@ -33,7 +26,7 @@ class _OverlayPageState extends State<OverlayPage> {
       child: Scaffold(
         appBar: KarandaAppBar(
           icon: FontAwesomeIcons.layerGroup,
-          title: "${context.tr("overlay.overlay")} (Beta)",
+          title: context.tr("overlay.overlay"),
         ),
         body: Consumer(
           builder: (context, OverlayController controller, child) {

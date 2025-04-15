@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:karanda/model/app_notification_message.dart';
 import 'package:karanda/repository/overlay_app_repository.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/ui/snack_bar_content.dart';
 import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
 
 import 'package:rxdart/rxdart.dart';
@@ -102,19 +104,17 @@ class OverlayAppService {
   }
 
   void _notify(MethodCall value) {
-    if(_activationStatus.value[OverlayFeatures.notification] ?? false){
-      final message =
-      AppNotificationMessage.fromJson(jsonDecode(value.arguments));
+    if (_activationStatus.value[OverlayFeatures.notification] ?? false) {
+      final Map json = jsonDecode(value.arguments)..remove("route");
+      final message = AppNotificationMessage.fromJson(json);
       if (_scaffoldMessengerKey.currentState != null) {
         final context = _scaffoldMessengerKey.currentState!.context;
         final screenSize = MediaQuery.sizeOf(context);
         _scaffoldMessengerKey.currentState!.showSnackBar(SnackBar(
           duration: AppTheme.snackBarDuration,
-          content: Center(
-            child: Text(
-              message.content,
-              style: TextTheme.of(context).headlineMedium,
-            ),
+          content: SnackBarContent(
+            data: message,
+            textStyle: TextTheme.of(context).headlineMedium,
           ),
           margin: EdgeInsets.only(
             left: Dimens.snackBarHorizontalMarginValue(screenSize.width),

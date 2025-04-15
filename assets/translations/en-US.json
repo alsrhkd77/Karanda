@@ -101,8 +101,8 @@
     "remove": "Remove notification time",
     "exclude": "Bosses to exclude",
     "already set": "Already set",
-    "time remaining message": "{minutes} minutes until [{bosses}]",
-    "spawn message": "[{}] is spawned!!"
+    "time remaining message": "{minutes} minutes until **{bosses}**",
+    "spawn message": "**{}** is spawned!!"
   },
   "overlay": {
     "overlay": "Overlay",

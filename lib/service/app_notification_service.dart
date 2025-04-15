@@ -7,6 +7,7 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/ui/snack_bar_content.dart';
 
 class AppNotificationService {
   final AppNotificationRepository _appNotificationRepository;
@@ -32,7 +33,7 @@ class AppNotificationService {
       final width = MediaQuery.sizeOf(context).width;
       _scaffoldMessengerKey.currentState!.showSnackBar(SnackBar(
         duration: AppTheme.snackBarDuration,
-        content: Text(message.content),
+        content: SnackBarContent(data: message),
         margin: Dimens.snackBarMargin(width),
         onVisible: () => _audioPlayerRepository.playNotificationSound(),
       ));

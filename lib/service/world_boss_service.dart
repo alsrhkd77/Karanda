@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/enums/bdo_region.dart';
+import 'package:karanda/enums/features.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/model/app_notification_message.dart';
 import 'package:karanda/model/world_boss.dart';
@@ -129,7 +130,7 @@ class WorldBossService {
     final data = schedule.removeAt(0);
     data.spawnTime = data.spawnTime.add(const Duration(days: 7));
     schedule.add(data);
-    if(schedule[1].activatedBosses.isEmpty){
+    if (schedule[1].activatedBosses.isEmpty) {
       schedule.removeAt(1);
     }
     _reflectUpdatedSchedules();
@@ -156,7 +157,9 @@ class WorldBossService {
   void _alertSpawn(String bossNames) {
     if (_worldBossRepository.settings?.notify ?? false) {
       _notificationRepository.addNotification(AppNotificationMessage(
+        feature: Features.worldBoss,
         content: "world boss.spawn message".tr(args: [bossNames]),
+        mdContents: true,
       ));
     }
   }
@@ -164,10 +167,12 @@ class WorldBossService {
   void _alertTimeRemaining(String bossNames, int timeRemaining) {
     if (_worldBossRepository.settings?.notify ?? false) {
       _notificationRepository.addNotification(AppNotificationMessage(
+        feature: Features.worldBoss,
         content: "world boss.time remaining message".tr(namedArgs: {
           "bosses": bossNames,
-          "minutes": timeRemaining.toString()
+          "minutes": timeRemaining.toString(),
         }),
+        mdContents: true,
       ));
     }
   }

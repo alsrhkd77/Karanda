@@ -101,8 +101,8 @@
     "remove": "알림 시간 제거",
     "exclude": "보스 제외",
     "already set": "이미 설정됨",
-    "time remaining message": "[{bosses}] 출현 {minutes}분 전",
-    "spawn message": "월드 보스 [{}] 출현!!"
+    "time remaining message": "**{bosses}** 출현 {minutes}분 전",
+    "spawn message": "월드 보스 **{}** 출현!!"
   },
   "overlay": {
     "overlay": "오버레이",
