@@ -89,7 +89,11 @@
     "region": "Region",
     "support": "Support Karanda",
     "update history": "Update history",
-    "info": "Information"
+    "info": "Information",
+    "platform": "Platform",
+    "version": "Karanda version",
+    "build number": "Build number",
+    "flutter version": "Flutter version"
   },
   "world boss" : {
     "world boss": "World boss",

@@ -89,7 +89,11 @@
     "region": "서버",
     "support": "Karanda 후원하기",
     "update history": "업데이트 내역",
-    "info": "정보"
+    "info": "정보",
+    "platform": "플랫폼",
+    "version": "Karanda 버전",
+    "build number": "빌드 번호",
+    "flutter version": "Flutter 버전"
   },
   "world boss" : {
     "world boss": "월드 보스",
