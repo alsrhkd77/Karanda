@@ -32,6 +32,7 @@ abstract class OverlayWidgetController extends ChangeNotifier {
   bool get show => editMode ? true : activated;
 
   Future<void> _loadBoxRect() async {
+    //final rect = kDebugMode ? null : await service.loadRect(key);
     final rect = await service.loadRect(key);
     boxController.setRect(rect ?? defaultRect);
   }

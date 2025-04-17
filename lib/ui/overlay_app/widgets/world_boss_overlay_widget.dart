@@ -4,6 +4,7 @@ import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/overlay_app/controllers/world_boss_overlay_controller.dart';
 import 'package:karanda/ui/overlay_app/widgets/overlay_widget.dart';
+import 'package:karanda/utils/extension/string_extension.dart';
 import 'package:provider/provider.dart';
 
 class WorldBossOverlayWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class WorldBossOverlayWidget extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => WorldBossOverlayController(
         key: OverlayFeatures.worldBoss,
-        defaultRect: Rect.fromLTWH(2, height - 144, 400, 110),
+        defaultRect: Rect.fromLTWH(2, height - 144, 440, 120),
         constraints: const BoxConstraints(minWidth: 200, minHeight: 60),
         service: context.read(),
         timeRepository: context.read(),
@@ -43,9 +44,16 @@ class WorldBossOverlayWidget extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: controller.schedule!.activatedBosses.map((boss) {
-                      return CircleAvatar(
-                        foregroundImage: Image.network(boss.imagePath).image,
-                        backgroundColor: Colors.transparent,
+                      return Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          CircleAvatar(
+                            foregroundImage:
+                                Image.network(boss.imagePath).image,
+                            backgroundColor: Colors.transparent,
+                          ),
+                          _BossName(name: boss.name),
+                        ],
                       );
                     }).toList(),
                   ),
@@ -55,6 +63,26 @@ class WorldBossOverlayWidget extends StatelessWidget {
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class _BossName extends StatelessWidget {
+  final String name;
+
+  const _BossName({super.key, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Text(
+        toBeginningOfSentenceCase(context.tr(name)).keepWord(),
+        style: TextTheme.of(context).labelLarge?.copyWith(
+              color: Colors.white.withAlpha(220),
+            ),
+        textAlign: TextAlign.center,
       ),
     );
   }
