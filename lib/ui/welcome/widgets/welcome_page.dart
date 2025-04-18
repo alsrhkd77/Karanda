@@ -42,7 +42,7 @@ class WelcomePage extends StatelessWidget {
                   }).toList(),
                 ),
               ),
-              Section(
+              /*Section(
                 icon: Icons.dns,
                 title: context.tr("settings.region"),
                 child: Column(
@@ -53,7 +53,7 @@ class WelcomePage extends StatelessWidget {
                     );
                   }).toList(),
                 ),
-              ),
+              ),*/
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: ElevatedButton(
