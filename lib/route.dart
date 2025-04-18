@@ -28,6 +28,7 @@ import 'package:karanda/ui/settings/widget/karanda_info_page.dart';
 import 'package:karanda/ui/settings/widget/settings_page.dart';
 import 'package:karanda/ui/settings/widget/style_settings_page.dart';
 import 'package:karanda/ui/settings/widget/support_karanda_page.dart';
+import 'package:karanda/ui/settings/widget/windows_settings_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_cooking_box_preset_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_preset_page.dart';
 import 'package:karanda/ui/trade_market/widgets/trade_market_detail_page.dart';
@@ -111,6 +112,16 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: 'styles',
               builder: (context, state) => const StyleSettingsPage(),
+            ),
+            GoRoute(
+              path: 'windows-settings',
+              builder: (context, state) => const WindowsSettingsPage(),
+              redirect: (BuildContext context, GoRouterState state) {
+                if(kIsWeb || !Platform.isWindows) {
+                  return '/not-found';
+                }
+                return null;
+              }
             ),
             GoRoute(
               path: 'support-karanda',

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +13,7 @@ import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
 import 'package:karanda/utils/command_line_arguments.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'dart:developer' as developer;
@@ -54,7 +55,7 @@ class InitializerService {
 
   Future<void> initializeForWindows() async {
     await Future.delayed(const Duration(seconds: 1));
-    int process = 6;
+    int process = 7;
     _status.sink.add(InitializerStatus(
       progress: 0 / process,
       message: "check update",
@@ -63,13 +64,10 @@ class InitializerService {
       await update();
       return;
     }
-    //if (!CommandLineArguments.skipUpdate && !kDebugMode) {
-    if (true) {
+    if (!CommandLineArguments.skipUpdate) {
       try {
         final currentVersion = await _versionRepository.getCurrentVersion();
         final latestVersion = await _versionRepository.getLatestVersion();
-        print(latestVersion);
-        print(currentVersion.isNewerThan(latestVersion));
         if (!currentVersion.isNewerThan(latestVersion)) {
           await update();
           return;
@@ -103,11 +101,15 @@ class InitializerService {
     await _authRepository.login();
     _status.sink.add(InitializerStatus(
       progress: 4 / process,
-      message: "connect websocket",
+      message: "start tray",
     ));
-    //웹소켓
+    await startTray();
     _status.sink.add(InitializerStatus(
       progress: 5 / process,
+      message: "connect websocket",
+    ));
+    _status.sink.add(InitializerStatus(
+      progress: 6 / process,
       message: "mount audio",
     ));
     await _audioPlayerRepository.init();
@@ -159,24 +161,50 @@ class InitializerService {
   }
 
   Future<void> setWindows() async {
-    final pref = SharedPreferencesAsync();
-    double width = await pref.getDouble('width') ?? 1280;
-    double height = await pref.getDouble('height') ?? 720;
-    double? dx = await pref.getDouble('x');
-    double? dy = await pref.getDouble('y');
     await windowManager.hide();
     await windowManager.setTitleBarStyle(TitleBarStyle.normal);
     if (kDebugMode) {
       await windowManager.setSize(const Size(1280, 720));
     } else {
-      await windowManager.setSize(Size(width, height));
+      await windowManager.setSize(_appSettingsRepository.settings.windowSize);
     }
     await windowManager.setMinimumSize(const Size(600, 550));
-    if (dx == null || dy == null || kDebugMode) {
+    if (_appSettingsRepository.settings.windowOffset == null || kDebugMode) {
       await windowManager.center();
     } else {
-      windowManager.setPosition(Offset(dx, dy));
+      windowManager.setPosition(_appSettingsRepository.settings.windowOffset!);
     }
-    await windowManager.show();
+    if (!_appSettingsRepository.settings.startMinimized) {
+      await windowManager.show();
+    } else if (!_appSettingsRepository.settings.useTrayMode) {
+      await windowManager.minimize();
+    }
+  }
+
+  Future<void> startTray() async {
+    await trayManager.setIcon("assets/brand/app_icon.ico");
+    Menu menu = Menu(
+      items: [
+        MenuItem(
+          key: 'show',
+          label: "windows tray.show".tr(),
+        ),
+        MenuItem(
+          key: 'hide',
+          label: "windows tray.hide".tr(),
+        ),
+        MenuItem.separator(),
+        MenuItem(
+          key: 'cancel',
+          label: "windows tray.cancel".tr(),
+        ),
+        MenuItem.separator(),
+        MenuItem(
+          key: 'quit',
+          label: "windows tray.quit".tr(),
+        ),
+      ],
+    );
+    await trayManager.setContextMenu(menu);
   }
 }

@@ -29,6 +29,7 @@ import 'package:karanda/service/app_notification_service.dart';
 import 'package:karanda/service/app_settings_service.dart';
 import 'package:karanda/service/auth_service.dart';
 import 'package:karanda/service/bdo_item_info_service.dart';
+import 'package:karanda/service/desktop_service.dart';
 import 'package:karanda/service/initializer_service.dart';
 import 'package:karanda/service/trade_market_service.dart';
 import 'package:karanda/service/world_boss_service.dart';
@@ -160,6 +161,12 @@ class KarandaApp extends StatelessWidget {
             itemInfoRepository: context.read()
           ),
           lazy: !kIsWeb && Platform.isWindows,
+        ),
+        Provider(
+          create: (context) => DesktopService(
+            appSettingsRepository: context.read(),
+          ),
+          lazy: kIsWeb || !Platform.isWindows,
         ),
 
         /* Old */

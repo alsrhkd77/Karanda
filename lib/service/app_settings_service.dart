@@ -20,13 +20,14 @@ class AppSettingsService {
   })  : _appSettingsRepository = settingsRepository,
         _authRepository = authRepository,
         _audioPlayerRepository = audioPlayerRepository {
-    _appSettingsRepository.getAppSettings();
+    //_appSettingsRepository.getAppSettings();
   }
 
   Stream<AppSettings> get appSettingsStream =>
       _appSettingsRepository.settingsStream;
 
-  Stream<AudioPlayerSettings> get audioPlayerSettingsStream => _audioPlayerRepository.settingsStream;
+  Stream<AudioPlayerSettings> get audioPlayerSettingsStream =>
+      _audioPlayerRepository.settingsStream;
 
   Stream<User?> get userStream => _authRepository.userStream;
 
@@ -52,5 +53,13 @@ class AppSettingsService {
 
   void setRegion(BDORegion value) {
     _appSettingsRepository.setRegion(value);
+  }
+
+  void setStartMinimized(bool value) {
+    _appSettingsRepository.setStartMinimized(value);
+  }
+
+  void setUseTrayMode(bool value) {
+    _appSettingsRepository.setUseTrayMode(value);
   }
 }

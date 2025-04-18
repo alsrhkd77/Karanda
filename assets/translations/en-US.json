@@ -19,6 +19,12 @@
     "dark": "Dark theme",
     "system": "System theme"
   },
+  "windows tray": {
+    "show": "Show window",
+    "hide": "Hide window",
+    "quit": "Quit Karanda",
+    "cancel": "Cancel"
+  },
   "enhancement level": {
     "": "",
     "I": "PRI",
@@ -42,6 +48,7 @@
     "get settings": "Load settings",
     "start overlay": "Start overlay",
     "authenticate": "User authentication",
+    "start tray": "Start tray service",
     "connect websocket": "Connect to server",
     "mount audio": "Prepare the sound",
     "startup": "Startup"
@@ -85,6 +92,12 @@
     "theme brightness": "Theme brightness",
     "font": "Font",
     "volume": "Volume",
+    "download windows installer": "Download Windows installer",
+    "windows settings": "Windows settings",
+    "windows start minimized": "Start Minimized",
+    "windows use tray": "Minimize to Tray",
+    "windows auto start": "Run on Windows Startup",
+    "windows auto start hint": "You can enable Karanda autostart from the Startup program in Windows settings",
     "karanda discord": "Karanda discord channel",
     "region": "Region",
     "support": "Support Karanda",

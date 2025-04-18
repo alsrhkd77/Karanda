@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/go_router_extension.dart';
@@ -8,6 +11,7 @@ import 'package:karanda/ui/auth/widgets/auth_page.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
+import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/external_links.dart';
 import 'package:karanda/utils/launch_url.dart';
 import 'package:provider/provider.dart';
@@ -77,6 +81,7 @@ class SettingsPage extends StatelessWidget {
             title: Text(context.tr("settings.region")),
             trailing: Text(controller.appSettings.region.name),
           ),
+          const _WindowsTile(),
           ListTile(
             onTap: () => launchURL(ExternalLinks.discord),
             leading: const Icon(
@@ -158,7 +163,7 @@ class _VolumeTile extends StatelessWidget {
       ),*/
       children: [
         Slider(
-          padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
           value: volume,
           onChanged: onChanged,
           min: 0.0,
@@ -167,6 +172,27 @@ class _VolumeTile extends StatelessWidget {
           label: volume.round().toString(),
         ),
       ],
+    );
+  }
+}
+
+class _WindowsTile extends StatelessWidget {
+  const _WindowsTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    if (kIsWeb || !Platform.isWindows) {
+      return ListTile(
+        onTap: () => launchURL(KarandaApi.latestVersionMirrors.first),
+        leading: const Icon(Icons.install_desktop),
+        title: Text(context.tr("settings.download windows installer")),
+        trailing: const Icon(Icons.open_in_new),
+      );
+    }
+    return ListTile(
+      onTap: () => context.goWithGa('/settings/windows-settings'),
+      leading: const Icon(Icons.desktop_windows_outlined),
+      title: Text(context.tr("settings.windows settings")),
     );
   }
 }

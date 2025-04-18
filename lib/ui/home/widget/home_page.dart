@@ -1,11 +1,10 @@
 import 'dart:math';
 
-import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:karanda/service/desktop_service.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
@@ -15,9 +14,9 @@ import 'package:karanda/ui/home/widget/home_links_section.dart';
 import 'package:karanda/ui/home/widget/home_news_section.dart';
 import 'package:karanda/ui/home/widget/home_section.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
-import 'dart:developer' as developer;
 
 import '../../../utils/launch_url.dart';
 
@@ -28,52 +27,49 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with WindowListener {
+class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
   @override
   void initState() {
     super.initState();
+    trayManager.addListener(this);
     windowManager.addListener(this);
   }
 
   @override
   void dispose() {
+    trayManager.removeListener(this);
     windowManager.removeListener(this);
     super.dispose();
   }
 
   @override
-  Future<void> onWindowResized() async {
-    Size size = await windowManager.getSize();
-    final sharedPreferences = SharedPreferencesAsync();
-    if (!kDebugMode) {
-      await sharedPreferences.setDouble("width", size.width);
-      await sharedPreferences.setDouble("height", size.height);
-    }
+  void onWindowResized() {
+    context.read<DesktopService>().onWindowResized();
   }
 
   @override
-  Future<void> onWindowMoved() async {
-    Offset position = await windowManager.getPosition();
-    final sharedPreferences = SharedPreferencesAsync();
-    if (!kDebugMode) {
-      await sharedPreferences.setDouble("x", position.dx);
-      await sharedPreferences.setDouble("y", position.dy);
-    }
+  void onWindowMoved() {
+    context.read<DesktopService>().onWindowMoved();
   }
 
   @override
-  Future<void> onWindowClose() async {
-    try {
-      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
-      for (final windowId in subWindowIds) {
-        WindowController controller = WindowController.fromWindowId(windowId);
-        await controller.close();
-      }
-    } catch (e) {
-      developer.log('Failed to get SubWindowIds\n$e', name: 'overlay');
-    }
-    await windowManager.hide();
-    await windowManager.destroy();
+  void onWindowClose() {
+    context.read<DesktopService>().onWindowClose();
+  }
+
+  @override
+  void onTrayIconMouseDown() {
+    context.read<DesktopService>().onTrayIconMouseUp();
+  }
+
+  @override
+  void onTrayIconRightMouseDown() {
+    context.read<DesktopService>().onTrayIconRightMouseUp();
+  }
+
+  @override
+  void onTrayMenuItemClick(MenuItem menuItem) {
+    context.read<DesktopService>().onTrayMenuItemClick(menuItem);
   }
 
   @override

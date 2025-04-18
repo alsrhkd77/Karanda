@@ -19,6 +19,12 @@
     "dark": "어두운 테마",
     "system": "시스템 테마"
   },
+  "windows tray": {
+    "show": "보이기",
+    "hide": "숨기기",
+    "quit": "Karanda 종료",
+    "cancel": "취소"
+  },
   "enhancement level": {
     "": "",
     "I": "장",
@@ -42,6 +48,7 @@
     "get settings": "설정 불러오기",
     "start overlay": "오버레이 시작",
     "authenticate": "사용자 인증",
+    "start tray": "트레이 서비스 시작",
     "connect websocket": "실시간 서버에 연결",
     "mount audio": "사운드 준비",
     "startup": "시작"
@@ -85,6 +92,12 @@
     "theme brightness": "테마 밝기",
     "font": "폰트",
     "volume": "음량",
+    "download windows installer": "Windows installer 다운로드",
+    "windows settings": "Windows 설정",
+    "windows start minimized": "최소화 상태로 시작",
+    "windows use tray": "트레이로 최소화",
+    "windows auto start": "Windows 시작 시 자동 실행",
+    "windows auto start hint": "Windows 설정의 시작 프로그램에서 Karanda 자동 시작을 활성화 할 수 있습니다",
     "karanda discord": "Karanda 디스코드 채널",
     "region": "서버",
     "support": "Karanda 후원하기",
