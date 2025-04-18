@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/model/app_settings.dart';
 import 'package:karanda/service/app_settings_service.dart';
-import 'package:karanda/service/desktop_service.dart';
 
 class WindowsSettingsController extends ChangeNotifier {
   final AppSettingsService _settingsService;
