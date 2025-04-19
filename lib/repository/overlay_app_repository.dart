@@ -21,7 +21,6 @@ class OverlayAppRepository {
   Size get screenSize => _screenSize.value;
 
   Future<void> _methodCallHandler(MethodCall call, int fromWindowId) async {
-    print("${call.method} : ${call.arguments}");
     _message.sink.add(call);
   }
 
