@@ -38,7 +38,7 @@ class WindowsSettingsPage extends StatelessWidget {
                   value: controller.useTrayMode,
                   onChanged: controller.setUseTrayMode,
                 ),
-                ListTile(
+                /*ListTile(
                   title: Text(context.tr("settings.windows auto start")),
                   subtitle: Text(
                     context.tr("settings.windows auto start hint"),
@@ -48,7 +48,7 @@ class WindowsSettingsPage extends StatelessWidget {
                     "ms-settings:startupapps",
                     newTab: false,
                   ),
-                ),
+                ),*/
               ],
             );
           },
