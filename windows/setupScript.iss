@@ -3,7 +3,7 @@
 
 #define MyAppName "Karanda"
 #define MyAppVersion GetVersionNumbersString('..\build\windows\x64\runner\Release\Karanda.exe')
-#define MyAppPublisher "Hammuu"
+#define MyAppPublisher "KarandaStudio"
 #define MyAppURL "https://www.karanda.kr"
 #define MyAppExeName "Karanda.exe"
 
@@ -44,23 +44,9 @@ Source: ".\redist\*"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
+;Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall
-
-[Registry]
-Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: """{app}\{#MyAppExeName}""";
-
-[Code]
-procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
-begin
-  if CurUninstallStep = usUninstall then
-  begin
-    if RegValueExists(HKEY_CURRENT_USER,'Software\Microsoft\Windows\CurrentVersion\Run','{#MyAppName}') then
-    begin
-      RegDeleteValue(HKEY_CURRENT_USER,'Software\Microsoft\Windows\CurrentVersion\Run','{#MyAppName}');
-    end
-  end;
-end;
