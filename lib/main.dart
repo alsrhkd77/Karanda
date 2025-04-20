@@ -3,11 +3,14 @@ import 'dart:io';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/auth/auth_notifier.dart';
 import 'package:karanda/common/bdo_world_time_notifier.dart';
 import 'package:karanda/common/real_time_notifier.dart';
+import 'package:karanda/firebase_options.dart';
 import 'package:karanda/route.dart';
 import 'package:karanda/settings/settings_notifier.dart';
 import 'package:karanda/trade_market/trade_market_notifier.dart';
@@ -55,6 +58,14 @@ Future<void> main(List<String> args) async {
           await windowManager.focus();
         });
       }
+    }
+    if(kIsWeb || Platform.isAndroid){
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      final fcmToken = await FirebaseMessaging.instance.getToken(
+        vapidKey: "BDiPZ9j7Mjdr0yzvQaZQFO9N4J3OJCpMCtRghtpaIst6VYao5r4QLvyY8oRbYySG5kfjXOrNWcXcC7KbR0WwrNo"
+      );
     }
     //WebSocketManager();
     MediaKit.ensureInitialized();

@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   desktop_multi_window
+  firebase_core
   flutter_secure_storage_windows
   media_kit_libs_windows_audio
   screen_retriever
