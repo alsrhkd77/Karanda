@@ -59,11 +59,12 @@ Future<void> main(List<String> args) async {
         });
       }
     }
-    if(kIsWeb || Platform.isAndroid){
+    if (kIsWeb || Platform.isAndroid) {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      final notificationSettings = await FirebaseMessaging.instance.requestPermission(
+      FirebaseMessaging.instance
+          .requestPermission(
         alert: true,
         announcement: false,
         badge: true,
@@ -71,12 +72,14 @@ Future<void> main(List<String> args) async {
         criticalAlert: false,
         provisional: false,
         sound: true,
-      );
-      if(notificationSettings.authorizationStatus != AuthorizationStatus.denied){
-        final fcmToken = await FirebaseMessaging.instance.getToken(
-            vapidKey: "BDiPZ9j7Mjdr0yzvQaZQFO9N4J3OJCpMCtRghtpaIst6VYao5r4QLvyY8oRbYySG5kfjXOrNWcXcC7KbR0WwrNo"
-        );
-      }
+      )
+          .then((settings) async {
+        if (settings.authorizationStatus != AuthorizationStatus.denied) {
+          final fcmToken = await FirebaseMessaging.instance.getToken(
+              vapidKey:
+                  "BDiPZ9j7Mjdr0yzvQaZQFO9N4J3OJCpMCtRghtpaIst6VYao5r4QLvyY8oRbYySG5kfjXOrNWcXcC7KbR0WwrNo");
+        }
+      });
     }
     //WebSocketManager();
     MediaKit.ensureInitialized();
