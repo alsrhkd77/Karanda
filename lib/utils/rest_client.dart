@@ -181,7 +181,7 @@ abstract final class RestClient {
     return Uri(
       scheme: KarandaApi.scheme,
       host: KarandaApi.host,
-      //port: KarandaApi.port,
+      port: kDebugMode ? KarandaApi.port : null,
       path: path,
       queryParameters: parameters,
     );
@@ -229,7 +229,7 @@ class _Client extends http.BaseClient {
       final uri = Uri(
         scheme: KarandaApi.scheme,
         host: KarandaApi.host,
-        port: KarandaApi.port,
+        port: kDebugMode ? KarandaApi.port : null,
         path: KarandaApi.tokenRefresh,
       );
 
