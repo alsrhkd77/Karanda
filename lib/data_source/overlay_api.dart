@@ -14,8 +14,11 @@ class OverlayApi {
     final windowController =
         await DesktopMultiWindow.createWindow(jsonEncode(arguments));
     await windowController.setFrame(
-      Offset(primary.size.width, primary.size.height) & const Size(0, 0),
+      const Offset(0, 0) & const Size(0, 0),
     );
+    /*await windowController.setFrame(
+      Offset(primary.size.width, primary.size.height) & const Size(0, 0),
+    );*/
     await windowController.setTitle("Karanda Overlay");
     await windowController.show();
     return windowController;
