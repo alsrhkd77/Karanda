@@ -63,9 +63,20 @@ Future<void> main(List<String> args) async {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      final fcmToken = await FirebaseMessaging.instance.getToken(
-        vapidKey: "BDiPZ9j7Mjdr0yzvQaZQFO9N4J3OJCpMCtRghtpaIst6VYao5r4QLvyY8oRbYySG5kfjXOrNWcXcC7KbR0WwrNo"
+      final notificationSettings = await FirebaseMessaging.instance.requestPermission(
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
       );
+      if(notificationSettings.authorizationStatus != AuthorizationStatus.denied){
+        final fcmToken = await FirebaseMessaging.instance.getToken(
+            vapidKey: "BDiPZ9j7Mjdr0yzvQaZQFO9N4J3OJCpMCtRghtpaIst6VYao5r4QLvyY8oRbYySG5kfjXOrNWcXcC7KbR0WwrNo"
+        );
+      }
     }
     //WebSocketManager();
     MediaKit.ensureInitialized();
