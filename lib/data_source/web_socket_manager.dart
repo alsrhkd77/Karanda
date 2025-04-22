@@ -23,7 +23,9 @@ class WebSocketManager {
     if (kIsWeb) {
       _webVisibility.debouncedStatusStream.listen((visible) {
         if (visible) {
-          activate();
+          if(_subscription.isNotEmpty){
+            activate();
+          }
         } else {
           deactivate();
         }
@@ -32,16 +34,16 @@ class WebSocketManager {
   }
 
   void activate() {
-    if (_client == null && _subscription.isNotEmpty) {
+    if (_client == null || !_client!.connected) {
       _client = StompClient(config: _buildConfig());
       _client!.activate();
     }
   }
 
   void deactivate() {
-    if (_client != null) {
+    if (_client != null && _client!.connected) {
       _client?.deactivate();
-      _client == null;
+      _client = null;
     }
   }
 
@@ -50,19 +52,16 @@ class WebSocketManager {
     BDORegion? region,
     required void Function(StompFrame message) callback,
   }) async {
-    print("register: $destination");
-    final unsubscribeFn = _client != null ? await _subscribe(
-      destination: destination,
-      region: region,
-      callback: callback,
-    ) : null;
+    var unsubscribeFn = _client != null && _client!.isActive
+        ? await _subscribe(destination: destination, callback: callback)
+        : null;
     _subscription[destination] = _Subscription(
       destination: destination,
       region: region,
       callback: callback,
       unsubscribeFn: unsubscribeFn,
     );
-    if(_subscription.length == 1 && _client == null){
+    if(_subscription.length == 1){
       activate();
     }
   }
