@@ -14,7 +14,7 @@ class OverlayApi {
     final windowController =
         await DesktopMultiWindow.createWindow(jsonEncode(arguments));
     await windowController.setFrame(
-      const Offset(0, 0) & const Size(0, 0),
+      Offset(primary.size.width -60, primary.size.height - 20) & const Size(0, 0),
     );
     /*await windowController.setFrame(
       Offset(primary.size.width, primary.size.height) & const Size(0, 0),
