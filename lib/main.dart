@@ -76,8 +76,8 @@ Future<void> main(List<String> args) async {
           .then((settings) async {
         if (settings.authorizationStatus != AuthorizationStatus.denied) {
           final fcmToken = await FirebaseMessaging.instance.getToken(
-              vapidKey:
-                  "BDiPZ9j7Mjdr0yzvQaZQFO9N4J3OJCpMCtRghtpaIst6VYao5r4QLvyY8oRbYySG5kfjXOrNWcXcC7KbR0WwrNo");
+            vapidKey: kIsWeb ? const String.fromEnvironment('VAPID') : null,
+          );
         }
       });
     }
