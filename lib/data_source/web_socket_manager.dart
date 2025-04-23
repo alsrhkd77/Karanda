@@ -23,7 +23,7 @@ class WebSocketManager {
     if (kIsWeb) {
       _webVisibility.debouncedStatusStream.listen((visible) {
         if (visible) {
-          if(_subscription.isNotEmpty){
+          if (_subscription.isNotEmpty) {
             activate();
           }
         } else {
@@ -53,7 +53,11 @@ class WebSocketManager {
     required void Function(StompFrame message) callback,
   }) async {
     var unsubscribeFn = _client != null && _client!.isActive
-        ? await _subscribe(destination: destination, callback: callback)
+        ? await _subscribe(
+            destination: destination,
+            callback: callback,
+            region: region,
+          )
         : null;
     _subscription[destination] = _Subscription(
       destination: destination,
@@ -61,7 +65,7 @@ class WebSocketManager {
       callback: callback,
       unsubscribeFn: unsubscribeFn,
     );
-    if(_subscription.length == 1){
+    if (_subscription.length == 1) {
       activate();
     }
   }
@@ -83,7 +87,7 @@ class WebSocketManager {
     BDORegion? region,
     required void Function(StompFrame message) callback,
   }) async {
-    if(_client?.isActive ?? false){
+    if (_client?.isActive ?? false) {
       Map<String, String> headers = {};
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'karanda-token');
@@ -92,7 +96,8 @@ class WebSocketManager {
       }
       headers.addAll({'Qualification': TokenUtils.serviceToken()});
       if (region != null) {
-        destination.replaceAll("/REGION/", "/${region.name.toUpperCase()}/");
+        destination = destination.replaceAll(
+            "/REGION/", "/${region.name.toUpperCase()}/");
       }
       return _client?.subscribe(
         destination: _prefix + destination,
@@ -129,6 +134,7 @@ class WebSocketManager {
           sub.unsubscribeFn = await _subscribe(
             destination: sub.destination,
             callback: sub.callback,
+            region: sub.region,
           );
         }
       },
