@@ -11,7 +11,7 @@ class TradeMarketApi {
   Future<List<TradeMarketWaitItem>> getWaitItems(BDORegion region) async {
     final List<TradeMarketWaitItem> result = [];
     final response = await RestClient.get(
-      KarandaApi.tradeMarketWaitList,
+      KarandaApi.marketWaitList,
       parameters: {"region": region.name},
     );
     if (response.statusCode == HttpStatus.ok) {
@@ -28,7 +28,7 @@ class TradeMarketApi {
   }) async {
     final List<TradeMarketPriceData> result = [];
     final response = await RestClient.get(
-      "/trade-market/detail",
+      KarandaApi.marketPriceDetail,
       parameters: {
         "code": itemCode.toString(),
         "region": region.name
@@ -48,7 +48,7 @@ class TradeMarketApi {
   }) async {
     final List<TradeMarketPriceData> result = [];
     final response = await RestClient.get(
-      "/trade-market/latest",
+      KarandaApi.marketLatestPrice,
       parameters: {"target_list": items, "region": region.name},
     );
     if (response.statusCode == HttpStatus.ok) {
