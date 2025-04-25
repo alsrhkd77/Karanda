@@ -3,6 +3,7 @@
   "confirm": "Confirm",
   "cancel": "Cancel",
   "finish": "Finish",
+  "need login": "Login required.",
   "validator": {
     "empty": "Must not be empty",
     "zero": "Must be greater than 0",
@@ -108,11 +109,11 @@
     "build number": "Build number",
     "flutter version": "Flutter version"
   },
-  "world boss" : {
+  "world boss": {
     "world boss": "World boss",
     "spawned": "Spawned!",
     "notify": "Notify",
-    "notification time":"Notification time",
+    "notification time": "Notification time",
     "minutes before spawn": "{} minutes before spawn",
     "add": "Add notification time",
     "remove": "Remove notification time",
@@ -129,7 +130,7 @@
     "bossHpScaleIndicator": "Boss HP scale indicator",
     "clock": "Clock"
   },
-  "trade market" : {
+  "trade market": {
     "trade market": "Trade market",
     "failed to get data": "Failed to get data.\nPlease try again later.",
     "base price": "Base price",
@@ -149,10 +150,10 @@
     "cooking_box": "Cooking box",
     "cooking_box revenue": "Estimated revenue",
     "cooking_box efficiency": "{total} per box ({single} per food)",
-    "cooking_box low stock" : "{} (Low stock)",
-    "cooking_box out of stock" : "{} (Out of stock)",
-    "cooking_box contribution" : "Contribution points",
-    "cooking_box mastery" : "Cooking mastery",
+    "cooking_box low stock": "{} (Low stock)",
+    "cooking_box out of stock": "{} (Out of stock)",
+    "cooking_box contribution": "Contribution points",
+    "cooking_box mastery": "Cooking mastery",
     "melody_of_stars": "Melody of stars",
     "melody_of_stars efficiency": "{} per Melody of stars",
     "dehkias_light": "Dehkias light",
@@ -164,10 +165,46 @@
     "preset item price": "Base price",
     "preset item out of stock": "Out of stock"
   },
+  "adventurer hub": {
+    "adventurer hub": "Adventurer Hub",
+    "category": {
+      "partyAndPlatoon": "Party & Platoon",
+      "guildBossRaid": "Guild boss",
+      "guildWar": "Node war"
+    },
+    "recruitment type": {
+      "inGameWhispers": "In game whispers",
+      "inGamePartyRecruitment": "In game party recruitment",
+      "karandaReservation": "Karanda Reservation"
+    },
+    "edit post": {
+      "edit post": "Edit Post",
+      "title": "Title (Required)",
+      "category": "Category (Required)",
+      "recruitment type": "Recruitment type (Required)",
+      "guild name": "Guild name (Required)",
+      "slots": "Slots (Required)",
+      "content": "Details",
+      "content hint": "Please provide details about your recruitment",
+      "private content": "Private Details",
+      "private content hint": "This information is available to accepted members only",
+      "discord link": "Discord invitation code (Optional)",
+      "discord link validate failed": "Enter your Discord invite code",
+      "save": "Save"
+    },
+    "FAB label": "Create",
 
-
+    "new post": "Create new post",
+    "members": "Members\n({})",
+    "require main family": "No main family is set.",
+    "recently applied": "Recently applied",
+    "recently applied empty": "Empty",
+    "my posts": "My posts",
+    "my posts empty": "Empty",
+    "no posts open": "No posts are open.",
+    "post opened": "Post opened [ {} ]"
+  },
   "select": "Select",
-
   "Karanda": "Karanda",
   "reporting": "Reporting",
   "login required": "Login required.",
@@ -176,7 +213,6 @@
   "--Text Field validator": "",
   "validate empty": "This field must not be empty",
   "validate zero": "Must be greater than 0",
-
   "Champron": "Champron",
   "Saddle": "Saddle",
   "Horseshoe": "Horseshoe",
@@ -206,18 +242,6 @@
   "adventurer hub title": "Adventurer hub (Beta)",
   "recruitment": "recruitment",
   "recruitment post": "Recruitment post",
-  "adventurer hub": {
-    "new post": "Create new post",
-    "FAB label": "Create",
-    "members": "Members\n({})",
-    "require main family": "No main family is set.",
-    "recently applied": "Recently applied",
-    "recently applied empty": "Empty",
-    "my posts": "My posts",
-    "my posts empty": "Empty",
-    "no posts open": "No posts are open.",
-    "post opened": "Post opened [ {} ]"
-  },
   "adventurer hub category": {
     "partyAndPlatoon": "Party & Platoon",
     "guildWarHeroes": "Guild war heroes"

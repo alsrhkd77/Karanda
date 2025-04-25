@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:karanda/data_source/adventurer_hub_api.dart';
 import 'package:karanda/data_source/app_settings_data_source.dart';
 import 'package:karanda/data_source/audio_player_data_source.dart';
 import 'package:karanda/data_source/auth_api.dart';
@@ -14,6 +15,7 @@ import 'package:karanda/data_source/trade_market_data_source.dart';
 import 'package:karanda/data_source/version_data_source.dart';
 import 'package:karanda/data_source/web_socket_manager.dart';
 import 'package:karanda/data_source/world_boss_data_source.dart';
+import 'package:karanda/repository/adventurer_hub_repository.dart';
 import 'package:karanda/repository/app_notification_repository.dart';
 import 'package:karanda/repository/app_settings_repository.dart';
 import 'package:karanda/repository/audio_player_repository.dart';
@@ -25,6 +27,7 @@ import 'package:karanda/repository/trade_market_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
 import 'package:karanda/repository/world_boss_repository.dart';
 import 'package:karanda/route.dart';
+import 'package:karanda/service/adventurer_hub_service.dart';
 import 'package:karanda/service/app_notification_service.dart';
 import 'package:karanda/service/app_settings_service.dart';
 import 'package:karanda/service/auth_service.dart';
@@ -156,11 +159,21 @@ class KarandaApp extends StatelessWidget {
         ),
         Provider(
           create: (context) => TradeMarketService(
-            tradeMarketRepository: context.read(),
-            settingsRepository: context.read(),
-            itemInfoRepository: context.read()
-          ),
+              tradeMarketRepository: context.read(),
+              settingsRepository: context.read(),
+              itemInfoRepository: context.read()),
           lazy: !kIsWeb && Platform.isWindows,
+        ),
+        Provider(create: (context) => AdventurerHubApi()),
+        Provider(
+          create: (context) => AdventurerHubRepository(
+            adventurerHubApi: context.read(),
+          ),
+        ),
+        Provider(
+          create: (context) => AdventurerHubService(
+            authRepository: context.read(),
+          ),
         ),
         Provider(
           create: (context) => DesktopService(

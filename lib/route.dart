@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/adventurer_hub/adventurer_hub_page.dart';
 import 'package:karanda/adventurer_hub/recruitment_detail_page.dart';
 import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
@@ -16,6 +15,8 @@ import 'package:karanda/settings/change_log_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_page.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
+import 'package:karanda/ui/adventurer_hub/widgets/adventurer_hub_page.dart';
+import 'package:karanda/ui/adventurer_hub/widgets/edit_recruitment_post_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
@@ -114,15 +115,14 @@ final GoRouter router = GoRouter(
               builder: (context, state) => const StyleSettingsPage(),
             ),
             GoRoute(
-              path: 'windows-settings',
-              builder: (context, state) => const WindowsSettingsPage(),
-              redirect: (BuildContext context, GoRouterState state) {
-                if(kIsWeb || !Platform.isWindows) {
-                  return '/not-found';
-                }
-                return null;
-              }
-            ),
+                path: 'windows-settings',
+                builder: (context, state) => const WindowsSettingsPage(),
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/not-found';
+                  }
+                  return null;
+                }),
             GoRoute(
               path: 'support-karanda',
               builder: (context, state) => const SupportKarandaPage(),
@@ -255,6 +255,62 @@ final GoRouter router = GoRouter(
             return null;
           },
         ),
+        GoRoute(
+          path: 'adventurer-hub/:region',
+          builder: (context, state) {
+            if (context.watch<AuthService>().waitResponse) {
+              return const LoadingPage();
+            }
+            return AdventurerHubPage(
+              region: BDORegion.values.byName(state.pathParameters["region"]!),
+            );
+          },
+          redirect: (BuildContext context, GoRouterState state) {
+            if (!state.pathParameters.containsKey("region") ||
+                !BDORegion.values
+                    .map((value) => value.name)
+                    .contains(state.pathParameters["region"])) {
+              return 'not-found';
+            }
+            return null;
+          },
+          routes: [
+            GoRoute(path: 'edit',
+              builder: (context, state) {
+                if (context.watch<AuthService>().waitResponse) {
+                  return const LoadingPage();
+                }
+                return EditRecruitmentPostPage(
+                  region: BDORegion.values.byName(state.pathParameters["region"]!),
+                );
+              },
+              redirect: (BuildContext context, GoRouterState state) {
+                if (!state.pathParameters.containsKey("region") ||
+                    !BDORegion.values
+                        .map((value) => value.name)
+                        .contains(state.pathParameters["region"])) {
+                  return 'not-found';
+                }
+                return null;
+              },
+            ),
+            GoRoute(
+              path: 'posts/:postId',
+              builder: (context, state) {
+                int? postId =
+                    int.tryParse(state.pathParameters['postId'] ?? 'failed');
+                if (postId == null) {
+                  return const InvalidAccessPage();
+                } else {
+                  return RecruitmentDetailPage(
+                    postId: postId,
+                    authenticated: context.read<AuthService>().authenticated,
+                  );
+                }
+              },
+            )
+          ],
+        ),
         /*GoRoute(
           path: 'auth',
           builder: (context, state) => const AuthPage(
@@ -328,32 +384,6 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'broadcast-widget/partrigio',
           builder: (context, state) => PartrigioPage(),
-        ),
-        GoRoute(
-          path: 'adventurer-hub',
-          builder: (context, state) {
-            if (context.watch<AuthService>().waitResponse) {
-              return const LoadingPage();
-            }
-            return AdventurerHubPage();
-          },
-          routes: [
-            GoRoute(
-              path: 'posts/:postId',
-              builder: (context, state) {
-                int? postId =
-                    int.tryParse(state.pathParameters['postId'] ?? 'failed');
-                if (postId == null) {
-                  return const InvalidAccessPage();
-                } else {
-                  return RecruitmentDetailPage(
-                    postId: postId,
-                    authenticated: context.read<AuthService>().authenticated,
-                  );
-                }
-              },
-            )
-          ],
         ),
       ],
     ),

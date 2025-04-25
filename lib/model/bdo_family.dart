@@ -25,4 +25,14 @@ class BDOFamily {
       verified: json["verified"],
     );
   }
+
+  Map toJson(){
+    return {
+      "code": code,
+      "region": region.name,
+      "familyName": familyName,
+      "mainClass": mainClass.name,
+      "verified": verified,
+    };
+  }
 }

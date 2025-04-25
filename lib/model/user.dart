@@ -25,4 +25,13 @@ class User {
       mainFamily: json["mainFamily"],
     );
   }
+
+  Map toJson(){
+    return {
+      "discordId": discordId,
+      "username": username,
+      "avatar": avatar,
+      "mainFamily": mainFamily?.toJson(),
+    };
+  }
 }

@@ -86,6 +86,11 @@ class HomeFeaturesSection extends StatelessWidget {
           path: '/overlay',
           windowsOnly: true,
         ),
+        /*_Tile(
+          title: context.tr("adventurer hub.adventurer hub"),
+          icon: FontAwesomeIcons.circleNodes,
+          path: '/adventurer-hub/${context.region?.name}',
+        ),*/
       ],
     );
   }

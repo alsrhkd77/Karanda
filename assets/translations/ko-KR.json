@@ -3,6 +3,7 @@
   "confirm": "확인",
   "cancel": "취소",
   "finish": "완료",
+  "need login": "로그인이 필요한 서비스입니다.",
   "validator": {
     "empty": "필수입니다",
     "zero": "0보다 커야 합니다",
@@ -108,11 +109,11 @@
     "build number": "빌드 번호",
     "flutter version": "Flutter 버전"
   },
-  "world boss" : {
+  "world boss": {
     "world boss": "월드 보스",
     "spawned": "출현!",
     "notify": "알림",
-    "notification time":"알림 시간",
+    "notification time": "알림 시간",
     "minutes before spawn": "출현 {}분 전",
     "add": "알림 시간 추가",
     "remove": "알림 시간 제거",
@@ -129,7 +130,7 @@
     "bossHpScaleIndicator": "보스 HP 눈금 표시기",
     "clock": "시계"
   },
-  "trade market" : {
+  "trade market": {
     "trade market": "통합 거래소",
     "failed to get data": "데이터를 가져오는데 실패했습니다.\n잠시후 다시 시도해주세요.",
     "base price": "기준 가격",
@@ -149,10 +150,10 @@
     "cooking_box": "요리 상자",
     "cooking_box revenue": "예상 수익",
     "cooking_box efficiency": "상자당 {total} (요리당 {single})",
-    "cooking_box low stock" : "{} (재고 부족)",
-    "cooking_box out of stock" : "{} (품절)",
-    "cooking_box contribution" : "공헌도",
-    "cooking_box mastery" : "요리 숙련도",
+    "cooking_box low stock": "{} (재고 부족)",
+    "cooking_box out of stock": "{} (품절)",
+    "cooking_box contribution": "공헌도",
+    "cooking_box mastery": "요리 숙련도",
     "melody_of_stars": "별들의 선율",
     "melody_of_stars efficiency": "선율 1개당 {}",
     "dehkias_light": "데키아의 불빛",
@@ -164,25 +165,59 @@
     "preset item price": "기준 가격",
     "preset item out of stock": "품절"
   },
+  "adventurer hub": {
+    "adventurer hub": "모험가 허브",
+    "category": {
+      "partyAndPlatoon": "파티/부대",
+      "guildBossRaid": "길드 레이드",
+      "guildWar": "거점/공성"
+    },
+    "recruitment type": {
+      "inGameWhispers": "인게임 귓속말",
+      "inGamePartyRecruitment": "인게임 파티/부대 찾기",
+      "karandaReservation": "Karanda 예약"
+    },
+    "edit post": {
+      "edit post": "공고 작성",
+      "title": "제목 (필수)",
+      "category": "카테고리 (필수)",
+      "recruitment type": "모집 유형 (필수)",
+      "guild name": "길드명 (필수)",
+      "slots": "모집 인원 (필수)",
+      "content": "내용",
+      "content hint": "모집 상세 내용을 입력해주세요",
+      "private content": "승인된 참여자 전용",
+      "private content hint": "이 내용은 승인된 참여자만 볼 수 있습니다",
+      "discord link": "Discord 초대 코드 (선택)",
+      "discord link validate failed": "Discord 초대 코드를 입력해주세요",
+      "save": "작성 완료"
+    },
+    "FAB label": "모집하기",
 
-
+    "new post": "모집 공고 만들기",
+    "members": "모집 인원\n({})",
+    "require main family": "대표 가문이 설정되지 않았습니다.",
+    "recently applied": "최근 지원 내역",
+    "recently applied empty": "최근 지원 내역이 없습니다.",
+    "my posts": "작성한 모집",
+    "my posts empty": "최근 작성한 모집이 없습니다.",
+    "no posts open": "모집중인 공고가 없습니다.",
+    "post opened": "모집 시작 [ {} ]"
+  },
   "select": "선택",
   "Karanda": "카란다",
   "reporting": "신고하기",
   "login required": "로그인이 필요합니다.",
   "keywords": "키워드",
   "backgrounds": "배경",
-
   "--Text Field validator": "",
   "validate empty": "필수입니다",
   "validate zero": "0보다 커야 합니다",
-
   "Champron": "마면",
   "Saddle": "안장",
   "Horseshoe": "편자",
   "Stirrups": "등자",
   "melody_of_stars_exchange_rate": "장 (Ⅰ): {}개\n광 (Ⅱ): {}개\n고 (Ⅲ): {}개",
-
   "--World boss": "",
   "garmoth": "가모스",
   "vell": "벨",
@@ -207,18 +242,6 @@
   "adventurer hub title": "모험가 허브 (Beta)",
   "recruitment": "모집",
   "recruitment post": "모집 공고",
-  "adventurer hub": {
-    "new post": "모집 공고 만들기",
-    "FAB label": "모집하기",
-    "members": "모집 인원\n({})",
-    "require main family": "대표 가문이 설정되지 않았습니다.",
-    "recently applied": "최근 지원 내역",
-    "recently applied empty": "최근 지원 내역이 없습니다.",
-    "my posts": "작성한 모집",
-    "my posts empty": "최근 작성한 모집이 없습니다.",
-    "no posts open": "모집중인 공고가 없습니다.",
-    "post opened": "모집 시작 [ {} ]"
-  },
   "adventurer hub category": {
     "partyAndPlatoon": "파티 & 부대",
     "guildWarHeroes": "길드 용병"
@@ -241,7 +264,7 @@
     "discord code validate failed": "Discord 초대 코드를 입력해주세요",
     "save": "작성 완료",
     "caution card title": "주의사항",
-    "caution card contents" : "1. 새로운 모집 공고는 1시간에 한 번 게시할 수 있습니다.\n2. 게시된 공고는 삭제할 수 없습니다."
+    "caution card contents": "1. 새로운 모집 공고는 1시간에 한 번 게시할 수 있습니다.\n2. 게시된 공고는 삭제할 수 없습니다."
   },
   "recruitment post detail": {
     "chip": {
@@ -284,7 +307,6 @@
     "edit": "수정",
     "share": "공유하기"
   },
-
   "--Adventurer card": "",
   "adventurer card": {
     "title": "모험가 카드",
@@ -295,7 +317,7 @@
     "download": "다운로드"
   },
   "adventurer card contents": {
-    "verification code":  "검증 코드: {}",
+    "verification code": "검증 코드: {}",
     "published on": "발급일: {}",
     "family name": "가문명: {}",
     "guild": "소속 길드: {}",
