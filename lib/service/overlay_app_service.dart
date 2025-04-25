@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/model/app_notification_message.dart';
+import 'package:karanda/model/monitor_device.dart';
 import 'package:karanda/repository/overlay_app_repository.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
@@ -18,7 +19,8 @@ class OverlayAppService {
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey;
   final Map<String, void Function(MethodCall)> _callbacks = {};
   final List<MethodCall> _unhandledMessages = [];
-  final _editMode = BehaviorSubject<bool>();
+  final _editMode = BehaviorSubject<bool>.seeded(false);
+  final _loading = BehaviorSubject<bool>.seeded(true);
   final _activationStatus =
       BehaviorSubject<Map<OverlayFeatures, bool>>.seeded({});
 
@@ -32,6 +34,7 @@ class OverlayAppService {
   }
 
   Stream<bool> get editModeStream => _editMode.stream;
+  Stream<bool> get loadingStream => _loading.stream;
 
   Stream<Map<OverlayFeatures, bool>> get activationStatusStream =>
       _activationStatus.stream;
@@ -73,21 +76,19 @@ class OverlayAppService {
   }
 
   void _registerCallbacks() {
-    registerCallback(key: "initialize", callback: _initialize);
+    registerCallback(key: "set window", callback: _setWindow);
     registerCallback(key: "edit mode", callback: _setEditMode);
     registerCallback(key: "activation status", callback: _widgetActivate);
     registerCallback(key: "notification", callback: _notify);
   }
 
-  void _initialize(MethodCall value) {
-    final screenSize = _appRepository.screenSize;
-    OverlayWindowUtils().setOverlayMode(
-      width: screenSize.width,
-      height: screenSize.height,
-    );
+  void _setWindow(MethodCall value){
+    final display = MonitorDevice.fromJson(jsonDecode(value.arguments));
+    _loading.sink.add(true);
+    OverlayWindowUtils().setOverlayMode(rect: display.rect);
     Future.delayed(
-      const Duration(milliseconds: 500),
-      () => _editMode.sink.add(false),
+      const Duration(milliseconds: 300),
+          () => _loading.sink.add(false),
     );
   }
 

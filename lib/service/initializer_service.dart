@@ -90,8 +90,8 @@ class InitializerService {
       progress: 2 / process,
       message: "start overlay",
     ));
-    await _overlayRepository.startOverlay();
     final overlaySettings = await _overlayRepository.loadSettings();
+    await _overlayRepository.startOverlay(overlaySettings.monitorDevice);
     await _overlayRepository
         .sendActivationStatus(overlaySettings.activationStatus);
     _status.sink.add(InitializerStatus(

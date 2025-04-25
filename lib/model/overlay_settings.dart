@@ -1,9 +1,11 @@
 import 'package:karanda/enums/overlay_features.dart';
+import 'package:karanda/model/monitor_device.dart';
 
 class OverlaySettings {
   final Set<OverlayFeatures> activatedFeatures = {};
+  MonitorDevice monitorDevice;
 
-  OverlaySettings({Set<OverlayFeatures>? activatedFeatures}) {
+  OverlaySettings({required this.monitorDevice, Set<OverlayFeatures>? activatedFeatures}) {
     this.activatedFeatures.addAll(activatedFeatures ?? {});
   }
 
@@ -13,6 +15,7 @@ class OverlaySettings {
       activatedFeatures: Set.from(activated.map((item) {
         return OverlayFeatures.values.byName(item);
       })),
+      monitorDevice: MonitorDevice.fromJson(json["monitorDevice"])
     );
   }
 
@@ -24,6 +27,7 @@ class OverlaySettings {
   Map toJson() {
     return {
       "activatedFeatures": activatedFeatures.map((item) => item.name).toList(),
+      "monitorDevice": monitorDevice.toJson(),
     };
   }
 }

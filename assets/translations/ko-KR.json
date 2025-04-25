@@ -128,7 +128,11 @@
     "resize and position": "크기 및 위치 조정",
     "worldBoss": "월드 보스",
     "bossHpScaleIndicator": "보스 HP 눈금 표시기",
-    "clock": "시계"
+    "clock": "시계",
+    "settings": {
+      "select display": "디스플레이 선택",
+      "reset widgets": "오버레이 위젯 초기화"
+    }
   },
   "trade market": {
     "trade market": "통합 거래소",

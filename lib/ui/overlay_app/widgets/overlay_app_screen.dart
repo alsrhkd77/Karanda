@@ -14,11 +14,11 @@ class OverlayAppScreen extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
     return Consumer(
       builder: (context, OverlayAppController controller, child) {
-        if(controller.editMode == null){
+        if(controller.loading){
           return const _LoadingIndicator();
         }
         return Scaffold(
-          backgroundColor: controller.editMode ?? false
+          backgroundColor: controller.editMode
               ? Colors.white.withAlpha(64)
               : Colors.transparent,
           body: child,
@@ -43,24 +43,27 @@ class _LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0);
-    return const Align(
-      alignment: Alignment.bottomRight,
-      child: Card(
-        margin: padding,
-        child: Padding(
-          padding: padding,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: padding,
-                child: CircularProgressIndicator(),
-              ),
-              Padding(
-                padding: padding,
-                child: Text("Karanda\nOverlay", textAlign: TextAlign.center),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: Colors.black.withAlpha(64),
+      body: const Align(
+        alignment: Alignment.bottomRight,
+        child: Card(
+          margin: padding,
+          child: Padding(
+            padding: padding,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: padding,
+                  child: CircularProgressIndicator(),
+                ),
+                Padding(
+                  padding: padding,
+                  child: Text("Karanda\nOverlay", textAlign: TextAlign.center),
+                ),
+              ],
+            ),
           ),
         ),
       ),

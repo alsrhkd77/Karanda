@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/model/overlay_settings.dart';
@@ -5,14 +7,18 @@ import 'package:karanda/repository/overlay_repository.dart';
 
 class OverlayController extends ChangeNotifier {
   final OverlayRepository _overlayRepository;
+  late final StreamSubscription _overlaySettings;
 
   OverlaySettings? overlaySettings;
 
   OverlayController({required OverlayRepository overlayRepository})
-      : _overlayRepository = overlayRepository;
+      : _overlayRepository = overlayRepository {
+    _overlaySettings =
+        _overlayRepository.settingsStream.listen(_onSettingsUpdate);
+  }
 
-  Future<void> loadSettings() async {
-    overlaySettings = await _overlayRepository.loadSettings();
+  void _onSettingsUpdate(OverlaySettings value) {
+    overlaySettings = value;
     notifyListeners();
   }
 
@@ -21,16 +27,16 @@ class OverlayController extends ChangeNotifier {
   }
 
   Future<void> switchActivation(OverlayFeatures feature, bool status) async {
-    if (overlaySettings != null) {
-      if(status){
-        overlaySettings!.activatedFeatures.add(feature);
-      } else {
-        overlaySettings!.activatedFeatures.remove(feature);
-      }
-      await _overlayRepository
-          .sendActivationStatus(overlaySettings!.activationStatus);
-      await _overlayRepository.saveSettings(overlaySettings!);
-      notifyListeners();
+    if (status) {
+      _overlayRepository.activate(feature);
+    } else {
+      _overlayRepository.deactivate(feature);
     }
+  }
+
+  @override
+  void dispose() {
+    _overlaySettings.cancel();
+    super.dispose();
   }
 }

@@ -8,6 +8,7 @@ import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
+import 'package:karanda/ui/overlay/widgets/overlay_settings_page.dart';
 import 'package:provider/provider.dart';
 
 class OverlayPage extends StatefulWidget {
@@ -21,12 +22,22 @@ class _OverlayPageState extends State<OverlayPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) =>
-          OverlayController(overlayRepository: context.read())..loadSettings(),
+      create: (context) => OverlayController(overlayRepository: context.read()),
       child: Scaffold(
         appBar: KarandaAppBar(
           icon: FontAwesomeIcons.layerGroup,
           title: context.tr("overlay.overlay"),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const OverlaySettingsPage(),
+                ));
+              },
+              icon: const Icon(Icons.construction),
+              tooltip: context.tr("config"),
+            ),
+          ],
         ),
         body: Consumer(
           builder: (context, OverlayController controller, child) {

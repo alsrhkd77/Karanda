@@ -128,7 +128,11 @@
     "resize and position": "Resize & Position",
     "worldBoss": "World boss",
     "bossHpScaleIndicator": "Boss HP scale indicator",
-    "clock": "Clock"
+    "clock": "Clock",
+    "settings": {
+      "select display": "Select display",
+      "reset widgets": "Reset Overlay widgets"
+    }
   },
   "trade market": {
     "trade market": "Trade market",
