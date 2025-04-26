@@ -131,7 +131,7 @@
     "clock": "Clock",
     "settings": {
       "select display": "Select display",
-      "reset widgets": "Reset Overlay widgets"
+      "reset widgets": "Reset Overlay widgets size & position"
     }
   },
   "trade market": {

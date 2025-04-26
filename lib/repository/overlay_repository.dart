@@ -92,6 +92,10 @@ class OverlayRepository {
     return await OverlayWindowUtils().getAllMonitorDevices();
   }
 
+  void resetWidgets() {
+    sendToOverlay(method: "reset widgets");
+  }
+
   Future<OverlaySettings> loadSettings() async {
     final settings = await _overlaySettingsDataSource.loadSettings();
     final display = await OverlayWindowUtils().getAllMonitorDevices();

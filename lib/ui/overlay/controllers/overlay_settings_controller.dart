@@ -28,6 +28,10 @@ class OverlaySettingsController extends ChangeNotifier {
     monitorList = await _overlayRepository.getMonitorList();
   }
 
+  void resetOverlayWidgets(){
+    _overlayRepository.resetWidgets();
+  }
+
   void _onSettingsUpdate(OverlaySettings value) {
     overlaySettings = value;
     notifyListeners();

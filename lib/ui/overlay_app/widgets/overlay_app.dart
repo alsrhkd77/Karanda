@@ -29,7 +29,6 @@ class OverlayApp extends StatelessWidget {
         Provider(
           create: (context) => OverlayAppRepository(
             appDataSource: context.read(),
-            screenSize: Size(arguments["width"], arguments["height"]),
           ),
           lazy: false,
         ),

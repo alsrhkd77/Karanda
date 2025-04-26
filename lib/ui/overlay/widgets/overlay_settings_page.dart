@@ -68,6 +68,10 @@ class OverlaySettingsPage extends StatelessWidget {
                   )
                 ],
               ),*/
+              ListTile(
+                title: Text(context.tr("overlay.settings.reset widgets")),
+                onTap: controller.resetOverlayWidgets,
+              )
             ]);
           },
         ),

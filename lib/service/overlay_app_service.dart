@@ -21,6 +21,7 @@ class OverlayAppService {
   final List<MethodCall> _unhandledMessages = [];
   final _editMode = BehaviorSubject<bool>.seeded(false);
   final _loading = BehaviorSubject<bool>.seeded(true);
+  final _resetWidgets = StreamController<bool>.broadcast();
   final _activationStatus =
       BehaviorSubject<Map<OverlayFeatures, bool>>.seeded({});
 
@@ -35,6 +36,7 @@ class OverlayAppService {
 
   Stream<bool> get editModeStream => _editMode.stream;
   Stream<bool> get loadingStream => _loading.stream;
+  Stream<bool> get resetWidgetsStream => _resetWidgets.stream;
 
   Stream<Map<OverlayFeatures, bool>> get activationStatusStream =>
       _activationStatus.stream;
@@ -79,6 +81,7 @@ class OverlayAppService {
     registerCallback(key: "set window", callback: _setWindow);
     registerCallback(key: "edit mode", callback: _setEditMode);
     registerCallback(key: "activation status", callback: _widgetActivate);
+    registerCallback(key: "reset widgets", callback: _resetWidgetsCallback);
     registerCallback(key: "notification", callback: _notify);
   }
 
@@ -102,6 +105,10 @@ class OverlayAppService {
     final data = json.map<OverlayFeatures, bool>(
         (key, value) => MapEntry(OverlayFeatures.values.byName(key), value));
     _activationStatus.sink.add(data);
+  }
+
+  void _resetWidgetsCallback(MethodCall value){
+    _resetWidgets.sink.add(true);
   }
 
   void _notify(MethodCall value) {

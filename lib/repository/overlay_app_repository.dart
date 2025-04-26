@@ -6,19 +6,14 @@ import 'package:rxdart/rxdart.dart';
 class OverlayAppRepository {
   final OverlayAppDataSource _appDataSource;
   final _message = BehaviorSubject<MethodCall>();
-  final _screenSize = BehaviorSubject<Size>();
 
   OverlayAppRepository({
-    required OverlayAppDataSource appDataSource,
-    required Size screenSize,
+    required OverlayAppDataSource appDataSource
   }) : _appDataSource = appDataSource {
     DesktopMultiWindow.setMethodHandler(_methodCallHandler);
-    _screenSize.sink.add(screenSize);
   }
 
   Stream<MethodCall> get messageStream => _message.stream;
-
-  Size get screenSize => _screenSize.value;
 
   Future<void> _methodCallHandler(MethodCall call, int fromWindowId) async {
     _message.sink.add(call);

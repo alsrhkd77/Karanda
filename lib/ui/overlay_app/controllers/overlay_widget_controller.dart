@@ -13,6 +13,7 @@ abstract class OverlayWidgetController extends ChangeNotifier {
   final boxController = TransformableBoxController();
   late final StreamSubscription _editMode;
   late final StreamSubscription _activated;
+  late final StreamSubscription _resetWidgets;
 
   bool editMode = false;
   bool activated = false;
@@ -27,6 +28,7 @@ abstract class OverlayWidgetController extends ChangeNotifier {
     boxController.setConstraints(constraints);
     _editMode = service.editModeStream.listen(_onEditModeUpdate);
     _activated = service.activationStatusStream.listen(_onActivateStatusUpdate);
+    _resetWidgets = service.resetWidgetsStream.listen(_onResetWidgets);
   }
 
   bool get show => editMode ? true : activated;
@@ -35,6 +37,13 @@ abstract class OverlayWidgetController extends ChangeNotifier {
     //final rect = kDebugMode ? null : await service.loadRect(key);
     final rect = await service.loadRect(key);
     boxController.setRect(rect ?? defaultRect);
+  }
+
+  void _onResetWidgets(bool value){
+    if(value){
+      boxController.setRect(defaultRect);
+      service.saveRect(key, defaultRect);
+    }
   }
 
   void _onEditModeUpdate(bool value) {
@@ -58,6 +67,7 @@ abstract class OverlayWidgetController extends ChangeNotifier {
   void dispose() {
     _activated.cancel();
     _editMode.cancel();
+    _resetWidgets.cancel();
     boxController.dispose();
     super.dispose();
   }
