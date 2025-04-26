@@ -57,25 +57,19 @@ class OverlayRepository {
     await sendToOverlay(method: "edit mode");
   }
 
-  Future<void> sendActivationStatus(Map<OverlayFeatures, bool> value) async {
-    final activationStatus = value.map(
-      (key, value) => MapEntry(key.name, value),
-    );
-    await sendToOverlay(
-      method: "activation status",
-      data: jsonEncode(activationStatus),
-    );
+  Future<void> sendOverlaySettings(OverlaySettings value) async {
+    await sendToOverlay(method: "settings", data: jsonEncode(value));
   }
 
   void activate(OverlayFeatures value) {
     final snapshot = _settings.value..activatedFeatures.add(value);
-    sendActivationStatus(snapshot.activationStatus);
+    sendOverlaySettings(snapshot);
     _settings.sink.add(snapshot);
   }
 
   void deactivate(OverlayFeatures value) {
     final snapshot = _settings.value..activatedFeatures.remove(value);
-    sendActivationStatus(snapshot.activationStatus);
+    sendOverlaySettings(snapshot);
     _settings.sink.add(snapshot);
   }
 
@@ -94,6 +88,12 @@ class OverlayRepository {
 
   void resetWidgets() {
     sendToOverlay(method: "reset widgets");
+  }
+
+  void showWorldBossName(bool value) {
+    final snapshot = _settings.value..showWorldBossName = value;
+    sendOverlaySettings(snapshot);
+    _settings.sink.add(snapshot);
   }
 
   Future<OverlaySettings> loadSettings() async {

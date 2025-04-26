@@ -24,7 +24,9 @@ import 'package:karanda/ui/auth/widgets/authenticate_page.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_page.dart';
 import 'package:karanda/ui/core/ui/not_found_page.dart';
 import 'package:karanda/ui/home/widget/home_page.dart';
+import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
+import 'package:karanda/ui/overlay/widgets/world_boss_overlay_settings_page.dart';
 import 'package:karanda/ui/settings/widget/karanda_info_page.dart';
 import 'package:karanda/ui/settings/widget/settings_page.dart';
 import 'package:karanda/ui/settings/widget/style_settings_page.dart';
@@ -246,15 +248,30 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const WorldBossPage(),
         ),
         GoRoute(
-          path: 'overlay',
-          builder: (context, state) => const OverlayPage(),
-          redirect: (BuildContext context, GoRouterState state) {
-            if (kIsWeb || !Platform.isWindows) {
-              return '/';
-            }
-            return null;
-          },
-        ),
+            path: 'overlay',
+            builder: (context, state) => const OverlayPage(),
+            redirect: (BuildContext context, GoRouterState state) {
+              if (kIsWeb || !Platform.isWindows) {
+                return '/';
+              }
+              return null;
+            },
+            routes: [
+              GoRoute(
+                path: 'world-boss',
+                builder: (context, state) {
+                  return WorldBossOverlaySettingsPage(
+                    overlayController: state.extra as OverlayController,
+                  );
+                },
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/';
+                  }
+                  return null;
+                },
+              ),
+            ]),
         GoRoute(
           path: 'adventurer-hub/:region',
           builder: (context, state) {
@@ -275,13 +292,15 @@ final GoRouter router = GoRouter(
             return null;
           },
           routes: [
-            GoRoute(path: 'edit',
+            GoRoute(
+              path: 'edit',
               builder: (context, state) {
                 if (context.watch<AuthService>().waitResponse) {
                   return const LoadingPage();
                 }
                 return EditRecruitmentPostPage(
-                  region: BDORegion.values.byName(state.pathParameters["region"]!),
+                  region:
+                      BDORegion.values.byName(state.pathParameters["region"]!),
                 );
               },
               redirect: (BuildContext context, GoRouterState state) {

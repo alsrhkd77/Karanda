@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
@@ -60,6 +61,9 @@ class _OverlayPageState extends State<OverlayPage> {
                 _Tile(
                   feature: OverlayFeatures.worldBoss,
                   isActivated: activated.contains(OverlayFeatures.worldBoss),
+                  onTap: () {
+                    context.go("/overlay/world-boss", extra: controller);
+                  },
                 ),
                 _Tile(
                   feature: OverlayFeatures.clock,
@@ -103,11 +107,13 @@ class _Fab extends StatelessWidget {
 class _Tile extends StatelessWidget {
   final OverlayFeatures feature;
   final bool isActivated;
+  final void Function()? onTap;
 
   const _Tile({
     super.key,
     required this.feature,
     required this.isActivated,
+    this.onTap,
   });
 
   @override
@@ -115,16 +121,21 @@ class _Tile extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Center(
-        child: SwitchListTile(
+        child: ListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 2,
           ),
+          onTap: onTap,
           title: Text(context.tr("overlay.${feature.name}")),
-          value: isActivated,
-          onChanged: (status) {
-            context.read<OverlayController>().switchActivation(feature, status);
-          },
+          trailing: Switch(
+            value: isActivated,
+            onChanged: (status) {
+              context
+                  .read<OverlayController>()
+                  .switchActivation(feature, status);
+            },
+          ),
         ),
       ),
     );

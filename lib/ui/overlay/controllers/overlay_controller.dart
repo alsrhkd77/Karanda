@@ -34,6 +34,10 @@ class OverlayController extends ChangeNotifier {
     }
   }
 
+  void showWorldBossName(bool value){
+    _overlayRepository.showWorldBossName(value);
+  }
+
   @override
   void dispose() {
     _overlaySettings.cancel();

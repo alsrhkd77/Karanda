@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/model/app_notification_message.dart';
 import 'package:karanda/model/monitor_device.dart';
+import 'package:karanda/model/overlay_settings.dart';
 import 'package:karanda/repository/overlay_app_repository.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
@@ -22,8 +23,7 @@ class OverlayAppService {
   final _editMode = BehaviorSubject<bool>.seeded(false);
   final _loading = BehaviorSubject<bool>.seeded(true);
   final _resetWidgets = StreamController<bool>.broadcast();
-  final _activationStatus =
-      BehaviorSubject<Map<OverlayFeatures, bool>>.seeded({});
+  final _settings = BehaviorSubject<OverlaySettings>();
 
   OverlayAppService({
     required OverlayAppRepository appRepository,
@@ -35,11 +35,15 @@ class OverlayAppService {
   }
 
   Stream<bool> get editModeStream => _editMode.stream;
+
   Stream<bool> get loadingStream => _loading.stream;
+
   Stream<bool> get resetWidgetsStream => _resetWidgets.stream;
 
+  Stream<OverlaySettings> get settingsStream => _settings.stream;
+
   Stream<Map<OverlayFeatures, bool>> get activationStatusStream =>
-      _activationStatus.stream;
+      settingsStream.map((value) => value.activationStatus);
 
   void registerCallback({
     required String key,
@@ -80,18 +84,18 @@ class OverlayAppService {
   void _registerCallbacks() {
     registerCallback(key: "set window", callback: _setWindow);
     registerCallback(key: "edit mode", callback: _setEditMode);
-    registerCallback(key: "activation status", callback: _widgetActivate);
+    registerCallback(key: "settings", callback: _settingsCallback);
     registerCallback(key: "reset widgets", callback: _resetWidgetsCallback);
     registerCallback(key: "notification", callback: _notify);
   }
 
-  void _setWindow(MethodCall value){
+  void _setWindow(MethodCall value) {
     final display = MonitorDevice.fromJson(jsonDecode(value.arguments));
     _loading.sink.add(true);
     OverlayWindowUtils().setOverlayMode(rect: display.rect);
     Future.delayed(
       const Duration(milliseconds: 300),
-          () => _loading.sink.add(false),
+      () => _loading.sink.add(false),
     );
   }
 
@@ -100,19 +104,17 @@ class OverlayAppService {
     OverlayWindowUtils().enableEditMode();
   }
 
-  void _widgetActivate(MethodCall value) {
-    final Map json = jsonDecode(value.arguments);
-    final data = json.map<OverlayFeatures, bool>(
-        (key, value) => MapEntry(OverlayFeatures.values.byName(key), value));
-    _activationStatus.sink.add(data);
-  }
-
-  void _resetWidgetsCallback(MethodCall value){
+  void _resetWidgetsCallback(MethodCall value) {
     _resetWidgets.sink.add(true);
   }
 
+  void _settingsCallback(MethodCall value) {
+    _settings.sink.add(OverlaySettings.fromJson(jsonDecode(value.arguments)));
+  }
+
   void _notify(MethodCall value) {
-    if (_activationStatus.value[OverlayFeatures.notification] ?? false) {
+    if (_settings.valueOrNull?.activationStatus[OverlayFeatures.notification] ??
+        false) {
       final Map json = jsonDecode(value.arguments)..remove("route");
       final message = AppNotificationMessage.fromJson(json);
       if (_scaffoldMessengerKey.currentState != null) {

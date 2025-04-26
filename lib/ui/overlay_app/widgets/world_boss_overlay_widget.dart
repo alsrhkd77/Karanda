@@ -44,16 +44,12 @@ class WorldBossOverlayWidget extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: controller.schedule!.activatedBosses.map((boss) {
-                      return Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          CircleAvatar(
-                            foregroundImage:
-                                Image.network(boss.imagePath).image,
-                            backgroundColor: Colors.transparent,
-                          ),
-                          _BossName(name: boss.name),
-                        ],
+                      if (controller.showName) {
+                        return _BossName(name: boss.name);
+                      }
+                      return CircleAvatar(
+                        foregroundImage: Image.network(boss.imagePath).image,
+                        backgroundColor: Colors.transparent,
                       );
                     }).toList(),
                   ),
@@ -75,13 +71,14 @@ class _BossName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white.withAlpha(220)),
+      ),
       child: Text(
         toBeginningOfSentenceCase(context.tr(name)).keepWord(),
-        style: TextTheme.of(context).labelLarge?.copyWith(
-              color: Colors.white.withAlpha(220),
-            ),
         textAlign: TextAlign.center,
       ),
     );

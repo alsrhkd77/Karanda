@@ -124,9 +124,11 @@
   },
   "overlay": {
     "overlay": "Overlay",
+    "use overlay": "Use overlay",
     "notification": "Notification",
     "resize and position": "Resize & Position",
     "worldBoss": "World boss",
+    "display name": "Display by boss name",
     "bossHpScaleIndicator": "Boss HP scale indicator",
     "clock": "Clock",
     "settings": {

@@ -92,8 +92,7 @@ class InitializerService {
     ));
     final overlaySettings = await _overlayRepository.loadSettings();
     await _overlayRepository.startOverlay(overlaySettings.monitorDevice);
-    await _overlayRepository
-        .sendActivationStatus(overlaySettings.activationStatus);
+    await _overlayRepository.sendOverlaySettings(overlaySettings);
     _status.sink.add(InitializerStatus(
       progress: 3 / process,
       message: "authenticate",
