@@ -46,7 +46,7 @@ class AuthService extends ChangeNotifier {
   Future<void> unregister() async {
     final result = await _authRepository.unregister();
     if (result) {
-      await _authRepository.clearToken();
+      await _authRepository.logout();
       _router.go("/");
     } else {
       //TODO: 탈퇴 실패 스낵바 필요
