@@ -40,6 +40,7 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
+    listTileTheme: _listTileThemeData,
     //pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
@@ -66,6 +67,7 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
+    listTileTheme: _listTileThemeData,
     //pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
@@ -103,6 +105,18 @@ abstract class AppTheme {
 
   static const _expansionTileThemeData = ExpansionTileThemeData(
     childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+  );
+
+  /// style from [Typography.englishLike2021] bodyLarge
+  static const _listTileThemeData = ListTileThemeData(
+    leadingAndTrailingTextStyle: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.5,
+      height: 1.50,
+      textBaseline: TextBaseline.alphabetic,
+      leadingDistribution: TextLeadingDistribution.even,
+    ),
   );
 
   static final _pageTransitionsThemeData = PageTransitionsTheme(
