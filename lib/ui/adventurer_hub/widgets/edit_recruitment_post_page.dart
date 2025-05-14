@@ -11,7 +11,6 @@ import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/section.dart';
-import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:provider/provider.dart';
 
 class EditRecruitmentPostPage extends StatelessWidget {

@@ -2,7 +2,6 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/recruitment_category.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/user.dart';
-import 'package:karanda/utils/extension/date_time_extension.dart';
 
 class Recruitment extends RecruitmentPost {
   final int id;
