@@ -43,7 +43,7 @@ class EditRecruitmentPostController extends ChangeNotifier {
 
   bool get validate => formKey.currentState?.validate() ?? false;
 
-  Future<void> update() async {
+  Future<Recruitment?> update() async {
     if (recruitment != null && validate) {
       recruitment!
         ..title = titleTextController.text
@@ -57,15 +57,15 @@ class EditRecruitmentPostController extends ChangeNotifier {
         ..discordLink = discordTextController.text.isEmpty
             ? null
             : discordTextController.text;
-      await _adventurerHubRepository.updatePost(recruitment!);
+      return await _adventurerHubRepository.updatePost(recruitment!);
     }
+    return null;
   }
 
-  Future<void> create() async {
+  Future<Recruitment?> create() async {
     if (validate) {
       final post = RecruitmentPost(
-        region: BDORegion.KR,
-        //TODO: 페이지에서 받아오기
+        region: region,
         title: titleTextController.text,
         category: category,
         recruitmentType: recruitmentType,
@@ -81,8 +81,9 @@ class EditRecruitmentPostController extends ChangeNotifier {
             ? null
             : discordTextController.text,
       );
-      await _adventurerHubRepository.createPost(post);
+      return await _adventurerHubRepository.createPost(post);
     }
+    return null;
   }
 
   void setCategory(RecruitmentCategory? value) {

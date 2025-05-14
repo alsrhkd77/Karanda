@@ -167,12 +167,15 @@ class KarandaApp extends StatelessWidget {
         Provider(create: (context) => AdventurerHubApi()),
         Provider(
           create: (context) => AdventurerHubRepository(
+            webSocketManager: context.read(),
             adventurerHubApi: context.read(),
           ),
         ),
         Provider(
           create: (context) => AdventurerHubService(
             authRepository: context.read(),
+            appSettingsRepository: context.read(),
+            adventurerHubRepository: context.read(),
           ),
         ),
         Provider(

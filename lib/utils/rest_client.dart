@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
+import 'package:karanda/utils/http_status.dart';
 import 'dart:developer' as developer;
 
 import 'package:karanda/utils/token_utils.dart';
@@ -206,7 +207,7 @@ class _Client extends http.BaseClient {
       request.headers['Content-Type'] = 'application/json';
     }
     http.StreamedResponse response = await _inner.send(request);
-    if (response.statusCode == 401) {
+    if (response.statusCode == HttpStatus.unauthorized) {
       try {
         token = await tokenRefresh();
         if (token != null) {

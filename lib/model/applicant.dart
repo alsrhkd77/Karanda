@@ -3,7 +3,6 @@ import 'package:karanda/model/user.dart';
 
 class Applicant {
   final String code;
-  String? reason;
   final int postId;
   final User user;
   final DateTime joinAt;

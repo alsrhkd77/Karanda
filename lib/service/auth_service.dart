@@ -13,7 +13,7 @@ class AuthService extends ChangeNotifier {
   late final StreamSubscription _user;
 
   bool waitResponse = false;
-  bool authenticated = false;
+  bool get authenticated => _authRepository.authenticated;
 
   Stream<User?> get userStream => _authRepository.userStream;
   Stream<List<BDOFamily>> get familiesStream => _authRepository.familiesStream;
@@ -23,7 +23,7 @@ class AuthService extends ChangeNotifier {
     required GoRouter router,
   })  : _authRepository = authRepository,
         _router = router {
-    _user = _authRepository.userStream.listen(_updateUserData);
+    _user = _authRepository.userStream.listen((value) => notifyListeners());
     if (kIsWeb) {
       login();
     }
@@ -82,11 +82,6 @@ class AuthService extends ChangeNotifier {
         //TODO: 로그인 실패 스낵바 필요
       },
     );
-  }
-
-  void _updateUserData(User? data){
-    authenticated = data != null;
-    notifyListeners();
   }
 
   @override

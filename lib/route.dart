@@ -17,6 +17,7 @@ import 'package:karanda/shutdown_scheduler/shutdown_scheduler_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/ui/adventurer_hub/widgets/adventurer_hub_page.dart';
 import 'package:karanda/ui/adventurer_hub/widgets/edit_recruitment_post_page.dart';
+import 'package:karanda/ui/adventurer_hub/widgets/recruitment_post_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
@@ -273,59 +274,30 @@ final GoRouter router = GoRouter(
               ),
             ]),
         GoRoute(
-          path: 'adventurer-hub/:region',
+          path: 'adventurer-hub',
           builder: (context, state) {
             if (context.watch<AuthService>().waitResponse) {
               return const LoadingPage();
             }
-            return AdventurerHubPage(
-              region: BDORegion.values.byName(state.pathParameters["region"]!),
-            );
-          },
-          redirect: (BuildContext context, GoRouterState state) {
-            if (!state.pathParameters.containsKey("region") ||
-                !BDORegion.values
-                    .map((value) => value.name)
-                    .contains(state.pathParameters["region"])) {
-              return 'not-found';
-            }
-            return null;
+            return const AdventurerHubPage();
           },
           routes: [
             GoRoute(
-              path: 'edit',
+              path: 'recruit/:postId',
               builder: (context, state) {
                 if (context.watch<AuthService>().waitResponse) {
                   return const LoadingPage();
                 }
-                return EditRecruitmentPostPage(
-                  region:
-                      BDORegion.values.byName(state.pathParameters["region"]!),
+                return RecruitmentPostPage(
+                  postId: int.parse(state.pathParameters['postId']!),
                 );
               },
               redirect: (BuildContext context, GoRouterState state) {
-                if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
-                        .map((value) => value.name)
-                        .contains(state.pathParameters["region"])) {
+                if (!state.pathParameters.containsKey("postId") ||
+                    int.tryParse(state.pathParameters['postId']!) == null) {
                   return 'not-found';
                 }
                 return null;
-              },
-            ),
-            GoRoute(
-              path: 'posts/:postId',
-              builder: (context, state) {
-                int? postId =
-                    int.tryParse(state.pathParameters['postId'] ?? 'failed');
-                if (postId == null) {
-                  return const InvalidAccessPage();
-                } else {
-                  return RecruitmentDetailPage(
-                    postId: postId,
-                    authenticated: context.read<AuthService>().authenticated,
-                  );
-                }
               },
             )
           ],

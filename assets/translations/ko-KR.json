@@ -172,7 +172,7 @@
     "preset item out of stock": "품절"
   },
   "adventurer hub": {
-    "adventurer hub": "모험가 허브",
+    "adventurer hub": "모험가 허브 (Beta)",
     "category": {
       "partyAndPlatoon": "파티/부대",
       "guildBossRaid": "길드 레이드",
@@ -182,6 +182,12 @@
       "inGameWhispers": "인게임 귓속말",
       "inGamePartyRecruitment": "인게임 파티/부대 찾기",
       "karandaReservation": "Karanda 예약"
+    },
+    "recruitment join status": {
+      "pending": "대기중",
+      "accepted": "승인됨",
+      "cancelled": "취소됨",
+      "rejected": "거절됨"
     },
     "edit post": {
       "edit post": "공고 작성",
@@ -198,7 +204,18 @@
       "discord link validate failed": "Discord 초대 코드를 입력해주세요",
       "save": "작성 완료"
     },
-    "FAB label": "모집하기",
+    "post": {
+      "post": "모집 공고",
+      "applicants": "지원자",
+      "open": "모집 시작",
+      "close": "모집 마감",
+      "join": "지원하기",
+      "cancel": "취소하기",
+      "accept": "승인",
+      "reject": "거절",
+      "applicants empty": "아직 지원자가 없습니다"
+    },
+    "recruit": "모집하기",
 
     "new post": "모집 공고 만들기",
     "members": "모집 인원\n({})",
@@ -244,6 +261,7 @@
   "zodd": "조드",
   "piku": "피크",
   "eggs-ceptional emperor": "알록달록 달걀왕",
+  "gift box": "선물 상자",
   "--Adventurer hub": "",
   "adventurer hub title": "모험가 허브 (Beta)",
   "recruitment": "모집",

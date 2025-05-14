@@ -172,7 +172,7 @@
     "preset item out of stock": "Out of stock"
   },
   "adventurer hub": {
-    "adventurer hub": "Adventurer Hub",
+    "adventurer hub": "Adventurer Hub (Beta)",
     "category": {
       "partyAndPlatoon": "Party & Platoon",
       "guildBossRaid": "Guild boss",
@@ -182,6 +182,12 @@
       "inGameWhispers": "In game whispers",
       "inGamePartyRecruitment": "In game party recruitment",
       "karandaReservation": "Karanda Reservation"
+    },
+    "recruitment join status": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "cancelled": "Cancelled",
+      "rejected": "Rejected"
     },
     "edit post": {
       "edit post": "Edit Post",
@@ -198,7 +204,18 @@
       "discord link validate failed": "Enter your Discord invite code",
       "save": "Save"
     },
-    "FAB label": "Create",
+    "post": {
+      "post": "Post",
+      "applicants": "Applicants",
+      "open": "Open",
+      "close": "Close",
+      "join": "Join",
+      "cancel": "Cancel",
+      "accept": "Accept",
+      "reject": "Reject",
+      "applicants empty": "No applicants yet"
+    },
+    "recruit": "Recruit",
 
     "new post": "Create new post",
     "members": "Members\n({})",
@@ -244,6 +261,7 @@
   "zodd": "zodd",
   "piku": "piku",
   "eggs-ceptional emperor": "Eggs-ceptional Emperor",
+  "gift box": "Gift box",
   "--Adventurer hub": "",
   "adventurer hub title": "Adventurer hub (Beta)",
   "recruitment": "recruitment",

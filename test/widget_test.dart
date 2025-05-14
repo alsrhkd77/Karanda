@@ -17,15 +17,10 @@ import 'package:rxdart/rxdart.dart';
 
 void main() {
   test('playground', () async {
-    Map<OverlayFeatures, bool> original = {
-      OverlayFeatures.clock : true,
-      OverlayFeatures.bossHpScaleIndicator :  false,
-      OverlayFeatures.worldBoss : true
-    };
-    final json = jsonEncode(original);
-    print(json);
-    Map<OverlayFeatures, bool> data = jsonDecode(json);
-    print(data);
+    Stream<int> listener(int value) async*{
+      yield value;
+    }
+    final publisher = Publisher();
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -45,4 +40,14 @@ void main() {
     expect(find.text('1'), findsOneWidget);
      */
   });
+}
+
+class Publisher{
+  final controller = BehaviorSubject<int>();
+  Stream<int> get stream => controller.delay(Duration(seconds: 1));
+  Publisher(){
+    for(int i=0;i<100;i++){
+      controller.sink.add(i);
+    }
+  }
 }

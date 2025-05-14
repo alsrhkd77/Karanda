@@ -52,6 +52,7 @@ class TradeMarketService {
   }
 
   void _onRegionUpdate(BDORegion region) {
+    _tradeMarketRepository.disconnectLiveChannel();
     _tradeMarketRepository.connectLiveChannel(region);
   }
 

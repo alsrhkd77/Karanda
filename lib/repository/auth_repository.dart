@@ -23,6 +23,8 @@ class AuthRepository {
 
   Stream<List<BDOFamily>> get familiesStream => _families.stream;
 
+  bool get authenticated => _user.value != null;
+
   AuthRepository({required AuthApi authApi, required BDOFamilyApi familyApi})
       : _authApi = authApi,
         _familyApi = familyApi;

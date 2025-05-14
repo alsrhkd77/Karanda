@@ -30,6 +30,7 @@ abstract final class KarandaApi {
   static const String createPost = "$adventurerHub/post/create";
   static const String updatePost = "$adventurerHub/post/update";
   static const String getRecentPosts = "$adventurerHub/posts";
+  static const String getPost = "$adventurerHub/post";
   static const String getPostDetail = "$adventurerHub/post/detail";
   static const String openPost = "$adventurerHub/post/open";
   static const String closePost = "$adventurerHub/post/close";

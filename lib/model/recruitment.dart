@@ -2,12 +2,13 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/recruitment_category.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/user.dart';
+import 'package:karanda/utils/extension/date_time_extension.dart';
 
 class Recruitment extends RecruitmentPost {
   final int id;
   final User author;
   final bool status;
-  final int currentApplicants;
+  final int currentParticipants;
   final DateTime createdAt;
   final DateTime? updatedAt;
   final bool blinded;
@@ -22,7 +23,7 @@ class Recruitment extends RecruitmentPost {
     required super.category,
     this.status = false,
     required super.recruitmentType,
-    this.currentApplicants = 0,
+    this.currentParticipants = 0,
     required super.maxMembers,
     super.guildName,
     super.specLimit,
@@ -43,37 +44,38 @@ class Recruitment extends RecruitmentPost {
       category: RecruitmentCategory.values.byName(json["category"]),
       status: json["status"],
       recruitmentType: RecruitmentType.values.byName(json["recruitmentType"]),
-      currentApplicants: json["currentApplicants"],
+      currentParticipants: json["currentParticipants"] ?? 0,
       maxMembers: json["maxMembers"],
       guildName: json["guildName"] ?? "",
       specLimit: json["specLimit"],
-      content: json["content"],
+      content: json["content"] ?? "",
       privateContent: json["privateContent"] ?? "",
       discordLink: json["discordLink"],
       createdAt: DateTime.parse(json["createdAt"]),
       updatedAt: DateTime.tryParse(json["updatedAt"] ?? ""),
-      blinded: json["blinded"],
+      blinded: json["blinded"] ?? false,
     );
   }
 
   @override
   Map toJson() {
     return {
+      "id": id,
       "author": author.toJson(),
       "region": region.name,
       "title": title,
       "category": category.name,
       "status": status,
       "recruitmentType": recruitmentType.name,
-      "currentApplicants": currentApplicants,
+      "currentParticipants": currentParticipants,
       "maxMembers": maxMembers,
       "guildName": guildName,
       "specLimit": specLimit,
       "content": content,
       "privateContent": privateContent,
       "discordLink": discordLink,
-      "createdAt": createdAt,
-      "updatedAt": updatedAt,
+      "createdAt": createdAt.toIso8601String(),
+      "updatedAt": updatedAt?.toIso8601String(),
       "blinded": blinded,
     };
   }
