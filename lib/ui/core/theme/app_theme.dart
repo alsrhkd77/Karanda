@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppTheme {
@@ -40,8 +43,9 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
-    listTileTheme: _listTileThemeData,
-    //pageTransitionsTheme: _pageTransitionsThemeData,
+    listTileTheme: _listTileThemeData.copyWith(leadingAndTrailingTextStyle: const TextStyle(color: Colors.black)),
+    pageTransitionsTheme:
+        !kIsWeb && Platform.isAndroid ? _pageTransitionsThemeData : null,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
   );
@@ -67,8 +71,9 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
-    listTileTheme: _listTileThemeData,
-    //pageTransitionsTheme: _pageTransitionsThemeData,
+    listTileTheme: _listTileThemeData.copyWith(leadingAndTrailingTextStyle: const TextStyle(color: Colors.white)),
+    pageTransitionsTheme:
+        !kIsWeb && Platform.isAndroid ? _pageTransitionsThemeData : null,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
   );
