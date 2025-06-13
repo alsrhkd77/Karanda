@@ -4,6 +4,7 @@
   "cancel": "취소",
   "finish": "완료",
   "need login": "로그인이 필요한 서비스입니다.",
+  "request failed": "요청에 실패했습니다.",
   "validator": {
     "empty": "필수입니다",
     "zero": "0보다 커야 합니다",
@@ -107,7 +108,23 @@
     "platform": "플랫폼",
     "version": "Karanda 버전",
     "build number": "빌드 번호",
-    "flutter version": "Flutter 버전"
+    "flutter version": "Flutter 버전",
+    "notifications": "알림",
+    "activate notifications": "알림 활성화",
+    "push notifications": "푸시 알림",
+    "activate push notifications": "푸시 알림 활성화",
+    "push notifications activation notice": "푸시 알림을 사용하기 위해 알림 권한이 필요합니다.\n장치의 알림 권한을 활성화 해주세요.",
+    "activate push notifications fail": "푸시 알림 활성화 실패"
+  },
+  "notifications": {
+    "notifications": "{}",
+    "world boss spawn": "월드 보스 **{}** 출현!!",
+    "world boss time remaining": "**{}** 출현 {}분 전",
+    "partyAndPlatoon recruit opened": "{} - 모집 시작!",
+    "guildBossRaid recruit opened": "{} - 모집 시작!",
+    "guildWar recruit opened": "{} - 모집 시작!",
+    "recruit entry accepted": "{} - 참여 확정!",
+    "recruit entry rejected": "{} - 다음 기회에!"
   },
   "world boss": {
     "world boss": "월드 보스",
@@ -118,9 +135,7 @@
     "add": "알림 시간 추가",
     "remove": "알림 시간 제거",
     "exclude": "보스 제외",
-    "already set": "이미 설정됨",
-    "time remaining message": "**{bosses}** 출현 {minutes}분 전",
-    "spawn message": "월드 보스 **{}** 출현!!"
+    "already set": "이미 설정됨"
   },
   "overlay": {
     "overlay": "오버레이",
@@ -131,6 +146,7 @@
     "display name": "보스 이름으로 표시",
     "bossHpScaleIndicator": "보스 HP 눈금 표시기",
     "clock": "시계",
+    "adventurerHub": "모험가 허브 (Experimental)",
     "settings": {
       "select display": "디스플레이 선택",
       "reset widgets": "오버레이 위젯 크기 및 위치 초기화"
@@ -172,7 +188,7 @@
     "preset item out of stock": "품절"
   },
   "adventurer hub": {
-    "adventurer hub": "모험가 허브 (Beta)",
+    "adventurer hub": "모험가 허브 (Experimental)",
     "category": {
       "partyAndPlatoon": "파티/부대",
       "guildBossRaid": "길드 레이드",
@@ -215,7 +231,11 @@
       "reject": "거절",
       "applicants empty": "아직 지원자가 없습니다"
     },
+    "settings": {
+      "excluded": "제외"
+    },
     "recruit": "모집하기",
+    "no posts open": "모집중인 공고가 없습니다.",
 
     "new post": "모집 공고 만들기",
     "members": "모집 인원\n({})",
@@ -224,7 +244,6 @@
     "recently applied empty": "최근 지원 내역이 없습니다.",
     "my posts": "작성한 모집",
     "my posts empty": "최근 작성한 모집이 없습니다.",
-    "no posts open": "모집중인 공고가 없습니다.",
     "post opened": "모집 시작 [ {} ]"
   },
   "select": "선택",
@@ -263,7 +282,7 @@
   "eggs-ceptional emperor": "알록달록 달걀왕",
   "gift box": "선물 상자",
   "--Adventurer hub": "",
-  "adventurer hub title": "모험가 허브 (Beta)",
+  "adventurer hub title": "모험가 허브 (Experimental)",
   "recruitment": "모집",
   "recruitment post": "모집 공고",
   "adventurer hub category": {

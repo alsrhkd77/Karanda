@@ -41,4 +41,9 @@ abstract final class KarandaApi {
   static const String getApplicant = "$adventurerHub/post/applicant";
   static const String getApplicants = "$adventurerHub/post/applicants";
   static const String getUserJoined = "$adventurerHub/user/joined";
+  static const String fcm = "/fcm";
+  static const String getUserFcmSettings = "$fcm/settings";
+  static const String saveUserFcmSettings = "$fcm/settings/save";
+  static const String deleteFcmToken = "$fcm/token/delete";
+  static const String updateFcmToken = "$fcm/token/update";
 }

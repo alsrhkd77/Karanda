@@ -2,13 +2,31 @@ import 'dart:convert';
 
 import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/enums/bdo_region.dart';
+import 'package:karanda/model/adventurer_hub_settings.dart';
 import 'package:karanda/model/applicant.dart';
 import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/http_status.dart';
 import 'package:karanda/utils/rest_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdventurerHubApi {
+  final String key = "adventurer hub";
+
+  Future<AdventurerHubSettings> loadAdventurerHubSettings() async {
+    final pref = SharedPreferencesAsync();
+    final data = await pref.getString(key);
+    if (data != null) {
+      return AdventurerHubSettings.fromJson(jsonDecode(data));
+    }
+    return AdventurerHubSettings();
+  }
+
+  Future<void> saveAdventurerHubSettings(AdventurerHubSettings value) async {
+    final pref = SharedPreferencesAsync();
+    await pref.setString(key, jsonEncode(value.toJson()));
+  }
+
   Future<Recruitment?> createPost(RecruitmentPost value) async {
     final response = await RestClient.post(
       KarandaApi.createPost,
@@ -110,7 +128,7 @@ class AdventurerHubApi {
   Future<Recruitment?> openPost(int postId) async {
     final response = await RestClient.post(
       KarandaApi.openPost,
-      body: {"postId": postId},
+      body: {"postId": postId.toString()},
     );
     if (response.statusCode == HttpStatus.ok) {
       return Recruitment.fromJson(jsonDecode(response.bodyUTF));
@@ -121,7 +139,7 @@ class AdventurerHubApi {
   Future<Recruitment?> closePost(int postId) async {
     final response = await RestClient.post(
       KarandaApi.closePost,
-      body: {"postId": postId},
+      body: {"postId": postId.toString()},
     );
     if (response.statusCode == HttpStatus.ok) {
       return Recruitment.fromJson(jsonDecode(response.bodyUTF));
@@ -132,7 +150,7 @@ class AdventurerHubApi {
   Future<Applicant?> join(int postId) async {
     final response = await RestClient.post(
       KarandaApi.joinToPost,
-      body: {"postId": postId},
+      body: {"postId": postId.toString()},
     );
     if (response.statusCode == HttpStatus.ok) {
       return Applicant.fromJson(jsonDecode(response.bodyUTF));
@@ -143,7 +161,7 @@ class AdventurerHubApi {
   Future<Applicant?> cancel(int postId) async {
     final response = await RestClient.post(
       KarandaApi.cancelToPost,
-      body: {"postId": postId},
+      body: {"postId": postId.toString()},
     );
     if (response.statusCode == HttpStatus.ok) {
       return Applicant.fromJson(jsonDecode(response.bodyUTF));
@@ -154,7 +172,7 @@ class AdventurerHubApi {
   Future<Applicant?> accept(int postId, String applicantId) async {
     final response = await RestClient.post(
       KarandaApi.cancelToPost,
-      body: {"postId": postId, "applicantId": applicantId},
+      body: {"postId": postId.toString(), "applicantId": applicantId},
     );
     if (response.statusCode == HttpStatus.ok) {
       return Applicant.fromJson(jsonDecode(response.bodyUTF));
@@ -165,10 +183,7 @@ class AdventurerHubApi {
   Future<Applicant?> reject(int postId, String applicantId) async {
     final response = await RestClient.post(
       KarandaApi.cancelToPost,
-      body: {
-        "postId": postId,
-        "applicantId": applicantId,
-      },
+      body: {"postId": postId.toString(), "applicantId": applicantId},
     );
     if (response.statusCode == HttpStatus.ok) {
       return Applicant.fromJson(jsonDecode(response.bodyUTF));

@@ -11,6 +11,7 @@ import 'package:karanda/service/adventurer_hub_service.dart';
 class RecruitmentPostController extends ChangeNotifier {
   final AdventurerHubService _adventurerHubService;
   late final StreamSubscription _user;
+  StreamSubscription? _applicants;
 
   Recruitment? recruitment;
   List<Applicant>? applicants;
@@ -35,9 +36,14 @@ class RecruitmentPostController extends ChangeNotifier {
   Future<void> getPost({required int postId}) async {
     recruitment = await _adventurerHubService.getPost(postId);
     notifyListeners();
-    if (recruitment != null &&
-        recruitment!.recruitmentType == RecruitmentType.karandaReservation) {
-      _getSubmission();
+    if (recruitment != null) {
+      _adventurerHubService.connectPostDetailChannel(
+        postId,
+        _recruitmentChannelCallback,
+      );
+      if (recruitment!.recruitmentType == RecruitmentType.karandaReservation) {
+        _getSubmission();
+      }
     }
   }
 
@@ -110,23 +116,47 @@ class RecruitmentPostController extends ChangeNotifier {
   Future<void> _getSubmission() async {
     if (recruitment != null && user != null) {
       if (isOwner) {
+        await _applicants?.cancel();
+        applicants = null;
         applicants = await _adventurerHubService.getApplicants(recruitment!.id);
         applicants?.sort((a, b) => a.joinAt.compareTo(b.joinAt));
+        notifyListeners();
+        _adventurerHubService.connectApplicantListChannel(
+          recruitment!.id,
+          _applicantChannelCallback,
+        );
       } else {
-        final value =
-            await _adventurerHubService.getSubmissionStatus(recruitment!.id);
-        if (value != null) {
-          applicants = [value];
+        _adventurerHubService.disconnectApplicantListChannel(recruitment!.id);
+        if (applicants == null) {
+          _applicants = _adventurerHubService.applicantsStream
+              .map((items) => items
+                  .where((value) => value.postId == recruitment!.id)
+                  .toList())
+              .distinct()
+              .listen(_onApplicantUpdate);
         }
       }
+    }
+  }
+
+  void _onApplicantUpdate(List<Applicant> value) {
+    if (!isOwner) {
+      applicants = value;
+      notifyListeners();
+    }
+  }
+
+  void _recruitmentChannelCallback(Recruitment value) {
+    if(recruitment == null){
+      recruitment = value;
+    } else {
+      recruitment?.updateFromSimplified(value);
     }
     notifyListeners();
   }
 
-  void _onApplicantUpdate(Applicant value) {
-    if (applicants?.isEmpty ?? true) {
-      applicants = [];
-    }
+  void _applicantChannelCallback(Applicant value) {
+    applicants ??= [];
     final index = applicants!.indexWhere((item) {
       return item.user.discordId == value.user.discordId;
     });
@@ -146,7 +176,12 @@ class RecruitmentPostController extends ChangeNotifier {
 
   @override
   void dispose() {
+    if (recruitment != null) {
+      _adventurerHubService.disconnectApplicantListChannel(recruitment!.id);
+      _adventurerHubService.disconnectPostDetailChannel(recruitment!.id);
+    }
     _user.cancel();
+    _applicants?.cancel();
     super.dispose();
   }
 }

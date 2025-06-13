@@ -5,9 +5,15 @@ import 'package:karanda/enums/features.dart';
 abstract class FeaturesIcon {
   static IconData get worldBoss => FontAwesomeIcons.dragon;
 
-  static IconData byFeature(Features feature){
+  static IconData get adventurerHub => FontAwesomeIcons.circleNodes;
+
+  static IconData get notifications => FontAwesomeIcons.bell;
+
+  static IconData byFeature(Features feature) {
     return switch (feature) {
       Features.worldBoss => worldBoss,
+      Features.adventurerHub => adventurerHub,
+    Features.notifications => notifications
     };
   }
 }

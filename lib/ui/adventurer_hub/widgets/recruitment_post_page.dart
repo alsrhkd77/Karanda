@@ -9,7 +9,7 @@ import 'package:karanda/ui/adventurer_hub/widgets/recruitment_post_detail_tab.da
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
-import 'package:karanda/ui/core/ui/snack_bar_set.dart';
+import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:provider/provider.dart';
 
@@ -65,8 +65,14 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
                   ? TabBar(
                       controller: tabController,
                       tabs: [
-                        Tab(text: context.tr("adventurer hub.post.post")),
-                        Tab(text: context.tr("adventurer hub.post.applicants")),
+                        Tab(
+                          icon: const Icon(Icons.description),
+                          //text: context.tr("adventurer hub.post.post"),
+                        ),
+                        Tab(
+                          icon: const Icon(Icons.groups),
+                          //text: context.tr("adventurer hub.post.applicants"),
+                        ),
                       ],
                     )
                   : null,
@@ -143,6 +149,9 @@ class _FABState extends State<_FAB> {
     }
     if (mounted) {
       Navigator.of(context).pop();
+      if(result){
+        SnackBarKit.of(context).requestFailed();
+      }
     }
   }
 
@@ -189,7 +198,7 @@ class _FABState extends State<_FAB> {
               if (widget.authenticated) {
                 submit();
               } else {
-                SnackBarSet.of(context).needLogin();
+                SnackBarKit.of(context).needLogin();
               }
             }
           : null,

@@ -74,6 +74,10 @@ class _OverlayPageState extends State<OverlayPage> {
                   isActivated:
                       activated.contains(OverlayFeatures.bossHpScaleIndicator),
                 ),
+                _Tile(
+                  feature: OverlayFeatures.adventurerHub,
+                  isActivated: activated.contains(OverlayFeatures.adventurerHub),
+                ),
               ],
             );
           },

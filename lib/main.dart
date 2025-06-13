@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:karanda/auth/auth_notifier.dart';
@@ -63,7 +62,7 @@ Future<void> main(List<String> args) async {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      FirebaseMessaging.instance
+      /*FirebaseMessaging.instance
           .requestPermission(
         alert: true,
         announcement: false,
@@ -79,7 +78,7 @@ Future<void> main(List<String> args) async {
             vapidKey: kIsWeb ? const String.fromEnvironment('VAPID') : null,
           );
         }
-      });
+      });*/
     }
     //WebSocketManager();
     MediaKit.ensureInitialized();

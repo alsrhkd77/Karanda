@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../auth/widgets/auth_page.dart';
 
-class SnackBarSet {
+class SnackBarKit {
   BuildContext context;
 
-  SnackBarSet.of(this.context);
+  SnackBarKit.of(this.context);
 
   void needLogin() {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -14,7 +14,7 @@ class SnackBarSet {
         children: [
           const Padding(
             padding: EdgeInsets.all(4.0),
-            child: Icon(Icons.lock, color: Colors.red),
+            child: Icon(Icons.lock_outline, color: Colors.red),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
@@ -29,6 +29,23 @@ class SnackBarSet {
             builder: (context) => const AuthPage(),
           ));
         },
+      ),
+    ));
+  }
+
+  void requestFailed(){
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(4.0),
+            child: Icon(Icons.error_outline, color: Colors.red),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(context.tr("request filed")),
+          ),
+        ],
       ),
     ));
   }

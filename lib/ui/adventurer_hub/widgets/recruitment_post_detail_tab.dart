@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/core/ui/section.dart';
+import 'package:karanda/utils/extension/int_extension.dart';
 
 class RecruitmentPostDetailTab extends StatelessWidget {
   final Recruitment data;
@@ -20,7 +21,11 @@ class RecruitmentPostDetailTab extends StatelessWidget {
                 .titleLarge
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
-          trailing: Text(data.author.username),
+          subtitle: Text(data.author.username),
+          trailing: Icon(
+            Icons.circle,
+            color: data.status ? Colors.green : Colors.grey,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(12.0),
@@ -28,7 +33,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Chip(
-                label: Text("제한 없음"),
+                label: Text(data.specLimit?.format() ?? "제한 없음"),
                 //avatar: Icon(FontAwesomeIcons.fire, size: 14,),
                 avatar: Text("⚔️"),
               ),

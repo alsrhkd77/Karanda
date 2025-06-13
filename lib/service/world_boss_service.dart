@@ -158,7 +158,8 @@ class WorldBossService {
     if (_worldBossRepository.settings?.notify ?? false) {
       _notificationRepository.addNotification(AppNotificationMessage(
         feature: Features.worldBoss,
-        content: "world boss.spawn message".tr(args: [bossNames]),
+        contentsKey: "world boss spawn",
+        contentsArgs: [bossNames],
         mdContents: true,
       ));
     }
@@ -168,10 +169,8 @@ class WorldBossService {
     if (_worldBossRepository.settings?.notify ?? false) {
       _notificationRepository.addNotification(AppNotificationMessage(
         feature: Features.worldBoss,
-        content: "world boss.time remaining message".tr(namedArgs: {
-          "bosses": bossNames,
-          "minutes": timeRemaining.toString(),
-        }),
+        contentsKey: "world boss time remaining",
+        contentsArgs: [bossNames, timeRemaining.toString()],
         mdContents: true,
       ));
     }

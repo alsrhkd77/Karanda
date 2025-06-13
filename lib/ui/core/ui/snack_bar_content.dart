@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/model/app_notification_message.dart';
 import 'package:karanda/ui/core/theme/features_icon.dart';
@@ -55,8 +56,20 @@ class SnackBarContent extends StatelessWidget {
       ),
       title: Center(
         child: data.mdContents
-            ? _Markdown(text: data.content, textStyle: textStyle,)
-            : Text(data.content, style: textStyle),
+            ? _Markdown(
+                text: context.tr(
+                  "notifications.${data.contentsKey}",
+                  args: data.contentsArgs,
+                ),
+                textStyle: textStyle,
+              )
+            : Text(
+                context.tr(
+                  "notifications.${data.contentsKey}",
+                  args: data.contentsArgs,
+                ),
+                style: textStyle,
+              ),
       ),
       trailing: data.route != null
           ? ElevatedButton(

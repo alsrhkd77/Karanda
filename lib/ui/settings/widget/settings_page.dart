@@ -10,7 +10,10 @@ import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
+import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
+import 'package:karanda/ui/settings/widget/notification_settings_page.dart';
+import 'package:karanda/ui/settings/widget/push_notification_settings_page.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/external_links.dart';
 import 'package:karanda/utils/launch_url.dart';
@@ -31,6 +34,7 @@ class SettingsPage extends StatelessWidget {
           _AccountTile(
             user: controller.user,
           ),
+          _NotificationTile(authenticated: controller.authenticated),
           ListTile(
             onTap: () => context.goWithGa("/settings/styles"),
             leading: const Icon(Icons.palette_outlined),
@@ -144,6 +148,41 @@ class _AccountTile extends StatelessWidget {
     );
   }
 }
+
+class _NotificationTile extends StatelessWidget {
+  final bool authenticated;
+
+  const _NotificationTile({super.key, required this.authenticated,});
+
+  @override
+  Widget build(BuildContext context) {
+    if(kIsWeb || Platform.isAndroid || Platform.isIOS){
+      return ListTile(
+        leading: const Icon(Icons.notifications),
+        title: Text(context.tr("settings.push notifications")),
+        onTap: (){
+          if(authenticated){
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const PushNotificationSettingsPage(),
+            ));
+          } else {
+            SnackBarKit.of(context).needLogin();
+          }
+        },
+      );
+    }
+    return ListTile(
+      leading: const Icon(Icons.notifications),
+      title: Text(context.tr("settings.notifications")),
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const NotificationSettingsPage(),
+        ));
+      },
+    );
+  }
+}
+
 
 class _VolumeTile extends StatelessWidget {
   final double volume;

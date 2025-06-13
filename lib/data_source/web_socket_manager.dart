@@ -52,7 +52,7 @@ class WebSocketManager {
     BDORegion? region,
     required void Function(StompFrame message) callback,
   }) async {
-    var unsubscribeFn = _client != null && _client!.isActive
+    var unsubscribeFn = _client != null && _client!.isActive && _client!.connected
         ? await _subscribe(
             destination: destination,
             callback: callback,
@@ -87,7 +87,7 @@ class WebSocketManager {
     BDORegion? region,
     required void Function(StompFrame message) callback,
   }) async {
-    if (_client?.isActive ?? false) {
+    if ((_client?.isActive ?? false) && (_client?.connected ?? false)) {
       Map<String, String> headers = {};
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'karanda-token');

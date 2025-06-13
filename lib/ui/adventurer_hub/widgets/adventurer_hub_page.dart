@@ -9,7 +9,7 @@ import 'package:karanda/ui/adventurer_hub/widgets/recruitment_tile.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
-import 'package:karanda/ui/core/ui/snack_bar_set.dart';
+import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:karanda/utils/extension/build_context_extension.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:provider/provider.dart';
@@ -76,7 +76,7 @@ class _FAB extends StatelessWidget {
             context.goWithGa("/adventurer-hub/recruit/${result.id}");
           }
         } else {
-          SnackBarSet.of(context).needLogin();
+          SnackBarKit.of(context).needLogin();
         }
       },
     );

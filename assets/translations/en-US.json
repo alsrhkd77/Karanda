@@ -4,6 +4,7 @@
   "cancel": "Cancel",
   "finish": "Finish",
   "need login": "Login required.",
+  "request failed": "The request failed.",
   "validator": {
     "empty": "Must not be empty",
     "zero": "Must be greater than 0",
@@ -107,7 +108,23 @@
     "platform": "Platform",
     "version": "Karanda version",
     "build number": "Build number",
-    "flutter version": "Flutter version"
+    "flutter version": "Flutter version",
+    "notifications": "Notifications",
+    "activate notifications": "Activate notifications",
+    "push notifications": "Push notifications",
+    "activate push notifications": "Activate push notifications",
+    "push notifications activation notice": "Notifications permission is required to use push notifications.\nPlease enable the Notifications permission on your device.",
+    "activate push notifications fail": "Failed to activate push notifications"
+  },
+  "notifications": {
+    "notifications": "{}",
+    "world boss spawn": "**{}** is spawned!!",
+    "world boss time remaining": "{} minutes until **{}**",
+    "partyAndPlatoon recruit opened": "{} - Now recruiting!",
+    "guildBossRaid recruit opened": "{} - Now recruiting!",
+    "guildWar recruit opened": "{} - Now recruiting!",
+    "recruit entry accepted": "{} - You got in!",
+    "recruit entry rejected": "{} - Maybe next time!"
   },
   "world boss": {
     "world boss": "World boss",
@@ -118,9 +135,7 @@
     "add": "Add notification time",
     "remove": "Remove notification time",
     "exclude": "Bosses to exclude",
-    "already set": "Already set",
-    "time remaining message": "{minutes} minutes until **{bosses}**",
-    "spawn message": "**{}** is spawned!!"
+    "already set": "Already set"
   },
   "overlay": {
     "overlay": "Overlay",
@@ -131,6 +146,7 @@
     "display name": "Display by boss name",
     "bossHpScaleIndicator": "Boss HP scale indicator",
     "clock": "Clock",
+    "adventurerHub": "Adventurer hub (Experimental)",
     "settings": {
       "select display": "Select display",
       "reset widgets": "Reset Overlay widgets size & position"
@@ -172,7 +188,7 @@
     "preset item out of stock": "Out of stock"
   },
   "adventurer hub": {
-    "adventurer hub": "Adventurer Hub (Beta)",
+    "adventurer hub": "Adventurer Hub (Experimental)",
     "category": {
       "partyAndPlatoon": "Party & Platoon",
       "guildBossRaid": "Guild boss",
@@ -215,7 +231,11 @@
       "reject": "Reject",
       "applicants empty": "No applicants yet"
     },
+    "settings": {
+      "excluded": "Excluded"
+    },
     "recruit": "Recruit",
+    "no posts open": "No posts are open.",
 
     "new post": "Create new post",
     "members": "Members\n({})",
@@ -224,7 +244,6 @@
     "recently applied empty": "Empty",
     "my posts": "My posts",
     "my posts empty": "Empty",
-    "no posts open": "No posts are open.",
     "post opened": "Post opened [ {} ]"
   },
   "select": "Select",
@@ -263,7 +282,7 @@
   "eggs-ceptional emperor": "Eggs-ceptional Emperor",
   "gift box": "Gift box",
   "--Adventurer hub": "",
-  "adventurer hub title": "Adventurer hub (Beta)",
+  "adventurer hub title": "Adventurer hub (Experimental)",
   "recruitment": "recruitment",
   "recruitment post": "Recruitment post",
   "adventurer hub category": {

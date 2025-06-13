@@ -31,6 +31,8 @@ class SettingsController extends ChangeNotifier {
 
   Font get font => appSettings.font;
 
+  bool get authenticated => user != null;
+
   void setThemeMode(ThemeMode? value) {
     if (value != null) {
       _settingsService.setThemeMode(value);

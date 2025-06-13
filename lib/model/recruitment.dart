@@ -78,6 +78,10 @@ class Recruitment extends RecruitmentPost {
       "blinded": blinded,
     };
   }
+
+  void updateFromSimplified(Recruitment data){
+
+  }
 }
 
 class RecruitmentPost {

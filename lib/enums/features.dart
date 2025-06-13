@@ -1,3 +1,3 @@
 enum Features {
-  worldBoss,
+  worldBoss, adventurerHub, notifications
 }

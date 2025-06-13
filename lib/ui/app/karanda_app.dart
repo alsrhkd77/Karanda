@@ -12,6 +12,7 @@ import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_settings_data_source.dart';
 import 'package:karanda/data_source/trade_market_api.dart';
 import 'package:karanda/data_source/trade_market_data_source.dart';
+import 'package:karanda/data_source/user_fcm_settings_api.dart';
 import 'package:karanda/data_source/version_data_source.dart';
 import 'package:karanda/data_source/web_socket_manager.dart';
 import 'package:karanda/data_source/world_boss_data_source.dart';
@@ -22,6 +23,7 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/bdo_item_info_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
+import 'package:karanda/repository/user_fc_settings_repository.dart';
 import 'package:karanda/repository/time_repository.dart';
 import 'package:karanda/repository/trade_market_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
@@ -88,11 +90,18 @@ class KarandaApp extends StatelessWidget {
             router: router,
           ),
         ),
+        Provider(create: (context) => UserFcmSettingsApi()),
+        Provider(
+          create: (context) => UserFcmSettingsRepository(
+            userFcmSettingsApi: context.read(),
+          ),
+        ),
         Provider(
           create: (context) => AppSettingsService(
             authRepository: context.read(),
             audioPlayerRepository: context.read(),
             settingsRepository: context.read(),
+            userFcmSettingsRepository: context.read(),
           ),
         ),
         ChangeNotifierProvider(
@@ -122,12 +131,26 @@ class KarandaApp extends StatelessWidget {
         /* 후행 */
         Provider(create: (context) => TimeRepository()),
         Provider(create: (context) => WebSocketManager()),
-        Provider(create: (context) => AppNotificationRepository()),
+        Provider(
+          create: (context) => AppNotificationRepository(
+            webSocketManager: context.read(),
+          ),
+        ),
+        Provider(create: (context) => AdventurerHubApi()),
+        Provider(
+          create: (context) => AdventurerHubRepository(
+            webSocketManager: context.read(),
+            adventurerHubApi: context.read(),
+          ),
+        ),
         Provider(
           create: (context) => AppNotificationService(
             appNotificationRepository: context.read(),
             audioPlayerRepository: context.read(),
             overlayRepository: context.read(),
+            appSettingsRepository: context.read(),
+            authRepository: context.read(),
+            adventurerHubRepository: context.read(),
             scaffoldMessengerKey: scaffoldMessengerKey,
           ),
           lazy: false,
@@ -164,19 +187,14 @@ class KarandaApp extends StatelessWidget {
               itemInfoRepository: context.read()),
           lazy: !kIsWeb && Platform.isWindows,
         ),
-        Provider(create: (context) => AdventurerHubApi()),
-        Provider(
-          create: (context) => AdventurerHubRepository(
-            webSocketManager: context.read(),
-            adventurerHubApi: context.read(),
-          ),
-        ),
         Provider(
           create: (context) => AdventurerHubService(
             authRepository: context.read(),
             appSettingsRepository: context.read(),
             adventurerHubRepository: context.read(),
+            overlayRepository: context.read(),
           ),
+          lazy: kIsWeb || !Platform.isWindows,
         ),
         Provider(
           create: (context) => DesktopService(

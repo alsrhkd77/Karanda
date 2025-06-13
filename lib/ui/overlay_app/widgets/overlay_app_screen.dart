@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/ui/overlay_app/controllers/overlay_app_controller.dart';
+import 'package:karanda/ui/overlay_app/widgets/adventurer_hub_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/boss_hp_scale_indicator_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/clock_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/exit_edit_mode_button.dart';
@@ -29,6 +30,7 @@ class OverlayAppScreen extends StatelessWidget {
         children: [
           ClockOverlayWidget(width: size.width,),
           BossHpScaleIndicatorOverlayWidget(width: size.width),
+          AdventurerHubOverlayWidget(height: size.height),
           WorldBossOverlayWidget(height: size.height),
           const ExitEditModeButton(),
         ],
