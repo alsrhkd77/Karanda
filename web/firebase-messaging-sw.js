@@ -5,28 +5,34 @@ importScripts("https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging-comp
 
 firebase.initializeApp({
     apiKey: "AIzaSyDB-zHTFy8ZAudG-jIMsqv-DYn_cGGCuPE",
-    authDomain: "karanda-384102.firebaseapp.com",
-    databaseURL: "https://karanda-384102-default-rtdb.asia-southeast1.firebasedatabase.app",
+    //authDomain: "karanda-384102.firebaseapp.com",
+    //databaseURL: "https://karanda-384102-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "karanda-384102",
-    storageBucket: "karanda-384102.firebasestorage.app",
+    //storageBucket: "karanda-384102.firebasestorage.app",
     messagingSenderId: "859571346515",
     appId: "1:859571346515:web:54c791ab5688ed4a33baa6",
 });
 
-const messaging = firebase.messaging();
+firebase.messaging();
+//const messaging = firebase.messaging();
 
 // Optional:
-messaging.onBackgroundMessage((message) => {
+/*messaging.onBackgroundMessage((message) => {
     console.log("onBackgroundMessage", message);
 
     const notificationTitle = message.notification.title;
     const notificationOptions = {
         body: message.notification.body,
-        icon: '/icons/android-chrome-192.png',
-        badge: '/icons/android-chrome-192.png',
+        icon: '/icons/android-chrome-512x512.png',
+        badge: '/icons/android-chrome-192x192.png',
         data: message.data,
         click_action: message.notification.click_action,
     };
 
     self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+self.addEventListener("notificationclick", (event) => {
+    clients.openWindow('https://www.karanda.kr');
+    event.notification.close();
+});*/
