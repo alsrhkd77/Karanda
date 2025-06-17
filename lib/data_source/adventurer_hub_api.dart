@@ -171,7 +171,7 @@ class AdventurerHubApi {
 
   Future<Applicant?> accept(int postId, String applicantId) async {
     final response = await RestClient.post(
-      KarandaApi.cancelToPost,
+      KarandaApi.acceptApplicant,
       body: {"postId": postId.toString(), "applicantId": applicantId},
     );
     if (response.statusCode == HttpStatus.ok) {
@@ -182,7 +182,7 @@ class AdventurerHubApi {
 
   Future<Applicant?> reject(int postId, String applicantId) async {
     final response = await RestClient.post(
-      KarandaApi.cancelToPost,
+      KarandaApi.rejectApplicant,
       body: {"postId": postId.toString(), "applicantId": applicantId},
     );
     if (response.statusCode == HttpStatus.ok) {
