@@ -73,7 +73,10 @@ class SnackBarContent extends StatelessWidget {
       ),
       trailing: data.route != null
           ? ElevatedButton(
-              onPressed: () => context.goWithGa(data.route!),
+              onPressed: () {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                context.goWithGa(data.route!);
+              },
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text("Go"),
