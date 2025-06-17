@@ -43,9 +43,9 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
-    listTileTheme: _listTileThemeData.copyWith(leadingAndTrailingTextStyle: const TextStyle(color: Colors.black)),
-    pageTransitionsTheme:
-        !kIsWeb && Platform.isAndroid ? _pageTransitionsThemeData : null,
+    listTileTheme: _listTileThemeData.copyWith(
+        leadingAndTrailingTextStyle: const TextStyle(color: Colors.black)),
+    pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
   );
@@ -71,9 +71,9 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
-    listTileTheme: _listTileThemeData.copyWith(leadingAndTrailingTextStyle: const TextStyle(color: Colors.white)),
-    pageTransitionsTheme:
-        !kIsWeb && Platform.isAndroid ? _pageTransitionsThemeData : null,
+    listTileTheme: _listTileThemeData.copyWith(
+        leadingAndTrailingTextStyle: const TextStyle(color: Colors.white)),
+    pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
   );
@@ -124,11 +124,12 @@ abstract class AppTheme {
     ),
   );
 
-  static final _pageTransitionsThemeData = PageTransitionsTheme(
-    builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
-      TargetPlatform.values,
-      value: (_) => const FadeForwardsPageTransitionsBuilder(),
-    ),
+  static const _pageTransitionsThemeData = PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+    },
   );
 
   static const _progressIndicatorThemeData = ProgressIndicatorThemeData(
