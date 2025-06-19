@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/model/recruitment.dart';
+import 'package:karanda/ui/adventurer_hub/widgets/recruitment_status_icon.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 
 class RecruitmentTile extends StatelessWidget {
@@ -28,7 +29,7 @@ class RecruitmentTile extends StatelessWidget {
             Text(data.author.username),
           ],
         ),
-        trailing: _Status(status: data.status),
+        trailing: RecruitmentStatusIcon(status: data.status),
         onTap: () {
           context.goWithGa("/adventurer-hub/recruit/${data.id}");
         },
@@ -78,19 +79,5 @@ class _MemberCount extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class _Status extends StatelessWidget {
-  final bool status;
-
-  const _Status({super.key, required this.status});
-
-  @override
-  Widget build(BuildContext context) {
-    if (status) {
-      return const Chip(label: Text("Opened"), backgroundColor: Colors.green);
-    }
-    return const SizedBox();
   }
 }

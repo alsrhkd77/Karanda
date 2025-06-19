@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/model/recruitment.dart';
+import 'package:karanda/ui/adventurer_hub/widgets/recruitment_status_icon.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/core/ui/section.dart';
 import 'package:karanda/utils/extension/int_extension.dart';
@@ -22,10 +23,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(data.author.username),
-          trailing: Icon(
-            Icons.circle,
-            color: data.status ? Colors.green : Colors.grey,
-          ),
+          trailing: RecruitmentStatusIcon(status: data.status),
         ),
         Padding(
           padding: const EdgeInsets.all(12.0),
