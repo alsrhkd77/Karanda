@@ -48,17 +48,23 @@ class _ApplicantTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(data.code),
-      title: Text(data.user.username),
-      trailing: _Tail(
-        status: data.status,
-        accept: () async {
-          await accept(data.user.discordId);
-        },
-        reject: () async {
-          await reject(data.user.discordId);
-        },
+    return Card(
+      child: ListTile(
+        leading: Tooltip(
+          message: "Access Code",
+          child: Chip(label: Text(data.code)),
+        ),
+        title: Text(data.user.username),
+        //subtitle: Text("⚔️ -"),
+        trailing: _Tail(
+          status: data.status,
+          accept: () async {
+            await accept(data.user.discordId);
+          },
+          reject: () async {
+            await reject(data.user.discordId);
+          },
+        ),
       ),
     );
   }
@@ -83,6 +89,26 @@ class _Tail extends StatefulWidget {
 class _TailState extends State<_Tail> {
   bool isLoading = false;
 
+  Future<void> accept() async {
+    setState(() {
+      isLoading = true;
+    });
+    await widget.accept();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Future<void> reject() async {
+    setState(() {
+      isLoading = true;
+    });
+    await widget.reject();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -90,71 +116,44 @@ class _TailState extends State<_Tail> {
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: ButtonLoadingIndicator(),
       );
+    } else if (widget.status == RecruitmentJoinStatus.cancelled) {
+      return Chip(
+        label: Text(
+          context.tr(
+            "adventurer hub.recruitment join status.${widget.status.name}",
+          ),
+        ),
+        backgroundColor: Colors.red,
+        surfaceTintColor: Colors.white,
+        side: BorderSide.none,
+      );
     }
-    switch (widget.status) {
-      case RecruitmentJoinStatus.pending:
-        return Row(
-          children: [
-            IconButton(
-              onPressed: () async {
-                setState(() {
-                  isLoading = true;
-                });
-                await widget.reject();
-                setState(() {
-                  isLoading = false;
-                });
-              },
-              tooltip: context.tr("adventurer hub.post.reject"),
-              icon: const Icon(Icons.close),
-              color: Colors.red,
-            ),
-            IconButton(
-              onPressed: () async {
-                setState(() {
-                  isLoading = true;
-                });
-                await widget.accept();
-                setState(() {
-                  isLoading = false;
-                });
-              },
-              tooltip: context.tr("adventurer hub.post.accept"),
-              icon: const Icon(Icons.check),
-              color: Colors.blue,
-            ),
-          ],
-        );
-      case RecruitmentJoinStatus.accepted:
-        return Chip(
-          label: Text(
-            context.tr(
-              "adventurer hub.recruitment join status.${widget.status.name}",
-            ),
-          ),
-          backgroundColor: Colors.blue,
-          surfaceTintColor: Colors.white,
-        );
-      case RecruitmentJoinStatus.cancelled:
-        return Chip(
-          label: Text(
-            context.tr(
-              "adventurer hub.recruitment join status.${widget.status.name}",
-            ),
-          ),
-          backgroundColor: Colors.red,
-          surfaceTintColor: Colors.white,
-        );
-      case RecruitmentJoinStatus.rejected:
-        return Chip(
-          label: Text(
-            context.tr(
-              "adventurer hub.recruitment join status.${widget.status.name}",
-            ),
-          ),
-          backgroundColor: Colors.red,
-          surfaceTintColor: Colors.white,
-        );
-    }
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          onPressed: widget.status == RecruitmentJoinStatus.pending ||
+                  widget.status == RecruitmentJoinStatus.accepted
+              ? reject
+              : null,
+          tooltip: context.tr("adventurer hub.post.reject"),
+          icon: const Icon(Icons.close),
+          color: Colors.grey,
+          disabledColor: Colors.red,
+          hoverColor: Colors.red,
+        ),
+        IconButton(
+          onPressed: widget.status == RecruitmentJoinStatus.pending ||
+              widget.status == RecruitmentJoinStatus.rejected
+              ? accept
+              : null,
+          tooltip: context.tr("adventurer hub.post.accept"),
+          icon: const Icon(Icons.check),
+          color: Colors.grey,
+          disabledColor: Colors.blue,
+          hoverColor: Colors.blue,
+        ),
+      ],
+    );
   }
 }
