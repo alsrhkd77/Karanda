@@ -79,8 +79,12 @@ class Recruitment extends RecruitmentPost {
     };
   }
 
-  void updateFromSimplified(Recruitment data){
-
+  void privateDataFrom(Recruitment? data){
+    if(data != null){
+      content = data.content;
+      privateContent = data.privateContent;
+      discordLink = data.discordLink;
+    }
   }
 }
 

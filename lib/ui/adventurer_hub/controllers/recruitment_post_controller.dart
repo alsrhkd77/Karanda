@@ -147,11 +147,7 @@ class RecruitmentPostController extends ChangeNotifier {
   }
 
   void _recruitmentChannelCallback(Recruitment value) {
-    if(recruitment == null){
-      recruitment = value;
-    } else {
-      recruitment?.updateFromSimplified(value);
-    }
+    recruitment = value..privateDataFrom(recruitment);
     notifyListeners();
   }
 
