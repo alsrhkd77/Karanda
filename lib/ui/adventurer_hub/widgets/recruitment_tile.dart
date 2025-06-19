@@ -73,7 +73,8 @@ class _MemberCount extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            "$current / $slot",
+            //"$current / $slot",
+            slot.toString(),
             style: TextTheme.of(context).labelMedium,
           ),
         ),
