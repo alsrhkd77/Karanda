@@ -42,182 +42,184 @@ class EditRecruitmentPostPage extends StatelessWidget {
               key: controller.formKey,
               child: SingleChildScrollView(
                 padding: Dimens.pagePadding,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: Dimens.pageMaxWidth,
-                  ),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: TextFormField(
-                          decoration: InputDecoration(
-                            labelText:
-                                context.tr("adventurer hub.edit post.title"),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.titleTextController,
-                          maxLength: 60,
-                          validator: (value) {
-                            if (value?.isEmpty ?? true) {
-                              return context.tr("validator.empty");
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
-                          context.tr("adventurer hub.edit post.category"),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 24.0,
-                        ),
-                        trailing: DropdownMenu(
-                          initialSelection: controller.category,
-                          enabled: recruitment == null,
-                          dropdownMenuEntries:
-                              RecruitmentCategory.values.map((value) {
-                            return DropdownMenuEntry(
-                              value: value,
-                              label: context.tr(
-                                "adventurer hub.category.${value.name}",
-                              ),
-                            );
-                          }).toList(),
-                          onSelected: controller.setCategory,
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
-                          context
-                              .tr("adventurer hub.edit post.recruitment type"),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 24.0,
-                        ),
-                        trailing: DropdownMenu(
-                          initialSelection: controller.recruitmentType,
-                          enabled: recruitment == null,
-                          dropdownMenuEntries:
-                              RecruitmentType.values.map((value) {
-                            return DropdownMenuEntry(
-                              value: value,
-                              label: context.tr(
-                                "adventurer hub.recruitment type.${value.name}",
-                              ),
-                            );
-                          }).toList(),
-                          onSelected: controller.setRecruitmentType,
-                        ),
-                      ),
-                      ListTile(
-                        title: TextFormField(
-                          decoration: InputDecoration(
-                            labelText:
-                                context.tr("adventurer hub.edit post.slots"),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.slotTextController,
-                          keyboardType: const TextInputType.numberWithOptions(),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                              RegExp(r'^(\d{1,3})'),
-                            ),
-                          ],
-                          validator: (value) {
-                            if (value?.isEmpty ?? true) {
-                              return context.tr("validator.empty");
-                            } else if (int.parse(value!) == 0) {
-                              return context.tr("validator.zero");
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      _GuildName(
-                        category: controller.category,
-                        textEditingController:
-                            controller.guildNameTextController,
-                      ),
-                      Section(
-                        title: context.tr("adventurer hub.edit post.content"),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: TextFormField(
-                            maxLines: null,
-                            minLines: 12,
-                            maxLength: 1000,
-                            controller: controller.contentTextController,
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: Dimens.pageMaxWidth,
+                    ),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: TextFormField(
                             decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                vertical: 16.0,
-                                horizontal: 12.0,
-                              ),
-                              hintText: context.tr(
-                                "adventurer hub.edit post.content hint",
-                              ),
+                              labelText:
+                                  context.tr("adventurer hub.edit post.title"),
                             ),
-                          ),
-                        ),
-                      ),
-                      Section(
-                        title: context.tr(
-                          "adventurer hub.edit post.private content",
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: TextFormField(
-                            enabled: controller.recruitmentType ==
-                                RecruitmentType.karandaReservation,
-                            maxLines: null,
-                            minLines: 12,
-                            maxLength: 1000,
-                            controller: controller.privateContentTextController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                vertical: 16.0,
-                                horizontal: 12.0,
-                              ),
-                              hintText: context.tr(
-                                "adventurer hub.edit post.private content hint",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: context
-                                .tr("adventurer hub.edit post.discord link"),
-                          ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.discordTextController,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                              RegExp(r'[1-9A-Za-z:/-\\.]+'),
-                            ),
-                          ],
-                          validator: (String? value) {
-                            if (value == null ||
-                                value.isEmpty ||
-                                !value.contains('/') ||
-                                value.startsWith('https://discord.gg/')) {
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            controller: controller.titleTextController,
+                            maxLength: 60,
+                            validator: (value) {
+                              if (value?.isEmpty ?? true) {
+                                return context.tr("validator.empty");
+                              }
                               return null;
-                            }
-                            return context.tr(
-                              "edit recruitment.discord code validate failed",
-                            );
-                          },
+                            },
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 14.0),
-                        child: _SubmitButton(isCreatePost: recruitment == null),
-                      )
-                    ],
+                        ListTile(
+                          title: Text(
+                            context.tr("adventurer hub.edit post.category"),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                            horizontal: 24.0,
+                          ),
+                          trailing: DropdownMenu(
+                            initialSelection: controller.category,
+                            enabled: recruitment == null,
+                            dropdownMenuEntries:
+                                RecruitmentCategory.values.map((value) {
+                              return DropdownMenuEntry(
+                                value: value,
+                                label: context.tr(
+                                  "adventurer hub.category.${value.name}",
+                                ),
+                              );
+                            }).toList(),
+                            onSelected: controller.setCategory,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text(
+                            context
+                                .tr("adventurer hub.edit post.recruitment type"),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                            horizontal: 24.0,
+                          ),
+                          trailing: DropdownMenu(
+                            initialSelection: controller.recruitmentType,
+                            enabled: recruitment == null,
+                            dropdownMenuEntries:
+                                RecruitmentType.values.map((value) {
+                              return DropdownMenuEntry(
+                                value: value,
+                                label: context.tr(
+                                  "adventurer hub.recruitment type.${value.name}",
+                                ),
+                              );
+                            }).toList(),
+                            onSelected: controller.setRecruitmentType,
+                          ),
+                        ),
+                        ListTile(
+                          title: TextFormField(
+                            decoration: InputDecoration(
+                              labelText:
+                                  context.tr("adventurer hub.edit post.slots"),
+                            ),
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            controller: controller.slotTextController,
+                            keyboardType: const TextInputType.numberWithOptions(),
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'^(\d{1,3})'),
+                              ),
+                            ],
+                            validator: (value) {
+                              if (value?.isEmpty ?? true) {
+                                return context.tr("validator.empty");
+                              } else if (int.parse(value!) == 0) {
+                                return context.tr("validator.zero");
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        _GuildName(
+                          category: controller.category,
+                          textEditingController:
+                              controller.guildNameTextController,
+                        ),
+                        Section(
+                          title: context.tr("adventurer hub.edit post.content"),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
+                              maxLines: null,
+                              minLines: 12,
+                              maxLength: 1000,
+                              controller: controller.contentTextController,
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 16.0,
+                                  horizontal: 12.0,
+                                ),
+                                hintText: context.tr(
+                                  "adventurer hub.edit post.content hint",
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Section(
+                          title: context.tr(
+                            "adventurer hub.edit post.private content",
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
+                              enabled: controller.recruitmentType ==
+                                  RecruitmentType.karandaReservation,
+                              maxLines: null,
+                              minLines: 12,
+                              maxLength: 1000,
+                              controller: controller.privateContentTextController,
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 16.0,
+                                  horizontal: 12.0,
+                                ),
+                                hintText: context.tr(
+                                  "adventurer hub.edit post.private content hint",
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        ListTile(
+                          title: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: context
+                                  .tr("adventurer hub.edit post.discord link"),
+                            ),
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            controller: controller.discordTextController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'[1-9A-Za-z:/-\\.]+'),
+                              ),
+                            ],
+                            validator: (String? value) {
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !value.contains('/') ||
+                                  value.startsWith('https://discord.gg/')) {
+                                return null;
+                              }
+                              return context.tr(
+                                "edit recruitment.discord code validate failed",
+                              );
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 14.0),
+                          child: _SubmitButton(isCreatePost: recruitment == null),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
