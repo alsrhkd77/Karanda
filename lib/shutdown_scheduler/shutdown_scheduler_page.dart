@@ -34,13 +34,18 @@ class _ShutdownSchedulerPageState extends State<ShutdownSchedulerPage> {
   }
 
   Widget buildTimer(DateTime target) {
-    return Text(
-      target
-          .difference(context.watch<TimeRepository>().realTime)
-          .toString()
-          .split('.')
-          .first,
-      style: const TextStyle(fontWeight: FontWeight.bold),
+    return StreamBuilder(
+      stream: context.read<TimeRepository>().realTimeStream,
+      builder: (context, snapshot) {
+        return Text(
+          target
+              .difference(snapshot.data ?? DateTime.now())
+              .toString()
+              .split('.')
+              .first,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        );
+      },
     );
   }
 
