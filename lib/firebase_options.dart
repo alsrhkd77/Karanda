@@ -55,8 +55,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '859571346515',
     projectId: 'karanda-384102',
     authDomain: 'karanda-384102.firebaseapp.com',
-    databaseURL: 'https://karanda-384102-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'karanda-384102.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -64,8 +62,6 @@ class DefaultFirebaseOptions {
     appId: '1:859571346515:android:c8fd23ada92c205733baa6',
     messagingSenderId: '859571346515',
     projectId: 'karanda-384102',
-    databaseURL: 'https://karanda-384102-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'karanda-384102.firebasestorage.app',
   );
 
 }
