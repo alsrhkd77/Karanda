@@ -31,16 +31,17 @@ class RecruitmentPostDetailTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Chip(
+                label: Text(
+                  context.tr(
+                    "adventurer hub.category.${data.category.name}",
+                  ),
+                ),
+              ),
+              /*Chip(
                 label: Text(data.specLimit?.format() ?? "제한 없음"),
                 //avatar: Icon(FontAwesomeIcons.fire, size: 14,),
                 avatar: Text("⚔️"),
-              ),
-              Chip(
-                label: Text(
-                  "${data.currentParticipants} / ${data.maxMembers}",
-                ),
-                avatar: const Icon(Icons.groups),
-              ),
+              ),*/
               Chip(
                 label: Text(
                   context.tr(
@@ -48,11 +49,17 @@ class RecruitmentPostDetailTab extends StatelessWidget {
                   ),
                 ),
               ),
+              Chip(
+                label: Text(
+                  "${data.currentParticipants} / ${data.maxMembers}",
+                ),
+                avatar: const Icon(Icons.groups),
+              ),
             ],
           ),
         ),
         Section(
-          title: "모집 내용",
+          title: context.tr("adventurer hub.post.content"),
           child: Container(
             padding: const EdgeInsets.all(12.0),
             alignment: Alignment.centerLeft,
@@ -62,7 +69,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
         data.privateContent.isEmpty
             ? const SizedBox()
             : Section(
-                title: "참여자 전용",
+                title: context.tr("adventurer hub.post.private content"),
                 child: Container(
                   padding: const EdgeInsets.all(12.0),
                   alignment: Alignment.centerLeft,

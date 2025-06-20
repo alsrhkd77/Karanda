@@ -163,7 +163,7 @@ class _FABState extends State<_FAB> {
     final result = await widget.updatePostStatus();
     if (mounted) {
       Navigator.of(context).pop();
-      if(result){
+      if(!result){
         SnackBarKit.of(context).requestFailed();
       }
     }

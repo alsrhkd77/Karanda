@@ -222,6 +222,8 @@
     },
     "post": {
       "post": "Post",
+      "content": "Details",
+      "private content": "Private Details",
       "applicants": "Applicants",
       "open": "Open",
       "close": "Close",

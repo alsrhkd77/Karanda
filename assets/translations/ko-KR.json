@@ -222,6 +222,8 @@
     },
     "post": {
       "post": "모집 공고",
+      "content": "내용",
+      "private content": "참여자 전용",
       "applicants": "지원자",
       "open": "모집 시작",
       "close": "모집 마감",
