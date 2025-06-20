@@ -118,7 +118,7 @@ class _FAB extends StatefulWidget {
   final bool authenticated;
   final Future<bool> Function() join;
   final Future<bool> Function() cancel;
-  final Future<void> Function() updatePostStatus;
+  final Future<bool> Function() updatePostStatus;
 
   const _FAB({
     super.key,
@@ -160,9 +160,12 @@ class _FABState extends State<_FAB> {
       context: context,
       builder: (context) => const LoadingIndicatorDialog(),
     );
-    await widget.updatePostStatus();
+    final result = await widget.updatePostStatus();
     if (mounted) {
       Navigator.of(context).pop();
+      if(result){
+        SnackBarKit.of(context).requestFailed();
+      }
     }
   }
 

@@ -49,10 +49,13 @@ class RecruitmentPostController extends ChangeNotifier {
 
   Future<bool> changePostStatus() async {
     if (recruitment != null && isOwner) {
+      final status = isOpened;
       recruitment = await _adventurerHubService.updatePostState(
-          recruitment!.id, !isOpened);
+        recruitment!.id,
+        !isOpened,
+      );
       notifyListeners();
-      return true;
+      return status != isOpened;
     }
     return false;
   }
