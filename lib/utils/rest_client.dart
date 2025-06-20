@@ -243,7 +243,7 @@ class _Client extends http.BaseClient {
         },
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatus.ok) {
         final data = jsonDecode(response.body);
         await storage.write(key: 'karanda-token', value: data['token']);
         await storage.write(key: 'refresh-token', value: data['refreshToken']);
