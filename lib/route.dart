@@ -239,6 +239,26 @@ final GoRouter router = GoRouter(
                 return null;
               },
             ),
+            GoRoute(
+              path: ':region/essence-of-dawn',
+              builder: (context, state) {
+                final region =
+                BDORegion.values.byName(state.pathParameters["region"]!);
+                return TradeMarketPresetPage(
+                  presetKey: "essence_of_dawn",
+                  region: region,
+                );
+              },
+              redirect: (BuildContext context, GoRouterState state) {
+                if (!state.pathParameters.containsKey("region") ||
+                    !BDORegion.values
+                        .map((value) => value.name)
+                        .contains(state.pathParameters["region"])) {
+                  return 'not-found';
+                }
+                return null;
+              },
+            ),
           ],
         ),
         GoRoute(

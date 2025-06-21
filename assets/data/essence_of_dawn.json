@@ -1,0 +1,401 @@
+[
+  {
+    "name": "검은 침식의 귀걸이",
+    "code": 11853,
+    "enhancement level": 4,
+    "value": 72,
+    "output": 820979
+  },
+  {
+    "name": "검은 침식의 귀걸이",
+    "code": 11853,
+    "enhancement level": 5,
+    "value": 720,
+    "output": 820979
+  },
+  {
+    "name": "바아의 새벽",
+    "code": 11875,
+    "enhancement level": 4,
+    "value": 72,
+    "output": 820979
+  },
+  {
+    "name": "바아의 새벽",
+    "code": 11875,
+    "enhancement level": 5,
+    "value": 720,
+    "output": 820979
+  },
+  {
+    "name": "오우거의 반지",
+    "code": 11607,
+    "enhancement level": 4,
+    "value": 30,
+    "output": 820979
+  },
+  {
+    "name": "오우거의 반지",
+    "code": 11607,
+    "enhancement level": 5,
+    "value": 300,
+    "output": 820979
+  },
+  {
+    "name": "라이텐의 동력석",
+    "code": 11630,
+    "enhancement level": 4,
+    "value": 30,
+    "output": 820979
+  },
+  {
+    "name": "라이텐의 동력석",
+    "code": 11630,
+    "enhancement level": 5,
+    "value": 300,
+    "output": 820979
+  },
+  {
+    "name": "폐허의 눈동자 반지",
+    "code": 12060,
+    "enhancement level": 4,
+    "value": 22,
+    "output": 820979
+  },
+  {
+    "name": "폐허의 눈동자 반지",
+    "code": 12060,
+    "enhancement level": 5,
+    "value": 225,
+    "output": 820979
+  },
+  {
+    "name": "초승달 수호자의 반지",
+    "code": 12031,
+    "enhancement level": 4,
+    "value": 20,
+    "output": 820979
+  },
+  {
+    "name": "초승달 수호자의 반지",
+    "code": 12031,
+    "enhancement level": 5,
+    "value": 200,
+    "output": 820979
+  },
+  {
+    "name": "발타라의 숨은 빛 허리띠",
+    "code": 12236,
+    "enhancement level": 4,
+    "value": 17,
+    "output": 820979
+  },
+  {
+    "name": "발타라의 숨은 빛 허리띠",
+    "code": 12236,
+    "enhancement level": 5,
+    "value": 175,
+    "output": 820979
+  },
+  {
+    "name": "바실리스크의 허리띠",
+    "code": 12230,
+    "enhancement level": 4,
+    "value": 15,
+    "output": 820979
+  },
+  {
+    "name": "바실리스크의 허리띠",
+    "code": 12230,
+    "enhancement level": 5,
+    "value": 150,
+    "output": 820979
+  },
+  {
+    "name": "세랍의 목걸이",
+    "code": 11628,
+    "enhancement level": 4,
+    "value": 7,
+    "output": 820979
+  },
+  {
+    "name": "세랍의 목걸이",
+    "code": 11628,
+    "enhancement level": 5,
+    "value": 75,
+    "output": 820979
+  },
+  {
+    "name": "툰그라드 반지",
+    "code": 12061,
+    "enhancement level": 4,
+    "value": 55,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 반지",
+    "code": 12061,
+    "enhancement level": 5,
+    "value": 550,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 허리띠",
+    "code": 12237,
+    "enhancement level": 4,
+    "value": 40,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 허리띠",
+    "code": 12237,
+    "enhancement level": 5,
+    "value": 400,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 목걸이",
+    "code": 11629,
+    "enhancement level": 4,
+    "value": 37,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 목걸이",
+    "code": 11629,
+    "enhancement level": 5,
+    "value": 375,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 귀걸이",
+    "code": 11828,
+    "enhancement level": 4,
+    "value": 25,
+    "output": 820980
+  },
+  {
+    "name": "툰그라드 귀걸이",
+    "code": 11828,
+    "enhancement level": 5,
+    "value": 250,
+    "output": 820980
+  },
+  {
+    "name": "여명의 귀걸이",
+    "code": 11855,
+    "enhancement level": 4,
+    "value": 78,
+    "output": 820981
+  },
+  {
+    "name": "여명의 귀걸이",
+    "code": 11855,
+    "enhancement level": 5,
+    "value": 780,
+    "output": 820981
+  },
+  {
+    "name": "섬뜩한 등 뒤의 반지",
+    "code": 12068,
+    "enhancement level": 4,
+    "value": 60,
+    "output": 820981
+  },
+  {
+    "name": "섬뜩한 등 뒤의 반지",
+    "code": 12068,
+    "enhancement level": 5,
+    "value": 600,
+    "output": 820981
+  },
+  {
+    "name": "투로의 허리띠",
+    "code": 12257,
+    "enhancement level": 4,
+    "value": 35,
+    "output": 820981
+  },
+  {
+    "name": "투로의 허리띠",
+    "code": 12257,
+    "enhancement level": 5,
+    "value": 350,
+    "output": 820981
+  },
+  {
+    "name": "깨어난 달의 목걸이",
+    "code": 11663,
+    "enhancement level": 4,
+    "value": 25,
+    "output": 820981
+  },
+  {
+    "name": "깨어난 달의 목걸이",
+    "code": 11663,
+    "enhancement level": 5,
+    "value": 250,
+    "output": 820981
+  },
+  {
+    "name": "카드리 수호자의 반지",
+    "code": 12032,
+    "enhancement level": 4,
+    "value": 25,
+    "output": 820982
+  },
+  {
+    "name": "카드리 수호자의 반지",
+    "code": 12032,
+    "enhancement level": 5,
+    "value": 250,
+    "output": 820982
+  },
+  {
+    "name": "나크의 귀장식",
+    "code": 11834,
+    "enhancement level": 4,
+    "value": 20,
+    "output": 820982
+  },
+  {
+    "name": "나크의 귀장식",
+    "code": 11834,
+    "enhancement level": 5,
+    "value": 200,
+    "output": 820982
+  },
+  {
+    "name": "숲 로나로스의 반지",
+    "code": 12042,
+    "enhancement level": 4,
+    "value": 10,
+    "output": 820982
+  },
+  {
+    "name": "숲 로나로스의 반지",
+    "code": 12042,
+    "enhancement level": 5,
+    "value": 100,
+    "output": 820982
+  },
+  {
+    "name": "깨어난 강의 목걸이",
+    "code": 11662,
+    "enhancement level": 4,
+    "value": 81,
+    "output": 820983
+  },
+  {
+    "name": "깨어난 강의 목걸이",
+    "code": 11662,
+    "enhancement level": 5,
+    "value": 815,
+    "output": 820983
+  },
+  {
+    "name": "바다 안개 반지",
+    "code": 12091,
+    "enhancement level": 4,
+    "value": 42,
+    "output": 820983
+  },
+  {
+    "name": "바다 안개 반지",
+    "code": 12091,
+    "enhancement level": 5,
+    "value": 425,
+    "output": 820983
+  },
+  {
+    "name": "몽환의 귀걸이",
+    "code": 11856,
+    "enhancement level": 4,
+    "value": 42,
+    "output": 820983
+  },
+  {
+    "name": "몽환의 귀걸이",
+    "code": 11856,
+    "enhancement level": 5,
+    "value": 425,
+    "output": 820983
+  },
+  {
+    "name": "켄타우로스의 허리띠",
+    "code": 12229,
+    "enhancement level": 4,
+    "value": 20,
+    "output": 820983
+  },
+  {
+    "name": "켄타우로스의 허리띠",
+    "code": 12229,
+    "enhancement level": 5,
+    "value": 200,
+    "output": 820983
+  },
+  {
+    "name": "오르킨라드의 허리띠",
+    "code": 12251,
+    "enhancement level": 4,
+    "value": 12,
+    "output": 820983
+  },
+  {
+    "name": "오르킨라드의 허리띠",
+    "code": 12251,
+    "enhancement level": 5,
+    "value": 125,
+    "output": 820983
+  },
+  {
+    "name": "시칠의 목걸이",
+    "code": 11625,
+    "enhancement level": 4,
+    "value": 9,
+    "output": 820983
+  },
+  {
+    "name": "시칠의 목걸이",
+    "code": 11625,
+    "enhancement level": 5,
+    "value": 90,
+    "output": 820983
+  },
+  {
+    "name": "새벽의 정수",
+    "code": 820979,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820979
+  },
+  {
+    "name": "새벽의 정수 - 흑정령의 분노",
+    "code": 820980,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820979
+  },
+  {
+    "name": "새벽의 정수 - 적중력",
+    "code": 820981,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820979
+  },
+  {
+    "name": "새벽의 정수 - 피해 감소",
+    "code": 820982,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820979
+  },
+  {
+    "name": "새벽의 정수 - 회피력",
+    "code": 820983,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820979
+  }
+]

@@ -96,6 +96,13 @@ class _PresetsState extends State<_Presets> {
                 title: context.tr("trade market.magical_lightstone_crystal"),
                 description: '광명석 결정 제작 재료',
               ),
+              _PresetCard(
+                route:
+                '/trade-market/${region.name}/essence-of-dawn',
+                imagePath: 'assets/image/essence_of_dawn.png',
+                title: context.tr("trade market.essence_of_dawn"),
+                description: '새벽의 정수 제작용 재료 악세',
+              ),
             ],
           ),
         ),
