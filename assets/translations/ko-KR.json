@@ -120,11 +120,11 @@
     "notifications": "{}",
     "world boss spawn": "월드 보스 **{}** 출현!!",
     "world boss time remaining": "**{}** 출현 {}분 전",
-    "partyAndPlatoon recruit opened": "{} - 모집 시작!",
-    "guildBossRaid recruit opened": "{} - 모집 시작!",
-    "guildWar recruit opened": "{} - 모집 시작!",
-    "recruit entry accepted": "{} - 참여 확정!",
-    "recruit entry rejected": "{} - 다음 기회에!"
+    "partyAndPlatoonRecruitOpened": "{} - 모집 시작!",
+    "guildBossRaidRecruitOpened": "{} - 모집 시작!",
+    "guildWarRecruitOpened": "{} - 모집 시작!",
+    "recruitEntryAccepted": "{} - 참여 확정!",
+    "recruitEntryRejected": "{} - 참여 거절됨"
   },
   "world boss": {
     "world boss": "월드 보스",

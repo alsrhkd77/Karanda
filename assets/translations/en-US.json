@@ -120,11 +120,11 @@
     "notifications": "{}",
     "world boss spawn": "**{}** is spawned!!",
     "world boss time remaining": "{} minutes until **{}**",
-    "partyAndPlatoon recruit opened": "{} - Now recruiting!",
-    "guildBossRaid recruit opened": "{} - Now recruiting!",
-    "guildWar recruit opened": "{} - Now recruiting!",
-    "recruit entry accepted": "{} - You got in!",
-    "recruit entry rejected": "{} - Maybe next time!"
+    "partyAndPlatoonRecruitOpened": "{} - Now recruiting!",
+    "guildBossRaidRecruitOpened": "{} - Now recruiting!",
+    "guildWarRecruitOpened": "{} - Now recruiting!",
+    "recruitEntryAccepted": "{} - You got in!",
+    "recruitEntryRejected": "{} - Maybe next time!"
   },
   "world boss": {
     "world boss": "World boss",

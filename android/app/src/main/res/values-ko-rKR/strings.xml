@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="adventurerHub">모험가 허브</string>
+    <string name="partyAndPlatoonRecruitOpened">%1$s - 모집 시작!</string>
+    <string name="guildBossRaidRecruitOpened">%1$s - 모집 시작!</string>
+    <string name="guildWarRecruitOpened">%1$s - 모집 시작!</string>
+    <string name="recruitEntryAccepted">%1$s - 참여 확정!</string>
+    <string name="recruitEntryRejected">%1$s - 참여 거절됨</string>
+</resources>

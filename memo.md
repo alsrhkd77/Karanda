@@ -36,3 +36,7 @@ svg -> png -> split png
 # 기타
 party = 파티
 platoon = 부대
+
+### Android 권한 요청 해야함
+Media_kit 관련
+[https://pub.dev/packages/media_kit](https://pub.dev/packages/media_kit)
