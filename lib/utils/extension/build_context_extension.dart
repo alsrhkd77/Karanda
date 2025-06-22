@@ -15,7 +15,7 @@ extension BuildContextExtension on BuildContext {
       if (level.startsWith("+")) {
         name = "$level $name";
       } else {
-        name = "${tr("enhancement level.$level")} : $name";
+        name = "${tr("enhancementLevel.$level")} : $name";
       }
     }
     return name;

@@ -3,12 +3,12 @@
   "confirm": "Confirm",
   "cancel": "Cancel",
   "finish": "Finish",
-  "need login": "Login required.",
-  "request failed": "The request failed.",
+  "needLogin": "Login required.",
+  "requestFailed": "The request failed.",
   "validator": {
     "empty": "Must not be empty",
     "zero": "Must be greater than 0",
-    "fill with": "Please enter {}"
+    "fillWith": "Please enter {}"
   },
   "font": {
     "maplestory": "Maple Story",
@@ -16,18 +16,18 @@
     "nanumGothic": "Nanum Gothic",
     "jua": "Jua"
   },
-  "theme mode": {
+  "themeMode": {
     "light": "Light theme",
     "dark": "Dark theme",
     "system": "System theme"
   },
-  "windows tray": {
+  "windowsTray": {
     "show": "Show window",
     "hide": "Hide window",
     "quit": "Quit Karanda",
     "cancel": "Cancel"
   },
-  "enhancement level": {
+  "enhancementLevel": {
     "": "",
     "I": "PRI",
     "II": "DUO",
@@ -177,11 +177,13 @@
     "cooking_box contribution": "Contribution points",
     "cooking_box mastery": "Cooking mastery",
     "melody_of_stars": "Melody of stars",
-    "melody_of_stars efficiency": "{} per Melody of stars",
+    "melody_of_starsEfficiency": "{} per Melody of stars",
     "dehkias_light": "Dehkias light",
-    "dehkias_light efficiency": "{} per Dehkias light",
+    "dehkias_lightefficiency": "{} per Dehkias light",
     "magical_lightstone_crystal": "Magical lightstone crystal",
-    "magical_lightstone_crystal efficiency": "{} per Magical lightstone crystal",
+    "magical_lightstone_crystalEfficiency": "{} per Magical lightstone crystal",
+    "essence_of_dawn": "Essence of dawn",
+    "essence_of_dawnEfficiency": "{} per essence",
     "preset waiting": "Get data for {} items",
     "preset item name": "Item name",
     "preset item price": "Base price",

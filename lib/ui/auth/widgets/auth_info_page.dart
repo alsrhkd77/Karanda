@@ -174,7 +174,7 @@ class _UnregisterDialogState extends State<UnregisterDialog> {
     if (value == null || value.isEmpty) {
       return context.tr("validator.empty");
     } else if (value != targetText) {
-      return context.tr("validator.fill with", args: ["'$targetText'"]);
+      return context.tr("validator.fillWith", args: ["'$targetText'"]);
     }
     return null;
   }

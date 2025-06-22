@@ -186,21 +186,21 @@ class InitializerService {
       items: [
         MenuItem(
           key: 'show',
-          label: "windows tray.show".tr(),
+          label: "windowsTray.show".tr(),
         ),
         MenuItem(
           key: 'hide',
-          label: "windows tray.hide".tr(),
+          label: "windowsTray.hide".tr(),
         ),
         MenuItem.separator(),
         MenuItem(
           key: 'cancel',
-          label: "windows tray.cancel".tr(),
+          label: "windowsTray.cancel".tr(),
         ),
         MenuItem.separator(),
         MenuItem(
           key: 'quit',
-          label: "windows tray.quit".tr(),
+          label: "windowsTray.quit".tr(),
         ),
       ],
     );

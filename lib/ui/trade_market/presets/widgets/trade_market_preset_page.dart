@@ -106,7 +106,7 @@ class _ItemTile extends StatelessWidget {
         ),
         title: Text(context.itemName(itemInfo.code, item.enhancementLevel)),
         subtitle: Text(context.tr(
-                "trade market.$presetKey efficiency",
+                "trade market.${presetKey}Efficiency",
                 args: [(item.price!.price / item.value).round().format()],
               )),
         trailing: stockStatus

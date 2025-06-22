@@ -3,12 +3,12 @@
   "confirm": "확인",
   "cancel": "취소",
   "finish": "완료",
-  "need login": "로그인이 필요한 서비스입니다.",
-  "request failed": "요청에 실패했습니다.",
+  "needLogin": "로그인이 필요한 서비스입니다.",
+  "requestFailed": "요청에 실패했습니다.",
   "validator": {
     "empty": "필수입니다",
     "zero": "0보다 커야 합니다",
-    "fill with": "{}을(를) 입력해주세요"
+    "fillWith": "{}을(를) 입력해주세요"
   },
   "font": {
     "maplestory": "메이플스토리체",
@@ -16,18 +16,18 @@
     "nanumGothic": "나눔 고딕",
     "jua": "주아체"
   },
-  "theme mode": {
+  "themeMode": {
     "light": "밝은 테마",
     "dark": "어두운 테마",
     "system": "시스템 테마"
   },
-  "windows tray": {
+  "windowsTray": {
     "show": "보이기",
     "hide": "숨기기",
     "quit": "Karanda 종료",
     "cancel": "취소"
   },
-  "enhancement level": {
+  "enhancementLevel": {
     "": "",
     "I": "장",
     "II": "광",
@@ -177,11 +177,13 @@
     "cooking_box contribution": "공헌도",
     "cooking_box mastery": "요리 숙련도",
     "melody_of_stars": "별들의 선율",
-    "melody_of_stars efficiency": "선율 1개당 {}",
+    "melody_of_starsEfficiency": "선율 1개당 {}",
     "dehkias_light": "데키아의 불빛",
-    "dehkias_light efficiency": "불빛 1개당 {}",
+    "dehkias_lightEfficiency": "불빛 1개당 {}",
     "magical_lightstone_crystal": "마력의 광명석 결정",
-    "magical_lightstone_crystal efficiency": "결정 1개당 {}",
+    "magical_lightstone_crystalEfficiency": "결정 1개당 {}",
+    "essence_of_dawn": "새벽의 정수",
+    "essence_of_dawnEfficiency": "정수 1개당 {}",
     "preset waiting": "{}가지 아이템 정보를 가져오는 중",
     "preset item name": "품목",
     "preset item price": "기준 가격",

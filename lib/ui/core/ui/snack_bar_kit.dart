@@ -18,7 +18,7 @@ class SnackBarKit {
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text(context.tr("need login")),
+            child: Text(context.tr("needLogin")),
           ),
         ],
       ),
@@ -43,7 +43,7 @@ class SnackBarKit {
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text(context.tr("request filed")),
+            child: Text(context.tr("requestFailed")),
           ),
         ],
       ),

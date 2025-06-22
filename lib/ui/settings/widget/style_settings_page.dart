@@ -30,7 +30,7 @@ class StyleSettingsPage extends StatelessWidget {
                           value: mode,
                           groupValue: controller.appSettings.themeMode,
                           onChanged: controller.setThemeMode,
-                          title: Text(context.tr("theme mode.${mode.name}")),
+                          title: Text(context.tr("themeMode.${mode.name}")),
                         ))
                     .toList(),
               ),
