@@ -14,8 +14,6 @@ import 'package:karanda/settings/change_log_page.dart';
 import 'package:karanda/ship_upgrading/ship_upgrading_page.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
-import 'package:karanda/ui/adventurer_hub/widgets/adventurer_hub_page.dart';
-import 'package:karanda/ui/adventurer_hub/widgets/recruitment_post_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
@@ -26,6 +24,7 @@ import 'package:karanda/ui/home/widget/home_page.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
 import 'package:karanda/ui/overlay/widgets/world_boss_overlay_settings_page.dart';
+import 'package:karanda/ui/party_finder/widgets/party_finder_page.dart';
 import 'package:karanda/ui/settings/widget/karanda_info_page.dart';
 import 'package:karanda/ui/settings/widget/settings_page.dart';
 import 'package:karanda/ui/settings/widget/style_settings_page.dart';
@@ -45,6 +44,7 @@ import 'package:provider/provider.dart';
 import 'deprecated/atoraxxion/sycrakea_page.dart';
 import 'deprecated/atoraxxion/yolunakea_moon_page.dart';
 import 'deprecated/horse_status/horse_status_page.dart';
+import 'ui/party_finder/widgets/recruitment_post_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
@@ -291,12 +291,12 @@ final GoRouter router = GoRouter(
               ),
             ]),
         GoRoute(
-          path: 'adventurer-hub',
+          path: 'party-finder',
           builder: (context, state) {
             if (context.watch<AuthService>().waitResponse) {
               return const LoadingPage();
             }
-            return const AdventurerHubPage();
+            return const PartyFinderPage();
           },
           routes: [
             GoRoute(

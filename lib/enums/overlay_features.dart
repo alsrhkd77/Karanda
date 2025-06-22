@@ -3,5 +3,5 @@ enum OverlayFeatures {
   worldBoss,
   bossHpScaleIndicator,
   clock,
-  adventurerHub,
+  partyFinder,
 }

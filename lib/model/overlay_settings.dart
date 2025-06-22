@@ -6,30 +6,30 @@ class OverlaySettings {
   final Set<OverlayFeatures> activatedFeatures = {};
   MonitorDevice monitorDevice;
   bool showWorldBossName;
-  final Set<RecruitmentCategory> adventurerHubExcludedCategory = {};
+  final Set<RecruitmentCategory> partyFinderExcludedCategory = {};
 
   OverlaySettings({
     required this.monitorDevice,
     this.showWorldBossName = false,
     Set<OverlayFeatures>? activatedFeatures,
-    Set<RecruitmentCategory>? adventurerHubExcludedCategory,
+    Set<RecruitmentCategory>? partyFinderExcludedCategory,
   }) {
     this.activatedFeatures.addAll(activatedFeatures ?? {});
     this
-        .adventurerHubExcludedCategory
-        .addAll(adventurerHubExcludedCategory ?? {});
+        .partyFinderExcludedCategory
+        .addAll(partyFinderExcludedCategory ?? {});
   }
 
   factory OverlaySettings.fromJson(Map json) {
     final List activated = json["activatedFeatures"] ?? [];
-    final List adventurerHub = json["adventurerHubExcludedCategory"] ?? [];
+    final List partyFinder = json["partyFinderExcludedCategory"] ?? [];
     return OverlaySettings(
       activatedFeatures: Set.from(activated.map((item) {
         return OverlayFeatures.values.byName(item);
       })),
       monitorDevice: MonitorDevice.fromJson(json["monitorDevice"]),
       showWorldBossName: json["showWorldBossName"] ?? false,
-      adventurerHubExcludedCategory: Set.from(adventurerHub.map((item) {
+      partyFinderExcludedCategory: Set.from(partyFinder.map((item) {
         return RecruitmentCategory.values.byName(item);
       })),
     );
@@ -40,9 +40,9 @@ class OverlaySettings {
           item: activatedFeatures.contains(item)
       };
 
-  /*Map<RecruitmentCategory, bool> get adventurerHubCategoryStatus => {
+  /*Map<RecruitmentCategory, bool> get partyFinderCategoryStatus => {
     for (var item in RecruitmentCategory.values)
-      item: !adventurerHubExcludedCategory.contains(item)
+      item: !partyFinderExcludedCategory.contains(item)
   };*/
 
   Map toJson() {
@@ -50,8 +50,8 @@ class OverlaySettings {
       "activatedFeatures": activatedFeatures.map((item) => item.name).toList(),
       "monitorDevice": monitorDevice.toJson(),
       "showWorldBossName": showWorldBossName,
-      "adventurerHubExcludedCategory":
-          adventurerHubExcludedCategory.map((item) => item.name).toList(),
+      "partyFinderExcludedCategory":
+          partyFinderExcludedCategory.map((item) => item.name).toList(),
     };
   }
 }

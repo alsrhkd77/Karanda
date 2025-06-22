@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:karanda/ui/core/theme/features_icon.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 
 class HomeFeaturesSection extends StatelessWidget {
@@ -87,9 +88,9 @@ class HomeFeaturesSection extends StatelessWidget {
           windowsOnly: true,
         ),
         _Tile(
-          title: context.tr("adventurer hub.adventurer hub"),
-          icon: FontAwesomeIcons.circleNodes,
-          path: '/adventurer-hub',
+          title: context.tr("partyFinder.partyFinder"),
+          icon: FeaturesIcon.partyFinder,
+          path: '/party-finder',
         ),
       ],
     );

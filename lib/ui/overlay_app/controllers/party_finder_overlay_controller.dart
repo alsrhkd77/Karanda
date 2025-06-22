@@ -9,13 +9,13 @@ import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/ui/overlay_app/controllers/overlay_widget_controller.dart';
 import 'dart:developer' as developer;
 
-class AdventurerHubOverlayController extends OverlayWidgetController {
+class PartyFinderOverlayController extends OverlayWidgetController {
   final ScrollController scrollController = ScrollController();
   List<Recruitment>? _recruitments;
   List<RecruitmentCategory> _excluded = [];
   late final StreamSubscription _settings;
 
-  AdventurerHubOverlayController({
+  PartyFinderOverlayController({
     required super.key,
     required super.defaultRect,
     required super.constraints,
@@ -39,12 +39,12 @@ class AdventurerHubOverlayController extends OverlayWidgetController {
       notifyListeners();
     } catch (e) {
       developer
-          .log("Failed to parse [AdventurerHub] message\n${call.arguments}");
+          .log("Failed to parse [PartyFinder] message\n${call.arguments}");
     }
   }
 
   void _onSettingsUpdate(OverlaySettings value) {
-    _excluded = value.adventurerHubExcludedCategory.toList();
+    _excluded = value.partyFinderExcludedCategory.toList();
     notifyListeners();
   }
 

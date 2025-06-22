@@ -2,12 +2,12 @@ import 'package:flutter/widgets.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/recruitment_category.dart';
 import 'package:karanda/enums/recruitment_type.dart';
-import 'package:karanda/repository/adventurer_hub_repository.dart';
+import 'package:karanda/repository/party_finder_repository.dart';
 
 import '../../../model/recruitment.dart';
 
 class EditRecruitmentPostController extends ChangeNotifier {
-  final AdventurerHubRepository _adventurerHubRepository;
+  final PartyFinderRepository _partyFinderRepository;
   final BDORegion region;
   final formKey = GlobalKey<FormState>();
   final titleTextController = TextEditingController();
@@ -22,10 +22,10 @@ class EditRecruitmentPostController extends ChangeNotifier {
   late RecruitmentType recruitmentType;
 
   EditRecruitmentPostController({
-    required AdventurerHubRepository adventurerHubRepository,
+    required PartyFinderRepository partyFinderRepository,
     required this.region,
     this.recruitment,
-  }) : _adventurerHubRepository = adventurerHubRepository {
+  }) : _partyFinderRepository = partyFinderRepository {
     if (recruitment == null) {
       category = RecruitmentCategory.values.first;
       recruitmentType = RecruitmentType.values.first;
@@ -57,7 +57,7 @@ class EditRecruitmentPostController extends ChangeNotifier {
         ..discordLink = discordTextController.text.isEmpty
             ? null
             : discordTextController.text;
-      return await _adventurerHubRepository.updatePost(recruitment!);
+      return await _partyFinderRepository.updatePost(recruitment!);
     }
     return null;
   }
@@ -81,7 +81,7 @@ class EditRecruitmentPostController extends ChangeNotifier {
             ? null
             : discordTextController.text,
       );
-      return await _adventurerHubRepository.createPost(post);
+      return await _partyFinderRepository.createPost(post);
     }
     return null;
   }

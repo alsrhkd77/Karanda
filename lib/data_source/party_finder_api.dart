@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:karanda/common/http_response_extension.dart';
 import 'package:karanda/enums/bdo_region.dart';
-import 'package:karanda/model/adventurer_hub_settings.dart';
+import 'package:karanda/model/party_finder_settings.dart';
 import 'package:karanda/model/applicant.dart';
 import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
@@ -10,19 +10,19 @@ import 'package:karanda/utils/http_status.dart';
 import 'package:karanda/utils/rest_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AdventurerHubApi {
-  final String key = "adventurer hub";
+class PartyFinderApi {
+  final String key = "party-finder";
 
-  Future<AdventurerHubSettings> loadAdventurerHubSettings() async {
+  Future<PartyFinderSettings> loadPartyFinderSettings() async {
     final pref = SharedPreferencesAsync();
     final data = await pref.getString(key);
     if (data != null) {
-      return AdventurerHubSettings.fromJson(jsonDecode(data));
+      return PartyFinderSettings.fromJson(jsonDecode(data));
     }
-    return AdventurerHubSettings();
+    return PartyFinderSettings();
   }
 
-  Future<void> saveAdventurerHubSettings(AdventurerHubSettings value) async {
+  Future<void> savePartyFinderSettings(PartyFinderSettings value) async {
     final pref = SharedPreferencesAsync();
     await pref.setString(key, jsonEncode(value.toJson()));
   }

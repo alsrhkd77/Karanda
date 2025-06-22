@@ -146,7 +146,7 @@
     "display name": "보스 이름으로 표시",
     "bossHpScaleIndicator": "보스 HP 눈금 표시기",
     "clock": "시계",
-    "adventurerHub": "모험가 허브 (Experimental)",
+    "partyFinder": "Party Finder (Experimental)",
     "settings": {
       "select display": "디스플레이 선택",
       "reset widgets": "오버레이 위젯 크기 및 위치 초기화"
@@ -189,43 +189,43 @@
     "preset item price": "기준 가격",
     "preset item out of stock": "품절"
   },
-  "adventurer hub": {
-    "adventurer hub": "모험가 허브 (Experimental)",
+  "partyFinder": {
+    "partyFinder": "Party Finder (Experimental)",
     "category": {
       "partyAndPlatoon": "파티/부대",
       "guildBossRaid": "길드 레이드",
       "guildWar": "거점/공성"
     },
-    "recruitment type": {
+    "recruitmentType": {
       "inGameWhispers": "인게임 귓속말",
       "inGamePartyRecruitment": "인게임 파티/부대 찾기",
       "karandaReservation": "Karanda 예약"
     },
-    "recruitment join status": {
+    "recruitmentJoinStatus": {
       "pending": "대기중",
       "accepted": "승인됨",
       "cancelled": "취소됨",
       "rejected": "거절됨"
     },
-    "edit post": {
-      "edit post": "공고 작성",
+    "editPost": {
+      "editPost": "공고 작성",
       "title": "제목 (필수)",
       "category": "카테고리 (필수)",
-      "recruitment type": "모집 유형 (필수)",
-      "guild name": "길드명 (필수)",
+      "recruitmentType": "모집 유형 (필수)",
+      "guildName": "길드명 (필수)",
       "slots": "모집 인원 (필수)",
       "content": "내용",
-      "content hint": "모집 상세 내용을 입력해주세요",
-      "private content": "승인된 참여자 전용",
-      "private content hint": "이 내용은 승인된 참여자만 볼 수 있습니다",
-      "discord link": "Discord 초대 코드 (선택)",
-      "discord link validate failed": "Discord 초대 코드를 입력해주세요",
+      "contentHint": "모집 상세 내용을 입력해주세요",
+      "privateContent": "승인된 참여자 전용",
+      "privateContentHint": "이 내용은 승인된 참여자만 볼 수 있습니다",
+      "discordLink": "Discord 초대 코드 (선택)",
+      "discordLinkValidateFailed": "Discord 초대 코드를 입력해주세요",
       "save": "작성 완료"
     },
     "post": {
       "post": "모집 공고",
       "content": "내용",
-      "private content": "참여자 전용",
+      "privateContent": "참여자 전용",
       "applicants": "지원자",
       "open": "모집 시작",
       "close": "모집 마감",
@@ -233,13 +233,13 @@
       "cancel": "취소하기",
       "accept": "승인",
       "reject": "거절",
-      "applicants empty": "아직 지원자가 없습니다"
+      "applicantsEmpty": "아직 지원자가 없습니다"
     },
     "settings": {
       "excluded": "제외"
     },
     "recruit": "모집하기",
-    "no posts open": "모집중인 공고가 없습니다.",
+    "noPostsOpen": "모집중인 공고가 없습니다.",
 
     "new post": "모집 공고 만들기",
     "members": "모집 인원\n({})",

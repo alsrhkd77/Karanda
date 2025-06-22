@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="adventurerHub">Adventurer Hub</string>
+    <string name="partyFinder">Party Finder</string>
     <string name="partyAndPlatoonRecruitOpened">%1$s - Now recruiting!</string>
     <string name="guildBossRaidRecruitOpened">%1$s - Now recruiting!</string>
     <string name="guildWarRecruitOpened">%1$s - Now recruiting!</string>

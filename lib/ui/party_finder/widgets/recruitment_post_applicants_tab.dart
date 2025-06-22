@@ -24,7 +24,7 @@ class RecruitmentPostApplicantsTab extends StatelessWidget {
       return const LoadingIndicator();
     } else if (applicants?.isEmpty ?? true) {
       return Center(
-          child: Text(context.tr("adventurer hub.post.applicants empty")));
+          child: Text(context.tr("partyFinder.post.applicantsEmpty")));
     }
     return PageBase(children: [
       ...applicants!.map((value) {
@@ -120,7 +120,7 @@ class _TailState extends State<_Tail> {
       return Chip(
         label: Text(
           context.tr(
-            "adventurer hub.recruitment join status.${widget.status.name}",
+            "partyFinder.recruitmentJoinStatus.${widget.status.name}",
           ),
         ),
         backgroundColor: Colors.red,
@@ -136,7 +136,7 @@ class _TailState extends State<_Tail> {
                   widget.status == RecruitmentJoinStatus.accepted
               ? reject
               : null,
-          tooltip: context.tr("adventurer hub.post.reject"),
+          tooltip: context.tr("partyFinder.post.reject"),
           icon: const Icon(Icons.close),
           color: Colors.grey,
           disabledColor: Colors.red,
@@ -147,7 +147,7 @@ class _TailState extends State<_Tail> {
               widget.status == RecruitmentJoinStatus.rejected
               ? accept
               : null,
-          tooltip: context.tr("adventurer hub.post.accept"),
+          tooltip: context.tr("partyFinder.post.accept"),
           icon: const Icon(Icons.check),
           color: Colors.grey,
           disabledColor: Colors.blue,

@@ -7,7 +7,7 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/features.dart';
 import 'package:karanda/model/applicant.dart';
 import 'package:karanda/model/user.dart';
-import 'package:karanda/repository/adventurer_hub_repository.dart';
+import 'package:karanda/repository/party_finder_repository.dart';
 import 'package:karanda/repository/app_settings_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
@@ -15,31 +15,31 @@ import 'package:rxdart/rxdart.dart';
 
 import '../model/recruitment.dart';
 
-class AdventurerHubService {
+class PartyFinderService {
   final AuthRepository _authRepository;
   final AppSettingsRepository _appSettingsRepository;
-  final AdventurerHubRepository _adventurerHubRepository;
+  final PartyFinderRepository _partyFinderRepository;
   final OverlayRepository _overlayRepository;
   final _recruitments = BehaviorSubject<List<Recruitment>>();
   final _applicants = BehaviorSubject<List<Applicant>>();
   StreamSubscription? _regionSubscription;
   StreamSubscription? _userSubscription;
 
-  AdventurerHubService({
+  PartyFinderService({
     required AuthRepository authRepository,
     required AppSettingsRepository appSettingsRepository,
-    required AdventurerHubRepository adventurerHubRepository,
+    required PartyFinderRepository partyFinderRepository,
     required OverlayRepository overlayRepository,
   })  : _authRepository = authRepository,
         _appSettingsRepository = appSettingsRepository,
-        _adventurerHubRepository = adventurerHubRepository,
+        _partyFinderRepository = partyFinderRepository,
         _overlayRepository = overlayRepository {
     _recruitments
-        .addStream(_adventurerHubRepository.recruitmentsStream.map((value) {
+        .addStream(_partyFinderRepository.recruitmentsStream.map((value) {
       value.sort(_recruitmentSortOption);
       return value;
     }));
-    _applicants.addStream(_adventurerHubRepository.applicantsStream);
+    _applicants.addStream(_partyFinderRepository.applicantsStream);
     if (!kIsWeb && Platform.isWindows) {
       _recruitments.listen(_sendToOverlay);
       _connectLiveRecruitmentData();
@@ -67,13 +67,13 @@ class AdventurerHubService {
 
   Future<void> _disconnectLiveRecruitmentData() async {
     await _regionSubscription?.cancel();
-    _adventurerHubRepository.disconnectLiveChannel();
+    _partyFinderRepository.disconnectLiveChannel();
   }
 
   void _onRegionUpdate(BDORegion region) {
-    _adventurerHubRepository.getPosts(region);
-    _adventurerHubRepository.disconnectLiveChannel();
-    _adventurerHubRepository.connectLiveChannel(region);
+    _partyFinderRepository.getPosts(region);
+    _partyFinderRepository.disconnectLiveChannel();
+    _partyFinderRepository.connectLiveChannel(region);
   }
 
   void _connectLiveApplicantData() {
@@ -87,19 +87,19 @@ class AdventurerHubService {
     if (!_applicants.hasListener) {
       await _userSubscription?.cancel();
       _userSubscription = null;
-      _adventurerHubRepository.clearUserJoined();
-      _adventurerHubRepository.disconnectApplicantsChannel();
+      _partyFinderRepository.clearUserJoined();
+      _partyFinderRepository.disconnectApplicantsChannel();
     }
   }
 
   Future<void> _onAuthStatusUpdate(bool authenticated) async {
     if (authenticated) {
-      await _adventurerHubRepository.getUserJoined();
-      _adventurerHubRepository.disconnectApplicantsChannel();
-      _adventurerHubRepository.connectApplicantsChannel();
+      await _partyFinderRepository.getUserJoined();
+      _partyFinderRepository.disconnectApplicantsChannel();
+      _partyFinderRepository.connectApplicantsChannel();
     } else {
-      _adventurerHubRepository.clearUserJoined();
-      _adventurerHubRepository.disconnectApplicantsChannel();
+      _partyFinderRepository.clearUserJoined();
+      _partyFinderRepository.disconnectApplicantsChannel();
     }
   }
 
@@ -107,66 +107,66 @@ class AdventurerHubService {
     int postId,
     void Function(Recruitment) callback,
   ) {
-    _adventurerHubRepository.connectPostDetailChannel(postId, callback);
+    _partyFinderRepository.connectPostDetailChannel(postId, callback);
   }
 
   void disconnectPostDetailChannel(int postId) {
-    _adventurerHubRepository.disconnectPostDetailChannel(postId);
+    _partyFinderRepository.disconnectPostDetailChannel(postId);
   }
 
   void connectApplicantListChannel(
     int postId,
     void Function(Applicant) callback,
   ) {
-    _adventurerHubRepository.connectApplicantListChannel(postId, callback);
+    _partyFinderRepository.connectApplicantListChannel(postId, callback);
   }
 
   void disconnectApplicantListChannel(int postId) {
-    _adventurerHubRepository.disconnectApplicantListChannel(postId);
+    _partyFinderRepository.disconnectApplicantListChannel(postId);
   }
 
   Future<Recruitment?> getPost(int postId) async {
     if (_authRepository.authenticated) {
-      return await _adventurerHubRepository.getPostDetail(postId);
+      return await _partyFinderRepository.getPostDetail(postId);
     }
-    return await _adventurerHubRepository.getPost(postId);
+    return await _partyFinderRepository.getPost(postId);
   }
 
   Future<Applicant?> getSubmissionStatus(int postId) async {
-    return await _adventurerHubRepository.getSubmissionStatus(postId);
+    return await _partyFinderRepository.getSubmissionStatus(postId);
   }
 
   Future<List<Applicant>> getApplicants(int postId) async {
-    return await _adventurerHubRepository.getApplicants(postId);
+    return await _partyFinderRepository.getApplicants(postId);
   }
 
   Future<Recruitment?> updatePostState(int postId, bool status) async {
     if (status) {
-      return await _adventurerHubRepository.openPost(postId);
+      return await _partyFinderRepository.openPost(postId);
     } else {
-      return await _adventurerHubRepository.closePost(postId);
+      return await _partyFinderRepository.closePost(postId);
     }
   }
 
   Future<Applicant?> join(int postId) async {
-    return await _adventurerHubRepository.join(postId);
+    return await _partyFinderRepository.join(postId);
   }
 
   Future<Applicant?> cancel(int postId) async {
-    return await _adventurerHubRepository.cancel(postId);
+    return await _partyFinderRepository.cancel(postId);
   }
 
   Future<Applicant?> accept(int postId, String applicantId) async {
-    return await _adventurerHubRepository.accept(postId, applicantId);
+    return await _partyFinderRepository.accept(postId, applicantId);
   }
 
   Future<Applicant?> reject(int postId, String applicantId) async {
-    return await _adventurerHubRepository.reject(postId, applicantId);
+    return await _partyFinderRepository.reject(postId, applicantId);
   }
 
   void _sendToOverlay(List<Recruitment> value) {
     _overlayRepository.sendToOverlay(
-      method: Features.adventurerHub.name,
+      method: Features.partyFinder.name,
       data: jsonEncode(value
           .where((item) => item.status)
           .map((item) => item.toJson())

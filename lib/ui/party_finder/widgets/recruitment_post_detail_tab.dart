@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/model/recruitment.dart';
-import 'package:karanda/ui/adventurer_hub/widgets/recruitment_status_icon.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/core/ui/section.dart';
-import 'package:karanda/utils/extension/int_extension.dart';
+import 'package:karanda/ui/party_finder/widgets/recruitment_status_icon.dart';
 
 class RecruitmentPostDetailTab extends StatelessWidget {
   final Recruitment data;
@@ -33,7 +32,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
               Chip(
                 label: Text(
                   context.tr(
-                    "adventurer hub.category.${data.category.name}",
+                    "partyFinder.category.${data.category.name}",
                   ),
                 ),
               ),
@@ -45,7 +44,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
               Chip(
                 label: Text(
                   context.tr(
-                    "adventurer hub.recruitment type.${data.recruitmentType.name}",
+                    "partyFinder.recruitmentType.${data.recruitmentType.name}",
                   ),
                 ),
               ),
@@ -59,7 +58,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
           ),
         ),
         Section(
-          title: context.tr("adventurer hub.post.content"),
+          title: context.tr("partyFinder.post.content"),
           child: Container(
             padding: const EdgeInsets.all(12.0),
             alignment: Alignment.centerLeft,
@@ -69,7 +68,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
         data.privateContent.isEmpty
             ? const SizedBox()
             : Section(
-                title: context.tr("adventurer hub.post.private content"),
+                title: context.tr("partyFinder.post.privateContent"),
                 child: Container(
                   padding: const EdgeInsets.all(12.0),
                   alignment: Alignment.centerLeft,

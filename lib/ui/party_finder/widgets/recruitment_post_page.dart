@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/recruitment.dart';
-import 'package:karanda/ui/adventurer_hub/controllers/recruitment_post_controller.dart';
-import 'package:karanda/ui/adventurer_hub/widgets/recruitment_post_applicants_tab.dart';
-import 'package:karanda/ui/adventurer_hub/widgets/recruitment_post_detail_tab.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
+import 'package:karanda/ui/party_finder/widgets/recruitment_post_detail_tab.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:provider/provider.dart';
 
+import '../controllers/recruitment_post_controller.dart';
 import 'edit_recruitment_post_page.dart';
+import 'recruitment_post_applicants_tab.dart';
 
 class RecruitmentPostPage extends StatefulWidget {
   final int postId;
@@ -38,7 +38,7 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => RecruitmentPostController(
-        adventurerHubService: context.read(),
+        partyFinderService: context.read(),
         postId: widget.postId,
       )..getPost(postId: widget.postId),
       child: Consumer(
@@ -47,7 +47,7 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
             return Scaffold(
               appBar: KarandaAppBar(
                 icon: FontAwesomeIcons.circleNodes,
-                title: context.tr("adventurer hub.adventurer hub"),
+                title: context.tr("partyFinder.partyFinder"),
               ),
               body: const LoadingIndicator(),
             );
@@ -56,7 +56,7 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
           return Scaffold(
             appBar: KarandaAppBar(
               icon: FontAwesomeIcons.circleNodes,
-              title: context.tr("adventurer hub.adventurer hub"),
+              title: context.tr("partyFinder.partyFinder"),
               actions: [
                 controller.isOwner ? _EditButton(data: data) : const SizedBox(),
               ],
@@ -64,15 +64,9 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
                       data.recruitmentType == RecruitmentType.karandaReservation
                   ? TabBar(
                       controller: tabController,
-                      tabs: [
-                        Tab(
-                          icon: const Icon(Icons.description),
-                          //text: context.tr("adventurer hub.post.post"),
-                        ),
-                        Tab(
-                          icon: const Icon(Icons.groups),
-                          //text: context.tr("adventurer hub.post.applicants"),
-                        ),
+                      tabs: const [
+                        Tab(icon: Icon(Icons.description)),
+                        Tab(icon: Icon(Icons.groups)),
                       ],
                     )
                   : null,
@@ -149,7 +143,7 @@ class _FABState extends State<_FAB> {
     }
     if (mounted) {
       Navigator.of(context).pop();
-      if(result){
+      if (result) {
         SnackBarKit.of(context).requestFailed();
       }
     }
@@ -163,7 +157,7 @@ class _FABState extends State<_FAB> {
     final result = await widget.updatePostStatus();
     if (mounted) {
       Navigator.of(context).pop();
-      if(!result){
+      if (!result) {
         SnackBarKit.of(context).requestFailed();
       }
     }
@@ -180,7 +174,7 @@ class _FABState extends State<_FAB> {
             widget.isOpened ? const Icon(Icons.close) : const Icon(Icons.check),
         label: Text(
           context.tr(
-            "adventurer hub.post.${widget.isOpened ? "close" : "open"}",
+            "partyFinder.post.${widget.isOpened ? "close" : "open"}",
           ),
         ),
       );
@@ -191,7 +185,7 @@ class _FABState extends State<_FAB> {
         foregroundColor: Colors.white,
         icon: const Icon(Icons.close),
         label: Text(
-          context.tr("adventurer hub.post.cancel"),
+          context.tr("partyFinder.post.cancel"),
         ),
       );
     }
@@ -210,7 +204,7 @@ class _FABState extends State<_FAB> {
       icon: const Icon(Icons.check),
       label: Text(
         context.tr(
-          "adventurer hub.post.join",
+          "partyFinder.post.join",
         ),
       ),
     );
@@ -236,7 +230,7 @@ class _EditButton extends StatelessWidget {
         );
         if (context.mounted && result != null) {
           Navigator.of(context).pop();
-          context.goWithGa("/adventurer-hub/recruit/${result.id}");
+          context.goWithGa("/party-finder/recruit/${result.id}");
         }
       },
       icon: const Icon(Icons.edit),

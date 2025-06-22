@@ -32,9 +32,9 @@ class UserFcmSettingsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> switchAdventurerHubStatus(bool? value) async {
+  Future<void> switchPartyFinderStatus(bool? value) async {
     if(value != null && fcmSettings != null){
-      fcmSettings!.adventurerHub = value;
+      fcmSettings!.partyFinder = value;
       fcmSettings = await _appSettingsService.saveFcmSettings(fcmSettings!);
       notifyListeners();
     }

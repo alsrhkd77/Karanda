@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/enums/recruitment_category.dart';
-import 'package:karanda/model/adventurer_hub_settings.dart';
+import 'package:karanda/model/party_finder_settings.dart';
 import 'package:karanda/model/world_boss_settings.dart';
 import 'package:karanda/ui/core/theme/features_icon.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
@@ -19,7 +19,7 @@ class NotificationSettingsPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => NotificationSettingsController(
         worldBossService: context.read(),
-        adventurerHubRepository: context.read(),
+        partyFinderRepository: context.read(),
       ),
       child: Scaffold(
         appBar: KarandaAppBar(
@@ -29,13 +29,13 @@ class NotificationSettingsPage extends StatelessWidget {
         body: Consumer(
           builder: (context, NotificationSettingsController controller, child) {
             if (controller.worldBossSettings == null ||
-                controller.adventurerHubSettings == null) {
+                controller.partyFinderSettings == null) {
               return const LoadingIndicator();
             }
             final WorldBossSettings worldBossSettings =
                 controller.worldBossSettings!;
-            final AdventurerHubSettings adventurerHubSettings =
-                controller.adventurerHubSettings!;
+            final PartyFinderSettings partyFinderSettings =
+                controller.partyFinderSettings!;
             return PageBase(
               children: [
                 Section(
@@ -69,33 +69,33 @@ class NotificationSettingsPage extends StatelessWidget {
                   ),
                 ),
                 Section(
-                  title: context.tr("adventurer hub.adventurer hub"),
-                  icon: FeaturesIcon.adventurerHub,
+                  title: context.tr("partyFinder.partyFinder"),
+                  icon: FeaturesIcon.partyFinder,
                   child: Column(
                     children: [
                       SwitchListTile(
-                        value: adventurerHubSettings.notify,
-                        onChanged: controller.setAdventurerHubNotify,
+                        value: partyFinderSettings.notify,
+                        onChanged: controller.setPartyFinderNotify,
                         title:
                             Text(context.tr("settings.activate notifications")),
                       ),
                       ExpansionTile(
                         title: Text(
-                            context.tr("adventurer hub.settings.excluded")),
+                            context.tr("partyFinder.settings.excluded")),
                         children: [
-                          _AdventurerHubRecruitmentCategoryTile(
+                          _PartyFinderRecruitmentCategoryTile(
                             category: RecruitmentCategory.partyAndPlatoon,
-                            excluded: adventurerHubSettings.excludedCategory
+                            excluded: partyFinderSettings.excludedCategory
                                 .contains(RecruitmentCategory.partyAndPlatoon),
                           ),
-                          _AdventurerHubRecruitmentCategoryTile(
+                          _PartyFinderRecruitmentCategoryTile(
                             category: RecruitmentCategory.guildBossRaid,
-                            excluded: adventurerHubSettings.excludedCategory
+                            excluded: partyFinderSettings.excludedCategory
                                 .contains(RecruitmentCategory.guildBossRaid),
                           ),
-                          _AdventurerHubRecruitmentCategoryTile(
+                          _PartyFinderRecruitmentCategoryTile(
                             category: RecruitmentCategory.guildWar,
-                            excluded: adventurerHubSettings.excludedCategory
+                            excluded: partyFinderSettings.excludedCategory
                                 .contains(RecruitmentCategory.guildWar),
                           ),
                         ],
@@ -139,11 +139,11 @@ class _WorldBossNotificationTimeTile extends StatelessWidget {
   }
 }
 
-class _AdventurerHubRecruitmentCategoryTile extends StatelessWidget {
+class _PartyFinderRecruitmentCategoryTile extends StatelessWidget {
   final RecruitmentCategory category;
   final bool excluded;
 
-  const _AdventurerHubRecruitmentCategoryTile({
+  const _PartyFinderRecruitmentCategoryTile({
     super.key,
     required this.category,
     required this.excluded,
@@ -152,12 +152,12 @@ class _AdventurerHubRecruitmentCategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(context.tr("adventurer hub.category.${category.name}")),
+      title: Text(context.tr("partyFinder.category.${category.name}")),
       trailing: Checkbox(
         value: excluded,
         onChanged: (value) => context
             .read<NotificationSettingsController>()
-            .updateAdventurerHubExcludedCategory(category),
+            .updatePartyFinderExcludedCategory(category),
       ),
     );
   }

@@ -146,7 +146,7 @@
     "display name": "Display by boss name",
     "bossHpScaleIndicator": "Boss HP scale indicator",
     "clock": "Clock",
-    "adventurerHub": "Adventurer hub (Experimental)",
+    "partyFinder": "Party Finder (Experimental)",
     "settings": {
       "select display": "Select display",
       "reset widgets": "Reset Overlay widgets size & position"
@@ -189,43 +189,43 @@
     "preset item price": "Base price",
     "preset item out of stock": "Out of stock"
   },
-  "adventurer hub": {
-    "adventurer hub": "Adventurer Hub (Experimental)",
+  "partyFinder": {
+    "partyFinder": "Party Finder (Experimental)",
     "category": {
       "partyAndPlatoon": "Party & Platoon",
       "guildBossRaid": "Guild boss",
       "guildWar": "Node war"
     },
-    "recruitment type": {
+    "recruitmentType": {
       "inGameWhispers": "In game whispers",
       "inGamePartyRecruitment": "In game party recruitment",
       "karandaReservation": "Karanda Reservation"
     },
-    "recruitment join status": {
+    "recruitmentJoinStatus": {
       "pending": "Pending",
       "accepted": "Accepted",
       "cancelled": "Cancelled",
       "rejected": "Rejected"
     },
-    "edit post": {
-      "edit post": "Edit Post",
+    "editPost": {
+      "editPost": "Edit Post",
       "title": "Title (Required)",
       "category": "Category (Required)",
-      "recruitment type": "Recruitment type (Required)",
-      "guild name": "Guild name (Required)",
+      "recruitmentType": "Recruitment type (Required)",
+      "guildName": "Guild name (Required)",
       "slots": "Slots (Required)",
       "content": "Details",
-      "content hint": "Please provide details about your recruitment",
-      "private content": "Private Details",
-      "private content hint": "This information is available to accepted members only",
-      "discord link": "Discord invitation code (Optional)",
-      "discord link validate failed": "Enter your Discord invite code",
+      "contentHint": "Please provide details about your recruitment",
+      "privateContent": "Private Details",
+      "privateContentHint": "This information is available to accepted members only",
+      "discordLink": "Discord invitation code (Optional)",
+      "discordLinkValidateFailed": "Enter your Discord invite code",
       "save": "Save"
     },
     "post": {
       "post": "Post",
       "content": "Details",
-      "private content": "Private Details",
+      "privateContent": "Private Details",
       "applicants": "Applicants",
       "open": "Open",
       "close": "Close",
@@ -233,13 +233,13 @@
       "cancel": "Cancel",
       "accept": "Accept",
       "reject": "Reject",
-      "applicants empty": "No applicants yet"
+      "applicantsEmpty": "No applicants yet"
     },
     "settings": {
       "excluded": "Excluded"
     },
     "recruit": "Recruit",
-    "no posts open": "No posts are open.",
+    "noPostsOpen": "No posts are open.",
 
     "new post": "Create new post",
     "members": "Members\n({})",

@@ -3,15 +3,15 @@ import 'package:karanda/enums/bdo_region.dart';
 class UserFcmSettings {
   String token;
   BDORegion region;
-  bool adventurerHub;
+  bool partyFinder;
 
-  UserFcmSettings({required this.token, required this.region, this.adventurerHub = false,});
+  UserFcmSettings({required this.token, required this.region, this.partyFinder = false,});
 
   factory UserFcmSettings.fromJson(Map json) {
     return UserFcmSettings(
       token: json["token"],
       region: BDORegion.values.byName(json["region"]),
-      adventurerHub: json["adventurerHub"] ?? false,
+      partyFinder: json["partyFinder"] ?? false,
     );
   }
 
@@ -19,7 +19,7 @@ class UserFcmSettings {
     return {
       "token": token,
       "region": region.name,
-      "adventurerHub": adventurerHub,
+      "partyFinder": partyFinder,
     };
   }
 }

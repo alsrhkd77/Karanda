@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/model/applicant.dart';
 import 'package:karanda/model/user.dart';
-import 'package:karanda/service/adventurer_hub_service.dart';
+import 'package:karanda/service/party_finder_service.dart';
 
 import '../../../model/recruitment.dart';
 
-class AdventurerHubController extends ChangeNotifier {
-  final AdventurerHubService _adventurerHubService;
+class PartyFinderController extends ChangeNotifier {
+  final PartyFinderService _partyFinderService;
   late final StreamSubscription _user;
   late final StreamSubscription _recruitments;
   StreamSubscription? _applicants;
@@ -17,12 +17,12 @@ class AdventurerHubController extends ChangeNotifier {
   List<Recruitment>? recruitments;
   List<Applicant>? applicants;
 
-  AdventurerHubController({
-    required AdventurerHubService adventurerHubService,
-  }) : _adventurerHubService = adventurerHubService {
-    _user = _adventurerHubService.userStream.listen(_onUserUpdate);
+  PartyFinderController({
+    required PartyFinderService partyFinderService,
+  }) : _partyFinderService = partyFinderService {
+    _user = _partyFinderService.userStream.listen(_onUserUpdate);
     _recruitments =
-        adventurerHubService.recruitmentsStream.listen(_onRecruitmentsUpdate);
+        partyFinderService.recruitmentsStream.listen(_onRecruitmentsUpdate);
   }
 
   bool get authenticated => user != null;
@@ -32,7 +32,7 @@ class AdventurerHubController extends ChangeNotifier {
     notifyListeners();
     if (user != null) {
       _applicants =
-          _adventurerHubService.applicantsStream.listen(_onApplicantsUpdate);
+          _partyFinderService.applicantsStream.listen(_onApplicantsUpdate);
     } else {
       _applicants?.cancel();
       _applicants = null;

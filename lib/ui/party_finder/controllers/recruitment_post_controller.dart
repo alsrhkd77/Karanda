@@ -6,10 +6,10 @@ import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/applicant.dart';
 import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/model/user.dart';
-import 'package:karanda/service/adventurer_hub_service.dart';
+import 'package:karanda/service/party_finder_service.dart';
 
 class RecruitmentPostController extends ChangeNotifier {
-  final AdventurerHubService _adventurerHubService;
+  final PartyFinderService _partyFinderService;
   late final StreamSubscription _user;
   StreamSubscription? _applicants;
 
@@ -18,10 +18,10 @@ class RecruitmentPostController extends ChangeNotifier {
   User? user;
 
   RecruitmentPostController({
-    required AdventurerHubService adventurerHubService,
+    required PartyFinderService partyFinderService,
     required int postId,
-  }) : _adventurerHubService = adventurerHubService {
-    _user = _adventurerHubService.userStream.listen(_onUserUpdate);
+  }) : _partyFinderService = partyFinderService {
+    _user = _partyFinderService.userStream.listen(_onUserUpdate);
   }
 
   Applicant? get applicant => applicants?.firstOrNull;
@@ -34,10 +34,10 @@ class RecruitmentPostController extends ChangeNotifier {
   bool get isOpened => recruitment?.status ?? false;
 
   Future<void> getPost({required int postId}) async {
-    recruitment = await _adventurerHubService.getPost(postId);
+    recruitment = await _partyFinderService.getPost(postId);
     notifyListeners();
     if (recruitment != null) {
-      _adventurerHubService.connectPostDetailChannel(
+      _partyFinderService.connectPostDetailChannel(
         postId,
         _recruitmentChannelCallback,
       );
@@ -50,7 +50,7 @@ class RecruitmentPostController extends ChangeNotifier {
   Future<bool> changePostStatus() async {
     if (recruitment != null && isOwner) {
       final status = isOpened;
-      recruitment = await _adventurerHubService.updatePostState(
+      recruitment = await _partyFinderService.updatePostState(
         recruitment!.id,
         !isOpened,
       );
@@ -62,7 +62,7 @@ class RecruitmentPostController extends ChangeNotifier {
 
   Future<bool> join() async {
     if (recruitment != null && user != null && applicant == null) {
-      final result = await _adventurerHubService.join(recruitment!.id);
+      final result = await _partyFinderService.join(recruitment!.id);
       if (result != null) {
         applicants = [result];
         notifyListeners();
@@ -76,7 +76,7 @@ class RecruitmentPostController extends ChangeNotifier {
     if (recruitment != null &&
         user != null &&
         applicant?.status == RecruitmentJoinStatus.pending) {
-      final result = await _adventurerHubService.cancel(recruitment!.id);
+      final result = await _partyFinderService.cancel(recruitment!.id);
       if (result != null) {
         applicants = [result];
         notifyListeners();
@@ -89,7 +89,7 @@ class RecruitmentPostController extends ChangeNotifier {
   Future<bool> accept(String applicantId) async {
     if (recruitment != null) {
       final result =
-          await _adventurerHubService.accept(recruitment!.id, applicantId);
+          await _partyFinderService.accept(recruitment!.id, applicantId);
       if (result != null) {
         final index = applicants!.indexWhere(
             (value) => value.user.discordId == result.user.discordId);
@@ -104,7 +104,7 @@ class RecruitmentPostController extends ChangeNotifier {
   Future<bool> reject(String applicantId) async {
     if (recruitment != null) {
       final result =
-          await _adventurerHubService.reject(recruitment!.id, applicantId);
+          await _partyFinderService.reject(recruitment!.id, applicantId);
       if (result != null) {
         final index = applicants!.indexWhere(
             (value) => value.user.discordId == result.user.discordId);
@@ -121,17 +121,17 @@ class RecruitmentPostController extends ChangeNotifier {
       if (isOwner) {
         await _applicants?.cancel();
         applicants = null;
-        applicants = await _adventurerHubService.getApplicants(recruitment!.id);
+        applicants = await _partyFinderService.getApplicants(recruitment!.id);
         applicants?.sort((a, b) => a.joinAt.compareTo(b.joinAt));
         notifyListeners();
-        _adventurerHubService.connectApplicantListChannel(
+        _partyFinderService.connectApplicantListChannel(
           recruitment!.id,
           _applicantChannelCallback,
         );
       } else {
-        _adventurerHubService.disconnectApplicantListChannel(recruitment!.id);
+        _partyFinderService.disconnectApplicantListChannel(recruitment!.id);
         if (applicants == null) {
-          _applicants = _adventurerHubService.applicantsStream
+          _applicants = _partyFinderService.applicantsStream
               .map((items) => items
                   .where((value) => value.postId == recruitment!.id)
                   .toList())
@@ -176,8 +176,8 @@ class RecruitmentPostController extends ChangeNotifier {
   @override
   void dispose() {
     if (recruitment != null) {
-      _adventurerHubService.disconnectApplicantListChannel(recruitment!.id);
-      _adventurerHubService.disconnectPostDetailChannel(recruitment!.id);
+      _partyFinderService.disconnectApplicantListChannel(recruitment!.id);
+      _partyFinderService.disconnectPostDetailChannel(recruitment!.id);
     }
     _user.cancel();
     _applicants?.cancel();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="adventurerHub">모험가 허브</string>
+    <string name="partyFinder">Party Finder</string>
     <string name="partyAndPlatoonRecruitOpened">%1$s - 모집 시작!</string>
     <string name="guildBossRaidRecruitOpened">%1$s - 모집 시작!</string>
     <string name="guildWarRecruitOpened">%1$s - 모집 시작!</string>

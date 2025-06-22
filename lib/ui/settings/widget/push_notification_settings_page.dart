@@ -40,9 +40,9 @@ class PushNotificationSettingsPage extends StatelessWidget {
                   children: [
                     CheckboxListTile(
                       enabled: controller.activate,
-                      title: Text(context.tr("adventurer hub.adventurer hub")),
-                      value: controller.fcmSettings?.adventurerHub ?? false,
-                      onChanged: controller.switchAdventurerHubStatus,
+                      title: Text(context.tr("partyFinder.partyFinder")),
+                      value: controller.fcmSettings?.partyFinder ?? false,
+                      onChanged: controller.switchPartyFinderStatus,
                     ),
                   ],
                 ),

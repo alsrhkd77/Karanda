@@ -1,19 +1,19 @@
 import 'package:karanda/enums/recruitment_category.dart';
 
-class AdventurerHubSettings {
+class PartyFinderSettings {
   bool notify;
   Set<RecruitmentCategory> excludedCategory = {};
 
-  AdventurerHubSettings({this.notify = false, Set<RecruitmentCategory>? excludedCategory}) {
+  PartyFinderSettings({this.notify = false, Set<RecruitmentCategory>? excludedCategory}) {
     this.excludedCategory.addAll(excludedCategory ?? {});
   }
 
-  factory AdventurerHubSettings.fromJson(Map json) {
+  factory PartyFinderSettings.fromJson(Map json) {
     final List<RecruitmentCategory> excludedCategoryList = [];
     for(String item in json["excludedCategory"] ?? []){
       excludedCategoryList.add(RecruitmentCategory.values.byName(item));
     }
-    return AdventurerHubSettings(
+    return PartyFinderSettings(
       notify: json["notify"],
       excludedCategory: Set.from(excludedCategoryList),
     );

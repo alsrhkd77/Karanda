@@ -4,26 +4,26 @@ import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
-import 'package:karanda/ui/overlay_app/controllers/adventurer_hub_overlay_controller.dart';
+import 'package:karanda/ui/overlay_app/controllers/party_finder_overlay_controller.dart';
 import 'package:karanda/ui/overlay_app/widgets/overlay_widget.dart';
 import 'package:provider/provider.dart';
 
-class AdventurerHubOverlayWidget extends StatelessWidget {
+class PartyFinderOverlayWidget extends StatelessWidget {
   final double height;
 
-  const AdventurerHubOverlayWidget({super.key, required this.height});
+  const PartyFinderOverlayWidget({super.key, required this.height});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AdventurerHubOverlayController(
-        key: OverlayFeatures.adventurerHub,
+      create: (context) => PartyFinderOverlayController(
+        key: OverlayFeatures.partyFinder,
         defaultRect: Rect.fromLTWH(2, (height / 2) - ((height / 3) / 2), 440, height / 3),
         constraints: const BoxConstraints(minWidth: 200, minHeight: 400),
         service: context.read(),
       ),
       child: Consumer(
-          builder: (context, AdventurerHubOverlayController controller, child) {
+          builder: (context, PartyFinderOverlayController controller, child) {
         return OverlayWidget(
           resizable: controller.editMode,
           show: controller.show,
@@ -34,7 +34,7 @@ class AdventurerHubOverlayWidget extends StatelessWidget {
               return const LoadingIndicator();
             } else if (controller.recruitments?.isEmpty ?? true) {
               return Center(
-                child: Text(context.tr("adventurer hub.no posts open")),
+                child: Text(context.tr("partyFinder.noPostsOpen")),
               );
             }
             return ListView.separated(

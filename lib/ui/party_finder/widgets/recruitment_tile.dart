@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/model/recruitment.dart';
-import 'package:karanda/ui/adventurer_hub/widgets/recruitment_status_icon.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
+
+import 'recruitment_status_icon.dart';
 
 class RecruitmentTile extends StatelessWidget {
   final Recruitment data;
@@ -31,7 +32,7 @@ class RecruitmentTile extends StatelessWidget {
         ),
         trailing: RecruitmentStatusIcon(status: data.status),
         onTap: () {
-          context.goWithGa("/adventurer-hub/recruit/${data.id}");
+          context.goWithGa("/partyFinder/recruit/${data.id}");
         },
       ),
     );

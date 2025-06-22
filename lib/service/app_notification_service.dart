@@ -8,7 +8,7 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/recruitment_category.dart';
 import 'package:karanda/model/app_notification_message.dart';
 import 'package:karanda/model/user.dart';
-import 'package:karanda/repository/adventurer_hub_repository.dart';
+import 'package:karanda/repository/party_finder_repository.dart';
 import 'package:karanda/repository/app_notification_repository.dart';
 import 'package:karanda/repository/app_settings_repository.dart';
 import 'package:karanda/repository/audio_player_repository.dart';
@@ -27,7 +27,7 @@ class AppNotificationService {
   final OverlayRepository _overlayRepository;
   final AppSettingsRepository _appSettingsRepository;
   final AuthRepository _authRepository;
-  final AdventurerHubRepository _adventurerHubRepository;
+  final PartyFinderRepository _partyFinderRepository;
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey;
 
   AppNotificationService({
@@ -36,14 +36,14 @@ class AppNotificationService {
     required OverlayRepository overlayRepository,
     required AppSettingsRepository appSettingsRepository,
     required AuthRepository authRepository,
-    required AdventurerHubRepository adventurerHubRepository,
+    required PartyFinderRepository partyFinderRepository,
     required GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey,
   })  : _appNotificationRepository = appNotificationRepository,
         _audioPlayerRepository = audioPlayerRepository,
         _overlayRepository = overlayRepository,
         _appSettingsRepository = appSettingsRepository,
         _authRepository = authRepository,
-        _adventurerHubRepository = adventurerHubRepository,
+        _partyFinderRepository = partyFinderRepository,
         _scaffoldMessengerKey = scaffoldMessengerKey {
     _appNotificationRepository.notificationMessageStream
         .where(_filter)
@@ -78,13 +78,13 @@ class AppNotificationService {
 
   bool _filter(AppNotificationMessage message) {
     try {
-      if (!kIsWeb && message.feature == Features.adventurerHub) {
-        final adventurerHubSettings = _adventurerHubRepository.settings;
+      if (!kIsWeb && message.feature == Features.partyFinder) {
+        final partyFinderSettings = _partyFinderRepository.settings;
         final category = RecruitmentCategory.values
             .byName(message.contentsKey.split(" ").first);
-        if (!adventurerHubSettings.notify) {
+        if (!partyFinderSettings.notify) {
           return false;
-        } else if (adventurerHubSettings.excludedCategory.contains(category)) {
+        } else if (partyFinderSettings.excludedCategory.contains(category)) {
           return false;
         }
       }

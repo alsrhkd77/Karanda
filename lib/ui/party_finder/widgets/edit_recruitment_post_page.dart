@@ -6,12 +6,14 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/recruitment_category.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/recruitment.dart';
-import 'package:karanda/ui/adventurer_hub/controllers/edit_recruitment_post_controller.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/section.dart';
+import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:provider/provider.dart';
+
+import '../controllers/edit_recruitment_post_controller.dart';
 
 class EditRecruitmentPostPage extends StatelessWidget {
   final Recruitment? recruitment;
@@ -27,14 +29,14 @@ class EditRecruitmentPostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => EditRecruitmentPostController(
-        adventurerHubRepository: context.read(),
+        partyFinderRepository: context.read(),
         region: region,
         recruitment: recruitment,
       ),
       child: Scaffold(
         appBar: KarandaAppBar(
           icon: FontAwesomeIcons.circleNodes,
-          title: context.tr("adventurer hub.edit post.edit post"),
+          title: context.tr("partyFinder.editPost.editPost"),
         ),
         body: Consumer(
           builder: (context, EditRecruitmentPostController controller, child) {
@@ -53,7 +55,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                           title: TextFormField(
                             decoration: InputDecoration(
                               labelText:
-                                  context.tr("adventurer hub.edit post.title"),
+                                  context.tr("partyFinder.editPost.title"),
                             ),
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             controller: controller.titleTextController,
@@ -68,7 +70,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text(
-                            context.tr("adventurer hub.edit post.category"),
+                            context.tr("partyFinder.editPost.category"),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                             vertical: 8.0,
@@ -82,7 +84,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                               return DropdownMenuEntry(
                                 value: value,
                                 label: context.tr(
-                                  "adventurer hub.category.${value.name}",
+                                  "partyFinder.category.${value.name}",
                                 ),
                               );
                             }).toList(),
@@ -92,7 +94,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                         ListTile(
                           title: Text(
                             context
-                                .tr("adventurer hub.edit post.recruitment type"),
+                                .tr("partyFinder.editPost.recruitmentType"),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                             vertical: 8.0,
@@ -106,7 +108,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                               return DropdownMenuEntry(
                                 value: value,
                                 label: context.tr(
-                                  "adventurer hub.recruitment type.${value.name}",
+                                  "partyFinder.recruitmentType.${value.name}",
                                 ),
                               );
                             }).toList(),
@@ -117,7 +119,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                           title: TextFormField(
                             decoration: InputDecoration(
                               labelText:
-                                  context.tr("adventurer hub.edit post.slots"),
+                                  context.tr("partyFinder.editPost.slots"),
                             ),
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             controller: controller.slotTextController,
@@ -143,7 +145,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                               controller.guildNameTextController,
                         ),
                         Section(
-                          title: context.tr("adventurer hub.edit post.content"),
+                          title: context.tr("partyFinder.editPost.content"),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
@@ -157,7 +159,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                                   horizontal: 12.0,
                                 ),
                                 hintText: context.tr(
-                                  "adventurer hub.edit post.content hint",
+                                  "partyFinder.editPost.contentHint",
                                 ),
                               ),
                             ),
@@ -165,7 +167,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                         ),
                         Section(
                           title: context.tr(
-                            "adventurer hub.edit post.private content",
+                            "partyFinder.editPost.privateContent",
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -182,7 +184,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                                   horizontal: 12.0,
                                 ),
                                 hintText: context.tr(
-                                  "adventurer hub.edit post.private content hint",
+                                  "partyFinder.editPost.privateContentHint",
                                 ),
                               ),
                             ),
@@ -192,7 +194,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                           title: TextFormField(
                             decoration: InputDecoration(
                               labelText: context
-                                  .tr("adventurer hub.edit post.discord link"),
+                                  .tr("partyFinder.editPost.discordLink"),
                             ),
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             controller: controller.discordTextController,
@@ -209,7 +211,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
                                 return null;
                               }
                               return context.tr(
-                                "edit recruitment.discord code validate failed",
+                                "partyFinder.editPost.discordLinkValidateFailed",
                               );
                             },
                           ),
@@ -256,7 +258,7 @@ class _SubmitButtonState extends State<_SubmitButton> {
         if (result != null) {
           Navigator.of(context).pop(result);
         } else {
-          //TODO: show failed snackbar
+          SnackBarKit.of(context).requestFailed();
         }
       }
     }
@@ -274,7 +276,7 @@ class _SubmitButtonState extends State<_SubmitButton> {
             vertical: 12.0,
             horizontal: 4.0,
           ),
-          child: Text(context.tr("adventurer hub.edit post.save")),
+          child: Text(context.tr("partyFinder.editPost.save")),
         ),
       ),
     );
@@ -299,7 +301,7 @@ class _GuildName extends StatelessWidget {
         title: TextFormField(
           controller: textEditingController,
           decoration: InputDecoration(
-              labelText: context.tr("adventurer hub.edit post.guild name"),
+              labelText: context.tr("partyFinder.editPost.guildName"),
               counter: const SizedBox()),
           maxLength: 32,
           autovalidateMode: AutovalidateMode.onUserInteraction,
