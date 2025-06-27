@@ -19,7 +19,7 @@ class User {
       username: json["username"],
       avatar: json["avatar"],
       family:
-          json["family"] == null ? null : BDOFamily.fromJson(json["family"]),
+          json["bdoFamily"] == null ? null : BDOFamily.fromJson(json["bdoFamily"]),
     );
   }
 
@@ -28,7 +28,7 @@ class User {
       "discordId": discordId,
       "username": username,
       "avatar": avatar,
-      "family": family?.toJson(),
+      "bdoFamily": family?.toJson(),
     };
   }
 }

@@ -7,7 +7,7 @@ import 'package:karanda/utils/http_status.dart';
 import 'package:karanda/utils/rest_client.dart';
 
 class BDOFamilyApi{
-  Future<List<BDOFamily>> getFamilies() async {
+  /*Future<List<BDOFamily>> getFamilies() async {
     final List<BDOFamily> result = [];
     final response = await RestClient.get(KarandaApi.families);
     if(response.statusCode == HttpStatus.ok){
@@ -16,5 +16,5 @@ class BDOFamilyApi{
       }
     }
     return result;
-  }
+  }*/
 }

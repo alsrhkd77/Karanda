@@ -17,11 +17,8 @@ class AuthRepository {
   final String _accessTokenKey = "karanda-token";
   final String _refreshTokenKey = "refresh-token";
   final _user = BehaviorSubject<User?>()..sink.add(null);
-  final _families = BehaviorSubject<List<BDOFamily>>()..sink.add([]);
 
   Stream<User?> get userStream => _user.stream;
-
-  Stream<List<BDOFamily>> get familiesStream => _families.stream;
 
   bool get authenticated => _user.value != null;
 
@@ -36,7 +33,6 @@ class AuthRepository {
       switch (result) {
         case Ok<User>():
           _user.sink.add(result.value);
-          _families.sink.add(await _familyApi.getFamilies());
           return true;
         case Error<User>():
           _user.sink.add(null);
@@ -48,7 +44,6 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    _families.sink.add([]);
     _user.sink.add(null);
     await clearToken();
   }

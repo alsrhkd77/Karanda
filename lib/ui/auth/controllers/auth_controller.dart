@@ -8,14 +8,11 @@ import 'package:karanda/service/auth_service.dart';
 class AuthController extends ChangeNotifier{
   final AuthService _authService;
   late final StreamSubscription _user;
-  late final StreamSubscription _families;
   User? user;
-  List<BDOFamily> families = [];
 
   AuthController({required AuthService authService})
       : _authService = authService{
     _user = _authService.userStream.listen(_onUserUpdate);
-    _families = _authService.familiesStream.listen(_onFamiliesUpdate);
   }
 
   void authentication() {
@@ -37,15 +34,9 @@ class AuthController extends ChangeNotifier{
     notifyListeners();
   }
 
-  void _onFamiliesUpdate(List<BDOFamily> value){
-    families = value;
-    notifyListeners();
-  }
-
   @override
   void dispose() {
     _user.cancel();
-    _families.cancel();
     super.dispose();
   }
 }

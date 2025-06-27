@@ -16,7 +16,6 @@ class AuthService extends ChangeNotifier {
   bool get authenticated => _authRepository.authenticated;
 
   Stream<User?> get userStream => _authRepository.userStream;
-  Stream<List<BDOFamily>> get familiesStream => _authRepository.familiesStream;
 
   AuthService({
     required AuthRepository authRepository,
