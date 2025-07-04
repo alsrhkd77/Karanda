@@ -16,12 +16,18 @@ abstract final class KarandaApi {
   ];
 
   static const String itemImage = "$storage/bdo/item/image";
+  static const String classSymbol = "$storage/bdo/classes/symbol";
 
   static const String _auth = "/auth";
   static const String authorization = "$_auth/discord/authorization";
   static const String tokenRefresh = "$_auth/discord/refresh";
   static const String unregister = "$_auth/discord/unregister";
-  static const String families = "/bdo-family/families";
+  static const String _family = "/bdo-family";
+  static const String registerFamily = "$_family/register";
+  static const String unregisterFamily = "$_family/unregister";
+  static const String updateFamilyData = "$_family/update-family";
+  static const String startFamilyVerification = "$_family/start-verification";
+  static const String verifyFamily = "$_family/verify";
   static const String _tradeMarket = "/trade-market";
   static const String marketWaitList = "$_tradeMarket/wait-list";
   static const String marketPriceDetail = "$_tradeMarket/detail";

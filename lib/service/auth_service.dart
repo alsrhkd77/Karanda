@@ -7,12 +7,15 @@ import 'package:karanda/repository/auth_repository.dart';
 
 import 'package:karanda/model/user.dart';
 
+import '../enums/bdo_region.dart';
+
 class AuthService extends ChangeNotifier {
   final AuthRepository _authRepository;
   final GoRouter _router;
   late final StreamSubscription _user;
 
   bool waitResponse = false;
+
   bool get authenticated => _authRepository.authenticated;
 
   Stream<User?> get userStream => _authRepository.userStream;
@@ -81,6 +84,26 @@ class AuthService extends ChangeNotifier {
         //TODO: 로그인 실패 스낵바 필요
       },
     );
+  }
+
+  Future<bool> registerFamily({
+    required BDORegion region,
+    required String code,
+    required String familyName,
+  }) async {
+    return await _authRepository.registerFamily(
+      region: region,
+      code: code,
+      familyName: familyName,
+    );
+  }
+
+  Future<bool> unregisterFamily() async {
+    return await _authRepository.unregisterFamily();
+  }
+
+  Future<bool> updateFamilyData() async {
+    return await _authRepository.updateFamilyData();
   }
 
   @override

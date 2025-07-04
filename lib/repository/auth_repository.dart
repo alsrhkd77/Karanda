@@ -11,6 +11,8 @@ import 'package:karanda/utils/result.dart';
 import 'package:karanda/model/user.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../enums/bdo_region.dart';
+
 class AuthRepository {
   late final AuthApi _authApi;
   late final BDOFamilyApi _familyApi;
@@ -80,5 +82,79 @@ class AuthRepository {
     const storage = FlutterSecureStorage();
     await storage.delete(key: _accessTokenKey);
     await storage.delete(key: _refreshTokenKey);
+  }
+
+  Future<bool> registerFamily({
+    required BDORegion region,
+    required String code,
+    required String familyName,
+  }) async {
+    final result = await _familyApi.registerFamily(
+      region: region,
+      code: code,
+      familyName: familyName,
+    );
+    if (result != null) {
+      final snapshot = _user.valueOrNull?..family = result;
+      _user.sink.add(snapshot);
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> unregisterFamily() async {
+    final familySnapshot = _user.valueOrNull?.family;
+    if (familySnapshot != null) {
+      final result = await _familyApi.unregisterFamily(
+        familySnapshot.region,
+        familySnapshot.code,
+      );
+      if (result) {
+        final snapshot = _user.valueOrNull?..family = null;
+        _user.sink.add(snapshot);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<bool> updateFamilyData() async {
+    final familySnapshot = _user.valueOrNull?.family;
+    if (familySnapshot != null) {
+      final result = await _familyApi.updateFamilyData(
+        familySnapshot.region,
+        familySnapshot.code,
+      );
+      if (result != null) {
+        final snapshot = _user.valueOrNull?..family = result;
+        _user.sink.add(snapshot);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<Map> startFamilyVerification() async {
+    final familySnapshot = _user.valueOrNull?.family;
+    if (familySnapshot != null) {
+      return await _familyApi.startVerification(
+        familySnapshot.region,
+        familySnapshot.code,
+      );
+    }
+    return {};
+  }
+
+  Future<bool> verifyFamily() async {
+    final familySnapshot = _user.valueOrNull?.family;
+    if (familySnapshot != null) {
+      final result = await _familyApi.verify(familySnapshot.region, familySnapshot.code,);
+      if(result != null){
+        final snapshot = _user.valueOrNull?..family = result;
+        _user.sink.add(snapshot);
+        return true;
+      }
+    }
+    return false;
   }
 }

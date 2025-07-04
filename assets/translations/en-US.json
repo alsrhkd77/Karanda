@@ -5,10 +5,12 @@
   "finish": "Finish",
   "needLogin": "Login required.",
   "requestFailed": "The request failed.",
+  "region": "Region",
   "validator": {
     "empty": "Must not be empty",
     "zero": "Must be greater than 0",
-    "fillWith": "Please enter {}"
+    "fillWith": "Please enter {}",
+    "invalidFormat": "Invalid Format"
   },
   "font": {
     "maplestory": "Maple Story",
@@ -78,14 +80,29 @@
     "account info": "Account info",
     "auth error": "Authentication error",
     "account": "Account",
-    "family": "Family",
     "management": "Management",
     "username": "Username",
     "platform": "Login platform",
-    "add family": "Register family",
     "login": "Login",
     "logout": "logout",
     "unregister": "Unregister"
+  },
+  "family": {
+    "family": "Family",
+    "register": "Register family",
+    "unregister": "Unregister family",
+    "update": "Update family data",
+    "empty": "There are no registered families",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "familyName": "Family Name",
+    "mainClass": "Main Class",
+    "maxGearScore": "MaxGearScore",
+    "verificationStatus": "Verification Status",
+    "lastUpdate": "Last Update",
+    "verify": "Verify",
+    "verification": "Family Verification",
+    "adventurerProfileCode": "Adventurer Profile Code"
   },
   "settings": {
     "settings": "Settings",

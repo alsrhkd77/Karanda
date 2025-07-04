@@ -5,10 +5,12 @@
   "finish": "완료",
   "needLogin": "로그인이 필요한 서비스입니다.",
   "requestFailed": "요청에 실패했습니다.",
+  "region": "서버",
   "validator": {
     "empty": "필수입니다",
     "zero": "0보다 커야 합니다",
-    "fillWith": "{}을(를) 입력해주세요"
+    "fillWith": "{}을(를) 입력해주세요",
+    "invalidFormat": "올바르지 않은 형식입니다"
   },
   "font": {
     "maplestory": "메이플스토리체",
@@ -78,14 +80,29 @@
     "account info": "계정 정보",
     "auth error": "Authentication error",
     "account": "계정",
-    "family": "가문",
     "management": "관리",
     "username": "사용자명",
     "platform": "로그인 플랫폼",
-    "add family": "등록하기",
     "login": "로그인",
     "logout": "로그아웃",
     "unregister": "회원 탈퇴"
+  },
+  "family": {
+    "family": "가문",
+    "register": "가문 등록",
+    "unregister": "등록 해제",
+    "update": "가문 정보 갱신",
+    "empty": "등록된 가문이 없습니다",
+    "verified": "인증됨",
+    "unverified": "미인증",
+    "familyName": "가문명",
+    "mainClass": "메인 클래스",
+    "maxGearScore": "공방합",
+    "verificationStatus": "인증 상태",
+    "lastUpdate": "최근 업데이트",
+    "verify": "인증하기",
+    "verification": "가문 인증",
+    "adventurerProfileCode": "모험가 프로필 코드"
   },
   "settings": {
     "settings": "설정",
