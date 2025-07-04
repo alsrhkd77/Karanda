@@ -14,9 +14,6 @@ import 'package:karanda/utils/result.dart';
 import 'package:karanda/utils/launch_url.dart';
 
 class AuthApi {
-  HttpServer? _redirectServer;
-  StreamSubscription? _redirectListener;
-
   Future<Result<User>> authorization() async {
     try {
       final response = await RestClient.get(KarandaApi.authorization)
@@ -68,35 +65,5 @@ class AuthApi {
       await request.response.close();
       await redirectServer.close();
     }
-    /*if (_redirectServer == null && !kIsWeb) {
-      _redirectServer = await HttpServer.bind("localhost", 8082, shared: true);
-      _redirectListener?.cancel();
-      _redirectListener = _redirectServer?.listen(
-        (HttpRequest request) async {
-          final uri = request.uri;
-          Map<String, String> params = uri.queryParameters;
-          if (uri.host == "localhost" &&
-              uri.port == 8082 &&
-              params.containsKey('token') &&
-              params.containsKey('refresh-token')) {
-            await onSuccess(params['token']!, params['refresh-token']!);
-            request.response.redirect(Uri.parse(ExternalLinks.discord));
-            request.response.close();
-            _closeRedirectServer();
-          }
-        },
-        onDone: _closeRedirectServer,
-        cancelOnError: true,
-        onError: (error) {
-          _closeRedirectServer();
-        },
-      );
-    }*/
-  }
-
-  void _closeRedirectServer() {
-    _redirectListener?.cancel();
-    _redirectServer?.close();
-    _redirectServer == null;
   }
 }
