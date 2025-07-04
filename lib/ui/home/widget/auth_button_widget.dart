@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/service/auth_service.dart';
 import 'package:karanda/ui/core/ui/button_loading_indicator.dart';
+import 'package:karanda/ui/core/ui/user_widget.dart';
 import 'package:karanda/ui/home/controller/auth_button_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -38,11 +39,11 @@ class AuthButtonWidget extends StatelessWidget {
             );
           } else if (controller.user != null) {
             return _Button(
-              icon: CircleAvatar(
+              /*icon: CircleAvatar(
                 foregroundImage: Image.network(controller.user!.avatar).image,
                 radius: 12,
-              ),
-              label: Text(controller.user!.username),
+              ),*/
+              label: UserWidget(user: controller.user!, verifyIcon: false),
               onPressed: controller.onClick,
             );
           }

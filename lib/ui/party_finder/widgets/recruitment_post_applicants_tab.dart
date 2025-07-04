@@ -5,6 +5,7 @@ import 'package:karanda/model/applicant.dart';
 import 'package:karanda/ui/core/ui/button_loading_indicator.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
+import 'package:karanda/ui/core/ui/user_widget.dart';
 
 class RecruitmentPostApplicantsTab extends StatelessWidget {
   final List<Applicant>? applicants;
@@ -54,8 +55,8 @@ class _ApplicantTile extends StatelessWidget {
           message: "Access Code",
           child: Chip(label: Text(data.code)),
         ),
-        title: Text(data.user.username),
-        //subtitle: Text("⚔️ -"),
+        title: UserWidget(user: data.user),
+        subtitle: Text("⚔️ ${data.user.family?.maxGearScore ?? " - "}"),
         trailing: _Tail(
           status: data.status,
           accept: () async {

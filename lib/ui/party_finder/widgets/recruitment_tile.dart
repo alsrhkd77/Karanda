@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/model/recruitment.dart';
+import 'package:karanda/ui/core/ui/user_widget.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 
 import 'recruitment_status_icon.dart';
@@ -18,21 +19,29 @@ class RecruitmentTile extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                _SpecLimit(specLimit: data.specLimit),
-                _MemberCount(
-                  current: data.currentParticipants,
-                  slot: data.maxMembers,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 4.0,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _SpecLimit(specLimit: data.specLimit),
+                  _MemberCount(
+                    current: data.currentParticipants,
+                    slot: data.maxMembers,
+                  ),
+                ],
+              ),
             ),
-            Text(data.author.username),
+            //Text(data.author.username),
+            UserWidget(user: data.author),
           ],
         ),
         trailing: RecruitmentStatusIcon(status: data.status),
         onTap: () {
-          context.goWithGa("/partyFinder/recruit/${data.id}");
+          context.goWithGa("/party-finder/recruit/${data.id}");
         },
       ),
     );
