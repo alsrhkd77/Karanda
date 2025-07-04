@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:app_links/app_links.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
 import 'package:karanda/utils/command_line_arguments.dart';
+import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
@@ -44,10 +46,12 @@ class InitializerService {
         _audioPlayerRepository = audioPlayerRepository,
         _scaffoldMessengerKey = scaffoldMessengerKey,
         _router = router {
-    if (kIsWeb || !Platform.isWindows) {
+    if (kIsWeb) {
       initializeForWeb();
-    } else {
+    } else if(Platform.isWindows) {
       initializeForWindows();
+    } else if(Platform.isAndroid){
+      initializeForAndroid();
     }
   }
 
@@ -133,6 +137,15 @@ class InitializerService {
     }
     //웹소켓
     await _audioPlayerRepository.init();
+  }
+
+  Future<void> initializeForAndroid() async {
+    final welcome = await _appSettingsRepository.getAppSettings();
+    if (!welcome) {
+      await _authRepository.login();
+    }
+    await _audioPlayerRepository.init();
+    AppLinks().uriLinkStream.listen((uri) => _router.goWithGa(uri.fragment));
   }
 
   Future<void> update() async {

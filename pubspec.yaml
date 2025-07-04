@@ -76,6 +76,7 @@ dependencies:
   tray_manager: ^0.4.0
   firebase_core: ^3.13.0
   firebase_messaging: ^15.2.5
+  app_links: ^6.4.0
 
 dev_dependencies:
   flutter_test:
