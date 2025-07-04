@@ -38,6 +38,10 @@ class AuthApi {
     launchURL(DiscordApi.authenticateWindows);
   }
 
+  void authenticationAndroid() {
+    launchURL(DiscordApi.authenticateAndroid);
+  }
+
   Future<bool> unregister() async {
     final response = await RestClient.delete(KarandaApi.unregister);
     return response.statusCode == HttpStatus.ok;

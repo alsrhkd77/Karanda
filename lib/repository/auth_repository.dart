@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'
@@ -55,12 +56,14 @@ class AuthRepository {
   }) {
     if (kIsWeb) {
       _authApi.authenticationWeb();
-    } else {
+    } else if(Platform.isWindows) {
       _authApi.listenRedirect(
         onSuccess: onSuccess,
         onFailed: onFailed,
       );
       _authApi.authenticationWindows();
+    } else if(Platform.isAndroid){
+      _authApi.authenticationAndroid();
     }
   }
 
