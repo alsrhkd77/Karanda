@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:karanda/enums/bdo_region.dart';
-import 'package:karanda/model/bdo_family.dart';
 import 'package:karanda/model/user.dart';
 import 'package:karanda/service/auth_service.dart';
 

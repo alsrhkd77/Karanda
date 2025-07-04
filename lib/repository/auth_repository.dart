@@ -5,7 +5,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart'
     show FlutterSecureStorage;
 import 'package:karanda/data_source/auth_api.dart';
 import 'package:karanda/data_source/bdo_family_api.dart';
-import 'package:karanda/model/bdo_family.dart';
 import 'package:karanda/utils/result.dart';
 
 import 'package:karanda/model/user.dart';

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/model/bdo_family.dart';
 import 'package:karanda/repository/auth_repository.dart';
 
 import 'package:karanda/model/user.dart';
