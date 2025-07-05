@@ -6,7 +6,7 @@ abstract final class KarandaApi {
   ///don't use [port] in release mode
   static const int port = 8000;
 
-  static final liveChannel = "${scheme.replaceAll("http", "ws")}://$host${kDebugMode ? ":$port":""}/live-channel";
+  static const liveChannel = "${kDebugMode? "ws" : "wss"}://$host${kDebugMode ? ":$port":""}/live-channel";
   static const storage = "https://storage.googleapis.com/karanda";
 
   static const String latestVersion = "https://www.karanda.kr/version.json";

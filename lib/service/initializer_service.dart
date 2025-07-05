@@ -145,7 +145,13 @@ class InitializerService {
       await _authRepository.login();
     }
     await _audioPlayerRepository.init();
-    AppLinks().uriLinkStream.listen((uri) => _router.goWithGa(uri.fragment));
+    AppLinks().uriLinkStream.listen((uri) {
+      if(uri.hasQuery){
+        _router.goWithGa("${uri.path}?${uri.query}");
+      } else {
+        _router.goWithGa(uri.path);
+      }
+    });
   }
 
   Future<void> update() async {

@@ -16,7 +16,10 @@ firebase deploy --only hosting
 
 ### 빌드 명령어
 ```
- flutter build {platform} --release --dart-define=SECRET={SECRET_FROM_FIRESTORE}
+ flutter build {platform} --release --dart-define=SECRET={SECRET_FROM_FIRESTORE} --dart-define=VAPID={SECRET_FROM_FIREBASE}
+```
+```
+ flutter build appbundle --release --dart-define=SECRET={SECRET_FROM_FIRESTORE} --dart-define=VAPID={SECRET_FROM_FIREBASE} --obfuscate --split-debug-info=./build/symbols
 ```
 
 # 클래스 아이콘
