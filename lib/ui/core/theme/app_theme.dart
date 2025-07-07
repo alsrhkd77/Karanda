@@ -40,8 +40,7 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
-    listTileTheme: _listTileThemeData.copyWith(
-        leadingAndTrailingTextStyle: const TextStyle(color: Colors.black)),
+    listTileTheme: _listTileLightThemeData,
     pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
@@ -68,8 +67,7 @@ abstract class AppTheme {
     cardTheme: _cardThemeData,
     snackBarTheme: _snackBarThemeData,
     expansionTileTheme: _expansionTileThemeData,
-    listTileTheme: _listTileThemeData.copyWith(
-        leadingAndTrailingTextStyle: const TextStyle(color: Colors.white)),
+    listTileTheme: _listTileDarkThemeData,
     pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
@@ -110,12 +108,26 @@ abstract class AppTheme {
   );
 
   /// style from [Typography.englishLike2021] bodyLarge
-  static const _listTileThemeData = ListTileThemeData(
+  static const _listTileLightThemeData = ListTileThemeData(
     leadingAndTrailingTextStyle: TextStyle(
       fontSize: 16.0,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.5,
       height: 1.50,
+      color: Colors.black,
+      textBaseline: TextBaseline.alphabetic,
+      leadingDistribution: TextLeadingDistribution.even,
+    ),
+  );
+
+  /// style from [Typography.englishLike2021] bodyLarge
+  static const _listTileDarkThemeData = ListTileThemeData(
+    leadingAndTrailingTextStyle: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.5,
+      height: 1.50,
+      color: Colors.white,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
     ),
