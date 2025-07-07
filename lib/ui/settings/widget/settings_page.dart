@@ -103,7 +103,7 @@ class SettingsPage extends StatelessWidget {
           ListTile(
             onTap: () => context.goWithGa('/settings/change-log'),
             leading: const Icon(Icons.description_outlined),
-            title: Text(context.tr("settings.update history")),
+            title: Text(context.tr("settings.updateHistory")),
           ),
           ListTile(
             onTap: () => context.goWithGa('/settings/karanda-info'),

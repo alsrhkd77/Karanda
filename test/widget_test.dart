@@ -11,21 +11,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/main.dart';
+import 'package:karanda/ui/app/karanda_app.dart';
 import 'package:rxdart/rxdart.dart';
-
-
 
 void main() {
   test('playground', () async {
-    Stream<int> listener(int value) async*{
+    Stream<int> listener(int value) async* {
       yield value;
     }
+
     final publisher = Publisher();
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(KarandaApp(
+      scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>(),
+    ));
     /*
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
@@ -42,11 +44,13 @@ void main() {
   });
 }
 
-class Publisher{
+class Publisher {
   final controller = BehaviorSubject<int>();
+
   Stream<int> get stream => controller.delay(Duration(seconds: 1));
-  Publisher(){
-    for(int i=0;i<100;i++){
+
+  Publisher() {
+    for (int i = 0; i < 100; i++) {
       controller.sink.add(i);
     }
   }

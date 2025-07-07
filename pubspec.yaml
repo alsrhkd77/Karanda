@@ -63,7 +63,7 @@ dependencies:
   screen_retriever: ^0.1.9
   dart_jsonwebtoken: ^2.13.0
   win32: ^5.5.1
-  flutter_markdown: ^0.7.4+1
+  markdown_widget: ^2.3.2+8
   smooth_page_indicator: ^1.1.0
   easy_localization: ^3.0.7
   desktop_multi_window: ^0.2.0
