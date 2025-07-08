@@ -248,6 +248,7 @@ class _SubmitButtonState extends State<_SubmitButton> {
     if (controller.validate) {
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) => const LoadingIndicatorDialog(),
       );
       final result = widget.isCreatePost

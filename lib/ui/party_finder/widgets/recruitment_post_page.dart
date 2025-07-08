@@ -133,6 +133,7 @@ class _FABState extends State<_FAB> {
   Future<void> submit() async {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => const LoadingIndicatorDialog(),
     );
     bool result = false;
@@ -152,6 +153,7 @@ class _FABState extends State<_FAB> {
   Future<void> updateStatus() async {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => const LoadingIndicatorDialog(),
     );
     final result = await widget.updatePostStatus();
