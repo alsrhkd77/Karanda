@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/model/user.dart';
-import 'package:karanda/ui/core/ui/class_symbol_image.dart';
+import 'package:karanda/ui/core/ui/class_symbol_widget.dart';
 
 class UserWidget extends StatelessWidget {
   final User user;
@@ -27,7 +27,7 @@ class UserWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ClassSymbolImage(bdoClass: user.family!.mainClass, size: 24,),
+        ClassSymbolWidget(bdoClass: user.family!.mainClass, size: 24,),
         Padding(
           padding: EdgeInsets.only(
             left: 2.0,
