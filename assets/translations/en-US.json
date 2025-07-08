@@ -100,9 +100,15 @@
     "maxGearScore": "MaxGearScore",
     "verificationStatus": "Verification Status",
     "lastUpdate": "Last Update",
+    "readyForVerification": "Ready for verification",
+    "startVerification": "Start Verification",
     "verify": "Verify",
+    "needLock": "Please update your profile privacy setting before starting verification.\n Switch: \uD83D\uDD13Public → \uD83D\uDD12Private",
+    "needUnlock": "Please update your profile privacy setting before starting verification.\n Switch: \uD83D\uDD12Private → \uD83D\uDD13Public",
     "verification": "Family Verification",
-    "adventurerProfileCode": "Adventurer Profile Code"
+    "adventurerProfileCode": "Adventurer Profile Code",
+    "registerHint": "- Please proceed while logged out of the BDO website.\n - Enter the region and family name to register.\n - Enter the family profile URL or code.",
+    "startVerificationHint": " Log in to the Black Desert website to continue.\n - Verification is done by updating the profile’s privacy settings.\n - The process will reset if not completed within 10 minutes."
   },
   "settings": {
     "settings": "Settings",

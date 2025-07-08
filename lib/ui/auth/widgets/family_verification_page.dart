@@ -54,7 +54,7 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
           authRepository: context.read(), timeRepository: context.read()),
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: Icons.add_task,
+          icon: Icons.how_to_reg_outlined,
           title: context.tr("family.verification"),
         ),
         body: Consumer(
@@ -64,28 +64,36 @@ class _FamilyVerificationPageState extends State<FamilyVerificationPage> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 _Step(
-                  title: "Start Family Verification",
-                  detail: "인증 시작",
-                  buttonText: "Start",
+                  title: context.tr("family.readyForVerification"),
+                  detail: context.tr("family.startVerificationHint"),
+                  buttonText: context.tr("family.startVerification"),
                   onPressed: () => process(controller.startVerification),
                 ),
                 _Step(
-                  title: "First Step",
-                  detail: controller.locked ? "Need Unlock" : "Need Lock",
-                  buttonText: "Verify",
+                  title: "Step 1",
+                  detail: context.tr(
+                    "family.${controller.locked ? "needUnlock" : "needLock"}",
+                  ),
+                  buttonText: context.tr("family.verify"),
                   timeLimit: controller.timeLimit,
-                  onPressed: () => process(controller.verify),
+                  onPressed: controller.timeLimit?.isNegative ?? false
+                      ? null
+                      : () => process(controller.verify),
                 ),
                 _Step(
-                  title: "Second Step",
-                  detail: controller.locked ? "Need Lock" : "Need Unlock",
-                  buttonText: "Verify",
+                  title: "Step 2",
+                  detail: context.tr(
+                    "family.${controller.locked ? "needLock" : "needUnlock"}",
+                  ),
+                  buttonText: context.tr("family.verify"),
                   timeLimit: controller.timeLimit,
-                  onPressed: () => process(controller.verify),
+                  onPressed: controller.timeLimit?.isNegative ?? false
+                      ? null
+                      : () => process(controller.verify),
                 ),
                 _Step(
                   title: "Complete the verification process",
-                  detail: "Family verification completed successfully.",
+                  detail: "👏 Family verification completed successfully.",
                   buttonText: "Finish",
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -104,7 +112,7 @@ class _Step extends StatelessWidget {
   final String title;
   final String detail;
   final String buttonText;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final Duration? timeLimit;
 
   const _Step({
@@ -119,9 +127,7 @@ class _Step extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(
-        maxWidth: Dimens.pageMaxWidth
-      ),
+      constraints: const BoxConstraints(maxWidth: Dimens.pageMaxWidth),
       padding: Dimens.pagePadding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -135,11 +141,15 @@ class _Step extends StatelessWidget {
           Card(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text(detail),
+              child: Text(
+                detail,
+                style: TextTheme.of(context).bodyLarge,
+              ),
             ),
           ),
           Container(
             width: Size.infinite.width,
+            constraints: const BoxConstraints(maxWidth: Dimens.pageMaxWidth),
             padding: const EdgeInsets.all(12.0),
             child: ElevatedButton(
               onPressed: onPressed,

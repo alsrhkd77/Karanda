@@ -100,9 +100,15 @@
     "maxGearScore": "공방합",
     "verificationStatus": "인증 상태",
     "lastUpdate": "최근 업데이트",
+    "readyForVerification": "인증 준비",
+    "startVerification": "인증 시작",
     "verify": "인증하기",
+    "needLock": "추가 정보 공개 여부 설정을 변경한 후, 인증을 진행해 주세요.\n 변경: \uD83D\uDD13공개 → \uD83D\uDD12비공개",
+    "needUnlock": "추가 정보 공개 여부 설정을 변경한 후, 인증을 진행해 주세요.\n 변경: \uD83D\uDD12비공개 → \uD83D\uDD13공개",
     "verification": "가문 인증",
-    "adventurerProfileCode": "모험가 프로필 코드"
+    "adventurerProfileCode": "모험가 프로필 코드",
+    "registerHint": " - 검은사막 홈페이지에 로그인하지 않은 상태로 진행해주세요.\n - 등록할 가문의 서버와 가문명을 입력하세요.\n - 가문 프로필 URL 또는 코드를 입력하세요.",
+    "startVerificationHint": " - 검은사막 홈페이지에 로그인 후 진행해 주세요.\n - 가문 프로필 추가 정보 공개 여부 설정을 통해 가문을 인증합니다.\n - 인증 시작 후 10분 이내에 완료하지 못할 경우, 인증 프로세스가 초기화됩니다."
   },
   "settings": {
     "settings": "설정",

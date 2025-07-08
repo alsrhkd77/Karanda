@@ -39,6 +39,7 @@ import 'package:karanda/service/initializer_service.dart';
 import 'package:karanda/service/trade_market_service.dart';
 import 'package:karanda/service/world_boss_service.dart';
 import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
+import 'package:karanda/ui/core/controller/time_controller.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
 import 'package:provider/provider.dart';
@@ -201,6 +202,9 @@ class KarandaApp extends StatelessWidget {
             appSettingsRepository: context.read(),
           ),
           lazy: kIsWeb || !Platform.isWindows,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TimeController(timeRepository: context.read()),
         ),
 
         /* Old */

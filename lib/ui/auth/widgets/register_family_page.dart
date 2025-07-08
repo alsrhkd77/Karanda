@@ -6,13 +6,14 @@ import 'package:karanda/ui/auth/widgets/family_verification_page.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
+import 'package:karanda/ui/core/ui/section.dart';
 import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 
 class RegisterFamilyPage extends StatefulWidget {
   final Future<bool> Function({
-  required String code,
-  required String familyName,
-  required BDORegion region,
+    required String code,
+    required String familyName,
+    required BDORegion region,
   }) register;
 
   const RegisterFamilyPage({super.key, required this.register});
@@ -35,10 +36,10 @@ class _RegisterFamilyPageState extends State<RegisterFamilyPage> {
       builder: (context) => const LoadingIndicatorDialog(),
     );
     final result = await widget.register(
-          region: region,
-          code: code,
-          familyName: familyNameTextController.text,
-        );
+      region: region,
+      code: code,
+      familyName: familyNameTextController.text,
+    );
     if (mounted) {
       context.pop();
       if (result) {
@@ -69,8 +70,8 @@ class _RegisterFamilyPageState extends State<RegisterFamilyPage> {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: KarandaAppBar(
-        icon: Icons.add_task,
-        title: context.tr("family.family"),
+        icon: Icons.group_add_outlined,
+        title: context.tr("family.register"),
       ),
       body: Padding(
         padding: Dimens.constrainedPagePadding(width),
@@ -79,6 +80,17 @@ class _RegisterFamilyPageState extends State<RegisterFamilyPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Section(
+                title: "📋 Note",
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    context.tr("family.registerHint"),
+                    style: TextTheme.of(context).bodyLarge,
+                  ),
+                ),
+              ),
               ListTile(
                 title: Text(context.tr("region")),
                 trailing: DropdownMenu(
@@ -139,7 +151,7 @@ class _RegisterFamilyPageState extends State<RegisterFamilyPage> {
                       submit();
                     }
                   },
-                  child: const Text("Next →"),
+                  child: const Text("Next"),
                 ),
               ),
             ],
