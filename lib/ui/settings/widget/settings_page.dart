@@ -17,6 +17,7 @@ import 'package:karanda/ui/settings/widget/push_notification_settings_page.dart'
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/external_links.dart';
 import 'package:karanda/utils/launch_url.dart';
+import 'package:karanda/widgets/class_symbol_widget.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -130,11 +131,18 @@ class _AccountTile extends StatelessWidget {
             builder: (context) => const AuthInfoPage(),
           ));
         },
-        leading: CircleAvatar(
+        leading: user?.family == null ? CircleAvatar(
           foregroundImage: Image.network(user!.avatar).image,
+          backgroundColor: Colors.transparent,
           radius: 12,
-        ),
-        title: Text(user!.username),
+        ) : ClassSymbolWidget(className: user!.family!.mainClass.name),
+        title: Text(user!.family?.familyName ?? user!.username),
+        trailing: user?.family == null
+            ? null
+            : Icon(
+                Icons.verified,
+                color: user!.family!.verified ? Colors.blue : Colors.grey,
+              ),
       );
     }
     return ListTile(
@@ -152,16 +160,19 @@ class _AccountTile extends StatelessWidget {
 class _NotificationTile extends StatelessWidget {
   final bool authenticated;
 
-  const _NotificationTile({super.key, required this.authenticated,});
+  const _NotificationTile({
+    super.key,
+    required this.authenticated,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if(kIsWeb || Platform.isAndroid || Platform.isIOS){
+    if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
       return ListTile(
         leading: const Icon(Icons.notifications),
         title: Text(context.tr("settings.push notifications")),
-        onTap: (){
-          if(authenticated){
+        onTap: () {
+          if (authenticated) {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const PushNotificationSettingsPage(),
             ));
@@ -174,7 +185,7 @@ class _NotificationTile extends StatelessWidget {
     return ListTile(
       leading: const Icon(Icons.notifications),
       title: Text(context.tr("settings.notifications")),
-      onTap: (){
+      onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const NotificationSettingsPage(),
         ));
@@ -182,7 +193,6 @@ class _NotificationTile extends StatelessWidget {
     );
   }
 }
-
 
 class _VolumeTile extends StatelessWidget {
   final double volume;
