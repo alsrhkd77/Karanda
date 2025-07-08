@@ -4,9 +4,12 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/model/bdo_family.dart';
 import 'package:karanda/ui/auth/widgets/register_family_page.dart';
 import 'package:karanda/ui/auth/widgets/unregister_dialog.dart';
-import 'package:karanda/ui/core/ui/class_symbol_image.dart';
+import 'package:karanda/ui/core/controller/time_controller.dart';
+import 'package:karanda/ui/core/ui/class_symbol_widget.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
+import 'package:karanda/utils/extension/duration_extension.dart';
+import 'package:provider/provider.dart';
 
 import 'family_verification_page.dart';
 
@@ -90,7 +93,7 @@ class _FamilyInfoState extends State<FamilyInfo> {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ClassSymbolImage(bdoClass: widget.family!.mainClass),
+              ClassSymbolWidget(bdoClass: widget.family!.mainClass),
               Text(widget.family!.mainClass.name),
             ],
           ),
@@ -112,12 +115,9 @@ class _FamilyInfoState extends State<FamilyInfo> {
                   .format(widget.family!.lastUpdated!)),
         ),
         widget.family!.verified
-            ? ListTile(
+            ? _FamilyDataUpdateButton(
                 onTap: update,
-                title: Text(context.tr("family.update")),
-                textColor: Colors.blue,
-                iconColor: Colors.blue,
-                trailing: const Icon(Icons.sync),
+                lastUpdated: widget.family?.lastUpdated,
               )
             : ListTile(
                 onTap: () {
@@ -169,6 +169,38 @@ class _Verified extends StatelessWidget {
           color: value ? Colors.blue : Colors.grey,
         ),
       ],
+    );
+  }
+}
+
+class _FamilyDataUpdateButton extends StatelessWidget {
+  final DateTime? lastUpdated;
+  final void Function() onTap;
+
+  const _FamilyDataUpdateButton({
+    super.key,
+    required this.onTap,
+    this.lastUpdated,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(
+      builder: (context, TimeController controller, child) {
+        final diff = lastUpdated
+            ?.add(const Duration(minutes: 300))
+            .difference(controller.local);
+        return ListTile(
+          enabled: diff?.isNegative ?? true,
+          onTap: onTap,
+          title: Text(context.tr("family.update")),
+          textColor: Colors.blue,
+          iconColor: Colors.blue,
+          trailing: diff?.isNegative ?? true
+              ? const Icon(Icons.sync)
+              : Text(diff!.splitString()),
+        );
+      },
     );
   }
 }
