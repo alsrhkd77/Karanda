@@ -5,7 +5,6 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
-import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:karanda/ui/party_finder/widgets/party_finder_home_tab.dart';
 import 'package:karanda/ui/party_finder/widgets/party_finder_recruitment_tab.dart';
@@ -15,7 +14,6 @@ import 'package:provider/provider.dart';
 
 import '../controllers/party_finder_controller.dart';
 import 'edit_recruitment_post_page.dart';
-import 'recruitment_tile.dart';
 
 class PartyFinderPage extends StatefulWidget {
   const PartyFinderPage({super.key});
@@ -68,13 +66,6 @@ class _PartyFinderPageState extends State<PartyFinderPage>
                   applicants: controller.myApplications,
                 ),
                 PartyFinderRecruitmentTab(data: controller.recruitments!),
-              ],
-            );
-            return PageBase(
-              children: [
-                ...controller.recruitments!
-                    .map((post) => RecruitmentTile(data: post))
-                    .toList(),
               ],
             );
           },
