@@ -78,19 +78,13 @@ class _ContentsState extends State<_Contents> {
   @override
   void initState() {
     super.initState();
-    animationTimer = Timer.periodic(
-      const Duration(seconds: 5),
-      (timer) => scrollPage(),
-    );
+    animationTimer = Timer(const Duration(seconds: 5), scrollPage,);
   }
 
   @override
   void activate() {
     super.activate();
-    animationTimer = Timer.periodic(
-      const Duration(seconds: 5),
-      (timer) => scrollPage(),
-    );
+    animationTimer = Timer(const Duration(seconds: 5), scrollPage,);
   }
 
   @override
@@ -141,6 +135,11 @@ class _ContentsState extends State<_Contents> {
                   setState(() {
                     nextPage = next;
                   });
+                  animationTimer.cancel();
+                  animationTimer = Timer(
+                    const Duration(seconds: 5),
+                    scrollPage,
+                  );
                 },
                 itemBuilder: (context, index) =>
                     _CardContent(event: widget.events[index]),
