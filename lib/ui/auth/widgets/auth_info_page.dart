@@ -23,7 +23,7 @@ class AuthInfoPage extends StatelessWidget {
     return Scaffold(
       appBar: KarandaAppBar(
         icon: Icons.account_circle_outlined,
-        title: context.tr("auth.account info"),
+        title: context.tr("auth.accountInfo"),
       ),
       body: ChangeNotifierProvider(
         create: (context) => AuthController(authService: context.read()),

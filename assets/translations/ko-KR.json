@@ -77,7 +77,7 @@
   },
   "auth": {
     "social login": "소셜 로그인",
-    "account info": "계정 정보",
+    "accountInfo": "계정 정보",
     "auth error": "Authentication error",
     "account": "계정",
     "management": "관리",
@@ -265,15 +265,16 @@
       "excluded": "제외"
     },
     "recruit": "모집하기",
+    "noPosts": "등록된 공고가 없습니다.",
     "noPostsOpen": "모집중인 공고가 없습니다.",
+    "recentlyApplied": "최근 지원 내역",
+    "recentlyAppliedEmpty": "최근 지원 내역이 없습니다.",
+    "myPosts": "작성한 모집",
+    "myPostsEmpty": "최근 작성한 모집이 없습니다.",
 
     "new post": "모집 공고 만들기",
     "members": "모집 인원\n({})",
     "require main family": "대표 가문이 설정되지 않았습니다.",
-    "recently applied": "최근 지원 내역",
-    "recently applied empty": "최근 지원 내역이 없습니다.",
-    "my posts": "작성한 모집",
-    "my posts empty": "최근 작성한 모집이 없습니다.",
     "post opened": "모집 시작 [ {} ]"
   },
   "select": "선택",

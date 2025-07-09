@@ -27,6 +27,28 @@ class PartyFinderController extends ChangeNotifier {
 
   bool get authenticated => user != null;
 
+  List<Recruitment> get myRecruitments =>
+      recruitments
+          ?.where((data) => data.author.discordId == user?.discordId)
+          .take(5)
+          .toList() ??
+      [];
+
+  List<Applicant> get myApplications =>
+      applicants
+          ?.where((data) =>
+              recruitments?.any((post) => post.id == data.postId) ?? false)
+          .take(5)
+          .toList() ??
+      [];
+
+  List<Recruitment> get appliedPosts =>
+      recruitments
+          ?.where(
+              (data) => myApplications.any((value) => value.postId == data.id))
+          .toList() ??
+      [];
+
   void _onUserUpdate(User? value) {
     user = value;
     notifyListeners();
@@ -45,6 +67,7 @@ class PartyFinderController extends ChangeNotifier {
   }
 
   void _onApplicantsUpdate(List<Applicant> value) {
+    value.sort((a, b) => a.joinAt.compareTo(b.joinAt));
     applicants = value;
     notifyListeners();
   }
