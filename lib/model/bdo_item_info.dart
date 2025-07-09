@@ -27,7 +27,7 @@ class BDOItemInfo {
     return BDOItemInfo(
       code: data[3],
       kr: data[6],
-      en: "null",
+      en: data[7],
       maxEnhancement: int.parse(data[2]),
       grade: int.parse(data[0]),
       mainCategory: data[4],
