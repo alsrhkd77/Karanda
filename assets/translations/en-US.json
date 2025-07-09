@@ -256,7 +256,10 @@
       "cancel": "Cancel",
       "accept": "Accept",
       "reject": "Reject",
-      "applicantsEmpty": "No applicants yet"
+      "applicantsEmpty": "No applicants yet",
+      "openNote": "Recruitment can only be made through a single recruitment post, and if there is an open recruitment post, it will be closed.",
+      "joinNote": "Would you like to apply for this recruitment post?",
+      "cancelNote": "If you cancel, you will not be able to apply for this recruitment post again.\nIf you cancel after your participation has been approved, please consult with the recruitment manager before canceling."
     },
     "settings": {
       "excluded": "Excluded"

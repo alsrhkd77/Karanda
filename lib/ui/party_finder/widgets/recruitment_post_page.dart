@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/recruitment.dart';
+import 'package:karanda/ui/core/ui/dialog_kit.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
@@ -131,36 +132,41 @@ class _FAB extends StatefulWidget {
 
 class _FABState extends State<_FAB> {
   Future<void> submit() async {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const LoadingIndicatorDialog(),
+    final check = await DialogKit.of(context).doubleCheck(
+      icon: const Icon(Icons.check),
+      title: Text(
+        context.tr("partyFinder.post.${widget.isJoined ? "cancel" : "join"}"),
+      ),
+      content: Text(context.tr(
+          "partyFinder.post.${widget.isJoined ? "cancelNote" : "joinNote"}"),),
     );
-    bool result = false;
-    if (widget.isJoined) {
-      result = await widget.cancel();
-    } else {
-      result = await widget.join();
-    }
-    if (mounted) {
-      Navigator.of(context).pop();
-      if (result) {
-        SnackBarKit.of(context).requestFailed();
+    if (mounted && (check ?? false)) {
+      DialogKit.of(context).loadingIndicator();
+      final result =
+          widget.isJoined ? await widget.cancel() : await widget.join();
+      if (mounted) {
+        Navigator.of(context).pop();
+        if (result) {
+          SnackBarKit.of(context).requestFailed();
+        }
       }
     }
   }
 
   Future<void> updateStatus() async {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const LoadingIndicatorDialog(),
+    final check = await DialogKit.of(context).doubleCheck(
+      icon: const Icon(Icons.check),
+      title: Text(context.tr("partyFinder.post.open")),
+      content: Text(context.tr("partyFinder.post.openNote")),
     );
-    final result = await widget.updatePostStatus();
-    if (mounted) {
-      Navigator.of(context).pop();
-      if (!result) {
-        SnackBarKit.of(context).requestFailed();
+    if (mounted && (check ?? false)) {
+      DialogKit.of(context).loadingIndicator();
+      final result = await widget.updatePostStatus();
+      if (mounted) {
+        Navigator.of(context).pop();
+        if (!result) {
+          SnackBarKit.of(context).requestFailed();
+        }
       }
     }
   }
