@@ -43,6 +43,7 @@ class DialogKit {
           actionsAlignment: MainAxisAlignment.spaceBetween,
           actions: [
             TextButton(
+              style: TextButton.styleFrom(foregroundColor: Colors.red),
               onPressed: () => Navigator.of(context).pop(false),
               child: Text(context.tr("cancel")),
             ),
