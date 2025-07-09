@@ -6,7 +6,6 @@ import 'package:karanda/model/recruitment.dart';
 import 'package:karanda/ui/core/ui/dialog_kit.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
-import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:karanda/ui/party_finder/widgets/recruitment_post_detail_tab.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
