@@ -311,75 +311,8 @@
   "piku": "피크",
   "eggs-ceptional emperor": "알록달록 달걀왕",
   "gift box": "선물 상자",
-  "--Adventurer hub": "",
-  "adventurer hub title": "모험가 허브 (Experimental)",
-  "recruitment": "모집",
-  "recruitment post": "모집 공고",
-  "adventurer hub category": {
-    "partyAndPlatoon": "파티 & 부대",
-    "guildWarHeroes": "길드 용병"
-  },
-  "recruit method": {
-    "karandaReservation": "Karanda 예약",
-    "inGameWhispers": "인게임 귓속말"
-  },
-  "edit recruitment post": "모집 공고 작성",
-  "edit recruitment": {
-    "title": "제목 (필수)",
-    "guild name": "길드명 (필수)",
-    "number of recruits": "모집 인원 (필수)",
-    "recruit method": "모집 방법",
-    "start immediately": "즉시 모집 시작",
-    "show contents after join": "가입 승인 후 상세 내용 보이기",
-    "details": "모집 상세",
-    "details hint": "hint text",
-    "discord code": "Discord 초대 코드 (선택)",
-    "discord code validate failed": "Discord 초대 코드를 입력해주세요",
-    "save": "작성 완료",
-    "caution card title": "주의사항",
-    "caution card contents": "1. 새로운 모집 공고는 1시간에 한 번 게시할 수 있습니다.\n2. 게시된 공고는 삭제할 수 없습니다."
-  },
-  "recruitment post detail": {
-    "chip": {
-      "open": "모집중",
-      "closed": "마감",
-      "applied": "대기",
-      "canceled": "취소",
-      "approved": "승인",
-      "rejected": "거절"
-    },
-    "FAB": {
-      "applied": "신청 완료됨",
-      "canceled": "신청 취소됨",
-      "approved": "승인 완료됨\n코드: {}",
-      "rejected": "승인 거절됨"
-    },
-    "action": {
-      "open": "모집 시작",
-      "close": "모집 마감",
-      "apply": "공고 지원",
-      "cancel": "지원 취소",
-      "reject": "거절",
-      "approve": "승인"
-    },
-    "success": "요청 성공",
-    "failed": "요청 실패",
-    "copy family name": "가문명 복사",
-    "copy code": "코드 복사",
-    "code": "코드: {}",
-    "max count": "최대: {}",
-    "current count": "승인됨: {}",
-    "applicants count": "신청자: {}",
-    "max count with current": "현재: {}  최대: {}",
-    "details": "모집 상세",
-    "applicants": "신청자",
-    "applicants are empty": "아직 신청자가 없습니다.",
-    "search not fount": "일치하는 검색 결과가 없습니다.",
-    "search": "검색",
-    "search bar hint": "가문명 또는 코드",
-    "edit": "수정",
-    "share": "공유하기"
-  },
+  "queenStonebackCrab": "여왕 돌멘게",
+
   "--Adventurer card": "",
   "adventurer card": {
     "title": "모험가 카드",

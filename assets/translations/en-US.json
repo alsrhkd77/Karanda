@@ -311,75 +311,8 @@
   "piku": "piku",
   "eggs-ceptional emperor": "Eggs-ceptional Emperor",
   "gift box": "Gift box",
-  "--Adventurer hub": "",
-  "adventurer hub title": "Adventurer hub (Experimental)",
-  "recruitment": "recruitment",
-  "recruitment post": "Recruitment post",
-  "adventurer hub category": {
-    "partyAndPlatoon": "Party & Platoon",
-    "guildWarHeroes": "Guild war heroes"
-  },
-  "recruit method": {
-    "karandaReservation": "Karanda reservation",
-    "inGameWhispers": "In-game whispers"
-  },
-  "edit recruitment post": "Edit recruitment post",
-  "edit recruitment": {
-    "title": "Title (required)",
-    "guild name": "Guild name (required)",
-    "number of recruits": "Number of recruits (required)",
-    "recruit method": "Recruit method",
-    "start immediately": "Start recruiting immediately",
-    "show contents after join": "Show details after join",
-    "details": "Recruitment details",
-    "details hint": "hint text",
-    "discord code": "Discord invitation code",
-    "discord code validate failed": "Enter your Discord invite code",
-    "save": "Save",
-    "caution card title": "Caution",
-    "caution card contents": "1. New posts can be published once per hour.\n2. Published posts cannot be deleted."
-  },
-  "recruitment post detail": {
-    "chip": {
-      "open": "Open",
-      "closed": "Closed",
-      "applied": "Applied",
-      "canceled": "Canceled",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "FAB": {
-      "applied": "Applied",
-      "canceled": "Canceled",
-      "approved": "Approved\nCode: {}",
-      "rejected": "Rejected"
-    },
-    "action": {
-      "open": "Open",
-      "close": "Close",
-      "apply": "Apply",
-      "cancel": "Cancel",
-      "reject": "reject",
-      "approve": "Approve"
-    },
-    "success": "Request success",
-    "failed": "Request failed",
-    "copy family name": "Copy family name",
-    "copy code": "Copy code",
-    "code": "Code: {}",
-    "max count": "Max: {}",
-    "approved count": "Approved: {}",
-    "applicants count": "Applicants: {}",
-    "max count with current": "Current: {}  Max: {}",
-    "details": "Details",
-    "applicants": "Applicants",
-    "applicants are empty": "There are no applicants yet.",
-    "search not fount": "No matching results found.",
-    "search": "Search",
-    "search bar hint": "Family name or Code",
-    "edit": "수정",
-    "share": "공유하기"
-  },
+  "queenStonebackCrab": "Queen Stoneback Crab",
+
   "--Adventurer card": "",
   "adventurer card": {
     "title": "Adventurer card",
