@@ -191,7 +191,7 @@ class ShipUpgradingDataController {
     bool result = false;
     try {
       Map data = jsonDecode(
-          await rootBundle.loadString('assets/data/ship_upgrading.json'));
+          await rootBundle.loadString('assets/data/old_ship_upgrading.json'));
 
       _materials = await _getMaterialData(data['materials']);
       _materialDataStreamController.sink.add(_materials);
