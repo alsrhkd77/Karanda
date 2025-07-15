@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/enums/recruitment_join_status.dart';
 import 'package:karanda/model/user.dart';
+import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/party_finder/widgets/recruitment_tile.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
-import 'package:karanda/widgets/custom_base.dart';
 
 import '../../../model/applicant.dart';
 import '../../../model/recruitment.dart';
@@ -29,7 +29,7 @@ class PartyFinderHomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomBase(children: [
+    return PageBase(children: [
       Section(
         icon: Icons.groups_outlined,
         title: context.tr("family.family"),
