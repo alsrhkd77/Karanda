@@ -1,0 +1,671 @@
+[
+  {
+    "code": 49029,
+    "name": "선박 등록증: 에페리아 중범선 - 점진",
+    "type": "ship",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 49655,
+        "count": 1
+      },
+      {
+        "code": 49656,
+        "count": 1
+      },
+      {
+        "code": 49657,
+        "count": 1
+      },
+      {
+        "code": 49658,
+        "count": 1
+      },
+      {
+        "code": 49029,
+        "count": 1
+      }
+    ],
+    "parent": []
+  },
+  {
+    "code": 49030,
+    "name": "선박 등록증: 에페리아 중범선 - 균형",
+    "type": "ship",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 49655,
+        "count": 1
+      },
+      {
+        "code": 49656,
+        "count": 1
+      },
+      {
+        "code": 49657,
+        "count": 1
+      },
+      {
+        "code": 49658,
+        "count": 1
+      },
+      {
+        "code": 49030,
+        "count": 1
+      }
+    ],
+    "parent": []
+  },
+  {
+    "code": 49031,
+    "name": "선박 등록증: 에페리아 중범선 - 비상",
+    "type": "ship",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 49667,
+        "count": 1
+      },
+      {
+        "code": 49668,
+        "count": 1
+      },
+      {
+        "code": 49669,
+        "count": 1
+      },
+      {
+        "code": 49670,
+        "count": 1
+      },
+      {
+        "code": 49031,
+        "count": 1
+      }
+    ],
+    "parent": []
+  },
+  {
+    "code": 49032,
+    "name": "선박 등록증: 에페리아 중범선 - 용맹",
+    "type": "ship",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 49667,
+        "count": 1
+      },
+      {
+        "code": 49668,
+        "count": 1
+      },
+      {
+        "code": 49669,
+        "count": 1
+      },
+      {
+        "code": 49670,
+        "count": 1
+      },
+      {
+        "code": 49032,
+        "count": 1
+      }
+    ],
+    "parent": []
+  },
+  {
+    "code": 49667,
+    "name": "에페리아 구축함: 흑룡 선수상",
+    "type": "figurehead",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5807,
+        "count": 50
+      },
+      {
+        "code": 5814,
+        "count": 300
+      },
+      {
+        "code": 5829,
+        "count": 125
+      },
+      {
+        "code": 5832,
+        "count": 150
+      }
+    ],
+    "parent": [
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 49655,
+    "name": "에페리아 무역선: 흑룡 선수상",
+    "type": "figurehead",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5807,
+        "count": 50
+      },
+      {
+        "code": 5814,
+        "count": 300
+      },
+      {
+        "code": 5829,
+        "count": 125
+      },
+      {
+        "code": 5832,
+        "count": 150
+      }
+    ],
+    "parent": [
+      49029,
+      49030
+    ]
+  },
+  {
+    "code": 49668,
+    "name": "에페리아 구축함: 개량형 장갑",
+    "type": "plating",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5820,
+        "count": 45
+      },
+      {
+        "code": 5822,
+        "count": 60
+      },
+      {
+        "code": 5824,
+        "count": 125
+      },
+      {
+        "code": 5827,
+        "count": 300
+      }
+    ],
+    "parent": [
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 49656,
+    "name": "에페리아 무역선: 개량형 장갑",
+    "type": "plating",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5820,
+        "count": 45
+      },
+      {
+        "code": 5822,
+        "count": 60
+      },
+      {
+        "code": 5824,
+        "count": 60
+      },
+      {
+        "code": 5827,
+        "count": 200
+      }
+    ],
+    "parent": [
+      49029,
+      49030
+    ]
+  },
+  {
+    "code": 49669,
+    "name": "에페리아 구축함: 메이나 함포",
+    "type": "cannon",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5810,
+        "count": 180
+      },
+      {
+        "code": 5824,
+        "count": 125
+      },
+      {
+        "code": 5827,
+        "count": 300
+      },
+      {
+        "code": 5828,
+        "count": 180
+      }
+    ],
+    "parent": [
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 49657,
+    "name": "에페리아 무역선: 메이나 함포",
+    "type": "cannon",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5810,
+        "count": 180
+      },
+      {
+        "code": 5824,
+        "count": 60
+      },
+      {
+        "code": 5827,
+        "count": 200
+      },
+      {
+        "code": 5828,
+        "count": 180
+      }
+    ],
+    "parent": [
+      49029,
+      49030
+    ]
+  },
+  {
+    "code": 49670,
+    "name": "에페리아 구축함: 비층 바람 돛",
+    "type": "windSail",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5807,
+        "count": 50
+      },
+      {
+        "code": 5823,
+        "count": 30
+      },
+      {
+        "code": 5829,
+        "count": 125
+      },
+      {
+        "code": 5830,
+        "count": 30
+      }
+    ],
+    "parent": [
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 49658,
+    "name": "에페리아 무역선: 비층 바람 돛",
+    "type": "windSail",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5807,
+        "count": 50
+      },
+      {
+        "code": 5823,
+        "count": 30
+      },
+      {
+        "code": 5829,
+        "count": 80
+      },
+      {
+        "code": 5830,
+        "count": 30
+      }
+    ],
+    "parent": [
+      49029,
+      49030
+    ]
+  },
+  {
+    "code": 49029,
+    "name": "선박 등록증: 에페리아 중범선 - 점진",
+    "type": "license",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5809,
+        "count": 180
+      },
+      {
+        "code": 5812,
+        "count": 144
+      },
+      {
+        "code": 5815,
+        "count": 35
+      },
+      {
+        "code": 5831,
+        "count": 35
+      },
+      {
+        "code": 5821,
+        "count": 42
+      }
+    ],
+    "parent": [
+      49029
+    ]
+  },
+  {
+    "code": 49030,
+    "name": "선박 등록증: 에페리아 중범선 - 균형",
+    "type": "license",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5809,
+        "count": 180
+      },
+      {
+        "code": 5812,
+        "count": 144
+      },
+      {
+        "code": 5815,
+        "count": 30
+      },
+      {
+        "code": 5831,
+        "count": 30
+      },
+      {
+        "code": 5821,
+        "count": 50
+      }
+    ],
+    "parent": [
+      49030
+    ]
+  },
+  {
+    "code": 49031,
+    "name": "선박 등록증: 에페리아 중범선 - 비상",
+    "type": "license",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5809,
+        "count": 210
+      },
+      {
+        "code": 5812,
+        "count": 144
+      },
+      {
+        "code": 5815,
+        "count": 30
+      },
+      {
+        "code": 5831,
+        "count": 30
+      },
+      {
+        "code": 5821,
+        "count": 42
+      }
+    ],
+    "parent": [
+      49031
+    ]
+  },
+  {
+    "code": 49032,
+    "name": "선박 등록증: 에페리아 중범선 - 용맹",
+    "type": "license",
+    "coin": 0,
+    "materials": [
+      {
+        "code": 5809,
+        "count": 180
+      },
+      {
+        "code": 5812,
+        "count": 170
+      },
+      {
+        "code": 5815,
+        "count": 30
+      },
+      {
+        "code": 5831,
+        "count": 30
+      },
+      {
+        "code": 5821,
+        "count": 42
+      }
+    ],
+    "parent": [
+      49032
+    ]
+  },
+  {
+    "code": 5807,
+    "name": "홍조빛 해저단괴",
+    "type": "material",
+    "coin": 250,
+    "materials": [],
+    "parent": [
+      49655,
+      49667,
+      49670,
+      49658
+    ]
+  },
+  {
+    "code": 5814,
+    "name": "강화된 섬나무 증착합판",
+    "type": "material",
+    "coin": 50,
+    "materials": [],
+    "parent": [
+      49655,
+      49667
+    ]
+  },
+  {
+    "code": 5829,
+    "name": "심해초 줄기",
+    "type": "material",
+    "coin": 100,
+    "materials": [],
+    "parent": [
+      49655,
+      49667,
+      49670,
+      49658
+    ]
+  },
+  {
+    "code": 5832,
+    "name": "대양의 견고한 현철",
+    "type": "material",
+    "coin": 160,
+    "materials": [],
+    "parent": [
+      49655,
+      49667
+    ]
+  },
+  {
+    "code": 5820,
+    "name": "순수한 진주 결정",
+    "type": "material",
+    "coin": 550,
+    "materials": [],
+    "parent": [
+      49668,
+      49656
+    ]
+  },
+  {
+    "code": 5822,
+    "name": "콕스해적단의 유물(협상 하급)",
+    "type": "material",
+    "coin": 150,
+    "materials": [],
+    "parent": [
+      49668,
+      49656
+    ]
+  },
+  {
+    "code": 5824,
+    "name": "콕스해적단의 유물(전투)",
+    "type": "material",
+    "coin": 150,
+    "materials": [],
+    "parent": [
+      49668,
+      49656,
+      49669,
+      49657
+    ]
+  },
+  {
+    "code": 5827,
+    "name": "달의 비늘이 새겨진 합판",
+    "type": "material",
+    "coin": 20,
+    "materials": [],
+    "parent": [
+      49668,
+      49656,
+      49669,
+      49657
+    ]
+  },
+  {
+    "code": 5810,
+    "name": "파도빛이 감도는 규격 각목",
+    "type": "material",
+    "coin": 100,
+    "materials": [],
+    "parent": [
+      49669,
+      49657
+    ]
+  },
+  {
+    "code": 5828,
+    "name": "순수한 암초 조각",
+    "type": "material",
+    "coin": 40,
+    "materials": [],
+    "parent": [
+      49669,
+      49657
+    ]
+  },
+  {
+    "code": 5823,
+    "name": "콕스해적단의 유물(협상 상급)",
+    "type": "material",
+    "coin": 500,
+    "materials": [],
+    "parent": [
+      49670,
+      49658
+    ]
+  },
+  {
+    "code": 5830,
+    "name": "빛나는 코발트 주괴",
+    "type": "material",
+    "coin": 500,
+    "materials": [],
+    "parent": [
+      49670,
+      49658
+    ]
+  },
+  {
+    "code": 5812,
+    "name": "짙은 파도빛이 감도는 규격 각목",
+    "type": "material",
+    "coin": 100,
+    "materials": [],
+    "parent": [
+      49029,
+      49030,
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 5809,
+    "name": "달의 핏줄이 새겨진 아마포",
+    "type": "material",
+    "coin": 50,
+    "materials": [],
+    "parent": [
+      49029,
+      49030,
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 5821,
+    "name": "심해의 눈물",
+    "type": "material",
+    "coin": 500,
+    "materials": [],
+    "parent": [
+      49029,
+      49030,
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 5815,
+    "name": "화려한 암염 주괴",
+    "type": "material",
+    "coin": 500,
+    "materials": [],
+    "parent": [
+      49029,
+      49030,
+      49031,
+      49032
+    ]
+  },
+  {
+    "code": 5831,
+    "name": "화려한 진주 결정",
+    "type": "material",
+    "coin": 500,
+    "materials": [],
+    "parent": [
+      49029,
+      49030,
+      49031,
+      49032
+    ]
+  }
+]
