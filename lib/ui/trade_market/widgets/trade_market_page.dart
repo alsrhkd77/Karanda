@@ -78,10 +78,11 @@ class _PresetsState extends State<_Presets> {
                 description: '황납 상자별 재료 요리',
               ),
               _PresetCard(
-                route: '/trade-market/${region.name}/melody-of-stars',
-                imagePath: 'assets/image/melody_of_stars.png',
-                title: context.tr("trade market.melody_of_stars"),
-                description: '선율 제작용 재료 악세',
+                route:
+                '/trade-market/${region.name}/essence-of-dawn',
+                imagePath: 'assets/image/essence_of_dawn.png',
+                title: context.tr("trade market.essence_of_dawn"),
+                description: '새벽의 정수 제작용 재료 악세',
               ),
               _PresetCard(
                 route: '/trade-market/${region.name}/dehkias-light',
@@ -90,18 +91,17 @@ class _PresetsState extends State<_Presets> {
                 description: '불빛 제작용 재료 악세',
               ),
               _PresetCard(
+                route: '/trade-market/${region.name}/melody-of-stars',
+                imagePath: 'assets/image/melody_of_stars.png',
+                title: context.tr("trade market.melody_of_stars"),
+                description: '선율 제작용 재료 악세',
+              ),
+              _PresetCard(
                 route:
                     '/trade-market/${region.name}/magical-lightstone-crystal',
                 imagePath: 'assets/image/magical_lightstone_crystal.png',
                 title: context.tr("trade market.magical_lightstone_crystal"),
                 description: '광명석 결정 제작 재료',
-              ),
-              _PresetCard(
-                route:
-                '/trade-market/${region.name}/essence-of-dawn',
-                imagePath: 'assets/image/essence_of_dawn.png',
-                title: context.tr("trade market.essence_of_dawn"),
-                description: '새벽의 정수 제작용 재료 악세',
               ),
             ],
           ),
