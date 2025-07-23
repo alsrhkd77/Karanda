@@ -113,12 +113,12 @@ class WorldBossService {
         spawned = true;
         _alertSpawn(
             current.activatedBosses.map((boss) => boss.name.tr()).join(", "));
-      } else if (notificationTime.contains(diff.inMinutes) &&
+      } else if (notificationTime.contains(diff.inMinutes + 1) &&
           !notified.contains(diff.inMinutes)) {
         notified.add(diff.inMinutes);
         _alertTimeRemaining(
           current.activatedBosses.map((boss) => boss.name.tr()).join(", "),
-          diff.inMinutes,
+          diff.inMinutes + 1,
         );
       }
     }
