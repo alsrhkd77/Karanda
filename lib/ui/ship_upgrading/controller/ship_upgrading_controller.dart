@@ -102,7 +102,7 @@ class ShipUpgradingController extends ChangeNotifier {
   Future<void> dailyQuest() async {
     for (ShipUpgradingQuantityData item in settings.dailyQuest) {
       final int value = stock[item.code] ?? 0;
-      await updateUserStock(item.code, value + item.count);
+      await updateUserStock(item.code, min(value + item.count, 9999));
     }
   }
 
