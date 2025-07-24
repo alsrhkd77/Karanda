@@ -73,29 +73,33 @@ class _Contents extends StatefulWidget {
 class _ContentsState extends State<_Contents> {
   final PageController pageController = PageController(initialPage: 0);
   int nextPage = 1;
-  late Timer animationTimer;
+  Timer? animationTimer;
 
   @override
   void initState() {
     super.initState();
-    animationTimer = Timer(const Duration(seconds: 5), scrollPage,);
+    if(widget.events.length > 1){
+      animationTimer = Timer(const Duration(seconds: 5), scrollPage,);
+    }
   }
 
   @override
   void activate() {
     super.activate();
-    animationTimer = Timer(const Duration(seconds: 5), scrollPage,);
+    if(widget.events.length > 1){
+      animationTimer = Timer(const Duration(seconds: 5), scrollPage,);
+    }
   }
 
   @override
   void deactivate() {
-    animationTimer.cancel();
+    animationTimer?.cancel();
     super.deactivate();
   }
 
   @override
   void dispose() {
-    animationTimer.cancel();
+    animationTimer?.cancel();
     super.dispose();
   }
 
@@ -135,7 +139,7 @@ class _ContentsState extends State<_Contents> {
                   setState(() {
                     nextPage = next;
                   });
-                  animationTimer.cancel();
+                  animationTimer?.cancel();
                   animationTimer = Timer(
                     const Duration(seconds: 5),
                     scrollPage,
