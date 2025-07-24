@@ -270,12 +270,25 @@
     "recentlyApplied": "최근 지원 내역",
     "recentlyAppliedEmpty": "최근 지원 내역이 없습니다.",
     "myPosts": "작성한 모집",
-    "myPostsEmpty": "최근 작성한 모집이 없습니다.",
-
-    "new post": "모집 공고 만들기",
-    "members": "모집 인원\n({})",
-    "require main family": "대표 가문이 설정되지 않았습니다.",
-    "post opened": "모집 시작 [ {} ]"
+    "myPostsEmpty": "최근 작성한 모집이 없습니다."
+  },
+  "shipUpgrading": {
+    "shipUpgrading": "선박 증축",
+    "items": "재료 아이템",
+    "stocks": "보유 재고",
+    "needed": "필요 수량",
+    "completion": "진행률",
+    "totalCost": "주화 구매 시",
+    "perUnit": "개당 {}주화",
+    "components": "구성품",
+    "dailyQuest": "일일퀘스트",
+    "dialog": {
+      "unitCost": "개당 가격",
+      "totalCost": "총 비용",
+      "coin": "{} 까마귀 주화"
+    },
+    "completed": "제작 완료",
+    "resetUserStock": "보유 재고 초기화"
   },
   "select": "선택",
   "Karanda": "카란다",

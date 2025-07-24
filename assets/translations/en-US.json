@@ -270,12 +270,25 @@
     "recentlyApplied": "Recently applied",
     "recentlyAppliedEmpty": "No recent applications found",
     "myPosts": "My posts",
-    "myPostsEmpty": "No recent recruitment posts created",
-
-    "new post": "Create new post",
-    "members": "Members\n({})",
-    "require main family": "No main family is set.",
-    "post opened": "Post opened [ {} ]"
+    "myPostsEmpty": "No recent recruitment posts created"
+  },
+  "shipUpgrading": {
+    "shipUpgrading": "Ship Upgrading",
+    "items": "Items",
+    "stocks": "Stocks",
+    "needed": "Needed",
+    "completion": "Completion",
+    "totalCost": "Total Cost\n(Crow Coins)",
+    "perUnit": "{} Crow Coins per unit",
+    "components": "Components",
+    "dailyQuest": "Daily Quest",
+    "dialog": {
+      "unitCost": "Unit Cost",
+      "totalCost": "Total Cost",
+      "coin": "{} Crow Coin"
+    },
+    "completed": "제작 완료",
+    "resetUserStock": "보유 재고 초기화"
   },
   "select": "Select",
   "Karanda": "Karanda",

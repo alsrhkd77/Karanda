@@ -26,7 +26,7 @@ class HomeFeaturesSection extends StatelessWidget {
       childAspectRatio: childAspectRatio,
       children: [
         _Tile(
-          title: '선박 증축',
+          title: context.tr("shipUpgrading.shipUpgrading"),
           icon: FontAwesomeIcons.ship,
           path: '/ship-upgrading',
         ),

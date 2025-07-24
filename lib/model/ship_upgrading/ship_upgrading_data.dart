@@ -7,7 +7,6 @@ class ShipUpgradingData {
   final int coin;
   final List<ShipUpgradingQuantityData> materials;
   final List<int> parent;
-  int stock = 0;
 
   ShipUpgradingData({
     required this.code,

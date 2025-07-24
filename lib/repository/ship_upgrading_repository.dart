@@ -6,29 +6,49 @@ import 'package:rxdart/rxdart.dart';
 class ShipUpgradingRepository {
   final ShipUpgradingDataSource _dataSource;
   final _settings = BehaviorSubject<ShipUpgradingSettings>();
-  final _data = BehaviorSubject<Map<int, ShipUpgradingData>>();
+  final _stock = BehaviorSubject<Map<int, int>>();
+  final List<ShipUpgradingData> _data = [];
 
 
   ShipUpgradingRepository({required ShipUpgradingDataSource dataSource})
-      : _dataSource = dataSource;
+      : _dataSource = dataSource{
+    loadSettings();
+  }
 
   Stream<ShipUpgradingSettings> get settingsStream => _settings.stream;
-  Stream<Map<int, ShipUpgradingData>> get dataStream => _data.stream;
+  Stream<Map<int, int>> get stockStream => _stock.stream;
 
-  Future<void> loadData() async {
-    Map<int, ShipUpgradingData> result = {};
-    final data = await _dataSource.loadBaseData();
-    for(ShipUpgradingData item in data){
-      item.stock = await _dataSource.loadUserStock(item.code);
-      result[item.code] = item;
+  Future<List<ShipUpgradingData>> loadData() async {
+    if(_data.isEmpty){
+      _data.addAll(await _dataSource.loadBaseData());
     }
-    _data.sink.add(result);
+    return _data;
   }
-  void saveUserStock(int code, int stock){
-    final snapshot = _data.value;
-    snapshot[code]?.stock = stock;
-    _data.sink.add(snapshot);
-    _dataSource.saveUserStock(code, stock);
+
+  Future<void> loadUserStock() async {
+    Map<int, int> result = {};
+    if(_data.isEmpty){
+      await loadData();
+    }
+    for(ShipUpgradingData item in _data){
+      result[item.code] = await _dataSource.loadUserStock(item.code);
+    }
+    _stock.sink.add(result);
+  }
+
+  Future<void> saveUserStock(int code, int stock) async {
+    final snapshot = _stock.value;
+    snapshot[code] = stock;
+    _stock.sink.add(snapshot);
+    await _dataSource.saveUserStock(code, stock);
+  }
+
+  Future<void> resetUserStock() async {
+    await loadUserStock();
+    for(ShipUpgradingData item in _data){
+      await saveUserStock(item.code, 0);
+    }
+    _stock.sink.add({});
   }
 
   Future<void> loadSettings() async {
