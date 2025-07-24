@@ -4,7 +4,6 @@ import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/settings/controller/windows_settings_controller.dart';
-import 'package:karanda/utils/launch_url.dart';
 import 'package:provider/provider.dart';
 
 class WindowsSettingsPage extends StatelessWidget {

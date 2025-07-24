@@ -259,7 +259,7 @@ class _PriceChart extends StatelessWidget {
       //text = '${target.year} / ${target.month}';
     }
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
       child: Text(text, style: style),
     );
@@ -267,7 +267,7 @@ class _PriceChart extends StatelessWidget {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       //fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 0),
       child: Text(meta.formattedValue,
           textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
@@ -360,10 +360,6 @@ class _PriceChart extends StatelessWidget {
                 ],
                 lineTouchData: LineTouchData(
                   touchTooltipData: LineTouchTooltipData(
-                      tooltipBgColor:
-                          Theme.of(context).brightness == Brightness.light
-                              ? Colors.black.withOpacity(0.6)
-                              : Colors.white.withOpacity(0.9),
                       maxContentWidth: 160,
                       tooltipPadding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),

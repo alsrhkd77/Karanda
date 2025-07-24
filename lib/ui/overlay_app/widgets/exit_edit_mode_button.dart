@@ -15,7 +15,7 @@ class ExitEditModeButton extends StatelessWidget {
       child: Consumer(
         builder: (context, OverlayAppController controller, child) {
           return AnimatedOpacity(
-            opacity: controller.editMode ?? false ? 1.0 : 0.0,
+            opacity: controller.editMode ? 1.0 : 0.0,
             duration: const Duration(milliseconds: 300),
             child: child,
           );

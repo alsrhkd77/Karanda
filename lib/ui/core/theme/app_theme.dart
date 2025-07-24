@@ -7,7 +7,7 @@ abstract class AppTheme {
     colorSchemeSeed: Colors.indigo,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.transparent,
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.black.withAlpha(175),
       elevation: 0.0,
     ),

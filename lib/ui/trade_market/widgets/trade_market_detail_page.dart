@@ -231,7 +231,7 @@ class _PriceChartState extends State<_PriceChart> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       //fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 0),
       child: Text(
         meta.formattedValue,
@@ -282,10 +282,6 @@ class _PriceChartState extends State<_PriceChart> {
               ],
               lineTouchData: LineTouchData(
                 touchTooltipData: LineTouchTooltipData(
-                  tooltipBgColor:
-                      Theme.of(context).brightness == Brightness.light
-                          ? Colors.black.withAlpha(153)
-                          : Colors.white.withAlpha(210),
                   maxContentWidth: 160,
                   tooltipPadding: tooltipPadding,
                   getTooltipItems: getTooltipItems,
@@ -369,7 +365,7 @@ class _BottomTitle extends StatelessWidget {
     final text =
         dateTime.day == 1 ? DateFormat.MMM(locale).format(dateTime) : "";
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
       child: Text(text, style: TextTheme.of(context).bodyLarge),
     );
