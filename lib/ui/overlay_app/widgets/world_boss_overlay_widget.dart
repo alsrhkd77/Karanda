@@ -74,9 +74,8 @@ class _BossName extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white.withAlpha(220)),
-      ),
+          border: Border.all(color: Colors.white.withAlpha(220)),
+          borderRadius: BorderRadius.circular(8.0)),
       child: Text(
         toBeginningOfSentenceCase(context.tr(name)).keepWord(),
         textAlign: TextAlign.center,
@@ -101,10 +100,14 @@ class _TimeRemaining extends StatelessWidget {
         ),
       );
     } else if (diff.inHours > 0) {
-      return Text("${diff.inHours}h ${diff.inMinutes % 60}min");
+      return Text(
+        "${diff.inHours.toString().padLeft(2, '0')}h ${(diff.inMinutes % 60).toString().padLeft(2, '0')}m",
+      );
     } else if (diff.inMinutes > 0) {
-      return Text("${diff.inMinutes}min");
+      return Text(
+        "${diff.inMinutes.toString().padLeft(2, '0')}m ${(diff.inSeconds % 60).toString().padLeft(2, '0')}s",
+      );
     }
-    return Text("${diff.inSeconds}sec");
+    return Text("${diff.inSeconds.toString().padLeft(2, '0')}sec");
   }
 }
