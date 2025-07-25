@@ -399,6 +399,7 @@ class _SelectShip extends StatelessWidget {
         );
       }).toList(),
       onSelected: onSelected,
+      focusNode: FocusNode(skipTraversal: true),
     );
   }
 }
