@@ -278,7 +278,7 @@
     "stocks": "보유 재고",
     "needed": "필요 수량",
     "completion": "진행률",
-    "totalCost": "주화 구매 시",
+    "totalCost": "구매 비용\n(까마귀 주화)",
     "perUnit": "개당 {}주화",
     "components": "구성품",
     "dailyQuest": "일일퀘스트",
