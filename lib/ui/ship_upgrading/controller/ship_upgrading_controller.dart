@@ -42,6 +42,7 @@ class ShipUpgradingController extends ChangeNotifier {
       : _repository = repository {
     _settings = _repository.settingsStream.listen(_onSettingsUpdate);
     _stock = _repository.stockStream.listen(_onStockUpdate);
+    loadData();
   }
 
   ShipUpgradingData? get ship => ships[settings.selected];

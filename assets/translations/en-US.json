@@ -285,7 +285,10 @@
     "dialog": {
       "unitCost": "Unit Cost",
       "totalCost": "Total Cost",
-      "coin": "{} Crow Coin"
+      "coin": "{} Crow Coin",
+      "close": "Close",
+      "dailyQuestHint": "Materials obtained from daily quests will be added all at once.\nThe amount to add can be changed in the config.",
+      "userStockResetHint": "All your material stock will be reset."
     },
     "completed": "제작 완료",
     "resetUserStock": "보유 재고 초기화"

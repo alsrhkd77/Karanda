@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_child_data.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_data.dart';
 import 'package:karanda/ui/core/ui/bdo_item_image.dart';
+import 'package:karanda/ui/core/ui/dialog_kit.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
@@ -72,7 +73,18 @@ class ShipUpgradingSettingsPage extends StatelessWidget {
                     vertical: 24.0,
                   ),
                   child: ElevatedButton(
-                    onPressed: controller.resetUserStock,
+                    onPressed: () async {
+                      final func = controller.resetUserStock;
+                      final check = await DialogKit.of(context).doubleCheck(
+                        title: Text(context.tr("shipUpgrading.resetUserStock")),
+                        content: Text(
+                          context.tr("shipUpgrading.dialog.userStockResetHint"),
+                        ),
+                      );
+                      if (check ?? false) {
+                        func();
+                      }
+                    },
                     child: Text(context.tr("shipUpgrading.resetUserStock")),
                   ),
                 ),
