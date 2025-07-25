@@ -288,7 +288,7 @@
       "coin": "{} 까마귀 주화",
       "close": "닫기",
       "dailyQuestHint": "일일퀘스트로 얻은 재료를 한번에 추가합니다.\n추가할 개수는 구성에서 변경할 수 있습니다.",
-      "userStockResetHint": "모든 재료의 보유 수량이 초기화됩니다."
+      "userStockResetHint": "모든 재료의 보유 재고가 초기화됩니다."
     },
     "completed": "제작 완료",
     "resetUserStock": "보유 재고 초기화"
