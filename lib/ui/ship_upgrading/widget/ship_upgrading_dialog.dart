@@ -48,13 +48,19 @@ class _ItemDialog extends StatelessWidget {
         return Consumer(
           builder: (context, ShipUpgradingController controller, child) {
             final stock = controller.stock[item.code] ?? 0;
+            final need = controller.needs[item.code];
             final realNeed = controller.realNeeds[item.code];
             final coin = (max((realNeed?.count ?? 0) - stock, 0) * item.coin);
-            final percent = (stock / (realNeed?.count ?? 1) * 100);
             final List<ShipUpgradingData> parents = controller.selectedParts
                 .where((e) => item.parent.contains(e.code))
                 .toList();
             final List<int> completedParts = controller.completedParts;
+            double percent;
+            if (realNeed == null) {
+              percent = (stock / (need?.count ?? 1) + 1) * 100;
+            } else {
+              percent = stock / (realNeed.count) * 100;
+            }
             MaterialColor color;
             switch (percent) {
               case < 25:

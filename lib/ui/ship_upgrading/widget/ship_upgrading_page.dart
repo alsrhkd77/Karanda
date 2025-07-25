@@ -151,7 +151,12 @@ class _TableItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final coin = (max((realNeed?.count ?? 0) - stock, 0) * item.coin);
-    final percent = (stock / (realNeed?.count ?? 1) * 100);
+    double percent;
+    if (realNeed == null) {
+      percent = (stock / (need?.count ?? 1) + 1) * 100;
+    } else {
+      percent = stock / (realNeed!.count) * 100;
+    }
     MaterialColor color;
     switch (percent) {
       case < 25:
