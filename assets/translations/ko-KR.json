@@ -298,6 +298,10 @@
     "start": "종료 예약",
     "cancel": "예약 취소"
   },
+  "colorCounter": {
+    "colorCounter": "시카라키아 컬러 카운터",
+    "reset": "초기화"
+  },
   "select": "선택",
   "Karanda": "카란다",
   "reporting": "신고하기",

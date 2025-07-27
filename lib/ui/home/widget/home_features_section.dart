@@ -67,7 +67,7 @@ class HomeFeaturesSection extends StatelessWidget {
           windowsOnly: true,
         ),
         _Tile(
-          title: '시카라키아 컬러 카운터',
+          title: context.tr("colorCounter.colorCounter"),
           icon: FontAwesomeIcons.staffSnake,
           path: '/color-counter',
         ),

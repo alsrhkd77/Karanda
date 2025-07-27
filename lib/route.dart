@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
-import 'package:karanda/color_counter/color_counter_page.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
@@ -15,6 +14,7 @@ import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
 import 'package:karanda/ui/auth/widgets/authenticate_page.dart';
+import 'package:karanda/ui/color_counter/color_counter_page.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_page.dart';
 import 'package:karanda/ui/core/ui/not_found_page.dart';
 import 'package:karanda/ui/home/widget/home_page.dart';
@@ -22,6 +22,7 @@ import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
 import 'package:karanda/ui/overlay/widgets/world_boss_overlay_settings_page.dart';
 import 'package:karanda/ui/party_finder/widgets/party_finder_page.dart';
+import 'package:karanda/ui/party_finder/widgets/recruitment_post_page.dart';
 import 'package:karanda/ui/settings/widget/change_log_page.dart';
 import 'package:karanda/ui/settings/widget/karanda_info_page.dart';
 import 'package:karanda/ui/settings/widget/settings_page.dart';
@@ -44,7 +45,6 @@ import 'package:provider/provider.dart';
 import 'deprecated/atoraxxion/sycrakea_page.dart';
 import 'deprecated/atoraxxion/yolunakea_moon_page.dart';
 import 'deprecated/horse_status/horse_status_page.dart';
-import 'ui/party_finder/widgets/recruitment_post_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
@@ -243,7 +243,7 @@ final GoRouter router = GoRouter(
               path: ':region/essence-of-dawn',
               builder: (context, state) {
                 final region =
-                BDORegion.values.byName(state.pathParameters["region"]!);
+                    BDORegion.values.byName(state.pathParameters["region"]!);
                 return TradeMarketPresetPage(
                   presetKey: "essence_of_dawn",
                   region: region,

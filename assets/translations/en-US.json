@@ -298,6 +298,10 @@
     "start": "Start",
     "cancel": "Cancel"
   },
+  "colorCounter": {
+    "colorCounter": "Sycrakea Color Counter",
+    "reset": "Reset"
+  },
   "select": "Select",
   "Karanda": "Karanda",
   "reporting": "Reporting",
