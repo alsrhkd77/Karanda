@@ -54,32 +54,9 @@ class _Time extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final now = TimeOfDay.fromDateTime(currentTime);
-    final textStyle = TextTheme.of(context).headlineLarge;
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(
-          "${now.period.name} ",
-          style: TextTheme.of(context).headlineSmall,
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(now.hourOfPeriod.toString().padLeft(2, '0'), style: textStyle),
-            Text(
-              ":",
-              style: TextTheme.of(context).headlineMedium?.copyWith(
-                    color: currentTime.second % 2 == 0
-                        ? null
-                        : Colors.grey.withAlpha(173),
-                  ),
-            ),
-            Text(now.minute.toString().padLeft(2, '0'), style: textStyle),
-          ],
-        ),
-      ],
+    return Text(
+      DateFormat('HH:mm:ss').format(currentTime),
+      style: TextTheme.of(context).headlineLarge,
     );
   }
 }
