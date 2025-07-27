@@ -10,7 +10,6 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
 import 'package:karanda/service/auth_service.dart';
-import 'package:karanda/shutdown_scheduler/shutdown_scheduler_page.dart';
 import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
@@ -30,6 +29,7 @@ import 'package:karanda/ui/settings/widget/style_settings_page.dart';
 import 'package:karanda/ui/settings/widget/support_karanda_page.dart';
 import 'package:karanda/ui/settings/widget/windows_settings_page.dart';
 import 'package:karanda/ui/ship_upgrading/widget/ship_upgrading_page.dart';
+import 'package:karanda/ui/shutdown_scheduler/widget/shutdown_scheduler_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_cooking_box_preset_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_preset_page.dart';
 import 'package:karanda/ui/trade_market/widgets/trade_market_detail_page.dart';
@@ -363,6 +363,12 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'shutdown-scheduler',
           builder: (context, state) => const ShutdownSchedulerPage(),
+          redirect: (BuildContext context, GoRouterState state) {
+            if (kIsWeb || !Platform.isWindows) {
+              return '/not-found';
+            }
+            return null;
+          },
         ),
         GoRoute(
           path: 'artifact',

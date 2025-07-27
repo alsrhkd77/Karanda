@@ -293,6 +293,11 @@
     "completed": "제작 완료",
     "resetUserStock": "보유 재고 초기화"
   },
+  "shutdownScheduler": {
+    "shutdownScheduler": "예약 종료",
+    "start": "종료 예약",
+    "cancel": "예약 취소"
+  },
   "select": "선택",
   "Karanda": "카란다",
   "reporting": "신고하기",

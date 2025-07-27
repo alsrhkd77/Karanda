@@ -293,6 +293,11 @@
     "completed": "Completed",
     "resetUserStock": "Reset Stocks"
   },
+  "shutdownScheduler": {
+    "shutdownScheduler": "Shutdown Scheduler",
+    "start": "Start",
+    "cancel": "Cancel"
+  },
   "select": "Select",
   "Karanda": "Karanda",
   "reporting": "Reporting",

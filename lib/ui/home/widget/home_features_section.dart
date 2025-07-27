@@ -61,7 +61,7 @@ class HomeFeaturesSection extends StatelessWidget {
           path: '/trade-calculator',
         ),
         _Tile(
-          title: '예약 종료',
+          title: context.tr("shutdownScheduler.shutdownScheduler"),
           icon: FontAwesomeIcons.powerOff,
           path: '/shutdown-scheduler',
           windowsOnly: true,

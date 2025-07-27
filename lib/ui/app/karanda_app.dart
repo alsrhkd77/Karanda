@@ -40,7 +40,6 @@ import 'package:karanda/service/desktop_service.dart';
 import 'package:karanda/service/initializer_service.dart';
 import 'package:karanda/service/trade_market_service.dart';
 import 'package:karanda/service/world_boss_service.dart';
-import 'package:karanda/shutdown_scheduler/shutdown_scheduler_notifier.dart';
 import 'package:karanda/ui/core/controller/time_controller.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
@@ -215,9 +214,6 @@ class KarandaApp extends StatelessWidget {
           ),
           lazy: true,
         ),
-
-        /* Old */
-        ChangeNotifierProvider(create: (_) => ShutdownSchedulerNotifier()),
       ],
       child: Consumer(
         builder: (context, SettingsController controller, child) {
