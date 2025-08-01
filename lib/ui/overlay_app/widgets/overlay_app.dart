@@ -51,11 +51,7 @@ class OverlayApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        theme: AppTheme.overlayAppTheme.copyWith(
-          textTheme: GoogleFonts.robotoTextTheme(
-            AppTheme.overlayAppTheme.textTheme,
-          ),
-        ),
+        theme: AppTheme.overlayAppTheme,
         home: const OverlayAppScreen(),
       ),
     );
