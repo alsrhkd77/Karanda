@@ -108,7 +108,7 @@ class ShipUpgradingController extends ChangeNotifier {
   }
 
   void calcNeeds() {
-    Map<int, ShipUpgradingQuantityData> result = {};
+    final Map<int, ShipUpgradingQuantityData> result = {};
     for (ShipUpgradingData item in selectedParts) {
       for (ShipUpgradingQuantityData m in item.materials) {
         if (result.containsKey(m.code)) {
@@ -123,7 +123,7 @@ class ShipUpgradingController extends ChangeNotifier {
   }
 
   void calcRealNeeds() {
-    Map<int, ShipUpgradingQuantityData> result = {};
+    final Map<int, ShipUpgradingQuantityData> result = {};
     for (ShipUpgradingData item in selectedParts) {
       if ((stock[item.code] ?? 0) <= 0) {
         for (ShipUpgradingQuantityData m in item.materials) {
@@ -160,7 +160,7 @@ class ShipUpgradingController extends ChangeNotifier {
 
   void _onStockUpdate(Map<int, int> value) {
     for (int key in value.keys) {
-      String str = value[key]! > 0 ? value[key].toString() : '';
+      final str = value[key]! > 0 ? value[key].toString() : '';
       if (textController[key]?.text != str) {
         textController[key]?.text = str;
       }
