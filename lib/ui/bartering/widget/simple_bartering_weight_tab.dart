@@ -30,7 +30,7 @@ class SimpleBarteringWeightTab extends StatelessWidget {
               return LoadingIndicator();
             }
             final width = MediaQuery.sizeOf(context).width;
-            final isDense = width < 1;
+            final isDense = width < 400;
             return PageBase(
               width: width,
               children: [
@@ -44,7 +44,7 @@ class SimpleBarteringWeightTab extends StatelessWidget {
                         label:
                             Text(context.tr("bartering.settings.shipProfiles")),
                         width: width < 600
-                            ? width - 36.0 - (Dimens.pagePaddingValue * 2)
+                            ? width - 16.0 - (Dimens.pagePaddingValue * 2)
                             : null,
                         initialSelection: controller.settings!.lastSelectedShip,
                         dropdownMenuEntries:
@@ -124,6 +124,8 @@ class _WeightTile extends StatelessWidget {
         title: Flex(
           direction: isDense ? Axis.vertical : Axis.horizontal,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment:
+              isDense ? CrossAxisAlignment.start : CrossAxisAlignment.center,
           spacing: isDense ? 4.0 : 12.0,
           children: [
             Text(context.tr("bartering.simple.${data.exchangePoint}")),
