@@ -42,6 +42,15 @@
     "IX": "NOV",
     "X": "DEC"
   },
+  "lifeSkillLevel": {
+    "beginner": "Beginner",
+    "apprentice": "Apprentice",
+    "skilled": "Skilled",
+    "professional": "Professional",
+    "artisan": "Artisan",
+    "master": "Master",
+    "guru": "Guru"
+  },
   "initializer": {
     "preparing": "Preparing",
     "check update": "Check for updates",
@@ -302,6 +311,56 @@
     "colorCounter": "Sycrakea Color Counter",
     "reset": "Reset"
   },
+  "bartering": {
+    "bartering": "Bartering",
+    "parley": "Parley",
+    "weight": "Weight",
+    "exchangeCount": "Exchange count",
+    "total": "Total: {}",
+    "exchangeComplete": "Complete",
+    "tradeVoucherDetail": "{}\nParley +25,000",
+    "parleyReduction": "Reduction in parley consumption: {}%",
+    "settings": {
+      "valuePack": "Value pack",
+      "cleia": "First mate: Cleia",
+      "shipProfiles": "Ship Profiles",
+      "commons": "Commons",
+      "mastery": "Bartering Mastery",
+      "addProfile": "Add Ship Profile",
+      "profileName": "Profile Name",
+      "maxWeight": "Capacity",
+      "currentWeight": "Loaded Weight",
+      "duplicated": "This name is already taken.",
+      "save": "Save"
+    },
+    "simple": {
+      "start": "Start",
+      "resetAll": "Reset All",
+      "inlandTrades": "Inland trades",
+      "inlandTrades_points": "Inland trades",
+      "otherTrades": "Other trades",
+      "otherTrades_points": "Other trades",
+      "coin_level4": "Coin trades(Lv.4)",
+      "coin_level4_points": "Lv4 trade goods → Crow Coin",
+      "kashuma_halmad": "Kashuma, Halmad",
+      "kashuma_halmad_points": "Kashuma, Halmad",
+      "derko": "Derko",
+      "derko_points": "Derko",
+      "hakoven": "Hakoven",
+      "hakoven_points": "Hakoven",
+      "margoria_low": "Margoria",
+      "margoria_low_points": "Shipwrecked Cargo Ship, Incomplete Ship, Langtia's Combat Raft",
+      "margoria_high": "Margoria",
+      "margoria_high_points": "Pakio's Combat Raft, Crow Merchant Ship, Rikkun's Shipwreck Boat, Shipwrecked Cox Pirate's Ship, Shipwrecked Naval Ship",
+      "count": "Load Count",
+      "lv1": "[Lv.1]Trade Goods",
+      "lv2": "[Lv.2]Trade Goods",
+      "lv3": "[Lv.3]Trade Goods",
+      "lv4": "[Lv.4]Trade Goods",
+      "lv5": "[Lv.5]Trade Goods",
+      "etc": "ETC"
+    }
+  },
   "select": "Select",
   "Karanda": "Karanda",
   "reporting": "Reporting",
@@ -339,7 +398,6 @@
   "eggs-ceptional emperor": "Eggs-ceptional Emperor",
   "gift box": "Gift box",
   "queenStonebackCrab": "Queen Stoneback Crab",
-
   "--Adventurer card": "",
   "adventurer card": {
     "title": "Adventurer card",

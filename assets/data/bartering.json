@@ -1,0 +1,904 @@
+{
+  "mastery": [
+    {
+      "rank": "beginner",
+      "level": 1,
+      "reduction rate": 0.0
+    },
+    {
+      "rank": "beginner",
+      "level": 2,
+      "reduction rate": 0.027329
+    },
+    {
+      "rank": "beginner",
+      "level": 3,
+      "reduction rate": 0.038568
+    },
+    {
+      "rank": "beginner",
+      "level": 4,
+      "reduction rate": 0.047136
+    },
+    {
+      "rank": "beginner",
+      "level": 5,
+      "reduction rate": 0.054313
+    },
+    {
+      "rank": "beginner",
+      "level": 6,
+      "reduction rate": 0.060595
+    },
+    {
+      "rank": "beginner",
+      "level": 7,
+      "reduction rate": 0.066238
+    },
+    {
+      "rank": "beginner",
+      "level": 8,
+      "reduction rate": 0.071392
+    },
+    {
+      "rank": "beginner",
+      "level": 9,
+      "reduction rate": 0.076157
+    },
+    {
+      "rank": "beginner",
+      "level": 10,
+      "reduction rate": 0.080603
+    },
+    {
+      "rank": "apprentice",
+      "level": 1,
+      "reduction rate": 0.084779
+    },
+    {
+      "rank": "apprentice",
+      "level": 2,
+      "reduction rate": 0.088723
+    },
+    {
+      "rank": "apprentice",
+      "level": 3,
+      "reduction rate": 0.092466
+    },
+    {
+      "rank": "apprentice",
+      "level": 4,
+      "reduction rate": 0.09603
+    },
+    {
+      "rank": "apprentice",
+      "level": 5,
+      "reduction rate": 0.099435
+    },
+    {
+      "rank": "apprentice",
+      "level": 6,
+      "reduction rate": 0.102697
+    },
+    {
+      "rank": "apprentice",
+      "level": 7,
+      "reduction rate": 0.10583
+    },
+    {
+      "rank": "apprentice",
+      "level": 8,
+      "reduction rate": 0.108843
+    },
+    {
+      "rank": "apprentice",
+      "level": 9,
+      "reduction rate": 0.111747
+    },
+    {
+      "rank": "apprentice",
+      "level": 10,
+      "reduction rate": 0.11455
+    },
+    {
+      "rank": "skilled",
+      "level": 1,
+      "reduction rate": 0.11726
+    },
+    {
+      "rank": "skilled",
+      "level": 2,
+      "reduction rate": 0.119882
+    },
+    {
+      "rank": "skilled",
+      "level": 3,
+      "reduction rate": 0.122423
+    },
+    {
+      "rank": "skilled",
+      "level": 4,
+      "reduction rate": 0.124887
+    },
+    {
+      "rank": "skilled",
+      "level": 5,
+      "reduction rate": 0.127279
+    },
+    {
+      "rank": "skilled",
+      "level": 6,
+      "reduction rate": 0.129602
+    },
+    {
+      "rank": "skilled",
+      "level": 7,
+      "reduction rate": 0.131861
+    },
+    {
+      "rank": "skilled",
+      "level": 8,
+      "reduction rate": 0.134059
+    },
+    {
+      "rank": "skilled",
+      "level": 9,
+      "reduction rate": 0.136198
+    },
+    {
+      "rank": "skilled",
+      "level": 10,
+      "reduction rate": 0.138281
+    },
+    {
+      "rank": "professional",
+      "level": 1,
+      "reduction rate": 0.140312
+    },
+    {
+      "rank": "professional",
+      "level": 2,
+      "reduction rate": 0.142291
+    },
+    {
+      "rank": "professional",
+      "level": 3,
+      "reduction rate": 0.144222
+    },
+    {
+      "rank": "professional",
+      "level": 4,
+      "reduction rate": 0.146105
+    },
+    {
+      "rank": "professional",
+      "level": 5,
+      "reduction rate": 0.147944
+    },
+    {
+      "rank": "professional",
+      "level": 6,
+      "reduction rate": 0.149739
+    },
+    {
+      "rank": "professional",
+      "level": 7,
+      "reduction rate": 0.151492
+    },
+    {
+      "rank": "professional",
+      "level": 8,
+      "reduction rate": 0.153205
+    },
+    {
+      "rank": "professional",
+      "level": 9,
+      "reduction rate": 0.154878
+    },
+    {
+      "rank": "professional",
+      "level": 10,
+      "reduction rate": 0.156514
+    },
+    {
+      "rank": "artisan",
+      "level": 1,
+      "reduction rate": 0.158113
+    },
+    {
+      "rank": "artisan",
+      "level": 2,
+      "reduction rate": 0.159677
+    },
+    {
+      "rank": "artisan",
+      "level": 3,
+      "reduction rate": 0.161206
+    },
+    {
+      "rank": "artisan",
+      "level": 4,
+      "reduction rate": 0.162701
+    },
+    {
+      "rank": "artisan",
+      "level": 5,
+      "reduction rate": 0.164164
+    },
+    {
+      "rank": "artisan",
+      "level": 6,
+      "reduction rate": 0.165595
+    },
+    {
+      "rank": "artisan",
+      "level": 7,
+      "reduction rate": 0.166995
+    },
+    {
+      "rank": "artisan",
+      "level": 8,
+      "reduction rate": 0.168365
+    },
+    {
+      "rank": "artisan",
+      "level": 9,
+      "reduction rate": 0.169705
+    },
+    {
+      "rank": "artisan",
+      "level": 10,
+      "reduction rate": 0.171017
+    },
+    {
+      "rank": "master",
+      "level": 1,
+      "reduction rate": 0.1723
+    },
+    {
+      "rank": "master",
+      "level": 2,
+      "reduction rate": 0.173556
+    },
+    {
+      "rank": "master",
+      "level": 3,
+      "reduction rate": 0.174785
+    },
+    {
+      "rank": "master",
+      "level": 4,
+      "reduction rate": 0.175988
+    },
+    {
+      "rank": "master",
+      "level": 5,
+      "reduction rate": 0.177165
+    },
+    {
+      "rank": "master",
+      "level": 6,
+      "reduction rate": 0.178316
+    },
+    {
+      "rank": "master",
+      "level": 7,
+      "reduction rate": 0.179443
+    },
+    {
+      "rank": "master",
+      "level": 8,
+      "reduction rate": 0.180546
+    },
+    {
+      "rank": "master",
+      "level": 9,
+      "reduction rate": 0.181624
+    },
+    {
+      "rank": "master",
+      "level": 10,
+      "reduction rate": 0.182679
+    },
+    {
+      "rank": "master",
+      "level": 11,
+      "reduction rate": 0.183711
+    },
+    {
+      "rank": "master",
+      "level": 12,
+      "reduction rate": 0.184721
+    },
+    {
+      "rank": "master",
+      "level": 13,
+      "reduction rate": 0.185708
+    },
+    {
+      "rank": "master",
+      "level": 14,
+      "reduction rate": 0.1867
+    },
+    {
+      "rank": "master",
+      "level": 15,
+      "reduction rate": 0.1877
+    },
+    {
+      "rank": "master",
+      "level": 16,
+      "reduction rate": 0.1887
+    },
+    {
+      "rank": "master",
+      "level": 17,
+      "reduction rate": 0.1897
+    },
+    {
+      "rank": "master",
+      "level": 18,
+      "reduction rate": 0.1907
+    },
+    {
+      "rank": "master",
+      "level": 19,
+      "reduction rate": 0.1917
+    },
+    {
+      "rank": "master",
+      "level": 20,
+      "reduction rate": 0.1927
+    },
+    {
+      "rank": "master",
+      "level": 21,
+      "reduction rate": 0.1937
+    },
+    {
+      "rank": "master",
+      "level": 22,
+      "reduction rate": 0.1947
+    },
+    {
+      "rank": "master",
+      "level": 23,
+      "reduction rate": 0.1957
+    },
+    {
+      "rank": "master",
+      "level": 24,
+      "reduction rate": 0.1967
+    },
+    {
+      "rank": "master",
+      "level": 25,
+      "reduction rate": 0.1977
+    },
+    {
+      "rank": "master",
+      "level": 26,
+      "reduction rate": 0.1987
+    },
+    {
+      "rank": "master",
+      "level": 27,
+      "reduction rate": 0.1997
+    },
+    {
+      "rank": "master",
+      "level": 28,
+      "reduction rate": 0.2007
+    },
+    {
+      "rank": "master",
+      "level": 29,
+      "reduction rate": 0.2017
+    },
+    {
+      "rank": "master",
+      "level": 30,
+      "reduction rate": 0.2027
+    },
+    {
+      "rank": "guru",
+      "level": 1,
+      "reduction rate": 0.2037
+    },
+    {
+      "rank": "guru",
+      "level": 2,
+      "reduction rate": 0.2047
+    },
+    {
+      "rank": "guru",
+      "level": 3,
+      "reduction rate": 0.2057
+    },
+    {
+      "rank": "guru",
+      "level": 4,
+      "reduction rate": 0.2067
+    },
+    {
+      "rank": "guru",
+      "level": 5,
+      "reduction rate": 0.2077
+    },
+    {
+      "rank": "guru",
+      "level": 6,
+      "reduction rate": 0.2087
+    },
+    {
+      "rank": "guru",
+      "level": 7,
+      "reduction rate": 0.2097
+    },
+    {
+      "rank": "guru",
+      "level": 8,
+      "reduction rate": 0.2107
+    },
+    {
+      "rank": "guru",
+      "level": 9,
+      "reduction rate": 0.2117
+    },
+    {
+      "rank": "guru",
+      "level": 10,
+      "reduction rate": 0.2127
+    },
+    {
+      "rank": "guru",
+      "level": 11,
+      "reduction rate": 0.2137
+    },
+    {
+      "rank": "guru",
+      "level": 12,
+      "reduction rate": 0.2147
+    },
+    {
+      "rank": "guru",
+      "level": 13,
+      "reduction rate": 0.2157
+    },
+    {
+      "rank": "guru",
+      "level": 14,
+      "reduction rate": 0.2167
+    },
+    {
+      "rank": "guru",
+      "level": 15,
+      "reduction rate": 0.2177
+    },
+    {
+      "rank": "guru",
+      "level": 16,
+      "reduction rate": 0.2187
+    },
+    {
+      "rank": "guru",
+      "level": 17,
+      "reduction rate": 0.2197
+    },
+    {
+      "rank": "guru",
+      "level": 18,
+      "reduction rate": 0.2207
+    },
+    {
+      "rank": "guru",
+      "level": 19,
+      "reduction rate": 0.2217
+    },
+    {
+      "rank": "guru",
+      "level": 20,
+      "reduction rate": 0.2227
+    },
+    {
+      "rank": "guru",
+      "level": 21,
+      "reduction rate": 0.2237
+    },
+    {
+      "rank": "guru",
+      "level": 22,
+      "reduction rate": 0.2247
+    },
+    {
+      "rank": "guru",
+      "level": 23,
+      "reduction rate": 0.2257
+    },
+    {
+      "rank": "guru",
+      "level": 24,
+      "reduction rate": 0.2267
+    },
+    {
+      "rank": "guru",
+      "level": 25,
+      "reduction rate": 0.2277
+    },
+    {
+      "rank": "guru",
+      "level": 26,
+      "reduction rate": 0.2287
+    },
+    {
+      "rank": "guru",
+      "level": 27,
+      "reduction rate": 0.2297
+    },
+    {
+      "rank": "guru",
+      "level": 28,
+      "reduction rate": 0.2307
+    },
+    {
+      "rank": "guru",
+      "level": 29,
+      "reduction rate": 0.2317
+    },
+    {
+      "rank": "guru",
+      "level": 30,
+      "reduction rate": 0.2327
+    },
+    {
+      "rank": "guru",
+      "level": 31,
+      "reduction rate": 0.2337
+    },
+    {
+      "rank": "guru",
+      "level": 32,
+      "reduction rate": 0.2347
+    },
+    {
+      "rank": "guru",
+      "level": 33,
+      "reduction rate": 0.2357
+    },
+    {
+      "rank": "guru",
+      "level": 34,
+      "reduction rate": 0.2367
+    },
+    {
+      "rank": "guru",
+      "level": 35,
+      "reduction rate": 0.2377
+    },
+    {
+      "rank": "guru",
+      "level": 36,
+      "reduction rate": 0.2387
+    },
+    {
+      "rank": "guru",
+      "level": 37,
+      "reduction rate": 0.2397
+    },
+    {
+      "rank": "guru",
+      "level": 38,
+      "reduction rate": 0.2407
+    },
+    {
+      "rank": "guru",
+      "level": 39,
+      "reduction rate": 0.2417
+    },
+    {
+      "rank": "guru",
+      "level": 40,
+      "reduction rate": 0.2427
+    },
+    {
+      "rank": "guru",
+      "level": 41,
+      "reduction rate": 0.2437
+    },
+    {
+      "rank": "guru",
+      "level": 42,
+      "reduction rate": 0.2447
+    },
+    {
+      "rank": "guru",
+      "level": 43,
+      "reduction rate": 0.2457
+    },
+    {
+      "rank": "guru",
+      "level": 44,
+      "reduction rate": 0.2467
+    },
+    {
+      "rank": "guru",
+      "level": 45,
+      "reduction rate": 0.2477
+    },
+    {
+      "rank": "guru",
+      "level": 46,
+      "reduction rate": 0.2487
+    },
+    {
+      "rank": "guru",
+      "level": 47,
+      "reduction rate": 0.2497
+    },
+    {
+      "rank": "guru",
+      "level": 48,
+      "reduction rate": 0.2507
+    },
+    {
+      "rank": "guru",
+      "level": 49,
+      "reduction rate": 0.2517
+    },
+    {
+      "rank": "guru",
+      "level": 50,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 51,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 52,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 53,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 54,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 55,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 56,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 57,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 58,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 59,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 60,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 61,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 62,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 63,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 64,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 65,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 66,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 67,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 68,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 69,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 70,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 71,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 72,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 73,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 74,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 75,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 76,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 77,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 78,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 79,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 80,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 81,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 82,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 83,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 84,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 85,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 86,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 87,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 88,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 89,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 90,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 91,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 92,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 93,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 94,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 95,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 96,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 97,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 98,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 99,
+      "reduction rate": 0.2527
+    },
+    {
+      "rank": "guru",
+      "level": 100,
+      "reduction rate": 0.2527
+    }
+  ]
+}

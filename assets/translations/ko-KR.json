@@ -42,6 +42,15 @@
     "IX": "단",
     "X": "환"
   },
+  "lifeSkillLevel": {
+    "beginner": "초급",
+    "apprentice": "견습",
+    "skilled": "숙련",
+    "professional": "전문",
+    "artisan": "장인",
+    "master": "명장",
+    "guru": "도인"
+  },
   "initializer": {
     "preparing": "준비",
     "check update": "업데이트 체크",
@@ -302,6 +311,56 @@
     "colorCounter": "시카라키아 컬러 카운터",
     "reset": "초기화"
   },
+  "bartering": {
+    "bartering": "물물교환",
+    "parley": "교섭력",
+    "weight": "무게",
+    "exchangeCount": "교환 횟수",
+    "total": "합계: {}",
+    "exchangeComplete": "교환 완료",
+    "tradeVoucherDetail": "{}\n교섭력 +25,000",
+    "parleyReduction": "소모 교섭력 감소량: {}%",
+    "settings": {
+      "valuePack": "밸류 패키지",
+      "cleia": "부선장: 클레이아",
+      "shipProfiles": "선박 프로필",
+      "commons": "공통",
+      "mastery": "교역 레벨",
+      "addProfile": "프로필 추가하기",
+      "profileName": "프로필 이름",
+      "maxWeight": "최대 무게",
+      "currentWeight": "현재 무게",
+      "duplicated": "이미 사용중인 이름입니다.",
+      "save": "저장하기"
+    },
+    "simple": {
+      "start": "시작하기",
+      "resetAll": "초기화",
+      "inlandTrades": "내해 교역",
+      "inlandTrades_points": "내해 교역",
+      "otherTrades": "일반 교역",
+      "otherTrades_points": "일반 교역",
+      "coin_level4": "주화 교역(4단계)",
+      "coin_level4_points": "4단계 물교품 → 까마귀 주화",
+      "kashuma_halmad": "카슈마, 할마드",
+      "kashuma_halmad_points": "카슈마, 할마드",
+      "derko": "더코",
+      "derko_points": "더코",
+      "hakoven": "하코번",
+      "hakoven_points": "하코번",
+      "margoria_low": "마고리아",
+      "margoria_low_points": "난파된 하란의 수송선, 떠내려온 미완성 선박, 랑티니아의 전투 뗏목",
+      "margoria_high": "마고리아",
+      "margoria_high_points": "파키오의 전투 뗏목, 까마귀 상단소유 선박, 난파된 릭쿤의 배, 난파된 콕스 해적선, 난파된 해상군의 배",
+      "count": "적재량",
+      "lv1": "[1단계]물교품",
+      "lv2": "[2단계]물교품",
+      "lv3": "[3단계]물교품",
+      "lv4": "[4단계]물교품",
+      "lv5": "[5단계]물교품",
+      "etc": "기타"
+    }
+  },
   "select": "선택",
   "Karanda": "카란다",
   "reporting": "신고하기",
@@ -339,7 +398,6 @@
   "eggs-ceptional emperor": "알록달록 달걀왕",
   "gift box": "선물 상자",
   "queenStonebackCrab": "여왕 돌멘게",
-
   "--Adventurer card": "",
   "adventurer card": {
     "title": "모험가 카드",

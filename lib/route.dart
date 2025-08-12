@@ -14,6 +14,7 @@ import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
 import 'package:karanda/ui/auth/widgets/authenticate_page.dart';
+import 'package:karanda/ui/bartering/widget/bartering_page.dart';
 import 'package:karanda/ui/color_counter/color_counter_page.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_page.dart';
 import 'package:karanda/ui/core/ui/not_found_page.dart';
@@ -385,6 +386,10 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'trade-calculator',
           builder: (context, state) => const TradeCalculatorPage(),
+        ),
+        GoRoute(
+          path: 'bartering',
+          builder: (context, state) => const BarteringPage(),
         ),
         GoRoute(
           path: 'color-counter',

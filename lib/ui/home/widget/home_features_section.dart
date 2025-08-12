@@ -56,9 +56,9 @@ class HomeFeaturesSection extends StatelessWidget {
           path: '/yolunakea-moon',
         ),*/
         _Tile(
-          title: '물물교환 계산기',
+          title: context.tr("bartering.bartering"),
           icon: FontAwesomeIcons.arrowRightArrowLeft,
-          path: '/trade-calculator',
+          path: '/bartering',
         ),
         _Tile(
           title: context.tr("shutdownScheduler.shutdownScheduler"),
