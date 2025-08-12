@@ -397,5 +397,110 @@
     "enhancement level": 0,
     "value": 1,
     "output": 820979
+  },
+  {
+    "name": "진 새벽의 수정 - 모든 공격력",
+    "code": 15261,
+    "enhancement level": 0,
+    "value": 30,
+    "output": 820979
+  },
+  {
+    "name": "원 새벽의 수정 - 모든 공격력",
+    "code": 15262,
+    "enhancement level": 0,
+    "value": 10,
+    "output": 820979
+  },
+  {
+    "name": "본 새벽의 수정 - 모든 공격력",
+    "code": 15263,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820979
+  },
+  {
+    "name": "진 새벽의 수정 - 흑정령의 분노",
+    "code": 15264,
+    "enhancement level": 0,
+    "value": 350,
+    "output": 820980
+  },
+  {
+    "name": "원 새벽의 수정 - 흑정령의 분노",
+    "code": 15265,
+    "enhancement level": 0,
+    "value": 10,
+    "output": 820980
+  },
+  {
+    "name": "본 새벽의 수정 - 흑정령의 분노",
+    "code": 15266,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820980
+  },
+  {
+    "name": "진 새벽의 수정 - 적중력",
+    "code": 15267,
+    "enhancement level": 0,
+    "value": 450,
+    "output": 820981
+  },
+  {
+    "name": "원 새벽의 수정 - 적중력",
+    "code": 15268,
+    "enhancement level": 0,
+    "value": 10,
+    "output": 820981
+  },
+  {
+    "name": "본 새벽의 수정 - 적중력",
+    "code": 15269,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820981
+  },
+  {
+    "name": "진 새벽의 수정 - 피해 감소",
+    "code": 15270,
+    "enhancement level": 0,
+    "value": 250,
+    "output": 820982
+  },
+  {
+    "name": "원 새벽의 수정 - 피해 감소",
+    "code": 15271,
+    "enhancement level": 0,
+    "value": 10,
+    "output": 820982
+  },
+  {
+    "name": "본 새벽의 수정 - 피해 감소",
+    "code": 15272,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820982
+  },
+  {
+    "name": "진 새벽의 수정 - 회피력",
+    "code": 15273,
+    "enhancement level": 0,
+    "value": 450,
+    "output": 820983
+  },
+  {
+    "name": "원 새벽의 수정 - 회피력",
+    "code": 15274,
+    "enhancement level": 0,
+    "value": 10,
+    "output": 820983
+  },
+  {
+    "name": "본 새벽의 수정 - 회피력",
+    "code": 15275,
+    "enhancement level": 0,
+    "value": 1,
+    "output": 820983
   }
 ]
