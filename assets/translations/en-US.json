@@ -327,6 +327,7 @@
       "commons": "Commons",
       "mastery": "Bartering Mastery",
       "addProfile": "Add Ship Profile",
+      "removeProfileFailed": "Cannot delete the last remaining profile.",
       "profileName": "Profile Name",
       "maxWeight": "Capacity",
       "currentWeight": "Loaded Weight",

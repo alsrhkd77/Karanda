@@ -10,6 +10,7 @@ import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/core/ui/section.dart';
+import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:provider/provider.dart';
 
 class BarteringSettingsPage extends StatelessWidget {
@@ -27,8 +28,12 @@ class BarteringSettingsPage extends StatelessWidget {
         Provider.value(value: repository),
         ChangeNotifierProvider(
           create: (context) => BarteringSettingsController(
-            repository: context.read(),
-          ),
+              repository: context.read(),
+              removeFailedSnackbar: () {
+                SnackBarKit.of(context).failed(
+                  context.tr("bartering.settings.removeProfileFailed"),
+                );
+              }),
         ),
       ],
       builder: (context, child) {

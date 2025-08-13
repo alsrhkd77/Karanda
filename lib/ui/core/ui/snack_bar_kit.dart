@@ -24,7 +24,7 @@ class SnackBarKit {
       ),
       action: SnackBarAction(
         label: context.tr("auth.login"),
-        onPressed: (){
+        onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const AuthPage(),
           ));
@@ -33,7 +33,7 @@ class SnackBarKit {
     ));
   }
 
-  void requestFailed(){
+  void failed(String text) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Row(
         children: [
@@ -43,10 +43,14 @@ class SnackBarKit {
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text(context.tr("requestFailed")),
+            child: Text(text),
           ),
         ],
       ),
     ));
+  }
+
+  void requestFailed() {
+    failed(context.tr("requestFailed"));
   }
 }

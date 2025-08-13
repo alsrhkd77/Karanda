@@ -8,12 +8,16 @@ import 'package:karanda/repository/bartering_repository.dart';
 
 class BarteringSettingsController extends ChangeNotifier {
   final BarteringRepository _repository;
+  final void Function() _removeFailedSnackbar;
   late final StreamSubscription<BarteringSettings> _settings;
   BarteringSettings? settings;
   List<BarteringMastery> mastery = [];
 
-  BarteringSettingsController({required BarteringRepository repository})
-      : _repository = repository {
+  BarteringSettingsController({
+    required BarteringRepository repository,
+    required void Function() removeFailedSnackbar,
+  })  : _repository = repository,
+        _removeFailedSnackbar = removeFailedSnackbar {
     _settings = _repository.settingsStream.listen(_onSettingsUpdate);
     _getMasteryData();
   }
@@ -61,10 +65,14 @@ class BarteringSettingsController extends ChangeNotifier {
   }
 
   void removeShipProfile(int index) {
-    if (settings != null && settings!.shipProfiles.length > 1) {
-      settings!.shipProfiles.removeAt(index);
-      settings!.lastSelectedShipIndex = 0;
-      _repository.saveSettings(settings!);
+    if (settings != null) {
+      if(settings!.shipProfiles.length > 1){
+        settings!.shipProfiles.removeAt(index);
+        settings!.lastSelectedShipIndex = 0;
+        _repository.saveSettings(settings!);
+      } else {
+        _removeFailedSnackbar();
+      }
     }
   }
 
