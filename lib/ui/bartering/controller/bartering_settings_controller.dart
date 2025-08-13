@@ -48,7 +48,7 @@ class BarteringSettingsController extends ChangeNotifier {
     required int index,
     required ShipProfile shipProfile,
   }) {
-    final profiles = settings?.shipProfiles ?? [];
+    final profiles = List<ShipProfile>.of(settings?.shipProfiles ?? []);
     if (settings != null && profiles.length > index) {
       profiles.removeAt(index);
       if (!profiles.any((item) => item.name == shipProfile.name)) {
@@ -61,7 +61,7 @@ class BarteringSettingsController extends ChangeNotifier {
   }
 
   void removeShipProfile(int index) {
-    if(settings != null && settings!.shipProfiles.length > 1){
+    if (settings != null && settings!.shipProfiles.length > 1) {
       settings!.shipProfiles.removeAt(index);
       settings!.lastSelectedShipIndex = 0;
       _repository.saveSettings(settings!);

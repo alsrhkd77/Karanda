@@ -195,6 +195,7 @@ class _ShipProfileState extends State<_ShipProfile> {
       content: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 460),
         child: Form(
+          key: formKey,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             spacing: 12.0,
