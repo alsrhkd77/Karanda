@@ -82,8 +82,9 @@ class _Contents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = context.locale.toStringWithSeparator();
-    return SizedBox.square(
-      dimension: width / 2,
+    return SizedBox(
+      width: width / 2,
+      height: height / 2,
       child: Card(
         clipBehavior: Clip.antiAlias,
         child: InkWell(
