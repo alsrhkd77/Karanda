@@ -165,7 +165,13 @@ class ShipUpgradingController extends ChangeNotifier {
         textController[key]?.text = str;
       }
     }
-    stock = value;
+    if(stock.isEmpty){
+      stock = value;
+      calcNeeds();
+      calcRealNeeds();
+    } else {
+      stock = value;
+    }
     notifyListeners();
   }
 
