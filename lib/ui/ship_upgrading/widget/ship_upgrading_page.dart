@@ -37,10 +37,13 @@ class ShipUpgradingPage extends StatelessWidget {
             title: context.tr("shipUpgrading.shipUpgrading"),
             actions: [
               IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onPressed: () async {
+                  await Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const ShipUpgradingSettingsPage(),
                   ));
+                  if(context.mounted){
+                    context.read<ShipUpgradingController>().loadData();
+                  }
                 },
                 icon: const Icon(Icons.construction),
                 tooltip: context.tr("config"),
