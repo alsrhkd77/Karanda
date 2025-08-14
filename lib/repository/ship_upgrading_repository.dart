@@ -48,7 +48,6 @@ class ShipUpgradingRepository {
     for(ShipUpgradingData item in _data){
       await saveUserStock(item.code, 0);
     }
-    _stock.sink.add({});
   }
 
   Future<void> loadSettings() async {
