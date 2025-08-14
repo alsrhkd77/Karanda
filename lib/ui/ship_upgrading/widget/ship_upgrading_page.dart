@@ -21,15 +21,29 @@ import 'package:karanda/utils/extension/string_extension.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
+import '../../../data_source/ship_upgrading_data_source.dart';
 import '../../../model/ship_upgrading/ship_upgrading_child_data.dart';
+import '../../../repository/ship_upgrading_repository.dart';
 
 class ShipUpgradingPage extends StatelessWidget {
   const ShipUpgradingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ShipUpgradingController(repository: context.read()),
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => ShipUpgradingDataSource()),
+        Provider(
+          create: (context) => ShipUpgradingRepository(
+            dataSource: context.read(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ShipUpgradingController(
+            repository: context.read(),
+          ),
+        ),
+      ],
       builder: (context, child) {
         return Scaffold(
           appBar: KarandaAppBar(
@@ -38,10 +52,13 @@ class ShipUpgradingPage extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () async {
+                  final ShipUpgradingRepository repository = context.read();
                   await Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ShipUpgradingSettingsPage(),
+                    builder: (context) => ShipUpgradingSettingsPage(
+                      repository: repository,
+                    ),
                   ));
-                  if(context.mounted){
+                  if (context.mounted) {
                     context.read<ShipUpgradingController>().loadData();
                   }
                 },

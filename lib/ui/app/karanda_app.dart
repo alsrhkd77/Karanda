@@ -10,7 +10,6 @@ import 'package:karanda/data_source/auth_api.dart';
 import 'package:karanda/data_source/bdo_family_api.dart';
 import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_settings_data_source.dart';
-import 'package:karanda/data_source/ship_upgrading_data_source.dart';
 import 'package:karanda/data_source/trade_market_api.dart';
 import 'package:karanda/data_source/trade_market_data_source.dart';
 import 'package:karanda/data_source/user_fcm_settings_api.dart';
@@ -24,7 +23,6 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/bdo_item_info_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
-import 'package:karanda/repository/ship_upgrading_repository.dart';
 import 'package:karanda/repository/user_fc_settings_repository.dart';
 import 'package:karanda/repository/time_repository.dart';
 import 'package:karanda/repository/trade_market_repository.dart';
@@ -206,13 +204,6 @@ class KarandaApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TimeController(timeRepository: context.read()),
-        ),
-        Provider(create: (context) => ShipUpgradingDataSource(), lazy: true),
-        Provider(
-          create: (context) => ShipUpgradingRepository(
-            dataSource: context.read(),
-          ),
-          lazy: true,
         ),
       ],
       child: Consumer(

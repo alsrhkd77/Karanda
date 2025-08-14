@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_child_data.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_data.dart';
+import 'package:karanda/repository/ship_upgrading_repository.dart';
 import 'package:karanda/ui/core/ui/bdo_item_image.dart';
 import 'package:karanda/ui/core/ui/dialog_kit.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
@@ -15,84 +16,97 @@ import 'package:karanda/utils/extension/build_context_extension.dart';
 import 'package:provider/provider.dart';
 
 class ShipUpgradingSettingsPage extends StatelessWidget {
-  const ShipUpgradingSettingsPage({super.key});
+  final ShipUpgradingRepository repository;
+
+  const ShipUpgradingSettingsPage({
+    super.key,
+    required this.repository,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ShipUpgradingSettingsController(
-        repository: context.read(),
-      )..loadData(),
-      child: Scaffold(
-        appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.ship,
-          title: context.tr("shipUpgrading.shipUpgrading"),
+    return MultiProvider(
+      providers: [
+        Provider.value(value: repository),
+        ChangeNotifierProvider(
+          create: (context) => ShipUpgradingSettingsController(
+            repository: context.read(),
+          )..loadData(),
         ),
-        body: Consumer(
-          builder:
-              (context, ShipUpgradingSettingsController controller, child) {
-            if (controller.settings == null) {
-              return const LoadingIndicator();
-            }
-            return PageBase(
-              children: [
-                Section(
-                  title: context.tr("shipUpgrading.completed"),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Column(
-                      children: controller.parts.map((item) {
-                        return _PartsTile(
-                          data: item,
-                          value: controller.stock[item.code] == 1,
-                          onChanged: controller.selectParts,
-                        );
-                      }).toList(),
+      ],
+      builder: (context, child) {
+        return Scaffold(
+          appBar: KarandaAppBar(
+            icon: FontAwesomeIcons.ship,
+            title: context.tr("shipUpgrading.shipUpgrading"),
+          ),
+          body: Consumer(
+            builder:
+                (context, ShipUpgradingSettingsController controller, child) {
+              if (controller.settings == null) {
+                return const LoadingIndicator();
+              }
+              return PageBase(
+                children: [
+                  Section(
+                    title: context.tr("shipUpgrading.completed"),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Column(
+                        children: controller.parts.map((item) {
+                          return _PartsTile(
+                            data: item,
+                            value: controller.stock[item.code] == 1,
+                            onChanged: controller.selectParts,
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
-                ),
-                Section(
-                  title: context.tr("shipUpgrading.dailyQuest"),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Column(
-                      children: controller.settings!.dailyQuest.map((item) {
-                        return _DailyQuestTile(
-                          data: item,
-                          textEditingController:
-                              controller.textController[item.code],
-                          onChanged: controller.updateDailyQuest,
-                        );
-                      }).toList(),
+                  Section(
+                    title: context.tr("shipUpgrading.dailyQuest"),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Column(
+                        children: controller.settings!.dailyQuest.map((item) {
+                          return _DailyQuestTile(
+                            data: item,
+                            textEditingController:
+                                controller.textController[item.code],
+                            onChanged: controller.updateDailyQuest,
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 24.0,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 24.0,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final check = await DialogKit.of(context).doubleCheck(
+                          title:
+                              Text(context.tr("shipUpgrading.resetUserStock")),
+                          content: Text(
+                            context
+                                .tr("shipUpgrading.dialog.userStockResetHint"),
+                          ),
+                        );
+                        if (check ?? false) {
+                          controller.resetUserStock();
+                        }
+                      },
+                      child: Text(context.tr("shipUpgrading.resetUserStock")),
+                    ),
                   ),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      final func = controller.resetUserStock;
-                      final check = await DialogKit.of(context).doubleCheck(
-                        title: Text(context.tr("shipUpgrading.resetUserStock")),
-                        content: Text(
-                          context.tr("shipUpgrading.dialog.userStockResetHint"),
-                        ),
-                      );
-                      if (check ?? false) {
-                        func();
-                      }
-                    },
-                    child: Text(context.tr("shipUpgrading.resetUserStock")),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
