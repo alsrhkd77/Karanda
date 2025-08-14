@@ -202,9 +202,6 @@ class KarandaApp extends StatelessWidget {
           ),
           lazy: kIsWeb || !Platform.isWindows,
         ),
-        ChangeNotifierProvider(
-          create: (context) => TimeController(timeRepository: context.read()),
-        ),
       ],
       child: Consumer(
         builder: (context, SettingsController controller, child) {
