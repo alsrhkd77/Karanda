@@ -1,0 +1,6536 @@
+{
+  "lightstone": [
+    {
+      "code": 758001,
+      "name": "불의 광명석 : 격노",
+      "effect": {
+        "name_en": "All AP",
+        "name_kr": "모든 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 758002,
+      "name": "불의 광명석 : 명중",
+      "effect": {
+        "name_en": "All Accuracy",
+        "name_kr": "모든 적중력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 4.0
+      }
+    },
+    {
+      "code": 758003,
+      "name": "불의 광명석 : 천적",
+      "effect": {
+        "name_en": "Extra AP Against Monsters",
+        "name_kr": "몬스터 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 758004,
+      "name": "불의 광명석 : 부패",
+      "effect": {
+        "name_en": "Extra Damage to Humans",
+        "name_kr": "모험가, 인간 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 4.0
+      }
+    },
+    {
+      "code": 758005,
+      "name": "불의 광명석 : 포효",
+      "effect": {
+        "name_en": "Extra Damage to Demihumans",
+        "name_kr": "아인 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 758006,
+      "name": "불의 광명석 : 타락",
+      "effect": {
+        "name_en": "Extra Damage to Kamasylvian Monsters",
+        "name_kr": "카마실비아 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 758007,
+      "name": "불의 광명석 : 광폭",
+      "effect": {
+        "name_en": "All Special Attacks damage",
+        "name_kr": "모든 특수 공격 추가 피해",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 0.5
+      }
+    },
+    {
+      "code": 758008,
+      "name": "불의 광명석 : 대지",
+      "effect": {
+        "name_en": "Down Attack Damage",
+        "name_kr": "다운어택 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758009,
+      "name": "불의 광명석 : 창공",
+      "effect": {
+        "name_en": "Air Attack Damage",
+        "name_kr": "에어어택 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758010,
+      "name": "불의 광명석 : 그림자",
+      "effect": {
+        "name_en": "Back Attack Damage",
+        "name_kr": "백어택 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758011,
+      "name": "불의 광명석 : 일격",
+      "effect": {
+        "name_en": "Critical Hit Damage",
+        "name_kr": "치명타 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758017,
+      "name": "불의 광명석 : 열정",
+      "effect": {
+        "name_en": "Attack Speed",
+        "name_kr": "공격/시전 속도 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758018,
+      "name": "불의 광명석 : 질주",
+      "effect": {
+        "name_en": "Movement Speed",
+        "name_kr": "이동 속도 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758019,
+      "name": "불의 광명석 : 발톱",
+      "effect": {
+        "name_en": "Critical Hit",
+        "name_kr": "치명타 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758020,
+      "name": "불의 광명석 : 비수",
+      "effect": {
+        "name_en": "Critical Hit Rate",
+        "name_kr": "치명타 확률",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 758021,
+      "name": "불의 광명석 : 왜곡",
+      "effect": {
+        "name_en": "Extra AP Against Edanian Monsters",
+        "name_kr": "에다니아 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 760001,
+      "name": "땅의 광명석 : 철벽",
+      "effect": {
+        "name_en": "All Damage Reduction",
+        "name_kr": "모든 피해 감소",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 760002,
+      "name": "땅의 광명석 : 파도",
+      "effect": {
+        "name_en": "All Evasion",
+        "name_kr": "모든 회피력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 6.0
+      }
+    },
+    {
+      "code": 760003,
+      "name": "땅의 광명석 : 무장",
+      "effect": {
+        "name_en": "Monster Damage Reduction",
+        "name_kr": "몬스터 피해 감소",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 760004,
+      "name": "땅의 광명석 : 장막",
+      "effect": {
+        "name_en": "Monster Damage Reduction Rate",
+        "name_kr": "몬스터 피해 감소율",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 760006,
+      "name": "땅의 광명석 : 태산",
+      "effect": {
+        "name_en": "Special Attack Evasion Rate",
+        "name_kr": "모든 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 760007,
+      "name": "땅의 광명석 : 늪",
+      "effect": {
+        "name_en": "All Resistance",
+        "name_kr": "기절/경직/빙결 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 760009,
+      "name": "땅의 광명석 : 거석",
+      "effect": {
+        "name_en": "Knockdown/Bound Resistance",
+        "name_kr": "넉다운/바운드 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 760010,
+      "name": "땅의 광명석 : 뿌리",
+      "effect": {
+        "name_en": "Knockback/Floating Resistance",
+        "name_kr": "넉백/띄우기 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 762001,
+      "name": "바람의 광명석 : 심장",
+      "effect": {
+        "name_en": "Max HP",
+        "name_kr": "최대 생명력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 50.0
+      }
+    },
+    {
+      "code": 762002,
+      "name": "바람의 광명석 : 머리",
+      "effect": {
+        "name_en": "Max MP",
+        "name_kr": "최대 정신력/투지/신성력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 50.0
+      }
+    },
+    {
+      "code": 762003,
+      "name": "바람의 광명석 : 허파",
+      "effect": {
+        "name_en": "Max Stamina",
+        "name_kr": "최대 지구력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 25.0
+      }
+    },
+    {
+      "code": 762004,
+      "name": "바람의 광명석 : 발돋움(전투)",
+      "effect": {
+        "name_en": "Combat EXP",
+        "name_kr": "전투 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 25.0
+      }
+    },
+    {
+      "code": 762005,
+      "name": "바람의 광명석 : 발돋움(기술)",
+      "effect": {
+        "name_en": "Skill EXP",
+        "name_kr": "기술 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 762006,
+      "name": "바람의 광명석 : 깃털",
+      "effect": {
+        "name_en": "Weight Limit",
+        "name_kr": "최대 소지 무게",
+        "unit_en": "LT",
+        "unit_kr": "LT",
+        "value": 20.0
+      }
+    },
+    {
+      "code": 762007,
+      "name": "바람의 광명석 : 행운",
+      "effect": {
+        "name_en": "Luck",
+        "name_kr": "행운 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 764001,
+      "name": "풀의 광명석 : 야생",
+      "effect": {
+        "name_en": "Life EXP",
+        "name_kr": "생활 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764002,
+      "name": "풀의 광명석 : 낙원",
+      "effect": {
+        "name_en": "Life Skill Mastery",
+        "name_kr": "생활 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764003,
+      "name": "풀의 광명석 : 숲",
+      "effect": {
+        "name_en": "Gathering Mastery",
+        "name_kr": "채집 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764004,
+      "name": "풀의 광명석 : 세월",
+      "effect": {
+        "name_en": "Fishing Mastery",
+        "name_kr": "낚시 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764005,
+      "name": "풀의 광명석 : 추적",
+      "effect": {
+        "name_en": "Hunting Mastery",
+        "name_kr": "수렵 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764006,
+      "name": "풀의 광명석 : 배합",
+      "effect": {
+        "name_en": "Cooking Mastery",
+        "name_kr": "요리 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764007,
+      "name": "풀의 광명석 : 연성",
+      "effect": {
+        "name_en": "Alchemy Mastery",
+        "name_kr": "연금 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764008,
+      "name": "풀의 광명석 : 재량",
+      "effect": {
+        "name_en": "Processing Mastery",
+        "name_kr": "가공 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764009,
+      "name": "풀의 광명석 : 명마",
+      "effect": {
+        "name_en": "Training Mastery",
+        "name_kr": "조련 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764010,
+      "name": "풀의 광명석 : 파랑",
+      "effect": {
+        "name_en": "Sailing Mastery",
+        "name_kr": "항해 숙련도",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 764011,
+      "name": "풀의 광명석 : 초원",
+      "effect": {
+        "name_en": "Gathering EXP",
+        "name_kr": "채집 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764012,
+      "name": "풀의 광명석 : 기회",
+      "effect": {
+        "name_en": "Fishing EXP",
+        "name_kr": "낚시 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764013,
+      "name": "풀의 광명석 : 덫",
+      "effect": {
+        "name_en": "Hunting EXP",
+        "name_kr": "수렵 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764014,
+      "name": "풀의 광명석 : 비법",
+      "effect": {
+        "name_en": "Cooking EXP",
+        "name_kr": "요리 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764015,
+      "name": "풀의 광명석 : 시간",
+      "effect": {
+        "name_en": "Alchemy EXP",
+        "name_kr": "연금 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764016,
+      "name": "풀의 광명석 : 도구",
+      "effect": {
+        "name_en": "Processing EXP",
+        "name_kr": "가공 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764017,
+      "name": "풀의 광명석 : 질주",
+      "effect": {
+        "name_en": "Training EXP",
+        "name_kr": "조련 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764018,
+      "name": "풀의 광명석 : 마차",
+      "effect": {
+        "name_en": "Barter EXP",
+        "name_kr": "무역 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764019,
+      "name": "풀의 광명석 : 과실",
+      "effect": {
+        "name_en": "Farming EXP",
+        "name_kr": "재배 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764020,
+      "name": "풀의 광명석 : 미지",
+      "effect": {
+        "name_en": "Sailing EXP",
+        "name_kr": "항해 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 764021,
+      "name": "풀의 광명석 : 수완",
+      "effect": {
+        "name_en": "Barter EXP",
+        "name_kr": "교역 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 766101,
+      "name": "오색빛 광명석",
+      "effect": {
+        "name_en": "-",
+        "name_kr": "-",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 0.0
+      }
+    },
+    {
+      "code": 758201,
+      "name": "증폭된 불의 광명석 : 격노",
+      "effect": {
+        "name_en": "All AP",
+        "name_kr": "모든 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 4.0
+      }
+    },
+    {
+      "code": 758202,
+      "name": "증폭된 불의 광명석 : 명중",
+      "effect": {
+        "name_en": "All Accuracy",
+        "name_kr": "모든 적중력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 8.0
+      }
+    },
+    {
+      "code": 758203,
+      "name": "증폭된 불의 광명석 : 천적",
+      "effect": {
+        "name_en": "Extra AP Against Monsters",
+        "name_kr": "몬스터 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 758204,
+      "name": "증폭된 불의 광명석 : 부패",
+      "effect": {
+        "name_en": "Extra Damage to Humans",
+        "name_kr": "모험가, 인간 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 6.0
+      }
+    },
+    {
+      "code": 758205,
+      "name": "증폭된 불의 광명석 : 포효",
+      "effect": {
+        "name_en": "Extra Damage to Demihumans",
+        "name_kr": "아인 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 7.0
+      }
+    },
+    {
+      "code": 758206,
+      "name": "증폭된 불의 광명석 : 타락",
+      "effect": {
+        "name_en": "Extra Damage to Kamasylvian Monsters",
+        "name_kr": "카마실비아 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 7.0
+      }
+    },
+    {
+      "code": 758207,
+      "name": "증폭된 불의 광명석 : 광폭",
+      "effect": {
+        "name_en": "All Special Attacks damage",
+        "name_kr": "모든 특수 공격 추가 피해",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.0
+      }
+    },
+    {
+      "code": 758208,
+      "name": "증폭된 불의 광명석 : 대지",
+      "effect": {
+        "name_en": "Down Attack Damage",
+        "name_kr": "다운어택 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.5
+      }
+    },
+    {
+      "code": 758209,
+      "name": "증폭된 불의 광명석 : 창공",
+      "effect": {
+        "name_en": "Air Attack Damage",
+        "name_kr": "에어어택 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.5
+      }
+    },
+    {
+      "code": 758210,
+      "name": "증폭된 불의 광명석 : 그림자",
+      "effect": {
+        "name_en": "Back Attack Damage",
+        "name_kr": "백어택 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.5
+      }
+    },
+    {
+      "code": 758211,
+      "name": "증폭된 불의 광명석 : 일격",
+      "effect": {
+        "name_en": "Critical Hit Damage",
+        "name_kr": "치명타 피해량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.5
+      }
+    },
+    {
+      "code": 758217,
+      "name": "증폭된 불의 광명석 : 열정",
+      "effect": {
+        "name_en": "Attack Speed",
+        "name_kr": "공격/시전 속도 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 758218,
+      "name": "증폭된 불의 광명석 : 질주",
+      "effect": {
+        "name_en": "Movement Speed",
+        "name_kr": "이동 속도 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 758219,
+      "name": "증폭된 불의 광명석 : 발톱",
+      "effect": {
+        "name_en": "Critical Hit",
+        "name_kr": "치명타 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 758220,
+      "name": "증폭된 불의 광명석 : 비수",
+      "effect": {
+        "name_en": "Critical Hit Rate",
+        "name_kr": "치명타 확률",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 3.0
+      }
+    },
+    {
+      "code": 758221,
+      "name": "증폭된 불의 광명석 : 왜곡",
+      "effect": {
+        "name_en": "Extra AP Against Edanian Monsters",
+        "name_kr": "에다니아 종족 추가 공격력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 7.0
+      }
+    },
+    {
+      "code": 760201,
+      "name": "증폭된 땅의 광명석 : 철벽",
+      "effect": {
+        "name_en": "All Damage Reduction",
+        "name_kr": "모든 피해 감소",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 5.0
+      }
+    },
+    {
+      "code": 760202,
+      "name": "증폭된 땅의 광명석 : 파도",
+      "effect": {
+        "name_en": "All Evasion",
+        "name_kr": "모든 회피력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 10.0
+      }
+    },
+    {
+      "code": 760203,
+      "name": "증폭된 땅의 광명석 : 무장",
+      "effect": {
+        "name_en": "Monster Damage Reduction",
+        "name_kr": "몬스터 피해 감소",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 7.0
+      }
+    },
+    {
+      "code": 760204,
+      "name": "증폭된 땅의 광명석 : 장막",
+      "effect": {
+        "name_en": "Monster Damage Reduction Rate",
+        "name_kr": "몬스터 피해 감소율",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 1.5
+      }
+    },
+    {
+      "code": 760206,
+      "name": "증폭된 땅의 광명석 : 태산",
+      "effect": {
+        "name_en": "Special Attack Evasion Rate",
+        "name_kr": "모든 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 2.0
+      }
+    },
+    {
+      "code": 760207,
+      "name": "증폭된 땅의 광명석 : 늪",
+      "effect": {
+        "name_en": "All Resistance",
+        "name_kr": "기절/경직/빙결 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 4.0
+      }
+    },
+    {
+      "code": 760209,
+      "name": "증폭된 땅의 광명석 : 거석",
+      "effect": {
+        "name_en": "Knockdown/Bound Resistance",
+        "name_kr": "넉다운/바운드 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 4.0
+      }
+    },
+    {
+      "code": 760210,
+      "name": "증폭된 땅의 광명석 : 뿌리",
+      "effect": {
+        "name_en": "Knockback/Floating Resistance",
+        "name_kr": "넉백/띄우기 저항",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 4.0
+      }
+    },
+    {
+      "code": 762201,
+      "name": "증폭된 바람의 광명석 : 심장",
+      "effect": {
+        "name_en": "Max HP",
+        "name_kr": "최대 생명력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 100.0
+      }
+    },
+    {
+      "code": 762202,
+      "name": "증폭된 바람의 광명석 : 머리",
+      "effect": {
+        "name_en": "Max MP",
+        "name_kr": "최대 정신력/투지/신성력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 100.0
+      }
+    },
+    {
+      "code": 762203,
+      "name": "증폭된 바람의 광명석 : 허파",
+      "effect": {
+        "name_en": "Max Stamina",
+        "name_kr": "최대 지구력",
+        "unit_en": "",
+        "unit_kr": "",
+        "value": 50.0
+      }
+    },
+    {
+      "code": 762204,
+      "name": "증폭된 바람의 광명석 : 발돋움(전투)",
+      "effect": {
+        "name_en": "Combat EXP",
+        "name_kr": "전투 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 50.0
+      }
+    },
+    {
+      "code": 762205,
+      "name": "증폭된 바람의 광명석 : 발돋움(기술)",
+      "effect": {
+        "name_en": "Skill EXP",
+        "name_kr": "기술 경험치 획득량",
+        "unit_en": "%",
+        "unit_kr": "%",
+        "value": 25.0
+      }
+    },
+    {
+      "code": 762206,
+      "name": "증폭된 바람의 광명석 : 깃털",
+      "effect": {
+        "name_en": "Weight Limit",
+        "name_kr": "최대 소지 무게",
+        "unit_en": "LT",
+        "unit_kr": "LT",
+        "value": 30.0
+      }
+    },
+    {
+      "code": 762207,
+      "name": "증폭된 바람의 광명석 : 행운",
+      "effect": {
+        "name_en": "Luck",
+        "name_kr": "행운 잠재력",
+        "unit_en": "",
+        "unit_kr": "단계",
+        "value": 2.0
+      }
+    }
+  ],
+  "combination": [
+    {
+      "name_kr": "무운의 기도",
+      "name_en": "Prayer for Victory",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758203
+      ]
+    },
+    {
+      "name_kr": "준비된 자",
+      "name_en": "Well-prepared",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758003,
+        758003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758203,
+        758203
+      ]
+    },
+    {
+      "name_kr": "악자 심판",
+      "name_en": "Judging Evil",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758004
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758204
+      ]
+    },
+    {
+      "name_kr": "그림자 정리",
+      "name_en": "Clearing Shadows",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758003,
+        758004
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758203,
+        758204
+      ]
+    },
+    {
+      "name_kr": "질서 확립",
+      "name_en": "Establishing Order",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758005
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758205
+      ]
+    },
+    {
+      "name_kr": "서열 정리",
+      "name_en": "Clearing Ranks",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758003,
+        758005
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758203,
+        758205
+      ]
+    },
+    {
+      "name_kr": "여신의 노래",
+      "name_en": "Goddess' Song",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758006
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758206
+      ]
+    },
+    {
+      "name_kr": "여신의 손길",
+      "name_en": "Goddess' Aide",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758003,
+        758006
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758203,
+        758206
+      ]
+    },
+    {
+      "name_kr": "그림자 말살",
+      "name_en": "Annihilating Shadows",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 100.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 20.0
+        },
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 9.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758004,
+        758004
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758204,
+        758204
+      ]
+    },
+    {
+      "name_kr": "이종 척살",
+      "name_en": "Hunting Beasts",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 100.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 20.0
+        },
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 11.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758005,
+        758005
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758205,
+        758205
+      ]
+    },
+    {
+      "name_kr": "여신의 가호",
+      "name_en": "Goddess' Blessing",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 100.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 20.0
+        },
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 11.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758006,
+        758006
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758206,
+        758206
+      ]
+    },
+    {
+      "name_kr": "야수",
+      "name_en": "The Wild",
+      "effects": [
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 9.0
+        }
+      ],
+      "lightstones": [
+        758003,
+        758003,
+        758003,
+        766101
+      ],
+      "amplified": [
+        758203,
+        758203,
+        758203,
+        766101
+      ]
+    },
+    {
+      "name_kr": "야수 : 인간족",
+      "name_en": "The Wild: Humans",
+      "effects": [
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        }
+      ],
+      "lightstones": [
+        758004,
+        758004,
+        758004,
+        766101
+      ],
+      "amplified": [
+        758204,
+        758204,
+        758204,
+        766101
+      ]
+    },
+    {
+      "name_kr": "야수 : 아인종",
+      "name_en": "The Wild: Demihumans",
+      "effects": [
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        758005,
+        758005,
+        758005,
+        766101
+      ],
+      "amplified": [
+        758205,
+        758205,
+        758205,
+        766101
+      ]
+    },
+    {
+      "name_kr": "야수 : 카마실비아 종족",
+      "name_en": "The Wild: Kamasylvia",
+      "effects": [
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        758006,
+        758006,
+        758006,
+        766101
+      ],
+      "amplified": [
+        758206,
+        758206,
+        758206,
+        766101
+      ]
+    },
+    {
+      "name_kr": "야수 : 에다니아 종족",
+      "name_en": "The Wild: Edania",
+      "effects": [
+        {
+          "name_en": "Extra AP Against Edanian Monsters",
+          "name_kr": "에다니아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        758021,
+        758021,
+        758021,
+        766101
+      ],
+      "amplified": [
+        758221,
+        758221,
+        758221,
+        766101
+      ]
+    },
+    {
+      "name_kr": "와신상담",
+      "name_en": "Dedication",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 300.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762004,
+        762004,
+        762004
+      ],
+      "amplified": [
+        762204,
+        762204,
+        762204,
+        762204
+      ]
+    },
+    {
+      "name_kr": "투혼의 발걸음",
+      "name_en": "Way of the Fighter",
+      "effects": [
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        }
+      ],
+      "lightstones": [
+        762005,
+        762005,
+        762005,
+        762005
+      ],
+      "amplified": [
+        762205,
+        762205,
+        762205,
+        762205
+      ]
+    },
+    {
+      "name_kr": "일취월장",
+      "name_en": "Progress",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 175.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762004,
+        762005,
+        762005
+      ],
+      "amplified": [
+        762204,
+        762204,
+        762205,
+        762205
+      ]
+    },
+    {
+      "name_kr": "전선 구축",
+      "name_en": "Building the Vanguard",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        760003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        760203
+      ]
+    },
+    {
+      "name_kr": "전력 보충",
+      "name_en": "Battle Aid",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 10.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        760003,
+        760003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        760203,
+        760203
+      ]
+    },
+    {
+      "name_kr": "대열 정비",
+      "name_en": "Organizing Ranks",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 10.0
+        },
+        {
+          "name_en": "Monster Damage Reduction Rate",
+          "name_kr": "몬스터 피해 감소율",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        760003,
+        760004
+      ],
+      "amplified": [
+        762204,
+        762205,
+        760203,
+        760204
+      ]
+    },
+    {
+      "name_kr": "내실 다지기",
+      "name_en": "Inner Peace",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 100.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 20.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "Monster Damage Reduction Rate",
+          "name_kr": "몬스터 피해 감소율",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        760004,
+        760004
+      ],
+      "amplified": [
+        762204,
+        762205,
+        760204,
+        760204
+      ]
+    },
+    {
+      "name_kr": "전선 강화",
+      "name_en": "Reinforcing the Vanguard",
+      "effects": [
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 100.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "Monster Damage Reduction Rate",
+          "name_kr": "몬스터 피해 감소율",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        762001,
+        762001,
+        760004,
+        760004
+      ],
+      "amplified": [
+        762201,
+        762201,
+        760204,
+        760204
+      ]
+    },
+    {
+      "name_kr": "철옹성",
+      "name_en": "Impregnable Fortress",
+      "effects": [
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Monster Damage Reduction Rate",
+          "name_kr": "몬스터 피해 감소율",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        760004,
+        760004,
+        760004,
+        766101
+      ],
+      "amplified": [
+        760204,
+        760204,
+        760204,
+        766101
+      ]
+    },
+    {
+      "name_kr": "악어의 이빨",
+      "name_en": "Crocodile's Tooth",
+      "effects": [
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 7.0
+        },
+        {
+          "name_en": "Down Attack Damage",
+          "name_kr": "다운어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        },
+        {
+          "name_en": "Critical Hit Damage",
+          "name_kr": "치명타 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758003,
+        758003,
+        758008,
+        758011
+      ],
+      "amplified": [
+        758203,
+        758203,
+        758208,
+        758211
+      ]
+    },
+    {
+      "name_kr": "맹렬한 그림자",
+      "name_en": "Vicious Shadows",
+      "effects": [
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 7.0
+        },
+        {
+          "name_en": "Back Attack Damage",
+          "name_kr": "백어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        },
+        {
+          "name_en": "Critical Hit Damage",
+          "name_kr": "치명타 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758003,
+        758003,
+        758010,
+        758011
+      ],
+      "amplified": [
+        758203,
+        758203,
+        758210,
+        758211
+      ]
+    },
+    {
+      "name_kr": "거석",
+      "name_en": "Boulder",
+      "effects": [
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 10.0
+        },
+        {
+          "name_en": "Debuff Resistance Against Monsters",
+          "name_kr": "상태 이상 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        }
+      ],
+      "lightstones": [
+        760003,
+        760003,
+        760006,
+        766101
+      ],
+      "amplified": [
+        760203,
+        760203,
+        760206,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중",
+      "name_en": "Choice & Focus",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -150.0
+        },
+        {
+          "name_en": "Item Drop Rate",
+          "name_kr": "아이템 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 30.0
+        },
+        {
+          "name_en": "Movement Speed",
+          "name_kr": "이동 속도",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758018,
+        762006,
+        762007,
+        762007
+      ],
+      "amplified": [
+        758218,
+        762206,
+        762207,
+        762207
+      ]
+    },
+    {
+      "name_kr": "황금손",
+      "name_en": "Golden Hand",
+      "effects": [
+        {
+          "name_en": "Item Drop Rate",
+          "name_kr": "아이템 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 15.0
+        },
+        {
+          "name_en": "Weight Limit",
+          "name_kr": "최대 소지 무게",
+          "unit_en": "LT",
+          "unit_kr": "LT",
+          "value": 25.0
+        }
+      ],
+      "lightstones": [
+        762006,
+        762006,
+        762007,
+        762007
+      ],
+      "amplified": [
+        762206,
+        762206,
+        762207,
+        762207
+      ]
+    },
+    {
+      "name_kr": "대장장이의 축복",
+      "name_en": "Blacksmith's Blessing",
+      "effects": [
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Gear Durability Reduction Resistance",
+          "name_kr": "장비 내구도 감소 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        758003,
+        760003,
+        762006,
+        762007
+      ],
+      "amplified": [
+        758203,
+        760203,
+        762206,
+        762207
+      ]
+    },
+    {
+      "name_kr": "일격필살",
+      "name_en": "Deathblow",
+      "effects": [
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 10.0
+        },
+        {
+          "name_en": "Critical Hit Rate",
+          "name_kr": "치명타 확률",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        }
+      ],
+      "lightstones": [
+        758003,
+        758003,
+        758020,
+        758020
+      ],
+      "amplified": [
+        758203,
+        758203,
+        758220,
+        758220
+      ]
+    },
+    {
+      "name_kr": "잃어버린 날개",
+      "name_en": "Lost Angel Wings",
+      "effects": [
+        {
+          "name_en": "Karma Recovery",
+          "name_kr": "성향 회복 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Movement Speed",
+          "name_kr": "이동 속도",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758017,
+        758019,
+        758018,
+        762007
+      ],
+      "amplified": [
+        758217,
+        758219,
+        758218,
+        762207
+      ]
+    },
+    {
+      "name_kr": "만물박사",
+      "name_en": "Know-It-All",
+      "effects": [
+        {
+          "name_en": "Chance to Gain Knowledge",
+          "name_kr": "지식 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 30.0
+        },
+        {
+          "name_en": "Chance to Gain Higher-grade Knowledge",
+          "name_kr": "지식 획득 시 높은 등급 지식 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        758017,
+        758019,
+        762006,
+        762007
+      ],
+      "amplified": [
+        758217,
+        758219,
+        762206,
+        762207
+      ]
+    },
+    {
+      "name_kr": "심신단련",
+      "name_en": "Trained",
+      "effects": [
+        {
+          "name_en": "Weight Limit",
+          "name_kr": "최대 소지 무게",
+          "unit_en": "LT",
+          "unit_kr": "LT",
+          "value": 70.0
+        }
+      ],
+      "lightstones": [
+        762006,
+        762006,
+        762006,
+        762006
+      ],
+      "amplified": [
+        762206,
+        762206,
+        762206,
+        762206
+      ]
+    },
+    {
+      "name_kr": "비상착륙",
+      "name_en": "Emergency Landing",
+      "effects": [
+        {
+          "name_en": "Fall Damage",
+          "name_kr": "낙하 피해",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": -50.0
+        },
+        {
+          "name_en": "Movement Speed",
+          "name_kr": "이동 속도",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758018,
+        758018,
+        762006,
+        762007
+      ],
+      "amplified": [
+        758218,
+        758218,
+        762206,
+        762207
+      ]
+    },
+    {
+      "name_kr": "수련자",
+      "name_en": "Trainee",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203
+      ]
+    },
+    {
+      "name_kr": "나 화났어!",
+      "name_en": "I'm Mad!",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 6.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758001,
+        758001
+      ],
+      "amplified": [
+        758201,
+        758201,
+        758201
+      ]
+    },
+    {
+      "name_kr": "맹공",
+      "name_en": "Savage",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 9.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758001,
+        758001,
+        758001
+      ],
+      "amplified": [
+        758201,
+        758201,
+        758201,
+        758201
+      ]
+    },
+    {
+      "name_kr": "고요한 분노",
+      "name_en": "Silent Rage",
+      "effects": [
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 9.0
+        }
+      ],
+      "lightstones": [
+        758002,
+        758002,
+        758002
+      ],
+      "amplified": [
+        758202,
+        758202,
+        758202
+      ]
+    },
+    {
+      "name_kr": "집중의 시간",
+      "name_en": "Focused",
+      "effects": [
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        }
+      ],
+      "lightstones": [
+        758002,
+        758002,
+        758002,
+        758002
+      ],
+      "amplified": [
+        758202,
+        758202,
+        758202,
+        758202
+      ]
+    },
+    {
+      "name_kr": "뜀박질",
+      "name_en": "Sprint",
+      "effects": [
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 100.0
+        }
+      ],
+      "lightstones": [
+        762003,
+        762003,
+        762003
+      ],
+      "amplified": [
+        762203,
+        762203,
+        762203
+      ]
+    },
+    {
+      "name_kr": "계주",
+      "name_en": "Marathon",
+      "effects": [
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 150.0
+        }
+      ],
+      "lightstones": [
+        762003,
+        762003,
+        762003,
+        762003
+      ],
+      "amplified": [
+        762203,
+        762203,
+        762203,
+        762203
+      ]
+    },
+    {
+      "name_kr": "주먹단련",
+      "name_en": "Trained Fists",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 10.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 50.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758001
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758201
+      ]
+    },
+    {
+      "name_kr": "집중 강화",
+      "name_en": "Enhanced Focus",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 16.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 50.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758002
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758202
+      ]
+    },
+    {
+      "name_kr": "호흡 개발",
+      "name_en": "Improved Breathing",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 100.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        762003
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        762203
+      ]
+    },
+    {
+      "name_kr": "짓밟기",
+      "name_en": "Stomping",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 75.0
+        },
+        {
+          "name_en": "Down Attack Damage",
+          "name_kr": "다운어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758008
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758208
+      ]
+    },
+    {
+      "name_kr": "날아차기",
+      "name_en": "Flying Kick",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 75.0
+        },
+        {
+          "name_en": "Air Attack Damage",
+          "name_kr": "에어어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758009
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758209
+      ]
+    },
+    {
+      "name_kr": "등 뒤의 그림자",
+      "name_en": "Behind the Shadow",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 75.0
+        },
+        {
+          "name_en": "Back Attack Damage",
+          "name_kr": "백어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758010
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758210
+      ]
+    },
+    {
+      "name_kr": "약점 공략",
+      "name_en": "Target Openings",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 75.0
+        },
+        {
+          "name_en": "Critical Hit Damage",
+          "name_kr": "치명타 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758011
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758211
+      ]
+    },
+    {
+      "name_kr": "기술의 달인",
+      "name_en": "Skill Master",
+      "effects": [
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 75.0
+        },
+        {
+          "name_en": "Extra All Special Attack Damage",
+          "name_kr": "모든 특수 공격 추가 피해",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758002,
+        762003,
+        758007
+      ],
+      "amplified": [
+        758201,
+        758202,
+        762203,
+        758207
+      ]
+    },
+    {
+      "name_kr": "호신술",
+      "name_en": "Self-Defense",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 6.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 9.0
+        },
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 50.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760002,
+        762001
+      ],
+      "amplified": [
+        760201,
+        760202,
+        762201
+      ]
+    },
+    {
+      "name_kr": "껍데기",
+      "name_en": "Shell",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760001,
+        760001
+      ],
+      "amplified": [
+        760201,
+        760201,
+        760201
+      ]
+    },
+    {
+      "name_kr": "서리 방패",
+      "name_en": "Rigid Shield",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 18.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760001,
+        760001,
+        760001
+      ],
+      "amplified": [
+        760201,
+        760201,
+        760201,
+        760201
+      ]
+    },
+    {
+      "name_kr": "날쌘돌이",
+      "name_en": "Light-Footed",
+      "effects": [
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 18.0
+        }
+      ],
+      "lightstones": [
+        760002,
+        760002,
+        760002
+      ],
+      "amplified": [
+        760202,
+        760202,
+        760202
+      ]
+    },
+    {
+      "name_kr": "켄타우로스",
+      "name_en": "Centaurus",
+      "effects": [
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 24.0
+        }
+      ],
+      "lightstones": [
+        760002,
+        760002,
+        760002,
+        760002
+      ],
+      "amplified": [
+        760202,
+        760202,
+        760202,
+        760202
+      ]
+    },
+    {
+      "name_kr": "강철 방패",
+      "name_en": "Steel Shield",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 12.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 18.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760001,
+        760002,
+        760002
+      ],
+      "amplified": [
+        760201,
+        760201,
+        760202,
+        760202
+      ]
+    },
+    {
+      "name_kr": "생명수",
+      "name_en": "Water of Life",
+      "effects": [
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 150.0
+        }
+      ],
+      "lightstones": [
+        762001,
+        762001,
+        762001
+      ],
+      "amplified": [
+        762201,
+        762201,
+        762201
+      ]
+    },
+    {
+      "name_kr": "강철심장",
+      "name_en": "Steel Heart",
+      "effects": [
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 250.0
+        }
+      ],
+      "lightstones": [
+        762001,
+        762001,
+        762001,
+        762001
+      ],
+      "amplified": [
+        762201,
+        762201,
+        762201,
+        762201
+      ]
+    },
+    {
+      "name_kr": "역전용사",
+      "name_en": "Veteran",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 27.0
+        },
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 150.0
+        },
+        {
+          "name_en": "Stun/Stiffness/Freezing Resistance",
+          "name_kr": "기절/경직/빙결 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760002,
+        762001,
+        760007
+      ],
+      "amplified": [
+        760201,
+        760202,
+        762201,
+        760207
+      ]
+    },
+    {
+      "name_kr": "혈전의 전사",
+      "name_en": "Warrior Bloodline",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 27.0
+        },
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 150.0
+        },
+        {
+          "name_en": "Knockdown/Bound Resistance",
+          "name_kr": "넉다운/바운드 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760002,
+        762001,
+        760009
+      ],
+      "amplified": [
+        760201,
+        760202,
+        762201,
+        760209
+      ]
+    },
+    {
+      "name_kr": "최후의 문지기",
+      "name_en": "Last Gatekeeper",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 27.0
+        },
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 150.0
+        },
+        {
+          "name_en": "Knockback/Floating Resistance",
+          "name_kr": "넉백/띄우기 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760002,
+        762001,
+        760010
+      ],
+      "amplified": [
+        760201,
+        760202,
+        762201,
+        760210
+      ]
+    },
+    {
+      "name_kr": "올룬의 후예",
+      "name_en": "Olun's Descendant",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 27.0
+        },
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 150.0
+        },
+        {
+          "name_en": "All Resistance",
+          "name_kr": "모든 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760002,
+        762001,
+        760006
+      ],
+      "amplified": [
+        760201,
+        760202,
+        762201,
+        760206
+      ]
+    },
+    {
+      "name_kr": "분노의 질주",
+      "name_en": "Fast & Ragious",
+      "effects": [
+        {
+          "name_en": "Black Spirit's Rage Recovery",
+          "name_kr": "",
+          "unit_en": "%",
+          "unit_kr": "초마다",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        760006,
+        760006,
+        762002,
+        766101
+      ],
+      "amplified": [
+        760206,
+        760206,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "정신 집중",
+      "name_en": "Mind Focus",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        },
+        {
+          "name_en": "Max MP/WP/SP",
+          "name_kr": "최대 정신력/투지/신성력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 700.0
+        },
+        {
+          "name_en": "All Resistance",
+          "name_kr": "모든 저항",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        762002,
+        762002,
+        762002,
+        762002
+      ],
+      "amplified": [
+        762202,
+        762202,
+        762202,
+        762202
+      ]
+    },
+    {
+      "name_kr": "공복",
+      "name_en": "Fasting",
+      "effects": [
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -200.0
+        },
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Max MP/WP/SP",
+          "name_kr": "최대 정신력/투지/신성력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 850.0
+        }
+      ],
+      "lightstones": [
+        760001,
+        760001,
+        762002,
+        762002
+      ],
+      "amplified": [
+        760201,
+        760201,
+        762202,
+        762202
+      ]
+    },
+    {
+      "name_kr": "가쁜 호흡",
+      "name_en": "Panting",
+      "effects": [
+        {
+          "name_en": "Max HP",
+          "name_kr": "최대 생명력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 250.0
+        }
+      ],
+      "lightstones": [
+        762003,
+        762003,
+        760002,
+        762002
+      ],
+      "amplified": [
+        762203,
+        762203,
+        760202,
+        762202
+      ]
+    },
+    {
+      "name_kr": "무자비",
+      "name_en": "Merciless",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Down Attack Damage",
+          "name_kr": "다운어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758001,
+        758008,
+        758008
+      ],
+      "amplified": [
+        758201,
+        758201,
+        758208,
+        758208
+      ]
+    },
+    {
+      "name_kr": "다리걸기",
+      "name_en": "Sweep",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        },
+        {
+          "name_en": "Down Attack Damage",
+          "name_kr": "다운어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758002,
+        758002,
+        758008,
+        758008
+      ],
+      "amplified": [
+        758202,
+        758202,
+        758208,
+        758208
+      ]
+    },
+    {
+      "name_kr": "초상비격",
+      "name_en": "Raised from the Dead",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Air Attack Damage",
+          "name_kr": "에어어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758001,
+        758009,
+        758009
+      ],
+      "amplified": [
+        758201,
+        758201,
+        758209,
+        758209
+      ]
+    },
+    {
+      "name_kr": "비살적무",
+      "name_en": "Flying Marksmen",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        },
+        {
+          "name_en": "Air Attack Damage",
+          "name_kr": "에어어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758002,
+        758002,
+        758009,
+        758009
+      ],
+      "amplified": [
+        758202,
+        758202,
+        758209,
+        758209
+      ]
+    },
+    {
+      "name_kr": "뒤를 조심해",
+      "name_en": "Watch Your Back",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Back Attack Damage",
+          "name_kr": "백어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758001,
+        758010,
+        758010
+      ],
+      "amplified": [
+        758201,
+        758201,
+        758210,
+        758210
+      ]
+    },
+    {
+      "name_kr": "약점 노출",
+      "name_en": "Expose Weakness",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        },
+        {
+          "name_en": "Back Attack Damage",
+          "name_kr": "백어택 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758002,
+        758002,
+        758010,
+        758010
+      ],
+      "amplified": [
+        758202,
+        758202,
+        758210,
+        758210
+      ]
+    },
+    {
+      "name_kr": "배수의 진",
+      "name_en": "All-Out-Attack",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All AP",
+          "name_kr": "모든 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Critical Hit Damage",
+          "name_kr": "치명타 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758001,
+        758001,
+        758011,
+        758011
+      ],
+      "amplified": [
+        758201,
+        758201,
+        758211,
+        758211
+      ]
+    },
+    {
+      "name_kr": "육참골단",
+      "name_en": "Maiming",
+      "effects": [
+        {
+          "name_en": "All Damage Reduction",
+          "name_kr": "모든 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -15.0
+        },
+        {
+          "name_en": "All Evasion",
+          "name_kr": "모든 회피력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -25.0
+        },
+        {
+          "name_en": "All Accuracy",
+          "name_kr": "모든 적중력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        },
+        {
+          "name_en": "Critical Hit Damage",
+          "name_kr": "치명타 피해량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        }
+      ],
+      "lightstones": [
+        758002,
+        758002,
+        758011,
+        758011
+      ],
+      "amplified": [
+        758202,
+        758202,
+        758211,
+        758211
+      ]
+    },
+    {
+      "name_kr": "날아올라!",
+      "name_en": "Take Off!",
+      "effects": [
+        {
+          "name_en": "Jump Height",
+          "name_kr": "점프력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 50.0
+        },
+        {
+          "name_en": "Movement Speed",
+          "name_kr": "이동 속도",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        758018,
+        758018,
+        762006,
+        762006
+      ],
+      "amplified": [
+        758218,
+        758218,
+        762206,
+        762206
+      ]
+    },
+    {
+      "name_kr": "신나는 여행",
+      "name_en": "Wondrous Journey",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 150.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 30.0
+        },
+        {
+          "name_en": "Max Stamina",
+          "name_kr": "최대 지구력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 100.0
+        },
+        {
+          "name_en": "Chance to Gain Knowledge",
+          "name_kr": "지식 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 20.0
+        },
+        {
+          "name_en": "Weight Limit",
+          "name_kr": "최대 소지 무게",
+          "unit_en": "LT",
+          "unit_kr": "LT",
+          "value": 70.0
+        }
+      ],
+      "lightstones": [
+        762003,
+        762003,
+        762004,
+        762005
+      ],
+      "amplified": [
+        762203,
+        762203,
+        762204,
+        762205
+      ]
+    },
+    {
+      "name_kr": "단련",
+      "name_en": "Training",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 1.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758003,
+        760003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758203,
+        760203
+      ]
+    },
+    {
+      "name_kr": "단련 : 인간족",
+      "name_en": "Training: Humans",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758004,
+        760003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758204,
+        760203
+      ]
+    },
+    {
+      "name_kr": "단련 : 아인종",
+      "name_en": "Training: Demihumans",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758005,
+        760003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758205,
+        760203
+      ]
+    },
+    {
+      "name_kr": "단련 : 카마실비아 종족",
+      "name_en": "Training: Kamasylvia",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        },
+        {
+          "name_en": "Monster Damage Reduction",
+          "name_kr": "몬스터 피해 감소",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758006,
+        760003
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758206,
+        760203
+      ]
+    },
+    {
+      "name_kr": "훈련 : 부패-포효",
+      "name_en": "Drills: Blight-Roar",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758004,
+        758005
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758204,
+        758205
+      ]
+    },
+    {
+      "name_kr": "훈련 : 부패-타락",
+      "name_en": "Drills: Blight-Fallen",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Humans",
+          "name_kr": "모험가, 인간 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758004,
+        758006
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758204,
+        758206
+      ]
+    },
+    {
+      "name_kr": "훈련 : 타락-포효",
+      "name_en": "Drills: Fallen-Roar",
+      "effects": [
+        {
+          "name_en": "Combat EXP",
+          "name_kr": "전투 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 50.0
+        },
+        {
+          "name_en": "Skill EXP",
+          "name_kr": "기술 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Extra AP Against Monsters",
+          "name_kr": "몬스터 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 3.0
+        },
+        {
+          "name_en": "Extra Damage to Kamasylvian Monsters",
+          "name_kr": "카마실비아 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        },
+        {
+          "name_en": "Extra Damage to Demihumans",
+          "name_kr": "아인 종족 추가 공격력",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 4.0
+        }
+      ],
+      "lightstones": [
+        762004,
+        762005,
+        758005,
+        758006
+      ],
+      "amplified": [
+        762204,
+        762205,
+        758205,
+        758206
+      ]
+    },
+    {
+      "name_kr": "델로티아",
+      "name_en": "Delotia",
+      "effects": [
+        {
+          "name_en": "Life EXP",
+          "name_kr": "생활 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 17.0
+        }
+      ],
+      "lightstones": [
+        764001,
+        764001,
+        762007,
+        766101
+      ],
+      "amplified": [
+        764001,
+        764001,
+        762207,
+        766101
+      ]
+    },
+    {
+      "name_kr": "마노스의 손",
+      "name_en": "Hand of Manos",
+      "effects": [
+        {
+          "name_en": "Life Skill Mastery",
+          "name_kr": "생활 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764002,
+        764002,
+        762007,
+        766101
+      ],
+      "amplified": [
+        758001,
+        758001,
+        762207,
+        766101
+      ]
+    },
+    {
+      "name_kr": "천연의 요새",
+      "name_en": "Fortress of Nature",
+      "effects": [
+        {
+          "name_en": "Life EXP",
+          "name_kr": "생활 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 12.0
+        },
+        {
+          "name_en": "Life Skill Mastery",
+          "name_kr": "생활 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        }
+      ],
+      "lightstones": [
+        764001,
+        764002,
+        762007,
+        766101
+      ],
+      "amplified": [
+        764001,
+        758001,
+        762207,
+        766101
+      ]
+    },
+    {
+      "name_kr": "호기심",
+      "name_en": "Curious",
+      "effects": [
+        {
+          "name_en": "Gathering EXP",
+          "name_kr": "채집 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764011,
+        764011
+      ],
+      "amplified": [
+        764011,
+        764011,
+        764011
+      ]
+    },
+    {
+      "name_kr": "일품 자세",
+      "name_en": "Best Stance",
+      "effects": [
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764012,
+        764012
+      ],
+      "amplified": [
+        764012,
+        764012,
+        764012
+      ]
+    },
+    {
+      "name_kr": "조각상",
+      "name_en": "Sculpture",
+      "effects": [
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764013,
+        764013
+      ],
+      "amplified": [
+        764013,
+        764013,
+        764013
+      ]
+    },
+    {
+      "name_kr": "마녀의 솥",
+      "name_en": "Witch's Cauldron",
+      "effects": [
+        {
+          "name_en": "Cooking EXP",
+          "name_kr": "요리 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764014,
+        764014,
+        764014
+      ],
+      "amplified": [
+        764014,
+        764014,
+        764014
+      ]
+    },
+    {
+      "name_kr": "고대인의 연금서",
+      "name_en": "Ancient's Alchemy",
+      "effects": [
+        {
+          "name_en": "Alchemy EXP",
+          "name_kr": "연금 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764015,
+        764015,
+        764015
+      ],
+      "amplified": [
+        764015,
+        764015,
+        764015
+      ]
+    },
+    {
+      "name_kr": "손재주",
+      "name_en": "Skillful Hands",
+      "effects": [
+        {
+          "name_en": "Processing EXP",
+          "name_kr": "가공 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764016,
+        764016,
+        764016
+      ],
+      "amplified": [
+        764016,
+        764016,
+        764016
+      ]
+    },
+    {
+      "name_kr": "교감",
+      "name_en": "Commune",
+      "effects": [
+        {
+          "name_en": "Training EXP",
+          "name_kr": "조련 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764017,
+        764017
+      ],
+      "amplified": [
+        764017,
+        764017,
+        764017
+      ]
+    },
+    {
+      "name_kr": "흥정꾼",
+      "name_en": "Trader",
+      "effects": [
+        {
+          "name_en": "Trading EXP",
+          "name_kr": "무역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764018,
+        764018,
+        764018
+      ],
+      "amplified": [
+        764018,
+        764018,
+        764018
+      ]
+    },
+    {
+      "name_kr": "기다림의 미덕",
+      "name_en": "Fruit of Waiting",
+      "effects": [
+        {
+          "name_en": "Farming EXP",
+          "name_kr": "재배 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764019,
+        764019,
+        764019
+      ],
+      "amplified": [
+        764019,
+        764019,
+        764019
+      ]
+    },
+    {
+      "name_kr": "흔들흔들 조타수",
+      "name_en": "Swaying Helmsman",
+      "effects": [
+        {
+          "name_en": "Sailing EXP",
+          "name_kr": "항해 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764020,
+        764020,
+        764020
+      ],
+      "amplified": [
+        764020,
+        764020,
+        764020
+      ]
+    },
+    {
+      "name_kr": "저울의 주인",
+      "name_en": "Scale Owner",
+      "effects": [
+        {
+          "name_en": "Barter EXP",
+          "name_kr": "교역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        }
+      ],
+      "lightstones": [
+        764021,
+        764021,
+        764021
+      ],
+      "amplified": [
+        764021,
+        764021,
+        764021
+      ]
+    },
+    {
+      "name_kr": "요정의 친구",
+      "name_en": "Friend of Fairies",
+      "effects": [
+        {
+          "name_en": "Gathering EXP",
+          "name_kr": "채집 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764011,
+        764011,
+        764011
+      ],
+      "amplified": [
+        764011,
+        764011,
+        764011,
+        764011
+      ]
+    },
+    {
+      "name_kr": "월척",
+      "name_en": "Big Catch",
+      "effects": [
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764012,
+        764012,
+        764012
+      ],
+      "amplified": [
+        764012,
+        764012,
+        764012,
+        764012
+      ]
+    },
+    {
+      "name_kr": "매의 눈",
+      "name_en": "Eye of a Hawk",
+      "effects": [
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764013,
+        764013,
+        764013
+      ],
+      "amplified": [
+        764013,
+        764013,
+        764013,
+        764013
+      ]
+    },
+    {
+      "name_kr": "특제 요리사",
+      "name_en": "Great Chef",
+      "effects": [
+        {
+          "name_en": "Cooking EXP",
+          "name_kr": "요리 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764014,
+        764014,
+        764014,
+        764014
+      ],
+      "amplified": [
+        764014,
+        764014,
+        764014,
+        764014
+      ]
+    },
+    {
+      "name_kr": "부스러진 별 수집가",
+      "name_en": "Collector of Shattered Stars",
+      "effects": [
+        {
+          "name_en": "Alchemy EXP",
+          "name_kr": "연금 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764015,
+        764015,
+        764015,
+        764015
+      ],
+      "amplified": [
+        764015,
+        764015,
+        764015,
+        764015
+      ]
+    },
+    {
+      "name_kr": "샘솟는 기력",
+      "name_en": "Raising Power",
+      "effects": [
+        {
+          "name_en": "Processing EXP",
+          "name_kr": "가공 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764016,
+        764016,
+        764016,
+        764016
+      ],
+      "amplified": [
+        764016,
+        764016,
+        764016,
+        764016
+      ]
+    },
+    {
+      "name_kr": "경쾌한 리듬",
+      "name_en": "Light Trot",
+      "effects": [
+        {
+          "name_en": "Training EXP",
+          "name_kr": "조련 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764017,
+        764017,
+        764017
+      ],
+      "amplified": [
+        764017,
+        764017,
+        764017,
+        764017
+      ]
+    },
+    {
+      "name_kr": "눈치 백단",
+      "name_en": "Quick-witted",
+      "effects": [
+        {
+          "name_en": "Trading EXP",
+          "name_kr": "무역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764018,
+        764018,
+        764018,
+        764018
+      ],
+      "amplified": [
+        764018,
+        764018,
+        764018,
+        764018
+      ]
+    },
+    {
+      "name_kr": "인내의 끝",
+      "name_en": "Cultivation",
+      "effects": [
+        {
+          "name_en": "Farming EXP",
+          "name_kr": "재배 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764019,
+        764019,
+        764019,
+        764019
+      ],
+      "amplified": [
+        764019,
+        764019,
+        764019,
+        764019
+      ]
+    },
+    {
+      "name_kr": "하늘과 바다의 경계로",
+      "name_en": "Over the Horizon",
+      "effects": [
+        {
+          "name_en": "Sailing EXP",
+          "name_kr": "항해 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764020,
+        764020,
+        764020,
+        764020
+      ],
+      "amplified": [
+        764020,
+        764020,
+        764020,
+        764020
+      ]
+    },
+    {
+      "name_kr": "물물교환 장학생",
+      "name_en": "Barter Scholar",
+      "effects": [
+        {
+          "name_en": "Barter EXP",
+          "name_kr": "교역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764021,
+        764021,
+        764021,
+        764021
+      ],
+      "amplified": [
+        764021,
+        764021,
+        764021,
+        764021
+      ]
+    },
+    {
+      "name_kr": "심마니",
+      "name_en": "Pluck",
+      "effects": [
+        {
+          "name_en": "Gathering EXP",
+          "name_kr": "채집 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764011,
+        764011,
+        766101
+      ],
+      "amplified": [
+        764011,
+        764011,
+        764011,
+        766101
+      ]
+    },
+    {
+      "name_kr": "노련한 어부",
+      "name_en": "Seasoned Fisher",
+      "effects": [
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764012,
+        764012,
+        766101
+      ],
+      "amplified": [
+        764012,
+        764012,
+        764012,
+        766101
+      ]
+    },
+    {
+      "name_kr": "사냥꾼의 촉",
+      "name_en": "Hunter's Instinct",
+      "effects": [
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764013,
+        764013,
+        766101
+      ],
+      "amplified": [
+        764013,
+        764013,
+        764013,
+        766101
+      ]
+    },
+    {
+      "name_kr": "별미로운 요리사",
+      "name_en": "Excellent Chef",
+      "effects": [
+        {
+          "name_en": "Cooking EXP",
+          "name_kr": "요리 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764014,
+        764014,
+        764014,
+        766101
+      ],
+      "amplified": [
+        764014,
+        764014,
+        764014,
+        766101
+      ]
+    },
+    {
+      "name_kr": "미지의 연금술사",
+      "name_en": "Mysterious Alchemist",
+      "effects": [
+        {
+          "name_en": "Alchemy EXP",
+          "name_kr": "연금 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764015,
+        764015,
+        764015,
+        766101
+      ],
+      "amplified": [
+        764015,
+        764015,
+        764015,
+        766101
+      ]
+    },
+    {
+      "name_kr": "가공된 손",
+      "name_en": "Processed Hand",
+      "effects": [
+        {
+          "name_en": "Processing EXP",
+          "name_kr": "가공 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764016,
+        764016,
+        764016,
+        766101
+      ],
+      "amplified": [
+        764016,
+        764016,
+        764016,
+        766101
+      ]
+    },
+    {
+      "name_kr": "행운의 마편",
+      "name_en": "Lucky Crop",
+      "effects": [
+        {
+          "name_en": "Training EXP",
+          "name_kr": "조련 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764017,
+        764017,
+        766101
+      ],
+      "amplified": [
+        764017,
+        764017,
+        764017,
+        766101
+      ]
+    },
+    {
+      "name_kr": "인생의 수레바퀴",
+      "name_en": "The Cycle",
+      "effects": [
+        {
+          "name_en": "Trading EXP",
+          "name_kr": "무역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764018,
+        764018,
+        764018,
+        766101
+      ],
+      "amplified": [
+        764018,
+        764018,
+        764018,
+        766101
+      ]
+    },
+    {
+      "name_kr": "마력이 깃든 땅",
+      "name_en": "Magical Soil",
+      "effects": [
+        {
+          "name_en": "Farming EXP",
+          "name_kr": "재배 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764019,
+        764019,
+        764019,
+        766101
+      ],
+      "amplified": [
+        764019,
+        764019,
+        764019,
+        766101
+      ]
+    },
+    {
+      "name_kr": "너울빛 동행",
+      "name_en": "Chasing the Sunset",
+      "effects": [
+        {
+          "name_en": "Sailing EXP",
+          "name_kr": "항해 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764020,
+        764020,
+        764020,
+        766101
+      ],
+      "amplified": [
+        764020,
+        764020,
+        764020,
+        766101
+      ]
+    },
+    {
+      "name_kr": "교섭의 달인",
+      "name_en": "Master Negotiator",
+      "effects": [
+        {
+          "name_en": "Barter EXP",
+          "name_kr": "교역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 16.0
+        }
+      ],
+      "lightstones": [
+        764021,
+        764021,
+        764021,
+        766101
+      ],
+      "amplified": [
+        764021,
+        764021,
+        764021,
+        766101
+      ]
+    },
+    {
+      "name_kr": "네잎클로버",
+      "name_en": "Four-leaf Clover",
+      "effects": [
+        {
+          "name_en": "Gathering Mastery",
+          "name_kr": "채집 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764003,
+        764003,
+        764003
+      ],
+      "amplified": [
+        764003,
+        764003,
+        764003
+      ]
+    },
+    {
+      "name_kr": "반사신경",
+      "name_en": "Reflexes",
+      "effects": [
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764004,
+        764004,
+        764004
+      ],
+      "amplified": [
+        764004,
+        764004,
+        764004
+      ]
+    },
+    {
+      "name_kr": "새벽을 찢는 총성",
+      "name_en": "First Shot of Dawn",
+      "effects": [
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764005,
+        764005,
+        764005
+      ],
+      "amplified": [
+        764005,
+        764005,
+        764005
+      ]
+    },
+    {
+      "name_kr": "맛의 향연",
+      "name_en": "Feast of Flavors",
+      "effects": [
+        {
+          "name_en": "Cooking Mastery",
+          "name_kr": "요리 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764006,
+        764006,
+        764006
+      ],
+      "amplified": [
+        764006,
+        764006,
+        764006
+      ]
+    },
+    {
+      "name_kr": "생기로운 시약",
+      "name_en": "New Reagent",
+      "effects": [
+        {
+          "name_en": "Alchemy Mastery",
+          "name_kr": "연금 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764007,
+        764007,
+        764007
+      ],
+      "amplified": [
+        764007,
+        764007,
+        764007
+      ]
+    },
+    {
+      "name_kr": "공방가의 콧노래",
+      "name_en": "Humming in the Workshop",
+      "effects": [
+        {
+          "name_en": "Processing Mastery",
+          "name_kr": "가공 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764008,
+        764008,
+        764008
+      ],
+      "amplified": [
+        764008,
+        764008,
+        764008
+      ]
+    },
+    {
+      "name_kr": "마부의 기상",
+      "name_en": "Rising Trainer",
+      "effects": [
+        {
+          "name_en": "Training Mastery",
+          "name_kr": "조련 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764009,
+        764009,
+        764009
+      ],
+      "amplified": [
+        764009,
+        764009,
+        764009
+      ]
+    },
+    {
+      "name_kr": "선원의 힘줄",
+      "name_en": "Sailor's Muscle",
+      "effects": [
+        {
+          "name_en": "Sailing Mastery",
+          "name_kr": "항해 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 8.0
+        }
+      ],
+      "lightstones": [
+        764010,
+        764010,
+        764010
+      ],
+      "amplified": [
+        764010,
+        764010,
+        764010
+      ]
+    },
+    {
+      "name_kr": "정령의 메아리 ",
+      "name_en": "Spirit's Echo",
+      "effects": [
+        {
+          "name_en": "Gathering Mastery",
+          "name_kr": "채집 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764003,
+        764003,
+        764003,
+        764003
+      ],
+      "amplified": [
+        764003,
+        764003,
+        764003,
+        764003
+      ]
+    },
+    {
+      "name_kr": "춤추는 물고기",
+      "name_en": "Dancing Fish",
+      "effects": [
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764004,
+        764004,
+        764004,
+        764004
+      ],
+      "amplified": [
+        764004,
+        764004,
+        764004,
+        764004
+      ]
+    },
+    {
+      "name_kr": "앙다문 올가미",
+      "name_en": "Closed Snare",
+      "effects": [
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764005,
+        764005,
+        764005,
+        764005
+      ],
+      "amplified": [
+        764005,
+        764005,
+        764005,
+        764005
+      ]
+    },
+    {
+      "name_kr": "인생은 요리",
+      "name_en": "Best Cooking-ever",
+      "effects": [
+        {
+          "name_en": "Cooking Mastery",
+          "name_kr": "요리 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764006,
+        764006,
+        764006,
+        764006
+      ],
+      "amplified": [
+        764006,
+        764006,
+        764006,
+        764006
+      ]
+    },
+    {
+      "name_kr": "몽상가",
+      "name_en": "Dreamer",
+      "effects": [
+        {
+          "name_en": "Alchemy Mastery",
+          "name_kr": "연금 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764007,
+        764007,
+        764007,
+        764007
+      ],
+      "amplified": [
+        764007,
+        764007,
+        764007,
+        764007
+      ]
+    },
+    {
+      "name_kr": "움푹 팬 발자국",
+      "name_en": "Deep Footprints",
+      "effects": [
+        {
+          "name_en": "Processing Mastery",
+          "name_kr": "가공 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764008,
+        764008,
+        764008,
+        764008
+      ],
+      "amplified": [
+        764008,
+        764008,
+        764008,
+        764008
+      ]
+    },
+    {
+      "name_kr": "황금갈기",
+      "name_en": "Golden Mane",
+      "effects": [
+        {
+          "name_en": "Training Mastery",
+          "name_kr": "조련 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764009,
+        764009,
+        764009,
+        764009
+      ],
+      "amplified": [
+        764009,
+        764009,
+        764009,
+        764009
+      ]
+    },
+    {
+      "name_kr": "녹이 슨 닻",
+      "name_en": "Rusty Anchor",
+      "effects": [
+        {
+          "name_en": "Sailing Mastery",
+          "name_kr": "항해 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        }
+      ],
+      "lightstones": [
+        764010,
+        764010,
+        764010,
+        764010
+      ],
+      "amplified": [
+        764010,
+        764010,
+        764010,
+        764010
+      ]
+    },
+    {
+      "name_kr": "자연인",
+      "name_en": "Nature-lover",
+      "effects": [
+        {
+          "name_en": "Gathering Mastery",
+          "name_kr": "채집 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764003,
+        764003,
+        764003,
+        766101
+      ],
+      "amplified": [
+        764003,
+        764003,
+        764003,
+        766101
+      ]
+    },
+    {
+      "name_kr": "낚시꾼의 비기",
+      "name_en": "Fisher's Secrets",
+      "effects": [
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764004,
+        764004,
+        764004,
+        766101
+      ],
+      "amplified": [
+        764004,
+        764004,
+        764004,
+        766101
+      ]
+    },
+    {
+      "name_kr": "전설의 총잡이",
+      "name_en": "Legendary Marksman",
+      "effects": [
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764005,
+        764005,
+        764005,
+        766101
+      ],
+      "amplified": [
+        764005,
+        764005,
+        764005,
+        766101
+      ]
+    },
+    {
+      "name_kr": "황실 요리사",
+      "name_en": "Imperial Chef",
+      "effects": [
+        {
+          "name_en": "Cooking Mastery",
+          "name_kr": "요리 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764006,
+        764006,
+        764006,
+        766101
+      ],
+      "amplified": [
+        764006,
+        764006,
+        764006,
+        766101
+      ]
+    },
+    {
+      "name_kr": "황실 연금술사",
+      "name_en": "Imperial Alchemist",
+      "effects": [
+        {
+          "name_en": "Alchemy Mastery",
+          "name_kr": "연금 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764007,
+        764007,
+        764007,
+        766101
+      ],
+      "amplified": [
+        764007,
+        764007,
+        764007,
+        766101
+      ]
+    },
+    {
+      "name_kr": "만능손",
+      "name_en": "Multi-purpose",
+      "effects": [
+        {
+          "name_en": "Processing Mastery",
+          "name_kr": "가공 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764008,
+        764008,
+        764008,
+        766101
+      ],
+      "amplified": [
+        764008,
+        764008,
+        764008,
+        766101
+      ]
+    },
+    {
+      "name_kr": "영예의 그랑프리",
+      "name_en": "Grand Prix Glory",
+      "effects": [
+        {
+          "name_en": "Training Mastery",
+          "name_kr": "조련 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764009,
+        764009,
+        764009,
+        766101
+      ],
+      "amplified": [
+        764009,
+        764009,
+        764009,
+        766101
+      ]
+    },
+    {
+      "name_kr": "위대한 물결",
+      "name_en": "The Great Tide",
+      "effects": [
+        {
+          "name_en": "Sailing Mastery",
+          "name_kr": "항해 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764010,
+        764010,
+        764010,
+        766101
+      ],
+      "amplified": [
+        764010,
+        764010,
+        764010,
+        766101
+      ]
+    },
+    {
+      "name_kr": "요리조리 위즐",
+      "name_en": "Scurrying Weasel",
+      "effects": [
+        {
+          "name_en": "Gathering Item Drop Rate",
+          "name_kr": "모든 채집물 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        },
+        {
+          "name_en": "Gathering EXP",
+          "name_kr": "채집 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Gathering Mastery",
+          "name_kr": "채집 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Movement Speed",
+          "name_kr": "이동 속도",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 3.0
+        },
+        {
+          "name_en": "Gathering",
+          "name_kr": "채집 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764003,
+        758018,
+        766101
+      ],
+      "amplified": [
+        764011,
+        764003,
+        758218,
+        766101
+      ]
+    },
+    {
+      "name_kr": "하품하는 고슴도치",
+      "name_en": "Yawning Hedgehog",
+      "effects": [
+        {
+          "name_en": "Gathering Item Drop Rate",
+          "name_kr": "모든 채집물 획득 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Gathering EXP",
+          "name_kr": "채집 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Gathering Mastery",
+          "name_kr": "채집 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Gathering",
+          "name_kr": "채집 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        },
+        {
+          "name_en": "Energy Recovery",
+          "name_kr": "기운 회복량",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764003,
+        762007,
+        766101
+      ],
+      "amplified": [
+        764011,
+        764003,
+        762207,
+        766101
+      ]
+    },
+    {
+      "name_kr": "신의 입질",
+      "name_en": "Nibbles",
+      "effects": [
+        {
+          "name_en": "Auto-fishing Time",
+          "name_kr": "자동 낚시 시간",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": -15.0
+        },
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Fishing",
+          "name_kr": "낚시 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764004,
+        762003,
+        766101
+      ],
+      "amplified": [
+        764012,
+        764004,
+        762203,
+        766101
+      ]
+    },
+    {
+      "name_kr": "고래의 입",
+      "name_en": "Whaling",
+      "effects": [
+        {
+          "name_en": "Chance to Catch Big Fish",
+          "name_kr": "대형 어종을 낚을 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 6.0
+        },
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Fishing",
+          "name_kr": "낚시 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764004,
+        762006,
+        766101
+      ],
+      "amplified": [
+        764012,
+        764004,
+        762206,
+        766101
+      ]
+    },
+    {
+      "name_kr": "예리한 갈매기",
+      "name_en": "Sharp-eyed Seagull",
+      "effects": [
+        {
+          "name_en": "Chance to Catch Rare Fish",
+          "name_kr": "희귀 어종을 낚을 확률 증가",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        },
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Fishing",
+          "name_kr": "낚시 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764004,
+        762007,
+        766101
+      ],
+      "amplified": [
+        764012,
+        764004,
+        762207,
+        766101
+      ]
+    },
+    {
+      "name_kr": "웅크린 맹수",
+      "name_en": "Crouching Predator",
+      "effects": [
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 7.0
+        },
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 15.0
+        },
+        {
+          "name_en": "Attack Speed",
+          "name_kr": "공격/시전 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        },
+        {
+          "name_en": "Critical Hit",
+          "name_kr": "치명타 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764005,
+        758017,
+        758019
+      ],
+      "amplified": [
+        764013,
+        764005,
+        758217,
+        758219
+      ]
+    },
+    {
+      "name_kr": "송곳니",
+      "name_en": "Canine Tooth",
+      "effects": [
+        {
+          "name_en": "Critical Hit Rate",
+          "name_kr": "치명타 확률",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 8.0
+        },
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Attack Speed",
+          "name_kr": "공격/시전 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 2.0
+        },
+        {
+          "name_en": "Critical Hit",
+          "name_kr": "치명타 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764005,
+        758019,
+        766101
+      ],
+      "amplified": [
+        764013,
+        764005,
+        758219,
+        766101
+      ]
+    },
+    {
+      "name_kr": "눈 깜짝할 사이",
+      "name_en": "Blink of an Eye",
+      "effects": [
+        {
+          "name_en": "Matchlock Reload Speed",
+          "name_kr": "화승총 재장전 속도",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Attack Speed",
+          "name_kr": "공격/시전 속도 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 1.0
+        },
+        {
+          "name_en": "Critical Hit",
+          "name_kr": "치명타 잠재력",
+          "unit_en": "",
+          "unit_kr": "단계",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764005,
+        758017,
+        766101
+      ],
+      "amplified": [
+        764013,
+        764005,
+        758217,
+        766101
+      ]
+    },
+    {
+      "name_kr": "요리의 정석",
+      "name_en": "Fundamentals of Cooking",
+      "effects": [
+        {
+          "name_en": "Cooking Time",
+          "name_kr": "요리 시간",
+          "unit_en": "",
+          "unit_kr": "초",
+          "value": -2.0
+        },
+        {
+          "name_en": "Cooking EXP",
+          "name_kr": "요리 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Cooking Mastery",
+          "name_kr": "요리 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Weight Limit",
+          "name_kr": "최대 소지 무게",
+          "unit_en": "LT",
+          "unit_kr": "LT",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764014,
+        764006,
+        762006,
+        766101
+      ],
+      "amplified": [
+        764014,
+        764006,
+        762206,
+        766101
+      ]
+    },
+    {
+      "name_kr": "별 한 조각, 달 한 스푼",
+      "name_en": "A Fragment of a Star, a Spoonful of the Moon",
+      "effects": [
+        {
+          "name_en": "Alchemy Time",
+          "name_kr": "연금 시간",
+          "unit_en": "",
+          "unit_kr": "초",
+          "value": -2.0
+        },
+        {
+          "name_en": "Alchemy EXP",
+          "name_kr": "연금 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Alchemy Mastery",
+          "name_kr": "연금 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Weight Limit",
+          "name_kr": "최대 소지 무게",
+          "unit_en": "LT",
+          "unit_kr": "LT",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764015,
+        764007,
+        762006,
+        766101
+      ],
+      "amplified": [
+        764015,
+        764007,
+        762206,
+        766101
+      ]
+    },
+    {
+      "name_kr": "뚝딱뚝딱",
+      "name_en": "Clang! Clang!",
+      "effects": [
+        {
+          "name_en": "Processing Success Rate",
+          "name_kr": "가공 성공률",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 20.0
+        },
+        {
+          "name_en": "Processing EXP",
+          "name_kr": "가공 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Processing Mastery",
+          "name_kr": "가공 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        },
+        {
+          "name_en": "Weight Limit",
+          "name_kr": "최대 소지 무게",
+          "unit_en": "LT",
+          "unit_kr": "LT",
+          "value": 30.0
+        }
+      ],
+      "lightstones": [
+        764016,
+        764008,
+        762006,
+        766101
+      ],
+      "amplified": [
+        764016,
+        764008,
+        762206,
+        766101
+      ]
+    },
+    {
+      "name_kr": "흩날리는 바람",
+      "name_en": "Gone with the Wind",
+      "effects": [
+        {
+          "name_en": "Mount EXP",
+          "name_kr": "탑승물 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        },
+        {
+          "name_en": "Training EXP",
+          "name_kr": "조련 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 5.0
+        },
+        {
+          "name_en": "Training Mastery",
+          "name_kr": "조련 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 10.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764017,
+        764009,
+        764009
+      ],
+      "amplified": [
+        764017,
+        764017,
+        764009,
+        764009
+      ]
+    },
+    {
+      "name_kr": "석양속으로",
+      "name_en": "Into the Sunset",
+      "effects": [
+        {
+          "name_en": "Mount EXP",
+          "name_kr": "탑승물 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 15.0
+        },
+        {
+          "name_en": "Training EXP",
+          "name_kr": "조련 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Training Mastery",
+          "name_kr": "조련 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 20.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764017,
+        764009,
+        766101
+      ],
+      "amplified": [
+        764017,
+        764017,
+        764009,
+        766101
+      ]
+    },
+    {
+      "name_kr": "나보다 말",
+      "name_en": "Horses Over Flowers",
+      "effects": [
+        {
+          "name_en": "Mount EXP",
+          "name_kr": "탑승물 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 25.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764009,
+        764009,
+        766101
+      ],
+      "amplified": [
+        764017,
+        764009,
+        764009,
+        766101
+      ]
+    },
+    {
+      "name_kr": "바다의 포옹",
+      "name_en": "Ocean's Embrace",
+      "effects": [
+        {
+          "name_en": "Mermaid's Wish III",
+          "name_kr": "인어의 소망 III",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 0.0
+        },
+        {
+          "name_en": "Sailing EXP",
+          "name_kr": "항해 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Barter EXP",
+          "name_kr": "교역 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 10.0
+        },
+        {
+          "name_en": "Sailing Mastery",
+          "name_kr": "항해 숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 45.0
+        }
+      ],
+      "lightstones": [
+        764020,
+        764021,
+        764010,
+        766101
+      ],
+      "amplified": [
+        764020,
+        764021,
+        764010,
+        766101
+      ]
+    },
+    {
+      "name_kr": "개운한 꿈",
+      "name_en": "Refreshing Dream",
+      "effects": [
+        {
+          "name_en": "Energy Recovery",
+          "name_kr": "기운 회복량",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": 2.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764013,
+        764019,
+        766101
+      ],
+      "amplified": [
+        764011,
+        764013,
+        764019,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 채집",
+      "name_en": "Choice & Focus: Gathering",
+      "effects": [
+        {
+          "name_en": "Gathering Mastery",
+          "name_kr": "채집숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Gathering EXP",
+          "name_kr": "채집 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764011,
+        764011,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764011,
+        764011,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 낚시",
+      "name_en": "Choice & Focus: Fishing",
+      "effects": [
+        {
+          "name_en": "Fishing Mastery",
+          "name_kr": "낚시숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Fishing EXP",
+          "name_kr": "낚시 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764012,
+        764012,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764012,
+        764012,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 수렵",
+      "name_en": "Choice & Focus: Hunting",
+      "effects": [
+        {
+          "name_en": "Hunting Mastery",
+          "name_kr": "수렵숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Hunting EXP",
+          "name_kr": "수렵 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764013,
+        764013,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764013,
+        764013,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 요리",
+      "name_en": "Choice & Focus: Cooking",
+      "effects": [
+        {
+          "name_en": "Cooking Mastery",
+          "name_kr": "요리숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Cooking EXP",
+          "name_kr": "요리 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764014,
+        764014,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764014,
+        764014,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 연금",
+      "name_en": "Choice & Focus: Alchemy",
+      "effects": [
+        {
+          "name_en": "Alchemy Mastery",
+          "name_kr": "연금숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Alchemy EXP",
+          "name_kr": "연금 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764015,
+        764015,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764015,
+        764015,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 가공",
+      "name_en": "Choice & Focus: Processing",
+      "effects": [
+        {
+          "name_en": "Processing Mastery",
+          "name_kr": "가공숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Processing EXP",
+          "name_kr": "가공 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764016,
+        764016,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764016,
+        764016,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 조련",
+      "name_en": "Choice & Focus: Training",
+      "effects": [
+        {
+          "name_en": "Training Mastery",
+          "name_kr": "조련숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Training EXP",
+          "name_kr": "조련 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764017,
+        764017,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764017,
+        764017,
+        762202,
+        766101
+      ]
+    },
+    {
+      "name_kr": "선택과 집중 : 항해",
+      "name_en": "Choice & Focus: Sailing",
+      "effects": [
+        {
+          "name_en": "Sailing Mastery",
+          "name_kr": "항해숙련도",
+          "unit_en": "",
+          "unit_kr": "",
+          "value": -500.0
+        },
+        {
+          "name_en": "Sailing EXP",
+          "name_kr": "항해 경험치 획득량",
+          "unit_en": "%",
+          "unit_kr": "%",
+          "value": 35.0
+        }
+      ],
+      "lightstones": [
+        764020,
+        764020,
+        762002,
+        766101
+      ],
+      "amplified": [
+        764020,
+        764020,
+        762202,
+        766101
+      ]
+    }
+  ]
+}

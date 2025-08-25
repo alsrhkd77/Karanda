@@ -362,6 +362,19 @@
       "etc": "ETC"
     }
   },
+  "lightstoneCombination": {
+    "lightstoneCombination": "Lightstone Combination",
+    "combinationEffect": "Combination Effect",
+    "mixedEffect": "Combination Effect + Lightstone Effect",
+    "combination": "Lightstone Combination",
+    "searchBar": {
+      "add": "+ ADD",
+      "label": "Keywords",
+      "hint": "Lightstone / Combination / Effect"
+    },
+    "viewAmplified": "View Amplified",
+    "empty": "No matching results found."
+  },
   "select": "Select",
   "Karanda": "Karanda",
   "reporting": "Reporting",

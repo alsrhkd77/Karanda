@@ -362,6 +362,19 @@
       "etc": "기타"
     }
   },
+  "lightstoneCombination": {
+    "lightstoneCombination": "광명석 조합식",
+    "combinationEffect": "조합식 효과",
+    "mixedEffect": "조합식 효과 + 광명석 효과",
+    "combination": "광명석 조합",
+    "searchBar": {
+      "add": "+ 추가",
+      "label": "검색",
+      "hint": "광명석 / 조합식 / 효과"
+    },
+    "viewAmplified": "증폭된 광명석으로 보기",
+    "empty": "일치하는 결과가 없습니다."
+  },
   "select": "선택",
   "Karanda": "카란다",
   "reporting": "신고하기",

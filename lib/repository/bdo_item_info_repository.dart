@@ -1,14 +1,14 @@
 import 'dart:collection';
-import 'dart:convert';
-
-import 'package:convert/convert.dart' as converter;
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:karanda/data_source/bdo_item_info_data_source.dart';
 import 'package:karanda/model/bdo_item_info.dart';
-import 'dart:developer' as developer;
 
 class BDOItemInfoRepository {
+  final BDOItemInfoDataSource _dataSource;
   SplayTreeMap<String, BDOItemInfo> _data = SplayTreeMap();
+
+  BDOItemInfoRepository({required BDOItemInfoDataSource dataSource})
+      : _dataSource = dataSource;
 
   List<String> get keys => _data.keys.toList();
 
@@ -29,23 +29,11 @@ class BDOItemInfoRepository {
 
   Future<void> getData() async {
     if (_data.isNotEmpty) return;
-    try {
-      final SplayTreeMap<String, BDOItemInfo> result = SplayTreeMap();
-      final data = await rootBundle
-          .loadString('assets/Hammuu')
-          .then((value) => utf8.decode(converter.hex.decode(value)))
-          .then((value) => value.split('\n'));
-      String ver = data.first;
-      String pattern = ver.characters.last;
-      ver = ver.replaceAll(pattern, '');
-      data.removeAt(0);
-      for (String line in data) {
-        final item = BDOItemInfo.fromData(line.split(pattern));
-        result[item.code] = item;
-      }
-      _data = result;
-    } catch (e) {
-      developer.log("Failed to load data\n$e");
+    final SplayTreeMap<String, BDOItemInfo> result = SplayTreeMap();
+    final data = await _dataSource.getData();
+    for (BDOItemInfo item in data) {
+      result[item.code] = item;
     }
+    _data = result;
   }
 }

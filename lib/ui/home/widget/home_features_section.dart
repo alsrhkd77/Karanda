@@ -36,9 +36,9 @@ class HomeFeaturesSection extends StatelessWidget {
           path: '/event-calendar',
         ),
         _Tile(
-          title: '광명석 조합식',
+          title: context.tr("lightstoneCombination.lightstoneCombination"),
           icon: FontAwesomeIcons.splotch,
-          path: '/artifact',
+          path: '/lightstone-combination',
         ),
         /*_Tile(
           title: '말 성장치 계산기',

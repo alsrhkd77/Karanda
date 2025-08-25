@@ -3,13 +3,11 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/artifact/artifact_page.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
 import 'package:karanda/service/auth_service.dart';
-import 'package:karanda/trade/trade_calculator_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_error_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
@@ -19,6 +17,7 @@ import 'package:karanda/ui/color_counter/color_counter_page.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_page.dart';
 import 'package:karanda/ui/core/ui/not_found_page.dart';
 import 'package:karanda/ui/home/widget/home_page.dart';
+import 'package:karanda/ui/lightstone_combination/widget/lightstone_combination_page.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
 import 'package:karanda/ui/overlay/widgets/world_boss_overlay_settings_page.dart';
@@ -320,31 +319,32 @@ final GoRouter router = GoRouter(
             )
           ],
         ),
-        /*GoRoute(
-          path: 'auth',
-          builder: (context, state) => const AuthPage(
-            token: null,
-            refreshToken: null,
-          ),
+        GoRoute(
+          path: 'shutdown-scheduler',
+          builder: (context, state) => const ShutdownSchedulerPage(),
+          redirect: (BuildContext context, GoRouterState state) {
+            if (kIsWeb || !Platform.isWindows) {
+              return '/not-found';
+            }
+            return null;
+          },
         ),
         GoRoute(
-          path: 'auth/info',
-          builder: (context, state) => const AuthPage(
-            token: null,
-            refreshToken: null,
-          ),
+          path: 'ship-upgrading',
+          builder: (context, state) => const ShipUpgradingPage(),
         ),
         GoRoute(
-          path: 'auth/authenticate',
-          builder: (context, state) => AuthPage(
-            token: state.uri.queryParameters['token'],
-            refreshToken: state.uri.queryParameters['refresh-token'],
-          ),
+          path: 'bartering',
+          builder: (context, state) => const BarteringPage(),
         ),
         GoRoute(
-          path: 'auth/error',
-          builder: (context, state) => const AuthErrorPage(),
-        ),*/
+          path: 'color-counter',
+          builder: (context, state) => const ColorCounterPage(),
+        ),
+        GoRoute(
+          path: 'lightstone-combination',
+          builder: (context, state) => const LightstoneCombinationPage(),
+        ),
         GoRoute(
           path: 'horse',
           builder: (context, state) => const HorseStatusPage(),
@@ -362,38 +362,16 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const YolunakeaMoonPage(),
         ),
         GoRoute(
-          path: 'shutdown-scheduler',
-          builder: (context, state) => const ShutdownSchedulerPage(),
-          redirect: (BuildContext context, GoRouterState state) {
-            if (kIsWeb || !Platform.isWindows) {
-              return '/not-found';
-            }
-            return null;
-          },
-        ),
-        GoRoute(
           path: 'artifact',
-          builder: (context, state) => const ArtifactPage(),
+          redirect: (context, state) => '/lightstone-combination',
         ),
         GoRoute(
           path: 'ship-extension',
           redirect: (context, state) => '/ship-upgrading',
         ),
         GoRoute(
-          path: 'ship-upgrading',
-          builder: (context, state) => const ShipUpgradingPage(),
-        ),
-        GoRoute(
           path: 'trade-calculator',
-          builder: (context, state) => const TradeCalculatorPage(),
-        ),
-        GoRoute(
-          path: 'bartering',
-          builder: (context, state) => const BarteringPage(),
-        ),
-        GoRoute(
-          path: 'color-counter',
-          builder: (context, state) => const ColorCounterPage(),
+          redirect: (context, state) => '/bartering',
         ),
         GoRoute(
           path: 'broadcast-widget/bdo-timer',

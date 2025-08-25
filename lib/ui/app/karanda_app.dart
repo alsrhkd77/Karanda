@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:karanda/data_source/bdo_item_info_data_source.dart';
 import 'package:karanda/data_source/party_finder_api.dart';
 import 'package:karanda/data_source/app_settings_data_source.dart';
 import 'package:karanda/data_source/audio_player_data_source.dart';
@@ -38,7 +39,6 @@ import 'package:karanda/service/desktop_service.dart';
 import 'package:karanda/service/initializer_service.dart';
 import 'package:karanda/service/trade_market_service.dart';
 import 'package:karanda/service/world_boss_service.dart';
-import 'package:karanda/ui/core/controller/time_controller.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
 import 'package:provider/provider.dart';
@@ -121,7 +121,12 @@ class KarandaApp extends StatelessWidget {
           ),
           lazy: false,
         ),
-        Provider(create: (context) => BDOItemInfoRepository()),
+        Provider(create: (context) => BDOItemInfoDataSource()),
+        Provider(
+          create: (context) => BDOItemInfoRepository(
+            dataSource: context.read(),
+          ),
+        ),
         ChangeNotifierProvider(
           create: (context) => BDOItemInfoService(
             itemInfoRepository: context.read(),
