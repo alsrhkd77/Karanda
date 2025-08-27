@@ -210,34 +210,16 @@
         "name": "불의 광명석 : 일격"
     },
     {
-        "code": 758013,
-        "enhancement level": 0,
-        "value": 100,
-        "name": "불의 광명석 : 서리"
-    },
-    {
-        "code": 758014,
-        "enhancement level": 0,
-        "value": 100,
-        "name": "불의 광명석 : 덩굴"
-    },
-    {
-        "code": 758015,
-        "enhancement level": 0,
-        "value": 100,
-        "name": "불의 광명석 : 유성"
-    },
-    {
-        "code": 758016,
-        "enhancement level": 0,
-        "value": 100,
-        "name": "불의 광명석 : 태풍"
-    },
-    {
         "code": 758020,
         "enhancement level": 0,
         "value": 100,
         "name": "불의 광명석 : 비수"
+    },
+    {
+        "code": 758021,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "불의 광명석 : 왜곡"
     },
     {
         "code": 760004,
@@ -250,12 +232,6 @@
         "enhancement level": 0,
         "value": 100,
         "name": "땅의 광명석 : 늪"
-    },
-    {
-        "code": 760008,
-        "enhancement level": 0,
-        "value": 100,
-        "name": "땅의 광명석 : 모래"
     },
     {
         "code": 760009,
@@ -336,12 +312,6 @@
         "name": "불의 광명석 : 광폭"
     },
     {
-        "code": 758012,
-        "enhancement level": 0,
-        "value": 500,
-        "name": "불의 광명석 : 지진"
-    },
-    {
         "code": 760006,
         "enhancement level": 0,
         "value": 500,
@@ -370,5 +340,191 @@
         "enhancement level": 0,
         "value": 500,
         "name": "오색빛 광명석"
+    },
+    {
+        "code": 758201,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 불의 광명석 : 격노"
+    },
+    {
+        "code": 758202,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 불의 광명석 : 명중"
+    },
+    {
+        "code": 758203,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 불의 광명석 : 천적"
+    },
+    {
+        "code": 758217,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 불의 광명석 : 열정"
+    },
+    {
+        "code": 758218,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 불의 광명석 : 질주"
+    },
+    {
+        "code": 758219,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 불의 광명석 : 발톱"
+    },
+    {
+        "code": 760201,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 땅의 광명석 : 철벽"
+    },
+    {
+        "code": 760202,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 땅의 광명석 : 파도"
+    },
+    {
+        "code": 760203,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 땅의 광명석 : 무장"
+    },
+    {
+        "code": 762201,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 바람의 광명석 : 심장"
+    },
+    {
+        "code": 762203,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 바람의 광명석 : 허파"
+    },
+    {
+        "code": 762204,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 바람의 광명석 : 발돋움(전투)"
+    },
+    {
+        "code": 762205,
+        "enhancement level": 0,
+        "value": 10,
+        "name": "증폭된 바람의 광명석 : 발돋움(기술)"
+    },
+    {
+        "code": 758204,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 부패"
+    },
+    {
+        "code": 758205,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 포효"
+    },
+    {
+        "code": 758206,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 타락"
+    },
+    {
+        "code": 758221,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 왜곡"
+    },
+    {
+        "code": 758208,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 대지"
+    },
+    {
+        "code": 758209,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 창공"
+    },
+    {
+        "code": 758210,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 그림자"
+    },
+    {
+        "code": 758211,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 일격"
+    },
+    {
+        "code": 758220,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 불의 광명석 : 비수"
+    },
+    {
+        "code": 760204,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 땅의 광명석 : 장막"
+    },
+    {
+        "code": 760207,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 땅의 광명석 : 늪"
+    },
+    {
+        "code": 760209,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 땅의 광명석 : 거석"
+    },
+    {
+        "code": 760210,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 땅의 광명석 : 뿌리"
+    },
+    {
+        "code": 762202,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 바람의 광명석 : 머리"
+    },
+    {
+        "code": 762206,
+        "enhancement level": 0,
+        "value": 100,
+        "name": "증폭된 바람의 광명석 : 깃털"
+    },
+    {
+        "code": 758207,
+        "enhancement level": 0,
+        "value": 500,
+        "name": "증폭된 불의 광명석 : 광폭"
+    },
+    {
+        "code": 760206,
+        "enhancement level": 0,
+        "value": 500,
+        "name": "증폭된 땅의 광명석 : 태산"
+    },
+    {
+        "code": 762207,
+        "enhancement level": 0,
+        "value": 500,
+        "name": "증폭된 바람의 광명석 : 행운"
     }
 ]
