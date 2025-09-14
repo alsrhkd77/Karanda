@@ -78,6 +78,10 @@ class _OverlayPageState extends State<OverlayPage> {
                   feature: OverlayFeatures.partyFinder,
                   isActivated: activated.contains(OverlayFeatures.partyFinder),
                 ),
+                _Tile(
+                  feature: OverlayFeatures.bdoTime,
+                  isActivated: activated.contains(OverlayFeatures.bdoTime),
+                ),
               ],
             );
           },

@@ -33,6 +33,7 @@ class OverlayRepository {
   Future<void> startOverlay(MonitorDevice monitorDevice) async {
     if (kIsWeb || !Platform.isWindows) return;
     final windowController = await _overlayApi.startOverlay();
+    await Future.delayed(const Duration(seconds: 1));
     _overlayApi.sendToOverlay(
       windowController: windowController,
       method: "set window",

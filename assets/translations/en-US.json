@@ -179,6 +179,8 @@
     "bossHpScaleIndicator": "Boss HP scale indicator",
     "clock": "Clock",
     "partyFinder": "Party Finder (Experimental)",
+    "bdoTime": "Day / Night",
+    "nextTransition": "Next Transition",
     "settings": {
       "select display": "Select display",
       "reset widgets": "Reset Overlay widgets size & position"

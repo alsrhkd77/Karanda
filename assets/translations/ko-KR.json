@@ -179,6 +179,8 @@
     "bossHpScaleIndicator": "보스 HP 눈금 표시기",
     "clock": "시계",
     "partyFinder": "Party Finder (Experimental)",
+    "bdoTime": "밤 / 낮",
+    "nextTransition": "다음 밤/낮 전환",
     "settings": {
       "select display": "디스플레이 선택",
       "reset widgets": "오버레이 위젯 크기 및 위치 초기화"

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/ui/overlay_app/controllers/overlay_app_controller.dart';
+import 'package:karanda/ui/overlay_app/widgets/bdo_time_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/party_finder_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/boss_hp_scale_indicator_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/clock_overlay_widget.dart';
@@ -28,7 +29,8 @@ class OverlayAppScreen extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          ClockOverlayWidget(width: size.width,),
+          BdoTimeOverlayWidget(width: size.width),
+          ClockOverlayWidget(width: size.width),
           BossHpScaleIndicatorOverlayWidget(width: size.width),
           PartyFinderOverlayWidget(height: size.height),
           WorldBossOverlayWidget(height: size.height),

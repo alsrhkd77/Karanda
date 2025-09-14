@@ -4,4 +4,5 @@ enum OverlayFeatures {
   bossHpScaleIndicator,
   clock,
   partyFinder,
+  bdoTime,
 }

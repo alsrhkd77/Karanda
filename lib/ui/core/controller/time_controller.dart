@@ -7,13 +7,13 @@ class TimeController extends ChangeNotifier {
   late final StreamSubscription _time;
 
   TimeController({required TimeRepository timeRepository}) {
-    _time = timeRepository.realTimeStream.listen(onUpdate);
+    _time = timeRepository.realTimeStream.listen(_onUpdate);
   }
 
   DateTime local = DateTime.now();
   DateTime utc = DateTime.now().toUtc();
 
-  void onUpdate(DateTime value) {
+  void _onUpdate(DateTime value) {
     local = value;
     utc = local.toUtc();
     notifyListeners();
