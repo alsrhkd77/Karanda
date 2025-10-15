@@ -20,6 +20,26 @@
     "region": "KR"
   },
   {
+    "name": "bulgasal",
+    "weekday": 7,
+    "spawn time": "0:15",
+    "utc spawn time": "15:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 7,
+    "spawn time": "0:15",
+    "utc spawn time": "15:15",
+    "utc weekday": 6,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
     "name": "kzarka",
     "weekday": 1,
     "spawn time": "2:00",
@@ -1012,8 +1032,8 @@
   {
     "name": "offin",
     "weekday": 1,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 1,
     "start": "",
     "end": "",
@@ -1022,8 +1042,8 @@
   {
     "name": "uturi",
     "weekday": 1,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 1,
     "start": "",
     "end": "",
@@ -1032,8 +1052,8 @@
   {
     "name": "golden pig king",
     "weekday": 1,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 1,
     "start": "",
     "end": "",
@@ -1042,8 +1062,8 @@
   {
     "name": "sangoon",
     "weekday": 2,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 2,
     "start": "",
     "end": "",
@@ -1052,8 +1072,8 @@
   {
     "name": "bulgasal",
     "weekday": 2,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 2,
     "start": "",
     "end": "",
@@ -1062,8 +1082,8 @@
   {
     "name": "golden pig king",
     "weekday": 3,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 3,
     "start": "",
     "end": "",
@@ -1072,8 +1092,8 @@
   {
     "name": "bulgasal",
     "weekday": 3,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 3,
     "start": "",
     "end": "",
@@ -1082,8 +1102,8 @@
   {
     "name": "bulgasal",
     "weekday": 4,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 4,
     "start": "",
     "end": "",
@@ -1092,8 +1112,8 @@
   {
     "name": "uturi",
     "weekday": 4,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 4,
     "start": "",
     "end": "",
@@ -1102,8 +1122,8 @@
   {
     "name": "uturi",
     "weekday": 5,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 5,
     "start": "",
     "end": "",
@@ -1112,8 +1132,8 @@
   {
     "name": "sangoon",
     "weekday": 5,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 5,
     "start": "",
     "end": "",
@@ -1122,29 +1142,9 @@
   {
     "name": "offin",
     "weekday": 5,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
-    "weekday": 6,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
-    "utc weekday": 6,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 6,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
-    "utc weekday": 6,
     "start": "",
     "end": "",
     "region": "KR"
@@ -1152,8 +1152,8 @@
   {
     "name": "golden pig king",
     "weekday": 7,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 7,
     "start": "",
     "end": "",
@@ -1162,8 +1162,8 @@
   {
     "name": "sangoon",
     "weekday": 7,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 7,
     "start": "",
     "end": "",
@@ -1172,8 +1172,8 @@
   {
     "name": "karanda",
     "weekday": 7,
-    "spawn time": "23:45",
-    "utc spawn time": "14:45",
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
     "utc weekday": 7,
     "start": "",
     "end": "",
