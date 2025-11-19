@@ -7,7 +7,7 @@ import 'package:karanda/model/bartering/bartering.dart';
 import 'package:karanda/ui/bartering/controller/bartering_weight_controller.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
-import 'package:karanda/utils/extension/doubleExtension.dart';
+import 'package:karanda/utils/extension/double_extension.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 

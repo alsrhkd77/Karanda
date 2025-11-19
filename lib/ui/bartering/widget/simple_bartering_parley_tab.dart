@@ -13,7 +13,7 @@ import 'package:karanda/ui/core/ui/bdo_item_image.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/utils/extension/build_context_extension.dart';
-import 'package:karanda/utils/extension/doubleExtension.dart';
+import 'package:karanda/utils/extension/double_extension.dart';
 import 'package:karanda/utils/extension/int_extension.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 import 'package:provider/provider.dart';
