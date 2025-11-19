@@ -27,6 +27,7 @@ class ClockOverlayWidget extends StatelessWidget {
             boxController: controller.boxController,
             resizable: controller.editMode,
             show: controller.show,
+            opacity: controller.opacity,
             contentBuilder: (context, rect, flip) {
               return Padding(
                 padding: const EdgeInsets.all(10),

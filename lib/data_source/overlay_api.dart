@@ -29,6 +29,6 @@ class OverlayApi {
     required String method,
     required String data,
   }) async {
-    DesktopMultiWindow.invokeMethod(windowController.windowId, method, data);
+    await DesktopMultiWindow.invokeMethod(windowController.windowId, method, data);
   }
 }

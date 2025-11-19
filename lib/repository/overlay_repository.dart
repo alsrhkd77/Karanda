@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_settings_data_source.dart';
 import 'package:karanda/enums/overlay_features.dart';
@@ -24,11 +25,31 @@ class OverlayRepository {
       : _overlaySettingsDataSource = overlaySettingsDataSource,
         _overlayApi = overlayApi {
     _settings.stream.listen(saveSettings);
+    DesktopMultiWindow.setMethodHandler(_methodCallHandler);
   }
 
   Future<WindowController> get _windowController => _completer.future;
 
   Stream<OverlaySettings> get settingsStream => _settings.stream;
+
+  Future<void> _methodCallHandler(MethodCall call, int fromWindowId) async {
+    switch (call.method) {
+      case ("position"):
+        final data = jsonDecode(call.arguments);
+        final key = OverlayFeatures.values.byName(data["feature"]);
+        final rect = Rect.fromLTWH(
+          data["rect"]["left"],
+          data["rect"]["top"],
+          data["rect"]["width"],
+          data["rect"]["height"],
+        );
+        final snapshot = _settings.value..position[key] = rect;
+        _settings.sink.add(snapshot);
+        break;
+      default:
+    }
+    //_message.sink.add(call);
+  }
 
   Future<void> startOverlay(MonitorDevice monitorDevice) async {
     if (kIsWeb || !Platform.isWindows) return;

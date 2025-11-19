@@ -27,6 +27,7 @@ class PartyFinderOverlayWidget extends StatelessWidget {
         return OverlayWidget(
           resizable: controller.editMode,
           show: controller.show,
+          opacity: controller.opacity,
           feature: controller.key,
           boxController: controller.boxController,
           contentBuilder: (context, rect, flip) {

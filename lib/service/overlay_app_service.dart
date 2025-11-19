@@ -45,6 +45,12 @@ class OverlayAppService {
   Stream<Map<OverlayFeatures, bool>> get activationStatusStream =>
       settingsStream.map((value) => value.activationStatus);
 
+  Stream<Map<OverlayFeatures, Rect>> get positionStream =>
+      settingsStream.map((value) => value.position);
+
+  Stream<Map<OverlayFeatures, int>> get opacityStream =>
+      settingsStream.map((value) => value.opacity);
+
   void registerCallback({
     required String key,
     required void Function(MethodCall) callback,

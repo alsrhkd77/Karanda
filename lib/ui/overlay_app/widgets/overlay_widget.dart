@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_box_transform/flutter_box_transform.dart';
 import 'package:karanda/enums/overlay_features.dart';
+import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/overlay_app/widgets/custom_angular_handle.dart';
 
 class OverlayWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class OverlayWidget extends StatelessWidget {
   final OverlayFeatures feature;
   final bool resizable;
   final bool show;
+  final int opacity;
 
   const OverlayWidget({
     super.key,
@@ -18,7 +20,10 @@ class OverlayWidget extends StatelessWidget {
     required this.feature,
     required this.boxController,
     required this.contentBuilder,
+    required this.opacity,
   });
+
+  int get _opacity => resizable ? AppTheme.overlayDefaultOpacity : opacity;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +42,7 @@ class OverlayWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
+            color: Colors.black.withAlpha(_opacity),
             child: resizable
                 ? _Name(feature: feature)
                 : contentBuilder(context, rect, flip),

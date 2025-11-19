@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 abstract class AppTheme {
   static const snackBarDuration = Duration(seconds: 6);
+  static const overlayDefaultOpacity = 175;
 
   static final overlayAppTheme = ThemeData(
     colorSchemeSeed: Colors.indigo,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.transparent,
     cardTheme: CardThemeData(
-      color: Colors.black.withAlpha(175),
+      color: Colors.black.withAlpha(overlayDefaultOpacity),
       elevation: 0.0,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -21,7 +22,7 @@ abstract class AppTheme {
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
       contentTextStyle: const TextStyle(color: Colors.white),
-      backgroundColor: Colors.black.withAlpha(175),
+      backgroundColor: Colors.black.withAlpha(overlayDefaultOpacity),
       elevation: 0.0,
       insetPadding: const EdgeInsets.symmetric(vertical: 70),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

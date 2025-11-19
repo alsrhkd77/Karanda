@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_app_data_source.dart';
 import 'package:karanda/repository/overlay_app_repository.dart';
 import 'package:karanda/repository/time_repository.dart';
@@ -25,10 +25,12 @@ class OverlayApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider(create: (context) => OverlayApi()),
         Provider(create: (context) => OverlayAppDataSource()),
         Provider(
           create: (context) => OverlayAppRepository(
             appDataSource: context.read(),
+            overlayApi: context.read(),
           ),
           lazy: false,
         ),
