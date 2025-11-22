@@ -90,7 +90,9 @@ class ShipUpgradingSettingsController extends ChangeNotifier {
   void _onSettingsUpdate(ShipUpgradingSettings value) {
     for (ShipUpgradingQuantityData item in value.dailyQuest) {
       String str = item.count > 0 ? item.count.toString() : '';
-      textController[item.code]?.text = str;
+      if (textController[item.code]?.text != str){
+        textController[item.code]?.text = str;
+      }
     }
     settings = value;
     notifyListeners();
