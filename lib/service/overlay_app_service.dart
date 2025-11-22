@@ -75,10 +75,6 @@ class OverlayAppService {
     return await _appRepository.saveRect(key.name, rect);
   }
 
-  Future<Rect?> loadRect(OverlayFeatures key) async {
-    return await _appRepository.loadRect(key.name);
-  }
-
   Future<void> _messageHandler(MethodCall value) async {
     if (_callbacks.containsKey(value.method)) {
       _callbacks[value.method]!(value);

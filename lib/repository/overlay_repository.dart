@@ -112,6 +112,12 @@ class OverlayRepository {
     sendToOverlay(method: "reset widgets");
   }
 
+  void setOpacity(OverlayFeatures key, int value) {
+    final snapshot = _settings.value..opacity[key] = value;
+    sendOverlaySettings(snapshot);
+    _settings.sink.add(snapshot);
+  }
+
   void showWorldBossName(bool value) {
     final snapshot = _settings.value..showWorldBossName = value;
     sendOverlaySettings(snapshot);

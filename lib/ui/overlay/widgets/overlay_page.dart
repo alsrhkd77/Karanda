@@ -68,19 +68,31 @@ class _OverlayPageState extends State<OverlayPage> {
                 _Tile(
                   feature: OverlayFeatures.clock,
                   isActivated: activated.contains(OverlayFeatures.clock),
+                  onTap: () {
+                    context.go("/overlay/clock", extra: controller);
+                  },
                 ),
                 _Tile(
                   feature: OverlayFeatures.bossHpScaleIndicator,
                   isActivated:
                       activated.contains(OverlayFeatures.bossHpScaleIndicator),
+                  onTap: () {
+                    context.go("/overlay/hp-indicator", extra: controller);
+                  },
                 ),
                 _Tile(
                   feature: OverlayFeatures.partyFinder,
                   isActivated: activated.contains(OverlayFeatures.partyFinder),
+                  onTap: () {
+                    context.go("/overlay/party-finder", extra: controller);
+                  },
                 ),
                 _Tile(
                   feature: OverlayFeatures.bdoTime,
                   isActivated: activated.contains(OverlayFeatures.bdoTime),
+                  onTap: () {
+                    context.go("/overlay/bdo-time", extra: controller);
+                  },
                 ),
               ],
             );

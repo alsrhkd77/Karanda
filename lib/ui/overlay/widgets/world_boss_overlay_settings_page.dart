@@ -6,6 +6,7 @@ import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
+import 'package:karanda/ui/overlay/widgets/opacity_slider.dart';
 import 'package:provider/provider.dart';
 
 class WorldBossOverlaySettingsPage extends StatelessWidget {
@@ -48,6 +49,13 @@ class WorldBossOverlaySettingsPage extends StatelessWidget {
                   value: controller.overlaySettings!.showWorldBossName,
                   onChanged: controller.showWorldBossName,
                 ),
+                OpacitySlider(
+                  opacity: controller.overlaySettings
+                          ?.opacity[OverlayFeatures.worldBoss] ?? 0,
+                  onChanged: (value) {
+                    controller.setOpacity(OverlayFeatures.worldBoss, value);
+                  }
+                )
               ],
             );
           },

@@ -183,7 +183,8 @@
     "nextTransition": "Next Transition",
     "settings": {
       "select display": "Select display",
-      "reset widgets": "Reset Overlay widgets size & position"
+      "reset widgets": "Reset Overlay widgets size & position",
+      "opacity": "Opacity"
     }
   },
   "trade market": {

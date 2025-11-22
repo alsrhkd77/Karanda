@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_box_transform/flutter_box_transform.dart';
 import 'package:karanda/enums/overlay_features.dart';
+import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/overlay_app/controllers/boss_hp_scale_indicator_overlay_controller.dart';
 import 'package:karanda/ui/overlay_app/widgets/custom_angular_handle.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,9 @@ class BossHpScaleIndicatorOverlayWidget extends StatelessWidget {
       ),
       child: Consumer(
         builder: (context, BossHpScaleIndicatorController controller, child) {
+          final opacity = controller.editMode
+              ? AppTheme.overlayDefaultOpacity
+              : controller.opacity;
           return TransformableBox(
             controller: controller.boxController,
             resizable: controller.editMode,
@@ -54,12 +58,12 @@ class BossHpScaleIndicatorOverlayWidget extends StatelessWidget {
                     _Scale(
                       height: rect.height,
                       showLastScale: true,
-                      color: Colors.white.withAlpha(178),
+                      color: Colors.white.withAlpha(opacity),
                     ),
                     _Scale(
                       height: rect.height,
                       showLastScale: false,
-                      color: Colors.white.withAlpha(178),
+                      color: Colors.white.withAlpha(opacity),
                     ),
                   ],
                 ),

@@ -38,6 +38,10 @@ class OverlayController extends ChangeNotifier {
     _overlayRepository.showWorldBossName(value);
   }
 
+  void setOpacity(OverlayFeatures feature, double value) {
+    _overlayRepository.setOpacity(feature, (value * 255).round());
+  }
+
   @override
   void dispose() {
     _overlaySettings.cancel();

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
 import 'package:karanda/enums/bdo_region.dart';
+import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
 import 'package:karanda/obs_widgets/partrigio_page.dart';
 import 'package:karanda/service/auth_service.dart';
@@ -20,6 +21,7 @@ import 'package:karanda/ui/home/widget/home_page.dart';
 import 'package:karanda/ui/lightstone_combination/widget/lightstone_combination_page.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
+import 'package:karanda/ui/overlay/widgets/overlay_widget_settings_page.dart';
 import 'package:karanda/ui/overlay/widgets/world_boss_overlay_settings_page.dart';
 import 'package:karanda/ui/party_finder/widgets/party_finder_page.dart';
 import 'package:karanda/ui/party_finder/widgets/recruitment_post_page.dart';
@@ -279,6 +281,66 @@ final GoRouter router = GoRouter(
                 path: 'world-boss',
                 builder: (context, state) {
                   return WorldBossOverlaySettingsPage(
+                    overlayController: state.extra as OverlayController,
+                  );
+                },
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/';
+                  }
+                  return null;
+                },
+              ),
+              GoRoute(
+                path: 'clock',
+                builder: (context, state) {
+                  return OverlayWidgetSettingsPage(
+                    feature: OverlayFeatures.clock,
+                    overlayController: state.extra as OverlayController,
+                  );
+                },
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/';
+                  }
+                  return null;
+                },
+              ),
+              GoRoute(
+                path: 'hp-indicator',
+                builder: (context, state) {
+                  return OverlayWidgetSettingsPage(
+                    feature: OverlayFeatures.bossHpScaleIndicator,
+                    overlayController: state.extra as OverlayController,
+                  );
+                },
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/';
+                  }
+                  return null;
+                },
+              ),
+              GoRoute(
+                path: 'party-finder',
+                builder: (context, state) {
+                  return OverlayWidgetSettingsPage(
+                    feature: OverlayFeatures.partyFinder,
+                    overlayController: state.extra as OverlayController,
+                  );
+                },
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/';
+                  }
+                  return null;
+                },
+              ),
+              GoRoute(
+                path: 'bdo-time',
+                builder: (context, state) {
+                  return OverlayWidgetSettingsPage(
+                    feature: OverlayFeatures.bdoTime,
                     overlayController: state.extra as OverlayController,
                   );
                 },
