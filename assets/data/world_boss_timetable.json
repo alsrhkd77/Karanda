@@ -20,26 +20,6 @@
     "region": "KR"
   },
   {
-    "name": "bulgasal",
-    "weekday": 7,
-    "spawn time": "0:15",
-    "utc spawn time": "15:15",
-    "utc weekday": 6,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 7,
-    "spawn time": "0:15",
-    "utc spawn time": "15:15",
-    "utc weekday": 6,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "kzarka",
     "weekday": 1,
     "spawn time": "2:00",
@@ -55,36 +35,26 @@
     "spawn time": "2:00",
     "utc spawn time": "17:00",
     "utc weekday": 7,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 2,
-    "spawn time": "2:00",
-    "utc spawn time": "17:00",
-    "utc weekday": 1,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 2,
-    "spawn time": "2:00",
-    "utc spawn time": "17:00",
-    "utc weekday": 1,
     "start": "",
     "end": "",
     "region": "KR"
   },
   {
     "name": "nouver",
-    "weekday": 3,
+    "weekday": 2,
     "spawn time": "2:00",
     "utc spawn time": "17:00",
-    "utc weekday": 2,
+    "utc weekday": 1,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 2,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 1,
     "start": "",
     "end": "",
     "region": "KR"
@@ -110,7 +80,17 @@
     "region": "KR"
   },
   {
-    "name": "uturi",
+    "name": "karanda",
+    "weekday": 4,
+    "spawn time": "2:00",
+    "utc spawn time": "17:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "golden pig king",
     "weekday": 4,
     "spawn time": "2:00",
     "utc spawn time": "17:00",
@@ -121,10 +101,10 @@
   },
   {
     "name": "kutum",
-    "weekday": 4,
+    "weekday": 5,
     "spawn time": "2:00",
     "utc spawn time": "17:00",
-    "utc weekday": 3,
+    "utc weekday": 4,
     "start": "",
     "end": "",
     "region": "KR"
@@ -140,11 +120,11 @@
     "region": "KR"
   },
   {
-    "name": "karanda",
-    "weekday": 5,
+    "name": "kutum",
+    "weekday": 6,
     "spawn time": "2:00",
     "utc spawn time": "17:00",
-    "utc weekday": 4,
+    "utc weekday": 5,
     "start": "",
     "end": "",
     "region": "KR"
@@ -160,27 +140,7 @@
     "region": "KR"
   },
   {
-    "name": "karanda",
-    "weekday": 6,
-    "spawn time": "2:00",
-    "utc spawn time": "17:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "nouver",
-    "weekday": 6,
-    "spawn time": "2:00",
-    "utc spawn time": "17:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
     "weekday": 7,
     "spawn time": "2:00",
     "utc spawn time": "17:00",
@@ -190,31 +150,11 @@
     "region": "KR"
   },
   {
-    "name": "karanda",
+    "name": "sangoon",
     "weekday": 7,
     "spawn time": "2:00",
     "utc spawn time": "17:00",
     "utc weekday": 6,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 7,
-    "spawn time": "2:00",
-    "utc spawn time": "17:00",
-    "utc weekday": 6,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 1,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 1,
     "start": "",
     "end": "",
     "region": "KR"
@@ -240,16 +180,6 @@
     "region": "KR"
   },
   {
-    "name": "kzarka",
-    "weekday": 2,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "kutum",
     "weekday": 2,
     "spawn time": "11:00",
@@ -270,16 +200,6 @@
     "region": "KR"
   },
   {
-    "name": "sangoon",
-    "weekday": 4,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "kzarka",
     "weekday": 4,
     "spawn time": "11:00",
@@ -290,11 +210,21 @@
     "region": "KR"
   },
   {
-    "name": "nouver",
+    "name": "sangoon",
     "weekday": 4,
     "spawn time": "11:00",
     "utc spawn time": "2:00",
     "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "karanda",
+    "weekday": 5,
+    "spawn time": "11:00",
+    "utc spawn time": "2:00",
+    "utc weekday": 5,
     "start": "",
     "end": "",
     "region": "KR"
@@ -310,27 +240,7 @@
     "region": "KR"
   },
   {
-    "name": "kzarka",
-    "weekday": 5,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 5,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
+    "name": "karanda",
     "weekday": 6,
     "spawn time": "11:00",
     "utc spawn time": "2:00",
@@ -340,7 +250,7 @@
     "region": "KR"
   },
   {
-    "name": "nouver",
+    "name": "uturi",
     "weekday": 6,
     "spawn time": "11:00",
     "utc spawn time": "2:00",
@@ -351,16 +261,6 @@
   },
   {
     "name": "kutum",
-    "weekday": 6,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 6,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
     "weekday": 7,
     "spawn time": "11:00",
     "utc spawn time": "2:00",
@@ -370,17 +270,7 @@
     "region": "KR"
   },
   {
-    "name": "kzarka",
-    "weekday": 7,
-    "spawn time": "11:00",
-    "utc spawn time": "2:00",
-    "utc weekday": 7,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
+    "name": "bulgasal",
     "weekday": 7,
     "spawn time": "11:00",
     "utc spawn time": "2:00",
@@ -460,16 +350,6 @@
     "region": "KR"
   },
   {
-    "name": "kzarka",
-    "weekday": 1,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 1,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "kutum",
     "weekday": 1,
     "spawn time": "16:00",
@@ -490,141 +370,81 @@
     "region": "KR"
   },
   {
-    "name": "kzarka",
-    "weekday": 2,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "nouver",
     "weekday": 2,
     "spawn time": "16:00",
     "utc spawn time": "7:00",
     "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
-    "weekday": 2,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kzarka",
-    "weekday": 3,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 3,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
-    "weekday": 3,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 4,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 4,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 4,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 5,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 5,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 5,
-    "spawn time": "16:00",
-    "utc spawn time": "7:00",
-    "utc weekday": 5,
     "start": "",
     "end": "",
     "region": "KR"
   },
   {
     "name": "sangoon",
-    "weekday": 6,
+    "weekday": 2,
     "spawn time": "16:00",
     "utc spawn time": "7:00",
-    "utc weekday": 6,
+    "utc weekday": 2,
     "start": "",
     "end": "",
     "region": "KR"
   },
   {
     "name": "karanda",
-    "weekday": 6,
+    "weekday": 3,
     "spawn time": "16:00",
     "utc spawn time": "7:00",
-    "utc weekday": 6,
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "sangoon",
+    "weekday": 3,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
+    "weekday": 4,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 4,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kzarka",
+    "weekday": 5,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 5,
+    "spawn time": "16:00",
+    "utc spawn time": "7:00",
+    "utc weekday": 5,
     "start": "",
     "end": "",
     "region": "KR"
@@ -641,10 +461,10 @@
   },
   {
     "name": "golden pig king",
-    "weekday": 7,
+    "weekday": 6,
     "spawn time": "16:00",
     "utc spawn time": "7:00",
-    "utc weekday": 7,
+    "utc weekday": 6,
     "start": "",
     "end": "",
     "region": "KR"
@@ -660,7 +480,7 @@
     "region": "KR"
   },
   {
-    "name": "kutum",
+    "name": "uturi",
     "weekday": 7,
     "spawn time": "16:00",
     "utc spawn time": "7:00",
@@ -740,87 +560,37 @@
     "region": "KR"
   },
   {
-    "name": "nouver",
-    "weekday": 1,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 1,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "sangoon",
     "weekday": 1,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
     "utc weekday": 1,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
-    "weekday": 1,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 1,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 2,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 2,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "karanda",
-    "weekday": 3,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 3,
     "start": "",
     "end": "",
     "region": "KR"
   },
   {
     "name": "kzarka",
+    "weekday": 2,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "bulgasal",
+    "weekday": 2,
+    "spawn time": "20:00",
+    "utc spawn time": "11:00",
+    "utc weekday": 2,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
     "weekday": 3,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
@@ -830,41 +600,11 @@
     "region": "KR"
   },
   {
-    "name": "uturi",
+    "name": "bulgasal",
     "weekday": 3,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
     "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 3,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 4,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "golden pig king",
-    "weekday": 4,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 4,
     "start": "",
     "end": "",
     "region": "KR"
@@ -880,7 +620,7 @@
     "region": "KR"
   },
   {
-    "name": "kutum",
+    "name": "uturi",
     "weekday": 4,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
@@ -890,7 +630,7 @@
     "region": "KR"
   },
   {
-    "name": "golden pig king",
+    "name": "nouver",
     "weekday": 5,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
@@ -900,7 +640,7 @@
     "region": "KR"
   },
   {
-    "name": "bulgasal",
+    "name": "golden pig king",
     "weekday": 5,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
@@ -911,26 +651,6 @@
   },
   {
     "name": "kzarka",
-    "weekday": 5,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
-    "weekday": 5,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
     "weekday": 7,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
@@ -940,27 +660,7 @@
     "region": "KR"
   },
   {
-    "name": "uturi",
-    "weekday": 7,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 7,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "nouver",
-    "weekday": 7,
-    "spawn time": "20:00",
-    "utc spawn time": "11:00",
-    "utc weekday": 7,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "kutum",
+    "name": "sangoon",
     "weekday": 7,
     "spawn time": "20:00",
     "utc spawn time": "11:00",
@@ -1040,7 +740,7 @@
     "region": "KR"
   },
   {
-    "name": "uturi",
+    "name": "bulgasal",
     "weekday": 1,
     "spawn time": "23:30",
     "utc spawn time": "14:30",
@@ -1050,17 +750,7 @@
     "region": "KR"
   },
   {
-    "name": "golden pig king",
-    "weekday": 1,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 1,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
+    "name": "karanda",
     "weekday": 2,
     "spawn time": "23:30",
     "utc spawn time": "14:30",
@@ -1070,7 +760,7 @@
     "region": "KR"
   },
   {
-    "name": "bulgasal",
+    "name": "uturi",
     "weekday": 2,
     "spawn time": "23:30",
     "utc spawn time": "14:30",
@@ -1080,61 +770,41 @@
     "region": "KR"
   },
   {
+    "name": "kzarka",
+    "weekday": 3,
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "uturi",
+    "weekday": 3,
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
+    "utc weekday": 3,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "kutum",
+    "weekday": 4,
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
+    "utc weekday": 4,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
     "name": "golden pig king",
-    "weekday": 3,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
-    "weekday": 3,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 3,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "bulgasal",
     "weekday": 4,
     "spawn time": "23:30",
     "utc spawn time": "14:30",
     "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 4,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 4,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "uturi",
-    "weekday": 5,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 5,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
-    "name": "sangoon",
-    "weekday": 5,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 5,
     "start": "",
     "end": "",
     "region": "KR"
@@ -1150,17 +820,17 @@
     "region": "KR"
   },
   {
-    "name": "golden pig king",
-    "weekday": 7,
-    "spawn time": "23:30",
-    "utc spawn time": "14:30",
-    "utc weekday": 7,
-    "start": "",
-    "end": "",
-    "region": "KR"
-  },
-  {
     "name": "sangoon",
+    "weekday": 5,
+    "spawn time": "23:30",
+    "utc spawn time": "14:30",
+    "utc weekday": 5,
+    "start": "",
+    "end": "",
+    "region": "KR"
+  },
+  {
+    "name": "nouver",
     "weekday": 7,
     "spawn time": "23:30",
     "utc spawn time": "14:30",
@@ -1170,7 +840,7 @@
     "region": "KR"
   },
   {
-    "name": "karanda",
+    "name": "golden pig king",
     "weekday": 7,
     "spawn time": "23:30",
     "utc spawn time": "14:30",
@@ -5127,6 +4797,216 @@
     "utc weekday": 7,
     "start": "2025-11-19",
     "end": "2025-12-03",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 1,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 1,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 1,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 1,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 1,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 1,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 2,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 2,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 2,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 2,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 2,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 2,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 3,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 3,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 3,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 3,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 3,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 3,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 4,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 4,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 4,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 4,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 4,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 4,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 5,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 5,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 5,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 5,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 5,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 5,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 6,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 6,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 6,
+    "spawn time": "18:00",
+    "utc spawn time": "9:00",
+    "utc weekday": 6,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 6,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 6,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 7,
+    "spawn time": "12:00",
+    "utc spawn time": "3:00",
+    "utc weekday": 7,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 7,
+    "spawn time": "17:25",
+    "utc spawn time": "8:25",
+    "utc weekday": 7,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
+    "region": "KR"
+  },
+  {
+    "name": "piku",
+    "weekday": 7,
+    "spawn time": "23:25",
+    "utc spawn time": "14:25",
+    "utc weekday": 7,
+    "start": "2025-12-23",
+    "end": "2026-01-07",
     "region": "KR"
   }
 ]
