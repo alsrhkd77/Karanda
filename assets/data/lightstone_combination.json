@@ -532,7 +532,7 @@
       "code": 764018,
       "name": "풀의 광명석 : 마차",
       "effect": {
-        "name_en": "Barter EXP",
+        "name_en": "Trading EXP",
         "name_kr": "무역 경험치 획득량",
         "unit_en": "%",
         "unit_kr": "%",
