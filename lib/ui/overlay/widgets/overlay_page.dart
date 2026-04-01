@@ -80,13 +80,13 @@ class _OverlayPageState extends State<OverlayPage> {
                     context.go("/overlay/hp-indicator", extra: controller);
                   },
                 ),
-                _Tile(
+                /*_Tile(
                   feature: OverlayFeatures.partyFinder,
                   isActivated: activated.contains(OverlayFeatures.partyFinder),
                   onTap: () {
                     context.go("/overlay/party-finder", extra: controller);
                   },
-                ),
+                ),*/
                 _Tile(
                   feature: OverlayFeatures.bdoTime,
                   isActivated: activated.contains(OverlayFeatures.bdoTime),

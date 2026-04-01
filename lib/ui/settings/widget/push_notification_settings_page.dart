@@ -34,7 +34,7 @@ class PushNotificationSettingsPage extends StatelessWidget {
                 deactivatePushNotifications:
                     controller.deactivatePushNotifications,
               ),
-              Section(
+              /*Section(
                 title: "Features",
                 child: Column(
                   children: [
@@ -46,7 +46,7 @@ class PushNotificationSettingsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ),*/
             ]);
           },
         ),

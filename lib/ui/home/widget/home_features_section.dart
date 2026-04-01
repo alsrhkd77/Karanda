@@ -87,11 +87,11 @@ class HomeFeaturesSection extends StatelessWidget {
           path: '/overlay',
           windowsOnly: true,
         ),
-        _Tile(
+        /*_Tile(
           title: context.tr("partyFinder.partyFinder"),
           icon: FeaturesIcon.partyFinder,
           path: '/party-finder',
-        ),
+        ),*/
       ],
     );
   }

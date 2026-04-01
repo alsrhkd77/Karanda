@@ -68,7 +68,7 @@ class NotificationSettingsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Section(
+                /*Section(
                   title: context.tr("partyFinder.partyFinder"),
                   icon: FeaturesIcon.partyFinder,
                   child: Column(
@@ -102,7 +102,7 @@ class NotificationSettingsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                ),*/
               ],
             );
           },

@@ -32,7 +32,7 @@ class OverlayAppScreen extends StatelessWidget {
           BdoTimeOverlayWidget(width: size.width),
           ClockOverlayWidget(width: size.width),
           BossHpScaleIndicatorOverlayWidget(width: size.width),
-          PartyFinderOverlayWidget(height: size.height),
+          //PartyFinderOverlayWidget(height: size.height),
           WorldBossOverlayWidget(height: size.height),
           const ExitEditModeButton(),
         ],
