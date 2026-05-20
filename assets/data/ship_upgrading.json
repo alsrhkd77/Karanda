@@ -467,7 +467,7 @@
     "code": 5807,
     "name": "홍조빛 해저단괴",
     "type": "material",
-    "coin": 250,
+    "coin": 200,
     "materials": [],
     "parent": [
       49655,
@@ -480,7 +480,7 @@
     "code": 5814,
     "name": "강화된 섬나무 증착합판",
     "type": "material",
-    "coin": 50,
+    "coin": 40,
     "materials": [],
     "parent": [
       49655,
@@ -491,7 +491,7 @@
     "code": 5829,
     "name": "심해초 줄기",
     "type": "material",
-    "coin": 100,
+    "coin": 80,
     "materials": [],
     "parent": [
       49655,
@@ -504,7 +504,7 @@
     "code": 5832,
     "name": "대양의 견고한 현철",
     "type": "material",
-    "coin": 160,
+    "coin": 130,
     "materials": [],
     "parent": [
       49655,
@@ -515,7 +515,7 @@
     "code": 5820,
     "name": "순수한 진주 결정",
     "type": "material",
-    "coin": 550,
+    "coin": 200,
     "materials": [],
     "parent": [
       49668,
@@ -526,7 +526,7 @@
     "code": 5822,
     "name": "콕스해적단의 유물(협상 하급)",
     "type": "material",
-    "coin": 150,
+    "coin": 120,
     "materials": [],
     "parent": [
       49668,
@@ -537,7 +537,7 @@
     "code": 5824,
     "name": "콕스해적단의 유물(전투)",
     "type": "material",
-    "coin": 150,
+    "coin": 120,
     "materials": [],
     "parent": [
       49668,
@@ -550,7 +550,7 @@
     "code": 5827,
     "name": "달의 비늘이 새겨진 합판",
     "type": "material",
-    "coin": 20,
+    "coin": 15,
     "materials": [],
     "parent": [
       49668,
@@ -563,7 +563,7 @@
     "code": 5810,
     "name": "파도빛이 감도는 규격 각목",
     "type": "material",
-    "coin": 100,
+    "coin": 80,
     "materials": [],
     "parent": [
       49669,
@@ -574,7 +574,7 @@
     "code": 5828,
     "name": "순수한 암초 조각",
     "type": "material",
-    "coin": 40,
+    "coin": 30,
     "materials": [],
     "parent": [
       49669,
@@ -585,7 +585,7 @@
     "code": 5823,
     "name": "콕스해적단의 유물(협상 상급)",
     "type": "material",
-    "coin": 500,
+    "coin": 400,
     "materials": [],
     "parent": [
       49670,
@@ -596,7 +596,7 @@
     "code": 5830,
     "name": "빛나는 코발트 주괴",
     "type": "material",
-    "coin": 500,
+    "coin": 400,
     "materials": [],
     "parent": [
       49670,
@@ -607,7 +607,7 @@
     "code": 5812,
     "name": "짙은 파도빛이 감도는 규격 각목",
     "type": "material",
-    "coin": 100,
+    "coin": 80,
     "materials": [],
     "parent": [
       49029,
@@ -620,7 +620,7 @@
     "code": 5809,
     "name": "달의 핏줄이 새겨진 아마포",
     "type": "material",
-    "coin": 50,
+    "coin": 40,
     "materials": [],
     "parent": [
       49029,
@@ -633,7 +633,7 @@
     "code": 5821,
     "name": "심해의 눈물",
     "type": "material",
-    "coin": 500,
+    "coin": 400,
     "materials": [],
     "parent": [
       49029,
@@ -646,7 +646,7 @@
     "code": 5815,
     "name": "화려한 암염 주괴",
     "type": "material",
-    "coin": 500,
+    "coin": 400,
     "materials": [],
     "parent": [
       49029,
@@ -659,7 +659,7 @@
     "code": 5831,
     "name": "화려한 진주 결정",
     "type": "material",
-    "coin": 500,
+    "coin": 400,
     "materials": [],
     "parent": [
       49029,
