@@ -29,24 +29,46 @@ class BarteringParleyController extends ChangeNotifier {
    * 그믐달 길드의 중범선 - Old Moon Carrack
    */
 
-  List<Bartering> locations = [
-    Bartering(exchangePoint: "inlandTrades", requiredParley: 14286),
+  // 패치 전
+  /*List<Bartering> locations = [
     //내해 교역
-    Bartering(exchangePoint: "otherTrades", requiredParley: 14286),
+    Bartering(exchangePoint: "inlandTrades", requiredParley: 14286),
     //일반 교역
-    Bartering(exchangePoint: "coin_level4", requiredParley: 21650),
+    Bartering(exchangePoint: "otherTrades", requiredParley: 14286),
     //주화 교역(4단계)
-    Bartering(exchangePoint: "kashuma_halmad", requiredParley: 29430),
+    Bartering(exchangePoint: "coin_level4", requiredParley: 21650),
     //카슈마, 할마드
-    Bartering(exchangePoint: "derko", requiredParley: 36420),
+    Bartering(exchangePoint: "kashuma_halmad", requiredParley: 29430),
     //더코
-    Bartering(exchangePoint: "hakoven", requiredParley: 43780),
+    Bartering(exchangePoint: "derko", requiredParley: 36420),
     //하코번
+    Bartering(exchangePoint: "hakoven", requiredParley: 43780),
+    //마고리아
     Bartering(exchangePoint: "margoria_low", requiredParley: 46544),
     //마고리아
     Bartering(exchangePoint: "margoria_high", requiredParley: 58180),
-    //마고리아
+  ];*/
+  List<Bartering> locations = [
+    // 일반 → 1단계
+    Bartering(exchangePoint: "lv1_trades", requiredParley: 14286),
+    // 1단계 → 2단계
+    Bartering(exchangePoint: "lv2_trades", requiredParley: 14286),
+    // 2단계 → 3단계
+    Bartering(exchangePoint: "lv3_trades", requiredParley: 14286),
+    // 3단계 → 4단계
+    Bartering(exchangePoint: "lv4_trades", requiredParley: 14286),
+    // 4단계 → 5단계
+    Bartering(exchangePoint: "lv5_trades", requiredParley: 14286),
+    // 5단계 → 6단계
+    Bartering(exchangePoint: "lv6_trades", requiredParley: 14286),
+    // 6단계 → 7단계
+    Bartering(exchangePoint: "lv7_trades", requiredParley: 14286),
+    // 까마귀 주화
+    Bartering(exchangePoint: "coin_trades", requiredParley: 21650),
+    // 일반 교역
+    Bartering(exchangePoint: "normal_trades", requiredParley: 14286),
   ];
+
 
   BarteringParleyController({required BarteringRepository repository})
       : _repository = repository {
@@ -84,13 +106,13 @@ class BarteringParleyController extends ChangeNotifier {
     }
   }
 
-  void applyCount(int index){
+  void applyCount(int index) {
     consumed += locations[index].count * locations[index].reducedParley;
     updateCount(index: index, value: 0);
   }
 
-  void onParleyTextUpdate(String? value){
-    if(value == null){
+  void onParleyTextUpdate(String? value) {
+    if (value == null) {
       parley = 0;
     } else {
       final parsed = int.tryParse(value) ?? 0;
@@ -103,18 +125,18 @@ class BarteringParleyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void start(){
+  void start() {
     started = true;
     notifyListeners();
   }
 
-  void resetAll(){
+  void resetAll() {
     started = false;
     parley = 1000000;
     parleyTextController.text = "1000000";
     consumed = 0;
     tradeVoucher = 0;
-    for(Bartering location in locations){
+    for (Bartering location in locations) {
       location.count = 0;
       location.countTextController.text = '';
     }
@@ -150,9 +172,9 @@ class BarteringParleyController extends ChangeNotifier {
     }
   }
 
-  int _calcTotalParley(){
+  int _calcTotalParley() {
     int result = 0;
-    for(Bartering location in locations){
+    for (Bartering location in locations) {
       result = result + location.totalParley;
     }
     return result;

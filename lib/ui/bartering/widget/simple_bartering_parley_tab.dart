@@ -108,10 +108,10 @@ class _BarteringTile extends StatelessWidget {
     final bool isDense = width < 460;
     return Card(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          spacing: 8.0,
+          spacing: 12.0,
           children: [
             Flex(
               direction: isDense ? Axis.vertical : Axis.horizontal,
@@ -209,20 +209,7 @@ class _Location extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = context.tr("bartering.simple.$exchangePoint");
-    return Row(
-      mainAxisAlignment:
-          isDense ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
-      children: [
-        Text("[${reducedParley.format()}] $text"),
-        Tooltip(
-          message: context.tr("bartering.simple.${exchangePoint}_points"),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.help_outline, color: Colors.grey),
-          ),
-        ),
-      ],
-    );
+    return Text("[${reducedParley.format()}] $text");
   }
 }
 
