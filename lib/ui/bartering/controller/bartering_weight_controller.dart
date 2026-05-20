@@ -18,6 +18,8 @@ class BarteringWeightController extends ChangeNotifier {
     Bartering(exchangePoint: "lv3", outputWeight: 900),
     Bartering(exchangePoint: "lv4", outputWeight: 1000),
     Bartering(exchangePoint: "lv5", outputWeight: 1000),
+    Bartering(exchangePoint: "lv6", outputWeight: 2000),
+    Bartering(exchangePoint: "lv7", outputWeight: 2000),
     Bartering(exchangePoint: "etc", outputWeight: 0, count: 1),
   ];
 
