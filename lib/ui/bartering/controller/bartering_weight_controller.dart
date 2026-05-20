@@ -14,7 +14,7 @@ class BarteringWeightController extends ChangeNotifier {
   BarteringSettings? settings;
   final List<Bartering> tradeGoods = [
     Bartering(exchangePoint: "lv1", outputWeight: 100),
-    Bartering(exchangePoint: "lv2", outputWeight: 800),
+    Bartering(exchangePoint: "lv2", outputWeight: 400),
     Bartering(exchangePoint: "lv3", outputWeight: 900),
     Bartering(exchangePoint: "lv4", outputWeight: 1000),
     Bartering(exchangePoint: "lv5", outputWeight: 1000),
