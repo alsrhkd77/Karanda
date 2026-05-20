@@ -18,8 +18,8 @@ class ShipUpgradingSettings {
     ShipUpgradingQuantityData(code: 5812, count: 2),
     ShipUpgradingQuantityData(code: 5809, count: 2),
     ShipUpgradingQuantityData(code: 5821, count: 2),
-    ShipUpgradingQuantityData(code: 5815, count: 2),
-    ShipUpgradingQuantityData(code: 5831, count: 2),
+    ShipUpgradingQuantityData(code: 5815, count: 0),
+    ShipUpgradingQuantityData(code: 5831, count: 0),
   ];
 
   ShipUpgradingSettings({
