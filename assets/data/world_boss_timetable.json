@@ -5378,5 +5378,215 @@
     "start": "2026-05-27",
     "end": "2026-06-09",
     "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 1,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 1,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 1,
+    "spawn time": "18:15",
+    "utc spawn time": "9:15",
+    "utc weekday": 1,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 1,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 1,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 2,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 2,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 2,
+    "spawn time": "18:15",
+    "utc spawn time": "9:15",
+    "utc weekday": 2,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 2,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 2,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 3,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 3,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 3,
+    "spawn time": "18:15",
+    "utc spawn time": "9:15",
+    "utc weekday": 3,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 3,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 3,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 4,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 4,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 4,
+    "spawn time": "18:15",
+    "utc spawn time": "9:15",
+    "utc weekday": 4,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 4,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 4,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 5,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 5,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 5,
+    "spawn time": "18:15",
+    "utc spawn time": "9:15",
+    "utc weekday": 5,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 5,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 5,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 6,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 6,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 6,
+    "spawn time": "18:15",
+    "utc spawn time": "9:15",
+    "utc weekday": 6,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 6,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 6,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 7,
+    "spawn time": "12:15",
+    "utc spawn time": "3:15",
+    "utc weekday": 7,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 7,
+    "spawn time": "17:45",
+    "utc spawn time": "8:45",
+    "utc weekday": 7,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
+  },
+  {
+    "name": "gift box",
+    "weekday": 7,
+    "spawn time": "23:45",
+    "utc spawn time": "14:45",
+    "utc weekday": 7,
+    "start": "2026-06-04",
+    "end": "2026-06-17",
+    "region": "KR"
   }
 ]
