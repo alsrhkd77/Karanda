@@ -112,8 +112,8 @@
     "readyForVerification": "Ready for verification",
     "startVerification": "Start Verification",
     "verify": "Verify",
-    "needLock": "Please update your profile privacy setting before starting verification.\n Switch: \uD83D\uDD13Public → \uD83D\uDD12Private",
-    "needUnlock": "Please update your profile privacy setting before starting verification.\n Switch: \uD83D\uDD12Private → \uD83D\uDD13Public",
+    "needLock": "Please update your profile privacy setting before starting verification.\n Switch: 🔓Public → 🔒Private",
+    "needUnlock": "Please update your profile privacy setting before starting verification.\n Switch: 🔒Private → 🔓Public",
     "verification": "Family Verification",
     "adventurerProfileCode": "Adventurer Profile Code",
     "registerHint": "- Please proceed while logged out of the BDO website.\n - Enter the region and family name to register.\n - Enter the family profile URL or code.",
@@ -146,7 +146,9 @@
     "push notifications": "Push notifications",
     "activate push notifications": "Activate push notifications",
     "push notifications activation notice": "Notifications permission is required to use push notifications.\nPlease enable the Notifications permission on your device.",
-    "activate push notifications fail": "Failed to activate push notifications"
+    "activate push notifications fail": "Failed to activate push notifications",
+    "operation log": "Operation Log",
+    "operation log empty": "No operation logs saved"
   },
   "notifications": {
     "notifications": "{}",

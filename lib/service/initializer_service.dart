@@ -12,6 +12,7 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
+import 'package:karanda/service/operation_log_service.dart';
 import 'package:karanda/utils/command_line_arguments.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:rxdart/rxdart.dart';
@@ -46,13 +47,15 @@ class InitializerService {
         _audioPlayerRepository = audioPlayerRepository,
         _scaffoldMessengerKey = scaffoldMessengerKey,
         _router = router {
-    if (kIsWeb) {
-      initializeForWeb();
-    } else if(Platform.isWindows) {
-      initializeForWindows();
-    } else if(Platform.isAndroid){
-      initializeForAndroid();
-    }
+    OperationLogService.instance.initialize().then((_) {
+      if (kIsWeb) {
+        initializeForWeb();
+      } else if (Platform.isWindows) {
+        initializeForWindows();
+      } else if (Platform.isAndroid) {
+        initializeForAndroid();
+      }
+    });
   }
 
   Stream<InitializerStatus> get initializerStatus => _status.stream;

@@ -27,6 +27,7 @@ import 'package:karanda/ui/party_finder/widgets/party_finder_page.dart';
 import 'package:karanda/ui/party_finder/widgets/recruitment_post_page.dart';
 import 'package:karanda/ui/settings/widget/change_log_page.dart';
 import 'package:karanda/ui/settings/widget/karanda_info_page.dart';
+import 'package:karanda/ui/settings/widget/operation_log_page.dart';
 import 'package:karanda/ui/settings/widget/settings_page.dart';
 import 'package:karanda/ui/settings/widget/style_settings_page.dart';
 import 'package:karanda/ui/settings/widget/support_karanda_page.dart';
@@ -136,6 +137,10 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: 'karanda-info',
               builder: (context, state) => const KarandaInfoPage(),
+            ),
+            GoRoute(
+              path: 'operation-log',
+              builder: (context, state) => const OperationLogPage(),
             ),
           ],
         ),

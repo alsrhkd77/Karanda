@@ -112,8 +112,8 @@
     "readyForVerification": "인증 준비",
     "startVerification": "인증 시작",
     "verify": "인증하기",
-    "needLock": "추가 정보 공개 여부 설정을 변경한 후, 인증을 진행해 주세요.\n 변경: \uD83D\uDD13공개 → \uD83D\uDD12비공개",
-    "needUnlock": "추가 정보 공개 여부 설정을 변경한 후, 인증을 진행해 주세요.\n 변경: \uD83D\uDD12비공개 → \uD83D\uDD13공개",
+    "needLock": "추가 정보 공개 여부 설정을 변경한 후, 인증을 진행해 주세요.\n 변경: 🔓공개 → 🔒비공개",
+    "needUnlock": "추가 정보 공개 여부 설정을 변경한 후, 인증을 진행해 주세요.\n 변경: 🔒비공개 → 🔓공개",
     "verification": "가문 인증",
     "adventurerProfileCode": "모험가 프로필 코드",
     "registerHint": " - 검은사막 홈페이지에 로그인하지 않은 상태로 진행해주세요.\n - 등록할 가문의 서버와 가문명을 입력하세요.\n - 가문 프로필 URL 또는 코드를 입력하세요.",
@@ -146,7 +146,9 @@
     "push notifications": "푸시 알림",
     "activate push notifications": "푸시 알림 활성화",
     "push notifications activation notice": "푸시 알림을 사용하기 위해 알림 권한이 필요합니다.\n장치의 알림 권한을 활성화 해주세요.",
-    "activate push notifications fail": "푸시 알림 활성화 실패"
+    "activate push notifications fail": "푸시 알림 활성화 실패",
+    "operation log": "운영 로그",
+    "operation log empty": "저장된 운영 로그가 없습니다"
   },
   "notifications": {
     "notifications": "{}",
