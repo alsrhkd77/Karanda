@@ -15,11 +15,13 @@ import 'package:karanda/repository/version_repository.dart';
 import 'package:karanda/service/operation_log_service.dart';
 import 'package:karanda/utils/command_line_arguments.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
-import 'dart:developer' as developer;
+/// 앱 초기화 운영 로그.
+final _log = Logger('initializer');
 
 class InitializerService {
   final AppSettingsRepository _appSettingsRepository;
@@ -79,8 +81,8 @@ class InitializerService {
           await update();
           return;
         }
-      } catch (e) {
-        developer.log("Failed to check version & update\n$e");
+      } catch (e, s) {
+        _log.severe('Failed to check version and update', e, s);
         _status.sink.add(InitializerStatus(
           progress: 0,
           message: "failed to update",
@@ -126,6 +128,7 @@ class InitializerService {
     ));
     await Future.delayed(const Duration(milliseconds: 500));
     await setWindows();
+    _log.info('App initialized (Windows)');
     if (welcome) {
       _router.go("/welcome");
     } else {
@@ -140,6 +143,7 @@ class InitializerService {
     }
     //웹소켓
     await _audioPlayerRepository.init();
+    _log.info('App initialized (Web)');
   }
 
   Future<void> initializeForAndroid() async {
@@ -148,6 +152,7 @@ class InitializerService {
       await _authRepository.login();
     }
     await _audioPlayerRepository.init();
+    _log.info('App initialized (Android)');
     AppLinks().uriLinkStream.listen((uri) {
       if(uri.hasQuery){
         _router.goWithGa("${uri.path}?${uri.query}");
@@ -174,6 +179,7 @@ class InitializerService {
       progress: 1,
       message: "waiting for update",
     ));
+    _log.info('New version downloaded, launching installer and exiting');
     await Process.start(
       '${Directory.current.path}/SetupKaranda.exe',
       ["-t", "-l", "1000", "/silent"],

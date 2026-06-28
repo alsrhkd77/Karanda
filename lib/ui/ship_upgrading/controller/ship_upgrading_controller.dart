@@ -7,6 +7,10 @@ import 'package:karanda/model/ship_upgrading/ship_upgrading_child_data.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_data.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_settings.dart';
 import 'package:karanda/repository/ship_upgrading_repository.dart';
+import 'package:logging/logging.dart';
+
+/// 선박 증축 기능 운영 로그.
+final _log = Logger('ship_upgrading');
 
 class ShipUpgradingController extends ChangeNotifier {
   final ShipUpgradingRepository _repository;
@@ -77,6 +81,7 @@ class ShipUpgradingController extends ChangeNotifier {
 
   void selectShip(ShipUpgradingData? value) {
     if (value != null) {
+      _log.info('Ship type changed (code: ${value.code})');
       settings.selected = value.code;
       _repository.saveSettings(settings);
     }
@@ -101,6 +106,7 @@ class ShipUpgradingController extends ChangeNotifier {
   }
 
   Future<void> dailyQuest() async {
+    _log.info('Daily quest applied');
     for (ShipUpgradingQuantityData item in settings.dailyQuest) {
       final int value = stock[item.code] ?? 0;
       await updateUserStock(item.code, min(value + item.count, 9999));

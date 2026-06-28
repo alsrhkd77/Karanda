@@ -6,9 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/http_status.dart';
-import 'dart:developer' as developer;
+import 'package:logging/logging.dart';
 
 import 'package:karanda/utils/token_utils.dart';
+
+/// 네트워크 운영 로그. Authorization 헤더·토큰 값은 절대 기록하지 않는다.
+final _log = Logger('network');
 
 abstract final class RestClient {
   //static String get _scheme => kDebugMode ? 'http' : 'https';
@@ -206,16 +209,18 @@ class _Client extends http.BaseClient {
     if (json) {
       request.headers['Content-Type'] = 'application/json';
     }
+    _log.info('Request: ${request.method} ${request.url.path}');
     http.StreamedResponse response = await _inner.send(request);
     if (response.statusCode == HttpStatus.unauthorized) {
+      _log.fine('Unauthorized (401): ${request.method} ${request.url.path}, attempting token refresh');
       try {
         token = await tokenRefresh();
         if (token != null) {
           request.headers['Authorization'] = "Bearer $token";
           return _inner.send(request);
         }
-      } catch (e) {
-        developer.log("Failed to token refresh");
+      } catch (e, s) {
+        _log.warning('Token refresh failed', e, s);
       }
     }
     return response;
@@ -247,8 +252,10 @@ class _Client extends http.BaseClient {
         final data = jsonDecode(response.body);
         await storage.write(key: 'karanda-token', value: data['token']);
         await storage.write(key: 'refresh-token', value: data['refreshToken']);
+        _log.info('Auth token refreshed');
         return token;
       }
+      _log.warning('Token refresh rejected (status: ${response.statusCode})');
     }
 
     return null;

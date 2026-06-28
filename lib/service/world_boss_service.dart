@@ -16,7 +16,11 @@ import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/time_repository.dart';
 import 'package:karanda/repository/world_boss_repository.dart';
 import 'package:karanda/utils/extension/date_time_extension.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
+
+/// 월드 보스 기능 운영 로그.
+final _log = Logger('world_boss');
 
 class WorldBossService {
   final AppSettingsRepository _settingsRepository;
@@ -45,7 +49,10 @@ class WorldBossService {
     _settingsRepository.settingsStream
         .map((settings) => settings.region)
         .distinct()
-        .listen((region) => _worldBossRepository.getBossData(region));
+        .listen((region) {
+      _log.info('Load world boss data (region: ${region.name})');
+      _worldBossRepository.getBossData(region);
+    });
     _worldBossRepository.getSettings();
   }
 
@@ -156,6 +163,7 @@ class WorldBossService {
 
   void _alertSpawn(String bossNames) {
     if (_worldBossRepository.settings?.notify ?? false) {
+      _log.info('World boss spawn alert ($bossNames)');
       _notificationRepository.addNotification(AppNotificationMessage(
         feature: Features.worldBoss,
         contentsKey: "world boss spawn",
@@ -167,6 +175,7 @@ class WorldBossService {
 
   void _alertTimeRemaining(String bossNames, int timeRemaining) {
     if (_worldBossRepository.settings?.notify ?? false) {
+      _log.info('World boss reminder ($bossNames, ${timeRemaining}m left)');
       _notificationRepository.addNotification(AppNotificationMessage(
         feature: Features.worldBoss,
         contentsKey: "world boss time remaining",
@@ -179,25 +188,30 @@ class WorldBossService {
   void addNotificationTime(int value) {
     if (_worldBossRepository.settings != null &&
         _worldBossRepository.settings!.notificationTime.length < 10) {
+      _log.info('Setting changed: add world boss notification time (${value}m)');
       _worldBossRepository.addNotificationTime(value);
     }
   }
 
   void removeNotificationTime(int value) {
     if (_worldBossRepository.settings != null) {
+      _log.info('Setting changed: remove world boss notification time (${value}m)');
       _worldBossRepository.removeNotificationTime(value);
     }
   }
 
   void updateExcludedBoss(String value) {
     if (_worldBossRepository.settings?.excluded.contains(value) ?? false) {
+      _log.info('Setting changed: include world boss ($value)');
       _worldBossRepository.removeExcludedBoss(value);
     } else {
+      _log.info('Setting changed: exclude world boss ($value)');
       _worldBossRepository.addExcludedBoss(value);
     }
   }
 
   void setNotify(bool value) {
+    _log.info('Setting changed: world boss notify = $value');
     _worldBossRepository.setNotify(value);
   }
 

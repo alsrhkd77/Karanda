@@ -3,6 +3,10 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:karanda/model/lightstone_combination/combination.dart';
 import 'package:karanda/repository/lightstone_combination_repository.dart';
+import 'package:logging/logging.dart';
+
+/// 광명석 조합식 기능 운영 로그.
+final _log = Logger('lightstone_combination');
 
 class LightstoneCombinationController extends ChangeNotifier {
   final LightstoneCombinationRepository _repository;
@@ -66,6 +70,8 @@ class LightstoneCombinationController extends ChangeNotifier {
   void addKeyword(String value) {
     if (value.isNotEmpty) {
       keywords.add(value);
+      _log.info('Keyword added. keywords=$keywords, '
+          'filter=${useAndFilter ? "AND" : "OR"}, viewAmplified=$viewAmplified');
       _filterCombination();
     }
   }

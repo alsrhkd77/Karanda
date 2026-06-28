@@ -3,10 +3,14 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:karanda/model/ship_upgrading/ship_upgrading_child_data.dart';
 import 'package:karanda/repository/ship_upgrading_repository.dart';
+import 'package:logging/logging.dart';
 
 import '../../../enums/ship_upgrading_data_type.dart';
 import '../../../model/ship_upgrading/ship_upgrading_data.dart';
 import '../../../model/ship_upgrading/ship_upgrading_settings.dart';
+
+/// 선박 증축 설정 기능 운영 로그.
+final _log = Logger('ship_upgrading');
 
 class ShipUpgradingSettingsController extends ChangeNotifier {
   final ShipUpgradingRepository _repository;
@@ -67,11 +71,13 @@ class ShipUpgradingSettingsController extends ChangeNotifier {
   }
 
   Future<void> resetUserStock() async {
+    _log.info('User stock reset');
     await _repository.resetUserStock();
   }
 
   void selectParts(int code) {
     if (stock.containsKey(code)) {
+      _log.info('Equipment completion toggled (code: $code, completed: ${stock[code] == 0})');
       _repository.saveUserStock(code, stock[code] == 0 ? 1 : 0);
     }
   }

@@ -3,7 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:karanda/repository/time_repository.dart';
+import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+/// 예약 종료 기능 운영 로그.
+final _log = Logger('shutdown_scheduler');
 
 class ShutdownSchedulerController extends ChangeNotifier {
   final TimeRepository _timeRepository;
@@ -35,6 +39,8 @@ class ShutdownSchedulerController extends ChangeNotifier {
         pref.remove(_key);
       }
     }
+    _log.info('Shutdown scheduler initialized (existing reservation: '
+        '${scheduled == true ? target.toIso8601String() : "none"})');
     notifyListeners();
   }
 
@@ -55,6 +61,7 @@ class ShutdownSchedulerController extends ChangeNotifier {
     Process.start('shutdown', ['-s', '-f', '-t', '$sec']);
     pref.setString(_key, target.toString());
     scheduled = true;
+    _log.info('Shutdown scheduled at ${target.toIso8601String()}');
     notifyListeners();
   }
 

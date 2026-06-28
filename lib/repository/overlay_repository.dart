@@ -11,7 +11,11 @@ import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/model/monitor_device.dart';
 import 'package:karanda/model/overlay_settings.dart';
 import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
+
+/// 오버레이 기능 운영 로그.
+final _log = Logger('overlay');
 
 class OverlayRepository {
   final OverlaySettingsDataSource _overlaySettingsDataSource;
@@ -84,12 +88,14 @@ class OverlayRepository {
   }
 
   void activate(OverlayFeatures value) {
+    _log.info('Overlay enabled: ${value.name}');
     final snapshot = _settings.value..activatedFeatures.add(value);
     sendOverlaySettings(snapshot);
     _settings.sink.add(snapshot);
   }
 
   void deactivate(OverlayFeatures value) {
+    _log.info('Overlay disabled: ${value.name}');
     final snapshot = _settings.value..activatedFeatures.remove(value);
     sendOverlaySettings(snapshot);
     _settings.sink.add(snapshot);
@@ -131,6 +137,8 @@ class OverlayRepository {
       settings.monitorDevice =
           await OverlayWindowUtils().getPrimaryMonitorDevice();
     }
+    _log.info('Overlay initialized (displays: ${display.length}, '
+        'monitor: ${settings.monitorDevice.rect.width.toInt()}x${settings.monitorDevice.rect.height.toInt()})');
     _settings.sink.add(settings);
     return settings;
   }

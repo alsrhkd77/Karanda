@@ -19,7 +19,10 @@ import 'package:karanda/ui/core/theme/dimes.dart';
 import 'package:karanda/ui/core/ui/snack_bar_content.dart';
 
 import '../enums/features.dart';
-import 'dart:developer' as developer;
+import 'package:logging/logging.dart';
+
+/// 앱 알림 운영 로그.
+final _log = Logger('notification');
 
 class AppNotificationService {
   final AppNotificationRepository _appNotificationRepository;
@@ -61,6 +64,7 @@ class AppNotificationService {
 
   void _notify(AppNotificationMessage message) {
     if (_scaffoldMessengerKey.currentState != null) {
+      _log.info('Notification shown (${message.feature.name})');
       final context = _scaffoldMessengerKey.currentState!.context;
       final width = MediaQuery.sizeOf(context).width;
       _scaffoldMessengerKey.currentState!.showSnackBar(SnackBar(
@@ -88,8 +92,8 @@ class AppNotificationService {
           return false;
         }
       }
-    } catch (e) {
-      developer.log("Exception from NotificationMessage filter\n$e");
+    } catch (e, s) {
+      _log.warning('Notification filter error', e, s);
     }
     return true;
   }
@@ -97,6 +101,7 @@ class AppNotificationService {
   void _onFCM(RemoteMessage message) {
     if (message.notification != null) {
       if (kIsWeb) {
+        _log.info('FCM notification received');
         _appNotificationRepository
             .addNotification(AppNotificationMessage.fromRemoteMessage(message));
       }
@@ -104,6 +109,7 @@ class AppNotificationService {
   }
 
   void connectNotificationChannel(BDORegion region) {
+    _log.info('Connecting notification channel (region: ${region.name})');
     _appNotificationRepository.disconnectNotificationChannel();
     _appNotificationRepository.connectNotificationChannel(region);
   }

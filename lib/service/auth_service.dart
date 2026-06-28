@@ -3,10 +3,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/repository/auth_repository.dart';
+import 'package:logging/logging.dart';
 
 import 'package:karanda/model/user.dart';
 
 import '../enums/bdo_region.dart';
+
+/// 인증 관련 사용자 행동 운영 로그.
+final _log = Logger('auth');
 
 class AuthService extends ChangeNotifier {
   final AuthRepository _authRepository;
@@ -45,6 +49,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> unregister() async {
+    _log.info('User requested account deletion');
     final result = await _authRepository.unregister();
     if (result) {
       await _authRepository.logout();
@@ -67,6 +72,7 @@ class AuthService extends ChangeNotifier {
   }
 
   void authentication() {
+    _log.info('User requested login (Discord)');
     _authRepository.authentication(
       onSuccess: (accessToken, refreshToken) async {
         await _authRepository.saveToken(

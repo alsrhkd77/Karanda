@@ -12,6 +12,10 @@ import 'package:karanda/utils/rest_client.dart';
 import 'package:karanda/utils/result.dart';
 
 import 'package:karanda/utils/launch_url.dart';
+import 'package:logging/logging.dart';
+
+/// 인증 API 운영 로그. 토큰 값은 절대 기록하지 않는다.
+final _log = Logger('auth');
 
 class AuthApi {
   Future<Result<User>> authorization() async {
@@ -55,8 +59,10 @@ class AuthApi {
       Map<String, String> data = request.uri.queryParameters;
       if (data.containsKey('token') && data.containsKey('refresh-token')) {
         await onSuccess(data['token']!, data['refresh-token']!);
+        _log.info('Discord auth tokens received');
         request.response.redirect(Uri.parse(ExternalLinks.discord));
       } else {
+        _log.warning('Discord auth failed: redirect missing tokens');
         await onFailed();
         request.response
             .redirect(Uri.parse(ExternalLinks.karandaAuthErrorPage));

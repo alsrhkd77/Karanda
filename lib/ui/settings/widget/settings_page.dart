@@ -18,7 +18,11 @@ import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/external_links.dart';
 import 'package:karanda/utils/launch_url.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
+import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+
+/// 설정 화면 사용자 행동 운영 로그.
+final _log = Logger('settings');
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -76,7 +80,10 @@ class SettingsPage extends StatelessWidget {
                           ),
                           child: Text(locale.toLanguageTag()),
                         ),
-                        onPressed: () => context.setLocale(locale),
+                        onPressed: () {
+                          _log.info('Setting changed: language = ${locale.toLanguageTag()}');
+                          context.setLocale(locale);
+                        },
                       ))
                   .toList(),
             ),

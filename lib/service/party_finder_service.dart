@@ -11,9 +11,13 @@ import 'package:karanda/repository/party_finder_repository.dart';
 import 'package:karanda/repository/app_settings_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../model/recruitment.dart';
+
+/// 파티 모집 기능 운영 로그.
+final _log = Logger('party_finder');
 
 class PartyFinderService {
   final AuthRepository _authRepository;
@@ -71,6 +75,7 @@ class PartyFinderService {
   }
 
   void _onRegionUpdate(BDORegion region) {
+    _log.info('Load recruitments and connect live channel (region: ${region.name})');
     _partyFinderRepository.getPosts(region);
     _partyFinderRepository.disconnectLiveChannel();
     _partyFinderRepository.connectLiveChannel(region);
@@ -142,25 +147,31 @@ class PartyFinderService {
 
   Future<Recruitment?> updatePostState(int postId, bool status) async {
     if (status) {
+      _log.info('Open recruitment post (id: $postId)');
       return await _partyFinderRepository.openPost(postId);
     } else {
+      _log.info('Close recruitment post (id: $postId)');
       return await _partyFinderRepository.closePost(postId);
     }
   }
 
   Future<Applicant?> join(int postId) async {
+    _log.info('Apply to recruitment post (id: $postId)');
     return await _partyFinderRepository.join(postId);
   }
 
   Future<Applicant?> cancel(int postId) async {
+    _log.info('Cancel application (post id: $postId)');
     return await _partyFinderRepository.cancel(postId);
   }
 
   Future<Applicant?> accept(int postId, String applicantId) async {
+    _log.info('Accept an applicant (post id: $postId)');
     return await _partyFinderRepository.accept(postId, applicantId);
   }
 
   Future<Applicant?> reject(int postId, String applicantId) async {
+    _log.info('Reject an applicant (post id: $postId)');
     return await _partyFinderRepository.reject(postId, applicantId);
   }
 

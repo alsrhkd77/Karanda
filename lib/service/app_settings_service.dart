@@ -13,7 +13,10 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/model/user.dart';
 import 'package:karanda/repository/user_fc_settings_repository.dart';
-import 'dart:developer' as developer;
+import 'package:logging/logging.dart';
+
+/// 앱 설정·푸시 알림 운영 로그. FCM 토큰 값은 절대 기록하지 않는다.
+final _log = Logger('settings');
 
 class AppSettingsService {
   final AppSettingsRepository _appSettingsRepository;
@@ -51,14 +54,17 @@ class AppSettingsService {
   BDORegion? get region => _appSettingsRepository.region;
 
   void setThemeMode(ThemeMode value) {
+    _log.info('Setting changed: theme mode = ${value.name}');
     _appSettingsRepository.setThemeMode(value);
   }
 
   void setFont(Font value) {
+    _log.info('Setting changed: font = ${value.name}');
     _appSettingsRepository.setFont(value);
   }
 
   void setVolume(double value) {
+    // 볼륨 슬라이더는 드래그 중 연속 호출되므로 INFO로 남기지 않는다.
     if (value < 0) {
       _audioPlayerRepository.setVolume(0);
     } else if (value > 100) {
@@ -69,18 +75,22 @@ class AppSettingsService {
   }
 
   void setRegion(BDORegion value) {
+    _log.info('Setting changed: region = ${value.name}');
     _appSettingsRepository.setRegion(value);
   }
 
   void setStartMinimized(bool value) {
+    _log.info('Setting changed: start minimized = $value');
     _appSettingsRepository.setStartMinimized(value);
   }
 
   void setUseTrayMode(bool value) {
+    _log.info('Setting changed: tray mode = $value');
     _appSettingsRepository.setUseTrayMode(value);
   }
 
   void _onFcmTokenRefresh(String value) {
+    _log.info('FCM token refreshed');
     _userFcmSettingsRepository.updateFcmToken(value);
   }
 
@@ -98,8 +108,8 @@ class AppSettingsService {
             await _userFcmSettingsRepository.saveFcmSettings(fcmSettings);
           }
         }
-      } catch (e) {
-        developer.log(e.toString());
+      } catch (e, s) {
+        _log.warning('Failed to update FCM settings on region change', e, s);
       }
     }
   }
@@ -126,6 +136,7 @@ class AppSettingsService {
         if (token == null) {
           return null;
         } else {
+          _log.info('Push notifications enabled');
           return await _userFcmSettingsRepository
               .saveFcmSettings(UserFcmSettings(
             token: token,
@@ -133,8 +144,8 @@ class AppSettingsService {
           ));
         }
       }
-    } catch (e) {
-      developer.log(e.toString());
+    } catch (e, s) {
+      _log.warning('Failed to enable push notifications', e, s);
       return null;
     }
   }
@@ -144,6 +155,7 @@ class AppSettingsService {
       vapidKey: kIsWeb ? const String.fromEnvironment('VAPID') : null,
     );
     if (token != null) {
+      _log.info('Push notifications disabled');
       await _userFcmSettingsRepository.unregisterToken(token);
     }
   }
@@ -161,8 +173,8 @@ class AppSettingsService {
           return await _userFcmSettingsRepository.getFcmSettings(token);
         }
       }
-    } catch (e) {
-      developer.log(e.toString());
+    } catch (e, s) {
+      _log.warning('Failed to fetch FCM settings', e, s);
       return null;
     }
     return null;

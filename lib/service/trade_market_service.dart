@@ -8,7 +8,11 @@ import 'package:karanda/model/trade_market_wait_item.dart';
 import 'package:karanda/repository/app_settings_repository.dart';
 import 'package:karanda/repository/bdo_item_info_repository.dart';
 import 'package:karanda/repository/trade_market_repository.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
+
+/// 거래소 기능 운영 로그.
+final _log = Logger('trade_market');
 
 class TradeMarketService {
   final TradeMarketRepository _tradeMarketRepository;
@@ -52,6 +56,7 @@ class TradeMarketService {
   }
 
   void _onRegionUpdate(BDORegion region) {
+    _log.info('Connect trade market live channel (region: ${region.name})');
     _tradeMarketRepository.disconnectLiveChannel();
     _tradeMarketRepository.connectLiveChannel(region);
   }
@@ -65,6 +70,7 @@ class TradeMarketService {
 
   Future<Map<String, List<TradeMarketPriceData>>> getPriceDetailData(
       String code, BDORegion region) async {
+    _log.info('Fetch price detail (item: $code, region: ${region.name})');
     final items = await _tradeMarketRepository.getDetailedPriceData(
       itemCode: int.parse(code),
       region: region,

@@ -9,9 +9,13 @@ import 'package:karanda/data_source/bdo_family_api.dart';
 import 'package:karanda/utils/result.dart';
 
 import 'package:karanda/model/user.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../enums/bdo_region.dart';
+
+/// 인증 관련 운영 로그. 토큰 등 민감 정보는 절대 기록하지 않는다.
+final _log = Logger('auth');
 
 class AuthRepository {
   late final AuthApi _authApi;
@@ -35,19 +39,23 @@ class AuthRepository {
       switch (result) {
         case Ok<User>():
           _user.sink.add(result.value);
+          _log.info('Auto login succeeded');
           return true;
         case Error<User>():
           _user.sink.add(null);
           await clearToken();
+          _log.warning('Auto login failed: stored credentials expired, tokens cleared');
           return false;
       }
     }
+    _log.fine('No stored auth token, skipping auto login');
     return false;
   }
 
   Future<void> logout() async {
     _user.sink.add(null);
     await clearToken();
+    _log.info('Logged out');
   }
 
   void authentication({
@@ -99,8 +107,10 @@ class AuthRepository {
     if (result != null) {
       final snapshot = _user.valueOrNull?..family = result;
       _user.sink.add(snapshot);
+      _log.info('Family registered (region: ${region.name})');
       return true;
     }
+    _log.warning('Family registration failed (region: ${region.name})');
     return false;
   }
 
@@ -114,6 +124,7 @@ class AuthRepository {
       if (result) {
         final snapshot = _user.valueOrNull?..family = null;
         _user.sink.add(snapshot);
+        _log.info('Family unregistered');
         return true;
       }
     }
@@ -154,8 +165,10 @@ class AuthRepository {
       if(result != null){
         final snapshot = _user.valueOrNull?..family = result;
         _user.sink.add(snapshot);
+        _log.info('Family verified');
         return true;
       }
+      _log.warning('Family verification failed');
     }
     return false;
   }

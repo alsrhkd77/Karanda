@@ -6,10 +6,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/token_utils.dart';
+import 'package:logging/logging.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
-import 'dart:developer' as developer;
 
 import '../utils/web_visibility/web_visibility.dart';
+
+/// 실시간 통신(STOMP) 운영 로그. 인증 헤더·토큰은 절대 기록하지 않는다.
+final _log = Logger('websocket');
 
 class WebSocketManager {
   final WebVisibility _webVisibility = WebVisibility();
@@ -65,6 +68,8 @@ class WebSocketManager {
       callback: callback,
       unsubscribeFn: unsubscribeFn,
     );
+    _log.info('Subscribe realtime channel: $destination'
+        '${region == null ? '' : ' (region: ${region.name})'}');
     if (_subscription.length == 1) {
       activate();
     }
@@ -76,6 +81,7 @@ class WebSocketManager {
         _subscription[destination]!.unsubscribeFn!();
       }
       _subscription.remove(destination);
+      _log.info('Unsubscribe realtime channel: $destination');
       if (_subscription.isEmpty) {
         deactivate();
       }
@@ -114,12 +120,13 @@ class WebSocketManager {
       onWebSocketDone: () {
         _reconnectTimer?.cancel();
         _backOff = min(_backOff * 2, 600000);
+        _log.warning('Realtime server connection lost, reconnecting in ${_backOff}ms');
         _reconnectTimer = Timer(Duration(milliseconds: _backOff), activate);
         _client?.deactivate();
         _client = null;
       },
       onDisconnect: (frame) {
-        developer.log("STOMP disconnected, ${frame.command}");
+        _log.info('Realtime server disconnected (${frame.command})');
       },
       connectionTimeout: const Duration(seconds: 59),
       heartbeatIncoming: const Duration(microseconds: 30000),
@@ -130,6 +137,7 @@ class WebSocketManager {
       onConnect: (frame) async {
         _reconnectTimer?.cancel();
         _backOff = 200;
+        _log.info('Realtime server connected (restoring ${_subscription.length} subscriptions)');
         for (var sub in _subscription.values) {
           sub.unsubscribeFn = await _subscribe(
             destination: sub.destination,
