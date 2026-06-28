@@ -40,7 +40,7 @@ class BarteringSettingsPage extends StatelessWidget {
         return Scaffold(
           appBar: KarandaAppBar(
             title: context.tr("bartering.bartering"),
-            icon: FontAwesomeIcons.arrowRightArrowLeft,
+            icon: FontAwesomeIcons.arrowRightArrowLeft.data,
           ),
           body: Consumer(
             builder: (context, BarteringSettingsController controller, child) {

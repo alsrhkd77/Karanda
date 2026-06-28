@@ -40,8 +40,8 @@ class _CrowCoinExchangePageState extends State<CrowCoinExchangePage> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const ListTile(
-                  leading: Icon(FontAwesomeIcons.coins),
+                ListTile(
+                  leading: Icon(FontAwesomeIcons.coins.data),
                   title: TitleText(
                     '까마귀 주화 효율 계산기',
                     bold: true,

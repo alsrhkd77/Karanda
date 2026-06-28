@@ -24,59 +24,57 @@ class StyleSettingsPage extends StatelessWidget {
             Section(
               icon: Icons.brightness_medium,
               title: context.tr("settings.theme brightness"),
-              child: Column(
-                children: ThemeMode.values
-                    .map((mode) => RadioListTile(
-                          value: mode,
-                          groupValue: controller.appSettings.themeMode,
-                          onChanged: controller.setThemeMode,
-                          title: Text(context.tr("themeMode.${mode.name}")),
-                        ))
-                    .toList(),
+              child: RadioGroup<ThemeMode>(
+                groupValue: controller.appSettings.themeMode,
+                onChanged: controller.setThemeMode,
+                child: Column(
+                  children: ThemeMode.values
+                      .map((mode) => RadioListTile(
+                            value: mode,
+                            title: Text(context.tr("themeMode.${mode.name}")),
+                          ))
+                      .toList(),
+                ),
               ),
             ),
             Section(
               icon: Icons.font_download_outlined,
               title: context.tr("settings.font"),
-              child: Column(
-                children: [
-                  RadioListTile(
-                    value: Font.maplestory,
-                    title: Text(
-                      context.tr("font.${Font.maplestory.name}"),
-                      style: const TextStyle(fontFamily: "Maplestory"),
+              child: RadioGroup<Font>(
+                groupValue: controller.font,
+                onChanged: controller.setFont,
+                child: Column(
+                  children: [
+                    RadioListTile(
+                      value: Font.maplestory,
+                      title: Text(
+                        context.tr("font.${Font.maplestory.name}"),
+                        style: const TextStyle(fontFamily: "Maplestory"),
+                      ),
                     ),
-                    groupValue: controller.font,
-                    onChanged: controller.setFont,
-                  ),
-                  RadioListTile(
-                    value: Font.notoSansKR,
-                    title: Text(
-                      context.tr("font.${Font.notoSansKR.name}"),
-                      style: GoogleFonts.notoSansKr(),
+                    RadioListTile(
+                      value: Font.notoSansKR,
+                      title: Text(
+                        context.tr("font.${Font.notoSansKR.name}"),
+                        style: GoogleFonts.notoSansKr(),
+                      ),
                     ),
-                    groupValue: controller.font,
-                    onChanged: controller.setFont,
-                  ),
-                  RadioListTile(
-                    value: Font.nanumGothic,
-                    title: Text(
-                      context.tr("font.${Font.nanumGothic.name}"),
-                      style: GoogleFonts.nanumGothic(),
+                    RadioListTile(
+                      value: Font.nanumGothic,
+                      title: Text(
+                        context.tr("font.${Font.nanumGothic.name}"),
+                        style: GoogleFonts.nanumGothic(),
+                      ),
                     ),
-                    groupValue: controller.font,
-                    onChanged: controller.setFont,
-                  ),
-                  RadioListTile(
-                    value: Font.jua,
-                    title: Text(
-                      context.tr("font.${Font.jua.name}"),
-                      style: GoogleFonts.jua(),
+                    RadioListTile(
+                      value: Font.jua,
+                      title: Text(
+                        context.tr("font.${Font.jua.name}"),
+                        style: GoogleFonts.jua(),
+                      ),
                     ),
-                    groupValue: controller.font,
-                    onChanged: controller.setFont,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ]);

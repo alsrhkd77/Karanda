@@ -19,24 +19,24 @@ class _TradeCalculatorPageState extends State<TradeCalculatorPage> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: const DefaultAppBar(
+        appBar: DefaultAppBar(
           title: "물물교환 계산기",
-          icon: FontAwesomeIcons.arrowRightArrowLeft,
+          icon: FontAwesomeIcons.arrowRightArrowLeft.data,
           bottom: TabBar(
             automaticIndicatorColorAdjustment: true,
             indicatorSize: TabBarIndicatorSize.tab,
             tabs: [
               Tab(
-                icon: Icon(FontAwesomeIcons.weightHanging),
+                icon: Icon(FontAwesomeIcons.weightHanging.data),
               ),
               Tab(
                 icon: Icon(Icons.calculate),
               ),
               Tab(
-                icon: Icon(FontAwesomeIcons.coins),
+                icon: Icon(FontAwesomeIcons.coins.data),
               ),
               Tab(
-                icon: Icon(FontAwesomeIcons.solidHandshake),
+                icon: Icon(FontAwesomeIcons.solidHandshake.data),
               ),
             ],
           ),

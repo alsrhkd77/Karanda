@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:karanda/ui/core/theme/dimes.dart';
 
 class PageBase extends StatelessWidget {
@@ -22,7 +23,9 @@ class PageBase extends StatelessWidget {
       child: ListView(
         padding: Dimens.constrainedPagePadding(pageWidth),
         itemExtent: itemExtent,
-        cacheExtent: cacheExtent,
+        scrollCacheExtent: cacheExtent == null
+            ? null
+            : ScrollCacheExtent.pixels(cacheExtent!),
         children: children,
       ),
     );

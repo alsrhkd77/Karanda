@@ -30,7 +30,7 @@ class TradeMarketCookingBoxPresetPage extends StatelessWidget {
       child: Scaffold(
         appBar: KarandaAppBar(
           title: context.tr("trade market.cooking_box"),
-          icon: FontAwesomeIcons.scaleUnbalanced,
+          icon: FontAwesomeIcons.scaleUnbalanced.data,
         ),
         body: Consumer(
           builder: (

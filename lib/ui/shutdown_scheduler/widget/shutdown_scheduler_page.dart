@@ -19,7 +19,7 @@ class ShutdownSchedulerPage extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           appBar: KarandaAppBar(
-            icon: FontAwesomeIcons.powerOff,
+            icon: FontAwesomeIcons.powerOff.data,
             title: context.tr("shutdownScheduler.shutdownScheduler"),
           ),
           body: Consumer(
@@ -163,7 +163,7 @@ class _Badge extends StatelessWidget {
         ],
       );
     }
-    return const Icon(FontAwesomeIcons.clock);
+    return Icon(FontAwesomeIcons.clock.data);
   }
 }
 

@@ -103,13 +103,13 @@ class _Account extends StatelessWidget {
         ),
         ListTile(
           title: Text(context.tr("auth.platform")),
-          trailing: const Row(
+          trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Icon(
-                  FontAwesomeIcons.discord,
+                  FontAwesomeIcons.discord.data,
                   color: AppColors.discordPrimary,
                 ),
               ),

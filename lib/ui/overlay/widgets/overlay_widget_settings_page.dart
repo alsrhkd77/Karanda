@@ -25,7 +25,7 @@ class OverlayWidgetSettingsPage extends StatelessWidget {
       value: overlayController,
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.layerGroup,
+          icon: FontAwesomeIcons.layerGroup.data,
           title: context.tr("overlay.overlay"),
         ),
         body: Consumer(

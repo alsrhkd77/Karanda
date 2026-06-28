@@ -41,12 +41,12 @@ class _BarteringPageState extends State<BarteringPage>
         return Scaffold(
           appBar: KarandaAppBar(
             title: context.tr("bartering.bartering"),
-            icon: FontAwesomeIcons.arrowRightArrowLeft,
+            icon: FontAwesomeIcons.arrowRightArrowLeft.data,
             bottom: TabBar(
               controller: _tabController,
               tabs: [
-                Tab(icon: Icon(FontAwesomeIcons.solidHandshake)),
-                Tab(icon: Icon(FontAwesomeIcons.weightHanging)),
+                Tab(icon: Icon(FontAwesomeIcons.solidHandshake.data)),
+                Tab(icon: Icon(FontAwesomeIcons.weightHanging.data)),
               ],
             ),
             actions: [

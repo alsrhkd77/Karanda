@@ -209,7 +209,7 @@ class _EventBar extends StatelessWidget {
       height: height,
       child: Card(
         margin: const EdgeInsets.all(6.0),
-        color: event.color.withOpacity(0.9),
+        color: event.color.withValues(alpha: 0.9),
         surfaceTintColor: event.color,
         shadowColor: event.color,
         elevation: 4.0,

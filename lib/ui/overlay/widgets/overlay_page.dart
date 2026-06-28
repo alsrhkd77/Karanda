@@ -26,7 +26,7 @@ class _OverlayPageState extends State<OverlayPage> {
       create: (context) => OverlayController(overlayRepository: context.read()),
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.layerGroup,
+          icon: FontAwesomeIcons.layerGroup.data,
           title: context.tr("overlay.overlay"),
           actions: [
             IconButton(

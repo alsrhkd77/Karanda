@@ -35,7 +35,7 @@ class TradeMarketPresetPage extends StatelessWidget {
       child: Scaffold(
         appBar: KarandaAppBar(
           title: context.tr("trade market.$presetKey"),
-          icon: FontAwesomeIcons.scaleUnbalanced,
+          icon: FontAwesomeIcons.scaleUnbalanced.data,
         ),
         body: Consumer(
           builder: (context, TradeMarketPresetController controller, child) {

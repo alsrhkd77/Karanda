@@ -35,7 +35,7 @@ class EditRecruitmentPostPage extends StatelessWidget {
       ),
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.circleNodes,
+          icon: FontAwesomeIcons.circleNodes.data,
           title: context.tr("partyFinder.editPost.editPost"),
         ),
         body: Consumer(
@@ -271,7 +271,7 @@ class _SubmitButtonState extends State<_SubmitButton> {
       width: Size.infinite.width,
       child: ElevatedButton.icon(
         onPressed: submit,
-        icon: const Icon(FontAwesomeIcons.solidFloppyDisk),
+        icon: Icon(FontAwesomeIcons.solidFloppyDisk.data),
         label: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 12.0,

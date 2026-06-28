@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
+import 'package:karanda/model/monitor_device.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_settings_controller.dart';
@@ -18,7 +19,7 @@ class OverlaySettingsPage extends StatelessWidget {
       )..getMonitorList(),
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.layerGroup,
+          icon: FontAwesomeIcons.layerGroup.data,
           title: context.tr("overlay.overlay"),
         ),
         body: Consumer(
@@ -28,16 +29,18 @@ class OverlaySettingsPage extends StatelessWidget {
               return const LoadingIndicator();
             }
             return PageBase(children: [
-              ExpansionTile(
-                title: Text(context.tr("overlay.settings.select display")),
-                children: controller.monitorList!.map((display) {
-                  return RadioListTile(
-                    title: Text(display.name.split(r"\").last),
-                    value: display,
-                    groupValue: controller.overlaySettings!.monitorDevice,
-                    onChanged: controller.selectMonitor,
-                  );
-                }).toList(),
+              RadioGroup<MonitorDevice>(
+                groupValue: controller.overlaySettings!.monitorDevice,
+                onChanged: controller.selectMonitor,
+                child: ExpansionTile(
+                  title: Text(context.tr("overlay.settings.select display")),
+                  children: controller.monitorList!.map((display) {
+                    return RadioListTile(
+                      title: Text(display.name.split(r"\").last),
+                      value: display,
+                    );
+                  }).toList(),
+                ),
               ),
               /*ExpansionTile(
                 title: Text(context.tr("overlay.settings.select display")),

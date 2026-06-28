@@ -35,7 +35,7 @@ class LightstoneCombinationPage extends StatelessWidget {
         return Scaffold(
           appBar: KarandaAppBar(
             title: context.tr("lightstoneCombination.lightstoneCombination"),
-            icon: FontAwesomeIcons.splotch,
+            icon: FontAwesomeIcons.splotch.data,
           ),
           body: Consumer(
             builder:

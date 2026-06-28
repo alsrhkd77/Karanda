@@ -103,8 +103,8 @@ class _WaitItemTile extends StatelessWidget {
         title: Text(itemInfo.nameWithEnhancementLevel(item.enhancementLevel)),
         subtitle: Row(
           children: [
-            const Icon(
-              FontAwesomeIcons.coins,
+            Icon(
+              FontAwesomeIcons.coins.data,
               size: 12,
             ),
             Padding(

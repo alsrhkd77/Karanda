@@ -65,7 +65,7 @@ class _ShipUpgradingPageState extends State<ShipUpgradingPage> {
           return Scaffold(
             appBar: DefaultAppBar(
               title: "선박 증축",
-              icon: FontAwesomeIcons.ship,
+              icon: FontAwesomeIcons.ship.data,
               actions: [
                 IconButton(
                   onPressed: dataController.setChangeForm,

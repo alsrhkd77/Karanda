@@ -214,9 +214,9 @@ class _CookingBoxPageState extends State<CookingBoxPage> {
     double width = MediaQuery.of(context).size.width;
     double additionalMargin = getAdditionalMargin();
     return Scaffold(
-      appBar: const DefaultAppBar(
+      appBar: DefaultAppBar(
         title: "통합 거래소 프리셋",
-        icon: FontAwesomeIcons.scaleUnbalanced,
+        icon: FontAwesomeIcons.scaleUnbalanced.data,
       ),
       body: boxData.isEmpty
           ? const Center(child: LoadingIndicator())

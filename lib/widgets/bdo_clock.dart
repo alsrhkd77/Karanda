@@ -12,9 +12,9 @@ class BdoClock extends StatelessWidget {
   Widget build(BuildContext context) {
     final TimeOfDay time = context
         .select<BdoWorldTimeNotifier, TimeOfDay>((value) => value.bdoTime);
-    IconData icon = FontAwesomeIcons.solidSun;
+    IconData icon = FontAwesomeIcons.solidSun.data;
     if (time.hour >= 22 || time.hour < 7) {
-      icon = FontAwesomeIcons.solidMoon;
+      icon = FontAwesomeIcons.solidMoon.data;
     }
     return Row(
       children: [

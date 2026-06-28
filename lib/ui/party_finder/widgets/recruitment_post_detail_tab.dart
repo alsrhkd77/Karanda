@@ -38,7 +38,7 @@ class RecruitmentPostDetailTab extends StatelessWidget {
               ),
               /*Chip(
                 label: Text(data.specLimit?.format() ?? "제한 없음"),
-                //avatar: Icon(FontAwesomeIcons.fire, size: 14,),
+                //avatar: Icon(FontAwesomeIcons.fire.data, size: 14,),
                 avatar: Text("⚔️"),
               ),*/
               Chip(

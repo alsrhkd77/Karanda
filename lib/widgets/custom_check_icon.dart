@@ -38,7 +38,7 @@ class _CustomCheckIconState extends State<CustomCheckIcon>
     return SizeTransition(
       sizeFactor: _animation,
       axis: Axis.horizontal,
-      axisAlignment: -1,
+      alignment: const Alignment(-1.0, -1.0),
       child: Center(
         child: Icon(
           Icons.check_rounded,

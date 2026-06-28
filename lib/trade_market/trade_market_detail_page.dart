@@ -70,9 +70,9 @@ class _TradeMarketDetailPageState extends State<TradeMarketDetailPage> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        appBar: const DefaultAppBar(
+        appBar: DefaultAppBar(
           title: "통합 거래소 아이템 상세",
-          icon: FontAwesomeIcons.scaleUnbalanced,
+          icon: FontAwesomeIcons.scaleUnbalanced.data,
         ),
         body: StreamBuilder(
           stream: dataStream?.marketDetailData,
@@ -368,8 +368,8 @@ class _PriceChart extends StatelessWidget {
                             .map((e) => getLineTooltipItem(
                                 e,
                                 Theme.of(context).brightness == Brightness.light
-                                    ? Colors.white.withOpacity(0.75)
-                                    : Colors.black.withOpacity(0.8)))
+                                    ? Colors.white.withValues(alpha: 0.75)
+                                    : Colors.black.withValues(alpha: 0.8)))
                             .toList();
                       }),
                 ),
@@ -382,13 +382,13 @@ class _PriceChart extends StatelessWidget {
                       const Duration(days: 14).inMilliseconds.toDouble(),
                   getDrawingHorizontalLine: (value) {
                     return FlLine(
-                      color: Colors.grey.withOpacity(0.1),
+                      color: Colors.grey.withValues(alpha: 0.1),
                       strokeWidth: 1,
                     );
                   },
                   getDrawingVerticalLine: (value) {
                     return FlLine(
-                      color: Colors.grey.withOpacity(0.1),
+                      color: Colors.grey.withValues(alpha: 0.1),
                       strokeWidth: 1,
                     );
                   },
@@ -439,7 +439,7 @@ class _PriceChart extends StatelessWidget {
                 extraLinesData: ExtraLinesData(horizontalLines: [
                   HorizontalLine(
                       y: midPrice.toDouble(),
-                      color: Colors.red.withOpacity(0.5),
+                      color: Colors.red.withValues(alpha: 0.5),
                       dashArray: [10, 10]),
                 ]),
               ),

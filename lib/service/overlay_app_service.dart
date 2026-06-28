@@ -67,8 +67,16 @@ class OverlayAppService {
   }
 
   void exitEditMode() {
-    OverlayWindowUtils().disableEditMode();
+    _deferWindowOp(() => OverlayWindowUtils().disableEditMode());
     _editMode.sink.add(false);
+  }
+
+  /// win32 창 조작(SetWindowPos/DWM/ShowWindow)은 동기적으로 Windows 메시지
+  /// 루프를 펌프하므로, 메시지 핸들러나 탭 콜백(마이크로태스크) 안에서 직접
+  /// 호출하면 프레임 진행 중 Flutter 스케줄러를 재진입시켜 단언이 깨진다.
+  /// 스케줄러가 idle인 다음 이벤트 루프 턴으로 미뤄 실행한다.
+  void _deferWindowOp(void Function() op) {
+    Future.delayed(Duration.zero, op);
   }
 
   Future<void> saveRect(OverlayFeatures key, Rect rect) async {
@@ -85,6 +93,7 @@ class OverlayAppService {
 
   void _registerCallbacks() {
     registerCallback(key: "set window", callback: _setWindow);
+    registerCallback(key: "finalize", callback: _finalizeOverlay);
     registerCallback(key: "edit mode", callback: _setEditMode);
     registerCallback(key: "settings", callback: _settingsCallback);
     registerCallback(key: "reset widgets", callback: _resetWidgetsCallback);
@@ -94,16 +103,28 @@ class OverlayAppService {
   void _setWindow(MethodCall value) {
     final display = MonitorDevice.fromJson(jsonDecode(value.arguments));
     _loading.sink.add(true);
-    OverlayWindowUtils().setOverlayMode(rect: display.rect);
+    _deferWindowOp(() {
+      // 표시 전에는 위치/투명(글래스)만 적용한다. 레이어드(클릭스루)는 메인이
+      // 창을 표시한 뒤 "finalize" 신호로 적용한다(레이어드를 표시 전에 적용하면
+      // 창이 보이지 않게 됨).
+      OverlayWindowUtils().prepareOverlayMode(rect: display.rect);
+      _appRepository.notifyStyled();
+    });
     Future.delayed(
       const Duration(milliseconds: 300),
       () => _loading.sink.add(false),
     );
   }
 
+  void _finalizeOverlay(MethodCall value) {
+    // 메인이 창을 표시한 뒤 호출된다. 렌더링이 시작된 창에 레이어드(클릭스루)를
+    // 적용한다.
+    _deferWindowOp(() => OverlayWindowUtils().enableClickThroughMode());
+  }
+
   void _setEditMode(MethodCall value) {
     _editMode.sink.add(true);
-    OverlayWindowUtils().enableEditMode();
+    _deferWindowOp(() => OverlayWindowUtils().enableEditMode());
   }
 
   void _resetWidgetsCallback(MethodCall value) {

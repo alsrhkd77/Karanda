@@ -42,7 +42,7 @@ class _ParleyCalculatorTabState extends State<ParleyCalculatorTab> {
           child: Column(
             children: [
               ListTile(
-                leading: const Icon(FontAwesomeIcons.solidHandshake),
+                leading: Icon(FontAwesomeIcons.solidHandshake.data),
                 title: const TitleText(
                   '교섭력 계산기',
                   bold: true,

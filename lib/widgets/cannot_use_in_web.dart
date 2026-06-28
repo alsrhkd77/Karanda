@@ -15,7 +15,7 @@ class CannotUseInWeb extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.all(24.0),
-            child: const Icon(FontAwesomeIcons.lock, size: 100.0),
+            child: Icon(FontAwesomeIcons.lock.data, size: 100.0),
           ),
           Container(
             margin: const EdgeInsets.all(24.0),
