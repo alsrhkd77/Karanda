@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/ui/auth/widgets/family_verification_page.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/section.dart';

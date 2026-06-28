@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 
 class NotFoundPage extends StatelessWidget {

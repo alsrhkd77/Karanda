@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/service/desktop_service.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/home/widget/auth_button_widget.dart';

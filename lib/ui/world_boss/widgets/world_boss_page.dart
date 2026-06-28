@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/common/date_time_extension.dart';
 import 'package:karanda/model/world_boss_schedule.dart';
 import 'package:karanda/repository/time_repository.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/world_boss/controllers/world_boss_controller.dart';

@@ -12,7 +12,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/bartering/ship_profile.dart';
-import '../../core/theme/dimes.dart';
+import '../../core/theme/dimens.dart';
 
 class SimpleBarteringWeightTab extends StatelessWidget {
   const SimpleBarteringWeightTab({super.key});

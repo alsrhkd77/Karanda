@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:karanda/enums/overlay_features.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';

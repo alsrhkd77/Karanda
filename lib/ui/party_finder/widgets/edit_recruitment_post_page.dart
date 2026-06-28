@@ -6,7 +6,7 @@ import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/recruitment_category.dart';
 import 'package:karanda/enums/recruitment_type.dart';
 import 'package:karanda/model/recruitment.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/section.dart';

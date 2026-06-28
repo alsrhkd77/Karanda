@@ -9,7 +9,7 @@ import 'package:karanda/model/monitor_device.dart';
 import 'package:karanda/model/overlay_settings.dart';
 import 'package:karanda/repository/overlay_app_repository.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/snack_bar_content.dart';
 import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
 

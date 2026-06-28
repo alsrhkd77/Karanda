@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 
 class PageBase extends StatelessWidget {
   final List<Widget> children;

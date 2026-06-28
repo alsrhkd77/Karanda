@@ -15,7 +15,7 @@ import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/snack_bar_content.dart';
 
 import '../enums/features.dart';

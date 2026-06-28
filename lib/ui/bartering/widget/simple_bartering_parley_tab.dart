@@ -8,7 +8,7 @@ import 'package:karanda/model/bartering/bartering_mastery.dart';
 import 'package:karanda/model/bartering/bartering_settings.dart';
 import 'package:karanda/model/bartering/ship_profile.dart';
 import 'package:karanda/ui/bartering/controller/bartering_parley_controller.dart';
-import 'package:karanda/ui/core/theme/dimes.dart';
+import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/bdo_item_image.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
