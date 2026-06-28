@@ -14,13 +14,14 @@ class DesktopService {
 
   Future<void> _exitApp() async {
     try {
-      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
-      for (final windowId in subWindowIds) {
-        WindowController controller = WindowController.fromWindowId(windowId);
-        await controller.close();
+      // desktop_multi_window 0.3에는 WindowController.close()가 없으므로 서브윈도우는
+      // 여기서 숨기고, 아래에서 프로세스가 종료될 때 함께 정리된다.
+      final subWindows = await WindowController.getAll();
+      for (final controller in subWindows) {
+        await controller.hide();
       }
     } catch (e) {
-      developer.log('Failed to get SubWindowIds\n$e', name: 'overlay');
+      developer.log('Failed to close sub windows\n$e', name: 'overlay');
     }
     await windowManager.hide();
     await trayManager.destroy();

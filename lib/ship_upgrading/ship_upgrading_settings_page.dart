@@ -68,9 +68,9 @@ class _ShipUpgradingSettingsPageState extends State<ShipUpgradingSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(
+      appBar: DefaultAppBar(
         title: "선박 증축",
-        icon: FontAwesomeIcons.ship,
+        icon: FontAwesomeIcons.ship.data,
       ),
       body: SingleChildScrollView(
         child: Center(

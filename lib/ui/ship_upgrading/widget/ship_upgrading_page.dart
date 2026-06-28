@@ -47,7 +47,7 @@ class ShipUpgradingPage extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           appBar: KarandaAppBar(
-            icon: FontAwesomeIcons.ship,
+            icon: FontAwesomeIcons.ship.data,
             title: context.tr("shipUpgrading.shipUpgrading"),
             actions: [
               IconButton(

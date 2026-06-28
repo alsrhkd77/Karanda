@@ -27,7 +27,7 @@ class HomeFeaturesSection extends StatelessWidget {
       children: [
         _Tile(
           title: context.tr("shipUpgrading.shipUpgrading"),
-          icon: FontAwesomeIcons.ship,
+          icon: FontAwesomeIcons.ship.data,
           path: '/ship-upgrading',
         ),
         _Tile(
@@ -37,53 +37,38 @@ class HomeFeaturesSection extends StatelessWidget {
         ),
         _Tile(
           title: context.tr("lightstoneCombination.lightstoneCombination"),
-          icon: FontAwesomeIcons.splotch,
+          icon: FontAwesomeIcons.splotch.data,
           path: '/lightstone-combination',
         ),
-        /*_Tile(
-          title: '말 성장치 계산기',
-          icon: FontAwesomeIcons.stickerMule,
-          path: '/horse',
-        ),
-        _Tile(
-          title: '시카라키아 아홉문장 계산기',
-          icon: FontAwesomeIcons.calculator,
-          path: '/sycrakea',
-        ),
-        _Tile(
-          title: '요루나키아 보름달이 뜬 밤 계산기',
-          icon: FontAwesomeIcons.calculator,
-          path: '/yolunakea-moon',
-        ),*/
         _Tile(
           title: context.tr("bartering.bartering"),
-          icon: FontAwesomeIcons.arrowRightArrowLeft,
+          icon: FontAwesomeIcons.arrowRightArrowLeft.data,
           path: '/bartering',
         ),
         _Tile(
           title: context.tr("shutdownScheduler.shutdownScheduler"),
-          icon: FontAwesomeIcons.powerOff,
+          icon: FontAwesomeIcons.powerOff.data,
           path: '/shutdown-scheduler',
           windowsOnly: true,
         ),
         _Tile(
           title: context.tr("colorCounter.colorCounter"),
-          icon: FontAwesomeIcons.staffSnake,
+          icon: FontAwesomeIcons.staffSnake.data,
           path: '/color-counter',
         ),
         _Tile(
           title: context.tr("trade market.trade market"),
-          icon: FontAwesomeIcons.scaleUnbalanced,
+          icon: FontAwesomeIcons.scaleUnbalanced.data,
           path: '/trade-market',
         ),
         _Tile(
           title: context.tr("world boss.world boss"),
-          icon: FontAwesomeIcons.dragon,
+          icon: FontAwesomeIcons.dragon.data,
           path: '/world-boss',
         ),
         _Tile(
           title: context.tr("overlay.overlay"),
-          icon: FontAwesomeIcons.layerGroup,
+          icon: FontAwesomeIcons.layerGroup.data,
           path: '/overlay',
           windowsOnly: true,
         ),

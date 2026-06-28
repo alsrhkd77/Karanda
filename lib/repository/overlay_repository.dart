@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer' as developer;
 import 'dart:io';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
@@ -19,21 +20,63 @@ class OverlayRepository {
   final Completer<WindowController> _completer = Completer();
   final _settings = BehaviorSubject<OverlaySettings>();
 
+  /// 오버레이가 차지할 모니터. 오버레이가 준비 완료("ready" 핸드셰이크)를 알리면
+  /// 해당 창으로 전송된다.
+  MonitorDevice? _pendingMonitorDevice;
+
   OverlayRepository(
       {required OverlaySettingsDataSource overlaySettingsDataSource,
       required OverlayApi overlayApi})
       : _overlaySettingsDataSource = overlaySettingsDataSource,
         _overlayApi = overlayApi {
     _settings.stream.listen(saveSettings);
-    DesktopMultiWindow.setMethodHandler(_methodCallHandler);
+    _overlayApi.setMethodHandler(_methodCallHandler);
   }
 
   Future<WindowController> get _windowController => _completer.future;
 
   Stream<OverlaySettings> get settingsStream => _settings.stream;
 
-  Future<void> _methodCallHandler(MethodCall call, int fromWindowId) async {
+  Future<void> _methodCallHandler(MethodCall call) async {
     switch (call.method) {
+      case ("ready"):
+        // 오버레이 창이 메시지 핸들러 등록을 마치고 메시지를 받을 준비가 됐다.
+        // 이 시점에 대상 모니터와 현재 설정을 전송한다. 이보다 먼저 보내면
+        // 오버레이의 채널 등록과 경합이 발생해 메시지가 조용히 유실된다.
+        // 아직 창은 표시하지 않는다. 오버레이가 스타일을 적용한 뒤 "styled"를
+        // 보내면 그때 표시한다(검은 창 노출 방지).
+        developer.log('Overlay reported ready', name: 'overlay');
+        final monitorDevice = _pendingMonitorDevice;
+        if (monitorDevice != null) {
+          _overlayApi.sendToOverlay(
+            method: "set window",
+            data: jsonEncode(monitorDevice.toJson()),
+          );
+        }
+        final settings = _settings.valueOrNull;
+        if (settings != null) {
+          _overlayApi.sendToOverlay(
+            method: "settings",
+            data: jsonEncode(settings),
+          );
+        }
+        break;
+      case ("styled"):
+        // 오버레이가 자기 창에 투명/클릭스루/위치 스타일을 모두 적용했다.
+        // 이제 plugin show()로 창을 표시하면 이미 투명한 상태에서 위젯이
+        // 렌더링되어 검은 창이 보이지 않는다.
+        developer.log('Overlay reported styled; showing window',
+            name: 'overlay');
+        final controller = _overlayController;
+        if (controller != null) {
+          await _overlayApi.showOverlay(controller);
+          // 표시 후 레이어드(클릭스루)를 적용하도록 오버레이에 알린다.
+          _overlayApi.sendToOverlay(method: "finalize");
+          if (!_completer.isCompleted) {
+            _completer.complete(controller);
+          }
+        }
+        break;
       case ("position"):
         final data = jsonDecode(call.arguments);
         final key = OverlayFeatures.values.byName(data["feature"]);
@@ -51,25 +94,23 @@ class OverlayRepository {
     //_message.sink.add(call);
   }
 
+  WindowController? _overlayController;
+
   Future<void> startOverlay(MonitorDevice monitorDevice) async {
     if (kIsWeb || !Platform.isWindows) return;
-    final windowController = await _overlayApi.startOverlay();
-    await Future.delayed(const Duration(seconds: 1));
-    _overlayApi.sendToOverlay(
-      windowController: windowController,
-      method: "set window",
-      data: jsonEncode(monitorDevice.toJson()),
-    );
-    await Future.delayed(const Duration(seconds: 1));
-    _completer.complete(windowController);
+    _pendingMonitorDevice = monitorDevice;
+    // 창을 숨김 상태로 생성만 한다. 표시는 오버레이가 스타일을 적용한 뒤
+    // 보내는 "styled" 신호를 받아 plugin show()로 수행한다(검은 창 노출 방지).
+    // win32 DWM 호출을 메인 엔진에서 하면 실패해 크래시가 나므로 스타일 적용은
+    // 창을 소유한 오버레이 엔진이 담당한다.
+    _overlayController = await _overlayApi.startOverlay();
   }
 
   Future<void> sendToOverlay({required String method, String data = ""}) async {
     if (kIsWeb || !Platform.isWindows) return;
-    final windowController =
-        await _windowController.timeout(const Duration(seconds: 30));
+    // 전송 전에 오버레이 창이 생성될 때까지 기다린다.
+    await _windowController.timeout(const Duration(seconds: 30));
     _overlayApi.sendToOverlay(
-      windowController: windowController,
       method: method,
       data: data,
     );

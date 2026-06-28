@@ -434,7 +434,7 @@ class _OverloadedShipPageState extends State<OverloadedShipPage> {
             child: Column(
               children: [
                 ListTile(
-                  leading: const Icon(FontAwesomeIcons.weightHanging),
+                  leading: Icon(FontAwesomeIcons.weightHanging.data),
                   title: const TitleText(
                     '과적 계산기',
                     bold: true,

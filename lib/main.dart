@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -22,9 +21,9 @@ Future<void> main(List<String> args) async {
   Widget app;
 
   if (args.firstOrNull == 'multi_window') {
-    /* Start up overlay */
-    final windowId = int.parse(args[1]);
-    WindowController.fromWindowId(windowId);
+    /* 오버레이 시작 */
+    // desktop_multi_window 0.3도 dart 진입점 인자로 ['multi_window', windowId, arguments]를
+    // 그대로 전달한다. 여기서는 arguments 페이로드만 사용하면 된다.
     final Map arguments = args[2].isEmpty ? {} : jsonDecode(args[2]);
     app = OverlayApp(
       arguments: arguments,

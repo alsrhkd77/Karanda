@@ -45,7 +45,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                   onPressed: () {
                     newsDataController.sortEventsByDeadline();
                   },
-                  leadingIcon: const Icon(FontAwesomeIcons.arrowUpShortWide),
+                  leadingIcon: Icon(FontAwesomeIcons.arrowUpShortWide.data),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text('마감일순'),
@@ -55,7 +55,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                   onPressed: () {
                     newsDataController.sortEventsByAdded();
                   },
-                  leadingIcon: const Icon(FontAwesomeIcons.arrowDownWideShort),
+                  leadingIcon: Icon(FontAwesomeIcons.arrowDownWideShort.data),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text('시작일순'),
@@ -65,7 +65,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                   onPressed: () {
                     newsDataController.shuffleEvents();
                   },
-                  leadingIcon: const Icon(FontAwesomeIcons.shuffle),
+                  leadingIcon: Icon(FontAwesomeIcons.shuffle.data),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text('무작위'),
@@ -82,7 +82,7 @@ class _EventCalendarPageState extends State<EventCalendarPage> {
                       controller.open();
                     }
                   },
-                  icon: const Icon(FontAwesomeIcons.filter),
+                  icon: Icon(FontAwesomeIcons.filter.data),
                 );
               },
             ),
@@ -183,7 +183,7 @@ class _EventCard extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 padding: const EdgeInsets.fromLTRB(8.0, 12.0, 12.0, 4.0),
-                color: Colors.black.withOpacity(0.4),
+                color: Colors.black.withValues(alpha: 0.4),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,

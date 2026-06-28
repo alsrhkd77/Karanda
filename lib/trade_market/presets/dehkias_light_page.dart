@@ -79,9 +79,9 @@ class _DehkiasLightPageState extends State<DehkiasLightPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: const DefaultAppBar(
+      appBar: DefaultAppBar(
         title: "통합 거래소 프리셋",
-        icon: FontAwesomeIcons.scaleUnbalanced,
+        icon: FontAwesomeIcons.scaleUnbalanced.data,
       ),
       body: CustomScrollView(
         slivers: [

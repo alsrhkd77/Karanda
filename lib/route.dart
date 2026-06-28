@@ -44,10 +44,6 @@ import 'package:karanda/ui/world_boss/widgets/world_boss_page.dart'
 import 'package:karanda/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
 
-import 'deprecated/atoraxxion/sycrakea_page.dart';
-import 'deprecated/atoraxxion/yolunakea_moon_page.dart';
-import 'deprecated/horse_status/horse_status_page.dart';
-
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
   //debugLogDiagnostics: kDebugMode,
@@ -408,20 +404,8 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const LightstoneCombinationPage(),
         ),
         GoRoute(
-          path: 'horse',
-          builder: (context, state) => const HorseStatusPage(),
-        ),
-        GoRoute(
           path: 'event-calendar',
           builder: (context, state) => const EventCalendarPage(),
-        ),
-        GoRoute(
-          path: 'sycrakea',
-          builder: (context, state) => const SycrakeaPage(),
-        ),
-        GoRoute(
-          path: 'yolunakea-moon',
-          builder: (context, state) => const YolunakeaMoonPage(),
         ),
         GoRoute(
           path: 'artifact',

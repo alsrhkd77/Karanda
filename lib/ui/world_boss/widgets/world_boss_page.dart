@@ -29,7 +29,7 @@ class WorldBossPage extends StatelessWidget {
       ),
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.dragon,
+          icon: FontAwesomeIcons.dragon.data,
           title: context.tr("world boss.world boss"),
           actions: [
             IconButton(

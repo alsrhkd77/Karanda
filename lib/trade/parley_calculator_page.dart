@@ -231,8 +231,8 @@ class _ParleyCalculatorPageState extends State<ParleyCalculatorPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const ListTile(
-              leading: Icon(FontAwesomeIcons.solidHandshake),
+            ListTile(
+              leading: Icon(FontAwesomeIcons.solidHandshake.data),
               title: TitleText(
                 '교섭력 계산기',
                 bold: true,

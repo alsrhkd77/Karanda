@@ -27,7 +27,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: KarandaAppBar(
-        icon: FontAwesomeIcons.gear,
+        icon: FontAwesomeIcons.gear.data,
         title: context.tr("settings.settings"),
       ),
       body: Consumer(builder: (context, SettingsController controller, child) {
@@ -89,9 +89,9 @@ class SettingsPage extends StatelessWidget {
           const _WindowsTile(),
           ListTile(
             onTap: () => launchURL(ExternalLinks.discord),
-            leading: const Icon(
+            leading: Icon(
               size: 20.0,
-              FontAwesomeIcons.discord,
+              FontAwesomeIcons.discord.data,
             ),
             title: Text(context.tr("settings.karanda discord")),
             trailing: const Icon(Icons.open_in_new),

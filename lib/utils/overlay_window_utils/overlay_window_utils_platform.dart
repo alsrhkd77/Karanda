@@ -4,7 +4,11 @@ import 'package:karanda/model/monitor_device.dart';
 abstract class OverlayWindowUtilsPlatform {
   int getOverlayWindowHandle() => throw UnsupportedError('Platform unsupported.');
 
-  void setOverlay(int hWnd, Rect rect) => throw UnsupportedError('Platform unsupported.');
+  void prepareOverlay(int hWnd, Rect rect) =>
+      throw UnsupportedError('Platform unsupported.');
+
+  void enableClickThrough(int hWnd) =>
+      throw UnsupportedError('Platform unsupported.');
 
   void enableClick(int hWnd) => throw UnsupportedError('Platform unsupported.');
 

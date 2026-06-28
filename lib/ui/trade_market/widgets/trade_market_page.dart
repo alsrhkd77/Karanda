@@ -23,7 +23,7 @@ class TradeMarketPage extends StatelessWidget {
       child: Scaffold(
         appBar: KarandaAppBar(
           title: context.tr("trade market.trade market"),
-          icon: FontAwesomeIcons.scaleUnbalanced,
+          icon: FontAwesomeIcons.scaleUnbalanced.data,
         ),
         body: PageBase(
           children: [

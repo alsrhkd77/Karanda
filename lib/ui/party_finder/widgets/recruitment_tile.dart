@@ -58,7 +58,7 @@ class _SpecLimit extends StatelessWidget {
     if (specLimit != null) {
       return Row(
         children: [
-          //const Icon(FontAwesomeIcons.fire),
+          //const Icon(FontAwesomeIcons.fire.data),
           const Text("⚔️"),
           Text(specLimit.toString()),
           const SizedBox(width: 12),

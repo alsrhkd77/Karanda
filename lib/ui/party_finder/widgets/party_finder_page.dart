@@ -40,7 +40,7 @@ class _PartyFinderPageState extends State<PartyFinderPage>
       ),
       child: Scaffold(
         appBar: KarandaAppBar(
-          icon: FontAwesomeIcons.circleNodes,
+          icon: FontAwesomeIcons.circleNodes.data,
           title: context.tr("partyFinder.partyFinder"),
           bottom: TabBar(
             controller: _tabController,
@@ -90,7 +90,7 @@ class _FAB extends StatelessWidget {
       );
     }
     return FloatingActionButton.extended(
-      icon: const Icon(FontAwesomeIcons.penToSquare),
+      icon: Icon(FontAwesomeIcons.penToSquare.data),
       label: Text(context.tr("partyFinder.recruit")),
       onPressed: () async {
         if (authenticated) {

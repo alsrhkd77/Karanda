@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppTheme {
@@ -142,9 +143,7 @@ abstract class AppTheme {
     },
   );
 
-  static const _progressIndicatorThemeData = ProgressIndicatorThemeData(
-    year2023: false,
-  );
+  static const _progressIndicatorThemeData = ProgressIndicatorThemeData();
 
-  static const _sliderThemeData = SliderThemeData(year2023: false);
+  static const _sliderThemeData = SliderThemeData();
 }

@@ -30,9 +30,9 @@ class _TradeMarketPageState extends State<TradeMarketPage> {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: Scaffold(
-            appBar: const DefaultAppBar(
+            appBar: DefaultAppBar(
               title: "통합 거래소",
-              icon: FontAwesomeIcons.scaleUnbalanced,
+              icon: FontAwesomeIcons.scaleUnbalanced.data,
             ),
             body: notifier.itemInfo.isEmpty
                 ? const Center(

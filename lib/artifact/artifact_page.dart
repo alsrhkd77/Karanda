@@ -37,7 +37,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
             return Scaffold(
               appBar: DefaultAppBar(
                 title: '광명석 조합식',
-                icon: FontAwesomeIcons.splotch,
+                icon: FontAwesomeIcons.splotch.data,
                 actions: [
                   Padding(
                     padding: GlobalProperties.appBarActionPadding,
@@ -77,7 +77,7 @@ class _ArtifactPageState extends State<ArtifactPage> {
                 ],
               ),
               floatingActionButton: FloatingActionButton(
-                child: const Icon(FontAwesomeIcons.arrowUp),
+                child: Icon(FontAwesomeIcons.arrowUp.data),
                 onPressed: () {
                   _mainScrollController.animateTo(
                     0,

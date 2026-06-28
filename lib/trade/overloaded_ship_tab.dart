@@ -442,7 +442,7 @@ class _OverloadedShipTabState extends State<OverloadedShipTab> {
         child: Column(
           children: [
             ListTile(
-              leading: const Icon(FontAwesomeIcons.weightHanging),
+              leading: Icon(FontAwesomeIcons.weightHanging.data),
               title: const TitleText(
                 '과적 계산기',
                 bold: true,

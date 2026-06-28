@@ -84,8 +84,8 @@ class _WaitItemTile extends StatelessWidget {
         )),
         subtitle: Row(
           children: [
-            const Icon(
-              FontAwesomeIcons.coins,
+            Icon(
+              FontAwesomeIcons.coins.data,
               size: 12,
             ),
             Padding(

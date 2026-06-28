@@ -46,7 +46,7 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
           if (controller.recruitment == null) {
             return Scaffold(
               appBar: KarandaAppBar(
-                icon: FontAwesomeIcons.circleNodes,
+                icon: FontAwesomeIcons.circleNodes.data,
                 title: context.tr("partyFinder.partyFinder"),
               ),
               body: const LoadingIndicator(),
@@ -55,7 +55,7 @@ class _RecruitmentPostPageState extends State<RecruitmentPostPage>
           final Recruitment data = controller.recruitment!;
           return Scaffold(
             appBar: KarandaAppBar(
-              icon: FontAwesomeIcons.circleNodes,
+              icon: FontAwesomeIcons.circleNodes.data,
               title: context.tr("partyFinder.partyFinder"),
               actions: [
                 controller.isOwner ? _EditButton(data: data) : const SizedBox(),

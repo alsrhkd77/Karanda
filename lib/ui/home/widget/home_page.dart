@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
         actions: [
           IconButton(
             onPressed: () => context.goWithGa("/settings"),
-            icon: const Icon(FontAwesomeIcons.gear),
+            icon: Icon(FontAwesomeIcons.gear.data),
             tooltip: context.tr("settings.settings"),
           )
         ],
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
             children: [Spacer(), AuthButtonWidget()],
           ),
           HomeSection(
-            icon: FontAwesomeIcons.code,
+            icon: FontAwesomeIcons.code.data,
             title: "Features",
             child: HomeFeaturesSection(
               count: count,
@@ -109,11 +109,11 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
           ),
           HomeSection(
             title: "News",
-            icon: FontAwesomeIcons.newspaper,
+            icon: FontAwesomeIcons.newspaper.data,
             child: HomeNewsSection(count: count),
           ),
           HomeSection(
-            icon: FontAwesomeIcons.link,
+            icon: FontAwesomeIcons.link.data,
             title: "Links",
             child: HomeLinksSection(
               count: count,

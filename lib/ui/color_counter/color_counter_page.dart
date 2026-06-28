@@ -35,7 +35,7 @@ class _ColorCounterPageState extends State<ColorCounterPage> {
         : (size.height - 80) / 5;
     return Scaffold(
       appBar: KarandaAppBar(
-        icon: FontAwesomeIcons.staffSnake,
+        icon: FontAwesomeIcons.staffSnake.data,
         title: context.tr("colorCounter.colorCounter"),
       ),
       body: Container(

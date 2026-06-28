@@ -46,10 +46,10 @@ class _ListByMaterialsState extends State<ListByMaterials> {
                     child: Table(
                       border: TableBorder(
                           horizontalInside: BorderSide(
-                              color: Colors.grey.shade700.withOpacity(0.0),
+                              color: Colors.grey.shade700.withValues(alpha: 0.0),
                               width: 0.6),
                           verticalInside: BorderSide(
-                              color: Colors.grey.shade700.withOpacity(0.0),
+                              color: Colors.grey.shade700.withValues(alpha: 0.0),
                               width: 0.6)),
                       columnWidths: const <int, TableColumnWidth>{
                         0: FixedColumnWidth(56),

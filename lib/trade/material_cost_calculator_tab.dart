@@ -135,8 +135,8 @@ class _MaterialCostCalculatorTabState extends State<MaterialCostCalculatorTab> {
               ),
             ),
             IconButton(
-              icon: const Icon(
-                FontAwesomeIcons.xmark,
+              icon: Icon(
+                FontAwesomeIcons.xmark.data,
                 color: Colors.red,
               ),
               onPressed: () {

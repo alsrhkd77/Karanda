@@ -1,16 +1,15 @@
-import 'dart:ffi';
-import 'package:ffi/ffi.dart';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 import 'dart:developer' as developer;
 
 class FileSaverPlatform {
   void saveImage(Uint8List data, String fileName) {
     try {
-      final dir = _getPath(FOLDERID_Downloads);
-      if(dir == null){
-        throw Exception("Cannot find path. FOLDERID: $FOLDERID_Downloads");
+      final dir = _getDownloadsPath();
+      if (dir == null) {
+        throw Exception("Cannot find Downloads folder path.");
       }
       final file = File("$dir/$fileName");
       file.writeAsBytesSync(data);
@@ -19,30 +18,18 @@ class FileSaverPlatform {
     }
   }
 
-  String? _getPath(String folderID) {
-    final Pointer<Pointer<Utf16>> pathPtrPtr = calloc<Pointer<Utf16>>();
-    final Pointer<GUID> knownFolderID = calloc<GUID>()..ref.setGUID(folderID);
-
-    try {
-      final int hr = SHGetKnownFolderPath(
-        knownFolderID,
-        KNOWN_FOLDER_FLAG.KF_FLAG_DEFAULT,
-        NULL,
-        pathPtrPtr,
-      );
-
-      if (FAILED(hr)) {
-        if (hr == E_INVALIDARG || hr == E_FAIL) {
-          throw WindowsException(hr);
-        }
+  String? _getDownloadsPath() {
+    return using((arena) {
+      final rfid = FOLDERID_Downloads.toNative(allocator: arena);
+      try {
+        final pathPtr = SHGetKnownFolderPath(rfid, KF_FLAG_DEFAULT, null);
+        final path = pathPtr.toDartString();
+        CoTaskMemFree(pathPtr);
+        return path;
+      } on WindowsException catch (e) {
+        developer.log("SHGetKnownFolderPath failed.\n$e");
         return null;
       }
-
-      final String path = pathPtrPtr.value.toDartString();
-      return path;
-    } finally {
-      calloc.free(pathPtrPtr);
-      calloc.free(knownFolderID);
-    }
+    });
   }
 }

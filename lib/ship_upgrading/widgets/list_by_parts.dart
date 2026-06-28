@@ -192,7 +192,7 @@ class _PartsCard extends StatelessWidget {
                       percent: percent,
                       barRadius: const Radius.circular(4.0),
                       progressColor: getColor(percent),
-                      backgroundColor: Colors.grey.shade700.withOpacity(0.6),
+                      backgroundColor: Colors.grey.shade700.withValues(alpha: 0.6),
                       animateFromLastPercent: true,
                       lineHeight: 1.8,
                     ),
@@ -202,10 +202,10 @@ class _PartsCard extends StatelessWidget {
                 ? Table(
                     border: TableBorder(
                         horizontalInside: BorderSide(
-                            color: Colors.grey.shade700.withOpacity(0.0),
+                            color: Colors.grey.shade700.withValues(alpha: 0.0),
                             width: 0.6),
                         verticalInside: BorderSide(
-                            color: Colors.grey.shade700.withOpacity(0.0),
+                            color: Colors.grey.shade700.withValues(alpha: 0.0),
                             width: 0.6)),
                     columnWidths: const <int, TableColumnWidth>{
                       0: FixedColumnWidth(56),
