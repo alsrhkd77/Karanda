@@ -99,6 +99,8 @@ class AppNotificationService {
   }
 
   void _onFCM(RemoteMessage message) {
+    // 뉴스 메시지는 BdoNewsService가 캐시 갱신을 포함해 별도 처리한다
+    if (message.data["type"] == "BDO_NEWS") return;
     if (message.notification != null) {
       if (kIsWeb) {
         _log.info('FCM notification received');

@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:karanda/data_source/bdo_item_info_data_source.dart';
+import 'package:karanda/data_source/bdo_news_api.dart';
+import 'package:karanda/data_source/bdo_news_topic_subscriber.dart';
 import 'package:karanda/data_source/party_finder_api.dart';
 import 'package:karanda/data_source/app_settings_data_source.dart';
 import 'package:karanda/data_source/audio_player_data_source.dart';
@@ -23,6 +25,7 @@ import 'package:karanda/repository/app_settings_repository.dart';
 import 'package:karanda/repository/audio_player_repository.dart';
 import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/bdo_item_info_repository.dart';
+import 'package:karanda/repository/bdo_news_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/user_fc_settings_repository.dart';
 import 'package:karanda/repository/time_repository.dart';
@@ -35,6 +38,7 @@ import 'package:karanda/service/app_notification_service.dart';
 import 'package:karanda/service/app_settings_service.dart';
 import 'package:karanda/service/auth_service.dart';
 import 'package:karanda/service/bdo_item_info_service.dart';
+import 'package:karanda/service/bdo_news_service.dart';
 import 'package:karanda/service/desktop_service.dart';
 import 'package:karanda/service/initializer_service.dart';
 import 'package:karanda/service/trade_market_service.dart';
@@ -157,6 +161,23 @@ class KarandaApp extends StatelessWidget {
             authRepository: context.read(),
             partyFinderRepository: context.read(),
             scaffoldMessengerKey: scaffoldMessengerKey,
+          ),
+          lazy: false,
+        ),
+        Provider(create: (context) => BdoNewsApi()),
+        Provider(create: (context) => BdoNewsTopicSubscriber()),
+        Provider(
+          create: (context) => BdoNewsRepository(
+            webSocketManager: context.read(),
+            bdoNewsApi: context.read(),
+          ),
+        ),
+        Provider(
+          create: (context) => BdoNewsService(
+            bdoNewsRepository: context.read(),
+            appNotificationRepository: context.read(),
+            appSettingsRepository: context.read(),
+            topicSubscriber: context.read(),
           ),
           lazy: false,
         ),

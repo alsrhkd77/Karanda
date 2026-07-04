@@ -4,8 +4,8 @@ import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_dialog.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
-import 'package:karanda/ui/core/ui/section.dart';
 import 'package:karanda/ui/settings/controller/user_fcm_settings_controller.dart';
+import 'package:karanda/ui/settings/widget/news_notification_settings_section.dart';
 import 'package:provider/provider.dart';
 
 class PushNotificationSettingsPage extends StatelessWidget {
@@ -47,6 +47,8 @@ class PushNotificationSettingsPage extends StatelessWidget {
                   ],
                 ),
               ),*/
+              // 뉴스 알림 설정 — 푸시 알림이 활성화된 경우에만 노출
+              if (controller.activate) const NewsNotificationSettingsSection(),
             ]);
           },
         ),

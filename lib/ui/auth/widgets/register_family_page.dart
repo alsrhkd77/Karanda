@@ -95,7 +95,7 @@ class _RegisterFamilyPageState extends State<RegisterFamilyPage> {
                 title: Text(context.tr("region")),
                 trailing: DropdownMenu(
                   initialSelection: region,
-                  dropdownMenuEntries: BDORegion.values.map((value) {
+                  dropdownMenuEntries: BDORegion.gameRegions.map((value) {
                     return DropdownMenuEntry(value: value, label: value.name);
                   }).toList(),
                   onSelected: (value) {

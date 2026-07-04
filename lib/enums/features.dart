@@ -1,3 +1,3 @@
 enum Features {
-  worldBoss, partyFinder, notifications
+  worldBoss, partyFinder, notifications, news
 }

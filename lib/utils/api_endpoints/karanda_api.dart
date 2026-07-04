@@ -52,6 +52,10 @@ abstract final class KarandaApi {
   static const String saveUserFcmSettings = "$_fcm/settings/save";
   static const String deleteFcmToken = "$_fcm/token/delete";
   static const String updateFcmToken = "$_fcm/token/update";
+  static const String saveNewsNotificationSettings = "$_fcm/settings/news";
+  static const String _bdoNews = "/bdo-news";
+  static const String bdoNews = _bdoNews;
+  static const String bdoNewsHighlights = "$_bdoNews/highlights";
   static const String _reportHub = "/report-hub";
   static const String getReportStatus = "$_reportHub/status";
   static const String getReports = "$_reportHub/reports";

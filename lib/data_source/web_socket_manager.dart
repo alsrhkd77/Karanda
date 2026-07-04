@@ -20,6 +20,11 @@ class WebSocketManager {
   StompClient? _client;
   Timer? _reconnectTimer;
   int _backOff = 200;
+
+  /// 사용자가 의도적으로 [deactivate]한 경우(웹 탭 숨김/구독 전부 해제)와
+  /// 예상치 못한 연결 끊김을 구분한다. 의도적 종료 시에는 재연결하지 않는다.
+  bool _intentionalClose = false;
+
   final Map<String, _Subscription> _subscription = {};
 
   WebSocketManager() {
@@ -37,17 +42,33 @@ class WebSocketManager {
   }
 
   void activate() {
+    _intentionalClose = false;
     if (_client == null || !_client!.connected) {
+      // 예약된 재연결과 수동 activate가 겹쳐 클라이언트가 중복 생성되는 것을 방지
+      _reconnectTimer?.cancel();
       _client = StompClient(config: _buildConfig());
       _client!.activate();
     }
   }
 
   void deactivate() {
-    if (_client != null && _client!.connected) {
-      _client?.deactivate();
-      _client = null;
-    }
+    _intentionalClose = true;
+    _reconnectTimer?.cancel();
+    _client?.deactivate();
+    _client = null;
+  }
+
+  /// 예상치 못한 연결 끊김(백엔드 다운 등)·연결 실패 공통 처리.
+  /// 죽은 소켓에 프레임을 전송하지 않고(라이브러리가 heartbeat/소켓 정리를 수행하도록),
+  /// 운영 로그를 남긴 뒤 지수 백오프로 재연결을 예약한다.
+  void _handleUnexpectedDisconnect() {
+    if (_intentionalClose) return;
+    // onWebSocketError와 onWebSocketDone가 모두 발생해도 한 번만 예약(백오프 중복 증가 방지)
+    if (_reconnectTimer?.isActive ?? false) return;
+    _client = null;
+    _backOff = min(_backOff * 2, 600000);
+    _log.warning('Realtime server connection lost, reconnecting in ${_backOff}ms');
+    _reconnectTimer = Timer(Duration(milliseconds: _backOff), activate);
   }
 
   Future<void> register({
@@ -117,24 +138,28 @@ class WebSocketManager {
   StompConfig _buildConfig() {
     return StompConfig(
       url: KarandaApi.liveChannel,
-      onWebSocketDone: () {
-        _reconnectTimer?.cancel();
-        _backOff = min(_backOff * 2, 600000);
-        _log.warning('Realtime server connection lost, reconnecting in ${_backOff}ms');
-        _reconnectTimer = Timer(Duration(milliseconds: _backOff), activate);
-        _client?.deactivate();
-        _client = null;
+      // 라이브러리 자동 재연결(기본 5초 고정)을 끄고, 자체 지수 백오프를 사용한다.
+      // 죽은 소켓에 DISCONNECT 프레임을 보내지 않으므로 StompBadStateException이 발생하지 않고,
+      // 라이브러리의 _cleanUp()이 정상 실행되어 heartbeat 타이머가 취소된다.
+      reconnectDelay: Duration.zero,
+      onWebSocketDone: _handleUnexpectedDisconnect,
+      onWebSocketError: (error) {
+        _log.fine('Realtime WebSocket error: $error');
+        _handleUnexpectedDisconnect();
       },
       onDisconnect: (frame) {
         _log.info('Realtime server disconnected (${frame.command})');
       },
       connectionTimeout: const Duration(seconds: 59),
-      heartbeatIncoming: const Duration(microseconds: 30000),
-      heartbeatOutgoing: const Duration(microseconds: 40000),
+      // 백엔드 setHeartbeatValue(arrayOf(30000L, 40000L)) [server→client, client→server]와 통일.
+      // 기존 값은 단위가 microseconds로 잘못 지정되어 있었다(30000µs=30ms).
+      heartbeatIncoming: const Duration(milliseconds: 30000), // 서버→클라이언트
+      heartbeatOutgoing: const Duration(milliseconds: 40000), // 클라이언트→서버
       stompConnectHeaders: {
         "Qualification": TokenUtils.serviceToken(),
       },
       onConnect: (frame) async {
+        _intentionalClose = false;
         _reconnectTimer?.cancel();
         _backOff = 200;
         _log.info('Realtime server connected (restoring ${_subscription.length} subscriptions)');

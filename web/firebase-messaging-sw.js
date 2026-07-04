@@ -1,7 +1,8 @@
 // Please see this file for the latest firebase-js-sdk version:
 // https://github.com/firebase/flutterfire/blob/master/packages/firebase_core/firebase_core_web/lib/src/firebase_sdk_version.dart
-importScripts("https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging-compat.js");
+// 버전은 pubspec.lock의 firebase_core_web가 지원하는 JS SDK 버전(firebase_sdk_version.dart)과 일치시킨다.
+importScripts("https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js");
+importScripts("https://www.gstatic.com/firebasejs/12.15.0/firebase-messaging-compat.js");
 
 firebase.initializeApp({
     apiKey: "AIzaSyDB-zHTFy8ZAudG-jIMsqv-DYn_cGGCuPE",

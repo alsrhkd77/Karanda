@@ -14,7 +14,6 @@ import 'package:karanda/ui/core/ui/snack_bar_kit.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
 import 'package:karanda/ui/settings/widget/notification_settings_page.dart';
 import 'package:karanda/ui/settings/widget/push_notification_settings_page.dart';
-import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/external_links.dart';
 import 'package:karanda/utils/launch_url.dart';
 import 'package:karanda/widgets/class_symbol_widget.dart';
@@ -244,10 +243,9 @@ class _WindowsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     if (kIsWeb || !Platform.isWindows) {
       return ListTile(
-        onTap: () => launchURL(KarandaApi.latestVersionMirrors.first),
+        onTap: () => context.goWithGa('/desktop-download'),
         leading: const Icon(Icons.install_desktop),
         title: Text(context.tr("settings.download windows installer")),
-        trailing: const Icon(Icons.open_in_new),
       );
     }
     return ListTile(

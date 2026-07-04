@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:karanda/ui/core/theme/features_icon.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 
 class HomeFeaturesSection extends StatelessWidget {
@@ -31,9 +30,9 @@ class HomeFeaturesSection extends StatelessWidget {
           path: '/ship-upgrading',
         ),
         _Tile(
-          title: '이벤트 캘린더',
-          icon: Icons.celebration_outlined,
-          path: '/event-calendar',
+          title: context.tr("news.news"),
+          icon: Icons.newspaper_outlined,
+          path: '/news',
         ),
         _Tile(
           title: context.tr("lightstoneCombination.lightstoneCombination"),

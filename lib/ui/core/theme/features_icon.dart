@@ -9,11 +9,14 @@ abstract class FeaturesIcon {
 
   static IconData get notifications => FontAwesomeIcons.bell;
 
+  static IconData get news => FontAwesomeIcons.newspaper;
+
   static IconData byFeature(Features feature) {
     return switch (feature) {
       Features.worldBoss => worldBoss,
       Features.partyFinder => partyFinder,
-    Features.notifications => notifications
+      Features.notifications => notifications,
+      Features.news => news,
     };
   }
 }

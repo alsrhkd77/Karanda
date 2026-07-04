@@ -9,6 +9,7 @@ import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/ui/core/ui/section.dart';
 import 'package:karanda/ui/settings/controller/notification_settings_controller.dart';
+import 'package:karanda/ui/settings/widget/news_notification_settings_section.dart';
 import 'package:provider/provider.dart';
 
 class NotificationSettingsPage extends StatelessWidget {
@@ -38,6 +39,7 @@ class NotificationSettingsPage extends StatelessWidget {
                 controller.partyFinderSettings!;
             return PageBase(
               children: [
+                const NewsNotificationSettingsSection(),
                 Section(
                   title: context.tr("world boss.world boss"),
                   icon: FeaturesIcon.worldBoss,

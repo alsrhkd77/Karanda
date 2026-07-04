@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:karanda/bdo_news/event_calendar/event_calendar_page.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/obs_widgets/obs_bdo_timer/obs_bdo_timer_page.dart';
@@ -16,9 +15,11 @@ import 'package:karanda/ui/auth/widgets/authenticate_page.dart';
 import 'package:karanda/ui/bartering/widget/bartering_page.dart';
 import 'package:karanda/ui/color_counter/color_counter_page.dart';
 import 'package:karanda/ui/core/ui/loading_indicator_page.dart';
+import 'package:karanda/ui/desktop_download/widget/desktop_download_page.dart';
 import 'package:karanda/ui/core/ui/not_found_page.dart';
 import 'package:karanda/ui/home/widget/home_page.dart';
 import 'package:karanda/ui/lightstone_combination/widget/lightstone_combination_page.dart';
+import 'package:karanda/ui/news/widget/news_page.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_widget_settings_page.dart';
@@ -73,6 +74,17 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/welcome',
       builder: (context, state) => const WelcomePage(),
+    ),
+    GoRoute(
+      path: '/desktop-download',
+      builder: (context, state) => const DesktopDownloadPage(),
+      redirect: (BuildContext context, GoRouterState state) {
+        // 데스크톱 설치 파일 다운로드는 웹에서만 의미가 있다.
+        if (!kIsWeb) {
+          return '/not-found';
+        }
+        return null;
+      },
     ),
     GoRoute(
       path: '/',
@@ -160,7 +172,7 @@ final GoRouter router = GoRouter(
               },
               redirect: (BuildContext context, GoRouterState state) {
                 if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
+                    !BDORegion.gameRegions
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"]) ||
                     !state.pathParameters.containsKey("code")) {
@@ -178,7 +190,7 @@ final GoRouter router = GoRouter(
               },
               redirect: (BuildContext context, GoRouterState state) {
                 if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
+                    !BDORegion.gameRegions
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"])) {
                   return 'not-found';
@@ -198,7 +210,7 @@ final GoRouter router = GoRouter(
               },
               redirect: (BuildContext context, GoRouterState state) {
                 if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
+                    !BDORegion.gameRegions
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"])) {
                   return 'not-found';
@@ -218,7 +230,7 @@ final GoRouter router = GoRouter(
               },
               redirect: (BuildContext context, GoRouterState state) {
                 if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
+                    !BDORegion.gameRegions
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"])) {
                   return 'not-found';
@@ -238,7 +250,7 @@ final GoRouter router = GoRouter(
               },
               redirect: (BuildContext context, GoRouterState state) {
                 if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
+                    !BDORegion.gameRegions
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"])) {
                   return 'not-found';
@@ -258,7 +270,7 @@ final GoRouter router = GoRouter(
               },
               redirect: (BuildContext context, GoRouterState state) {
                 if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.values
+                    !BDORegion.gameRegions
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"])) {
                   return 'not-found';
@@ -417,8 +429,12 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const HorseStatusPage(),
         ),
         GoRoute(
+          path: 'news',
+          builder: (context, state) => const NewsPage(),
+        ),
+        GoRoute(
           path: 'event-calendar',
-          builder: (context, state) => const EventCalendarPage(),
+          redirect: (context, state) => '/news',
         ),
         GoRoute(
           path: 'sycrakea',
