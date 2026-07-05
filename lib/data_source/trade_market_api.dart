@@ -36,7 +36,7 @@ class TradeMarketApi {
     );
     if (response.statusCode == HttpStatus.ok) {
       for (Map json in jsonDecode(response.body)) {
-        result.add(TradeMarketPriceData.fromJson(json));
+        result.addAll(TradeMarketPriceData.listFromDetailJson(json));
       }
     }
     return result;
