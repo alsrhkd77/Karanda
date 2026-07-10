@@ -4,12 +4,14 @@ class HomeSection extends StatelessWidget {
   final String title;
   final IconData icon;
   final Widget child;
+  final Widget? trailing;
 
   const HomeSection({
     super.key,
     required this.title,
     required this.icon,
     required this.child,
+    this.trailing,
   });
 
   @override
@@ -25,6 +27,7 @@ class HomeSection extends StatelessWidget {
               style: TextTheme.of(context)
                   .titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
+            trailing: trailing,
           ),
           const Divider(),
           child,

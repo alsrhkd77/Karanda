@@ -110,6 +110,11 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
           HomeSection(
             title: "News",
             icon: FontAwesomeIcons.newspaper,
+            trailing: IconButton(
+              mouseCursor: SystemMouseCursors.click,
+              onPressed: () {context.goWithGa("/news");},
+              icon: Icon(Icons.arrow_forward),
+            ),
             child: HomeNewsSection(count: count),
           ),
           HomeSection(

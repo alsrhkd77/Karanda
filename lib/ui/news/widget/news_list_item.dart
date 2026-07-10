@@ -52,13 +52,15 @@ class NewsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final gap = _isWide ? 14.0 : 12.0;
     return InkWell(
+      mouseCursor: SystemMouseCursors.click,
+      borderRadius: BorderRadius.circular(12.0),
       onTap: () => launchURL(news.resolveUrl(appRegion)),
       child: Opacity(
         // 종료된 이벤트는 흐리게 처리해 진행 중 항목과 구분
         opacity: _closed ? 0.5 : 1.0,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 4.0,
+            horizontal: 16.0,
             vertical: layout == NewsListLayout.narrow ? 10.0 : 11.0,
           ),
           child: Row(

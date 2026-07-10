@@ -38,7 +38,7 @@ class KarandaInfoPage extends StatelessWidget {
               ),
               ListTile(
                 title: Text(context.tr("settings.flutter version")),
-                subtitle: const Text("3.29.0"),
+                subtitle: const Text("3.44.4"),
               ),
             ]);
           },

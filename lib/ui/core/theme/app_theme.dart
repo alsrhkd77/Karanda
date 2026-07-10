@@ -35,6 +35,11 @@ abstract class AppTheme {
     appBarTheme: const AppBarTheme(
       actionsPadding: EdgeInsets.only(right: 12.0),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: _buttonCursorStyle,
+    ),
+    textButtonTheme: _textButtonTheme,
+    outlinedButtonTheme: _outlineButtonTheme,
     inputDecorationTheme: _inputDecorationThemeData,
     dropdownMenuTheme: _dropdownMenuThemeData,
     actionIconTheme: _actionIconThemeData,
@@ -60,8 +65,12 @@ abstract class AppTheme {
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: Colors.indigo.shade400,
+      ).copyWith(
+        mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click)
       ),
     ),
+    textButtonTheme: _textButtonTheme,
+    outlinedButtonTheme: _outlineButtonTheme,
     inputDecorationTheme: _inputDecorationThemeData,
     dropdownMenuTheme: _dropdownMenuThemeData,
     actionIconTheme: _actionIconThemeData,
@@ -72,6 +81,18 @@ abstract class AppTheme {
     pageTransitionsTheme: _pageTransitionsThemeData,
     progressIndicatorTheme: _progressIndicatorThemeData,
     sliderTheme: _sliderThemeData,
+  );
+
+  static final _buttonCursorStyle = ButtonStyle(
+    mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
+  );
+
+  static final _textButtonTheme = TextButtonThemeData(
+    style: _buttonCursorStyle,
+  );
+
+  static final _outlineButtonTheme = OutlinedButtonThemeData(
+    style: _buttonCursorStyle,
   );
 
   static final _inputDecorationThemeData = InputDecorationTheme(
