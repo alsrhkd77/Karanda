@@ -68,6 +68,23 @@ class OverlayRepository {
     _completer.complete(windowController);
   }
 
+  /// 앱 종료·업데이트 시 오버레이 자식 창(별도 엔진)을 정리한다.
+  /// 오버레이 엔진은 메인과 **같은 프로세스**에 있으므로, 메인 창만 destroy하면 프로세스가
+  /// 살아남아 업데이트 인스톨러가 실행 파일을 교체하지 못한다. 실제 프로세스 완전 종료는
+  /// 호출측(예: `InitializerService.update`)이 `exit`로 보장한다.
+  Future<void> teardown() async {
+    if (kIsWeb || !Platform.isWindows) return;
+    try {
+      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
+      for (final windowId in subWindowIds) {
+        await WindowController.fromWindowId(windowId).close();
+      }
+      _log.info('Overlay torn down for shutdown');
+    } catch (e, s) {
+      _log.warning('Overlay teardown failed', e, s);
+    }
+  }
+
   Future<void> sendToOverlay({required String method, String data = ""}) async {
     if (kIsWeb || !Platform.isWindows) return;
     final windowController =

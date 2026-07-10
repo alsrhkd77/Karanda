@@ -70,7 +70,9 @@
     "start tray": "트레이 서비스 시작",
     "connect websocket": "실시간 서버에 연결",
     "mount audio": "사운드 준비",
-    "startup": "시작"
+    "startup": "시작",
+    "initialization failed": "초기화 실패",
+    "retry": "다시 시도"
   },
   "home": {
     "external links": {
@@ -470,7 +472,7 @@
     "private": "비공개"
   },
   "news": {
-    "news": "뉴스",
+    "news": "검은사막 뉴스",
     "all": "전체",
     "notice": "공지사항",
     "update": "업데이트",
@@ -486,6 +488,10 @@
     "empty": "표시할 뉴스가 없습니다",
     "retry": "다시 시도",
     "until": "{} 까지",
-    "ongoing": "상시"
+    "ongoing": "상시",
+    "sortRegistered": "등록일순",
+    "sortDeadline": "마감일순",
+    "includeOngoing": "상시 포함",
+    "nearDeadlineEvents": "마감 임박 이벤트"
   }
 }

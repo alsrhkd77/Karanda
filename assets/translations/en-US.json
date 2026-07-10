@@ -70,7 +70,9 @@
     "start tray": "Start tray service",
     "connect websocket": "Connect to server",
     "mount audio": "Prepare the sound",
-    "startup": "Startup"
+    "startup": "Startup",
+    "initialization failed": "Initialization failed",
+    "retry": "Retry"
   },
   "home": {
     "external links": {
@@ -486,6 +488,10 @@
     "empty": "No news to display",
     "retry": "Retry",
     "until": "Until {}",
-    "ongoing": "Ongoing"
+    "ongoing": "Ongoing",
+    "sortRegistered": "By date",
+    "sortDeadline": "By deadline",
+    "includeOngoing": "Include ongoing",
+    "nearDeadlineEvents": "Ending soon"
   }
 }

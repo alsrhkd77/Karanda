@@ -33,6 +33,11 @@ class WindowsInitializerController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// 스플래시 재시도 버튼. 임계 초기화 경로를 다시 실행한다.
+  void retry() {
+    _initializerService.retryForWindows();
+  }
+
   @override
   Future<void> dispose() async {
     await _status.cancel();

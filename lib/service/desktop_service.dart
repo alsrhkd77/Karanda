@@ -1,27 +1,23 @@
 import 'dart:ui';
 
-import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:karanda/repository/app_settings_repository.dart';
+import 'package:karanda/repository/overlay_repository.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
-import 'dart:developer' as developer;
 
 class DesktopService {
   final AppSettingsRepository _appSettingsRepository;
+  final OverlayRepository _overlayRepository;
 
-  DesktopService({required AppSettingsRepository appSettingsRepository})
-      : _appSettingsRepository = appSettingsRepository;
+  DesktopService({
+    required AppSettingsRepository appSettingsRepository,
+    required OverlayRepository overlayRepository,
+  })  : _appSettingsRepository = appSettingsRepository,
+        _overlayRepository = overlayRepository;
 
   Future<void> _exitApp() async {
-    try {
-      final subWindowIds = await DesktopMultiWindow.getAllSubWindowIds();
-      for (final windowId in subWindowIds) {
-        WindowController controller = WindowController.fromWindowId(windowId);
-        await controller.close();
-      }
-    } catch (e) {
-      developer.log('Failed to get SubWindowIds\n$e', name: 'overlay');
-    }
+    // 오버레이 자식 창 정리는 단일 소유자(OverlayRepository.teardown)에 위임한다.
+    await _overlayRepository.teardown();
     await windowManager.hide();
     await trayManager.destroy();
     await windowManager.destroy();

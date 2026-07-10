@@ -42,7 +42,8 @@ class _Progress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final status = context.watch<WindowsInitializerController>().status;
+    final controller = context.watch<WindowsInitializerController>();
+    final status = controller.status;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -51,14 +52,22 @@ class _Progress extends StatelessWidget {
           Text(context.tr("initializer.${status.message}")),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: LinearPercentIndicator(
-              animation: true,
-              progressColor: Colors.blue.shade400,
-              animationDuration: 500,
-              percent: status.progress,
-              barRadius: const Radius.circular(12.0),
-              animateFromLastPercent: true,
-            ),
+            child: status.error
+                ? (status.retryable
+                    ? ElevatedButton.icon(
+                        onPressed: controller.retry,
+                        icon: const Icon(Icons.refresh),
+                        label: Text(context.tr("initializer.retry")),
+                      )
+                    : const SizedBox.shrink())
+                : LinearPercentIndicator(
+                    animation: true,
+                    progressColor: Colors.blue.shade400,
+                    animationDuration: 500,
+                    percent: status.progress,
+                    barRadius: const Radius.circular(12.0),
+                    animateFromLastPercent: true,
+                  ),
           ),
         ],
       ),

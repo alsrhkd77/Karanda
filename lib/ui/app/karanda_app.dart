@@ -228,6 +228,7 @@ class KarandaApp extends StatelessWidget {
         Provider(
           create: (context) => DesktopService(
             appSettingsRepository: context.read(),
+            overlayRepository: context.read(),
           ),
           lazy: kIsWeb || !Platform.isWindows,
         ),
