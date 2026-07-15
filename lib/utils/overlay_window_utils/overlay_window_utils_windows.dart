@@ -16,7 +16,8 @@ abstract class OverlayWindowUtilsPlatform {
     /* Set non-client rendering attributes */
     final Pointer<INT> ncrp = calloc<INT>();
     ncrp.value = 1;
-    DwmSetWindowAttribute(hWnd, DWMWA_NCRENDERING_POLICY, ncrp, sizeOf<INT>());
+    DwmSetWindowAttribute(hWnd, DWMWINDOWATTRIBUTE.DWMWA_NCRENDERING_POLICY,
+        ncrp, sizeOf<INT>());
     calloc.free(ncrp);
 
     /* Set transparent */
