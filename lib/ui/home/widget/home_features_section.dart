@@ -29,11 +29,11 @@ class HomeFeaturesSection extends StatelessWidget {
           icon: FontAwesomeIcons.ship,
           path: '/ship-upgrading',
         ),
-        _Tile(
-          title: context.tr("news.news"),
-          icon: Icons.newspaper_outlined,
-          path: '/news',
-        ),
+        // _Tile(
+        //   title: context.tr("news.news"),
+        //   icon: Icons.newspaper_outlined,
+        //   path: '/news',
+        // ),
         _Tile(
           title: context.tr("lightstoneCombination.lightstoneCombination"),
           icon: FontAwesomeIcons.splotch,

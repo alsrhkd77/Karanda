@@ -37,8 +37,11 @@ import 'package:karanda/ui/ship_upgrading/widget/ship_upgrading_page.dart';
 import 'package:karanda/ui/shutdown_scheduler/widget/shutdown_scheduler_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_cooking_box_preset_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_preset_page.dart';
+import 'package:karanda/ui/trade_market/templates/widgets/trade_market_template_editor_page.dart';
+import 'package:karanda/ui/trade_market/templates/widgets/trade_market_template_view_page.dart';
 import 'package:karanda/ui/trade_market/widgets/trade_market_detail_page.dart';
 import 'package:karanda/ui/trade_market/widgets/trade_market_page.dart';
+import 'package:karanda/ui/trade_market/widgets/trade_market_queued_page.dart';
 import 'package:karanda/ui/welcome/widgets/welcome_page.dart';
 import 'package:karanda/ui/windows_initializer/widgets/windows_initializer_page.dart';
 import 'package:karanda/ui/world_boss/widgets/world_boss_page.dart'
@@ -176,6 +179,82 @@ final GoRouter router = GoRouter(
                         .map((value) => value.name)
                         .contains(state.pathParameters["region"]) ||
                     !state.pathParameters.containsKey("code")) {
+                  return 'not-found';
+                }
+                return null;
+              },
+            ),
+            GoRoute(
+              path: ':region/queued',
+              builder: (context, state) {
+                final region =
+                    BDORegion.values.byName(state.pathParameters["region"]!);
+                return TradeMarketQueuedPage(region: region);
+              },
+              redirect: (BuildContext context, GoRouterState state) {
+                if (!state.pathParameters.containsKey("region") ||
+                    !BDORegion.gameRegions
+                        .map((value) => value.name)
+                        .contains(state.pathParameters["region"])) {
+                  return 'not-found';
+                }
+                return null;
+              },
+            ),
+            GoRoute(
+              path: ':region/templates/new',
+              builder: (context, state) {
+                final region =
+                    BDORegion.values.byName(state.pathParameters["region"]!);
+                return TradeMarketTemplateEditorPage(region: region);
+              },
+              redirect: (BuildContext context, GoRouterState state) {
+                if (!state.pathParameters.containsKey("region") ||
+                    !BDORegion.gameRegions
+                        .map((value) => value.name)
+                        .contains(state.pathParameters["region"])) {
+                  return 'not-found';
+                }
+                return null;
+              },
+            ),
+            GoRoute(
+              path: ':region/templates/:templateId/edit',
+              builder: (context, state) {
+                final region =
+                    BDORegion.values.byName(state.pathParameters["region"]!);
+                return TradeMarketTemplateEditorPage(
+                  region: region,
+                  templateId: state.pathParameters['templateId'],
+                );
+              },
+              redirect: (BuildContext context, GoRouterState state) {
+                if (!state.pathParameters.containsKey("region") ||
+                    !BDORegion.gameRegions
+                        .map((value) => value.name)
+                        .contains(state.pathParameters["region"]) ||
+                    !state.pathParameters.containsKey("templateId")) {
+                  return 'not-found';
+                }
+                return null;
+              },
+            ),
+            GoRoute(
+              path: ':region/templates/:templateId',
+              builder: (context, state) {
+                final region =
+                    BDORegion.values.byName(state.pathParameters["region"]!);
+                return TradeMarketTemplateViewPage(
+                  region: region,
+                  templateId: state.pathParameters['templateId']!,
+                );
+              },
+              redirect: (BuildContext context, GoRouterState state) {
+                if (!state.pathParameters.containsKey("region") ||
+                    !BDORegion.gameRegions
+                        .map((value) => value.name)
+                        .contains(state.pathParameters["region"]) ||
+                    !state.pathParameters.containsKey("templateId")) {
                   return 'not-found';
                 }
                 return null;

@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:karanda/data_source/trade_market_api.dart';
 import 'package:karanda/data_source/trade_market_data_source.dart';
+import 'package:karanda/data_source/trade_market_template_data_source.dart';
 import 'package:karanda/data_source/web_socket_manager.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/model/trade_market_preset_item.dart';
 import 'package:karanda/model/trade_market_price_data.dart';
+import 'package:karanda/model/trade_market_template.dart';
 import 'package:karanda/model/trade_market_wait_item.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
@@ -13,15 +15,18 @@ import 'package:stomp_dart_client/stomp_dart_client.dart';
 class TradeMarketRepository {
   final TradeMarketApi _tradeMarketApi;
   final TradeMarketDataSource _tradeMarketDataSource;
+  final TradeMarketTemplateDataSource _tradeMarketTemplateDataSource;
   final WebSocketManager _webSocketManager;
   final _waitList = BehaviorSubject<List<TradeMarketWaitItem>>();
 
   TradeMarketRepository({
     required TradeMarketApi tradeMarketApi,
     required TradeMarketDataSource tradeMarketDataSource,
+    required TradeMarketTemplateDataSource tradeMarketTemplateDataSource,
     required WebSocketManager webSocketManager,
   })  : _tradeMarketApi = tradeMarketApi,
         _tradeMarketDataSource = tradeMarketDataSource,
+        _tradeMarketTemplateDataSource = tradeMarketTemplateDataSource,
         _webSocketManager = webSocketManager;
 
   Stream<List<TradeMarketWaitItem>> get waitListStream => _waitList.stream;
@@ -69,5 +74,13 @@ class TradeMarketRepository {
 
   Future<List<TradeMarketPresetItem>> getPresetData(String key) async {
     return await _tradeMarketDataSource.getPresetData(key);
+  }
+
+  Future<List<TradeMarketTemplate>> getTemplates() async {
+    return await _tradeMarketTemplateDataSource.load();
+  }
+
+  Future<void> saveTemplates(List<TradeMarketTemplate> templates) async {
+    await _tradeMarketTemplateDataSource.save(templates);
   }
 }

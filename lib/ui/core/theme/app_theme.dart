@@ -40,6 +40,7 @@ abstract class AppTheme {
     ),
     textButtonTheme: _textButtonTheme,
     outlinedButtonTheme: _outlineButtonTheme,
+    iconButtonTheme: _iconButtonTheme,
     inputDecorationTheme: _inputDecorationThemeData,
     dropdownMenuTheme: _dropdownMenuThemeData,
     actionIconTheme: _actionIconThemeData,
@@ -71,6 +72,7 @@ abstract class AppTheme {
     ),
     textButtonTheme: _textButtonTheme,
     outlinedButtonTheme: _outlineButtonTheme,
+    iconButtonTheme: _iconButtonTheme,
     inputDecorationTheme: _inputDecorationThemeData,
     dropdownMenuTheme: _dropdownMenuThemeData,
     actionIconTheme: _actionIconThemeData,
@@ -93,6 +95,10 @@ abstract class AppTheme {
 
   static final _outlineButtonTheme = OutlinedButtonThemeData(
     style: _buttonCursorStyle,
+  );
+
+  static final _iconButtonTheme = IconButtonThemeData(
+    style: _buttonCursorStyle
   );
 
   static final _inputDecorationThemeData = InputDecorationTheme(

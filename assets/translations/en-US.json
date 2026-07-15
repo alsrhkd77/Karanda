@@ -235,7 +235,32 @@
     "preset waiting": "Get data for {} items",
     "preset item name": "Item name",
     "preset item price": "Base price",
-    "preset item out of stock": "Out of stock"
+    "preset item out of stock": "Out of stock",
+    "templates": {
+      "template": "Template",
+      "new template": "New template",
+      "edit template": "Edit template",
+      "add template": "Add template",
+      "template name": "Template name",
+      "item count": "{} items",
+      "add item": "Add item",
+      "add item failed": "Item already added or cannot be added.",
+      "max items": "You can add up to 100 items.",
+      "material": "Material",
+      "result": "Result",
+      "quantity": "Quantity",
+      "base level": "Base",
+      "retry": "Retry",
+      "item subtotal": "Total {total} ({single} each)",
+      "materials total": "Materials total",
+      "results total": "Results total",
+      "difference": "Difference",
+      "delete template": "Delete template",
+      "delete template confirm": "Delete this template?",
+      "empty items": "Please add items.",
+      "not found": "Template not found.",
+      "save": "Save"
+    }
   },
   "partyFinder": {
     "partyFinder": "Party Finder (Experimental)",

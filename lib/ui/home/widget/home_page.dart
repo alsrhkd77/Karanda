@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: FilledButton(
+                        child: ElevatedButton(
                           onPressed: () {
                             context.push('/settings/support-karanda');
                           },
@@ -166,7 +166,7 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: FilledButton(
+                        child: ElevatedButton(
                           onPressed: () {
                             launchURL('https://forms.gle/Fyyc8DpcwPVMgsVy6');
                           },

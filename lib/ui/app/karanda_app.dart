@@ -15,6 +15,7 @@ import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_settings_data_source.dart';
 import 'package:karanda/data_source/trade_market_api.dart';
 import 'package:karanda/data_source/trade_market_data_source.dart';
+import 'package:karanda/data_source/trade_market_template_data_source.dart';
 import 'package:karanda/data_source/user_fcm_settings_api.dart';
 import 'package:karanda/data_source/version_data_source.dart';
 import 'package:karanda/data_source/web_socket_manager.dart';
@@ -199,10 +200,12 @@ class KarandaApp extends StatelessWidget {
         ),
         Provider(create: (context) => TradeMarketApi()),
         Provider(create: (context) => TradeMarketDataSource()),
+        Provider(create: (context) => TradeMarketTemplateDataSource()),
         Provider(
           create: (context) => TradeMarketRepository(
             tradeMarketApi: context.read(),
             tradeMarketDataSource: context.read(),
+            tradeMarketTemplateDataSource: context.read(),
             webSocketManager: context.read(),
           ),
         ),
