@@ -104,6 +104,17 @@ class OverlayRepository {
     await sendToOverlay(method: "settings", data: jsonEncode(value));
   }
 
+  /// 초기화 마지막 단계에서 호출. 오버레이 창이 켜지고 안정화된 뒤 저장된 설정값(활성 기능·위치·
+  /// 투명도 등)을 한 번 보내 위젯을 활성 상태로 전환한다. 오버레이가 시작되지 않았으면(창 컨트롤러
+  /// 미완료) `sendToOverlay`의 30초 대기에 걸리지 않도록 조용히 건너뛴다.
+  Future<void> sendInitialSettings() async {
+    if (kIsWeb || !Platform.isWindows) return;
+    if (!_completer.isCompleted) return;
+    final value = _settings.valueOrNull;
+    if (value == null) return;
+    await sendOverlaySettings(value);
+  }
+
   void activate(OverlayFeatures value) {
     _log.info('Overlay enabled: ${value.name}');
     final snapshot = _settings.value..activatedFeatures.add(value);

@@ -143,6 +143,12 @@ class InitializerService {
       // 창 크기/위치 적용은 홈 전환 **직전**에 한다. 로딩 스플래시(작은 창)를 계속 보여주다가
       // 홈과 함께 정식 크기로 바꿔, 리사이즈된 뒤에도 로딩 화면이 남아 보이는 문제를 없앤다.
       await _setWindowsSafely();
+
+      // 오버레이 설정값(활성 기능·위치·투명도 등)은 오버레이 창이 켜져 안정화된 뒤인
+      // 초기화 마지막 단계(홈 전환 직전)에 한 번 보낸다. 생성 직후 바로 보내면 서브 엔진이
+      // 아직 위젯 트리를 마운트하기 전이라 설정이 유실될 수 있어, 위 지연 단계들 이후로 미룬다.
+      await _sendOverlaySettingsSafely();
+
       _log.info('App initialized (Windows)');
       if (welcome) {
         _router.go("/welcome");
@@ -174,8 +180,9 @@ class InitializerService {
   /// 오버레이 엔진 생성: 모니터 조회(loadSettings) → 두 번째 Flutter 엔진 생성(startOverlay).
   /// **다중 엔진 초기화 레이스**로 인한 Windows 간헐 크래시(`is_finalized`)를 줄이기 위해,
   /// 병렬 워밍업이 아니라 로딩 화면 단계(메인 아이솔레이트가 한가할 때)에서 직렬로 호출한다.
-  /// 실패·지연은 격리하며(타임아웃 포함) 앱 진입을 막지 않는다. 이후 설정 전송·표시 핸드셰이크는
-  /// 오버레이가 "ready"를 보내면 reactive 하게 완료되므로 별도 blocking 전송은 하지 않는다.
+  /// 실패·지연은 격리하며(타임아웃 포함) 앱 진입을 막지 않는다. 오버레이 설정값 전송은 여기서
+  /// 하지 않고, 창이 켜져 안정화된 뒤 초기화 마지막 단계(`_sendOverlaySettingsSafely`, 홈 전환
+  /// 직전)에서 한 번 보낸다.
   Future<void> _prepareOverlaySafely() async {
     try {
       final overlaySettings =
@@ -185,6 +192,19 @@ class InitializerService {
           .timeout(_criticalStepTimeout);
     } catch (e, s) {
       _log.warning('Overlay initialization failed; app continues', e, s);
+    }
+  }
+
+  /// 오버레이 설정값(활성 기능·위치·투명도 등)을 오버레이 창으로 보낸다. 초기화 마지막 단계에서
+  /// 오버레이가 안정화된 뒤 호출한다. 오버레이 미시작 시 Repository가 조용히 건너뛰며, 실패해도
+  /// 홈 진입을 막지 않도록 격리·타임아웃한다.
+  Future<void> _sendOverlaySettingsSafely() async {
+    try {
+      await _overlayRepository
+          .sendInitialSettings()
+          .timeout(_criticalStepTimeout);
+    } catch (e, s) {
+      _log.warning('Sending overlay settings failed; app continues', e, s);
     }
   }
 
