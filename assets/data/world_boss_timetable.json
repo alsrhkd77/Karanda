@@ -3280,846 +3280,6 @@
     "region": "EU"
   },
   {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 1,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 1,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 2,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 2,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 2,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 3,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 3,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 3,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 4,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 4,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 4,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 5,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 5,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 5,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 6,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 6,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 6,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 7,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "9:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 7,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "16:30",
-    "utc spawn time": "23:30",
-    "utc weekday": 7,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "22:45",
-    "utc spawn time": "5:45",
-    "utc weekday": 1,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "NA"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 1,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 1,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 1,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 2,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 2,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 2,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 3,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 3,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 3,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 4,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 4,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 4,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 5,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 5,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 5,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 6,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 6,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 6,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "10:30",
-    "utc spawn time": "8:30",
-    "utc weekday": 7,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "16:30",
-    "utc spawn time": "16:30",
-    "utc weekday": 7,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "20:45",
-    "utc spawn time": "18:30",
-    "utc weekday": 7,
-    "start": "2025-04-10",
-    "end": "2025-04-24",
-    "region": "EU"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 1,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 1,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 1,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 1,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 2,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 2,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 2,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 2,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 3,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 3,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 3,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 3,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 4,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 4,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 4,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 4,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 5,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 5,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 5,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 5,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 6,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 6,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 6,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 6,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 7,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "17:25",
-    "utc spawn time": "8:25",
-    "utc weekday": 7,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "eggs-ceptional emperor",
-    "weekday": 7,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 7,
-    "start": "2025-04-09",
-    "end": "2025-04-30",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 1,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 1,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 1,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 1,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 1,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 1,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 2,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 2,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 2,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 2,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 2,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 2,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 3,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 3,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 3,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 3,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 3,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 3,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 4,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 4,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 4,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 4,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 4,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 4,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 5,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 5,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 5,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 5,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 5,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 5,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 6,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 6,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 6,
-    "spawn time": "18:00",
-    "utc spawn time": "9:00",
-    "utc weekday": 6,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 6,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 6,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 7,
-    "spawn time": "12:00",
-    "utc spawn time": "3:00",
-    "utc weekday": 7,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 7,
-    "spawn time": "17:25",
-    "utc spawn time": "8:25",
-    "utc weekday": 7,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
-    "name": "gift box",
-    "weekday": 7,
-    "spawn time": "23:25",
-    "utc spawn time": "14:25",
-    "utc weekday": 7,
-    "start": "2025-05-14",
-    "end": "2025-06-03",
-    "region": "KR"
-  },
-  {
     "name": "queenStonebackCrab",
     "weekday": 1,
     "spawn time": "12:00",
@@ -5590,7 +4750,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 1,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5600,7 +4760,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 1,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
@@ -5610,7 +4770,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 2,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5620,7 +4780,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 2,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
@@ -5630,7 +4790,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 3,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5640,7 +4800,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 3,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
@@ -5650,7 +4810,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 4,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5660,7 +4820,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 4,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
@@ -5670,7 +4830,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 5,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5680,7 +4840,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 5,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
@@ -5690,7 +4850,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 6,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5700,7 +4860,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 6,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
@@ -5710,7 +4870,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 7,
     "spawn time": "14:15",
     "utc spawn time": "5:15",
@@ -5720,7 +4880,7 @@
     "region": "KR"
   },
   {
-    "name": "maretta",
+    "name": "winged mermaid",
     "weekday": 7,
     "spawn time": "23:25",
     "utc spawn time": "14:25",
