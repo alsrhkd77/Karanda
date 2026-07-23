@@ -5,6 +5,7 @@ import 'package:karanda/ui/overlay_app/widgets/party_finder_overlay_widget.dart'
 import 'package:karanda/ui/overlay_app/widgets/boss_hp_scale_indicator_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/clock_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/exit_edit_mode_button.dart';
+import 'package:karanda/ui/overlay_app/widgets/mirroring_overlay_widget.dart';
 import 'package:karanda/ui/overlay_app/widgets/world_boss_overlay_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +30,7 @@ class OverlayAppScreen extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
+          MirroringOverlayWidget(width: size.width, height: size.height),
           BdoTimeOverlayWidget(width: size.width),
           ClockOverlayWidget(width: size.width),
           BossHpScaleIndicatorOverlayWidget(width: size.width),

@@ -5,4 +5,5 @@ enum OverlayFeatures {
   clock,
   partyFinder,
   bdoTime,
+  mirroring,
 }

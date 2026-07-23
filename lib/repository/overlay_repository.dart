@@ -8,9 +8,12 @@ import 'package:flutter/services.dart';
 import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_settings_data_source.dart';
 import 'package:karanda/enums/overlay_features.dart';
+import 'package:karanda/model/mirroring_settings.dart';
 import 'package:karanda/model/monitor_device.dart';
 import 'package:karanda/model/overlay_settings.dart';
+import 'package:karanda/model/window_info.dart';
 import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
+import 'package:karanda/utils/window_mirror/window_mirror.dart';
 import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -22,6 +25,9 @@ class OverlayRepository {
   final OverlayApi _overlayApi;
   final Completer<WindowController> _completer = Completer();
   final _settings = BehaviorSubject<OverlaySettings>();
+
+  /// 미러링 소스 창 (세션 한정 — 앱 재시작 시 다시 선택, 영속화하지 않음)
+  final _mirroringSource = BehaviorSubject<WindowInfo?>.seeded(null);
 
   OverlayRepository(
       {required OverlaySettingsDataSource overlaySettingsDataSource,
@@ -35,6 +41,8 @@ class OverlayRepository {
   Future<WindowController> get _windowController => _completer.future;
 
   Stream<OverlaySettings> get settingsStream => _settings.stream;
+
+  Stream<WindowInfo?> get mirroringSourceStream => _mirroringSource.stream;
 
   Future<void> _methodCallHandler(MethodCall call, int fromWindowId) async {
     switch (call.method) {
@@ -140,6 +148,32 @@ class OverlayRepository {
 
   Future<List<MonitorDevice>> getMonitorList() async {
     return await OverlayWindowUtils().getAllMonitorDevices();
+  }
+
+  /// 미러링 가능한 창 목록 조회
+  List<WindowInfo> getMirrorableWindows() {
+    if (kIsWeb || !Platform.isWindows) return [];
+    return WindowMirrorUtils().getMirrorableWindows();
+  }
+
+  /// 미러링 소스 선택·해제. 영속 설정을 건드리지 않고 오버레이 엔진에만 전송한다.
+  Future<void> setMirroringSource(WindowInfo? value) async {
+    if (kIsWeb || !Platform.isWindows) return;
+    _mirroringSource.sink.add(value);
+    _log.info(value == null
+        ? 'Mirroring source cleared'
+        : 'Mirroring source selected');
+    await sendToOverlay(
+      method: OverlayFeatures.mirroring.name,
+      data: jsonEncode({"sourceHandle": value?.handle ?? 0}),
+    );
+  }
+
+  /// 미러링 설정(크롭·박스 크기) 변경. 저장 및 오버레이 전송.
+  void updateMirroringSettings(MirroringSettings value) {
+    final snapshot = _settings.value..mirroringSettings = value;
+    sendOverlaySettings(snapshot);
+    _settings.sink.add(snapshot);
   }
 
   void resetWidgets() {

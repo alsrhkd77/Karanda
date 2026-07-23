@@ -196,6 +196,22 @@
     "partyFinder": "Party Finder (Experimental)",
     "bdoTime": "Day / Night",
     "nextTransition": "Next Transition",
+    "mirroring": "Mirroring (Beta)",
+    "mirroring hint": "Select a program to mirror\nfrom the overlay settings in the main window",
+    "mirroring settings": {
+      "select program": "Program to display",
+      "not selected": "Not selected",
+      "no windows": "No mirrorable windows found",
+      "clear selection": "Clear selection",
+      "crop mode": "Mirroring area",
+      "crop full": "Full window",
+      "crop ratio": "Aspect ratio (centered)",
+      "crop custom": "Custom region",
+      "box sizing": "Display box sizing",
+      "box free": "Free",
+      "box ratio": "Fixed aspect ratio",
+      "drm notice": "DRM-protected content may appear black, and minimized windows will not update."
+    },
     "settings": {
       "select display": "Select display",
       "reset widgets": "Reset Overlay widgets size & position",

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:karanda/enums/overlay_features.dart';
 import 'package:karanda/enums/recruitment_category.dart';
+import 'package:karanda/model/mirroring_settings.dart';
 import 'package:karanda/model/monitor_device.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/utils/extension/rect_extension.dart';
@@ -13,6 +14,7 @@ class OverlaySettings {
   final Set<RecruitmentCategory> partyFinderExcludedCategory = {};
   final Map<OverlayFeatures, int> opacity = {};
   final Map<OverlayFeatures, Rect> position = {};
+  MirroringSettings mirroringSettings = MirroringSettings();
 
   OverlaySettings({
     required this.monitorDevice,
@@ -21,14 +23,22 @@ class OverlaySettings {
     Set<RecruitmentCategory>? partyFinderExcludedCategory,
     Map<OverlayFeatures, int>? opacity,
     Map<OverlayFeatures, Rect>? position,
+    MirroringSettings? mirroringSettings,
   }) {
+    if (mirroringSettings != null) {
+      this.mirroringSettings = mirroringSettings;
+    }
     this.activatedFeatures.addAll(activatedFeatures ?? {});
     this.partyFinderExcludedCategory.addAll(partyFinderExcludedCategory ?? {});
     this.position.addAll(position ?? {});
     this.opacity.addAll(opacity ?? {});
     for (OverlayFeatures feature in OverlayFeatures.values) {
       if (!this.opacity.containsKey(feature)) {
-        this.opacity[feature] = AppTheme.overlayDefaultOpacity;
+        if (feature == OverlayFeatures.mirroring) {
+          this.opacity[feature] = 255;
+        } else {
+          this.opacity[feature] = AppTheme.overlayDefaultOpacity;
+        }
       }
     }
   }
@@ -65,6 +75,9 @@ class OverlaySettings {
       })),
       opacity: opacity,
       position: position,
+      mirroringSettings: json.containsKey("mirroringSettings")
+          ? MirroringSettings.fromJson(json["mirroringSettings"])
+          : null,
     );
   }
 
@@ -87,6 +100,7 @@ class OverlaySettings {
           partyFinderExcludedCategory.map((item) => item.name).toList(),
       "opacity": opacity.map((key, value) => MapEntry(key.name, value)),
       "position": position.map((key, value) => MapEntry(key.name, value.toJson())),
+      "mirroringSettings": mirroringSettings.toJson(),
     };
   }
 }

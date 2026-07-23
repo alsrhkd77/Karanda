@@ -22,6 +22,7 @@ import 'package:karanda/ui/lightstone_combination/widget/lightstone_combination_
 import 'package:karanda/ui/news/widget/news_page.dart';
 import 'package:karanda/ui/overlay/controllers/overlay_controller.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_page.dart';
+import 'package:karanda/ui/overlay/widgets/mirroring_overlay_settings_page.dart';
 import 'package:karanda/ui/overlay/widgets/overlay_widget_settings_page.dart';
 import 'package:karanda/ui/overlay/widgets/world_boss_overlay_settings_page.dart';
 import 'package:karanda/ui/party_finder/widgets/party_finder_page.dart';
@@ -437,6 +438,20 @@ final GoRouter router = GoRouter(
                 builder: (context, state) {
                   return OverlayWidgetSettingsPage(
                     feature: OverlayFeatures.bdoTime,
+                    overlayController: state.extra as OverlayController,
+                  );
+                },
+                redirect: (BuildContext context, GoRouterState state) {
+                  if (kIsWeb || !Platform.isWindows) {
+                    return '/';
+                  }
+                  return null;
+                },
+              ),
+              GoRoute(
+                path: 'mirroring',
+                builder: (context, state) {
+                  return MirroringOverlaySettingsPage(
                     overlayController: state.extra as OverlayController,
                   );
                 },

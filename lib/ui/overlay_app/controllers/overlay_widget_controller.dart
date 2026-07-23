@@ -71,7 +71,12 @@ abstract class OverlayWidgetController extends ChangeNotifier {
   }
 
   void _onPositionUpdate(Map<OverlayFeatures, Rect> value){
-    boxController.setRect(value[key] ?? defaultRect);
+    // 저장된 위치가 있을 때만 반영한다. 키가 없을 때 defaultRect로 되돌리면,
+    // 설정 변경으로 전체 설정이 재전송될 때마다 편집으로 옮긴 위치가 초기화된다.
+    // (초기 위치는 _loadBoxRect가, 초기화는 _onResetWidgets가 담당)
+    if (value.containsKey(key)) {
+      boxController.setRect(value[key]!);
+    }
   }
 
   void _onOpacityUpdate(Map<OverlayFeatures, int> value){

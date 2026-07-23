@@ -94,6 +94,13 @@ class _OverlayPageState extends State<OverlayPage> {
                     context.go("/overlay/bdo-time", extra: controller);
                   },
                 ),
+                _Tile(
+                  feature: OverlayFeatures.mirroring,
+                  isActivated: activated.contains(OverlayFeatures.mirroring),
+                  onTap: () {
+                    context.go("/overlay/mirroring", extra: controller);
+                  },
+                ),
               ],
             );
           },
