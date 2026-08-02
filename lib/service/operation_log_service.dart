@@ -103,6 +103,15 @@ class OperationLogService {
     }
   }
 
+  /// 대기 중인 저장을 즉시 확정한다.
+  ///
+  /// 저장은 [_saveDebounce]만큼 지연되므로, 프로세스가 곧 종료될 상황(업데이트·앱 종료)에서는
+  /// 이 함수를 먼저 await해야 직전 기록이 유실되지 않는다.
+  Future<void> flush() async {
+    _saveTimer?.cancel();
+    await _flushToStorage();
+  }
+
   Future<List<OperationLogRecord>> getRecords() async {
     // 대기 중인 저장이 있으면 먼저 flush
     if (_dirty) {

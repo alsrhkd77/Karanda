@@ -43,6 +43,7 @@ import 'package:karanda/service/bdo_news_service.dart';
 import 'package:karanda/service/desktop_service.dart';
 import 'package:karanda/service/initializer_service.dart';
 import 'package:karanda/service/trade_market_service.dart';
+import 'package:karanda/service/version_service.dart';
 import 'package:karanda/service/world_boss_service.dart';
 import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/settings/controller/settings_controller.dart';
@@ -114,11 +115,28 @@ class KarandaApp extends StatelessWidget {
             settingsService: context.read(),
           ),
         ),
+        // DesktopService·VersionService는 InitializerService가 생성자에서 참조하므로
+        // 반드시 그보다 먼저 등록되어야 한다.
+        Provider(
+          create: (context) => DesktopService(
+            appSettingsRepository: context.read(),
+            overlayRepository: context.read(),
+          ),
+          lazy: kIsWeb || !Platform.isWindows,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => VersionService(
+            versionRepository: context.read(),
+            desktopService: context.read(),
+          ),
+          lazy: kIsWeb || !Platform.isWindows,
+        ),
         Provider(
           create: (context) => InitializerService(
             appSettingsRepository: context.read(),
             overlayRepository: context.read(),
             versionRepository: context.read(),
+            versionService: context.read(),
             authRepository: context.read(),
             audioPlayerRepository: context.read(),
             scaffoldMessengerKey: scaffoldMessengerKey,
@@ -221,13 +239,6 @@ class KarandaApp extends StatelessWidget {
             authRepository: context.read(),
             appSettingsRepository: context.read(),
             partyFinderRepository: context.read(),
-            overlayRepository: context.read(),
-          ),
-          lazy: kIsWeb || !Platform.isWindows,
-        ),
-        Provider(
-          create: (context) => DesktopService(
-            appSettingsRepository: context.read(),
             overlayRepository: context.read(),
           ),
           lazy: kIsWeb || !Platform.isWindows,

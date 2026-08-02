@@ -74,6 +74,17 @@
     "initialization failed": "초기화 실패",
     "retry": "다시 시도"
   },
+  "update": {
+    "new version": "새 버전 {}",
+    "change log": "변경 내역",
+    "update now": "지금 업데이트",
+    "restart warning": "업데이트하면 Karanda가 종료되고 설치가 시작됩니다. 설치가 끝나면 다시 실행해 주세요.",
+    "downloading": "새 버전을 내려받는 중",
+    "downloading tooltip": "내려받는 중 {}%",
+    "failed": "업데이트에 실패했습니다",
+    "failed hint": "네트워크 상태를 확인한 뒤 다시 시도해 주세요.",
+    "retry": "다시 시도"
+  },
   "home": {
     "external links": {
       "official": "검은사막 공식 홈페이지",

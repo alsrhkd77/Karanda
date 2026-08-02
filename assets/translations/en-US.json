@@ -74,6 +74,17 @@
     "initialization failed": "Initialization failed",
     "retry": "Retry"
   },
+  "update": {
+    "new version": "Version {}",
+    "change log": "What's new",
+    "update now": "Update now",
+    "restart warning": "Karanda will close and the installer will start. Launch it again once the installation finishes.",
+    "downloading": "Downloading the new version",
+    "downloading tooltip": "Downloading {}%",
+    "failed": "The update failed",
+    "failed hint": "Check your network connection and try again.",
+    "retry": "Retry"
+  },
   "home": {
     "external links": {
       "official": "Black Desert",

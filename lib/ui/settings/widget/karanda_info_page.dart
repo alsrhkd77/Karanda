@@ -12,7 +12,8 @@ class KarandaInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => KarandaInfoController()..load(),
+      create: (context) =>
+          KarandaInfoController(versionRepository: context.read())..load(),
       child: Scaffold(
         appBar: KarandaAppBar(
           icon: Icons.info_outline,
@@ -20,7 +21,7 @@ class KarandaInfoPage extends StatelessWidget {
         ),
         body: Consumer(
           builder: (context, KarandaInfoController controller, child) {
-            if (controller.data == null) {
+            if (controller.isLoading) {
               return const LoadingIndicator();
             }
             return PageBase(children: [

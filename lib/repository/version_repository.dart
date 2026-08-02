@@ -13,6 +13,10 @@ class VersionRepository {
     return _dataSource.getCurrentVersion();
   }
 
+  Future<String> getBuildNumber(){
+    return _dataSource.getBuildNumber();
+  }
+
   Future<Version> getLatestVersion(){
     return _dataSource.getLatestVersion();
   }

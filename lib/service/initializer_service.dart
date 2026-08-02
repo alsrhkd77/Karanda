@@ -13,6 +13,7 @@ import 'package:karanda/repository/auth_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
 import 'package:karanda/service/operation_log_service.dart';
+import 'package:karanda/service/version_service.dart';
 import 'package:karanda/utils/command_line_arguments.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:logging/logging.dart';
@@ -27,6 +28,7 @@ class InitializerService {
   final AppSettingsRepository _appSettingsRepository;
   final OverlayRepository _overlayRepository;
   final VersionRepository _versionRepository;
+  final VersionService _versionService;
   final AuthRepository _authRepository;
   final AudioPlayerRepository _audioPlayerRepository;
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey;
@@ -45,6 +47,7 @@ class InitializerService {
     required AppSettingsRepository appSettingsRepository,
     required OverlayRepository overlayRepository,
     required VersionRepository versionRepository,
+    required VersionService versionService,
     required AuthRepository authRepository,
     required AudioPlayerRepository audioPlayerRepository,
     required GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey,
@@ -52,6 +55,7 @@ class InitializerService {
   })  : _appSettingsRepository = appSettingsRepository,
         _overlayRepository = overlayRepository,
         _versionRepository = versionRepository,
+        _versionService = versionService,
         _authRepository = authRepository,
         _audioPlayerRepository = audioPlayerRepository,
         _scaffoldMessengerKey = scaffoldMessengerKey,
@@ -84,11 +88,13 @@ class InitializerService {
     _windowsCriticalPhaseRunning = true;
     try {
       _status.sink.add(InitializerStatus(progress: 0.0, message: "check update"));
+      // update()가 성공하면 프로세스가 종료되므로 그 뒤 코드는 실행되지 않는다.
+      // 반대로 돌아왔다면 다운로드·설치가 실패한 것이다. 이때는 스플래시에 갇히지 않도록
+      // 실패 메시지를 잠시 보여준 뒤 기존 버전으로 기동을 이어간다.
       if (CommandLineArguments.forceUpdate) {
         await update();
-        return;
-      }
-      if (!CommandLineArguments.skipUpdate) {
+        await Future.delayed(const Duration(seconds: 3));
+      } else if (!CommandLineArguments.skipUpdate) {
         try {
           final currentVersion = await _versionRepository.getCurrentVersion();
           // 최신 버전 조회는 네트워크 호출 → 타임아웃으로 무한 대기를 막는다.
@@ -97,7 +103,7 @@ class InitializerService {
               .timeout(_criticalStepTimeout);
           if (!currentVersion.isNewerThan(latestVersion)) {
             await update();
-            return;
+            await Future.delayed(const Duration(seconds: 3));
           }
         } catch (e, s) {
           _log.severe('Failed to check version and update', e, s);
@@ -271,34 +277,34 @@ class InitializerService {
     });
   }
 
+  /// 시작 단계의 강제 업데이트. 다운로드·설치·종료 절차 자체는 [VersionService]가 소유하며,
+  /// 여기서는 진행률을 스플래시 상태로 옮기는 일만 한다.
   Future<void> update() async {
     _status.sink.add(InitializerStatus(
       progress: 0,
       message: "check available downloads",
     ));
-    await _status.sink.addStream(_versionRepository.downloadLatest().map(
-      (progress) {
-        return InitializerStatus(
-          progress: progress,
-          message: "download latest",
-        );
-      },
-    ));
-    _status.sink.add(InitializerStatus(
-      progress: 1,
-      message: "waiting for update",
-    ));
-    _log.info('New version downloaded, launching installer and exiting');
-    // 오버레이 자식(별도 엔진)을 먼저 정리한다. 자식이 남아 있으면 프로세스가 종료되지
-    // 않아 인스톨러가 실행 파일을 교체하지 못한다(파일 잠금).
-    await _overlayRepository.teardown();
-    await Process.start(
-      '${Directory.current.path}/SetupKaranda.exe',
-      ["-t", "-l", "1000", "/silent"],
+    await _status.sink.addStream(
+      _versionService
+          .downloadAndInstall()
+          .map((progress) => InitializerStatus(
+                progress: progress,
+                message: "download latest",
+              ))
+          // 다운로드 스트림은 실패 시 에러를 방출한다. addStream은 소스의 에러를 컨트롤러로
+          // 그대로 흘려보내므로(cancelOnError를 줘도 첫 에러는 forward된다), 넘기기 전에
+          // 여기서 평범한 데이터 이벤트로 바꿔 스플래시가 에러를 받지 않게 한다.
+          // 이 핸들러 안에서 _status.sink에 직접 add하면 addStream 진행 중 추가가 되어 StateError다.
+          .transform(StreamTransformer.fromHandlers(
+            handleError: (e, s, sink) {
+              _log.severe('Failed to download update', e, s);
+              sink.add(InitializerStatus(progress: 0, message: "failed to update"));
+            },
+          )),
     );
-    // 메인 창만 destroy하면 오버레이 엔진이 같은 프로세스를 살려둘 수 있으므로,
-    // 프로세스 전체를 확실히 종료해 인스톨러가 파일 교체를 완료하게 한다.
-    exit(0);
+    // 정상 경로라면 downloadAndInstall이 프로세스를 종료하므로 여기에 도달하지 않는다.
+    // 도달했다면 다운로드나 설치가 실패한 것이다.
+    _log.warning('Update did not complete; continuing startup');
   }
 
   Future<void> setWindows() async {

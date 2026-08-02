@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +15,7 @@ import 'package:karanda/ui/home/widget/home_features_section.dart';
 import 'package:karanda/ui/home/widget/home_links_section.dart';
 import 'package:karanda/ui/home/widget/home_news_section.dart';
 import 'package:karanda/ui/home/widget/home_section.dart';
+import 'package:karanda/ui/home/widget/update_menu_button.dart';
 import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:provider/provider.dart';
 import 'package:tray_manager/tray_manager.dart';
@@ -85,6 +88,9 @@ class _HomePageState extends State<HomePage> with WindowListener, TrayListener {
     return Scaffold(
       appBar: KarandaAppBar(
         actions: [
+          // 실행 중 업데이트는 Windows 전용이다. 다른 플랫폼에 두면 Consumer가 Windows 전용
+          // VersionService(및 DesktopService)를 깨워 windowManager까지 딸려온다.
+          if (!kIsWeb && Platform.isWindows) const UpdateMenuButton(),
           IconButton(
             onPressed: () => context.goWithGa("/settings"),
             icon: const Icon(FontAwesomeIcons.gear),

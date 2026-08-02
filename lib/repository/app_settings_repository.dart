@@ -88,4 +88,15 @@ class AppSettingsRepository {
   Future<void> _saveSettings(AppSettings snapshot) async {
     await _settingsDataSource.save(snapshot);
   }
+
+  /// 현재 설정이 저장소에 확실히 반영될 때까지 기다린다.
+  ///
+  /// 평소 저장은 [settingsStream] 구독자([_saveSettings])가 fire-and-forget으로 처리하므로,
+  /// 저장이 끝나기 전에 프로세스가 종료되면 직전 변경(테마·지역·창 크기)이 유실된다.
+  /// 종료 직전에 한 번 더 저장해(멱등) 완료를 보장한다.
+  Future<void> flush() async {
+    if (_settings.hasValue) {
+      await _saveSettings(_settings.value);
+    }
+  }
 }
