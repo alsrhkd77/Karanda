@@ -22,7 +22,10 @@ plugins {
     // START: FlutterFire Configuration
     id("com.google.gms.google-services") version("4.3.15") apply false
     // END: FlutterFire Configuration
-    id("org.jetbrains.kotlin.android") version "1.8.22" apply false
+    // 플러그인 모듈은 앱의 KGP로 컴파일되므로, 컴파일러가 플러그인이 끌어오는 stdlib보다 낮으면
+    // "newer version of Kotlin" 오류가 난다(share_plus는 stdlib 2.2를 요구). 최소치에 맞추면 같은 문제가
+    // 반복되므로 최신 안정 버전을 쓴다.
+    id("org.jetbrains.kotlin.android") version "2.4.10" apply false
 }
 
 include(":app")

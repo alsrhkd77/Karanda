@@ -50,6 +50,23 @@ class SnackBarKit {
     ));
   }
 
+  void success(String text) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(4.0),
+            child: Icon(Icons.check_circle_outline, color: Colors.green),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(text),
+          ),
+        ],
+      ),
+    ));
+  }
+
   void requestFailed() {
     failed(context.tr("requestFailed"));
   }

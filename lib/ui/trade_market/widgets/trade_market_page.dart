@@ -115,7 +115,7 @@ class _PresetGrid extends StatelessWidget {
                     region: region,
                     template: template,
                   )),
-            _AddTemplateCard(region: region),
+            //_AddTemplateCard(region: region),
           ];
 
           return GridView.count(

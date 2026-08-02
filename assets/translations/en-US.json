@@ -156,7 +156,13 @@
     "push notifications activation notice": "Notifications permission is required to use push notifications.\nPlease enable the Notifications permission on your device.",
     "activate push notifications fail": "Failed to activate push notifications",
     "operation log": "Operation Log",
-    "operation log empty": "No operation logs saved"
+    "operation log empty": "No operation logs saved",
+    "operation log export": "Export to file",
+    "operation log copy": "Copy to clipboard",
+    "operation log exported": "Saved to the downloads folder",
+    "operation log copied": "Copied to clipboard",
+    "operation log export unsupported": "Exporting to a file is not supported on this platform",
+    "operation log export failed": "Export failed"
   },
   "notifications": {
     "notifications": "{}",
