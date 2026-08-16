@@ -114,8 +114,13 @@ class _LogTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final leading = Icon(_levelIcon, color: _levelColor);
     final title = Text(record.message);
+    final repeated = record.repeatCount > 1;
     final subtitle = Text(
-      "${DateFormat('MM-dd HH:mm:ss').format(record.time)} · ${record.loggerName}",
+      repeated
+          ? "${DateFormat('MM-dd HH:mm:ss').format(record.time)}"
+              " ~ ${DateFormat('HH:mm:ss').format(record.lastTime)}"
+              " · ${record.loggerName} · x${record.repeatCount}"
+          : "${DateFormat('MM-dd HH:mm:ss').format(record.time)} · ${record.loggerName}",
       style: TextTheme.of(context).bodySmall?.copyWith(color: Colors.grey),
     );
 

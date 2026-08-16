@@ -93,4 +93,96 @@ void main() {
       expect(record.toJson().containsKey('s'), isFalse);
     });
   });
+
+  group('OperationLogRecord repeat merging', () {
+    test('omits repeat keys when repeatCount is 1 (unchanged legacy payload)', () {
+      final record = OperationLogRecord(
+        time: DateTime.parse('2026-08-02T10:00:00.000'),
+        level: 'INFO',
+        loggerName: 'app',
+        message: 'hello',
+      );
+
+      final json = record.toJson();
+      expect(json.containsKey('c'), isFalse);
+      expect(json.containsKey('e'), isFalse);
+    });
+
+    test('round-trips repeatCount and lastTime', () {
+      final original = OperationLogRecord(
+        time: DateTime.parse('2026-08-02T10:00:00.000'),
+        level: 'SEVERE',
+        loggerName: 'app',
+        message: 'boom',
+      );
+      original.markRepeated(DateTime.parse('2026-08-02T10:05:00.000'));
+
+      final restored = OperationLogRecord.fromJson(original.toJson());
+
+      expect(restored.repeatCount, 2);
+      expect(restored.lastTime, DateTime.parse('2026-08-02T10:05:00.000'));
+    });
+
+    test('legacy json without c/e defaults to repeatCount 1 and lastTime == time', () {
+      final legacy = {
+        't': '2026-08-02T10:00:00.000',
+        'l': 'INFO',
+        'n': 'app',
+        'm': 'hello',
+      };
+
+      final record = OperationLogRecord.fromJson(legacy);
+
+      expect(record.repeatCount, 1);
+      expect(record.lastTime, record.time);
+    });
+
+    test('markRepeated increments count and updates lastTime but not time', () {
+      final record = OperationLogRecord(
+        time: DateTime.parse('2026-08-02T10:00:00.000'),
+        level: 'SEVERE',
+        loggerName: 'app',
+        message: 'boom',
+      );
+
+      record.markRepeated(DateTime.parse('2026-08-02T10:01:00.000'));
+      record.markRepeated(DateTime.parse('2026-08-02T10:02:00.000'));
+
+      expect(record.repeatCount, 3);
+      expect(record.lastTime, DateTime.parse('2026-08-02T10:02:00.000'));
+      expect(record.time, DateTime.parse('2026-08-02T10:00:00.000'));
+    });
+
+    test('toString includes the repeat suffix only when repeated', () {
+      final once = OperationLogRecord(
+        time: DateTime.parse('2026-08-02T10:00:00.000'),
+        level: 'INFO',
+        loggerName: 'app',
+        message: 'hello',
+      );
+      expect(once.toString(), isNot(contains('x1')));
+
+      final repeated = OperationLogRecord(
+        time: DateTime.parse('2026-08-02T10:00:00.000'),
+        level: 'INFO',
+        loggerName: 'app',
+        message: 'hello',
+      )..markRepeated(DateTime.parse('2026-08-02T10:01:00.000'));
+
+      expect(repeated.toString(), contains('x2'));
+    });
+
+    test('toJson(includeStackTrace: false) omits the stackTrace key', () {
+      final record = OperationLogRecord(
+        time: DateTime.parse('2026-08-02T10:00:00.000'),
+        level: 'SEVERE',
+        loggerName: 'app',
+        message: 'boom',
+        stackTrace: '#0 frame',
+      );
+
+      expect(record.toJson().containsKey('s'), isTrue);
+      expect(record.toJson(includeStackTrace: false).containsKey('s'), isFalse);
+    });
+  });
 }

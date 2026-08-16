@@ -25,6 +25,11 @@ class WebSocketManager {
   /// 예상치 못한 연결 끊김을 구분한다. 의도적 종료 시에는 재연결하지 않는다.
   bool _intentionalClose = false;
 
+  /// 클라이언트가 새로 만들어질 때마다 증가한다.
+  /// 재연결로 클라이언트가 교체된 뒤에도 낡은 unsubscribeFn을 호출하거나, register 도중
+  /// onConnect의 재구독 루프와 경합해 방금 만든 구독을 잘못 덮어쓰는 것을 막는 세대 번호.
+  int _generation = 0;
+
   final Map<String, _Subscription> _subscription = {};
 
   WebSocketManager() {
@@ -46,6 +51,7 @@ class WebSocketManager {
     if (_client == null || !_client!.connected) {
       // 예약된 재연결과 수동 activate가 겹쳐 클라이언트가 중복 생성되는 것을 방지
       _reconnectTimer?.cancel();
+      _generation++;
       _client = StompClient(config: _buildConfig());
       _client!.activate();
     }
@@ -71,24 +77,81 @@ class WebSocketManager {
     _reconnectTimer = Timer(Duration(milliseconds: _backOff), activate);
   }
 
+  /// 구독 해제. 재연결로 클라이언트가 교체된 뒤의 낡은 해제 함수는 호출하지 않는다.
+  ///
+  /// 라이브러리(stomp_dart_client)의 해제 함수는 죽은 핸들러에서 `if (!connected) return;`으로
+  /// 조용히 빠져나가지만, 그 판정은 낡은 핸들러 기준이라 소켓이 막 끊겼는데 아직 connected가
+  /// 남아 있는 찰나에는 StompBadStateException이 날 수 있다. 세대 검사를 1차 방어로,
+  /// try/catch를 2차 방어로 둔다.
+  void _unsubscribe(_Subscription sub) {
+    final fn = sub.unsubscribeFn;
+    final generation = sub.generation;
+    sub.unsubscribeFn = null;
+    sub.generation = -1;
+    if (fn == null || generation != _generation) return;
+    try {
+      fn();
+    } catch (e) {
+      _log.fine('Failed to unsubscribe ${sub.destination}: $e');
+    }
+  }
+
   Future<void> register({
     required String destination,
     BDORegion? region,
     required void Function(StompFrame message) callback,
   }) async {
-    var unsubscribeFn = _client != null && _client!.isActive && _client!.connected
-        ? await _subscribe(
-            destination: destination,
-            callback: callback,
-            region: region,
-          )
-        : null;
-    _subscription[destination] = _Subscription(
+    // 같은 destination 재등록 시 브로커에 구독이 누적되지 않도록 이전 구독을 먼저 해제한다.
+    final previous = _subscription[destination];
+    if (previous != null) {
+      _unsubscribe(previous);
+    }
+
+    // 맵 등록을 await보다 먼저 한다. 구독 요청이 오가는 동안 onConnect의 재구독 루프가 돌아도
+    // 이 destination이 누락되지 않게 하기 위함이다.
+    final entry = _Subscription(
       destination: destination,
       region: region,
       callback: callback,
-      unsubscribeFn: unsubscribeFn,
+      unsubscribeFn: null,
     );
+    _subscription[destination] = entry;
+
+    final generation = _generation;
+    void Function({Map<String, String>? unsubscribeHeaders})? unsubscribeFn;
+    try {
+      unsubscribeFn = await _subscribe(
+        destination: destination,
+        callback: callback,
+        region: region,
+      );
+    } catch (e) {
+      // 호출부 다수가 이 결과를 기다리지 않는 fire-and-forget이다. 여기서 삼키지 않으면
+      // 미처리 비동기 예외가 되어 운영 로그를 폭주시킨다. 실패해도 다음 onConnect에서 복구된다.
+      _log.fine('Failed to subscribe $destination: $e');
+    }
+
+    if (unsubscribeFn != null) {
+      final stillCurrent =
+          generation == _generation && identical(_subscription[destination], entry);
+      if (!stillCurrent) {
+        // await 사이에 재연결·재등록·해제가 일어났다 — 방금 만든 구독은 더 이상 유효하지 않다.
+        if (generation == _generation) {
+          try {
+            unsubscribeFn();
+          } catch (_) {}
+        }
+      } else if (entry.generation == generation) {
+        // onConnect 재구독 루프가 await 사이에 먼저 채웠다면 그쪽이 최신이므로 지금 만든 것을 버린다.
+        try {
+          unsubscribeFn();
+        } catch (_) {}
+      } else {
+        entry.unsubscribeFn = unsubscribeFn;
+        entry.generation = generation;
+      }
+    }
+
     _log.info('Subscribe realtime channel: $destination'
         '${region == null ? '' : ' (region: ${region.name})'}');
     if (_subscription.length == 1) {
@@ -97,15 +160,14 @@ class WebSocketManager {
   }
 
   void unregister({required String destination}) {
-    if (_subscription.containsKey(destination)) {
-      if (_subscription[destination]!.unsubscribeFn != null) {
-        _subscription[destination]!.unsubscribeFn!();
-      }
-      _subscription.remove(destination);
-      _log.info('Unsubscribe realtime channel: $destination');
-      if (_subscription.isEmpty) {
-        deactivate();
-      }
+    // 맵에서 먼저 제거해, 진행 중일 수 있는 onConnect 재구독 루프가 이 destination을
+    // 되살리지 못하게 한다.
+    final sub = _subscription.remove(destination);
+    if (sub == null) return;
+    _unsubscribe(sub);
+    _log.info('Unsubscribe realtime channel: $destination');
+    if (_subscription.isEmpty) {
+      deactivate();
     }
   }
 
@@ -162,13 +224,38 @@ class WebSocketManager {
         _intentionalClose = false;
         _reconnectTimer?.cancel();
         _backOff = 200;
+        final generation = _generation;
         _log.info('Realtime server connected (restoring ${_subscription.length} subscriptions)');
-        for (var sub in _subscription.values) {
-          sub.unsubscribeFn = await _subscribe(
-            destination: sub.destination,
-            callback: sub.callback,
-            region: sub.region,
-          );
+        // 루프 본문에 await가 있어, 스냅샷 없이 _subscription.values를 그대로 순회하면
+        // 그 사이 register/unregister가 맵을 바꿀 때 ConcurrentModificationError가 난다.
+        for (final sub in _subscription.values.toList(growable: false)) {
+          if (generation != _generation) break; // 순회 도중 재연결로 세대가 바뀜
+          if (!identical(_subscription[sub.destination], sub)) continue; // 그 사이 해제·재등록됨
+          if (sub.generation == generation) continue; // register()가 이미 이 세대로 구독을 마쳤다
+
+          void Function({Map<String, String>? unsubscribeHeaders})? fn;
+          try {
+            fn = await _subscribe(
+              destination: sub.destination,
+              callback: sub.callback,
+              region: sub.region,
+            );
+          } catch (e) {
+            _log.fine('Failed to restore ${sub.destination}: $e');
+            continue;
+          }
+          if (fn == null) continue;
+
+          if (generation != _generation || !identical(_subscription[sub.destination], sub)) {
+            if (generation == _generation) {
+              try {
+                fn();
+              } catch (_) {}
+            }
+            continue;
+          }
+          sub.unsubscribeFn = fn;
+          sub.generation = generation;
         }
       },
     );
@@ -180,6 +267,9 @@ class _Subscription {
   BDORegion? region;
   void Function(StompFrame message) callback;
   void Function({Map<String, String>? unsubscribeHeaders})? unsubscribeFn;
+
+  /// [unsubscribeFn]이 만들어진 클라이언트 세대. -1은 아직 구독 전(또는 해제됨).
+  int generation = -1;
 
   _Subscription({
     required this.destination,

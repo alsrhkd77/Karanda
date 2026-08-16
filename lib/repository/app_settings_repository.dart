@@ -14,12 +14,17 @@ import 'package:rxdart/rxdart.dart';
 final _log = Logger('settings');
 
 class AppSettingsRepository {
+  /// 창 이동·리사이즈는 드래그 중 초당 수십 회 emit될 수 있다. 매번 저장하지 않고
+  /// 조용해질 때까지 기다렸다가 한 번만 저장한다.
+  static const Duration _saveDebounce = Duration(milliseconds: 500);
+
   late final AppSettingsDataSource _settingsDataSource;
   final _settings = BehaviorSubject<AppSettings>();
+  Timer? _saveTimer;
 
   AppSettingsRepository({required AppSettingsDataSource settingsDataSource})
       : _settingsDataSource = settingsDataSource {
-    settingsStream.listen(_saveSettings);
+    settingsStream.listen(_scheduleSave);
   }
 
   BDORegion? get region => _settings.valueOrNull?.region;
@@ -85,16 +90,22 @@ class AppSettingsRepository {
     }
   }
 
+  void _scheduleSave(AppSettings snapshot) {
+    _saveTimer?.cancel();
+    _saveTimer = Timer(_saveDebounce, () => _saveSettings(snapshot));
+  }
+
   Future<void> _saveSettings(AppSettings snapshot) async {
     await _settingsDataSource.save(snapshot);
   }
 
   /// 현재 설정이 저장소에 확실히 반영될 때까지 기다린다.
   ///
-  /// 평소 저장은 [settingsStream] 구독자([_saveSettings])가 fire-and-forget으로 처리하므로,
-  /// 저장이 끝나기 전에 프로세스가 종료되면 직전 변경(테마·지역·창 크기)이 유실된다.
-  /// 종료 직전에 한 번 더 저장해(멱등) 완료를 보장한다.
+  /// 평소 저장은 디바운스된 뒤 fire-and-forget으로 처리하므로, 저장이 끝나기 전에
+  /// 프로세스가 종료되면 직전 변경(테마·지역·창 크기)이 유실된다.
+  /// 종료 직전에 대기 중인 저장을 취소하고 한 번 더 저장해(멱등) 완료를 보장한다.
   Future<void> flush() async {
+    _saveTimer?.cancel();
     if (_settings.hasValue) {
       await _saveSettings(_settings.value);
     }

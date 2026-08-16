@@ -1,4 +1,4 @@
-#include <flutter/dart_project.h>
+﻿#include <flutter/dart_project.h>
 #include <flutter/flutter_view_controller.h>
 #include <windows.h>
 
@@ -27,7 +27,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(project);
   Win32Window::Point origin(10, 10);
   Win32Window::Size size(1280, 720);
-  if (!window.Create(L"karanda", origin, size)) {
+  // Dart 쪽 WindowOptions(title: "Karanda")와 대소문자까지 통일한다.
+  // win32_window.cpp의 단일 인스턴스 가드가 이 제목으로 기존 창을 찾는다
+  // (FindWindow의 제목 비교가 대소문자를 무시해 지금까지는 우연히 맞았다).
+  if (!window.Create(L"Karanda", origin, size)) {
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);

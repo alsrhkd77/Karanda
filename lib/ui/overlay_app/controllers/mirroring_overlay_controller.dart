@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer' as developer;
 
 import 'package:flutter/services.dart';
 import 'package:flutter_box_transform/flutter_box_transform.dart';
@@ -11,6 +10,10 @@ import 'package:karanda/model/overlay_settings.dart';
 import 'package:karanda/ui/overlay_app/controllers/overlay_widget_controller.dart';
 import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
 import 'package:karanda/utils/window_mirror/window_mirror.dart';
+import 'package:logging/logging.dart';
+
+/// 미러링 오버레이 운영 로그.
+final _log = Logger('mirroring');
 
 /// 미러링 오버레이 컨트롤러.
 /// DWM 썸네일의 등록/갱신/해제를 담당하며, 박스 rect(논리 픽셀)를 물리 픽셀로
@@ -59,8 +62,7 @@ class MirroringOverlayController extends OverlayWidgetController {
       final data = jsonDecode(call.arguments);
       _setSource(data["sourceHandle"] ?? 0);
     } catch (e, s) {
-      developer.log("Failed to parse mirroring source message",
-          name: "mirroring", error: e, stackTrace: s);
+      _log.warning('Failed to parse mirroring source message', e, s);
     }
   }
 
@@ -77,8 +79,7 @@ class MirroringOverlayController extends OverlayWidgetController {
         _thumbnail =
             _mirror.registerThumbnail(destination: destination, source: handle);
         if (_thumbnail == 0) {
-          developer.log("Failed to register mirroring thumbnail",
-              name: "mirroring");
+          _log.warning('Failed to register mirroring thumbnail');
         }
       }
     }
@@ -117,6 +118,20 @@ class MirroringOverlayController extends OverlayWidgetController {
 
   void _syncThumbnail() {
     if (_thumbnail == 0) return;
+
+    // 미러링 대상 프로그램이 닫히면 HWND가 무효화된다. 여기서 정리하지 않으면 DWM이
+    // 이전 rcSource를 유지한 채 죽은 썸네일이 남고, HWND가 재사용될 경우 엉뚱한 창(최악의
+    // 경우 오버레이 자기 자신)을 미러링하게 될 수 있다.
+    // notifyListeners()가 이 메서드를 부르므로, 여기서 notifyListeners()를 다시 호출하면
+    // 무한 재귀가 된다 — 상태만 정리하고 반환한다.
+    if (!_mirror.isWindowValid(_sourceHandle)) {
+      _mirror.unregisterThumbnail(_thumbnail);
+      _thumbnail = 0;
+      _sourceHandle = 0;
+      _log.info('Mirroring source window closed');
+      return;
+    }
+
     final rect = boxController.rect;
     _mirror.updateThumbnail(
       _thumbnail,

@@ -29,9 +29,16 @@ class WorldBossService {
   final AppNotificationRepository _notificationRepository;
   final OverlayRepository _overlayRepository;
   List<WorldBossSchedule> schedule = [];
-  final _currentSchedule = BehaviorSubject<WorldBossScheduleSet>();
+
+  /// 표시할 스케줄이 없는 상태(예: 사용자가 보스를 전부 제외)를 null로 표현한다.
+  /// 예외를 던지는 대신 이 상태를 정상 값으로 다루어야, 500ms 타이머([_checkBossSpawn])가
+  /// 낡은 값을 보고 무한히 재시도하는 것을 막을 수 있다.
+  final _currentSchedule = BehaviorSubject<WorldBossScheduleSet?>();
   final List<int> notified = [];
   bool spawned = false; //current boss spawn status
+
+  /// "스케줄 없음" 상태 진입 로그를 1회만 남기기 위한 플래그.
+  bool _scheduleEmptyLogged = false;
 
   WorldBossService({
     required AppSettingsRepository settingsRepository,
@@ -56,7 +63,7 @@ class WorldBossService {
     _worldBossRepository.getSettings();
   }
 
-  Stream<WorldBossScheduleSet> get currentSchedule => _currentSchedule.stream;
+  Stream<WorldBossScheduleSet?> get currentSchedule => _currentSchedule.stream;
 
   Stream<WorldBossSettings> get settingsStream =>
       _worldBossRepository.settingsStream;
@@ -91,16 +98,20 @@ class WorldBossService {
         result[index].bosses.add(boss);
       }
     }
-    /* 서머타임 체크 */
+    /* 서머타임 체크
+     * 타임테이블 데이터는 표준시(NA=PST/UTC-8, EU=CET/UTC+1) 기준으로 저장돼 있고,
+     * 게임은 서머타임 기간에도 로컬 벽시계 시각을 고정 유지한다. 따라서 서머타임 기간의
+     * 실제 UTC 스폰 시각은 저장된 표준시 기준 UTC보다 1시간 이르다 — 빼야 한다.
+     * (2026-08-15 NA 가모스 실측: 저장값 20:00 UTC, 실제 스폰 약 19:00 UTC로 확인.)
+     * DateTime은 불변이라 반환값을 반드시 재대입해야 한다.
+     * 지역은 그룹마다 바뀌지 않으므로(한 번에 한 지역만 조회) break 없이 전원을 검사한다. */
     for (final value in result) {
       if (value.bosses.first.region == BDORegion.NA &&
           value.spawnTime.isInPDT) {
-        value.spawnTime.add(const Duration(hours: 1));
+        value.spawnTime = value.spawnTime.subtract(const Duration(hours: 1));
       } else if (value.bosses.first.region == BDORegion.EU &&
           value.spawnTime.isInCEST) {
-        value.spawnTime.add(const Duration(hours: 1));
-      } else {
-        break;
+        value.spawnTime = value.spawnTime.subtract(const Duration(hours: 1));
       }
     }
     result.sort(_sortSchedule);
@@ -108,30 +119,34 @@ class WorldBossService {
   }
 
   void _checkBossSpawn(DateTime now) {
-    if (_currentSchedule.valueOrNull != null &&
-        _worldBossRepository.settings != null) {
-      final notificationTime =
-          _worldBossRepository.settings?.notificationTime.toList() ?? [];
-      final current = _currentSchedule.value.current;
-      final diff = current.spawnTime.difference(now);
-      if (diff.inSeconds <= -60) {
-        _updateNextBoss();
-      } else if (diff.inSeconds < 0 && !spawned) {
-        spawned = true;
-        _alertSpawn(
-            current.activatedBosses.map((boss) => boss.name.tr()).join(", "));
-      } else if (notificationTime.contains(diff.inMinutes + 1) &&
-          !notified.contains(diff.inMinutes)) {
-        notified.add(diff.inMinutes);
-        _alertTimeRemaining(
-          current.activatedBosses.map((boss) => boss.name.tr()).join(", "),
-          diff.inMinutes + 1,
-        );
-      }
+    final currentSet = _currentSchedule.valueOrNull;
+    if (currentSet == null || _worldBossRepository.settings == null) return;
+
+    final notificationTime =
+        _worldBossRepository.settings?.notificationTime.toList() ?? [];
+    final current = currentSet.current;
+    final diff = current.spawnTime.difference(now);
+    if (diff.inSeconds <= -60) {
+      _updateNextBoss();
+    } else if (diff.inSeconds < 0 && !spawned) {
+      spawned = true;
+      _alertSpawn(
+          current.activatedBosses.map((boss) => boss.name.tr()).join(", "));
+    } else if (notificationTime.contains(diff.inMinutes + 1) &&
+        !notified.contains(diff.inMinutes)) {
+      notified.add(diff.inMinutes);
+      _alertTimeRemaining(
+        current.activatedBosses.map((boss) => boss.name.tr()).join(", "),
+        diff.inMinutes + 1,
+      );
     }
   }
 
   void _updateNextBoss() {
+    // 표시할 그룹이 2개 미만이면 회전할 대상이 없다. 여기서 막지 않으면
+    // removeAt(0)/schedule[1]에서 RangeError가 나고, 그 예외 때문에 _currentSchedule이
+    // 낡은 값으로 남아 다음 틱에도 같은 조건이 반복되는 무한 루프가 된다.
+    if (schedule.length < 2) return;
     notified.clear();
     spawned = false;
     final data = schedule.removeAt(0);
@@ -149,6 +164,18 @@ class WorldBossService {
   }
 
   void _reflectUpdatedSchedules() {
+    // 사용자가 보스를 전부(또는 거의 전부) 제외하면 표시할 그룹이 2개 미만일 수 있다.
+    // 이는 예외 상황이 아니라 "표시할 보스 없음"이라는 정상 상태이므로 null로 표현한다.
+    if (schedule.length < 2) {
+      if (!_scheduleEmptyLogged) {
+        _scheduleEmptyLogged = true;
+        _log.info('World boss schedule is empty (all bosses excluded)');
+      }
+      _currentSchedule.sink.add(null);
+      return;
+    }
+    _scheduleEmptyLogged = false;
+
     final data = WorldBossScheduleSet(
       previous: schedule.last.toPreviousSchedule(),
       current: schedule.first,

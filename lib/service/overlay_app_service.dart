@@ -17,6 +17,10 @@ import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class OverlayAppService {
+  /// 콜백이 아직 등록되지 않은 메시지를 담아두는 버퍼의 상한.
+  /// 정상 경로에서는 알려진 메서드만 오가므로 여기 걸릴 일이 없지만, 방어적으로 둔다.
+  static const int _maxUnhandledMessages = 32;
+
   final OverlayAppRepository _appRepository;
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey;
   final Map<String, void Function(MethodCall)> _callbacks = {};
@@ -57,7 +61,10 @@ class OverlayAppService {
     required void Function(MethodCall) callback,
   }) {
     _callbacks[key] = callback;
-    final unhandled = _unhandledMessages.where((msg) => msg.method == key);
+    // 재생 후 버퍼에서 제거한다. 그렇지 않으면 같은 메시지가 계속 남아 있다가 이 키가
+    // 나중에(예: 오버레이 위젯 재마운트) 다시 등록될 때마다 중복 재생된다.
+    final unhandled = _unhandledMessages.where((msg) => msg.method == key).toList();
+    _unhandledMessages.removeWhere((msg) => msg.method == key);
     for (MethodCall msg in unhandled) {
       callback(msg);
     }
@@ -81,6 +88,9 @@ class OverlayAppService {
       _callbacks[value.method]!(value);
     } else {
       _unhandledMessages.add(value);
+      if (_unhandledMessages.length > _maxUnhandledMessages) {
+        _unhandledMessages.removeAt(0);
+      }
     }
   }
 

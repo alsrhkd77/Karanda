@@ -44,8 +44,10 @@ class OperationLogController extends ChangeNotifier {
     if (locale != null) {
       buffer.writeln('locale  : $locale');
     }
+    final events = _records.fold<int>(0, (sum, r) => sum + r.repeatCount);
     buffer
       ..writeln('records : ${_records.length}')
+      ..writeln('events  : $events')
       ..writeln();
 
     for (final record in _records) {

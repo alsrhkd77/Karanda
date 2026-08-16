@@ -39,6 +39,17 @@ abstract class OverlayWidgetController extends ChangeNotifier {
 
   bool get show => editMode ? true : activated;
 
+  /// 위젯이 보이지 않으면 알리지 않는다.
+  ///
+  /// 전체화면 오버레이 창은 topmost 레이어드 창이라, 비활성 위젯이라도 프레임을
+  /// present하면 DWM이 화면 전체를 다시 합성한다. 상태는 갱신하되(호출부에서 계속 값을
+  /// 바꿔둔다) 화면에 보이지 않을 때는 재빌드를 요청하지 않아, 오버레이를 하나도 켜지
+  /// 않은 사용자에게도 주기적 틱(시계 등)이 전체화면 합성을 유발하는 것을 막는다.
+  void notifyIfVisible() {
+    if (!show) return;
+    notifyListeners();
+  }
+
   Future<void> _loadBoxRect() async {
     //final rect = kDebugMode ? null : await service.loadRect(key);
     // final rect = await service.loadRect(key);

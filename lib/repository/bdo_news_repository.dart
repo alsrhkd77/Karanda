@@ -125,8 +125,8 @@ class BdoNewsRepository {
   }
 
   /// LAB destination 구독 — 리전 무관이므로 앱 실행 중 1회만 등록한다.
-  /// (WebSocketManager는 같은 destination 재등록 시 이전 구독을 해제하지 않으므로
-  /// 리전 변경 때마다 재등록하면 브로커에 구독이 누적된다.)
+  /// (WebSocketManager.register는 같은 destination 재등록 시 이전 구독을 자동으로 해제하지만,
+  /// 리전 무관 채널을 리전 변경마다 재등록하면 불필요한 UNSUBSCRIBE/SUBSCRIBE 왕복만 생긴다.)
   void connectLabNewsChannel() {
     _webSocketManager.register(
       destination: "/bdo-news/LAB",

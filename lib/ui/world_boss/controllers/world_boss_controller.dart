@@ -15,7 +15,7 @@ class WorldBossController extends ChangeNotifier {
     _schedule = _worldBossService.currentSchedule.listen(_updateSchedule);
   }
 
-  void _updateSchedule(WorldBossScheduleSet value){
+  void _updateSchedule(WorldBossScheduleSet? value){
     schedule = value;
     notifyListeners();
   }

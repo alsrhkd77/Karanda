@@ -5,8 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:karanda/model/overlay_settings.dart';
 import 'package:karanda/repository/time_repository.dart';
 import 'package:karanda/ui/overlay_app/controllers/overlay_widget_controller.dart';
-import 'dart:developer' as developer;
+import 'package:logging/logging.dart';
 import '../../../model/world_boss_schedule.dart';
+
+/// 월드보스 오버레이 운영 로그.
+final _log = Logger('world_boss');
 
 class WorldBossOverlayController extends OverlayWidgetController {
   final TimeRepository _timeRepository;
@@ -33,9 +36,8 @@ class WorldBossOverlayController extends OverlayWidgetController {
     try {
       schedule = WorldBossSchedule.fromJson(jsonDecode(call.arguments));
       notifyListeners();
-    } catch (e) {
-      developer.log(
-          "Failed to parse [WorldBossSchedule] message\n${call.arguments}");
+    } catch (e, s) {
+      _log.warning('Failed to parse world boss schedule message', e, s);
     }
   }
 
@@ -47,7 +49,7 @@ class WorldBossOverlayController extends OverlayWidgetController {
   void _onTimeUpdate(DateTime value) {
     if (schedule != null) {
       timeRemaining = schedule!.spawnTime.difference(value);
-      notifyListeners();
+      notifyIfVisible();
     }
   }
 

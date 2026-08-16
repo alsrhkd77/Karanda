@@ -65,15 +65,24 @@ class OverlayRepository {
 
   Future<void> startOverlay(MonitorDevice monitorDevice) async {
     if (kIsWeb || !Platform.isWindows) return;
-    final windowController = await _overlayApi.startOverlay();
-    await Future.delayed(const Duration(seconds: 1));
-    _overlayApi.sendToOverlay(
-      windowController: windowController,
-      method: "set window",
-      data: jsonEncode(monitorDevice.toJson()),
-    );
-    await Future.delayed(const Duration(seconds: 1));
-    _completer.complete(windowController);
+    try {
+      final windowController = await _overlayApi.startOverlay();
+      await Future.delayed(const Duration(seconds: 1));
+      _overlayApi.sendToOverlay(
+        windowController: windowController,
+        method: "set window",
+        data: jsonEncode(monitorDevice.toJson()),
+      );
+      await Future.delayed(const Duration(seconds: 1));
+      _completer.complete(windowController);
+    } catch (e, s) {
+      // _completer를 미완료로 남기면 이후 모든 sendToOverlay 호출이 30초 타임아웃을
+      // 반복하며 리스너를 누적시킨다. 실패로 완료해 즉시 실패하도록 만든다.
+      if (!_completer.isCompleted) {
+        _completer.completeError(e, s);
+      }
+      rethrow;
+    }
   }
 
   /// 앱 종료·업데이트 시 오버레이 자식 창(별도 엔진)을 정리한다.
@@ -93,15 +102,24 @@ class OverlayRepository {
     }
   }
 
+  /// 오버레이가 시작되지 않았거나 시작에 실패했으면 조용히 포기한다.
+  ///
+  /// 호출부 다수(월드보스 스케줄 갱신, 알림 발생 등)가 결과를 기다리지 않는
+  /// fire-and-forget 호출이다. 여기서 삼키지 않으면 미처리 비동기 예외로 번져 운영
+  /// 로그를 폭주시킨다. 실패는 고빈도로 반복될 수 있어 fine으로만 남긴다.
   Future<void> sendToOverlay({required String method, String data = ""}) async {
     if (kIsWeb || !Platform.isWindows) return;
-    final windowController =
-        await _windowController.timeout(const Duration(seconds: 30));
-    _overlayApi.sendToOverlay(
-      windowController: windowController,
-      method: method,
-      data: data,
-    );
+    try {
+      final windowController =
+          await _windowController.timeout(const Duration(seconds: 30));
+      _overlayApi.sendToOverlay(
+        windowController: windowController,
+        method: method,
+        data: data,
+      );
+    } catch (e) {
+      _log.fine('Overlay is not available for $method: $e');
+    }
   }
 
   Future<void> switchEditMode() async {

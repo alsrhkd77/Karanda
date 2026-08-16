@@ -1,4 +1,4 @@
-#include "win32_window.h"
+﻿#include "win32_window.h"
 
 #include <dwmapi.h>
 #include <flutter_windows.h>
@@ -124,31 +124,37 @@ bool Win32Window::Create(const std::wstring& title,
                          const Point& origin,
                          const Size& size) {
   #if(!_DEBUG)
-  HANDLE hMutexHandle=CreateMutex(NULL, TRUE, L"karanda.win32.mutex");
-  HWND handle=FindWindowA("FLUTTER_RUNNER_WIN32_WINDOW", "Karanda");
+  // GetLastError()는 그 다음에 실행되는 Win32 API 호출로 덮어써진다.
+  // CreateMutex 직후 바로 캡처해야 ERROR_ALREADY_EXISTS 판정이 안전하다.
+  HANDLE hMutexHandle = CreateMutex(NULL, TRUE, L"karanda.win32.mutex");
+  DWORD mutexError = GetLastError();
 
-  if (GetLastError() == ERROR_ALREADY_EXISTS)
+  if (mutexError == ERROR_ALREADY_EXISTS)
   {
-
-    WINDOWPLACEMENT place = { sizeof(WINDOWPLACEMENT) };
-    GetWindowPlacement(handle, &place);
-    switch(place.showCmd)
+    HWND handle = FindWindowA("FLUTTER_RUNNER_WIN32_WINDOW", "Karanda");
+    if (handle)
     {
-        case SW_SHOWMAXIMIZED:
-            ShowWindow(handle, SW_SHOWMAXIMIZED);
-            break;
-        case SW_SHOWMINIMIZED:
-            ShowWindow(handle, SW_RESTORE);
-            break;
-        default:
-            ShowWindow(handle, SW_NORMAL);
-            break;
+      WINDOWPLACEMENT place = { sizeof(WINDOWPLACEMENT) };
+      GetWindowPlacement(handle, &place);
+      switch(place.showCmd)
+      {
+          case SW_SHOWMAXIMIZED:
+              ShowWindow(handle, SW_SHOWMAXIMIZED);
+              break;
+          case SW_SHOWMINIMIZED:
+              ShowWindow(handle, SW_RESTORE);
+              break;
+          default:
+              ShowWindow(handle, SW_NORMAL);
+              break;
+      }
+      SetWindowPos(handle, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+      SetForegroundWindow(handle);
     }
-    SetWindowPos(0, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-    SetForegroundWindow(handle);
+    if (hMutexHandle) CloseHandle(hMutexHandle);
     return 0;
   }
-  ReleaseMutex(hMutexHandle);
+  if (hMutexHandle) ReleaseMutex(hMutexHandle);
   #endif
 
   Destroy();

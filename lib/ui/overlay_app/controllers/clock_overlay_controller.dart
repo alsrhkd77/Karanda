@@ -21,7 +21,7 @@ class ClockOverlayController extends OverlayWidgetController {
 
   void _onTimeUpdate(DateTime value) {
     now = value;
-    notifyListeners();
+    notifyIfVisible();
   }
 
   @override
