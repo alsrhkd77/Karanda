@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,8 +12,13 @@ import 'package:karanda/ui/core/theme/app_theme.dart';
 import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/snack_bar_content.dart';
 import 'package:karanda/utils/overlay_window_utils/overlay_window_utils.dart';
+import 'package:logging/logging.dart';
 
 import 'package:rxdart/rxdart.dart';
+
+/// 오버레이 엔진 로그. 이 엔진의 로그는 운영 로그로 저장되지 않으므로(초기화가 메인 진입
+/// 전용) 사용자에게 보여야 할 내용은 메인으로 보고해 기록한다.
+final _log = Logger('overlay app');
 
 class OverlayAppService {
   /// 콜백이 아직 등록되지 않은 메시지를 담아두는 버퍼의 상한.
@@ -105,10 +109,26 @@ class OverlayAppService {
   void _setWindow(MethodCall value) {
     final display = MonitorDevice.fromJson(jsonDecode(value.arguments));
     _loading.sink.add(true);
-    OverlayWindowUtils().setOverlayMode(rect: display.rect);
+    final rect = display.rect;
+    final applied = OverlayWindowUtils().setOverlayMode(rect: rect);
     Future.delayed(
       const Duration(milliseconds: 300),
-      () => _loading.sink.add(false),
+      () async {
+        /* 창 이동 직후가 아니라 잠시 뒤에 처리되는 DPI 변경까지 흡수한 뒤 실제 영역을 보고한다.
+           기존 로딩 해제 지연을 그대로 재사용해 별도 타이머를 만들지 않는다. */
+        final verified = OverlayWindowUtils().ensureOverlayBounds(rect);
+        _loading.sink.add(false);
+        try {
+          await _appRepository.reportWindowBounds(
+            requested: rect,
+            actual: verified.actual,
+            corrected: applied.corrected || verified.corrected,
+          );
+        } catch (e) {
+          /* 보고는 진단용이다. 실패해도 오버레이 동작에는 영향이 없으므로 삼킨다. */
+          _log.fine('Failed to report window bounds: $e');
+        }
+      },
     );
   }
 

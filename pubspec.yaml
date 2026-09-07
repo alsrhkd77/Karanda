@@ -60,7 +60,6 @@ dependencies:
   go_router: ^16.0.0
   convert: ^3.1.1
   window_manager: ^0.5.1
-  screen_retriever: ^0.2.0
   dart_jsonwebtoken: ^3.2.0
   win32: ^5.5.1
   markdown_widget: ^2.3.2+8

@@ -49,24 +49,62 @@ class OverlayRepository {
       case ("position"):
         final data = jsonDecode(call.arguments);
         final key = OverlayFeatures.values.byName(data["feature"]);
-        final rect = Rect.fromLTWH(
-          data["rect"]["left"],
-          data["rect"]["top"],
-          data["rect"]["width"],
-          data["rect"]["height"],
-        );
-        final snapshot = _settings.value..position[key] = rect;
+        final snapshot = _settings.value..position[key] = _rectFromJson(data["rect"]);
         _settings.sink.add(snapshot);
+        break;
+      case ("window bounds"):
+        _logWindowBounds(jsonDecode(call.arguments));
         break;
       default:
     }
     //_message.sink.add(call);
   }
 
+  Rect _rectFromJson(Map json) {
+    return Rect.fromLTWH(
+      (json["left"] as num).toDouble(),
+      (json["top"] as num).toDouble(),
+      (json["width"] as num).toDouble(),
+      (json["height"] as num).toDouble(),
+    );
+  }
+
+  String _describe(Rect rect) {
+    return '${rect.width.toInt()}x${rect.height.toInt()} '
+        'at ${rect.left.toInt()},${rect.top.toInt()}';
+  }
+
+  /// 오버레이 창이 **실제로** 배치된 영역 보고(오버레이 엔진 → 메인).
+  ///
+  /// 오버레이 엔진의 로그는 운영 로그로 저장되지 않으므로(초기화가 메인 진입에서만 일어난다)
+  /// 메인에서 기록한다. 요청값만 남기면 이번처럼 "요청은 맞았는데 창이 작다"를 구분할 수 없다.
+  void _logWindowBounds(Map data) {
+    final requested = _rectFromJson(data["requested"]);
+    final actual =
+        data["actual"] == null ? null : _rectFromJson(data["actual"]);
+    if (actual == null) {
+      _log.warning(
+          'Overlay window bounds unavailable (requested ${_describe(requested)})');
+      return;
+    }
+    if (actual.width.round() != requested.width.round() ||
+        actual.height.round() != requested.height.round() ||
+        actual.left.round() != requested.left.round() ||
+        actual.top.round() != requested.top.round()) {
+      _log.warning('Overlay window bounds mismatch '
+          '(requested ${_describe(requested)}, actual ${_describe(actual)})');
+      return;
+    }
+    /* corrected: 창이 한 번 어긋났다가(모니터 간 DPI 전환 등) 재배치로 바로잡힌 경우 */
+    _log.info(data["corrected"] == true
+        ? 'Overlay window placed after correction (${_describe(actual)})'
+        : 'Overlay window placed (${_describe(actual)})');
+  }
+
   Future<void> startOverlay(MonitorDevice monitorDevice) async {
     if (kIsWeb || !Platform.isWindows) return;
     try {
-      final windowController = await _overlayApi.startOverlay();
+      final windowController = await _overlayApi.startOverlay(monitorDevice);
       await Future.delayed(const Duration(seconds: 1));
       _overlayApi.sendToOverlay(
         windowController: windowController,
@@ -212,15 +250,35 @@ class OverlayRepository {
 
   Future<OverlaySettings> loadSettings() async {
     final settings = await _overlaySettingsDataSource.loadSettings();
-    final display = await OverlayWindowUtils().getAllMonitorDevices();
-    if (display.where((device) => device == settings.monitorDevice).isEmpty) {
-      settings.monitorDevice =
-          await OverlayWindowUtils().getPrimaryMonitorDevice();
-    }
-    _log.info('Overlay initialized (displays: ${display.length}, '
-        'monitor: ${settings.monitorDevice.rect.width.toInt()}x${settings.monitorDevice.rect.height.toInt()})');
+    final devices = await OverlayWindowUtils().getAllMonitorDevices();
+    settings.monitorDevice =
+        await _resolveMonitor(settings.monitorDevice, devices);
+    _log.info('Overlay initialized (displays: ${devices.length})');
     _settings.sink.add(settings);
     return settings;
+  }
+
+  /// 저장된 모니터를 현재 연결된 모니터 목록으로 **재해석**한다.
+  ///
+  /// 저장된 rect는 신뢰하지 않는다 — 구버전은 논리 픽셀로 저장했고, 해상도·배율 변경으로도
+  /// 값이 바뀐다. 식별자로 같은 모니터를 찾아 rect를 최신 값으로 바꿔주므로 별도 마이그레이션이
+  /// 필요 없고, 배율만 바꾼 사용자가 주 모니터로 되돌아가지도 않는다.
+  Future<MonitorDevice> _resolveMonitor(
+    MonitorDevice saved,
+    List<MonitorDevice> devices,
+  ) async {
+    for (final device in devices) {
+      if (device == saved) return device;
+    }
+    /* 모니터 배치 순서가 바뀌면 name(\\.\DISPLAYn)이 달라진다. deviceID로 유일하게 특정될
+       때만 채택하고, 같은 식별자가 여럿이면 엉뚱한 모니터를 고르느니 주 모니터로 간다. */
+    final sameId =
+        devices.where((device) => device.deviceID == saved.deviceID).toList();
+    if (sameId.length == 1 && sameId.first.deviceID.isNotEmpty) {
+      return sameId.first;
+    }
+    _log.info('Saved overlay display not found; using primary display');
+    return await OverlayWindowUtils().getPrimaryMonitorDevice();
   }
 
   Future<void> saveSettings(OverlaySettings value) async {

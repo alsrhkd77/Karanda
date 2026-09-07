@@ -6,6 +6,10 @@ abstract class OverlayWindowUtilsPlatform {
 
   void setOverlay(int hWnd, Rect rect) => throw UnsupportedError('Platform unsupported.');
 
+  void applyBounds(int hWnd, Rect rect) => throw UnsupportedError('Platform unsupported.');
+
+  Rect? getWindowBounds(int hWnd) => throw UnsupportedError('Platform unsupported.');
+
   void enableClick(int hWnd) => throw UnsupportedError('Platform unsupported.');
 
   void disableClick(int hWnd) => throw UnsupportedError('Platform unsupported.');
