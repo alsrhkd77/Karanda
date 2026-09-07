@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:karanda/common/http_response_extension.dart';
+import 'package:karanda/utils/extension/http_response_extension.dart';
 import 'package:karanda/model/bdo_family.dart';
 import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/utils/http_status.dart';

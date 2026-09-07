@@ -4,7 +4,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:karanda/model/bartering/bartering.dart';
+import 'package:karanda/ui/bartering/bartering_constants.dart';
 import 'package:karanda/ui/bartering/controller/bartering_weight_controller.dart';
+import 'package:karanda/ui/core/theme/app_colors.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:karanda/ui/core/ui/page_base.dart';
 import 'package:karanda/utils/extension/double_extension.dart';
@@ -30,7 +32,7 @@ class SimpleBarteringWeightTab extends StatelessWidget {
               return LoadingIndicator();
             }
             final width = MediaQuery.sizeOf(context).width;
-            final isDense = width < 400;
+            final isDense = width < Dimens.breakpointExtraNarrow;
             return PageBase(
               width: width,
               children: [
@@ -43,7 +45,7 @@ class SimpleBarteringWeightTab extends StatelessWidget {
                       DropdownMenu<ShipProfile>(
                         label:
                             Text(context.tr("bartering.settings.shipProfiles")),
-                        width: width < 600
+                        width: width < Dimens.breakpointMedium
                             ? width - 16.0 - (Dimens.pagePaddingValue * 2)
                             : null,
                         initialSelection: controller.settings!.lastSelectedShip,
@@ -155,7 +157,7 @@ class _WeightTile extends StatelessWidget {
                       keyboardType: const TextInputType.numberWithOptions(),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
-                            RegExp(r'^(\d{0,3})')),
+                            RegExp('^(\d{0,${BarteringConstants.countInputLength}})')),
                       ],
                       textAlignVertical: TextAlignVertical.top,
                       decoration: InputDecoration(
@@ -207,27 +209,25 @@ class _PercentIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rate = current / total;
-    final text = (rate * 100).format();
-    MaterialColor color;
-    switch (rate) {
-      case < 0.4:
-        color = Colors.blue;
-      case < 0.8:
-        color = Colors.green;
-      case < 1.0:
-        color = Colors.yellow;
-      case < 1.7:
-        color = Colors.orange;
-      default:
-        color = Colors.red;
+    // 배 프로필의 최대 무게를 비워두면 0으로 저장된다. 그대로 나누면 0/0 = NaN이 되어
+    // LinearPercentIndicator의 `0.0 <= percent <= 1.0` 단언에 걸리므로 먼저 걸러낸다.
+    final double rate;
+    if (total <= 0) {
+      rate = current > 0 ? BarteringConstants.shipOverloadLimit : 0.0;
+    } else {
+      rate = current / total;
     }
+    final text = (rate * 100).format();
+    final color = AppColors.shipLoadColor(
+      rate,
+      BarteringConstants.shipOverloadLimit,
+    );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: LinearPercentIndicator(
         animation: true,
         animationDuration: 500,
-        percent: min(rate / 1.7, 1.0),
+        percent: min(rate / BarteringConstants.shipOverloadLimit, 1.0),
         barRadius: const Radius.circular(4.0),
         progressColor: color,
         animateFromLastPercent: true,

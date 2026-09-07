@@ -5,7 +5,6 @@ import 'package:karanda/data_source/trade_market_data_source.dart';
 import 'package:karanda/data_source/trade_market_template_data_source.dart';
 import 'package:karanda/data_source/web_socket_manager.dart';
 import 'package:karanda/enums/bdo_region.dart';
-import 'package:karanda/model/trade_market_preset_item.dart';
 import 'package:karanda/model/trade_market_price_data.dart';
 import 'package:karanda/model/trade_market_template.dart';
 import 'package:karanda/model/trade_market_wait_item.dart';
@@ -72,8 +71,8 @@ class TradeMarketRepository {
     }
   }
 
-  Future<List<TradeMarketPresetItem>> getPresetData(String key) async {
-    return await _tradeMarketDataSource.getPresetData(key);
+  Future<TradeMarketTemplate> getBuiltInTemplate(String key) async {
+    return await _tradeMarketDataSource.getBuiltInTemplate(key);
   }
 
   Future<List<TradeMarketTemplate>> getTemplates() async {

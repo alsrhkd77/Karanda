@@ -15,6 +15,10 @@ class BDOItemInfoRepository {
   List<BDOItemInfo> get tradeAbleItems =>
       _data.values.where((item) => item.tradeAble).toList();
 
+  /// 거래 불가 아이템을 포함한 전체 목록.
+  /// 템플릿에는 거래소에서 살 수 없는 아이템도 들어가므로 검색 대상이 더 넓다.
+  List<BDOItemInfo> get items => _data.values.toList();
+
   String getName({required String code, required Locale locale}) {
     return _data[code]?.name(locale) ?? "???";
   }

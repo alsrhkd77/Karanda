@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:karanda/common/go_router_extension.dart';
+import 'package:karanda/utils/extension/go_router_extension.dart';
 import 'package:karanda/model/user.dart';
 import 'package:karanda/ui/auth/widgets/auth_info_page.dart';
 import 'package:karanda/ui/auth/widgets/auth_page.dart';
@@ -16,7 +16,7 @@ import 'package:karanda/ui/settings/widget/notification_settings_page.dart';
 import 'package:karanda/ui/settings/widget/push_notification_settings_page.dart';
 import 'package:karanda/utils/external_links.dart';
 import 'package:karanda/utils/launch_url.dart';
-import 'package:karanda/widgets/class_symbol_widget.dart';
+import 'package:karanda/ui/core/ui/class_symbol_widget.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
@@ -146,7 +146,7 @@ class _AccountTile extends StatelessWidget {
           foregroundImage: Image.network(user!.avatar).image,
           backgroundColor: Colors.transparent,
           radius: 12,
-        ) : ClassSymbolWidget(className: user!.family!.mainClass.name),
+        ) : ClassSymbolWidget(bdoClass: user!.family!.mainClass),
         title: Text(user!.family?.familyName ?? user!.username),
         trailing: user?.family == null
             ? null

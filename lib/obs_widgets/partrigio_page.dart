@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:karanda/common/bdo_world_time_notifier.dart';
-import 'package:karanda/common/real_time_notifier.dart';
+import 'package:karanda/obs_widgets/time/bdo_world_time_notifier.dart';
+import 'package:karanda/obs_widgets/time/real_time_notifier.dart';
 import 'package:provider/provider.dart';
 
 class PartrigioPage extends StatelessWidget {

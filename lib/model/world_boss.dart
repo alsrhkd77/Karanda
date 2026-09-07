@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karanda/common/api.dart';
+import 'package:karanda/utils/api_endpoints/karanda_api.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/utils/time_of_day_parser.dart';
 
@@ -24,9 +24,9 @@ class WorldBoss {
     this.end,
   }) {
     if (start != null && end != null) {
-      imagePath = "${Api.worldBossPortrait}/event.png";
+      imagePath = "${KarandaApi.worldBossPortrait}/event.png";
     } else {
-      imagePath = "${Api.worldBossPortrait}/${name.replaceAll(" ", "_")}.png";
+      imagePath = "${KarandaApi.worldBossPortrait}/${name.replaceAll(" ", "_")}.png";
     }
   }
 

@@ -1,1 +1,0 @@
-enum ApplicantStatus { applied, canceled, approved, rejected}

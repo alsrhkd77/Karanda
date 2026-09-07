@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:karanda/model/bartering/bartering.dart';
 import 'package:karanda/model/bartering/ship_profile.dart';
+import 'package:karanda/ui/bartering/bartering_constants.dart';
 
 import '../../../model/bartering/bartering_settings.dart';
 import '../../../repository/bartering_repository.dart';
@@ -42,7 +43,7 @@ class BarteringWeightController extends ChangeNotifier {
   }
 
   void increaseCount(int index) {
-    if (tradeGoods[index].count < 999) {
+    if (tradeGoods[index].count < BarteringConstants.maxCount) {
       final value = tradeGoods[index].count + 1;
       updateCount(index: index, value: value);
     }

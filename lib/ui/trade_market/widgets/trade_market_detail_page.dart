@@ -56,7 +56,8 @@ class TradeMarketDetailPage extends StatelessWidget {
                   title: Text(context.itemName(code)),
                   //subtitle: Text("${context.itemInfo(code).mainCategory} > ${context.itemInfo(code).subCategory}"),
                   trailing: DropdownMenu(
-                    initialSelection: 0,
+                    // 하드코딩된 0이 아니라 실제 선택 상태를 따른다.
+                    initialSelection: controller.selected,
                     dropdownMenuEntries:
                         controller.enhancementLevels.map((level) {
                       return DropdownMenuEntry(
@@ -76,11 +77,16 @@ class TradeMarketDetailPage extends StatelessWidget {
                   enhancementLevel: controller.selected,
                   latest: controller.latest,
                 ),
+                _OrderBook(entries: controller.latest.orderBook),
+                _PeriodSelector(controller: controller),
                 _PriceChart(
                   maxPrice: controller.maxPrice,
                   minPrice: controller.minPrice,
                   midPrice: controller.midPrice,
-                  data: controller.prices.sublist(1),
+                  // 첫 항목(오늘)은 아직 마감되지 않은 값이라 제외한다.
+                  data: controller.pricesInPeriod.length > 1
+                      ? controller.pricesInPeriod.sublist(1)
+                      : const [],
                 ),
               ],
             );
@@ -143,9 +149,142 @@ class _Head extends StatelessWidget {
                     latest.cumulativeVolume.format(),
                     style: textStyle,
                   ),
+                ),
+                // 서버가 주던 값인데 화면에 없었다. 재고만 보면 수요를 알 수 없다.
+                ListTile(
+                  title: Text(context.tr("trade market.buy orders")),
+                  trailing: Text(
+                    latest.buyOrders.format(),
+                    style: textStyle,
+                  ),
                 )
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// 가격대별 판매/구매 주문. 재고 숫자 하나로는 알 수 없는 매물 분포를 보여준다.
+class _OrderBook extends StatelessWidget {
+  final List<TradeMarketOrderBookEntry> entries;
+
+  const _OrderBook({required this.entries});
+
+  @override
+  Widget build(BuildContext context) {
+    if (entries.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    // 주문이 하나도 없는 가격대는 줄만 차지하므로 뺀다.
+    final visible = entries
+        .where((entry) => entry.sellOrders > 0 || entry.buyOrders > 0)
+        .toList();
+    if (visible.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    final scheme = Theme.of(context).colorScheme;
+    final labelStyle = TextTheme.of(context).labelMedium;
+    return Section(
+      title: context.tr("trade market.order book"),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    context.tr("trade market.sell orders"),
+                    style: labelStyle,
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    context.tr("trade market.price"),
+                    style: labelStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    context.tr("trade market.buy orders"),
+                    style: labelStyle,
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            ...visible.map((entry) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          entry.sellOrders == 0
+                              ? "-"
+                              : entry.sellOrders.format(),
+                          style: TextStyle(
+                            color: entry.sellOrders == 0 ? null : scheme.error,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          entry.price.format(),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          entry.buyOrders == 0 ? "-" : entry.buyOrders.format(),
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color:
+                                entry.buyOrders == 0 ? null : scheme.primary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// 차트 기간 선택. 서버가 90일치를 주므로 그 안에서 자른다.
+class _PeriodSelector extends StatelessWidget {
+  final TradeMarketDetailController controller;
+
+  const _PeriodSelector({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SegmentedButton<int>(
+            showSelectedIcon: false,
+            segments: TradeMarketDetailController.periodOptions
+                .map((days) => ButtonSegment(
+                      value: days,
+                      label: Text(context.tr(
+                        "trade market.period days",
+                        args: [days.toString()],
+                      )),
+                    ))
+                .toList(),
+            selected: {controller.period},
+            onSelectionChanged: (selection) =>
+                controller.selectPeriod(selection.first),
           ),
         ],
       ),

@@ -39,21 +39,6 @@ class HomeFeaturesSection extends StatelessWidget {
           icon: FontAwesomeIcons.splotch,
           path: '/lightstone-combination',
         ),
-        /*_Tile(
-          title: '말 성장치 계산기',
-          icon: FontAwesomeIcons.stickerMule,
-          path: '/horse',
-        ),
-        _Tile(
-          title: '시카라키아 아홉문장 계산기',
-          icon: FontAwesomeIcons.calculator,
-          path: '/sycrakea',
-        ),
-        _Tile(
-          title: '요루나키아 보름달이 뜬 밤 계산기',
-          icon: FontAwesomeIcons.calculator,
-          path: '/yolunakea-moon',
-        ),*/
         _Tile(
           title: context.tr("bartering.bartering"),
           icon: FontAwesomeIcons.arrowRightArrowLeft,

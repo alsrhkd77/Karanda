@@ -1,4 +1,0 @@
-enum RecruitMethod {
-  karandaReservation,
-  inGameWhispers
-}

@@ -1,0 +1,1372 @@
+{
+  "_meta": {
+    "description": "생활 숙련도(마스터리) 구간별 효율 테이블. 확률/증가율은 비율(0~1), 개수는 정수.",
+    "source": "커뮤니티 집계 자료(사용자 제공)",
+    "checked at": "2026-08-17",
+    "lookup": "mastery 내림차순. 사용자 숙련도 >= mastery 인 첫 항목을 사용한다.",
+    "alchemy item chance note": "원본 자료는 mastery 2000 초과 구간의 common/special/rare item chance가 비어 있다(0). 0으로 두면 고숙련도에서 과소 계산되므로 2000 구간 값을 그대로 이어 사용한다.",
+    "processing lowest mastery note": "원본 자료의 최저 구간은 mastery 2다. 숙련도 0~2는 같은 효율로 취급하기로 해 최저 행을 0으로 낮췄다."
+  },
+  "cooking": [
+    {
+      "mastery": 3000,
+      "product amount increase": 0.7645,
+      "byproduct amount increase": 0.7645,
+      "rare product amount increase": 0.242,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.8125
+    },
+    {
+      "mastery": 2950,
+      "product amount increase": 0.7568,
+      "byproduct amount increase": 0.7568,
+      "rare product amount increase": 0.2396,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.794
+    },
+    {
+      "mastery": 2900,
+      "product amount increase": 0.7492,
+      "byproduct amount increase": 0.7492,
+      "rare product amount increase": 0.2372,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.7759
+    },
+    {
+      "mastery": 2850,
+      "product amount increase": 0.7415,
+      "byproduct amount increase": 0.7415,
+      "rare product amount increase": 0.2347,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.7577
+    },
+    {
+      "mastery": 2800,
+      "product amount increase": 0.7339,
+      "byproduct amount increase": 0.7339,
+      "rare product amount increase": 0.2323,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.7396
+    },
+    {
+      "mastery": 2750,
+      "product amount increase": 0.7262,
+      "byproduct amount increase": 0.7262,
+      "rare product amount increase": 0.2299,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.7215
+    },
+    {
+      "mastery": 2700,
+      "product amount increase": 0.7186,
+      "byproduct amount increase": 0.7186,
+      "rare product amount increase": 0.2275,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.7034
+    },
+    {
+      "mastery": 2650,
+      "product amount increase": 0.7109,
+      "byproduct amount increase": 0.7109,
+      "rare product amount increase": 0.2251,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.6852
+    },
+    {
+      "mastery": 2600,
+      "product amount increase": 0.7033,
+      "byproduct amount increase": 0.7033,
+      "rare product amount increase": 0.2226,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.6671
+    },
+    {
+      "mastery": 2550,
+      "product amount increase": 0.6957,
+      "byproduct amount increase": 0.6957,
+      "rare product amount increase": 0.2202,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.649
+    },
+    {
+      "mastery": 2500,
+      "product amount increase": 0.688,
+      "byproduct amount increase": 0.688,
+      "rare product amount increase": 0.2178,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.6309
+    },
+    {
+      "mastery": 2450,
+      "product amount increase": 0.6804,
+      "byproduct amount increase": 0.6804,
+      "rare product amount increase": 0.2154,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.6127
+    },
+    {
+      "mastery": 2400,
+      "product amount increase": 0.6727,
+      "byproduct amount increase": 0.6727,
+      "rare product amount increase": 0.213,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.5946
+    },
+    {
+      "mastery": 2350,
+      "product amount increase": 0.6651,
+      "byproduct amount increase": 0.6651,
+      "rare product amount increase": 0.2105,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.5765
+    },
+    {
+      "mastery": 2300,
+      "product amount increase": 0.6574,
+      "byproduct amount increase": 0.6574,
+      "rare product amount increase": 0.2081,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.5584
+    },
+    {
+      "mastery": 2250,
+      "product amount increase": 0.6498,
+      "byproduct amount increase": 0.6498,
+      "rare product amount increase": 0.2057,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.5402
+    },
+    {
+      "mastery": 2200,
+      "product amount increase": 0.6421,
+      "byproduct amount increase": 0.6421,
+      "rare product amount increase": 0.2033,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.5221
+    },
+    {
+      "mastery": 2150,
+      "product amount increase": 0.6345,
+      "byproduct amount increase": 0.6345,
+      "rare product amount increase": 0.2009,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.504
+    },
+    {
+      "mastery": 2100,
+      "product amount increase": 0.6268,
+      "byproduct amount increase": 0.6268,
+      "rare product amount increase": 0.1984,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.4859
+    },
+    {
+      "mastery": 2050,
+      "product amount increase": 0.6192,
+      "byproduct amount increase": 0.6192,
+      "rare product amount increase": 0.196,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.4677
+    },
+    {
+      "mastery": 2000,
+      "product amount increase": 0.6115,
+      "byproduct amount increase": 0.6115,
+      "rare product amount increase": 0.1936,
+      "mass production chance": 1.0,
+      "royal trade silver bonus": 1.4496
+    },
+    {
+      "mastery": 1950,
+      "product amount increase": 0.5837,
+      "byproduct amount increase": 0.5837,
+      "rare product amount increase": 0.1849,
+      "mass production chance": 0.995,
+      "royal trade silver bonus": 1.4137
+    },
+    {
+      "mastery": 1900,
+      "product amount increase": 0.5565,
+      "byproduct amount increase": 0.5565,
+      "rare product amount increase": 0.1764,
+      "mass production chance": 0.9044,
+      "royal trade silver bonus": 1.3783
+    },
+    {
+      "mastery": 1850,
+      "product amount increase": 0.53,
+      "byproduct amount increase": 0.53,
+      "rare product amount increase": 0.1681,
+      "mass production chance": 0.863,
+      "royal trade silver bonus": 1.3433
+    },
+    {
+      "mastery": 1800,
+      "product amount increase": 0.5041,
+      "byproduct amount increase": 0.5041,
+      "rare product amount increase": 0.16,
+      "mass production chance": 0.8226,
+      "royal trade silver bonus": 1.3087
+    },
+    {
+      "mastery": 1750,
+      "product amount increase": 0.4789,
+      "byproduct amount increase": 0.4789,
+      "rare product amount increase": 0.1521,
+      "mass production chance": 0.7832,
+      "royal trade silver bonus": 1.2746
+    },
+    {
+      "mastery": 1700,
+      "product amount increase": 0.4543,
+      "byproduct amount increase": 0.4543,
+      "rare product amount increase": 0.1444,
+      "mass production chance": 0.7448,
+      "royal trade silver bonus": 1.241
+    },
+    {
+      "mastery": 1650,
+      "product amount increase": 0.4303,
+      "byproduct amount increase": 0.4303,
+      "rare product amount increase": 0.1369,
+      "mass production chance": 0.7073,
+      "royal trade silver bonus": 1.2078
+    },
+    {
+      "mastery": 1600,
+      "product amount increase": 0.407,
+      "byproduct amount increase": 0.407,
+      "rare product amount increase": 0.1296,
+      "mass production chance": 0.6708,
+      "royal trade silver bonus": 1.1751
+    },
+    {
+      "mastery": 1550,
+      "product amount increase": 0.3844,
+      "byproduct amount increase": 0.3844,
+      "rare product amount increase": 0.1225,
+      "mass production chance": 0.6352,
+      "royal trade silver bonus": 1.1428
+    },
+    {
+      "mastery": 1500,
+      "product amount increase": 0.3624,
+      "byproduct amount increase": 0.3624,
+      "rare product amount increase": 0.1156,
+      "mass production chance": 0.6006,
+      "royal trade silver bonus": 1.1109
+    },
+    {
+      "mastery": 1450,
+      "product amount increase": 0.3411,
+      "byproduct amount increase": 0.3411,
+      "rare product amount increase": 0.1089,
+      "mass production chance": 0.567,
+      "royal trade silver bonus": 1.0795
+    },
+    {
+      "mastery": 1400,
+      "product amount increase": 0.3204,
+      "byproduct amount increase": 0.3204,
+      "rare product amount increase": 0.1024,
+      "mass production chance": 0.5344,
+      "royal trade silver bonus": 1.0486
+    },
+    {
+      "mastery": 1350,
+      "product amount increase": 0.3003,
+      "byproduct amount increase": 0.3003,
+      "rare product amount increase": 0.0961,
+      "mass production chance": 0.5027,
+      "royal trade silver bonus": 1.0181
+    },
+    {
+      "mastery": 1300,
+      "product amount increase": 0.2809,
+      "byproduct amount increase": 0.2809,
+      "rare product amount increase": 0.09,
+      "mass production chance": 0.472,
+      "royal trade silver bonus": 0.988
+    },
+    {
+      "mastery": 1250,
+      "product amount increase": 0.2621,
+      "byproduct amount increase": 0.2621,
+      "rare product amount increase": 0.0841,
+      "mass production chance": 0.4422,
+      "royal trade silver bonus": 0.9584
+    },
+    {
+      "mastery": 1200,
+      "product amount increase": 0.244,
+      "byproduct amount increase": 0.244,
+      "rare product amount increase": 0.0784,
+      "mass production chance": 0.4134,
+      "royal trade silver bonus": 0.9293
+    },
+    {
+      "mastery": 1150,
+      "product amount increase": 0.2266,
+      "byproduct amount increase": 0.2266,
+      "rare product amount increase": 0.0729,
+      "mass production chance": 0.3944,
+      "royal trade silver bonus": 0.8612
+    },
+    {
+      "mastery": 1100,
+      "product amount increase": 0.2098,
+      "byproduct amount increase": 0.2098,
+      "rare product amount increase": 0.0676,
+      "mass production chance": 0.3758,
+      "royal trade silver bonus": 0.7957
+    },
+    {
+      "mastery": 1050,
+      "product amount increase": 0.1936,
+      "byproduct amount increase": 0.1936,
+      "rare product amount increase": 0.0625,
+      "mass production chance": 0.3576,
+      "royal trade silver bonus": 0.7327
+    },
+    {
+      "mastery": 1000,
+      "product amount increase": 0.1781,
+      "byproduct amount increase": 0.1781,
+      "rare product amount increase": 0.0576,
+      "mass production chance": 0.3399,
+      "royal trade silver bonus": 0.6724
+    },
+    {
+      "mastery": 950,
+      "product amount increase": 0.1632,
+      "byproduct amount increase": 0.1632,
+      "rare product amount increase": 0.0529,
+      "mass production chance": 0.3226,
+      "royal trade silver bonus": 0.6147
+    },
+    {
+      "mastery": 900,
+      "product amount increase": 0.149,
+      "byproduct amount increase": 0.149,
+      "rare product amount increase": 0.0484,
+      "mass production chance": 0.3058,
+      "royal trade silver bonus": 0.5595
+    },
+    {
+      "mastery": 850,
+      "product amount increase": 0.1354,
+      "byproduct amount increase": 0.1354,
+      "rare product amount increase": 0.0441,
+      "mass production chance": 0.2894,
+      "royal trade silver bonus": 0.5069
+    },
+    {
+      "mastery": 800,
+      "product amount increase": 0.1225,
+      "byproduct amount increase": 0.1225,
+      "rare product amount increase": 0.04,
+      "mass production chance": 0.2756,
+      "royal trade silver bonus": 0.457
+    },
+    {
+      "mastery": 750,
+      "product amount increase": 0.1102,
+      "byproduct amount increase": 0.1102,
+      "rare product amount increase": 0.0361,
+      "mass production chance": 0.2621,
+      "royal trade silver bonus": 0.4096
+    },
+    {
+      "mastery": 700,
+      "product amount increase": 0.0986,
+      "byproduct amount increase": 0.0986,
+      "rare product amount increase": 0.0324,
+      "mass production chance": 0.249,
+      "royal trade silver bonus": 0.3648
+    },
+    {
+      "mastery": 650,
+      "product amount increase": 0.0876,
+      "byproduct amount increase": 0.0876,
+      "rare product amount increase": 0.0289,
+      "mass production chance": 0.2362,
+      "royal trade silver bonus": 0.3226
+    },
+    {
+      "mastery": 600,
+      "product amount increase": 0.0773,
+      "byproduct amount increase": 0.0773,
+      "rare product amount increase": 0.0256,
+      "mass production chance": 0.2237,
+      "royal trade silver bonus": 0.283
+    },
+    {
+      "mastery": 550,
+      "product amount increase": 0.0676,
+      "byproduct amount increase": 0.0676,
+      "rare product amount increase": 0.0225,
+      "mass production chance": 0.2116,
+      "royal trade silver bonus": 0.246
+    },
+    {
+      "mastery": 500,
+      "product amount increase": 0.0586,
+      "byproduct amount increase": 0.0586,
+      "rare product amount increase": 0.0196,
+      "mass production chance": 0.1998,
+      "royal trade silver bonus": 0.2116
+    },
+    {
+      "mastery": 450,
+      "product amount increase": 0.0502,
+      "byproduct amount increase": 0.0502,
+      "rare product amount increase": 0.0169,
+      "mass production chance": 0.1884,
+      "royal trade silver bonus": 0.1798
+    },
+    {
+      "mastery": 400,
+      "product amount increase": 0.0424,
+      "byproduct amount increase": 0.0424,
+      "rare product amount increase": 0.0144,
+      "mass production chance": 0.1772,
+      "royal trade silver bonus": 0.1505
+    },
+    {
+      "mastery": 350,
+      "product amount increase": 0.0353,
+      "byproduct amount increase": 0.0353,
+      "rare product amount increase": 0.0121,
+      "mass production chance": 0.1665,
+      "royal trade silver bonus": 0.1239
+    },
+    {
+      "mastery": 300,
+      "product amount increase": 0.0289,
+      "byproduct amount increase": 0.0289,
+      "rare product amount increase": 0.01,
+      "mass production chance": 0.156,
+      "royal trade silver bonus": 0.0999
+    },
+    {
+      "mastery": 250,
+      "product amount increase": 0.0231,
+      "byproduct amount increase": 0.0231,
+      "rare product amount increase": 0.0081,
+      "mass production chance": 0.1459,
+      "royal trade silver bonus": 0.0784
+    },
+    {
+      "mastery": 200,
+      "product amount increase": 0.018,
+      "byproduct amount increase": 0.018,
+      "rare product amount increase": 0.0064,
+      "mass production chance": 0.1362,
+      "royal trade silver bonus": 0.0595
+    },
+    {
+      "mastery": 150,
+      "product amount increase": 0.0135,
+      "byproduct amount increase": 0.0135,
+      "rare product amount increase": 0.0049,
+      "mass production chance": 0.1267,
+      "royal trade silver bonus": 0.0433
+    },
+    {
+      "mastery": 100,
+      "product amount increase": 0.0096,
+      "byproduct amount increase": 0.0096,
+      "rare product amount increase": 0.0036,
+      "mass production chance": 0.1176,
+      "royal trade silver bonus": 0.0296
+    },
+    {
+      "mastery": 50,
+      "product amount increase": 0.0064,
+      "byproduct amount increase": 0.0064,
+      "rare product amount increase": 0.0025,
+      "mass production chance": 0.1089,
+      "royal trade silver bonus": 0.0185
+    },
+    {
+      "mastery": 0,
+      "product amount increase": 0.0,
+      "byproduct amount increase": 0.0,
+      "rare product amount increase": 0.0,
+      "mass production chance": 0.0,
+      "royal trade silver bonus": 0.0
+    }
+  ],
+  "alchemy": [
+    {
+      "mastery": 3000,
+      "product amount increase": 0.625,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.8125
+    },
+    {
+      "mastery": 2950,
+      "product amount increase": 0.6188,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.794
+    },
+    {
+      "mastery": 2900,
+      "product amount increase": 0.6125,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.7759
+    },
+    {
+      "mastery": 2850,
+      "product amount increase": 0.6063,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.7577
+    },
+    {
+      "mastery": 2800,
+      "product amount increase": 0.6,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.7396
+    },
+    {
+      "mastery": 2750,
+      "product amount increase": 0.5938,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.7215
+    },
+    {
+      "mastery": 2700,
+      "product amount increase": 0.5875,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.7034
+    },
+    {
+      "mastery": 2650,
+      "product amount increase": 0.5813,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.6852
+    },
+    {
+      "mastery": 2600,
+      "product amount increase": 0.575,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.6671
+    },
+    {
+      "mastery": 2550,
+      "product amount increase": 0.5688,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.649
+    },
+    {
+      "mastery": 2500,
+      "product amount increase": 0.5625,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.6309
+    },
+    {
+      "mastery": 2450,
+      "product amount increase": 0.5563,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.6127
+    },
+    {
+      "mastery": 2400,
+      "product amount increase": 0.55,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.5946
+    },
+    {
+      "mastery": 2350,
+      "product amount increase": 0.5438,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.5765
+    },
+    {
+      "mastery": 2300,
+      "product amount increase": 0.5375,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.5584
+    },
+    {
+      "mastery": 2250,
+      "product amount increase": 0.5313,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.5402
+    },
+    {
+      "mastery": 2200,
+      "product amount increase": 0.525,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.5221
+    },
+    {
+      "mastery": 2150,
+      "product amount increase": 0.5188,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.504
+    },
+    {
+      "mastery": 2100,
+      "product amount increase": 0.5125,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.4859
+    },
+    {
+      "mastery": 2050,
+      "product amount increase": 0.5063,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.4677
+    },
+    {
+      "mastery": 2000,
+      "product amount increase": 0.5,
+      "common item chance": 0.0357,
+      "special item chance": 0.0192,
+      "rare item chance": 0.0023,
+      "royal trade silver bonus": 1.4496
+    },
+    {
+      "mastery": 1950,
+      "product amount increase": 0.4844,
+      "common item chance": 0.0347,
+      "special item chance": 0.0183,
+      "rare item chance": 0.0022,
+      "royal trade silver bonus": 1.4137
+    },
+    {
+      "mastery": 1900,
+      "product amount increase": 0.4679,
+      "common item chance": 0.0336,
+      "special item chance": 0.0173,
+      "rare item chance": 0.0021,
+      "royal trade silver bonus": 1.3783
+    },
+    {
+      "mastery": 1850,
+      "product amount increase": 0.4516,
+      "common item chance": 0.0325,
+      "special item chance": 0.0164,
+      "rare item chance": 0.002,
+      "royal trade silver bonus": 1.3433
+    },
+    {
+      "mastery": 1800,
+      "product amount increase": 0.4356,
+      "common item chance": 0.0314,
+      "special item chance": 0.0155,
+      "rare item chance": 0.0019,
+      "royal trade silver bonus": 1.3087
+    },
+    {
+      "mastery": 1750,
+      "product amount increase": 0.4199,
+      "common item chance": 0.0303,
+      "special item chance": 0.0146,
+      "rare item chance": 0.0018,
+      "royal trade silver bonus": 1.2746
+    },
+    {
+      "mastery": 1700,
+      "product amount increase": 0.4045,
+      "common item chance": 0.0293,
+      "special item chance": 0.0138,
+      "rare item chance": 0.0017,
+      "royal trade silver bonus": 1.241
+    },
+    {
+      "mastery": 1650,
+      "product amount increase": 0.3894,
+      "common item chance": 0.0282,
+      "special item chance": 0.013,
+      "rare item chance": 0.0016,
+      "royal trade silver bonus": 1.2078
+    },
+    {
+      "mastery": 1600,
+      "product amount increase": 0.3745,
+      "common item chance": 0.0272,
+      "special item chance": 0.0122,
+      "rare item chance": 0.0015,
+      "royal trade silver bonus": 1.1751
+    },
+    {
+      "mastery": 1550,
+      "product amount increase": 0.36,
+      "common item chance": 0.0262,
+      "special item chance": 0.0115,
+      "rare item chance": 0.0014,
+      "royal trade silver bonus": 1.1428
+    },
+    {
+      "mastery": 1500,
+      "product amount increase": 0.3457,
+      "common item chance": 0.0251,
+      "special item chance": 0.0108,
+      "rare item chance": 0.0013,
+      "royal trade silver bonus": 1.1109
+    },
+    {
+      "mastery": 1450,
+      "product amount increase": 0.3318,
+      "common item chance": 0.0241,
+      "special item chance": 0.0101,
+      "rare item chance": 0.0012,
+      "royal trade silver bonus": 1.0795
+    },
+    {
+      "mastery": 1400,
+      "product amount increase": 0.3181,
+      "common item chance": 0.0231,
+      "special item chance": 0.0094,
+      "rare item chance": 0.0012,
+      "royal trade silver bonus": 1.0486
+    },
+    {
+      "mastery": 1350,
+      "product amount increase": 0.3047,
+      "common item chance": 0.0221,
+      "special item chance": 0.0088,
+      "rare item chance": 0.0011,
+      "royal trade silver bonus": 1.0181
+    },
+    {
+      "mastery": 1300,
+      "product amount increase": 0.2916,
+      "common item chance": 0.0211,
+      "special item chance": 0.0082,
+      "rare item chance": 0.001,
+      "royal trade silver bonus": 0.988
+    },
+    {
+      "mastery": 1250,
+      "product amount increase": 0.2788,
+      "common item chance": 0.0202,
+      "special item chance": 0.0077,
+      "rare item chance": 0.0009,
+      "royal trade silver bonus": 0.9584
+    },
+    {
+      "mastery": 1200,
+      "product amount increase": 0.2663,
+      "common item chance": 0.0192,
+      "special item chance": 0.0071,
+      "rare item chance": 0.0009,
+      "royal trade silver bonus": 0.9293
+    },
+    {
+      "mastery": 1150,
+      "product amount increase": 0.254,
+      "common item chance": 0.0183,
+      "special item chance": 0.0066,
+      "rare item chance": 0.0008,
+      "royal trade silver bonus": 0.8612
+    },
+    {
+      "mastery": 1100,
+      "product amount increase": 0.2421,
+      "common item chance": 0.0174,
+      "special item chance": 0.0061,
+      "rare item chance": 0.0008,
+      "royal trade silver bonus": 0.7957
+    },
+    {
+      "mastery": 1050,
+      "product amount increase": 0.2304,
+      "common item chance": 0.0165,
+      "special item chance": 0.0056,
+      "rare item chance": 0.0007,
+      "royal trade silver bonus": 0.7327
+    },
+    {
+      "mastery": 1000,
+      "product amount increase": 0.219,
+      "common item chance": 0.0156,
+      "special item chance": 0.0052,
+      "rare item chance": 0.0006,
+      "royal trade silver bonus": 0.6724
+    },
+    {
+      "mastery": 950,
+      "product amount increase": 0.2079,
+      "common item chance": 0.0147,
+      "special item chance": 0.0048,
+      "rare item chance": 0.0006,
+      "royal trade silver bonus": 0.6147
+    },
+    {
+      "mastery": 900,
+      "product amount increase": 0.1971,
+      "common item chance": 0.0139,
+      "special item chance": 0.0044,
+      "rare item chance": 0.0006,
+      "royal trade silver bonus": 0.5595
+    },
+    {
+      "mastery": 850,
+      "product amount increase": 0.1866,
+      "common item chance": 0.013,
+      "special item chance": 0.004,
+      "rare item chance": 0.0005,
+      "royal trade silver bonus": 0.5069
+    },
+    {
+      "mastery": 800,
+      "product amount increase": 0.1764,
+      "common item chance": 0.0122,
+      "special item chance": 0.0037,
+      "rare item chance": 0.0005,
+      "royal trade silver bonus": 0.457
+    },
+    {
+      "mastery": 750,
+      "product amount increase": 0.1665,
+      "common item chance": 0.0114,
+      "special item chance": 0.0033,
+      "rare item chance": 0.0004,
+      "royal trade silver bonus": 0.4096
+    },
+    {
+      "mastery": 700,
+      "product amount increase": 0.1568,
+      "common item chance": 0.0107,
+      "special item chance": 0.003,
+      "rare item chance": 0.0004,
+      "royal trade silver bonus": 0.3648
+    },
+    {
+      "mastery": 650,
+      "product amount increase": 0.1475,
+      "common item chance": 0.0099,
+      "special item chance": 0.0027,
+      "rare item chance": 0.0003,
+      "royal trade silver bonus": 0.3226
+    },
+    {
+      "mastery": 600,
+      "product amount increase": 0.1384,
+      "common item chance": 0.0092,
+      "special item chance": 0.0024,
+      "rare item chance": 0.0003,
+      "royal trade silver bonus": 0.283
+    },
+    {
+      "mastery": 550,
+      "product amount increase": 0.1296,
+      "common item chance": 0.0085,
+      "special item chance": 0.0022,
+      "rare item chance": 0.0003,
+      "royal trade silver bonus": 0.246
+    },
+    {
+      "mastery": 500,
+      "product amount increase": 0.1211,
+      "common item chance": 0.0078,
+      "special item chance": 0.0019,
+      "rare item chance": 0.0003,
+      "royal trade silver bonus": 0.2116
+    },
+    {
+      "mastery": 450,
+      "product amount increase": 0.1129,
+      "common item chance": 0.0071,
+      "special item chance": 0.0017,
+      "rare item chance": 0.0002,
+      "royal trade silver bonus": 0.1798
+    },
+    {
+      "mastery": 400,
+      "product amount increase": 0.105,
+      "common item chance": 0.0065,
+      "special item chance": 0.0015,
+      "rare item chance": 0.0002,
+      "royal trade silver bonus": 0.1505
+    },
+    {
+      "mastery": 350,
+      "product amount increase": 0.0973,
+      "common item chance": 0.0059,
+      "special item chance": 0.0013,
+      "rare item chance": 0.0002,
+      "royal trade silver bonus": 0.1239
+    },
+    {
+      "mastery": 300,
+      "product amount increase": 0.09,
+      "common item chance": 0.0053,
+      "special item chance": 0.0012,
+      "rare item chance": 0.0002,
+      "royal trade silver bonus": 0.0999
+    },
+    {
+      "mastery": 250,
+      "product amount increase": 0.0829,
+      "common item chance": 0.0047,
+      "special item chance": 0.001,
+      "rare item chance": 0.0001,
+      "royal trade silver bonus": 0.0784
+    },
+    {
+      "mastery": 200,
+      "product amount increase": 0.0762,
+      "common item chance": 0.0042,
+      "special item chance": 0.0009,
+      "rare item chance": 0.0001,
+      "royal trade silver bonus": 0.0595
+    },
+    {
+      "mastery": 150,
+      "product amount increase": 0.0697,
+      "common item chance": 0.0037,
+      "special item chance": 0.0007,
+      "rare item chance": 0.0001,
+      "royal trade silver bonus": 0.0433
+    },
+    {
+      "mastery": 100,
+      "product amount increase": 0.0635,
+      "common item chance": 0.0032,
+      "special item chance": 0.0006,
+      "rare item chance": 0.0001,
+      "royal trade silver bonus": 0.0296
+    },
+    {
+      "mastery": 50,
+      "product amount increase": 0.0576,
+      "common item chance": 0.0028,
+      "special item chance": 0.0005,
+      "rare item chance": 0.0001,
+      "royal trade silver bonus": 0.0185
+    },
+    {
+      "mastery": 0,
+      "product amount increase": 0.0,
+      "common item chance": 0.0025,
+      "special item chance": 0.0004,
+      "rare item chance": 0.0001,
+      "royal trade silver bonus": 0.0
+    }
+  ],
+  "processing": [
+    {
+      "mastery": 3000,
+      "materials count": 315,
+      "better grade chance": 0.9683
+    },
+    {
+      "mastery": 2900,
+      "materials count": 310,
+      "better grade chance": 0.9677
+    },
+    {
+      "mastery": 2800,
+      "materials count": 305,
+      "better grade chance": 0.9672
+    },
+    {
+      "mastery": 2700,
+      "materials count": 300,
+      "better grade chance": 0.9667
+    },
+    {
+      "mastery": 2600,
+      "materials count": 295,
+      "better grade chance": 0.9661
+    },
+    {
+      "mastery": 2500,
+      "materials count": 290,
+      "better grade chance": 0.9655
+    },
+    {
+      "mastery": 2400,
+      "materials count": 285,
+      "better grade chance": 0.9649
+    },
+    {
+      "mastery": 2300,
+      "materials count": 280,
+      "better grade chance": 0.9643
+    },
+    {
+      "mastery": 2200,
+      "materials count": 270,
+      "better grade chance": 0.963
+    },
+    {
+      "mastery": 2100,
+      "materials count": 260,
+      "better grade chance": 0.9615
+    },
+    {
+      "mastery": 2000,
+      "materials count": 250,
+      "better grade chance": 0.96
+    },
+    {
+      "mastery": 1900,
+      "materials count": 235,
+      "better grade chance": 0.9574
+    },
+    {
+      "mastery": 1800,
+      "materials count": 222,
+      "better grade chance": 0.955
+    },
+    {
+      "mastery": 1700,
+      "materials count": 212,
+      "better grade chance": 0.9528
+    },
+    {
+      "mastery": 1650,
+      "materials count": 203,
+      "better grade chance": 0.9507
+    },
+    {
+      "mastery": 1600,
+      "materials count": 194,
+      "better grade chance": 0.9485
+    },
+    {
+      "mastery": 1550,
+      "materials count": 186,
+      "better grade chance": 0.9462
+    },
+    {
+      "mastery": 1500,
+      "materials count": 178,
+      "better grade chance": 0.9438
+    },
+    {
+      "mastery": 1450,
+      "materials count": 170,
+      "better grade chance": 0.9412
+    },
+    {
+      "mastery": 1400,
+      "materials count": 162,
+      "better grade chance": 0.9383
+    },
+    {
+      "mastery": 1350,
+      "materials count": 154,
+      "better grade chance": 0.9351
+    },
+    {
+      "mastery": 1300,
+      "materials count": 144,
+      "better grade chance": 0.9306
+    },
+    {
+      "mastery": 1260,
+      "materials count": 137,
+      "better grade chance": 0.927
+    },
+    {
+      "mastery": 1220,
+      "materials count": 130,
+      "better grade chance": 0.9231
+    },
+    {
+      "mastery": 1180,
+      "materials count": 124,
+      "better grade chance": 0.9194
+    },
+    {
+      "mastery": 1140,
+      "materials count": 118,
+      "better grade chance": 0.9153
+    },
+    {
+      "mastery": 1100,
+      "materials count": 112,
+      "better grade chance": 0.9107
+    },
+    {
+      "mastery": 1060,
+      "materials count": 96,
+      "better grade chance": 0.8958
+    },
+    {
+      "mastery": 1020,
+      "materials count": 90,
+      "better grade chance": 0.8889
+    },
+    {
+      "mastery": 990,
+      "materials count": 85,
+      "better grade chance": 0.8824
+    },
+    {
+      "mastery": 960,
+      "materials count": 80,
+      "better grade chance": 0.875
+    },
+    {
+      "mastery": 930,
+      "materials count": 76,
+      "better grade chance": 0.8684
+    },
+    {
+      "mastery": 900,
+      "materials count": 72,
+      "better grade chance": 0.8611
+    },
+    {
+      "mastery": 870,
+      "materials count": 68,
+      "better grade chance": 0.8529
+    },
+    {
+      "mastery": 840,
+      "materials count": 64,
+      "better grade chance": 0.8438
+    },
+    {
+      "mastery": 810,
+      "materials count": 60,
+      "better grade chance": 0.8333
+    },
+    {
+      "mastery": 780,
+      "materials count": 57,
+      "better grade chance": 0.8246
+    },
+    {
+      "mastery": 760,
+      "materials count": 53,
+      "better grade chance": 0.8113
+    },
+    {
+      "mastery": 740,
+      "materials count": 51,
+      "better grade chance": 0.8039
+    },
+    {
+      "mastery": 720,
+      "materials count": 49,
+      "better grade chance": 0.7959
+    },
+    {
+      "mastery": 700,
+      "materials count": 47,
+      "better grade chance": 0.7872
+    },
+    {
+      "mastery": 680,
+      "materials count": 45,
+      "better grade chance": 0.7778
+    },
+    {
+      "mastery": 660,
+      "materials count": 43,
+      "better grade chance": 0.7674
+    },
+    {
+      "mastery": 640,
+      "materials count": 42,
+      "better grade chance": 0.7619
+    },
+    {
+      "mastery": 620,
+      "materials count": 41,
+      "better grade chance": 0.7561
+    },
+    {
+      "mastery": 600,
+      "materials count": 40,
+      "better grade chance": 0.75
+    },
+    {
+      "mastery": 580,
+      "materials count": 39,
+      "better grade chance": 0.7436
+    },
+    {
+      "mastery": 560,
+      "materials count": 38,
+      "better grade chance": 0.7368
+    },
+    {
+      "mastery": 540,
+      "materials count": 37,
+      "better grade chance": 0.7297
+    },
+    {
+      "mastery": 520,
+      "materials count": 36,
+      "better grade chance": 0.7222
+    },
+    {
+      "mastery": 500,
+      "materials count": 35,
+      "better grade chance": 0.7143
+    },
+    {
+      "mastery": 480,
+      "materials count": 34,
+      "better grade chance": 0.7059
+    },
+    {
+      "mastery": 460,
+      "materials count": 33,
+      "better grade chance": 0.697
+    },
+    {
+      "mastery": 440,
+      "materials count": 32,
+      "better grade chance": 0.6875
+    },
+    {
+      "mastery": 420,
+      "materials count": 31,
+      "better grade chance": 0.6774
+    },
+    {
+      "mastery": 400,
+      "materials count": 30,
+      "better grade chance": 0.6667
+    },
+    {
+      "mastery": 380,
+      "materials count": 29,
+      "better grade chance": 0.6552
+    },
+    {
+      "mastery": 360,
+      "materials count": 28,
+      "better grade chance": 0.6429
+    },
+    {
+      "mastery": 340,
+      "materials count": 27,
+      "better grade chance": 0.6296
+    },
+    {
+      "mastery": 320,
+      "materials count": 26,
+      "better grade chance": 0.6154
+    },
+    {
+      "mastery": 300,
+      "materials count": 25,
+      "better grade chance": 0.6
+    },
+    {
+      "mastery": 280,
+      "materials count": 24,
+      "better grade chance": 0.5833
+    },
+    {
+      "mastery": 260,
+      "materials count": 23,
+      "better grade chance": 0.5652
+    },
+    {
+      "mastery": 240,
+      "materials count": 22,
+      "better grade chance": 0.5455
+    },
+    {
+      "mastery": 220,
+      "materials count": 21,
+      "better grade chance": 0.5238
+    },
+    {
+      "mastery": 200,
+      "materials count": 20,
+      "better grade chance": 0.5
+    },
+    {
+      "mastery": 180,
+      "materials count": 19,
+      "better grade chance": 0.4737
+    },
+    {
+      "mastery": 160,
+      "materials count": 18,
+      "better grade chance": 0.4444
+    },
+    {
+      "mastery": 140,
+      "materials count": 17,
+      "better grade chance": 0.4118
+    },
+    {
+      "mastery": 120,
+      "materials count": 16,
+      "better grade chance": 0.375
+    },
+    {
+      "mastery": 100,
+      "materials count": 15,
+      "better grade chance": 0.3333
+    },
+    {
+      "mastery": 80,
+      "materials count": 14,
+      "better grade chance": 0.2857
+    },
+    {
+      "mastery": 60,
+      "materials count": 13,
+      "better grade chance": 0.2308
+    },
+    {
+      "mastery": 40,
+      "materials count": 12,
+      "better grade chance": 0.1667
+    },
+    {
+      "mastery": 20,
+      "materials count": 11,
+      "better grade chance": 0.0909
+    },
+    {
+      "mastery": 0,
+      "materials count": 10,
+      "better grade chance": 0.0
+    }
+  ]
+}

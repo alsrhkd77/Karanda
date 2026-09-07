@@ -17,6 +17,7 @@ abstract final class KarandaApi {
 
   static const String itemImage = "$storage/bdo/item/image";
   static const String classSymbol = "$storage/bdo/classes/symbol";
+  static const String worldBossPortrait = "$storage/bdo/worldboss/portrait";
 
   static const String _auth = "/auth";
   static const String authorization = "$_auth/discord/authorization";

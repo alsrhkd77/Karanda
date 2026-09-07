@@ -37,7 +37,6 @@ import 'package:karanda/ui/settings/widget/windows_settings_page.dart';
 import 'package:karanda/ui/ship_upgrading/widget/ship_upgrading_page.dart';
 import 'package:karanda/ui/shutdown_scheduler/widget/shutdown_scheduler_page.dart';
 import 'package:karanda/ui/trade_market/presets/widgets/trade_market_cooking_box_preset_page.dart';
-import 'package:karanda/ui/trade_market/presets/widgets/trade_market_preset_page.dart';
 import 'package:karanda/ui/trade_market/templates/widgets/trade_market_template_editor_page.dart';
 import 'package:karanda/ui/trade_market/templates/widgets/trade_market_template_view_page.dart';
 import 'package:karanda/ui/trade_market/widgets/trade_market_detail_page.dart';
@@ -47,12 +46,9 @@ import 'package:karanda/ui/welcome/widgets/welcome_page.dart';
 import 'package:karanda/ui/windows_initializer/widgets/windows_initializer_page.dart';
 import 'package:karanda/ui/world_boss/widgets/world_boss_page.dart'
     show WorldBossPage;
-import 'package:karanda/widgets/loading_page.dart';
+import 'package:karanda/ui/core/ui/loading_page.dart';
 import 'package:provider/provider.dart';
 
-import 'deprecated/atoraxxion/sycrakea_page.dart';
-import 'deprecated/atoraxxion/yolunakea_moon_page.dart';
-import 'deprecated/horse_status/horse_status_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
@@ -278,86 +274,6 @@ final GoRouter router = GoRouter(
                 return null;
               },
             ),
-            GoRoute(
-              path: ':region/melody-of-stars',
-              builder: (context, state) {
-                final region =
-                    BDORegion.values.byName(state.pathParameters["region"]!);
-                return TradeMarketPresetPage(
-                  presetKey: "melody_of_stars",
-                  region: region,
-                );
-              },
-              redirect: (BuildContext context, GoRouterState state) {
-                if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.gameRegions
-                        .map((value) => value.name)
-                        .contains(state.pathParameters["region"])) {
-                  return 'not-found';
-                }
-                return null;
-              },
-            ),
-            GoRoute(
-              path: ':region/magical-lightstone-crystal',
-              builder: (context, state) {
-                final region =
-                    BDORegion.values.byName(state.pathParameters["region"]!);
-                return TradeMarketPresetPage(
-                  presetKey: "magical_lightstone_crystal",
-                  region: region,
-                );
-              },
-              redirect: (BuildContext context, GoRouterState state) {
-                if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.gameRegions
-                        .map((value) => value.name)
-                        .contains(state.pathParameters["region"])) {
-                  return 'not-found';
-                }
-                return null;
-              },
-            ),
-            GoRoute(
-              path: ':region/dehkias-light',
-              builder: (context, state) {
-                final region =
-                    BDORegion.values.byName(state.pathParameters["region"]!);
-                return TradeMarketPresetPage(
-                  presetKey: "dehkias_light",
-                  region: region,
-                );
-              },
-              redirect: (BuildContext context, GoRouterState state) {
-                if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.gameRegions
-                        .map((value) => value.name)
-                        .contains(state.pathParameters["region"])) {
-                  return 'not-found';
-                }
-                return null;
-              },
-            ),
-            GoRoute(
-              path: ':region/essence-of-dawn',
-              builder: (context, state) {
-                final region =
-                    BDORegion.values.byName(state.pathParameters["region"]!);
-                return TradeMarketPresetPage(
-                  presetKey: "essence_of_dawn",
-                  region: region,
-                );
-              },
-              redirect: (BuildContext context, GoRouterState state) {
-                if (!state.pathParameters.containsKey("region") ||
-                    !BDORegion.gameRegions
-                        .map((value) => value.name)
-                        .contains(state.pathParameters["region"])) {
-                  return 'not-found';
-                }
-                return null;
-              },
-            ),
           ],
         ),
         GoRoute(
@@ -519,24 +435,12 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const LightstoneCombinationPage(),
         ),
         GoRoute(
-          path: 'horse',
-          builder: (context, state) => const HorseStatusPage(),
-        ),
-        GoRoute(
           path: 'news',
           builder: (context, state) => const NewsPage(),
         ),
         GoRoute(
           path: 'event-calendar',
           redirect: (context, state) => '/news',
-        ),
-        GoRoute(
-          path: 'sycrakea',
-          builder: (context, state) => const SycrakeaPage(),
-        ),
-        GoRoute(
-          path: 'yolunakea-moon',
-          builder: (context, state) => const YolunakeaMoonPage(),
         ),
         GoRoute(
           path: 'artifact',

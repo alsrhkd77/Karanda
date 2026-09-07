@@ -3,21 +3,21 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:karanda/enums/bdo_region.dart';
-import 'package:karanda/model/trade_market_preset_item.dart';
+import 'package:karanda/model/trade_market_template.dart';
 import 'package:karanda/service/trade_market_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TradeMarketCookingBoxPresetController extends ChangeNotifier {
   final TradeMarketService _marketService;
   final BDORegion region;
-  final List<Mastery> _mastery = [];
   final contributionsController = TextEditingController(text: "200"); //공헌도
   final proficiencyController = TextEditingController(text: "1200"); //숙련도
   final _contributionsKey = "cooking_box_user_contributions";
-  final _proficiencyKey = "cooking_box_user_proficiency";
 
   int deliveryCounts = 100; //납품 가능 횟수
-  Mastery mastery = Mastery(mastery: 1200, silverBonus: 0.9293);
+
+  /// 숙련도 구간의 황실 납품 은화 보너스. 표는 생활 숙련도 공용 에셋에서 온다.
+  double silverBonus = 0.9293;
   String selectedBox = "9856";
   final Map<String, Map> _items = {
     "9851": {},
@@ -39,20 +39,23 @@ class TradeMarketCookingBoxPresetController extends ChangeNotifier {
 
   List<String> get boxKeys => _items.keys.toList();
 
-  List<TradeMarketPresetItem>? get items => _items[selectedBox]?["materials"];
+  List<TradeMarketTemplateItem>? get items => _items[selectedBox]?["materials"];
 
   int get boxPrice => _items[selectedBox]?["price"] ?? 0;
 
-  bool get isLoaded => !(items?.any((item) => item.price == null) ?? true);
+  bool get isLoaded => !(items?.any((item) => item.unitCost == null) ?? true);
 
   void selectBox(String value) {
-    if (_items.keys.contains(value)) {
-      selectedBox = value;
-      notifyListeners();
-      final materials = _items[value]!["materials"];
-      if (materials.any((item) => item.price == null) ?? true) {
-        _getPriceData(value);
-      }
+    if (!_items.keys.contains(value)) {
+      return;
+    }
+    selectedBox = value;
+    notifyListeners();
+    final materials =
+        _items[value]?["materials"] as List<TradeMarketTemplateItem>?;
+    // 아직 가격을 못 받은 재료가 하나라도 있으면 조회한다.
+    if (materials == null || materials.any((item) => item.unitCost == null)) {
+      _getPriceData(value);
     }
   }
 
@@ -60,18 +63,16 @@ class TradeMarketCookingBoxPresetController extends ChangeNotifier {
     final data = await rootBundle.loadString("assets/data/cooking_box.json");
     final Map json = jsonDecode(data);
     for (String key in json.keys) {
-      if (key == "mastery") {
-        for (Map item in json[key]) {
-          _mastery.add(Mastery.fromJson(item));
-        }
-      } else {
-        final List<TradeMarketPresetItem> materials = [];
-        for (Map item in json[key]["materials"]) {
-          materials.add(TradeMarketPresetItem.fromJson(item));
-        }
-        _items[key] = json[key];
-        _items[key]!["materials"] = materials;
+      final List<TradeMarketTemplateItem> materials = [];
+      for (Map item in json[key]["materials"]) {
+        materials.add(TradeMarketTemplateItem(
+          code: item["code"],
+          enhancementLevel: item["enhancement level"] ?? 0,
+          quantity: item["value"] ?? 1,
+        ));
       }
+      _items[key] = json[key];
+      _items[key]!["materials"] = materials;
     }
     selectedBox = _items.keys.last;
     await _loadUserData();
@@ -80,34 +81,52 @@ class TradeMarketCookingBoxPresetController extends ChangeNotifier {
   }
 
   Future<void> _getPriceData(String key) async {
-    List<TradeMarketPresetItem> materials = _items[key]?["materials"] ?? [];
-    if (materials.isNotEmpty) {
-      final prices = await _marketService.getPresetPriceData(materials, region);
-      for (TradeMarketPresetItem item in materials) {
-        item.price = prices.firstWhere((price) => price.key == item.key);
-      }
-      materials.sort((a, b) {
-        if ((a.price!.currentStock > 0 && b.price!.currentStock > 0) ||
-            (a.price!.currentStock == 0 && b.price!.currentStock == 0)) {
-          return (a.price!.price * a.value).compareTo(b.price!.price * b.value);
-        }
-        return b.price!.currentStock.compareTo(a.price!.currentStock);
-      });
-      _items[key]?["materials"] = materials;
-      notifyListeners();
+    List<TradeMarketTemplateItem> materials = _items[key]?["materials"] ?? [];
+    if (materials.isEmpty) {
+      return;
     }
+    // 템플릿과 같은 방식으로 코드를 모아 한 번에 조회한다.
+    final keys =
+        materials.map((item) => item.key).whereType<String>().toSet().toList();
+    final prices = await _marketService.getPriceDataByKeys(keys, region);
+    final byKey = {for (final price in prices) price.key: price};
+    for (TradeMarketTemplateItem item in materials) {
+      item.marketPrice = byKey[item.key];
+    }
+    // 재고 유무가 같으면 총비용 오름차순, 다르면 재고 있는 쪽이 앞(기존 규칙).
+    materials.sort((a, b) {
+      final aStock = (a.marketPrice?.currentStock ?? 0) > 0;
+      final bStock = (b.marketPrice?.currentStock ?? 0) > 0;
+      if (aStock != bStock) {
+        return aStock ? -1 : 1;
+      }
+      return (a.totalCost ?? 0).compareTo(b.totalCost ?? 0);
+    });
+    _items[key]?["materials"] = materials;
+    notifyListeners();
   }
 
   Future<void> _loadUserData() async {
     final pref = SharedPreferencesAsync();
     final userContributions = await pref.getInt(_contributionsKey);
-    final userProficiency = await pref.getInt(_proficiencyKey);
     if (userContributions != null) {
       contributionsController.text = userContributions.toString();
     }
-    if (userProficiency != null) {
-      proficiencyController.text = userProficiency.toString();
+    // 숙련도는 요리 템플릿과 공용 값을 쓴다. 예전 요리상자 전용 값은 자동으로 이어받는다.
+    final mastery =
+        await _marketService.getMastery(TradeMarketLifeskill.cooking);
+    if (mastery > 0) {
+      proficiencyController.text = mastery.toString();
     }
+    await _updateSilverBonus(int.tryParse(proficiencyController.text) ?? 0);
+  }
+
+  Future<void> _updateSilverBonus(int mastery) async {
+    silverBonus = await _marketService.royalTradeSilverBonusOf(
+      TradeMarketLifeskill.cooking,
+      mastery,
+    );
+    notifyListeners();
   }
 
   void _onContributionsUpdate() {
@@ -123,13 +142,16 @@ class TradeMarketCookingBoxPresetController extends ChangeNotifier {
 
   void _onProficiencyUpdate() {
     final text = proficiencyController.text;
-    if (text.isNotEmpty && _mastery.isNotEmpty) {
-      final value = int.parse(text);
-      mastery = _mastery.firstWhere((m) => value >= m.mastery);
-      notifyListeners();
-      final pref = SharedPreferencesAsync();
-      pref.setInt(_proficiencyKey, value);
+    if (text.isEmpty) {
+      return;
     }
+    final value = int.tryParse(text);
+    if (value == null) {
+      return;
+    }
+    // 공용 숙련도라 요리 템플릿의 산출 배율에도 함께 반영된다.
+    _marketService.setMastery(TradeMarketLifeskill.cooking, value);
+    _updateSilverBonus(value);
   }
 
   @override
@@ -137,19 +159,5 @@ class TradeMarketCookingBoxPresetController extends ChangeNotifier {
     contributionsController.removeListener(_onContributionsUpdate);
     proficiencyController.removeListener(_onProficiencyUpdate);
     super.dispose();
-  }
-}
-
-class Mastery {
-  int mastery;
-  double silverBonus;
-
-  Mastery({required this.mastery, required this.silverBonus});
-
-  factory Mastery.fromJson(Map json) {
-    return Mastery(
-      mastery: json["mastery"],
-      silverBonus: json["silver bonus"],
-    );
   }
 }

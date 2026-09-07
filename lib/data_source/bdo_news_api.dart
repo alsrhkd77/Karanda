@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:karanda/common/http_response_extension.dart';
+import 'package:karanda/utils/extension/http_response_extension.dart';
 import 'package:karanda/enums/bdo_news_category.dart';
 import 'package:karanda/enums/bdo_region.dart';
 import 'package:karanda/model/bdo_news.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karanda/service/auth_service.dart';
-import 'package:karanda/widgets/loading_indicator.dart';
+import 'package:karanda/ui/core/ui/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 class AuthenticatePage extends StatefulWidget {

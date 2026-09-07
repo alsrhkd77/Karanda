@@ -6,15 +6,34 @@ import 'package:karanda/model/bartering/bartering.dart';
 import 'package:karanda/model/bartering/bartering_mastery.dart';
 import 'package:karanda/model/bartering/bartering_settings.dart';
 import 'package:karanda/repository/bartering_repository.dart';
+import 'package:karanda/ui/bartering/bartering_constants.dart';
 
 import '../../../model/bartering/ship_profile.dart';
+
+/// 확정된 교환 1건. 되돌리기(`undoLastApply`)를 위해 보관한다.
+class AppliedExchange {
+  final int index;
+  final int count;
+
+  /// 확정 시점의 실제 소모량. 이후 설정이 바뀌어 감소율이 달라져도
+  /// 되돌릴 때는 이 값을 그대로 되돌려야 `consumed`가 어긋나지 않는다.
+  final int parley;
+
+  const AppliedExchange({
+    required this.index,
+    required this.count,
+    required this.parley,
+  });
+}
 
 class BarteringParleyController extends ChangeNotifier {
   final BarteringRepository _repository;
   late final StreamSubscription<BarteringSettings> _settings;
-  final parleyTextController = TextEditingController()..text = "1000000";
-  int parley = 1000000;
+  final parleyTextController = TextEditingController()
+    ..text = BarteringConstants.defaultParley.toString();
+  int parley = BarteringConstants.defaultParley;
   int consumed = 0;
+  final List<AppliedExchange> _appliedExchanges = [];
   bool started = false;
   double parleyReductionRate = 0;
   List<BarteringMastery>? mastery;
@@ -78,6 +97,9 @@ class BarteringParleyController extends ChangeNotifier {
 
   int get totalParley => _calcTotalParley();
 
+  /// 되돌릴 수 있는 확정 교환이 남아 있는지.
+  bool get canUndoApply => _appliedExchanges.isNotEmpty;
+
   Future<void> loadMasteryData() async {
     mastery = await _repository.mastery();
     notifyListeners();
@@ -93,7 +115,7 @@ class BarteringParleyController extends ChangeNotifier {
   }
 
   void increaseCount(int index) {
-    if (locations[index].count < 999) {
+    if (locations[index].count < BarteringConstants.maxCount) {
       final value = locations[index].count + 1;
       updateCount(index: index, value: value);
     }
@@ -107,8 +129,29 @@ class BarteringParleyController extends ChangeNotifier {
   }
 
   void applyCount(int index) {
-    consumed += locations[index].count * locations[index].reducedParley;
+    final count = locations[index].count;
+    if (count <= 0) {
+      return;
+    }
+    final amount = count * locations[index].reducedParley;
+    _appliedExchanges.add(
+      AppliedExchange(index: index, count: count, parley: amount),
+    );
+    consumed += amount;
     updateCount(index: index, value: 0);
+  }
+
+  /// 직전에 확정한 교환을 취소한다.
+  ///
+  /// 소모량을 되돌리고 해당 교환처의 수량을 확정 당시 값으로 **덮어쓴다**
+  /// (확정 이후 새로 입력한 수량이 있으면 사라진다 — "확정 직전 상태로 복귀"가 기준).
+  void undoLastApply() {
+    if (_appliedExchanges.isEmpty) {
+      return;
+    }
+    final last = _appliedExchanges.removeLast();
+    consumed -= last.parley;
+    updateCount(index: last.index, value: last.count);
   }
 
   void onParleyTextUpdate(String? value) {
@@ -132,10 +175,11 @@ class BarteringParleyController extends ChangeNotifier {
 
   void resetAll() {
     started = false;
-    parley = 1000000;
-    parleyTextController.text = "1000000";
+    parley = BarteringConstants.defaultParley;
+    parleyTextController.text = BarteringConstants.defaultParley.toString();
     consumed = 0;
     tradeVoucher = 0;
+    _appliedExchanges.clear();
     for (Bartering location in locations) {
       location.count = 0;
       location.countTextController.text = '';
@@ -144,9 +188,11 @@ class BarteringParleyController extends ChangeNotifier {
   }
 
   void increaseTradeVoucher() {
-    if (tradeVoucher < 99) {
+    if (tradeVoucher < BarteringConstants.maxTradeVoucher) {
       tradeVoucher = tradeVoucher + 1;
-      onParleyTextUpdate((parley + 250000).toString());
+      onParleyTextUpdate(
+        (parley + BarteringConstants.tradeVoucherParley).toString(),
+      );
       notifyListeners();
     }
   }
@@ -154,7 +200,9 @@ class BarteringParleyController extends ChangeNotifier {
   void decreaseTradeVoucher() {
     if (tradeVoucher > 0) {
       tradeVoucher = tradeVoucher - 1;
-      onParleyTextUpdate(max(parley - 250000, 0).toString());
+      onParleyTextUpdate(
+        max(parley - BarteringConstants.tradeVoucherParley, 0).toString(),
+      );
       notifyListeners();
     }
   }

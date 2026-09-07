@@ -1,0 +1,211 @@
+{
+  "id": "crescent_incense_burner",
+  "name": "crescent_incense_burner",
+  "type": "recipeCompare",
+  "tax": {
+    "enabled": false,
+    "value package": false,
+    "merchant ring": false,
+    "crescent pass": false,
+    "family fame": 0
+  },
+  "lifeskill": "none",
+  "items": [],
+  "variants": [
+    {
+      "name": "trade market.builtin.recipe 1",
+      "items": [
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.censer mold",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4059,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 100,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4062,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 100,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4259,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 100,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4266,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 100,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        }
+      ]
+    },
+    {
+      "name": "trade market.builtin.recipe 2",
+      "items": [
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.censer mold",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4059,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 100,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4062,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 100,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.melody of stars item",
+          "enhancement level": 0,
+          "quantity": 25,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.lightstone crystal",
+          "enhancement level": 0,
+          "quantity": 300,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        }
+      ]
+    },
+    {
+      "name": "trade market.builtin.recipe 3",
+      "items": [
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.censer mold",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4058,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 1000,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "market",
+          "code": 4061,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 1000,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.alchemy catalyst",
+          "enhancement level": 0,
+          "quantity": 400,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.lightstone crystal",
+          "enhancement level": 0,
+          "quantity": 300,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        }
+      ]
+    }
+  ]
+}

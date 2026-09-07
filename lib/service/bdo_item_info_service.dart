@@ -12,6 +12,9 @@ class BDOItemInfoService extends ChangeNotifier {
 
   List<BDOItemInfo> get tradeAbleItems => _itemInfoRepository.tradeAbleItems;
 
+  /// 거래 불가 아이템을 포함한 전체 목록.
+  List<BDOItemInfo> get items => _itemInfoRepository.items;
+
   BDOItemInfo itemInfo(String code) {
     return _itemInfoRepository.getItemInfo(code);
   }

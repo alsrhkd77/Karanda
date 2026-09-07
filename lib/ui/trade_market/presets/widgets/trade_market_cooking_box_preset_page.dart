@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karanda/enums/bdo_region.dart';
-import 'package:karanda/model/trade_market_preset_item.dart';
+import 'package:karanda/model/trade_market_template.dart';
 import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/bdo_item_image.dart';
 import 'package:karanda/ui/core/ui/karanda_app_bar.dart';
@@ -86,7 +86,7 @@ class TradeMarketCookingBoxPresetPage extends StatelessWidget {
                   return _ItemTile(
                     region: region,
                     item: item,
-                    silverBonus: controller.mastery.silverBonus,
+                    silverBonus: controller.silverBonus,
                     deliveryCounts: controller.deliveryCounts,
                     boxPrice: controller.boxPrice,
                   );
@@ -155,7 +155,7 @@ class _UserData extends StatelessWidget {
 class _ItemTile extends StatelessWidget {
   final BDORegion region;
   final int boxPrice;
-  final TradeMarketPresetItem item;
+  final TradeMarketTemplateItem item;
   final double silverBonus;
   final int deliveryCounts;
 
@@ -171,6 +171,7 @@ class _ItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemInfo = context.itemInfo(item.code.toString());
+    final price = item.marketPrice!;
     return Card(
       margin: const EdgeInsets.all(4.0),
       clipBehavior: Clip.antiAlias,
@@ -179,21 +180,21 @@ class _ItemTile extends StatelessWidget {
         leading: BdoItemImage(
           code: itemInfo.code,
         ),
-        title: Text("${context.itemName(itemInfo.code)} × ${item.value}"),
+        title: Text("${context.itemName(itemInfo.code)} × ${item.quantity}"),
         subtitle: Text(context.tr(
           "trade market.cooking_box efficiency",
           namedArgs: {
-            "total": (item.price!.price * item.value).format(),
-            "single": item.price!.price.format(),
+            "total": (item.totalCost ?? 0).format(),
+            "single": price.price.format(),
           },
         )),
         trailing: _Revenue(
           silverBonus: silverBonus,
           deliveryCounts: deliveryCounts,
-          stock: item.price!.currentStock,
+          stock: price.currentStock,
           boxPrice: boxPrice,
-          value: item.value,
-          materialPrice: item.price!.price,
+          value: item.quantity,
+          materialPrice: price.price,
         ),
         onTap: () {
           context

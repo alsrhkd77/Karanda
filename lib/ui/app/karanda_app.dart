@@ -13,6 +13,8 @@ import 'package:karanda/data_source/auth_api.dart';
 import 'package:karanda/data_source/bdo_family_api.dart';
 import 'package:karanda/data_source/overlay_api.dart';
 import 'package:karanda/data_source/overlay_settings_data_source.dart';
+import 'package:karanda/data_source/caphras_requirement_data_source.dart';
+import 'package:karanda/data_source/lifeskill_mastery_data_source.dart';
 import 'package:karanda/data_source/trade_market_api.dart';
 import 'package:karanda/data_source/trade_market_data_source.dart';
 import 'package:karanda/data_source/trade_market_template_data_source.dart';
@@ -30,6 +32,8 @@ import 'package:karanda/repository/bdo_news_repository.dart';
 import 'package:karanda/repository/overlay_repository.dart';
 import 'package:karanda/repository/user_fc_settings_repository.dart';
 import 'package:karanda/repository/time_repository.dart';
+import 'package:karanda/repository/caphras_requirement_repository.dart';
+import 'package:karanda/repository/lifeskill_mastery_repository.dart';
 import 'package:karanda/repository/trade_market_repository.dart';
 import 'package:karanda/repository/version_repository.dart';
 import 'package:karanda/repository/world_boss_repository.dart';
@@ -217,6 +221,18 @@ class KarandaApp extends StatelessWidget {
           lazy: false,
         ),
         Provider(create: (context) => TradeMarketApi()),
+        Provider(create: (context) => LifeskillMasteryDataSource()),
+        Provider(create: (context) => CaphrasRequirementDataSource()),
+        Provider(
+          create: (context) => CaphrasRequirementRepository(
+            dataSource: context.read(),
+          ),
+        ),
+        Provider(
+          create: (context) => LifeskillMasteryRepository(
+            dataSource: context.read(),
+          ),
+        ),
         Provider(create: (context) => TradeMarketDataSource()),
         Provider(create: (context) => TradeMarketTemplateDataSource()),
         Provider(
@@ -231,7 +247,9 @@ class KarandaApp extends StatelessWidget {
           create: (context) => TradeMarketService(
               tradeMarketRepository: context.read(),
               settingsRepository: context.read(),
-              itemInfoRepository: context.read()),
+              itemInfoRepository: context.read(),
+              masteryRepository: context.read(),
+              caphrasRepository: context.read()),
           lazy: !kIsWeb && Platform.isWindows,
         ),
         Provider(

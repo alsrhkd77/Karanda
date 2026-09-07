@@ -1,3 +1,24 @@
+/// 호가창 한 줄. 특정 가격대의 판매/구매 주문 수량이다.
+class TradeMarketOrderBookEntry {
+  final int price;
+  final int sellOrders;
+  final int buyOrders;
+
+  const TradeMarketOrderBookEntry({
+    required this.price,
+    required this.sellOrders,
+    required this.buyOrders,
+  });
+
+  factory TradeMarketOrderBookEntry.fromJson(Map json) {
+    return TradeMarketOrderBookEntry(
+      price: json['price'] ?? 0,
+      sellOrders: json['sell_orders'] ?? json['sellOrders'] ?? 0,
+      buyOrders: json['buy_orders'] ?? json['buyOrders'] ?? 0,
+    );
+  }
+}
+
 class TradeMarketPriceData {
   final int itemCode;
   final int enhancementLevel;
@@ -7,6 +28,10 @@ class TradeMarketPriceData {
 
   /// 해당 강화 단계의 구매 대기 수량. 상세 응답에만 존재하며 최신 값만 유효하다.
   final int buyOrders;
+
+  /// 가격대별 판매/구매 주문. 상세 응답에만 존재하며 최신 값만 유효하다.
+  final List<TradeMarketOrderBookEntry> orderBook;
+
   final DateTime date;
 
   TradeMarketPriceData({
@@ -16,6 +41,7 @@ class TradeMarketPriceData {
     required this.cumulativeVolume,
     required this.currentStock,
     this.buyOrders = 0,
+    this.orderBook = const [],
     required this.date,
   });
 
@@ -29,6 +55,7 @@ class TradeMarketPriceData {
       cumulativeVolume: json['cumulative_volume'] ?? json['cumulativeVolume'],
       currentStock: json['current_stock'] ?? json['currentStock'],
       buyOrders: json['buy_orders'] ?? json['buyOrders'] ?? 0,
+      orderBook: _parseOrderBook(json['order_book'] ?? json['orderBook']),
       date: DateTime.parse(json['date']),
     );
   }
@@ -55,6 +82,7 @@ class TradeMarketPriceData {
     final int currentStock =
         json['current_stock'] ?? json['currentStock'] ?? 0;
     final int buyOrders = json['buy_orders'] ?? json['buyOrders'] ?? 0;
+    final orderBook = _parseOrderBook(json['order_book'] ?? json['orderBook']);
     final DateTime baseDate = _parseDate(json['updated_at'] ?? json['updatedAt']);
 
     final List<TradeMarketPriceData> result = [];
@@ -67,6 +95,8 @@ class TradeMarketPriceData {
         cumulativeVolume: i == 0 ? cumulativeVolume : 0,
         currentStock: i == 0 ? currentStock : 0,
         buyOrders: i == 0 ? buyOrders : 0,
+        // 재고·거래량과 마찬가지로 호가창도 최신 값만 유효하다.
+        orderBook: i == 0 ? orderBook : const [],
         date: baseDate.subtract(Duration(days: i)),
       ));
     }
@@ -81,10 +111,20 @@ class TradeMarketPriceData {
         cumulativeVolume: cumulativeVolume,
         currentStock: currentStock,
         buyOrders: buyOrders,
+        orderBook: orderBook,
         date: baseDate,
       ));
     }
     return result;
+  }
+
+  static List<TradeMarketOrderBookEntry> _parseOrderBook(dynamic value) {
+    if (value is! List) {
+      return const [];
+    }
+    return value
+        .map((entry) => TradeMarketOrderBookEntry.fromJson(entry))
+        .toList();
   }
 
   /// `updatedAt`을 로컬 날짜(자정) 기준으로 정규화한다. 파싱 실패 시 오늘 날짜로 대체한다.

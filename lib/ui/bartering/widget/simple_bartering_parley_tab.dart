@@ -7,7 +7,9 @@ import 'package:karanda/model/bartering/bartering.dart';
 import 'package:karanda/model/bartering/bartering_mastery.dart';
 import 'package:karanda/model/bartering/bartering_settings.dart';
 import 'package:karanda/model/bartering/ship_profile.dart';
+import 'package:karanda/ui/bartering/bartering_constants.dart';
 import 'package:karanda/ui/bartering/controller/bartering_parley_controller.dart';
+import 'package:karanda/ui/core/theme/app_colors.dart';
 import 'package:karanda/ui/core/theme/dimens.dart';
 import 'package:karanda/ui/core/ui/bdo_item_image.dart';
 import 'package:karanda/ui/core/ui/loading_indicator.dart';
@@ -49,6 +51,8 @@ class SimpleBarteringParleyTab extends StatelessWidget {
                   decreaseVoucher: controller.decreaseTradeVoucher,
                   start: controller.start,
                   resetAll: controller.resetAll,
+                  canUndoApply: controller.canUndoApply,
+                  undoLastApply: controller.undoLastApply,
                 ),
                 _PercentIndicator(
                   consumed: controller.consumed + controller.totalParley,
@@ -105,7 +109,7 @@ class _BarteringTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDense = width < 460;
+    final bool isDense = width < Dimens.breakpointCompact;
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
@@ -145,7 +149,9 @@ class _BarteringTile extends StatelessWidget {
                     controller: data.countTextController,
                     keyboardType: const TextInputType.numberWithOptions(),
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,3})')),
+                      FilteringTextInputFormatter.allow(
+                        RegExp('^(\d{0,${BarteringConstants.countInputLength}})'),
+                      ),
                     ],
                     textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
@@ -225,6 +231,8 @@ class _Head extends StatelessWidget {
   final void Function() decreaseVoucher;
   final void Function() start;
   final void Function() resetAll;
+  final bool canUndoApply;
+  final void Function() undoLastApply;
 
   const _Head({
     super.key,
@@ -239,6 +247,8 @@ class _Head extends StatelessWidget {
     required this.decreaseVoucher,
     required this.start,
     required this.resetAll,
+    required this.canUndoApply,
+    required this.undoLastApply,
   });
 
   @override
@@ -250,8 +260,10 @@ class _Head extends StatelessWidget {
         top: Dimens.pagePaddingValue,
       ),
       child: Flex(
-        direction: width < 600 ? Axis.vertical : Axis.horizontal,
-        mainAxisAlignment: width < 600
+        direction: width < Dimens.breakpointMedium
+            ? Axis.vertical
+            : Axis.horizontal,
+        mainAxisAlignment: width < Dimens.breakpointMedium
             ? MainAxisAlignment.start
             : MainAxisAlignment.spaceBetween,
         spacing: 4.0,
@@ -261,21 +273,25 @@ class _Head extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flex(
-                direction: width < 440 ? Axis.vertical : Axis.horizontal,
-                crossAxisAlignment: width < 440
+                direction: width < Dimens.breakpointNarrow
+                    ? Axis.vertical
+                    : Axis.horizontal,
+                crossAxisAlignment: width < Dimens.breakpointNarrow
                     ? CrossAxisAlignment.start
                     : CrossAxisAlignment.center,
                 spacing: 8.0,
                 children: [
                   SizedBox(
-                    width: width < 440 ? Size.infinite.width : 220,
+                    width: width < Dimens.breakpointNarrow
+                        ? Size.infinite.width
+                        : 220,
                     child: TextFormField(
                       controller: parleyTextController,
                       enabled: !enabled,
                       keyboardType: const TextInputType.numberWithOptions(),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
-                          RegExp(r'^(\d{0,7})'),
+                          RegExp('^(\d{0,${BarteringConstants.parleyInputLength}})'),
                         ),
                       ],
                       decoration: InputDecoration(
@@ -304,7 +320,7 @@ class _Head extends StatelessWidget {
             children: [
               DropdownMenu<ShipProfile>(
                 label: Text(context.tr("bartering.settings.shipProfiles")),
-                width: width < 600
+                width: width < Dimens.breakpointMedium
                     ? width - 36.0 - (Dimens.pagePaddingValue * 2)
                     : null,
                 initialSelection: settings.lastSelectedShip,
@@ -314,12 +330,28 @@ class _Head extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 8.0),
-                width: width < 600 ? Size.infinite.width : null,
+                width: width < Dimens.breakpointMedium ? Size.infinite.width : null,
                 child: enabled
-                    ? ElevatedButton.icon(
-                        onPressed: resetAll,
-                        label: Text(context.tr("bartering.simple.resetAll")),
-                        icon: Icon(Icons.refresh),
+                    ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        spacing: 8.0,
+                        children: [
+                          OutlinedButton.icon(
+                            onPressed: canUndoApply ? undoLastApply : null,
+                            label: Text(
+                              context.tr("bartering.simple.undoApply"),
+                            ),
+                            icon: Icon(Icons.undo),
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: resetAll,
+                            label: Text(
+                              context.tr("bartering.simple.resetAll"),
+                            ),
+                            icon: Icon(Icons.refresh),
+                          ),
+                        ],
                       )
                     : ElevatedButton.icon(
                         onPressed: start,
@@ -436,21 +468,17 @@ class _PercentIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rate = consumed / total;
-    final text = (rate * 100).format();
-    MaterialColor color;
-    switch (rate) {
-      case < 0.25:
-        color = Colors.blue;
-      case < 0.5:
-        color = Colors.green;
-      case < 0.75:
-        color = Colors.yellow;
-      case < 1.0:
-        color = Colors.orange;
-      default:
-        color = Colors.red;
+    // 보유 파레이를 비우면 total이 0이 된다. 그대로 나누면 0/0 = NaN이 되어
+    // LinearPercentIndicator의 `0.0 <= percent <= 1.0` 단언에 걸리므로 먼저 걸러낸다.
+    // (소모량이 있는 상태에서 0으로 나누면 Infinity → min()이 1.0으로 잘라내므로 안전)
+    final double rate;
+    if (total <= 0) {
+      rate = consumed > 0 ? 1.0 : 0.0;
+    } else {
+      rate = consumed / total;
     }
+    final text = (rate * 100).format();
+    final color = AppColors.parleyUsageColor(rate);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: LinearPercentIndicator(

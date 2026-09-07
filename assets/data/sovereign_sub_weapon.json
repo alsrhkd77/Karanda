@@ -1,0 +1,260 @@
+{
+  "id": "sovereign_sub_weapon",
+  "name": "sovereign_sub_weapon",
+  "type": "recipeCompare",
+  "tax": {
+    "enabled": false,
+    "value package": false,
+    "merchant ring": false,
+    "crescent pass": false,
+    "family fame": 0
+  },
+  "lifeskill": "none",
+  "items": [],
+  "variants": [
+    {
+      "name": "trade market.builtin.method 1",
+      "items": [
+        {
+          "source": "market",
+          "code": null,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 2,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": {
+            "label": "trade market.builtin.blackstar slot",
+            "candidates": [
+              {
+                "main category": 5,
+                "prefixes": [
+                  "검은별"
+                ],
+                "codes": [],
+                "enhancement level": 20,
+                "caphras level": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "trade market.builtin.method 2",
+      "items": [
+        {
+          "source": "market",
+          "code": null,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": {
+            "label": "trade market.builtin.blackstar slot",
+            "candidates": [
+              {
+                "main category": 5,
+                "prefixes": [
+                  "검은별"
+                ],
+                "codes": [],
+                "enhancement level": 20,
+                "caphras level": 0
+              }
+            ]
+          }
+        },
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.primal flame",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        }
+      ]
+    },
+    {
+      "name": "trade market.builtin.method 3",
+      "items": [
+        {
+          "source": "market",
+          "code": null,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": {
+            "label": "trade market.builtin.blackstar slot",
+            "candidates": [
+              {
+                "main category": 5,
+                "prefixes": [
+                  "검은별"
+                ],
+                "codes": [],
+                "enhancement level": 20,
+                "caphras level": 0
+              }
+            ]
+          }
+        },
+        {
+          "source": "market",
+          "code": null,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": {
+            "label": "trade market.builtin.boss caphras slot",
+            "candidates": [
+              {
+                "main category": 5,
+                "prefixes": [
+                  "누베르",
+                  "쿠툼"
+                ],
+                "codes": [],
+                "enhancement level": 20,
+                "caphras level": 20
+              }
+            ]
+          }
+        },
+        {
+          "source": "derived",
+          "code": null,
+          "custom name": "trade market.builtin.twilight gem",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [
+            {
+              "source": "market",
+              "code": 4918,
+              "custom name": null,
+              "enhancement level": 0,
+              "quantity": 100,
+              "yield amount": 1,
+              "off market price": null,
+              "components": [],
+              "role": "material",
+              "slot": null
+            },
+            {
+              "source": "market",
+              "code": 721003,
+              "custom name": null,
+              "enhancement level": 0,
+              "quantity": 20000,
+              "yield amount": 1,
+              "off market price": null,
+              "components": [],
+              "role": "material",
+              "slot": null
+            }
+          ],
+          "role": "material",
+          "slot": null
+        }
+      ]
+    },
+    {
+      "name": "trade market.builtin.method 4",
+      "items": [
+        {
+          "source": "market",
+          "code": null,
+          "custom name": null,
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": {
+            "label": "trade market.builtin.blackstar slot",
+            "candidates": [
+              {
+                "main category": 5,
+                "prefixes": [
+                  "검은별"
+                ],
+                "codes": [],
+                "enhancement level": 20,
+                "caphras level": 0
+              }
+            ]
+          }
+        },
+        {
+          "source": "offMarket",
+          "code": null,
+          "custom name": "trade market.builtin.primal flame",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [],
+          "role": "material",
+          "slot": null
+        },
+        {
+          "source": "derived",
+          "code": null,
+          "custom name": "trade market.builtin.twilight gem",
+          "enhancement level": 0,
+          "quantity": 1,
+          "yield amount": 1,
+          "off market price": null,
+          "components": [
+            {
+              "source": "market",
+              "code": 4918,
+              "custom name": null,
+              "enhancement level": 0,
+              "quantity": 100,
+              "yield amount": 1,
+              "off market price": null,
+              "components": [],
+              "role": "material",
+              "slot": null
+            },
+            {
+              "source": "market",
+              "code": 721003,
+              "custom name": null,
+              "enhancement level": 0,
+              "quantity": 20000,
+              "yield amount": 1,
+              "off market price": null,
+              "components": [],
+              "role": "material",
+              "slot": null
+            }
+          ],
+          "role": "material",
+          "slot": null
+        }
+      ]
+    }
+  ]
+}

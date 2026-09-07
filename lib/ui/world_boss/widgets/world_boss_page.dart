@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:karanda/common/date_time_extension.dart';
+import 'package:karanda/utils/extension/date_time_extension.dart';
 import 'package:karanda/model/world_boss_schedule.dart';
 import 'package:karanda/repository/time_repository.dart';
 import 'package:karanda/ui/core/theme/dimens.dart';

@@ -1,4 +1,0 @@
-enum RecruitmentCategory {
-  partyAndPlatoon,
-  guildWarHeroes,
-}
