@@ -67,7 +67,7 @@ class AuthService extends ChangeNotifier {
     if (await login()) {
       _router.go("/");
     } else {
-      _router.go("auth/error");
+      _router.go("/auth/error");
     }
   }
 

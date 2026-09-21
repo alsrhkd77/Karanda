@@ -134,9 +134,13 @@ class _ProfileImage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CircleAvatar(
-          backgroundImage: Image.network(user.avatar).image,
+          backgroundImage:
+              user.avatar == null ? null : Image.network(user.avatar!).image,
           radius: width / 2,
           backgroundColor: Colors.transparent,
+          child: user.avatar == null
+              ? Icon(Icons.account_circle, size: width)
+              : null,
         ),
       ),
     );

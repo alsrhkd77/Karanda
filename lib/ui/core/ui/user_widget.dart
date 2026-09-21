@@ -15,9 +15,13 @@ class UserWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
-            foregroundImage: Image.network(user.avatar).image,
+            foregroundImage:
+                user.avatar == null ? null : Image.network(user.avatar!).image,
             backgroundColor: Colors.transparent,
             radius: 14,
+            child: user.avatar == null
+                ? const Icon(Icons.account_circle, size: 28)
+                : null,
           ),
           const SizedBox(width: 6),
           Text(user.username),

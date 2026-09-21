@@ -47,13 +47,19 @@ import 'package:karanda/ui/windows_initializer/widgets/windows_initializer_page.
 import 'package:karanda/ui/world_boss/widgets/world_boss_page.dart'
     show WorldBossPage;
 import 'package:karanda/ui/core/ui/loading_page.dart';
+import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
+
+/// 라우팅 운영 로그. 쿼리스트링에 토큰이 실릴 수 있으므로 경로(path)만 기록한다.
+final _log = Logger('router');
 
 final GoRouter router = GoRouter(
   initialLocation: '/window-init',
   //debugLogDiagnostics: kDebugMode,
   onException: (_, GoRouterState state, GoRouter router) {
+    // state.uri 전체를 남기면 /auth/authenticate 의 토큰 쿼리까지 저장되므로 path만 남긴다.
+    _log.warning('No route matched: ${state.uri.path}');
     router.go("/not-found");
   },
   routes: [

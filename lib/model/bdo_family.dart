@@ -25,7 +25,7 @@ class BDOFamily {
       code: json["code"],
       region: BDORegion.values.byName(json["region"]),
       familyName: json["familyName"],
-      mainClass: BDOClass.values.byName(json["mainClass"]),
+      mainClass: BDOClass.fromName(json["mainClass"]),
       maxGearScore: json["maxGearScore"],
       verified: json["verified"],
       lastUpdated: json["lastUpdated"] != null

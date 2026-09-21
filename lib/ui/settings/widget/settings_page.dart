@@ -143,9 +143,13 @@ class _AccountTile extends StatelessWidget {
           ));
         },
         leading: user?.family == null ? CircleAvatar(
-          foregroundImage: Image.network(user!.avatar).image,
+          foregroundImage:
+              user!.avatar == null ? null : Image.network(user!.avatar!).image,
           backgroundColor: Colors.transparent,
           radius: 12,
+          child: user!.avatar == null
+              ? const Icon(Icons.account_circle, size: 24)
+              : null,
         ) : ClassSymbolWidget(bdoClass: user!.family!.mainClass),
         title: Text(user!.family?.familyName ?? user!.username),
         trailing: user?.family == null

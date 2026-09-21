@@ -41,10 +41,16 @@ class AuthRepository {
           _user.sink.add(result.value);
           _log.info('Auto login succeeded');
           return true;
-        case Error<User>():
+        case Error<User>(error: final failure):
           _user.sink.add(null);
-          await clearToken();
-          _log.warning('Auto login failed: stored credentials expired, tokens cleared');
+          // 401(서버가 토큰을 거부)일 때만 토큰을 삭제한다. 서버 장애·네트워크 오류·응답 파싱
+          // 실패로 멀쩡한 토큰까지 지워 사용자를 강제 로그아웃시키지 않기 위함이다.
+          if (failure is AuthorizationFailure && failure.tokenRejected) {
+            await clearToken();
+            _log.warning('Auto login failed: token rejected by server, tokens cleared');
+          } else {
+            _log.warning('Auto login failed: server or network error, tokens kept');
+          }
           return false;
       }
     }

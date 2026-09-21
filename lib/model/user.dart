@@ -3,7 +3,8 @@ import 'package:karanda/model/bdo_family.dart';
 class User {
   String discordId;
   String username;
-  String avatar;
+  /// 서버 계약상 nullable(`UserDTO.avatar: String?`). 렌더링 시 null을 처리해야 한다.
+  String? avatar;
   BDOFamily? family;
 
   User({

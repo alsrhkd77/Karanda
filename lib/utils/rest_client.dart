@@ -215,15 +215,33 @@ class _Client extends http.BaseClient {
       _log.fine('Unauthorized (401): ${request.method} ${request.url.path}, attempting token refresh');
       try {
         token = await tokenRefresh();
-        if (token != null) {
-          request.headers['Authorization'] = "Bearer $token";
-          return _inner.send(request);
+        final retry = token == null ? null : _copyRequest(request, token);
+        if (retry != null) {
+          // 이미 전송된 request는 finalize 상태라 그대로 재전송하면 StateError가 난다.
+          // 반드시 복제본으로 보내고, await로 받아 실패 시 아래 catch에서 처리되게 한다.
+          return await _inner.send(retry);
         }
       } catch (e, s) {
         _log.warning('Token refresh failed', e, s);
       }
     }
     return response;
+  }
+
+  /// 401 재시도용 request 복제.
+  ///
+  /// 이미 전송된 request는 finalize된 상태라 재사용할 수 없다. 본문을 다시 만들 수 있는
+  /// [http.Request]만 복제하며, 그 외 타입(스트리밍·멀티파트)은 null을 반환해 재시도하지 않는다.
+  http.Request? _copyRequest(http.BaseRequest origin, String token) {
+    if (origin is! http.Request) return null;
+    final copy = http.Request(origin.method, origin.url)
+      ..followRedirects = origin.followRedirects
+      ..maxRedirects = origin.maxRedirects
+      ..persistentConnection = origin.persistentConnection;
+    copy.headers.addAll(origin.headers);
+    copy.headers['Authorization'] = "Bearer $token";
+    copy.bodyBytes = origin.bodyBytes;
+    return copy;
   }
 
   Future<String?> tokenRefresh() async {
@@ -250,10 +268,11 @@ class _Client extends http.BaseClient {
 
       if (response.statusCode == HttpStatus.ok) {
         final data = jsonDecode(response.body);
-        await storage.write(key: 'karanda-token', value: data['token']);
+        final newToken = data['token'] as String;
+        await storage.write(key: 'karanda-token', value: newToken);
         await storage.write(key: 'refresh-token', value: data['refreshToken']);
         _log.info('Auth token refreshed');
-        return token;
+        return newToken;
       }
       _log.warning('Token refresh rejected (status: ${response.statusCode})');
     }
